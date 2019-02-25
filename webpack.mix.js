@@ -1,4 +1,6 @@
-const mix = require('laravel-mix');
+const webpack = require('webpack')
+const mix = require('laravel-mix')
+const path = require('path')
 
 /*
  |--------------------------------------------------------------------------

@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    "syntax-dynamic-import",
+    "transform-vue-jsx",
+    [
+      "import",
+      {
+        "libraryName": "ant-design-vue",
+        "libraryDirectory": "lib",
+        "style": true
+      }
+    ]
+  ]
+}

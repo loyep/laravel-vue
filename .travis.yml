@@ -1,0 +1,49 @@
+sudo: required
+language: php
+dist: trusty
+
+cache:
+  apt: true
+  directories:
+    - node_modules
+    - vendor
+
+addons:
+  apt:
+    packages:
+      - sshpass
+  ssh_known_hosts:
+    - $DEPLOY_HOST
+
+php:
+  - 7.3
+
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE galaxy;'
+
+install:
+  - cp .env.example .env
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - php artisan key:generate
+  - php artisan galaxy:install
+  - php artisan vendor:publish --tag=storage
+  - php artisan migrate
+  - npm install
+  - npm run production
+
+script:
+  - vendor/bin/phpunit
+
+notifications:
+  email:
+    - ${U_EMAIL}
+  on_success: change
+  on_failure: always
+
+after_success:
+  - export SSHPASS=$DEPLOY_PASS
+  - sshpass -e ssh ${DEPLOY_USER}@${DEPLOY_HOST} -o stricthostkeychecking=no "sh ./delploy.sh"
+
