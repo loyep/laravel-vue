@@ -28,7 +28,7 @@ install:
   - cp .env.example .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
-  - php artisan galaxy:install
+#  - php artisan galaxy:install
   - php artisan vendor:publish --tag=storage
   - php artisan migrate
   - npm install
@@ -43,7 +43,7 @@ notifications:
   on_success: change
   on_failure: always
 
-after_success:
-  - export SSHPASS=$DEPLOY_PASS
-  - sshpass -e ssh ${DEPLOY_USER}@${DEPLOY_HOST} -o stricthostkeychecking=no "sh ./delploy.sh"
+#after_success:
+#  - export SSHPASS=$DEPLOY_PASS
+#  - sshpass -e ssh ${DEPLOY_USER}@${DEPLOY_HOST} -o stricthostkeychecking=no "sh ./delploy.sh"
 
