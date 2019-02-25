@@ -25,7 +25,7 @@ before_install:
   - mysql -e 'CREATE DATABASE galaxy;'
 
 install:
-  - cp .env.example .env
+  - cp .env.travis .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
 #  - php artisan galaxy:install
