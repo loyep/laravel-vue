@@ -1,6 +1,6 @@
 # Galaxy
 
-![Build Status](https://travis-ci.org/loyep/galaxy.svg?branch=master)
+[![Build Status](https://travis-ci.com/loyep/galaxy.svg?token=YhCvPgf5uspm18kxdLkJ&branch=master)](https://travis-ci.com/loyep/galaxy)
 ![Total Downloads](https://poser.pugx.org/loyep/galaxy/downloads)
 ![Latest Stable Version](https://poser.pugx.org/loyep/galaxy/v/stable.svg)
 ![License](https://poser.pugx.org/loyep/galaxy/license)
