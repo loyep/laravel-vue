@@ -2,11 +2,11 @@
     "name": "galaxy",
     "private": true,
     "scripts": {
-        "clean": "rm -rf ./public/{js/*.{js,map},css/*.{css,map},images}",
+        "clean": "rm -rf ./public/{assets/*,js/*.{js,map},css/*.{css,map},images}",
         "clean:galaxy": "rm -rf ./public/{js/*.{js,map},css/*.{css,map},images}",
         "dev": "npm run development",
         "dev:galaxy": "npm run development -- --env.galaxy",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "development": "npm run clean && cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",
         "watch:galaxy": "npm run development -- --watch --env.galaxy",
         "watch-poll": "npm run watch -- --watch-poll",

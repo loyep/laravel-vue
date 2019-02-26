@@ -13,26 +13,14 @@ const path = require('path')
  |
  */
 
-mix
-  .setPublicPath('public/assets/admin')
-   .js('resources/galaxy/main.js', 'public/assets/admin/admin.js')
-   // .copy('resources/galaxy/themes', 'public/assets/admin/css/themes')
-   .sourceMaps()
-
-if (mix.inProduction()) {
-  mix.version()
-  mix.disableNotifications()
-}
-
-mix.webpackConfig({
+const config = {
   plugins: [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.vue'],
     alias: {
-      '@': path.resolve(__dirname, 'resources/galaxy'),
-      '~': path.resolve(__dirname, 'resources/js/app')
+      '@': path.resolve(__dirname, 'resources/galaxy')
     },
     modules: [
       'node_modules'
@@ -58,7 +46,21 @@ mix.webpackConfig({
   },
   output: {
     chunkFilename: 'js/[name].[chunkhash].js',
-    publicPath: mix.config.hmr ? '//localhost:8080' : '/'
+    publicPath: 'assets/admin/'
   }
-})
+}
 
+mix
+  .setResourceRoot('assets/admin')
+  .setPublicPath('public/assets/admin')
+  .js('resources/galaxy/main.js', 'public/assets/admin/admin.js')
+  .copyDirectory('resources/galaxy/themes', 'public/assets/admin/themes')
+  .version()
+
+if (mix.inProduction()) {
+  mix.disableNotifications()
+} else {
+  mix.sourceMaps()
+}
+
+mix.webpackConfig(config)
