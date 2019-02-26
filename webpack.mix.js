@@ -1,6 +1,7 @@
-const webpack = require('webpack')
 const mix = require('laravel-mix')
 const path = require('path')
+const argv = require('yargs').argv
+const { env } = argv
 
 /*
  |--------------------------------------------------------------------------
@@ -13,5 +14,9 @@ const path = require('path')
  |
  */
 
+if (env && env.galaxy) {
+  return require(path.resolve(__dirname, 'webpack.galaxy.js'))
+}
+
 // mix.js('resources/js/app.js', 'public/js')
-//    .sass('resources/sass/app.scss', 'public/css');
+// .sass('resources/sass/app.scss', 'public/css')
