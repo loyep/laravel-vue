@@ -1,0 +1,52 @@
+<template>
+  <span class="headerSearch" onClick="enterSearchMode">
+    <a-icon type="search" />
+  </span>
+</template>
+
+<script>
+export default {
+  name: 'HeaderSearch',
+  methods: {
+    enterSearchMode () {
+      console.log(2)
+    }
+  }
+}
+</script>
+
+// <style lang="less" scoped>
+// @import '~ant-design-vue/lib/style/themes/default.less';
+
+// .headerSearch {
+//   :global(.anticon-search) {
+//     cursor: pointer;
+//     font-size: 16px;
+//   }
+//   .input {
+//     transition: width 0.3s, margin-left 0.3s;
+//     width: 0;
+//     background: transparent;
+//     border-radius: 0;
+//     :global(.ant-select-selection) {
+//       background: transparent;
+//     }
+//     input {
+//       border: 0;
+//       padding-left: 0;
+//       padding-right: 0;
+//       box-shadow: none !important;
+//     }
+//     &,
+//     &:hover,
+//     &:focus {
+//       border-bottom: 1px solid @border-color-base;
+//     }
+//     &.show {
+//       width: 210px;
+//       margin-left: 8px;
+//     }
+//   }
+// }
+
+// </style>

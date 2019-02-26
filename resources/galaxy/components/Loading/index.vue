@@ -1,0 +1,44 @@
+<template>
+  <div v-show="isLoading" class="preloading-animate">
+    <spin size="large" />
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+
+import { Spin } from 'ant-design-vue'
+import { mapState } from 'vuex'
+
+export default {
+  name: 'Loading',
+  components: {
+    Spin
+  },
+  computed: {
+    ...mapState({
+      isLoading: state => state.app.isLoading
+    })
+  }
+}
+</script>
+
+<style lang="less" scoped>
+    .preloading-animate {
+        background: #ffffff;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 299;
+
+        .ant-spin, div {
+            position: absolute;
+            width: 5rem;
+            height: 5rem;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+</style>
