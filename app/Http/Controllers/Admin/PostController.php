@@ -1,22 +1,11 @@
 <?php
+namespace App\Http\Controllers\Admin;
 
-namespace App\Http\Controllers;
-
-use App\Models\Link;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class LinkController extends Controller
+class PostController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -30,10 +19,10 @@ class LinkController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Link  $link
+     * @param $slug
      * @return \Illuminate\Http\Response
      */
-    public function show(Link $link)
+    public function show($slug)
     {
         //
     }

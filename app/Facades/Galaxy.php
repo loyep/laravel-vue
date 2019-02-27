@@ -16,4 +16,13 @@ class Galaxy extends Facade
         return 'galaxy';
     }
 
+    /**
+     * Admin path
+     *
+     * @return string
+     */
+    public static function path()
+    {
+        return config('admin.path', '/galaxy');
+    }
 }

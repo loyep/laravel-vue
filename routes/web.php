@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('search', 'HomeController@search');

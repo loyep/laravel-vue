@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -30,12 +30,11 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comment $comment
+     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(User $user)
     {
         //
     }
-
 }

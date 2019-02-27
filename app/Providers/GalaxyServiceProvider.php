@@ -15,9 +15,9 @@ class GalaxyServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('galaxy', function () {
-            return new \App\Support\Galaxy();
+            return new \App\Services\Galaxy();
         });
-        
+
         $prefix = 'galaxy';
         Route::get($prefix, '\App\Http\Controllers\Admin\GalaxyController@index')->name('galaxy');
 //        Route::get($prefix . '/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('galaxy.login');

@@ -18,5 +18,7 @@ if (env && env.galaxy) {
 }
 
 mix
+  .setResourceRoot('assets/app')
   .setPublicPath('public/assets/app')
   .js('resources/js/app.js', 'public/assets/app/js')
+  .less('resources/less/app.less', 'public/assets/app/css')
