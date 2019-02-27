@@ -227,6 +227,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /**
+         * Galaxy Aliases...
+         */
+        'Helper' => App\Helpers\Helper::class,
+        'Galaxy' => App\Facades\Galaxy::class,
+
     ],
 
 ];
