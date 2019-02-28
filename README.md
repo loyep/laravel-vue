@@ -1,7 +1,7 @@
-# Galaxy
+# Grace
 
-[![Build Status](https://travis-ci.com/loyep/galaxy.svg?token=YhCvPgf5uspm18kxdLkJ&branch=master)](https://travis-ci.com/loyep/galaxy)
-[![License](https://poser.pugx.org/loyep/galaxy/license)](LICENSE)
+[![Build Status](https://travis-ci.com/loyep/grace.svg?token=YhCvPgf5uspm18kxdLkJ&branch=master)](https://travis-ci.com/loyep/grace)
+[![License](https://poser.pugx.org/loyep/grace/license)](LICENSE)
 
 > A Laravel-Vue Website.
 
@@ -46,4 +46,4 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## License
 
-Galaxy is released under an MIT license. See [License](https://github.com/loyep/galaxy/blob/master/LICENSE) for more information.
+Galaxy is released under an MIT license. See [License](LICENSE) for more information.

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Galaxy'),
+    'name' => env('APP_NAME', 'Grace'),
 
     /*
     |--------------------------------------------------------------------------
@@ -173,7 +173,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\GalaxyServiceProvider::class,
+        App\Providers\GraceServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
     ],
@@ -228,10 +228,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         /**
-         * Galaxy Aliases...
+         * Grace Aliases...
          */
-        'Helper' => App\Helpers\Helper::class,
-        'Galaxy' => App\Facades\Galaxy::class,
+        'Helper' => App\Support\Helper::class,
+        'Grace' => App\Facades\Grace::class,
 
     ],
 

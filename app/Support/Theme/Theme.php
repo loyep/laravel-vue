@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Services;
+namespace App\Support\Grace;
 
-class Galaxy
+class Theme
 {
     /**
      * @var string
      */
     protected static $metaTitle;
     /**
-     * The Galaxy version.
+     * The Grace version.
      *
      * @var string
      */
@@ -25,7 +25,7 @@ class Galaxy
     }
 
     /**
-     * Set Galaxy title.
+     * Set Grace title.
      *
      * @param $title
      */

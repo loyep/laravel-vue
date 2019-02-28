@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
-class GalaxyController extends Controller
+class GraceController extends Controller
 {
     /**
      * @param Request $request
@@ -12,6 +12,6 @@ class GalaxyController extends Controller
      */
     public function index(Request $request)
     {
-        return view('galaxy.index');
+        return view('grace.index');
     }
 }

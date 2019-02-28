@@ -11,14 +11,14 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'galaxy:install';
+    protected $signature = 'grace:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Install all of the Galaxy resources';
+    protected $description = 'Install all of the Grace resources';
 
     /**
      * Create a new command instance.

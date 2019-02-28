@@ -4,7 +4,7 @@ namespace App\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Galaxy extends Facade
+class Grace extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,7 +13,7 @@ class Galaxy extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'galaxy';
+        return 'grace';
     }
 
     /**
@@ -23,6 +23,6 @@ class Galaxy extends Facade
      */
     public static function path()
     {
-        return config('admin.path', '/galaxy');
+        return config('admin.path', '/grace');
     }
 }

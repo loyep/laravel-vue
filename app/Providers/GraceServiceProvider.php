@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
-class GalaxyServiceProvider extends ServiceProvider
+class GraceServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -14,15 +14,13 @@ class GalaxyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('galaxy', function () {
-            return new \App\Services\Galaxy();
-        });
+//        $this->app->singleton('grace', function () {
+//            return new \App\Services\Grace();
+//        });
 
-        $prefix = 'galaxy';
-        Route::get($prefix, '\App\Http\Controllers\Admin\GalaxyController@index')->name('galaxy');
-//        Route::get($prefix . '/login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('galaxy.login');
-//        Route::get($prefix . '/register', '\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('galaxy.register');
-        Route::get($prefix . '/{any}', '\App\Http\Controllers\Admin\GalaxyController@index')->where('any', '.*');
+        $this->app->bind('grace', function () {
+            return $this->app->make(\App\Services\Grace::class);
+        });
     }
 
     /**
@@ -32,7 +30,6 @@ class GalaxyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
         $this->loadRoutes();
     }
 
@@ -45,6 +42,10 @@ class GalaxyServiceProvider extends ServiceProvider
      */
     protected function loadRoutes()
     {
+        $prefix = '/admin';
+        Route::get($prefix, '\App\Http\Controllers\Admin\GraceController@index');
+        Route::get($prefix . '/{any}', '\App\Http\Controllers\Admin\GraceController@index')->where('any', '.*');
+
         $namespace = 'App\Http\Controllers';
         Route::prefix('api')
             ->middleware('api')

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Galaxy;
+use App\Services\Grace;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

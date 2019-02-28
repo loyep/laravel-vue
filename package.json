@@ -1,5 +1,5 @@
 {
-    "name": "galaxy",
+    "name": "grace",
     "private": true,
     "scripts": {
         "clean": "rm -rf ./public/{assets/app/*,js/*.{js,map},css/*.{css,map},images}",

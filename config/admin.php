@@ -2,7 +2,7 @@
 
 return [
 
-    'path' => '/galaxy',
+    'path' => '/admin',
 
-    'name' => 'Galaxy',
+    'name' => 'Grace',
 ];

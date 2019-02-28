@@ -12,7 +12,7 @@ $footer_style = 1;
                 <div class="d-flex justify-content-center footer-copyright">
                     <p class="text-center text-muted font-12">Copyright © {{ date('Y') }}
                         <a href="{{ url('/') }}" title="'{{ config('app.name') }}" rel="home">{{ config('app.name') }}</a>. {{ footer_info() }}
-                        Designed by <a href="https://github.com/loyep/galaxy" target="_blank">Galaxy</a>.
+                        Designed by <a href="https://github.com/loyep/grace" target="_blank">Grace</a>.
                     </p>
                 </div>
             </div>
@@ -81,8 +81,8 @@ $footer_style = 1;
                     <div class="col-12 col-md-12 footer-copyright">
                         <p class="text-center text-muted font-12">Copyright © {{ date('Y') }}
                             <a href="{{ url('/') }}" title="'{{ config('app.name') }}" rel="home">{{ config('app.name') }}</a>. {{ footer_info() }}
-                            Designed by <a href="https://github.com/loyep/galaxy" target="_blank"
-                                           class="text-secondary">Galaxy</a>.</p>
+                            Designed by <a href="https://github.com/loyep/grace" target="_blank"
+                                           class="text-secondary">Grace</a>.</p>
                     </div>
                 </div>
             </div>
