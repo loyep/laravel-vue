@@ -51,7 +51,7 @@ const config = {
 }
 
 mix
-  .setResourceRoot('assets/admin')
+  .setResourceRoot('/assets/admin')
   .setPublicPath('public/assets/admin')
   .js('resources/galaxy/main.js', 'public/assets/admin/admin.js')
   .copyDirectory('resources/galaxy/themes', 'public/assets/admin/themes')

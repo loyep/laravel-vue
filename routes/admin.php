@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('/')->middleware(['guest:api'])->group(function () {
+    Route::post('login', 'Auth\LoginController@login');
+    Route::post('register', 'Auth\RegisterController@register');
+});
+
+Route::prefix('/')->middleware(['auth:api'])->group(function () {
+    Route::get('profile', 'Admin\UserController@profile');
+    Route::post('logout', 'Auth\LoginController@logout');
+});
 

@@ -33,5 +33,22 @@ class GalaxyServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        $this->loadRoutes();
+    }
+
+    /**
+     * Define the "admin" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function loadRoutes()
+    {
+        $namespace = 'App\Http\Controllers';
+        Route::prefix('api')
+            ->middleware('api')
+            ->namespace($namespace)
+            ->group(base_path('routes/admin.php'));
     }
 }
