@@ -11,6 +11,7 @@
               v-decorator="[
                 'username',
                 {
+                  initialValue: 'admin',
                   rules: [
                     { required: true, message: $t('validation.required', { attribute: $t('validation.attributes.username') }) }
                   ],
@@ -28,6 +29,7 @@
               v-decorator="[
                 'password',
                 {
+                  initialValue: '123456',
                   rules: [
                     { required: true, message: $t('validation.required', { attribute: $t('validation.attributes.password') }) }
                   ],

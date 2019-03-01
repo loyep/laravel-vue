@@ -56,6 +56,7 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $this->type = filter_var($request->input($this->username()), FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+
         $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
@@ -72,7 +73,7 @@ class LoginController extends Controller
     {
         $token = $this->guard()->attempt($this->credentials($request));
         if ($token) {
-            $this->guard()->setToken($token);
+            $this->guard('api')->setToken($token);
             return true;
         }
         return false;
@@ -88,13 +89,14 @@ class LoginController extends Controller
     {
         $this->clearLoginAttempts($request);
 
-        $token = $this->guard()->getToken();
-        $expiration = $this->guard()->getPayload()->get('exp');
+        $token = $this->guard('api')->getToken()->get();
+
+        $expiration = $this->guard('api')->getPayload()->get('exp') - time();
 
         return response([
-            'token' => 'Bearer ' . $token,
-            'expires_in' => $expiration - time(),
-        ]);
+            'token' => $token,
+            'expires_in' => $expiration,])
+            ->header('authorization', $token);
     }
 
     /**
@@ -120,6 +122,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $this->guard()->logout();
+
         return response([
             'result' => true,
             'message' => '',

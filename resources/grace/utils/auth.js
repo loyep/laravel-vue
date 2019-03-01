@@ -1,14 +1,14 @@
-import Cookie from './cookie'
+import Storage from './storage'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 
 export const getToken = () => {
-  return Cookie.get(ACCESS_TOKEN)
+  return Storage.get(ACCESS_TOKEN, null)
 }
 
 export const setToken = (token) => {
-  return Cookie.set(ACCESS_TOKEN, token)
+  return Storage.set(ACCESS_TOKEN, token)
 }
 
 export const removeToken = () => {
-  return Cookie.remove(ACCESS_TOKEN)
+  return Storage.remove(ACCESS_TOKEN)
 }

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import Cookie from '@/utils/cookie'
+import Storage from '@/utils/storage'
 import { DEFAULT_LOCALE } from '@/store/mutation-types'
 
 // en-US
@@ -25,7 +25,7 @@ const messages = {
 }
 
 const i18n = new VueI18n({
-  locale: Cookie.get(DEFAULT_LOCALE, 'zh_CN'),
+  locale: Storage.get(DEFAULT_LOCALE, 'zh_CN'),
   messages
 })
 

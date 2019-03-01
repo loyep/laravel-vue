@@ -41,7 +41,7 @@ export const actions = {
         const data = response.data
         if (data.token) {
           commit('SET_TOKEN', data.token)
-          resolve()
+          resolve(response)
         } else {
           reject(new Error())
         }

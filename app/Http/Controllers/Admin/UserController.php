@@ -83,4 +83,19 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function profile(Request $request)
+    {
+        $res = [
+            'roles' => ['admin'],
+            'name' => 'Loren',
+            'email' => 'mwl@live.com',
+            'avatar' => 'https://avatars1.githubusercontent.com/u/16043490?s=460&v=4'
+        ];
+        return response()->json($res);
+    }
 }

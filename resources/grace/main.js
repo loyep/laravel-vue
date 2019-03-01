@@ -7,7 +7,7 @@ import i18n from './locales'
 
 import '@/styles/index.less'
 
-import '@/components/AntdVue'
+import bootstrap from './bootstrap'
 import '@/permission'
 
 Vue.config.productionTip = false
@@ -16,5 +16,8 @@ new Vue({
   router,
   i18n,
   store,
+  created () {
+    bootstrap()
+  },
   render: h => h(App)
 }).$mount('#app')
