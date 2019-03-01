@@ -10,6 +10,8 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Model implements
@@ -40,6 +42,13 @@ class User extends Model implements
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['roles', 'avatar'];
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -66,5 +75,30 @@ class User extends Model implements
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getRolesAttribute()
+    {
+        return ['admin'];
+    }
+
+    public function getAvatarAttribute()
+    {
+        $size = 120;
+        $email = $this->attributes['email'];
+        $hash = Str::length($email) === 32 && ctype_xdigit($email)
+            ? Str::lower($email)
+            : md5(Str::lower(trim($email)));
+
+        $config = [
+            'size' => $size,
+        ];
+
+        $url = Arr::pull($config, 'url', 'https://secure.gravatar.com/avatar');
+        $query = http_build_query($config, null, '&', PHP_QUERY_RFC3986);
+        return $url . '/' . $hash . ($query ? '?' . $query : '');
     }
 }

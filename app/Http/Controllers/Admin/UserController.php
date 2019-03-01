@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -90,12 +91,7 @@ class UserController extends Controller
      */
     public function profile(Request $request)
     {
-        $res = [
-            'roles' => ['admin'],
-            'name' => 'Loren',
-            'email' => 'mwl@live.com',
-            'avatar' => 'https://avatars1.githubusercontent.com/u/16043490?s=460&v=4'
-        ];
-        return response()->json($res);
+        $user = Auth::user()->toArray();
+        return response()->json($user);
     }
 }
