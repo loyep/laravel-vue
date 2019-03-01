@@ -1,4 +1,4 @@
-# Galaxy
+# Grace
 
 [![Build Status](https://travis-ci.com/loyep/grace.svg?token=YhCvPgf5uspm18kxdLkJ&branch=master)](https://travis-ci.com/loyep/grace)
 [![License](https://poser.pugx.org/loyep/grace/license)](LICENSE)
@@ -46,4 +46,4 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## License
 
-Galaxy is released under an MIT license. See [License](https://github.com/loyep/grace/blob/master/LICENSE) for more information.
+Grace is released under an MIT license. See [License](https://github.com/loyep/grace/blob/master/LICENSE) for more information.

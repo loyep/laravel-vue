@@ -15,9 +15,9 @@
 
 ## Installation
 
-- `composer create-project --prefer-dist loyep/galaxy`
+- `composer create-project --prefer-dist loyep/grace`
 - Edit `.env` and set your database connection details
-- (When installed via git clone or download, run `php artisan key:generate` and `php artisan galaxy:install`)
+- (When installed via git clone or download, run `php artisan key:generate` and `php artisan grace:install`)
 - `php artisan migrate --seed`
 - `npm install`
 
@@ -46,4 +46,4 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## License
 
-Galaxy is released under an MIT license. See [License](LICENSE) for more information.
+Grace is released under an MIT license. See [License](LICENSE) for more information.

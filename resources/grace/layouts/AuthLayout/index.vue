@@ -24,13 +24,13 @@
       {
         key: 'github',
         icon: 'github',
-        path: 'https://github.com/loyep/galaxy',
+        path: 'https://github.com/loyep/grace',
         blankTarget: true
       }
     ]"
     >
       <template slot="copyright">
-        Copyright <a-icon type="copyright" /> {{ year }} Power By Galaxy
+        Copyright <a-icon type="copyright" /> {{ year }} Power By Grace
       </template>
     </global-footer>
   </div>
