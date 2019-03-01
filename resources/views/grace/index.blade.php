@@ -1,11 +1,4 @@
-<?php
-$config = [
-    'base' => config('grace.path'),
-    'name' => config('grace.name'),
-    'description' => 'Ant Design 是西湖区最具影响力的 Web 设计规范'
-];
-?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">

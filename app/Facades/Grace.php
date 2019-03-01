@@ -4,6 +4,12 @@ namespace App\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @method static string name();
+ * @method static string title();
+ *
+ * @see \App\Services\Grace\Factory
+ */
 class Grace extends Facade
 {
     /**

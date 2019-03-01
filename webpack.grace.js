@@ -46,7 +46,7 @@ const config = {
   },
   output: {
     chunkFilename: 'js/[name].[chunkhash].js',
-    publicPath: 'assets/admin/'
+    publicPath: '/assets/admin/'
   }
 }
 

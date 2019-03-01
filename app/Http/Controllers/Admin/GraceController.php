@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Facades\Grace;
 use Illuminate\Http\Request;
 
 class GraceController extends Controller
@@ -12,6 +13,11 @@ class GraceController extends Controller
      */
     public function index(Request $request)
     {
-        return view('grace.index');
+        $config = [
+            'base' => Grace::path(),
+            'name' => Grace::title(),
+            'description' => 'Ant Design 是西湖区最具影响力的 Web 设计规范'
+        ];
+        return view('grace.index', compact('config'));
     }
 }

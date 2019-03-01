@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Facades\Grace;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +15,8 @@ class GraceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        $this->app->singleton('grace', function () {
-//            return new \App\Services\Grace();
-//        });
-
-        $this->app->bind('grace', function () {
-            return $this->app->make(\App\Services\Grace::class);
+        $this->app->singleton('grace', function () {
+            return $this->app->make(\App\Services\Grace\Factory::class);
         });
     }
 
@@ -42,7 +39,7 @@ class GraceServiceProvider extends ServiceProvider
      */
     protected function loadRoutes()
     {
-        $prefix = '/admin';
+        $prefix = Grace::path();
         Route::get($prefix, '\App\Http\Controllers\Admin\GraceController@index');
         Route::get($prefix . '/{any}', '\App\Http\Controllers\Admin\GraceController@index')->where('any', '.*');
 

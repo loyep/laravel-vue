@@ -2,7 +2,7 @@
 
 namespace App\Services\Grace;
 
-class Grace
+class Factory
 {
     /**
      * @var string
@@ -36,7 +36,7 @@ class Grace
         if (!empty($title)) {
             return $title;
         }
-        return config('app.name');
+        return config('admin.name');
     }
 
     /**
