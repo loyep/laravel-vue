@@ -13,8 +13,8 @@ const { env } = require('yargs').argv
  |
  */
 
-if (env && env.galaxy) {
-  return require(path.resolve(__dirname, 'webpack.galaxy.js'))
+if (env && env.grace) {
+  return require(path.resolve(__dirname, 'webpack.grace.js'))
 }
 
 mix

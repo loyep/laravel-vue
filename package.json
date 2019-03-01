@@ -3,17 +3,17 @@
     "private": true,
     "scripts": {
         "clean": "rm -rf ./public/{assets/app/*,js/*.{js,map},css/*.{css,map},images}",
-        "clean:galaxy": "rm -rf ./public/{assets/admin/*,js/*.{js,map},css/*.{css,map},images}",
+        "clean:grace": "rm -rf ./public/{assets/admin/*,js/*.{js,map},css/*.{css,map},images}",
         "clean:all": "rm -rf ./public/{assets/*,js/*.{js,map},css/*.{css,map},images}",
         "dev": "npm run clean && npm run development",
-        "dev:galaxy": "npm run clean:galaxy && npm run development -- --env.galaxy",
+        "dev:grace": "npm run clean:grace && npm run development -- --env.grace",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run dev -- --watch",
-        "watch:galaxy": "npm run dev:galaxy -- --watch",
+        "watch:grace": "npm run dev:grace -- --watch",
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run clean && npm run production",
-        "prod:galaxy": "npm run clean:galaxy && npm run production -- --env.galaxy",
+        "prod:grace": "npm run clean:grace && npm run production -- --env.grace",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "dependencies": {

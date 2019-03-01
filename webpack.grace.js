@@ -20,7 +20,7 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.vue'],
     alias: {
-      '@': path.resolve(__dirname, 'resources/galaxy')
+      '@': path.resolve(__dirname, 'resources/grace')
     },
     modules: [
       'node_modules'
@@ -53,8 +53,8 @@ const config = {
 mix
   .setResourceRoot('/assets/admin')
   .setPublicPath('public/assets/admin')
-  .js('resources/galaxy/main.js', 'public/assets/admin/admin.js')
-  .copyDirectory('resources/galaxy/themes', 'public/assets/admin/themes')
+  .js('resources/grace/main.js', 'public/assets/admin/admin.js')
+  .copyDirectory('resources/grace/themes', 'public/assets/admin/themes')
   .version()
 
 if (mix.inProduction()) {

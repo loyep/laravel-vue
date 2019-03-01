@@ -1,7 +1,7 @@
 # Galaxy
 
-[![Build Status](https://travis-ci.com/loyep/galaxy.svg?token=YhCvPgf5uspm18kxdLkJ&branch=master)](https://travis-ci.com/loyep/galaxy)
-[![License](https://poser.pugx.org/loyep/galaxy/license)](LICENSE)
+[![Build Status](https://travis-ci.com/loyep/grace.svg?token=YhCvPgf5uspm18kxdLkJ&branch=master)](https://travis-ci.com/loyep/grace)
+[![License](https://poser.pugx.org/loyep/grace/license)](LICENSE)
 
 > A Laravel-Vue Website.
 
@@ -15,9 +15,9 @@
 
 ## Installation
 
-- `composer create-project --prefer-dist loyep/galaxy`
+- `composer create-project --prefer-dist loyep/grace`
 - Edit `.env` and set your database connection details
-- (When installed via git clone or download, run `php artisan key:generate` and `php artisan galaxy:install`)
+- (When installed via git clone or download, run `php artisan key:generate` and `php artisan grace:install`)
 - `php artisan migrate --seed`
 - `npm install`
 
@@ -46,4 +46,4 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## License
 
-Galaxy is released under an MIT license. See [License](https://github.com/loyep/galaxy/blob/master/LICENSE) for more information.
+Galaxy is released under an MIT license. See [License](https://github.com/loyep/grace/blob/master/LICENSE) for more information.
