@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -22,6 +23,11 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
+     * @var \Tymon\JWTAuth\Contracts\Providers\Auth
+     */
+    protected $auth;
+
+    /**
      * User name type.
      *
      * @var string
@@ -35,7 +41,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->auth = Auth::guard('api');
+        $this->middleware('guest:api')->except('logout');
     }
 
     /**
@@ -51,7 +58,7 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      */
     protected function validateLogin(Request $request)
     {
@@ -73,7 +80,7 @@ class LoginController extends Controller
     {
         $token = $this->guard()->attempt($this->credentials($request));
         if ($token) {
-            $this->guard('api')->setToken($token);
+            $this->guard()->setToken($token);
             return true;
         }
         return false;
@@ -89,13 +96,13 @@ class LoginController extends Controller
     {
         $this->clearLoginAttempts($request);
 
-        $token = $this->guard('api')->getToken()->get();
+        $token = $this->guard()->getToken()->get();
+        $expiration = $this->guard()->getPayload()->get('exp') - time();
 
-        $expiration = $this->guard('api')->getPayload()->get('exp') - time();
-
-        return response([
-            'token' => $token,
-            'expires_in' => $expiration,])
+        return response()
+            ->json([
+                'token' => $token,
+                'expires_in' => $expiration,])
             ->header('authorization', $token);
     }
 
@@ -127,5 +134,15 @@ class LoginController extends Controller
             'result' => true,
             'message' => '',
         ]);
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return $this->auth;
     }
 }

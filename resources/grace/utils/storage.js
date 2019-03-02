@@ -7,11 +7,17 @@ Vue.use(VueStorage, {
   storage: 'local' // storage name session, local, memory
 })
 
-export const setStore = (key, content, expires = 60 * 60 * 7) => {
+/**
+ *
+ * @param key
+ * @param content
+ * @param expires 1 week
+ */
+export const setStore = (key, content, expires = 604800) => {
   if (typeof content !== 'string') {
     content = JSON.stringify(content)
   }
-  Vue.ls.set(key, content, expires)
+  Vue.ls.set(key, content, expires * 1000)
 }
 
 export const getStore = (key, def = null) => {

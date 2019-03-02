@@ -1,5 +1,5 @@
-import { login, getInfo, logout } from '@/api/auth'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getInfo, login, register, logout } from '@/api/auth'
+import { getToken, removeToken, setToken } from '@/utils/auth'
 
 // state
 export const state = {
@@ -32,6 +32,22 @@ export const actions = {
   RefreshToken ({ commit }, token) {
     return new Promise(function (resolve, reject) {
       commit('SET_TOKEN', token)
+    })
+  },
+  // 注册
+  Register ({ commit }, userInfo) {
+    return new Promise((resolve, reject) => {
+      register(userInfo).then(response => {
+        const data = response.data
+        if (data.token) {
+          commit('SET_TOKEN', data.token)
+          resolve(response)
+        } else {
+          reject(new Error())
+        }
+      }).catch(error => {
+        reject(error)
+      })
     })
   },
   // 登录

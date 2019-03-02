@@ -5,7 +5,7 @@
         <div id="logo" class="logo">
           <router-link :to="{ path: '/' }">
             <img :src="logo" alt="logo">
-            <h1>Ant Design Pro</h1>
+            <h1>{{ title }}</h1>
           </router-link>
         </div>
         <div :style="{ maxWidth }">
@@ -21,6 +21,15 @@
 import logo from '@/assets/images/logo.png'
 export default {
   name: 'TopNavHeader',
+  props: {
+    title: {
+      type: String,
+      default: function () {
+        return window.config.name
+      },
+      required: false
+    }
+  },
   data () {
     return {
       logo

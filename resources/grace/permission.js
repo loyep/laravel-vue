@@ -11,7 +11,7 @@ NProgress.configure({ showSpinner: false })
 router.beforeEach((to, from, next) => {
   NProgress.start()
   if (getToken()) {
-    if (to.path === '/login') {
+    if (whiteList.indexOf(to.path) !== -1) {
       next({ path: '/' })
       NProgress.done()
     } else {

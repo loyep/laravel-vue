@@ -97,7 +97,6 @@
 
 <script >
 import AuthLayout from '@/layouts/AuthLayout'
-import { register } from '@/api/auth'
 
 export default {
   name: 'Register',
@@ -115,13 +114,13 @@ export default {
       e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values)
           this.submitting = true
-          register(values).then(() => {
+          this.$store.dispatch('auth/Register', values).then(() => {
             this.submitting = false
-            this.$router.push({ path: '/login' })
-          }).catch((err) => {
-            console.log(err)
+            // this.$router.push({ path: this.redirect || '/' })
+            window.location.reload()
+          }).catch(err => {
+            this.form.showMessages(err)
             this.submitting = false
           })
         }

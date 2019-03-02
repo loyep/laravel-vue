@@ -104,7 +104,7 @@ export default {
           this.submitting = true
           this.$store.dispatch('auth/Login', values).then(() => {
             this.submitting = false
-            this.$router.push({ path: this.redirect || '/' })
+            window.location.reload()
           }).catch(err => {
             this.form.showMessages(err)
             this.submitting = false

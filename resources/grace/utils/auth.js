@@ -6,7 +6,7 @@ export const getToken = () => {
 }
 
 export const setToken = (token) => {
-  return Storage.set(ACCESS_TOKEN, token)
+  return Storage.set(ACCESS_TOKEN, token, 3600 * 7)
 }
 
 export const removeToken = () => {

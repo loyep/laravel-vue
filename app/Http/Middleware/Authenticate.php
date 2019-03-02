@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class Authenticate extends Middleware
 {
@@ -30,7 +31,9 @@ class Authenticate extends Middleware
             $this->authenticate($request, $guards);
         } catch (AuthenticationException $authenticationException) {
             if (!$this->refreshToken($request)) {
-                throw $authenticationException;
+                throw new AuthenticationException(
+                    '登录超时，请重新登录.', $guards, $this->redirectTo($request)
+                );
             }
         }
 
@@ -59,9 +62,15 @@ class Authenticate extends Middleware
     protected function refreshToken(Request $request)
     {
         try {
-            if ($this->auth->parser()->setRequest($request)->hasToken()) {
-                $this->token = $this->auth->guard('api')->refresh();
+            $auth = $this->auth->guard('api');
+            if (!$auth->parser()->setRequest($request)->hasToken()) {
+                return false;
             }
+
+            $this->token = $auth->refresh();
+            $auth->setToken($this->token);
+        } catch (\Exception $exception) {
+            Log::warning($exception->getMessage());
         } finally {
             if (!empty($this->token)) {
                 return true;

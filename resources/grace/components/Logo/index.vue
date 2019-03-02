@@ -15,7 +15,9 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Ant Design Pro',
+      default: function () {
+        return window.config.name
+      },
       required: false
     },
     showTitle: {
