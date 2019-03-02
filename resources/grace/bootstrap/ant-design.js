@@ -29,7 +29,7 @@ import {
   Layout,
   // List,
   // LocaleProvider,
-  Menu,
+  // Menu,
   message,
   Modal,
   notification,
@@ -93,7 +93,7 @@ Vue.use(Input)
 Vue.use(Layout)
 // Vue.use(List);
 // Vue.use(LocaleProvider);
-Vue.use(Menu)
+// Vue.use(Menu)
 Vue.use(Modal)
 // Vue.use(Pagination);
 // Vue.use(Popconfirm);

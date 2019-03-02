@@ -29,13 +29,18 @@
 </template>
 
 <script>
-import { Avatar } from 'ant-design-vue'
+import { Avatar, Menu } from 'ant-design-vue'
+
+const { Item, Divider } = Menu
 
 export default {
   name: 'HeaderDropdown',
 
   components: {
-    Avatar
+    Avatar,
+    'a-menu': Menu,
+    'a-menu-item': Item,
+    'a-menu-divider': Divider
   },
 
   data () {

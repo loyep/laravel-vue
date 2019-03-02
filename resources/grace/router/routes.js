@@ -1,4 +1,4 @@
-import BasicLayout from '@/layouts/BasicLayout'
+// import BasicLayout from '@/layouts/BasicLayout'
 import BlankLayout from '@/layouts/BlankLayout'
 import PageLayout from '@/layouts/PageLayout'
 
@@ -20,7 +20,7 @@ export const routes = [
 export const asyncRouterMap = [
   {
     path: '/',
-    component: BasicLayout,
+    component: () => import('@/layouts/BasicLayout'),
     meta: {
       title: '仪表盘',
       icon: 'dashboard'
@@ -28,7 +28,7 @@ export const asyncRouterMap = [
     children: [
       {
         path: '/',
-        component: BlankLayout,
+        component: () => import('@/layouts/BlankLayout'),
         meta: {
           title: 'Dashboard',
           icon: 'dashboard'
@@ -188,7 +188,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'tag',
-        component: BlankLayout,
+        component: () => import('@/layouts/BlankLayout'),
         meta: {
           title: '标签',
           icon: 'tags'
@@ -230,7 +230,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'permission',
-        component: BlankLayout,
+        component: () => import('@/layouts/BlankLayout'),
         meta: {
           title: '权限',
           icon: 'lock'
@@ -272,7 +272,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'setting',
-        component: BlankLayout,
+        component: () => import('@/layouts/BlankLayout'),
         meta: {
           title: '设置',
           icon: 'setting'
@@ -322,7 +322,7 @@ export const asyncRouterMap = [
       },
       {
         path: '',
-        component: BlankLayout,
+        component: () => import('@/layouts/BlankLayout'),
         hidden: true,
         children: [
           {
@@ -337,7 +337,7 @@ export const asyncRouterMap = [
       },
       {
         path: '*',
-        component: BlankLayout,
+        component: () => import('@/layouts/BlankLayout'),
         hidden: true,
         children: [
           {
