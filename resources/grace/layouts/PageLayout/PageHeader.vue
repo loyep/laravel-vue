@@ -25,10 +25,13 @@
 </template>
 
 <script>
+import { Breadcrumb } from 'ant-design-vue'
 export default {
   name: 'PageHeader',
-  components: {
 
+  components: {
+    'a-breadcrumb': Breadcrumb,
+    'a-breadcrumb-item': Breadcrumb.Item
   },
 
   data () {
@@ -73,7 +76,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~ant-design-vue/lib/style/themes/default.less';
+@import '~ant-design-vue/es/style/themes/default.less';
 
 .pageHeader {
   padding: 16px 32px 0 32px;

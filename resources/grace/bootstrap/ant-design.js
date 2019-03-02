@@ -7,7 +7,7 @@ import {
   // Avatar,
   // BackTop,
   // Badge,
-  Breadcrumb,
+  // Breadcrumb,
   Button,
   // Calendar,
   // Card,
@@ -29,7 +29,7 @@ import {
   Layout,
   // List,
   // LocaleProvider,
-  // Menu,
+  Menu,
   message,
   Modal,
   notification,
@@ -39,7 +39,7 @@ import {
   // Progress,
   // Radio,
   // Rate,
-  Row,
+  Row
   // Select,
   // Skeleton,
   // Slider,
@@ -47,7 +47,7 @@ import {
   // Steps,
   // Switch,
   // Table,
-  Tabs
+  // Tabs
   // Tag,
   // Timeline,
   // TimePicker,
@@ -73,7 +73,7 @@ Vue.prototype.$confirm = Modal.confirm
 // Vue.use(Avatar);
 // Vue.use(BackTop);
 // Vue.use(Badge);
-Vue.use(Breadcrumb)
+// Vue.use(Breadcrumb)
 Vue.use(Button)
 // Vue.use(Calendar);
 // Vue.use(Card);
@@ -93,7 +93,7 @@ Vue.use(Input)
 Vue.use(Layout)
 // Vue.use(List);
 // Vue.use(LocaleProvider);
-// Vue.use(Menu)
+Vue.use(Menu)
 Vue.use(Modal)
 // Vue.use(Pagination);
 // Vue.use(Popconfirm);
@@ -111,7 +111,7 @@ Vue.use(Row)
 // Vue.use(Transfer);
 // Vue.use(Tree);
 // Vue.use(TreeSelect);
-Vue.use(Tabs)
+// Vue.use(Tabs)
 // Vue.use(Tag);
 // Vue.use(TimePicker);
 // Vue.use(Timeline);

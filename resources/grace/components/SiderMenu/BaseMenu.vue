@@ -1,9 +1,7 @@
 <script>
-import Menu from 'ant-design-vue/es/menu'
-import Icon from 'ant-design-vue/es/icon'
+import { Menu, Icon } from 'ant-design-vue'
 import path from 'path'
 
-const { Item, SubMenu } = Menu
 export default {
   name: 'BaseMenu',
   props: {
@@ -58,42 +56,42 @@ export default {
     this.updateMenu()
   },
   methods: {
-    renderIcon: function (h, icon) {
+    renderIcon (h, icon) {
       return icon === 'none' || icon === undefined ? null : h(Icon, { props: { type: icon !== undefined ? icon : '' } })
     },
-    renderMenuItem: function (h, menu, pIndex, index, basePath) {
+    renderMenuItem (h, menu, pIndex, index, basePath) {
       const routePath = path.resolve(basePath, menu.path)
-      return h(Item, { key: routePath }, [
+      return h(Menu.Item, { key: routePath }, [
         h('router-link', { attrs: { to: { path: routePath } } }, [
           this.renderIcon(h, menu.meta.icon),
           h('span', [menu.meta.title])
         ])
       ])
     },
-    renderSubMenu: function (h, menu, pIndex, index, basePath) {
+    renderSubMenu (h, menu, pIndex, index, basePath) {
       const that = this
       const subItem = [h('span', { slot: 'title' }, [this.renderIcon(h, menu.meta.icon), h('span', [menu.meta.title])])]
       const itemArr = []
       const pIndex_ = pIndex + '_' + index
       const routePath = path.resolve(basePath, menu.path)
       if (!menu.alwaysShow) {
-        menu.children.forEach(function (item, i) {
+        menu.children.forEach((item, i) => {
           itemArr.push(that.renderItem(h, item, pIndex_, i, routePath))
         })
       }
-      return h(SubMenu, { key: routePath }, subItem.concat(itemArr))
+      return h(Menu.SubMenu, { key: routePath }, subItem.concat(itemArr))
     },
-    renderItem: function (h, menu, pIndex, index, basePath) {
+    renderItem (h, menu, pIndex, index, basePath) {
       if (!menu.hidden) {
         return menu.children && !menu.alwaysShow
           ? this.renderSubMenu(h, menu, pIndex, index, basePath)
           : this.renderMenuItem(h, menu, pIndex, index, basePath)
       }
     },
-    renderMenu: function (h, menuTree, basePath) {
+    renderMenu: (h, menuTree, basePath) => {
       const that = this
       const menuArr = []
-      menuTree.forEach(function (menu, i) {
+      menuTree.forEach((menu, i) => {
         if (!menu.hidden) {
           menuArr.push(that.renderItem(h, menu, '0', i, basePath))
         }

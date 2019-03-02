@@ -77,7 +77,7 @@ export default {
 
 <style lang="less">
 
-@import '~ant-design-vue/lib/style/themes/default.less';
+@import '~ant-design-vue/es/style/themes/default.less';
 
 @nav-header-height: @layout-header-height;
 

@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~ant-design-vue/lib/style/themes/default.less';
+@import '~ant-design-vue/es/style/themes/default.less';
 
 @pro-header-hover-bg: rgba(0, 0, 0, 0.025);
 
@@ -160,7 +160,7 @@ export default {
 
 <style lang="less">
 
-@import '~ant-design-vue/lib/style/themes/default.less';
+@import '~ant-design-vue/es/style/themes/default.less';
 
 @pro-header-hover-bg: rgba(0, 0, 0, 0.025);
 

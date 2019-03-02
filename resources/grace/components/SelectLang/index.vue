@@ -16,8 +16,7 @@
   </a-dropdown>
 </template>
 
-<script type="text/ecmascript-6">
-
+<script>
 const languageLabels = {
   'zh_CN': '简体中文',
   'en_US': 'English'
@@ -32,7 +31,7 @@ const locales = ['zh_CN', 'en_US']
 
 export default {
   name: 'SelectLang',
-  components: {},
+  components: { },
   inject: ['reload'],
   data () {
     return {
@@ -59,7 +58,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    @import '~ant-design-vue/lib/style/themes/default.less';
+    @import '~ant-design-vue/es/style/themes/default.less';
 
     .dropDown {
         cursor: pointer;
@@ -80,7 +79,7 @@ export default {
 </style>
 
 <style lang="less">
-    @import '~ant-design-vue/lib/style/themes/default.less';
+    @import '~ant-design-vue/es/style/themes/default.less';
 
     .menu {
         .anticon {

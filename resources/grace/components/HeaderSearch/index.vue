@@ -16,7 +16,7 @@ export default {
 </script>
 
 // <style lang="less" scoped>
-// @import '~ant-design-vue/lib/style/themes/default.less';
+// @import '~ant-design-vue/es/style/themes/default.less';
 
 // .headerSearch {
 //   :global(.anticon-search) {

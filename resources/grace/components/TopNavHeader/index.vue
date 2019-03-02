@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~ant-design-vue/lib/style/themes/default.less';
+@import '~ant-design-vue/es/style/themes/default.less';
 
 .head {
   width: 100%;
@@ -114,7 +114,7 @@ export default {
 
 <style lang="less">
 
-@import '~ant-design-vue/lib/style/themes/default.less';
+@import '~ant-design-vue/es/style/themes/default.less';
 
 .head {
     .ant-menu-submenu.ant-menu-submenu-horizontal {

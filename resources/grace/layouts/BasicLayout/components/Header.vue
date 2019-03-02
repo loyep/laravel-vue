@@ -5,7 +5,7 @@
   </a-layout-header>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 import TopNavHeader from '@/components/TopNavHeader'
 import GlobalHeader from '@/components/GlobalHeader'
 

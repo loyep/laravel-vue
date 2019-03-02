@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
+    <link rel="icon" href="{{ asset('favicon.png') }}" sizes="32x32" />
+    <link rel="icon" href="{{ asset('favicon.png') }}" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('favicon.png') }}" />
     <title>@yield('page_title', Grace::title())</title>
     <link href="{{ mix('css/app.css', 'assets/app') }}" rel="stylesheet">
 </head>

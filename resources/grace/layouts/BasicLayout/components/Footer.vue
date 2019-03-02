@@ -18,8 +18,7 @@
   </a-layout-footer>
 </template>
 
-<script type="text/ecmascript-6">
-
+<script>
 import GlobalFooter from '@/components/GlobalFooter'
 
 export default {
