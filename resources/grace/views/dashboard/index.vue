@@ -1,12 +1,12 @@
 <template>
   <div>
-    Dashboard
+    Analysis
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 export default {
-  name: 'Dashboard'
+  name: 'Analysis'
 }
 </script>
 

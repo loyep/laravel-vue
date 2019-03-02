@@ -14,11 +14,6 @@ export const routes = [
     name: 'register',
     hidden: true,
     component: () => import('@/views/auth/Register')
-  },
-  {
-    path: '/404',
-    hidden: true,
-    component: () => import('@/views/errorPage/404')
   }
 ]
 
@@ -44,7 +39,15 @@ export const asyncRouterMap = [
             name: 'dashboard',
             component: () => import('@/views/dashboard'),
             meta: {
-              title: 'Dashboard'
+              title: '仪表盘'
+            }
+          },
+          {
+            path: 'analysis',
+            name: 'analysis',
+            component: () => import('@/views/dashboard/Analysis'),
+            meta: {
+              title: '监控'
             }
           }
         ]
@@ -184,48 +187,6 @@ export const asyncRouterMap = [
         ]
       },
       {
-        path: 'setting',
-        component: BlankLayout,
-        meta: {
-          title: '设置',
-          icon: 'setting'
-        },
-        children: [
-          {
-            path: '',
-            name: 'setting.index',
-            component: () => import('@/views/settings/Index'),
-            meta: {
-              title: '设置列表'
-            }
-          },
-          {
-            path: 'create',
-            name: 'setting.create',
-            component: () => import('@/views/settings/Create'),
-            meta: {
-              title: '创建设置'
-            }
-          },
-          {
-            path: 'edit',
-            name: 'setting.edit',
-            component: () => import('@/views/settings/Update'),
-            meta: {
-              title: '编辑设置'
-            }
-          },
-          {
-            path: 'detail',
-            name: 'setting.detail',
-            component: () => import('@/views/settings/Detail'),
-            meta: {
-              title: '设置详情'
-            }
-          }
-        ]
-      },
-      {
         path: 'tag',
         component: BlankLayout,
         meta: {
@@ -267,7 +228,6 @@ export const asyncRouterMap = [
           }
         ]
       },
-
       {
         path: 'permission',
         component: BlankLayout,
@@ -311,7 +271,80 @@ export const asyncRouterMap = [
         ]
       },
       {
-        path: '*', redirect: '/404', hidden: true
+        path: 'setting',
+        component: BlankLayout,
+        meta: {
+          title: '设置',
+          icon: 'setting'
+        },
+        children: [
+          {
+            path: '',
+            name: 'setting.index',
+            component: () => import('@/views/settings/Index'),
+            meta: {
+              title: '设置列表'
+            }
+          },
+          {
+            path: 'profile',
+            name: 'setting.profile',
+            component: () => import('@/views/settings/Index'),
+            meta: {
+              title: '个人设置'
+            }
+          },
+          {
+            path: 'create',
+            name: 'setting.create',
+            component: () => import('@/views/settings/Create'),
+            meta: {
+              title: '创建设置'
+            }
+          },
+          {
+            path: 'edit',
+            name: 'setting.edit',
+            component: () => import('@/views/settings/Update'),
+            meta: {
+              title: '编辑设置'
+            }
+          },
+          {
+            path: 'detail',
+            name: 'setting.detail',
+            component: () => import('@/views/settings/Detail'),
+            meta: {
+              title: '设置详情'
+            }
+          }
+        ]
+      },
+      {
+        path: '',
+        component: BlankLayout,
+        hidden: true,
+        children: [
+          {
+            path: '403',
+            component: () => import('@/views/errorPage/403')
+          },
+          {
+            path: '500',
+            component: () => import('@/views/errorPage/500')
+          }
+        ]
+      },
+      {
+        path: '*',
+        component: BlankLayout,
+        hidden: true,
+        children: [
+          {
+            path: '',
+            component: () => import('@/views/errorPage/404')
+          }
+        ]
       }
     ]
   }

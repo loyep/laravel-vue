@@ -1,11 +1,11 @@
 <template>
-  <error-page type="404" />
+  <error-page type="500" />
 </template>
 
 <script>
 import ErrorPage from './ErrorPage'
 export default {
-  name: '404',
+  name: '500',
   components: {
     ErrorPage
   }
