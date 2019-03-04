@@ -15,7 +15,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: function () {
+      default: () => {
         return window.config.name
       },
       required: false

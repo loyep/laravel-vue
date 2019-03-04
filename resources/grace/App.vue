@@ -31,7 +31,7 @@ export default {
     }
   },
   mounted () {
-    deviceEnquire(deviceType => {
+    deviceEnquire((deviceType) => {
       let device = 'mobile'
       let sidebar = true
       switch (deviceType) {

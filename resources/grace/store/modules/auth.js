@@ -30,7 +30,7 @@ export const mutations = {
 export const actions = {
   // 将刷新的 token 保存至本地
   RefreshToken ({ commit }, token) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       commit('SET_TOKEN', token)
     })
   },

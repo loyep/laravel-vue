@@ -47,7 +47,7 @@ export const asyncRouterMap = [
             name: 'analysis',
             component: () => import('@/views/dashboard/Analysis'),
             meta: {
-              title: '监控'
+              title: '监控台'
             }
           }
         ]

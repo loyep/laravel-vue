@@ -23,6 +23,9 @@ export default {
     Tooltip,
     HeaderDropdown,
     HeaderSearch
+  },
+  methods: {
+    //
   }
 }
 </script>

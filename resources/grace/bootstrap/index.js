@@ -1,6 +1,8 @@
 import './ant-design'
 import '@/utils/storage'
 
-export default function Initializer () {
+const Initializer = () => {
   //
 }
+
+export default Initializer
