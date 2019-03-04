@@ -42,8 +42,6 @@ export default {
 <style lang="less" scoped>
 @import '~@/styles/variables.less';
 
-@pro-header-hover-bg: rgba(0, 0, 0, 0.025);
-
 .header {
   height: @layout-header-height;
   padding: 0;
@@ -161,8 +159,6 @@ export default {
 <style lang="less">
 
 @import '~@/styles/variables.less';
-
-@pro-header-hover-bg: rgba(0, 0, 0, 0.025);
 
 .menu {
   :global(.anticon) {

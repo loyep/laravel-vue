@@ -6,10 +6,7 @@ import store from './store'
 import i18n from './locales'
 import importDirective from '@/directive'
 
-// import '@/styles/index.less'
-
 import bootstrap from './bootstrap'
-import '@/permission'
 
 Vue.config.productionTip = false
 

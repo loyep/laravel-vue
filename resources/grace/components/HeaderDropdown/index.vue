@@ -1,7 +1,7 @@
 <template>
   <a-dropdown>
     <span class="dropDown">
-      <avatar :src="user.avatar" />
+      <avatar size="small" :src="user.avatar" />
       <span class="name">
         {{ user.name }}
       </span>
@@ -11,17 +11,19 @@
         <a-menu-item>
           <router-link :to="{ path: '/user/profile' }">
             <a-icon type="user" />
-            个人资料
+            个人中心
           </router-link>
         </a-menu-item>
         <a-menu-item key="userinfo">
-          <a-icon type="setting" />
-          设置
+          <router-link :to="{ path: '/user/setting' }">
+            <a-icon type="setting" />
+            账号设置
+          </router-link>
         </a-menu-item>
         <a-menu-divider />
         <a-menu-item @click="logout">
           <a-icon type="logout" />
-          退出
+          退出登录
         </a-menu-item>
       </a-menu>
     </template>

@@ -19,3 +19,5 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('search', 'HomeController@search')->name('search');
+
+Route::get('t/{slug}', 'LinkController@shortLink')->name('short');

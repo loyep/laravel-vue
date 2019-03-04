@@ -30,8 +30,6 @@ export default {
 <style lang="less" scoped>
 @import '~@/styles/variables.less';
 
-@pro-header-hover-bg: rgba(0, 0, 0, 0.025);
-
 .right {
     float: right;
     height: 100%;

@@ -141,6 +141,14 @@ export const asyncRouterMap = [
             meta: {
               title: '个人资料'
             }
+          },
+          {
+            path: 'setting',
+            name: 'user.setting',
+            component: () => import('@/views/users/Setting'),
+            meta: {
+              title: '账号设置'
+            }
           }
         ]
       },
@@ -284,14 +292,6 @@ export const asyncRouterMap = [
             component: () => import('@/views/settings/Index'),
             meta: {
               title: '设置列表'
-            }
-          },
-          {
-            path: 'profile',
-            name: 'setting.profile',
-            component: () => import('@/views/settings/Index'),
-            meta: {
-              title: '个人设置'
             }
           },
           {

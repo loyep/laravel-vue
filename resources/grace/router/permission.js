@@ -1,25 +1,14 @@
-import router from './router'
-import store from './store'
+import router from './index'
+import store from '@/store'
 import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
+
 import { getToken } from '@/utils/auth'
 import { notification } from 'ant-design-vue'
 import { whiteList } from '@/config/route'
 
 NProgress.configure({ showSpinner: false })
 
-const redirectRoute = (to, from, next) => {
-  const redirect = decodeURIComponent(from.query.redirect || to.path)
-  if (to.path === redirect) {
-    // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
-    next({ ...to, replace: true })
-  } else {
-    // 跳转到目的路由
-    next({ path: redirect })
-  }
-}
-
-const beforeEach = (to, from, next) => {
+export const beforeEach = (to, from, next) => {
   NProgress.start()
   if (getToken()) {
     if (whiteList.indexOf(to.path) !== -1) {
@@ -35,7 +24,6 @@ const beforeEach = (to, from, next) => {
               .dispatch('permission/GenerateRoutes', { roles })
               .then(() => {
                 router.addRoutes(store.getters['permission/addRouters'])
-                // redirectRoute(to, from, next)
                 next({ ...to, replace: true })
               })
           }).catch((error) => {
@@ -63,10 +51,6 @@ const beforeEach = (to, from, next) => {
   }
 }
 
-const afterEach = () => {
+export const afterEach = () => {
   NProgress.done()
 }
-
-router.beforeEach(beforeEach)
-
-router.afterEach(afterEach)
