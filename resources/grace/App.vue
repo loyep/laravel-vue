@@ -51,7 +51,6 @@ export default {
 
       this.$store.commit('app/TOGGLE_DEVICE', device)
       this.$store.dispatch('app/SetSidebar', sidebar)
-      console.log('deviceType', deviceType)
     })
   },
   methods: {

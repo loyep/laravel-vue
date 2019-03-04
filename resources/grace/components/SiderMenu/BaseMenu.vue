@@ -88,7 +88,7 @@ export default {
           : this.renderMenuItem(h, menu, pIndex, index, basePath)
       }
     },
-    renderMenu: (h, menuTree, basePath) => {
+    renderMenu (h, menuTree, basePath) {
       const that = this
       const menuArr = []
       menuTree.forEach((menu, i) => {
