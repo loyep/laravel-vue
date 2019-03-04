@@ -133,7 +133,7 @@ export default {
 
 <style lang="less" scoped>
 
-@import '~ant-design-vue/es/style/themes/default.less';
+@import '~@/styles/variables.less';
 
 .main {
   width: 368px;

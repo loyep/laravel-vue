@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~ant-design-vue/es/style/themes/default.less';
+@import '~@/styles/variables.less';
 
 .pageHeader {
   padding: 16px 32px 0 32px;

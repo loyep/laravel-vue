@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
     <title>{{ $config['name'] }}</title>
     <link rel="icon" href="{{ asset('assets/admin/images/logo.png') }}" type="image/x-icon">
+    <link href="{{ mix('admin.css', 'assets/admin') }}" rel="stylesheet">
     <script>
       window.config = @json($config)
     </script>

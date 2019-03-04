@@ -32,13 +32,6 @@ const config = {
         test: /\.less$/,
         loader: 'less-loader',
         options: {
-          modifyVars: {
-            /*
-             'primary-color': '#F5222D',
-             'link-color': '#F5222D',
-             'border-radius-base': '4px',
-             */
-          },
           javascriptEnabled: true
         }
       }
@@ -54,6 +47,7 @@ mix
   .setResourceRoot('/assets/admin')
   .setPublicPath('public/assets/admin')
   .js('resources/grace/main.js', 'public/assets/admin/admin.js')
+  .less('resources/grace/styles/index.less', 'public/assets/admin/admin.css')
   .copyDirectory('resources/grace/themes', 'public/assets/admin/themes')
   .version()
 
