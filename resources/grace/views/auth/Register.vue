@@ -115,12 +115,12 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           this.submitting = true
-          this.$store.dispatch('auth/Register', values).then(() => {
+          this.$store.dispatch('auth/Register', values).then((res) => {
             this.submitting = false
-            // this.$router.push({ path: this.redirect || '/' })
-            window.location.reload()
+            this.$router.push({ path: this.$route.query.redirect || '/' })
           }).catch(err => {
-            this.form.showMessages(err)
+            console.log(err)
+            // this.form.showMessages(err)
             this.submitting = false
           })
         }

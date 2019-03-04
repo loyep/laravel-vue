@@ -91,7 +91,8 @@ export default {
   data () {
     return {
       form: this.$form.createForm(this),
-      submitting: false
+      submitting: false,
+      redirect: undefined
     }
   },
   methods: {
@@ -100,11 +101,20 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           this.submitting = true
-          this.$store.dispatch('auth/Login', values).then(() => {
+          this.$store.dispatch('auth/Login', values).then((res) => {
             this.submitting = false
-            window.location.reload()
+            this.$router.push({ path: this.$route.query.redirect || '/' })
+            if (res.data.welcome) {
+              setTimeout(() => {
+                this.$notification.success({
+                  message: '欢迎',
+                  description: res.data.welcome
+                })
+              }, 1000)
+            }
           }).catch(err => {
-            this.form.showMessages(err)
+            console.log(err)
+            // this.form.showMessages(err)
             this.submitting = false
           })
         }

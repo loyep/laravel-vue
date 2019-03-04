@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -99,10 +100,27 @@ class LoginController extends Controller
         $token = $this->guard()->getToken()->get();
         $expiration = $this->guard()->getPayload()->get('exp') - time();
 
+        $user = $this->guard()->user();
+        $welcome = Str::ucfirst($user->name) . ', ';
+        $h = date('H');
+        if ($h < 11) {
+            $welcome .= '早上好!';
+        } else if ($h < 13) {
+            $welcome .= '中午好！';
+        } else if ($h < 17) {
+            $welcome .= '下午好！';
+        } else if ($h < 19) {
+            $welcome .= '傍晚好！';
+        } else {
+            $welcome .= '晚上好！';
+        }
+
         return response()
             ->json([
                 'token' => $token,
-                'expires_in' => $expiration,])
+                'expires_in' => $expiration,
+                'welcome' => $welcome
+            ])
             ->header('authorization', $token);
     }
 

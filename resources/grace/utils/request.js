@@ -41,20 +41,20 @@ service.interceptors.response.use(
       case 400:
         return message.error(error.response.data.error)
       default: {
-        error.showMessages = (form) => {
-          const errors = error.response.data.errors
-          const values = form.getFieldsValue()
-          const fields = {}
-          for (var e in errors) {
-            fields[e] = {
-              value: values[e],
-              errors: errors[e].map((msg) => {
-                return new Error(msg)
-              })
-            }
-          }
-          form.setFields(fields)
-        }
+        // error.showMessages = (form) => {
+        //   const errors = error.response.data.errors
+        //   const values = form.getFieldsValue()
+        //   const fields = {}
+        //   for (var e in errors) {
+        //     fields[e] = {
+        //       value: values[e],
+        //       errors: errors[e].map((msg) => {
+        //         return new Error(msg)
+        //       })
+        //     }
+        //   }
+        //   form.setFields(fields)
+        // }
         break
       }
     }

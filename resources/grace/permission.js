@@ -8,7 +8,18 @@ import { whiteList } from '@/config/route'
 
 NProgress.configure({ showSpinner: false })
 
-router.beforeEach((to, from, next) => {
+const redirectRoute = (to, from, next) => {
+  const redirect = decodeURIComponent(from.query.redirect || to.path)
+  if (to.path === redirect) {
+    // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+    next({ ...to, replace: true })
+  } else {
+    // 跳转到目的路由
+    next({ path: redirect })
+  }
+}
+
+const beforeEach = (to, from, next) => {
   NProgress.start()
   if (getToken()) {
     if (whiteList.indexOf(to.path) !== -1) {
@@ -24,12 +35,8 @@ router.beforeEach((to, from, next) => {
               .dispatch('permission/GenerateRoutes', { roles })
               .then(() => {
                 router.addRoutes(store.getters['permission/addRouters'])
-                const redirect = decodeURIComponent(from.query.redirect || to.path)
-                if (to.path === redirect) {
-                  next({ ...to, replace: true })
-                } else {
-                  next({ path: redirect })
-                }
+                // redirectRoute(to, from, next)
+                next({ ...to, replace: true })
               })
           }).catch((error) => {
             notification.error({
@@ -50,12 +57,16 @@ router.beforeEach((to, from, next) => {
     if (whiteList.indexOf(to.path) !== -1) {
       next()
     } else {
-      next('/login?redirect=' + to.path) // 否则全部重定向到登录页
+      next({ path: '/login', query: { redirect: to.fullPath } })
       NProgress.done()
     }
   }
-})
+}
 
-router.afterEach(() => {
+const afterEach = () => {
   NProgress.done()
-})
+}
+
+router.beforeEach(beforeEach)
+
+router.afterEach(afterEach)

@@ -60,9 +60,10 @@ export default {
       return icon === 'none' || icon === undefined ? null : h(Icon, { props: { type: icon !== undefined ? icon : '' } })
     },
     renderMenuItem (h, menu, pIndex, index, basePath) {
+      const target = menu.meta.target || null
       const routePath = path.resolve(basePath, menu.path)
       return h(Menu.Item, { key: routePath }, [
-        h('router-link', { attrs: { to: { path: routePath } } }, [
+        h('router-link', { attrs: { to: { path: routePath }, target } }, [
           this.renderIcon(h, menu.meta.icon),
           h('span', [menu.meta.title])
         ])
@@ -74,7 +75,7 @@ export default {
       const itemArr = []
       const pIndex_ = pIndex + '_' + index
       const routePath = path.resolve(basePath, menu.path)
-      if (!menu.alwaysShow) {
+      if (!menu.hideChildrenInMenu) {
         menu.children.forEach((item, i) => {
           itemArr.push(that.renderItem(h, item, pIndex_, i, routePath))
         })
@@ -83,7 +84,7 @@ export default {
     },
     renderItem (h, menu, pIndex, index, basePath) {
       if (!menu.hidden) {
-        return menu.children && !menu.alwaysShow
+        return menu.children && !menu.hideChildrenInMenu
           ? this.renderSubMenu(h, menu, pIndex, index, basePath)
           : this.renderMenuItem(h, menu, pIndex, index, basePath)
       }

@@ -120,20 +120,20 @@ Vue.use(Row)
 // Vue.use(Skeleton);
 // Vue.use(Comment);
 // Vue.use(ConfigProvider);
-Vue.prototype.showMessages = function (error) {
-  if (typeof this.getFieldsValue !== 'function') {
-    return undefined
-  }
-  const errors = error.response.data.errors
-  const values = this.getFieldsValue()
-  const fields = {}
-  for (var e in errors) {
-    fields[e] = {
-      value: values[e],
-      errors: errors[e].map((msg) => {
-        return new Error(msg)
-      })
-    }
-  }
-  this.setFields(fields)
-}
+// Vue.prototype.showMessages = function (error) {
+//   if (typeof this.getFieldsValue !== 'function') {
+//     return undefined
+//   }
+//   const errors = error.response.data.errors
+//   const values = this.getFieldsValue()
+//   const fields = {}
+//   for (var e in errors) {
+//     fields[e] = {
+//       value: values[e],
+//       errors: errors[e].map((msg) => {
+//         return new Error(msg)
+//       })
+//     }
+//   }
+//   this.setFields(fields)
+// }
