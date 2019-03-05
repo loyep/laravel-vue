@@ -30,8 +30,8 @@ export default {
   name: 'PageHeader',
 
   components: {
-    'a-breadcrumb': Breadcrumb,
-    'a-breadcrumb-item': Breadcrumb.Item
+    'ABreadcrumb': Breadcrumb,
+    'ABreadcrumbItem': Breadcrumb.Item
   },
 
   data () {

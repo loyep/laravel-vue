@@ -17,12 +17,14 @@
         <router-view />
       </a-layout-content>
       <basic-footer />
+      <setting-drawer />
     </a-layout>
   </a-layout>
 </template>
 
 <script>
 import SiderMenu from '@/components/SiderMenu'
+import SettingDrawer from '@/components/SettingDrawer'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import { mapState, mapActions } from 'vuex'
@@ -34,7 +36,8 @@ export default {
   components: {
     BasicFooter: Footer,
     BasicHeader: Header,
-    SiderMenu
+    SiderMenu,
+    SettingDrawer
   },
   mixins: [themeMixin, deviceMixin],
   data () {

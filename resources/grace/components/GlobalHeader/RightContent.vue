@@ -1,31 +1,89 @@
 <template>
   <div class="right">
-    <header-search class="action" />
-    <Tooltip title="Help">
-      <a target="_blank" href="https://pro.ant.design/docs/getting-started" rel="noopener noreferrer" class="action">
+    <header-search class="action search" />
+    <a-tooltip title="Help">
+      <a target="_blank" href="https://github.com/loyep/grace" rel="noopener noreferrer" class="action">
         <a-icon type="question-circle-o" />
       </a>
-    </Tooltip>
-    <header-dropdown class="action" />
+    </a-tooltip>
+    <notice-icon class="action" />
+    <a-dropdown
+      class="action"
+    >
+      <span class="dropDown">
+        <a-avatar size="small" :src="user.avatar" />
+        <span class="name">
+          {{ user.name }}
+        </span>
+      </span>
+      <template slot="overlay">
+        <a-menu class="menu">
+          <a-menu-item>
+            <router-link :to="{ path: '/user/profile' }">
+              <a-icon type="user" />
+              个人中心
+            </router-link>
+          </a-menu-item>
+          <a-menu-item key="userinfo">
+            <router-link :to="{ path: '/user/setting' }">
+              <a-icon type="setting" />
+              账号设置
+            </router-link>
+          </a-menu-item>
+          <a-menu-divider />
+          <a-menu-item @click="logout">
+            <a-icon type="logout" />
+            退出登录
+          </a-menu-item>
+        </a-menu>
+      </template>
+    </a-dropdown>
     <select-lang class="action" />
   </div>
 </template>
 
-<script type="text/ecmascript-6">
-import { Tooltip } from 'ant-design-vue'
+<script>
+import { Avatar, Menu, Tooltip, Dropdown } from 'ant-design-vue'
 import SelectLang from '@/components/SelectLang'
-import HeaderDropdown from '@/components/HeaderDropdown'
 import HeaderSearch from '@/components/HeaderSearch'
+import NoticeIcon from '@/components/NoticeIcon'
 export default {
   name: 'RightContent',
   components: {
     SelectLang,
-    Tooltip,
-    HeaderDropdown,
-    HeaderSearch
+    NoticeIcon,
+    HeaderSearch,
+    'AAvatar': Avatar,
+    'ADropdown': Dropdown,
+    'AMenu': Menu,
+    'AMenuDivider': Menu.Divider,
+    'AMenuItem': Menu.Item,
+    'ATooltip': Tooltip
+  },
+  data () {
+    return {
+      user: { }
+    }
+  },
+  created () {
+    this.user = this.$store.getters['auth/user']
   },
   methods: {
-    //
+    logout () {
+      const that = this
+      this.$confirm({
+        title: '提示',
+        content: '真的要注销登录吗 ?',
+        onOk () {
+          return that.$store.dispatch('auth/Logout').then(() => {
+            that.$router.push({ path: '/login' })
+          }).catch(() => {
+            console.log('Oops errors!')
+          })
+        },
+        onCancel () {}
+      })
+    }
   }
 }
 </script>

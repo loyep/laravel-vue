@@ -1,13 +1,22 @@
 <template>
-  <span class="headerSearch">
-    <a-icon type="search" @click="enterSearchMode" />
+  <span class="headerSearch" @click="enterSearchMode">
+    <a-icon type="search" />
     <a-auto-complete
+      key="AutoComplete"
       ref="input"
+      :class="['input ', {'show': searchMode}]"
       :dataSource="dataSource"
-      class="show"
-      placeholder="站内搜索"
-      @blur="leaveSearchMode"
-    />
+      :value="value"
+      @change="onSearchChange(value)"
+      @search="onSearch"
+    >
+      <a-input
+        ref="searchInput"
+        :placeholder="placeholder"
+        @keydown="(e) => onKeyDown(e)"
+        @blur="leaveSearchMode"
+      />
+    </a-auto-complete>
   </span>
 </template>
 
@@ -16,15 +25,40 @@ import { AutoComplete } from 'ant-design-vue'
 export default {
   name: 'HeaderSearch',
   components: {
-    'a-auto-complete': AutoComplete
+    'AAutoComplete': AutoComplete
+  },
+  props: {
+    placeholder: {
+      type: String,
+      default: function () {
+        return '站内搜索'
+      }
+    },
+    onSearch: {
+      type: Function,
+      required: false,
+      default: function () {
+        return () => { console.log(this.value) }
+      }
+    }
   },
   data () {
     return {
       searchMode: false,
-      dataSource: []
+      dataSource: [],
+      value: ''
     }
   },
   methods: {
+    onKeyDown (e) {
+
+    },
+    onSearchChange (value) {
+      this.value = value
+      if (this.onChange) {
+        this.onChange()
+      }
+    },
     enterSearchMode () {
       this.searchMode = true
       // const input = this.$refs.input
@@ -35,23 +69,62 @@ export default {
       //     this.input.focus()
       //   }
       // })
+      setTimeout(() => {
+        this.$refs.input.focus()
+      }, 300)
     },
     leaveSearchMode () {
-
+      this.value = ''
+      this.searchMode = false
     }
   }
 }
 </script>
 
 <style lang="less" scope>
-@import '~@/styles/variables.less';
+// @import '~@/styles/variables.less';
 
+// .headerSearch {
+//   .input {
+//     transition: width 0.3s, margin-left 0.3s;
+//     width: 0;
+//     background: transparent;
+//     border-radius: 0;
+//     input {
+//       border: 0;
+//       padding-left: 0;
+//       padding-right: 0;
+//       box-shadow: none !important;
+//     }
+//     &,
+//     &:hover,
+//     &:focus {
+//       border-bottom: 1px solid @border-color-base;
+//     }
+//     &.show {
+//       width: 210px;
+//       margin-left: 8px;
+//     }
+//   }
+// }
+
+</style>
+
+<style lang="less">
+@import '~@/styles/variables.less';
 .headerSearch {
+  .anticon-search {
+    cursor: pointer;
+    font-size: 16px;
+  }
   .input {
     transition: width 0.3s, margin-left 0.3s;
     width: 0;
     background: transparent;
     border-radius: 0;
+    .ant-select-selection {
+        background: transparent;
+    }
     input {
       border: 0;
       padding-left: 0;
@@ -66,23 +139,6 @@ export default {
     &.show {
       width: 210px;
       margin-left: 8px;
-    }
-  }
-}
-
-</style>
-
-<style lang="less">
-@import '~@/styles/variables.less';
-
-.headerSearch {
-  .anticon-search {
-    cursor: pointer;
-    font-size: 16px;
-  }
-  .input {
-    .ant-select-selection {
-      background: transparent;
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div v-show="isLoading" class="preloading-animate">
-    <spin size="large" />
+    <a-spin size="large" />
   </div>
 </template>
 
@@ -12,7 +12,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'Loading',
   components: {
-    Spin
+    'ASpin': Spin
   },
   computed: {
     ...mapState({

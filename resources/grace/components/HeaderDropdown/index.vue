@@ -1,113 +1,44 @@
 <template>
-  <a-dropdown>
-    <span class="dropDown">
-      <avatar size="small" :src="user.avatar" />
-      <span class="name">
-        {{ user.name }}
-      </span>
-    </span>
+  <a-dropdown
+    :placement="placement"
+    :overlayClassName="'container ' + overlayClassName "
+    :trigger="triggerType"
+    :visible="visible"
+    @visibleChange="visibleChange"
+  >
+    <slot />
     <template slot="overlay">
-      <a-menu class="menu">
-        <a-menu-item>
-          <router-link :to="{ path: '/user/profile' }">
-            <a-icon type="user" />
-            个人中心
-          </router-link>
-        </a-menu-item>
-        <a-menu-item key="userinfo">
-          <router-link :to="{ path: '/user/setting' }">
-            <a-icon type="setting" />
-            账号设置
-          </router-link>
-        </a-menu-item>
-        <a-menu-divider />
-        <a-menu-item @click="logout">
-          <a-icon type="logout" />
-          退出登录
-        </a-menu-item>
-      </a-menu>
+      <slot name="overlay" />
     </template>
   </a-dropdown>
 </template>
 
 <script>
-import { Avatar, Menu } from 'ant-design-vue'
-
-const { Item, Divider } = Menu
+import { Dropdown } from 'ant-design-vue'
 
 export default {
   name: 'HeaderDropdown',
-
   components: {
-    Avatar,
-    'a-menu': Menu,
-    'a-menu-item': Item,
-    'a-menu-divider': Divider
-  },
-
-  data () {
-    return {
-      user: {
-
-      }
-    }
-  },
-
-  created () {
-    this.user = this.$store.getters['auth/user']
-  },
-
-  methods: {
-    logout () {
-      const that = this
-      this.$confirm({
-        title: '提示',
-        content: '真的要注销登录吗 ?',
-        onOk () {
-          return that.$store.dispatch('auth/Logout').then(() => {
-            that.$router.push({ path: '/login' })
-          }).catch(() => {
-            console.log('Oops errors!')
-          })
-        },
-        onCancel () {}
-      })
-    }
+    'ADropdown': Dropdown
   }
 }
 </script>
 
 <style lang="less" scoped>
-    @import '~@/styles/variables.less';
+@import '~@/styles/variables.less';
 
-    .dropDown {
-        cursor: pointer;
-        vertical-align: top;
-        line-height: @layout-header-height;
+.container > * {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: @shadow-1-down;
+}
 
-        > i {
-            font-size: 14px !important;
-            transform: none !important;
-
-            svg {
-                position: relative;
-                top: -1px;
-            }
-        }
-    }
-
-</style>
-
-<style lang="less">
-    @import '~@/styles/variables.less';
-
-    .menu {
-        .anticon {
-            margin-right: 8px;
-        }
-
-        .ant-dropdown-menu-item {
-            min-width: 160px;
-        }
-    }
+@media screen and (max-width: @screen-xs) {
+  .container {
+    width: 100% !important;
+  }
+  .container > * {
+    border-radius: 0 !important;
+  }
+}
 </style>
