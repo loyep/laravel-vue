@@ -17,7 +17,7 @@ if (Route::current()->named('home')) {
     <link href="{{ mix('css/app.css', 'assets/app') }}" rel="stylesheet">
 </head>
 <body class="{{ implode(' ', $bodyClass) }}">
-@include('partials.header')
+{{--@include('partials.header')--}}
 {{--@include('components.search')--}}
 @include('components.footer')
 <script src="{{ mix('js/app.js', 'assets/app') }}" type="text/javascript"></script>

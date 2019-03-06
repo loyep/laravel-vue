@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 //Auth::routes();
 
-Route::middleware([\App\Http\Middleware\CacheResponse::class])->group(function () {
-    Route::get('/', 'HomeController@index')->name('home');
-});
+//Route::middleware([\App\Http\Middleware\CacheResponse::class])->group(function () {
+Route::get('/', 'HomeController@index')->name('home');
+//});
 
 Route::get('search', 'HomeController@search')->name('search');
 

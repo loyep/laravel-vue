@@ -6,10 +6,21 @@ use App\Models\Setting;
 use App\Models\User;
 use App\Models\Widget;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class Helper
 {
+
+    /**
+     * @var array
+     */
+    protected static $widgets;
+
+    /**
+     * @var array
+     */
+    protected static $options;
 
     /**
      * Get Option
@@ -21,10 +32,16 @@ class Helper
      */
     public static function getOption($name = '', $default = '', $group = null)
     {
-        $option = Setting::where('key', $name)->where('group', $group)->first();
+        if (!isset(self::$options)) {
+            self::$options = Cache::remember('site.options', 10, function () use ($group) {
+                return Setting::where('group', $group)->get()->each(function ($option, $key) {
+                    $option->value = json_decode($option->value);
+                })->keyBy('key')->toArray();
+            });
+        }
 
-        if (!empty($name) && !empty($option->value)) {
-            return json_decode($option->value);
+        if (!empty($name) && !empty(self::$options[$name]) && !empty(self::$options[$name]['value'])) {
+            return self::$options[$name]['value'];
         }
 
         return (!empty($default)) ? $default : null;
@@ -63,12 +80,18 @@ class Helper
      */
     public static function getWidget($slug)
     {
-        $widget = Widget::where('slug', $slug)->where('show', true)->first();
-        Log::info('slug:' . $slug);
-        if (!empty($slug) && !empty($widget->value)) {
-            return json_decode($widget->value);
+        if (!isset(self::$widgets)) {
+            self::$widgets = Cache::remember('site.widgets', 10, function () {
+                return Widget::where('show', true)->get()->each(function ($widget) {
+                    $widget->value = json_decode($widget->value);
+                })->keyBy('slug')->toArray();
+            });
         }
 
-        return (!empty($default)) ? $default : null;
+        if (!empty($slug) && !empty(self::$widgets[$slug]) && !empty(self::$widgets[$slug]['value'])) {
+            return self::$widgets[$slug]['value'];
+        }
+
+        return null;
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\ViewComposers;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class GraceComposer
@@ -25,7 +24,8 @@ class GraceComposer
      */
     public function footerCompose(View $view)
     {
-        $view->with('footer_info', get_widget('footer_info'));
-        $view->with('current_user', current_user());
+        $view->with('footer_info', get_widget('footer_info'))
+            ->with('site_info', get_option('site_info'))
+            ->with('footer_style', get_option('footer_style', 3));
     }
 }
