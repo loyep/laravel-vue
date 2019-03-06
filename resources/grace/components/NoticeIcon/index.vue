@@ -1,43 +1,26 @@
 <template>
   <a-dropdown
+    v-model="visible"
     placement="bottomRight"
     overlayClassName="notice-container notice-popover"
     :trigger="['click']"
-    @visibleChange="handleVisibleChange"
   >
     <span>
       <a-badge :count="count" :style="{ boxShadow: 'none' }" class="badge">
         <a-icon type="bell" class="icon" />
       </a-badge>
     </span>
-    <template slot="overlay">
+    <template v-slot:overlay>
       <a-spin :spinning="false" :delay="0">
-        <a-tabs class="notice-tabs" defaultActiveKey="1">
+        <a-tabs class="notice-tabs">
           <a-tab-pane key="1" tab="通知(0)">
-            Content of Tab Pane 1
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
+            <notice-list emptyText="暂无通知" emptyImage="https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg" />
           </a-tab-pane>
           <a-tab-pane key="2" tab="消息(0)">
-            Content of Tab Pane 2
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
+            <notice-list emptyText="暂无消息" emptyImage="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg" />
           </a-tab-pane>
           <a-tab-pane key="3" tab="待办(0)">
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
-            Content of Tab Pane 3
+            <notice-list emptyText="暂无待办" emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg" />
           </a-tab-pane>
         </a-tabs>
       </a-spin>
@@ -46,32 +29,27 @@
 </template>
 
 <script>
-import { Badge, Icon, Dropdown, List, Tabs, Avatar, Spin } from 'ant-design-vue'
+import { Badge, Dropdown, Icon, Spin, Tabs } from 'ant-design-vue'
+import NoticeList from './NoticeList'
 export default {
   name: 'NoticeIcon',
   components: {
-    'AAvatar': Avatar,
+    NoticeList,
     'ABadge': Badge,
+    'ADropdown': Dropdown,
     'AIcon': Icon,
-    'ATabs': Tabs,
-    'ATabPane': Tabs.TabPane,
-    'AList': List,
-    'AListItem': List.Item,
-    'AListItemMeta': List.Item.Meta,
     'ASpin': Spin,
-    'ADropdown': Dropdown
+    'ATabs': Tabs,
+    'ATabPane': Tabs.TabPane
   },
   data () {
     return {
-      visible: true,
+      visible: false,
       loading: false,
-      count: 1
+      count: 0
     }
   },
   methods: {
-    handleVisibleChange (visible) {
-      this.visible = visible
-    },
     onTabChange () {
 
     }
@@ -86,6 +64,7 @@ export default {
   cursor: pointer;
   transition: all 0.3s;
 }
+
 .icon {
   padding: 4px;
   vertical-align: middle;
@@ -107,12 +86,19 @@ export default {
 
 .notice-tabs {
 
+  .icon {
+    padding: 4px;
+    vertical-align: middle;
+  }
+
   .ant-tabs-nav-scroll {
     text-align: center;
   }
+
   .ant-dropdown-menu-nav-scroll {
     text-align:center;
   }
+
   .ant-tabs-bar {
     margin-bottom: 0;
   }

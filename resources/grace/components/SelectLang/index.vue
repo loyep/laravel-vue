@@ -3,7 +3,7 @@
     <span class="dropDown">
       <a-icon type="global" />
     </span>
-    <template slot="overlay">
+    <template v-slot:overlay>
       <a-menu class="menu" :selectedKeys="[locale]" @click="changeLang">
         <a-menu-item v-for="item in locales" :key="item">
           <span role="img" :title="languageLabels[item]" :aria-label="languageLabels[item ]">

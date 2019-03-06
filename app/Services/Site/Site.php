@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Services\Grace;
+namespace App\Services\Site;
 
-class Theme
+use App\Support\Helper;
+
+class Site
 {
     /**
      * @var string
@@ -16,6 +18,14 @@ class Theme
             return $title;
         }
         return config('app.name');
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function footerInfo()
+    {
+        return Helper::getWidget('footer_info');
     }
 
     /**

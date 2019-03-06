@@ -16,7 +16,7 @@ class GraceController extends Controller
         $config = [
             'base' => Grace::path(),
             'name' => Grace::title(),
-            'description' => 'Ant Design 是西湖区最具影响力的 Web 设计规范'
+            'description' => '美好源于热爱'
         ];
         return view('grace.index', compact('config'));
     }

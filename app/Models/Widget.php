@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-class Option extends Model
+class Widget extends Model
 {
     //
+
 }

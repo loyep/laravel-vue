@@ -46,7 +46,7 @@ class User extends Model implements
      *
      * @var array
      */
-    protected $appends = ['roles', 'avatar'];
+    protected $appends = ['roles', 'avatar', 'profileUrl'];
 
     /**
      * The attributes that should be cast to native types.
@@ -85,6 +85,17 @@ class User extends Model implements
         return ['admin'];
     }
 
+    /**
+     * @return string
+     */
+    public function getProfileUrlAttribute()
+    {
+        return route('user.show', ['id' => $this->attributes['id']]);
+    }
+
+    /**
+     * @return string
+     */
     public function getAvatarAttribute()
     {
         $size = 120;

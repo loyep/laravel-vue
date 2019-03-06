@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Facades\Grace;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class GraceServiceProvider extends ServiceProvider
 {

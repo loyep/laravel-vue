@@ -9,7 +9,7 @@
       }
     ]"
     >
-      <template slot="copyright">
+      <template v-slot:copyright>
         Copyright <a-icon type="copyright" /> {{ year }} Power By <a href="https://github.com/loyep/grace">
           Grace
         </a>

@@ -17,7 +17,6 @@
           {{ description }}
         </div>
       </div>
-      <!-- <router-view /> -->
       <slot />
     </div>
     <global-footer :links="[
@@ -29,8 +28,10 @@
       }
     ]"
     >
-      <template slot="copyright">
-        Copyright <a-icon type="copyright" /> {{ year }} Power By Grace
+      <template v-slot:copyright>
+        Copyright <a-icon type="copyright" /> {{ year }} Power By <a href="https://github.com/loyep/grace">
+          Grace
+        </a>
       </template>
     </global-footer>
   </div>

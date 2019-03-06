@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +15,12 @@ use Illuminate\Support\Facades\Auth;
 
 //Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::middleware([\App\Http\Middleware\CacheResponse::class])->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+});
 
 Route::get('search', 'HomeController@search')->name('search');
 
 Route::get('t/{slug}', 'LinkController@shortLink')->name('short');
+
+Route::get('user/{id}', 'UserController@show')->name('user.show');

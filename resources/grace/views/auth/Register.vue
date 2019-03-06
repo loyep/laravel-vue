@@ -19,7 +19,9 @@
             size="large"
             :placeholder="$t('validation.attributes.username')"
           >
-            <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
+            <template v-slot="prefix">
+              <a-icon type="user" style="color:rgba(0,0,0,.25)" />
+            </template>
           </a-input>
         </a-form-item>
         <a-form-item>
@@ -37,7 +39,9 @@
             size="large"
             :placeholder="$t('validation.attributes.email')"
           >
-            <a-icon slot="prefix" type="mail" style="color:rgba(0,0,0,.25)" />
+            <template v-slot="prefix">
+              <a-icon type="mail" style="color:rgba(0,0,0,.25)" />
+            </template>
           </a-input>
         </a-form-item>
         <a-form-item>
@@ -55,7 +59,9 @@
             :placeholder="$t('validation.attributes.password')"
             type="password"
           >
-            <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
+            <template v-slot="prefix">
+              <a-icon type="lock" style="color:rgba(0,0,0,.25)" />
+            </template>
           </a-input>
         </a-form-item>
         <a-form-item>
@@ -73,7 +79,9 @@
             :placeholder="$t('validation.attributes.password_confirmation')"
             type="password"
           >
-            <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
+            <template v-slot="prefix">
+              <a-icon type="lock" style="color:rgba(0,0,0,.25)" />
+            </template>
           </a-input>
         </a-form-item>
         <a-form-item>

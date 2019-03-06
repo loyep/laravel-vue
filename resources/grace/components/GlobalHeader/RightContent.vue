@@ -16,7 +16,7 @@
           {{ user.name }}
         </span>
       </span>
-      <template slot="overlay">
+      <template v-slot:overlay>
         <a-menu class="menu">
           <a-menu-item>
             <router-link :to="{ path: '/user/profile' }">

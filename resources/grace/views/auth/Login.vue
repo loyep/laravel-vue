@@ -20,7 +20,9 @@
               :placeholder="$t('validation.attributes.username')"
               size="large"
             >
-              <a-icon slot="prefix" type="mail" style="color:rgba(0,0,0,.25)" />
+              <template v-slot:prefix>
+                <a-icon type="mail" style="color:rgba(0,0,0,.25)" />
+              </template>
             </a-input>
           </a-form-item>
           <a-form-item>
@@ -38,7 +40,9 @@
               size="large"
               type="password"
             >
-              <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
+              <template v-slot:prefix>
+                <a-icon type="lock" style="color:rgba(0,0,0,.25)" />
+              </template>
             </a-input>
           </a-form-item>
           <div>
