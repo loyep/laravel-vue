@@ -236,8 +236,7 @@
                                             class="icon icon-grid text-secondary"></i>个人主页</a></li>
                             <li><a href="<?php //echo get_edit_profile_url();?>"><i
                                             class="icon icon-settings text-secondary"></i>账号设置</a></li>
-                            <li><a href="<?php //echo wp_logout_url() ?>"><i
-                                            class="icon icon-logout text-secondary"></i>退出登录</a>
+                            <li><a href="<?php //echo wp_logout_url() ?>"><i class="icon icon-logout text-secondary"></i>退出登录</a>
                             </li>
                         </ul>
                     </li>

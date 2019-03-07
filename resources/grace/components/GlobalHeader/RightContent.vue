@@ -1,5 +1,9 @@
 <template>
-  <div class="right">
+  <div :class="{
+    'right':true,
+    'dark': theme === 'dark'
+  }"
+  >
     <header-search class="action search" />
     <a-tooltip title="Help">
       <a target="_blank" href="https://github.com/loyep/grace" rel="noopener noreferrer" class="action">
@@ -8,10 +12,10 @@
     </a-tooltip>
     <notice-icon class="action" />
     <a-dropdown
-      class="action"
+      class="action account"
     >
       <span class="dropDown">
-        <a-avatar size="small" :src="user.avatar" />
+        <a-avatar class="avatar" size="small" :src="user.avatar" />
         <span class="name">
           {{ user.name }}
         </span>
@@ -43,6 +47,7 @@
 </template>
 
 <script>
+import { themeMixin } from '@/mixins'
 import { Avatar, Menu, Tooltip, Dropdown } from 'ant-design-vue'
 import SelectLang from '@/components/SelectLang'
 import HeaderSearch from '@/components/HeaderSearch'
@@ -60,6 +65,7 @@ export default {
     'AMenuItem': Menu.Item,
     'ATooltip': Tooltip
   },
+  mixins: [ themeMixin ],
   data () {
     return {
       user: { }
@@ -91,41 +97,50 @@ export default {
 <style lang="less" scoped>
 @import '~@/styles/variables.less';
 
+.menu {
+  :global(.anticon) {
+    margin-right: 8px;
+  }
+  :global(.ant-dropdown-menu-item) {
+    min-width: 160px;
+  }
+}
+
 .right {
-    float: right;
-    height: 100%;
-    overflow: hidden;
-    .action {
-        cursor: pointer;
-        padding: 0 12px;
-        display: inline-block;
-        transition: all 0.3s;
-        height: 100%;
-        > i {
-            vertical-align: middle;
-            color: @text-color;
-        }
-        &:hover {
-            background: @pro-header-hover-bg;
-        }
-        &:global(.opened) {
-            background: @pro-header-hover-bg;
-        }
+  float: right;
+  height: 100%;
+  overflow: hidden;
+  .action {
+      cursor: pointer;
+      padding: 0 12px;
+      display: inline-block;
+      transition: all 0.3s;
+      height: 100%;
+      > i {
+          vertical-align: middle;
+          color: @text-color;
+      }
+      &:hover {
+          background: @pro-header-hover-bg;
+      }
+      &:global(.opened) {
+          background: @pro-header-hover-bg;
+      }
+  }
+  .search {
+    padding: 0 12px;
+    &:hover {
+        background: transparent;
     }
-    .search {
-        padding: 0 12px;
-        &:hover {
-            background: transparent;
-        }
+  }
+  .account {
+    .avatar {
+      margin: ~'calc((@{layout-header-height} - 24px) / 2)' 0;
+      margin-right: 8px;
+      color: @primary-color;
+      background: rgba(255, 255, 255, 0.85);
+      vertical-align: top;
     }
-    .account {
-        .avatar {
-            margin: ~'calc((@{layout-header-height} - 24px) / 2)' 0;
-            margin-right: 8px;
-            color: @primary-color;
-            background: rgba(255, 255, 255, 0.85);
-            vertical-align: top;
-        }
-    }
+  }
 }
 </style>

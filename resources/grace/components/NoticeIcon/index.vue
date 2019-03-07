@@ -105,7 +105,3 @@ export default {
 }
 
 </style>
-
-<style lang="less">
-
-</style>
