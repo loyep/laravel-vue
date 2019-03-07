@@ -1,17 +1,18 @@
 <template>
-  <a-drawer v-if="isMobile"
-            :visible="!collapsed"
-            :style="{
-              padding: 0,
-              height: '100vh',
-            }"
-            placement="left"
-            @close="() => onCollapse(true)"
+  <a-drawer
+    v-if="isMobile"
+    :visible="collapsed"
+    :wrapStyle="{
+      padding: 0,
+      height: '100vh',
+    }"
+    placement="left"
+    @close="() => onCollapse(true)"
   >
     <sider-menu
       :menus="menus"
       :mode="mode"
-      :collapsed="isMobile ? false : collapsed"
+      :collapsed="false"
       @select="onSelect"
     />
   </a-drawer>
@@ -68,7 +69,15 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import './style.less';
+<style lang="less">
+
+  .drawer .drawer-content {
+    background: #001529;
+  }
+  .ant-drawer-left {
+    .ant-drawer-body {
+      padding: 0;
+    }
+  }
 
 </style>

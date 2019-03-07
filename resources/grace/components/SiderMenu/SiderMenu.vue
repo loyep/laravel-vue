@@ -1,19 +1,17 @@
 <template>
   <a-layout-sider
-    v-model="collapsed"
     :class="['sider', {'fixSiderbar': fixSiderbar, 'light': navTheme === 'light'} ]"
     :width="256"
     breakpoint="lg"
     :collapsed="collapsed"
-    :collapsible="collapsible"
+    collapsible
     :trigger="null"
   >
     <logo />
     <base-menu
-      v-bind="$props"
       :collapsed="collapsed"
       :menu="menus"
-      :mode="mode"
+      mode="inline"
       :theme="navTheme"
       :style="{ padding: '16px 0', width: '100%' }"
       @select="onSelect"
@@ -34,16 +32,6 @@ export default {
   },
   mixins: [themeMixin, deviceMixin],
   props: {
-    mode: {
-      type: String,
-      required: false,
-      default: 'inline'
-    },
-    collapsible: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
     collapsed: {
       type: Boolean,
       required: false,

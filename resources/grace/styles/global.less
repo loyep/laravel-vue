@@ -1,11 +1,8 @@
+
 html,
 body,
-#app {
+#root {
   height: 100%;
-}
-
-body {
-  margin: 0px;
 }
 
 .colorWeak {
@@ -34,4 +31,21 @@ body {
 ul,
 ol {
   list-style: none;
+}
+
+@media (max-width: @screen-xs) {
+  .ant-table {
+    width: 100%;
+    overflow-x: auto;
+    &-thead > tr,
+    &-tbody > tr {
+      > th,
+      > td {
+        white-space: pre;
+        > span {
+          display: block;
+        }
+      }
+    }
+  }
 }

@@ -1,24 +1,26 @@
 <template>
-  <a-layout>
-    <sider-menu
-      :menus="menus"
-      :collapsed="collapsed"
-      :onCollapse="handleMenuCollapse"
-      mode="inline"
-      :collapsible="true"
-    />
-    <a-layout :style="[{ minHeight: '100vh' }, getLayoutStyle()]">
-      <basic-header
+  <div class="screen-xs">
+    <a-layout>
+      <sider-menu
+        :menus="menus"
         :collapsed="collapsed"
         :onCollapse="handleMenuCollapse"
+        mode="inline"
+        :collapsible="true"
       />
-      <a-layout-content>
-        <router-view />
-      </a-layout-content>
-      <basic-footer />
-      <setting-drawer />
+      <a-layout :style="[{ minHeight: '100vh' }, getLayoutStyle()]">
+        <basic-header
+          :collapsed="collapsed"
+          :onCollapse="handleMenuCollapse"
+        />
+        <a-layout-content class="basic-content" :style="contentStyle()">
+          <router-view />
+        </a-layout-content>
+        <basic-footer />
+        <setting-drawer />
+      </a-layout>
     </a-layout>
-  </a-layout>
+  </div>
 </template>
 
 <script>
@@ -59,6 +61,12 @@ export default {
     this.menus = this.mainMenu.find((item) => item.path === '/').children
   },
   methods: {
+    contentStyle () {
+      if (this.fixSiderbar) {
+        return {}
+      }
+      return { paddingTop: 0 }
+    },
     ...mapActions({
       setSidebar: 'app/SetSidebar'
     }),
@@ -81,7 +89,7 @@ export default {
 <style lang="less" scoped>
 @import '~@/styles/variables.less';
 
-.content {
+.basic-content {
   margin: 24px;
   padding-top: @layout-header-height;
 }

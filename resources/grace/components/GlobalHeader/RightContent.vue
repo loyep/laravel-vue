@@ -107,6 +107,7 @@ export default {
 }
 
 .right {
+  display: inline-flex;
   float: right;
   height: 100%;
   overflow: hidden;
@@ -116,7 +117,7 @@ export default {
     display: inline-block;
     transition: all 0.3s;
     height: 100%;
-    > :global(i) {
+    >:global(i) {
       vertical-align: middle;
       color: @text-color;
     }
@@ -140,6 +141,36 @@ export default {
       color: @primary-color;
       background: rgba(255, 255, 255, 0.85);
       vertical-align: top;
+    }
+  }
+}
+
+@media only screen and (max-width: @screen-md) {
+  .header {
+    :global(.ant-divider-vertical) {
+      vertical-align: unset;
+    }
+    .name {
+      display: none;
+    }
+    i.trigger {
+      padding: 22px 12px;
+    }
+    .logo {
+      position: relative;
+      padding-right: 12px;
+      padding-left: 12px;
+    }
+    .right {
+      position: absolute;
+      top: 0;
+      right: 12px;
+      background: #fff;
+      .account {
+        .avatar {
+          margin-right: 0;
+        }
+      }
     }
   }
 }

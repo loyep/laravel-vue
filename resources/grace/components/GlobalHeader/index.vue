@@ -1,6 +1,8 @@
 <template>
   <div class="header">
-    <logo v-if="isMobile" :showTitle="false" />
+    <router-link v-if="isMobile" class="logo" :to="{path:'/'}">
+      <img src="~@/assets/images/logo.svg" alt="logo" width="32">
+    </router-link>
     <span class="trigger" @click="toggle">
       <a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
     </span>
@@ -11,11 +13,11 @@
 <script>
 import RightContent from './RightContent'
 import { deviceMixin } from '@/mixins'
-import Logo from '@/components/Logo'
+
 export default {
   name: 'GlobalHeader',
   components: {
-    RightContent, Logo
+    RightContent
   },
   mixins: [
     deviceMixin
@@ -48,6 +50,23 @@ export default {
   padding: 0;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  > * {
+    display: inline-flex;
+  }
+}
+
+.logo {
+  display: inline-block;
+  height: @layout-header-height;
+  padding: 0 0 0 24px;
+  font-size: 20px;
+  line-height: @layout-header-height;
+  vertical-align: top;
+  cursor: pointer;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+  }
 }
 
 .trigger {
@@ -58,6 +77,10 @@ export default {
   transition: all 0.3s, padding 0s;
   &:hover {
     background: @pro-header-hover-bg;
+  }
+
+  @media only screen and (max-width: @screen-md) {
+    padding: 22px 24px;
   }
 }
 

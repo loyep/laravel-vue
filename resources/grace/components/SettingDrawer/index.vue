@@ -9,7 +9,7 @@
       @close="togglerContent"
     >
       <div class="handle" @click="togglerContent">
-        <a-icon :type="collapse ? 'close' : 'setting'" :style="{ color: '#fff', fontSize: 20}" />
+        <a-icon :type="collapse ? 'close' : 'setting'" style="color: #fff; font-size: 20px;" />
       </div>
     </a-drawer>
   </div>
