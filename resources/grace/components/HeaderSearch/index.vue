@@ -13,6 +13,7 @@
       <a-input
         ref="searchInput"
         :placeholder="placeholder"
+        :aria-label="placeholder"
         @keydown="(e) => onKeyDown(e)"
         @blur="leaveSearchMode"
       />
@@ -82,32 +83,6 @@ export default {
 </script>
 
 <style lang="less" scope>
-// @import '~@/styles/variables.less';
-
-// .headerSearch {
-//   .input {
-//     transition: width 0.3s, margin-left 0.3s;
-//     width: 0;
-//     background: transparent;
-//     border-radius: 0;
-//     input {
-//       border: 0;
-//       padding-left: 0;
-//       padding-right: 0;
-//       box-shadow: none !important;
-//     }
-//     &,
-//     &:hover,
-//     &:focus {
-//       border-bottom: 1px solid @border-color-base;
-//     }
-//     &.show {
-//       width: 210px;
-//       margin-left: 8px;
-//     }
-//   }
-// }
-
 @import '~@/styles/variables.less';
 
 .headerSearch {

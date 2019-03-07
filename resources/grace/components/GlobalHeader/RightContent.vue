@@ -111,26 +111,26 @@ export default {
   height: 100%;
   overflow: hidden;
   .action {
-      cursor: pointer;
-      padding: 0 12px;
-      display: inline-block;
-      transition: all 0.3s;
-      height: 100%;
-      > i {
-          vertical-align: middle;
-          color: @text-color;
-      }
-      &:hover {
-          background: @pro-header-hover-bg;
-      }
-      &:global(.opened) {
-          background: @pro-header-hover-bg;
-      }
+    cursor: pointer;
+    padding: 0 12px;
+    display: inline-block;
+    transition: all 0.3s;
+    height: 100%;
+    > :global(i) {
+      vertical-align: middle;
+      color: @text-color;
+    }
+    &:hover {
+      background: @pro-header-hover-bg;
+    }
+    &:global(.opened) {
+      background: @pro-header-hover-bg;
+    }
   }
   .search {
     padding: 0 12px;
     &:hover {
-        background: transparent;
+      background: transparent;
     }
   }
   .account {

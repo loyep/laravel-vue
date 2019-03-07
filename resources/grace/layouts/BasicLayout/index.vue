@@ -7,7 +7,7 @@
       mode="inline"
       :collapsible="true"
     />
-    <a-layout :style="{ minHeight: '100vh' }">
+    <a-layout :style="[{ minHeight: '100vh' }, getLayoutStyle()]">
       <basic-header
         :collapsed="collapsed"
         :onCollapse="handleMenuCollapse"
@@ -28,7 +28,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import { mapState, mapActions } from 'vuex'
 import logo from '@/assets/images/logo.png'
-import { deviceMixin } from '@/mixins'
+import { themeMixin, deviceMixin } from '@/mixins'
 
 export default {
   name: 'BasicLayout',
@@ -39,7 +39,8 @@ export default {
     SettingDrawer
   },
   mixins: [
-    deviceMixin
+    deviceMixin,
+    themeMixin
   ],
   data () {
     return {
@@ -64,6 +65,14 @@ export default {
     handleMenuCollapse (collapsed) {
       this.collapsed = !this.collapsed
       this.setSidebar(this.collapsed)
+    },
+    getLayoutStyle () {
+      if (this.fixSiderbar && this.layoutMode !== 'topmenu' && !this.isMobile) {
+        return {
+          paddingLeft: this.collapsed ? '80px' : '256px'
+        }
+      }
+      return {}
     }
   }
 }

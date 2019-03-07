@@ -43,71 +43,21 @@ export default {
 @import '~@/styles/variables.less';
 
 .header {
+  position: relative;
   height: @layout-header-height;
   padding: 0;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-  position: relative;
-}
-
-.logo {
-  height: @layout-header-height;
-  line-height: @layout-header-height;
-  vertical-align: top;
-  display: inline-block;
-  padding: 0 0 0 24px;
-  cursor: pointer;
-  font-size: 20px;
-  img {
-    display: inline-block;
-    vertical-align: middle;
-  }
 }
 
 .trigger {
-  font-size: 20px;
   height: @layout-header-height;
+  padding: ~'calc((@{layout-header-height} - 20px) / 2)' 24px;
+  font-size: 20px;
   cursor: pointer;
   transition: all 0.3s, padding 0s;
-  padding: ~'calc((@{layout-header-height} - 20px) / 2)' 24px;
   &:hover {
     background: @pro-header-hover-bg;
-  }
-}
-
-.right {
-  float: right;
-  height: 100%;
-  overflow: hidden;
-  padding: 0 12px;
-  .action {
-    cursor: pointer;
-    padding: 0 12px;
-    display: inline-block;
-    transition: all 0.3s;
-    height: 100%;
-    > i {
-      vertical-align: middle;
-      color: @text-color;
-    }
-    &:hover {
-      background: @pro-header-hover-bg;
-    }
-  }
-  .search {
-    padding: 0 12px;
-    &:hover {
-      background: transparent;
-    }
-  }
-  .account {
-    .avatar {
-      margin: ~'calc((@{layout-header-height} - 24px) / 2)' 0;
-      margin-right: 8px;
-      color: @primary-color;
-      background: rgba(255, 255, 255, 0.85);
-      vertical-align: top;
-    }
   }
 }
 
@@ -154,46 +104,4 @@ export default {
   }
 }
 
-</style>
-
-<style lang="less" scoped>
-
-@import '~@/styles/variables.less';
-
-.menu {
-  :global(.anticon) {
-    margin-right: 8px;
-  }
-  :global(.ant-dropdown-menu-item) {
-    min-width: 160px;
-  }
-}
-
-.right {
-  .action {
-    &:global(.opened) {
-      background: @pro-header-hover-bg;
-    }
-  }
-}
-
-.dark {
-  height: @layout-header-height;
-  .action {
-    &:global(.opened) {
-      background: @primary-color;
-    }
-    :global(.ant-badge) {
-      color: rgba(255, 255, 255, 0.85);
-    }
-  }
-}
-
-@media only screen and (max-width: @screen-md) {
-  .header {
-    :global(.ant-divider-vertical) {
-      vertical-align: unset;
-    }
-  }
-}
 </style>

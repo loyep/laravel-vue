@@ -8,14 +8,10 @@
 </template>
 
 <script>
-import { List, Avatar } from 'ant-design-vue'
 export default {
   name: 'NoticeList',
   components: {
-    'AAvatar': Avatar,
-    'AList': List,
-    'AListItem': List.Item,
-    'AListItemMeta': List.Item.Meta
+
   },
   props: {
     data: {

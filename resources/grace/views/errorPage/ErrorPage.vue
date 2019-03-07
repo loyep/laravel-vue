@@ -35,7 +35,7 @@ const types = {
   404: {
     img: 'https://gw.alipayobjects.com/zos/rmsportal/KpnpchXsobRgLElEozzI.svg',
     title: '404',
-    desc: '抱歉，你访问的页面不存在或仍在开发中',
+    desc: '抱歉，你访问的页面不存在',
     backText: '返回首页'
   },
   500: {
