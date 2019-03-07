@@ -10,7 +10,6 @@
   >
     <sider-menu
       :menus="menus"
-      :theme="theme"
       :mode="mode"
       :collapsed="isMobile ? false : collapsed"
       @select="onSelect"
@@ -18,7 +17,6 @@
   </a-drawer>
   <sider-menu v-else
               :menus="menus"
-              :theme="theme"
               :mode="mode"
               :collapsed="collapsed"
               @select="onSelect"
@@ -28,7 +26,7 @@
 <script>
 import { Drawer } from 'ant-design-vue'
 import SiderMenu from './SiderMenu'
-import { deviceMixin, themeMixin } from '@/mixins'
+import { deviceMixin } from '@/mixins'
 
 export default {
   name: 'SiderMenuWrapper',
@@ -36,17 +34,12 @@ export default {
     SiderMenu,
     'ADrawer': Drawer
   },
-  mixins: [themeMixin, deviceMixin],
+  mixins: [deviceMixin],
   props: {
     mode: {
       type: String,
       required: false,
       default: 'inline'
-    },
-    theme: {
-      type: String,
-      required: false,
-      default: 'light'
     },
     collapsible: {
       type: Boolean,

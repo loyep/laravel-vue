@@ -15,6 +15,11 @@ const themeMixin = {
       sidebarOpened: state => state.app.sidebar
     })
   },
+  getters: {
+    getTheme () {
+      return this.navTheme
+    }
+  },
   methods: {
     isTopMenu () {
       return this.layoutMode === 'topmenu'

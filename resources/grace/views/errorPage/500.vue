@@ -5,7 +5,7 @@
 <script>
 import ErrorPage from './ErrorPage'
 export default {
-  name: '500',
+  name: 'Error500',
   components: {
     ErrorPage
   }

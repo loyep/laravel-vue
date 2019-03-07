@@ -1,7 +1,7 @@
 <template>
   <a-layout-sider
     v-model="collapsed"
-    :class="['sider', {'fixSiderbar': fixSiderbar, 'light': theme === 'light'} ]"
+    :class="['sider', {'fixSiderbar': fixSiderbar, 'light': navTheme === 'light'} ]"
     :width="256"
     breakpoint="lg"
     :collapsed="collapsed"
@@ -13,8 +13,8 @@
       v-bind="$props"
       :collapsed="collapsed"
       :menu="menus"
-      :theme="theme"
       :mode="mode"
+      :theme="navTheme"
       :style="{ padding: '16px 0', width: '100%' }"
       @select="onSelect"
     />
@@ -24,8 +24,8 @@
 <script>
 import Logo from '@/components/Logo'
 import BaseMenu from './BaseMenu'
-
 import { deviceMixin, themeMixin } from '@/mixins'
+
 export default {
   name: 'SiderMenu',
   components: {
@@ -38,10 +38,6 @@ export default {
       type: String,
       required: false,
       default: 'inline'
-    },
-    theme: {
-      type: String,
-      required: true
     },
     collapsible: {
       type: Boolean,
@@ -57,9 +53,6 @@ export default {
       type: Array,
       required: true
     }
-  },
-  mounted () {
-    console.log(this.theme)
   },
   methods: {
     onSelect (obj) {

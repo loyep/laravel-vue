@@ -1,7 +1,7 @@
 <template>
   <div :class="{
     'right':true,
-    'dark': theme === 'dark'
+    'dark': navTheme === 'dark'
   }"
   >
     <header-search class="action search" />

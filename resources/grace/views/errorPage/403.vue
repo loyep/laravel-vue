@@ -5,13 +5,9 @@
 <script>
 import ErrorPage from './ErrorPage'
 export default {
-  name: '403',
+  name: 'Error403',
   components: {
     ErrorPage
   }
 }
 </script>
-
-<style lang="less" scoped>
-
-</style>

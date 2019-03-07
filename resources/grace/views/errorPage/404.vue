@@ -5,7 +5,7 @@
 <script>
 import ErrorPage from './ErrorPage'
 export default {
-  name: '404',
+  name: 'Error404',
   components: {
     ErrorPage
   }

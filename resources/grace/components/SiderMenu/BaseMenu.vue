@@ -16,8 +16,7 @@ export default {
     },
     theme: {
       type: String,
-      required: false,
-      default: 'dark'
+      required: true
     },
     mode: {
       type: String,
@@ -38,7 +37,7 @@ export default {
     }
   },
   computed: {
-    rootSubmenuKeys: vm => {
+    rootSubmenuKeys (vm) {
       const keys = []
       vm.menu.forEach(item => keys.push(path.resolve(item.path)))
       return keys
