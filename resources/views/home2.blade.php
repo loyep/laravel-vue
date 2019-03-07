@@ -259,10 +259,10 @@
         <div class="navbar mobile-navbar flex-row flex-nowrap d-flex d-lg-none">
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{ url('/') }}" title="Cosy主题-CMS杂志样式"
-                   style="background-image: url('{{ asset('images/bg.jpeg') }}');">Cosy主题-CMS杂志样式</a>
+                   style="background-image: url('{{ asset('static/images/bg.jpg') }}');">Cosy主题-CMS杂志样式</a>
                 <a class="navbar-brand mobile-navbar-brand d-none d-lg-none" href="{{ url('/') }}"
                    title="Cosy主题-CMS杂志样式"
-                   style="background-image: url('{{ asset('images/bg.jpeg') }}');">Cosy主题-CMS杂志样式</a>
+                   style="background-image: url('{{ asset('static/images/bg.jpg') }}');">Cosy主题-CMS杂志样式</a>
             </div>
             <div class="navbar-collapse">
                 <ul class="navbar-nav flex-row">
@@ -283,7 +283,7 @@
     </div>
 </header>
 <section class="nice-featured nice-featured-style02 mt-0 mt-md-4 mt-lg-4-2"
-         style="background-image:url('{{ asset('images/bg.jpeg') }}');">
+         style="background-image:url('{{ asset('static/images/bg.jpg') }}');">
     <div class="container">
         <div class="row no-gutters">
             <div class="items items-left col-12 col-md-6">
@@ -291,7 +291,7 @@
                     <a class="custom-hover d-block" href="#" target="_blank"
                        title="二十岁的年纪，内心身怀雄心壮志，却又不得不脚踏实地，做八十岁想起来都会嘴角上扬的事">
                         <div class="custom-hover-img image"
-                             style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                             style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                         <div class="content p-3 p-lg-4">
                             <div class="title text-l2"><h2
                                         class="font-24 font-md-20 font-xs-20 color-white light-14 font-weight-normal">
@@ -317,7 +317,7 @@
                             <a class="custom-hover d-flex flex-fill flex-column" href="#" target="_blank"
                                title="2014，我是一名大一新生；2018，我是一名旅行摄影师">
                                 <div class="custom-hover-img image"
-                                     style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                                     style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                                 <div class="content p-2 p-sm-3 p-lg-4">
                                     <div class="title text-l2 mb-1 mb-sm-0 mb-md-0"><h2
                                                 class="font-18 font-md-16 font-sm-16 font-xs-14 light-14 font-weight-normal color-white">
@@ -336,7 +336,7 @@
                             <a class="custom-hover d-flex flex-fill flex-column" href="#" target="_blank"
                                title="80天环游地球 Day 34 泰国曼谷-边境小镇Aranyaprathet 泰国神油功效，峰回路转再出发">
                                 <div class="custom-hover-img image"
-                                     style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                                     style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                                 <div class="content p-2 p-sm-3 p-lg-4">
                                     <div class="title text-l2 mb-1 mb-sm-0 mb-md-0"><h2
                                                 class="font-18 font-md-16 font-sm-16 font-xs-14 light-14 font-weight-normal color-white">
@@ -355,7 +355,7 @@
                             <a class="custom-hover d-flex flex-fill flex-column" href="#" target="_blank"
                                title="2018，如果你想学摄影，我想给你这十点建议">
                                 <div class="custom-hover-img image"
-                                     style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                                     style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                                 <div class="content p-2 p-sm-3 p-lg-4">
                                     <div class="title text-l2 mb-1 mb-sm-0 mb-md-0"><h2
                                                 class="font-18 font-md-16 font-sm-16 font-xs-14 light-14 font-weight-normal color-white">
@@ -374,7 +374,7 @@
                             <a class="custom-hover d-flex flex-fill flex-column" href="#" target="_blank"
                                title="带着一家老小游海南——漫步北纬18º会唱歌的沙滩">
                                 <div class="custom-hover-img image"
-                                     style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                                     style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                                 <div class="content p-2 p-sm-3 p-lg-4">
                                     <div class="title text-l2 mb-1 mb-sm-0 mb-md-0"><h2
                                                 class="font-18 font-md-16 font-sm-16 font-xs-14 light-14 font-weight-normal color-white">
@@ -400,7 +400,7 @@
                 <div class="position-relative">
                     <a href="#" target="_blank" title="故事" class="custom-hover d-block">
                         <div class="custom-hover-img image"
-                             style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                             style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                         <div class="content d-flex align-items-center justify-content-center align-content-center">
                             <h3 class="title font-18 font-md-16 font-xs-20 color-white">故事</h3>
                         </div>
@@ -411,7 +411,7 @@
                 <div class="position-relative">
                     <a href="#" target="_blank" title="摄影技巧" class="custom-hover d-block">
                         <div class="custom-hover-img image"
-                             style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                             style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                         <div class="content d-flex align-items-center justify-content-center align-content-center">
                             <h3 class="title font-18 font-md-16 font-xs-20 color-white">摄影技巧</h3>
                         </div>
@@ -422,7 +422,7 @@
                 <div class="position-relative">
                     <a href="" target="_blank" title="旅行·在路上" class="custom-hover d-block">
                         <div class="custom-hover-img image"
-                             style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                             style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                         <div class="content d-flex align-items-center justify-content-center align-content-center">
                             <h3 class="title font-18 font-md-16 font-xs-20 color-white">旅行·在路上</h3>
                         </div>
@@ -433,7 +433,7 @@
                 <div class="position-relative">
                     <a href="" target="_blank" title="摄影" class="custom-hover d-block">
                         <div class="custom-hover-img image"
-                             style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                             style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                         <div class="content d-flex align-items-center justify-content-center align-content-center">
                             <h3 class="title font-18 font-md-16 font-xs-20 color-white">摄影</h3>
                         </div>
@@ -444,7 +444,7 @@
                 <div class="position-relative">
                     <a href="" target="_blank" title="上班这点事儿" class="custom-hover d-block">
                         <div class="custom-hover-img image"
-                             style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                             style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                         <div class="content d-flex align-items-center justify-content-center align-content-center">
                             <h3 class="title font-18 font-md-16 font-xs-20 color-white">上班这点事儿</h3>
                         </div>
@@ -455,7 +455,7 @@
                 <div class="position-relative">
                     <a href="" target="_blank" title="生活家" class="custom-hover d-block">
                         <div class="custom-hover-img image"
-                             style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                             style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                         <div class="content d-flex align-items-center justify-content-center align-content-center">
                             <h3 class="title font-18 font-md-16 font-xs-20 color-white">生活家</h3>
                         </div>
@@ -466,7 +466,7 @@
                 <div class="position-relative">
                     <a href="#" target="_blank" title="随笔集" class="custom-hover d-block">
                         <div class="custom-hover-img image"
-                             style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                             style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                         <div class="content d-flex align-items-center justify-content-center align-content-center">
                             <h3 class="title font-18 font-md-16 font-xs-20 color-white">随笔集</h3>
                         </div>
@@ -477,7 +477,7 @@
                 <div class="position-relative">
                     <a href="#" target="_blank" title="生活着" class="custom-hover d-block">
                         <div class="custom-hover-img image"
-                             style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                             style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                         <div class="content d-flex align-items-center justify-content-center align-content-center">
                             <h3 class="title font-18 font-md-16 font-xs-20 color-white">生活着</h3>
                         </div>
@@ -517,7 +517,7 @@
                             <div class="image">
                                 <a class="" href="#" title="17天女生独行，如何用4000元横跨南北三省四个城市？">
                                     <div class="custom-hover d-block">
-                                        <img src="{{ asset('images/bg.jpeg') }}"
+                                        <img src="{{ asset('static/images/bg.jpg') }}"
                                              class="lazyload custom-hover-img timthumb_php"
                                              data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092214591613-e1537980861650.jpeg&amp;h=270&amp;w=360&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                              title="17天女生独行，如何用4000元横跨南北三省四个城市？" alt="17天女生独行，如何用4000元横跨南北三省四个城市？">
@@ -560,7 +560,7 @@
                             <div class="image">
                                 <a class="" href="#" title="五星推荐超强科幻佳片《怀旧者》">
                                     <div class="custom-hover d-block">
-                                        <img src="{{ asset('images/bg.jpeg') }}"
+                                        <img src="{{ asset('static/images/bg.jpg') }}"
                                              class="lazyload custom-hover-img timthumb_php"
                                              data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2018-08-2018081116391818-e1533978162780.jpg&amp;h=270&amp;w=360&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                              title="五星推荐超强科幻佳片《怀旧者》" alt="五星推荐超强科幻佳片《怀旧者》">
@@ -600,7 +600,7 @@
                         <article class="card flex-fill mb-4 mb-lg-4-2">
                             <a href="#" target="_blank" title="品牌那些事" class="custom-hover d-flex flex-fill">
                                 <div class="custom-hover-img image"
-                                     style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                                     style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                                 <div class="position-relative d-flex flex-fill flex-column content-topic p-4 p-md-3">
                                     <div class="content-body d-flex flex-grow-1 flex-column  mb-5 mb-lg-0 pb-5 pb-md-0">
                                         <div class="data font-12 text-light mb-1 mb-md-1">
@@ -622,7 +622,7 @@
                             <div class="image">
                                 <a class="" href="#" title="纪梵希在四个城市贴海报，“你见过这只猫吗？”">
                                     <div class="custom-hover d-block">
-                                        <img src="{{ asset('images/bg.jpeg') }}"
+                                        <img src="{{ asset('static/images/bg.jpg') }}"
                                              class="lazyload custom-hover-img timthumb_php"
                                              data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2018-08-2018081116385576.jpg&amp;h=270&amp;w=360&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                              title="纪梵希在四个城市贴海报，“你见过这只猫吗？”" alt="纪梵希在四个城市贴海报，“你见过这只猫吗？”">
@@ -667,7 +667,7 @@
                             <div class="image">
                                 <a class="" href="#" title="在别人看不到的角落努力，在看得见的原野绽放光芒">
                                     <div class="custom-hover d-block">
-                                        <img src="{{ asset('images/bg.jpeg') }}"
+                                        <img src="{{ asset('static/images/bg.jpg') }}"
                                              class="lazyload custom-hover-img timthumb_php"
                                              data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092212393345.jpeg&amp;h=270&amp;w=360&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                              title="在别人看不到的角落努力，在看得见的原野绽放光芒" alt="在别人看不到的角落努力，在看得见的原野绽放光芒">
@@ -711,7 +711,7 @@
                         <article class="card flex-fill mb-4 mb-lg-4-2">
                             <a href="#" target="_blank" title="旅行足迹" class="custom-hover d-flex flex-fill">
                                 <div class="custom-hover-img image"
-                                     style="background-image: url('{{ asset('images/bg.jpeg') }}');"></div>
+                                     style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
                                 <div class="position-relative d-flex flex-fill flex-column content-topic p-4 p-md-3">
                                     <div class="content-body d-flex flex-grow-1 flex-column  mb-5 mb-lg-0 pb-5 pb-md-0">
                                         <div class="data font-12 text-light mb-1 mb-md-1">
@@ -736,7 +736,7 @@
                             <div class="image">
                                 <a class="" href="#" title="耶鲁大学的这场音乐会，邀请听众用手机和他们一起演奏">
                                     <div class="custom-hover d-block">
-                                        <img src="{{ asset('images/bg.jpeg') }}"
+                                        <img src="{{ asset('static/images/bg.jpg') }}"
                                              class="lazyload custom-hover-img timthumb_php"
                                              data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018081117272423.jpeg&amp;h=270&amp;w=360&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                              title="耶鲁大学的这场音乐会，邀请听众用手机和他们一起演奏" alt="耶鲁大学的这场音乐会，邀请听众用手机和他们一起演奏">
@@ -780,7 +780,7 @@
                             <div class="image">
                                 <a class="" href="#" title="二十岁的年纪，内心身怀雄心壮志，却又不得不脚踏实地，做八十岁想起来都会嘴角上扬的事">
                                     <div class="custom-hover d-block">
-                                        <img src="{{ asset('images/bg.jpeg') }}"
+                                        <img src="{{ asset('static/images/bg.jpg') }}"
                                              class="lazyload custom-hover-img timthumb_php"
                                              data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092212382148-e1537591114942.jpeg&amp;h=270&amp;w=360&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                              title="二十岁的年纪，内心身怀雄心壮志，却又不得不脚踏实地，做八十岁想起来都会嘴角上扬的事"
@@ -825,7 +825,7 @@
                             <div class="image">
                                 <a class="" href="#" title="如果你是 V&amp;A 博物馆的会员，下次去千万别忘了去这个休息室">
                                     <div class="custom-hover d-block">
-                                        <img src="{{ asset('images/bg.jpeg') }}"
+                                        <img src="{{ asset('static/images/bg.jpg') }}"
                                              class="lazyload custom-hover-img timthumb_php"
                                              data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2018-08-2018081115213092.jpg&amp;h=270&amp;w=360&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                              title="如果你是 V&amp;A 博物馆的会员，下次去千万别忘了去这个休息室"
@@ -870,7 +870,7 @@
                             <div class="image">
                                 <a class="" href="#" title="60 年代英国嬉皮士们的精神食粮，端看这些“地下杂志”">
                                     <div class="custom-hover d-block">
-                                        <img src="{{ asset('images/bg.jpeg') }}"
+                                        <img src="{{ asset('static/images/bg.jpg') }}"
                                              class="lazyload custom-hover-img timthumb_php"
                                              data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2018-08-2018081115211363.jpg&amp;h=270&amp;w=360&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                              title="60 年代英国嬉皮士们的精神食粮，端看这些“地下杂志”" alt="60 年代英国嬉皮士们的精神食粮，端看这些“地下杂志”">
@@ -914,7 +914,7 @@
                             <div class="image">
                                 <a class="" href="#" title="荷兰公园里修了个儿童游乐场，是隐藏童趣的科幻风格">
                                     <div class="custom-hover d-block">
-                                        <img src="{{ asset('images/bg.jpeg') }}"
+                                        <img src="{{ asset('static/images/bg.jpg') }}"
                                              class="lazyload custom-hover-img timthumb_php"
                                              data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2018-08-2018081115212786.jpg&amp;h=270&amp;w=360&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                              title="荷兰公园里修了个儿童游乐场，是隐藏童趣的科幻风格" alt="荷兰公园里修了个儿童游乐场，是隐藏童趣的科幻风格">
@@ -959,7 +959,7 @@
                             <div class="image">
                                 <a class="" href="#" title="2016年奥斯卡最佳真人短片《口吃》">
                                     <div class="custom-hover d-block">
-                                        <img src="{{ asset('images/bg.jpeg') }}"
+                                        <img src="{{ asset('static/images/bg.jpg') }}"
                                              class="lazyload custom-hover-img timthumb_php"
                                              data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2018-08-2018081115111520.jpg&amp;h=270&amp;w=360&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                              title="2016年奥斯卡最佳真人短片《口吃》" alt="2016年奥斯卡最佳真人短片《口吃》">
@@ -1014,7 +1014,7 @@
 <section class="nice-cms-push position-relative pt-4 pt-lg-5 pb-4 pb-lg-5">
     <div class="black-gradient"></div>
     <div class="overlay cms-cover"
-         style="background-image: url('{{ asset('images/bg.jpeg') }}')"
+         style="background-image: url('{{ asset('static/images/bg.jpg') }}')"
     >
     </div>
     <div class="container">
@@ -1033,7 +1033,7 @@
                     <article class="card flex-fill">
                         <div class="image">
                             <a href="#" title="一隅芳华旧厦门，文艺彻骨华新路" target="_blank" class="custom-hover d-block">
-                                <img src="{{ asset('images/bg.jpeg') }}" class="lazyload custom-hover-img timthumb_php"
+                                <img src="{{ asset('static/images/bg.jpg') }}" class="lazyload custom-hover-img timthumb_php"
                                      data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092517215762.jpg&amp;h=300&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                      title="一隅芳华旧厦门，文艺彻骨华新路" alt="一隅芳华旧厦门，文艺彻骨华新路">
                             </a>
@@ -1063,7 +1063,7 @@
                     <article class="card flex-fill">
                         <div class="image">
                             <a href="#" title="骑行记|我走过五湖四海，唯一的行李就是你们" target="_blank" class="custom-hover d-block">
-                                <img src="{{ asset('images/bg.jpeg') }}" class="lazyload custom-hover-img timthumb_php"
+                                <img src="{{ asset('static/images/bg.jpg') }}" class="lazyload custom-hover-img timthumb_php"
                                      data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092215081559-e1537600106211.jpeg&amp;h=300&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                      title="骑行记|我走过五湖四海，唯一的行李就是你们" alt="骑行记|我走过五湖四海，唯一的行李就是你们">
                             </a>
@@ -1093,7 +1093,7 @@
                     <article class="card flex-fill">
                         <div class="image">
                             <a href="#" title="江南事 | 游埠佛堂，如水流过旧时光" target="_blank" class="custom-hover d-block">
-                                <img src="{{ asset('images/bg.jpeg') }}" class="lazyload custom-hover-img timthumb_php"
+                                <img src="{{ asset('static/images/bg.jpg') }}" class="lazyload custom-hover-img timthumb_php"
                                      data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092519023072-e1537873361636.jpeg&amp;h=300&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                      title="江南事 | 游埠佛堂，如水流过旧时光" alt="江南事 | 游埠佛堂，如水流过旧时光">
                             </a>
@@ -1123,7 +1123,7 @@
                     <article class="card flex-fill">
                         <div class="image">
                             <a href="#" title="龙观禅那｜ 过一日山中的岁月如何？" target="_blank" class="custom-hover d-block">
-                                <img src="{{ asset('images/bg.jpeg') }}" class="lazyload custom-hover-img timthumb_php"
+                                <img src="{{ asset('static/images/bg.jpg') }}" class="lazyload custom-hover-img timthumb_php"
                                      data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092212411087-e1537591280504.jpeg&amp;h=300&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                      title="龙观禅那｜ 过一日山中的岁月如何？" alt="龙观禅那｜ 过一日山中的岁月如何？">
                             </a>
@@ -1170,7 +1170,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2018-08-2018081116385576.jpg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="纪梵希在四个城市贴海报，“你见过这只猫吗？”"></div>
@@ -1182,7 +1182,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2018-09-2018092517500414-e1537869119115.jpeg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="八达岭长城看人海，金山岭长城手机出大片！"></div>
@@ -1194,7 +1194,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092216545247.jpeg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="让我依依不舍的，是锦城的那抹炽红色"></div>
@@ -1206,7 +1206,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018081117272423.jpeg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="UFC 现场第一次落户中国大陆，它都做了什么功课？"></div>
@@ -1218,7 +1218,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092212411087-e1537591280504.jpeg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="你青春期做过的梦，在镰仓都能一一实现"></div>
@@ -1230,7 +1230,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092517125821-e1537866786592.jpeg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="2018，如果你想学摄影，我想给你这十点建议"></div>
@@ -1242,7 +1242,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2018-08-2018081115213882.jpg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="上了时报广场广告牌的25张动物照片，背后有什么故事？｜纽约广告周"></div>
@@ -1254,7 +1254,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2018-08-2018081115213372.jpg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="东方梦工厂发布新片，《功夫熊猫》后它经历了什么"></div>
@@ -1266,7 +1266,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092517114518.jpeg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="突然想活成一束光——拆拆手机摄影小妙招"></div>
@@ -1278,7 +1278,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092217012233.jpeg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="一袭红裙，是我对这个夏天最好的告别"></div>
@@ -1290,7 +1290,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2017-09-2018092216574674-e1537606675359.jpeg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="为什么摄影师拍来拍去，最后却独爱微距？"></div>
@@ -1302,7 +1302,7 @@
                 <div class="item col-6 col-md-3 col-lg-2 mb-4 mb-sm-4-2 mb-md-4">
                     <div class="card flex-fill text-white">
                         <a href="#" class="custom-hover d-block" target="_blank">
-                            <div class="image"><img src="{{ asset('images/bg.jpeg') }}"
+                            <div class="image"><img src="{{ asset('static/images/bg.jpg') }}"
                                                     class="lazyload custom-hover-img timthumb_php"
                                                     data-src="wp-content/themes/Cosy-2.1.0/timthumb.php-src=https---demo.nicetheme.xyz-cosy-style1-wp-content-uploads-sites-11-2018-08-2018081117551562-e1533981327486.jpg&amp;h=400&amp;w=400&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg"
                                                     alt="蓝水色似蓝，日夜长潺潺——摩洛哥"></div>
@@ -1339,7 +1339,7 @@
                                 <div id="footer_qrcode-1" class="dialog-suxing">
                                     <div class="dialog-content dialog-wechat-content">
                                         <p class="text-secondary">微信</p>
-                                        <img src="{{ asset('images/bg.jpeg') }}" alt="微信">
+                                        <img src="{{ asset('static/images/bg.jpg') }}" alt="微信">
                                         <div class="btn-close">
                                             <i class="icon icon-close"></i>
                                         </div>

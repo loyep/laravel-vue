@@ -108,27 +108,25 @@ export default {
 //   }
 // }
 
-</style>
-
-<style lang="less">
 @import '~@/styles/variables.less';
+
 .headerSearch {
-  .anticon-search {
-    cursor: pointer;
+  :global(.anticon-search) {
     font-size: 16px;
+    cursor: pointer;
   }
   .input {
-    transition: width 0.3s, margin-left 0.3s;
     width: 0;
     background: transparent;
     border-radius: 0;
-    .ant-select-selection {
-        background: transparent;
+    transition: width 0.3s, margin-left 0.3s;
+    :global(.ant-select-selection) {
+      background: transparent;
     }
     input {
-      border: 0;
-      padding-left: 0;
       padding-right: 0;
+      padding-left: 0;
+      border: 0;
       box-shadow: none !important;
     }
     &,

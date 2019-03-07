@@ -26,7 +26,8 @@ class SiteServiceProvider extends ServiceProvider
     public function boot()
     {
 //        View::share('footer_info', Helper::getWidget('footer_info'));
+        View::share('site_info', Helper::getOption('site_info'));
         View::share('current_user', current_user());
-        View::composer('components.footer', '\App\Http\ViewComposers\GraceComposer@footerCompose');
+        View::composer('partials.footer', '\App\Http\ViewComposers\GraceComposer@footerCompose');
     }
 }

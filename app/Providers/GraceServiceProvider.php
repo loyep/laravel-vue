@@ -40,7 +40,7 @@ class GraceServiceProvider extends ServiceProvider
     protected function loadRoutes()
     {
         $prefix = Grace::path();
-        Route::get($prefix, '\App\Http\Controllers\Admin\GraceController@index');
+        Route::get($prefix, '\App\Http\Controllers\Admin\GraceController@index')->name('dashboard');
         Route::get($prefix . '/{any}', '\App\Http\Controllers\Admin\GraceController@index')->where('any', '.*');
 
         $namespace = 'App\Http\Controllers';

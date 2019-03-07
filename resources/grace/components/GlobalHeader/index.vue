@@ -156,7 +156,7 @@ export default {
 
 </style>
 
-<style lang="less">
+<style lang="less" scoped>
 
 @import '~@/styles/variables.less';
 

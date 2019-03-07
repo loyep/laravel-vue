@@ -1,9 +1,14 @@
 <script>
 import { Menu, Icon } from 'ant-design-vue'
 import path from 'path'
+import { isUrl } from '@/utils/utils'
+import IconFont from '@/components/IconFont'
 
 export default {
   name: 'BaseMenu',
+  components: {
+    Icon
+  },
   props: {
     menu: {
       type: Array,
@@ -57,6 +62,17 @@ export default {
   },
   methods: {
     renderIcon (h, icon) {
+      if (typeof icon === 'string') {
+        if (isUrl(icon)) {
+          return h('Icon', { props: { component: {
+            template: `<img src="` + icon + `" class="icon" />`
+          } } })
+        }
+        if (icon.startsWith('icon-')) {
+          return h(IconFont, { props: { type: icon } })
+        }
+        return h(Icon, { props: { type: icon !== undefined ? icon : '' } })
+      }
       return icon === 'none' || icon === undefined ? null : h(Icon, { props: { type: icon !== undefined ? icon : '' } })
     },
     renderMenuItem (h, menu, pIndex, index, basePath) {
@@ -161,3 +177,11 @@ export default {
 }
 
 </script>
+
+<style lang="less" scoped>
+
+.icon {
+  width: 14px;
+  vertical-align: baseline;
+}
+</style>

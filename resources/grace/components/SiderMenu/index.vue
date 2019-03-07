@@ -46,7 +46,7 @@ export default {
     theme: {
       type: String,
       required: false,
-      default: 'dark'
+      default: 'light'
     },
     collapsible: {
       type: Boolean,
@@ -75,41 +75,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+@import './style.less';
 
-@import '~@/styles/variables.less';
-
-@nav-header-height: @layout-header-height;
-
-.top-nav-menu li.ant-menu-item {
-  height: @nav-header-height;
-  line-height: @nav-header-height;
-}
-.drawer .drawer-content {
-  background: #001529;
-}
-.ant-menu-inline-collapsed {
-  & > .ant-menu-item .sider-menu-item-img + span,
-  &
-    > .ant-menu-item-group
-    > .ant-menu-item-group-list
-    > .ant-menu-item
-    .sider-menu-item-img
-    + span,
-  & > .ant-menu-submenu > .ant-menu-submenu-title .sider-menu-item-img + span {
-    display: inline-block;
-    max-width: 0;
-    opacity: 0;
-  }
-}
-.ant-menu-item .sider-menu-item-img + span,
-.ant-menu-submenu-title .sider-menu-item-img + span {
-  opacity: 1;
-  transition: opacity 0.3s @ease-in-out, width 0.3s @ease-in-out;
-}
-.ant-drawer-left {
-  .ant-drawer-body {
-    padding: 0;
-  }
-}
 </style>

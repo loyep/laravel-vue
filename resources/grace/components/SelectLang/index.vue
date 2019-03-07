@@ -58,36 +58,29 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    @import '~@/styles/variables.less';
+@import '~@/styles/variables.less';
 
-    .dropDown {
-        cursor: pointer;
-        vertical-align: top;
-        line-height: @layout-header-height;
+.menu {
+  :global(.anticon) {
+    margin-right: 8px;
+  }
+  :global(.ant-dropdown-menu-item) {
+    min-width: 160px;
+  }
+}
 
-        > i {
-            font-size: 14px !important;
-            transform: none !important;
-
-            svg {
-                position: relative;
-                top: -1px;
-            }
-        }
+.dropDown {
+  line-height: @layout-header-height;
+  vertical-align: top;
+  cursor: pointer;
+  > i {
+    font-size: 16px !important;
+    transform: none !important;
+    svg {
+      position: relative;
+      top: -1px;
     }
+  }
+}
 
-</style>
-
-<style lang="less">
-    @import '~@/styles/variables.less';
-
-    .menu {
-        .anticon {
-            margin-right: 8px;
-        }
-
-        .ant-dropdown-menu-item {
-            min-width: 160px;
-        }
-    }
 </style>

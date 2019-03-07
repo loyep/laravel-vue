@@ -2,7 +2,7 @@
   <a-dropdown
     v-model="visible"
     placement="bottomRight"
-    overlayClassName="notice-container notice-popover"
+    overlayClassName="container"
     :trigger="['click']"
   >
     <span>
@@ -12,7 +12,7 @@
     </span>
     <template v-slot:overlay>
       <a-spin :spinning="false" :delay="0">
-        <a-tabs class="notice-tabs">
+        <a-tabs class="tabs">
           <a-tab-pane key="1" tab="通知(0)">
             <notice-list emptyText="暂无通知" emptyImage="https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg" />
           </a-tab-pane>
@@ -59,12 +59,13 @@ export default {
 
 <style lang="less" scoped>
 
+@import '~@/styles/variables.less';
+
 .noticeButton {
   display: inline-block;
   cursor: pointer;
   transition: all 0.3s;
 }
-
 .icon {
   padding: 4px;
   vertical-align: middle;
@@ -74,48 +75,37 @@ export default {
   font-size: 16px;
 }
 
-</style>
-
-<style lang="less">
-@import '~@/styles/variables.less';
-
-.notice-popover {
-  position: relative;
-  width: 336px;
-}
-
-.notice-tabs {
-
-  .icon {
-    padding: 4px;
-    vertical-align: middle;
-  }
-
-  .ant-tabs-nav-scroll {
+.tabs {
+  :global(.ant-tabs-nav-scroll) {
     text-align: center;
   }
 
-  .ant-dropdown-menu-nav-scroll {
-    text-align:center;
-  }
-
-  .ant-tabs-bar {
+  :global(.ant-tabs-bar) {
     margin-bottom: 0;
   }
 }
 
-.notice-container > * {
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: @shadow-1-down;
+:global {
+  .container > * {
+    position: relative;
+    width: 336px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: @shadow-1-down;
+  }
+
+  @media screen and (max-width: @screen-xs) {
+    .container {
+      width: 100% !important;
+    }
+    .container > * {
+      border-radius: 0 !important;
+    }
+  }
 }
 
-@media screen and (max-width: @screen-xs) {
-  .notice-container {
-    width: 100% !important;
-  }
-  .notice-container > * {
-    border-radius: 0 !important;
-  }
-}
+</style>
+
+<style lang="less">
+
 </style>

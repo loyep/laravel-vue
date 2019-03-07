@@ -62,76 +62,76 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    @import '~@/styles/variables.less';
+@import '~@/styles/variables.less';
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        overflow: auto;
-        background: @layout-body-background;
-    }
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+  background: @layout-body-background;
+}
 
-    .lang {
-        text-align: right;
-        width: 100%;
-        height: 40px;
-        line-height: 44px;
-        :global(.ant-dropdown-trigger) {
-            margin-right: 24px;
-        }
-    }
+.lang {
+  text-align: right;
+  width: 100%;
+  height: 40px;
+  line-height: 44px;
+  :global(.ant-dropdown-trigger) {
+    margin-right: 24px;
+  }
+}
 
-    .content {
-        padding: 32px 0;
-        flex: 1;
-    }
+.content {
+  padding: 32px 0;
+  flex: 1;
+}
 
-    @media (min-width: @screen-md-min) {
-        .container {
-            background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
-            background-repeat: no-repeat;
-            background-position: center 110px;
-            background-size: 100%;
-        }
+@media (min-width: @screen-md-min) {
+  .container {
+    background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
+    background-repeat: no-repeat;
+    background-position: center 110px;
+    background-size: 100%;
+  }
 
-        .content {
-            padding: 32px 0 24px 0;
-        }
-    }
+  .content {
+      padding: 32px 0 24px 0;
+  }
+}
 
-    .top {
-        text-align: center;
-    }
+.top {
+  text-align: center;
+}
 
-    .header {
-        height: 44px;
-        line-height: 44px;
-        a {
-            text-decoration: none;
-        }
-    }
+.header {
+  height: 44px;
+  line-height: 44px;
+  a {
+      text-decoration: none;
+  }
+}
 
-    .logo {
-        height: 44px;
-        vertical-align: top;
-        margin-right: 16px;
-    }
+.logo {
+  height: 44px;
+  vertical-align: top;
+  margin-right: 16px;
+}
 
-    .title {
-        font-size: 33px;
-        color: @heading-color;
-        font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        font-weight: 600;
-        position: relative;
-        top: 2px;
-    }
+.title {
+  font-size: 33px;
+  color: @heading-color;
+  font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  position: relative;
+  top: 2px;
+}
 
-    .desc {
-        font-size: @font-size-base;
-        color: @text-color-secondary;
-        margin-top: 12px;
-        margin-bottom: 40px;
-    }
+.desc {
+  font-size: @font-size-base;
+  color: @text-color-secondary;
+  margin-top: 12px;
+  margin-bottom: 40px;
+}
 
 </style>

@@ -1,8 +1,9 @@
 <template>
   <a-layout-sider
     v-model="collapsed"
-    :class="['sider', isDesktop ? null : 'shadow', theme, fixSiderbar ? 'ant-fixed-sidemenu' : null ]"
-    width="256px"
+    :class="['sider', {'fixSiderbar': fixSiderbar, 'light': theme === 'light'} ]"
+    :width="256"
+    breakpoint="lg"
     :collapsed="collapsed"
     :collapsible="collapsible"
     :trigger="null"
@@ -30,7 +31,6 @@ export default {
   components: {
     Logo,
     BaseMenu
-
   },
   mixins: [themeMixin, deviceMixin],
   props: {
@@ -41,8 +41,7 @@ export default {
     },
     theme: {
       type: String,
-      required: false,
-      default: 'dark'
+      required: true
     },
     collapsible: {
       type: Boolean,
@@ -59,6 +58,9 @@ export default {
       required: true
     }
   },
+  mounted () {
+    console.log(this.theme)
+  },
   methods: {
     onSelect (obj) {
       this.$emit('onSelect', obj)
@@ -68,47 +70,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~@/styles/variables.less';
-
-@nav-header-height: @layout-header-height;
-
-.sider {
-  position: relative;
-  z-index: 10;
-  min-height: 100vh;
-  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
-  &.fixSiderBar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
-    :global {
-      .ant-menu-root {
-        height: ~'calc(100vh - @{nav-header-height})';
-        overflow-y: auto;
-      }
-      .ant-menu-inline {
-        border-right: 0;
-        .ant-menu-item,
-        .ant-menu-submenu-title {
-          width: 100%;
-        }
-      }
-    }
-  }
-  &.light {
-    background-color: white;
-    box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
-    .logo {
-      background: white;
-      box-shadow: 1px 1px 0 0 @border-color-split;
-      h1 {
-        color: @primary-color;
-      }
-    }
-    :global(.ant-menu-light) {
-      border-right-color: transparent;
-    }
-  }
-}
+@import './style.less';
 </style>
