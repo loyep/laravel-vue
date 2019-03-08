@@ -1,7 +1,7 @@
 <template>
   <a-drawer
     v-if="isMobile"
-    :visible="collapsed"
+    :visible="!collapsed"
     :wrapStyle="{
       padding: 0,
       height: '100vh',

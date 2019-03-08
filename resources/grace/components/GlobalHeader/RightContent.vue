@@ -107,7 +107,6 @@ export default {
 }
 
 .right {
-  display: inline-flex;
   float: right;
   height: 100%;
   overflow: hidden;
@@ -116,8 +115,9 @@ export default {
     padding: 0 12px;
     display: inline-block;
     transition: all 0.3s;
+    font-size: @font-size-base;
     height: 100%;
-    >:global(i) {
+    > :global(i) {
       vertical-align: middle;
       color: @text-color;
     }
