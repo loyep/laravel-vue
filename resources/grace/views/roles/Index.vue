@@ -6,7 +6,14 @@
 
 <script >
 export default {
-  name: 'Index'
+  name: 'Index',
+  data () {
+    return {
+      headerInfo: {
+        title: '角色列表'
+      }
+    }
+  }
 }
 </script>
 

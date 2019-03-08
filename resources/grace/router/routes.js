@@ -96,7 +96,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'user',
-        component: BlankLayout,
+        component: PageLayout,
         meta: {
           title: '用户',
           icon: 'user'
@@ -154,7 +154,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'role',
-        component: BlankLayout,
+        component: PageLayout,
         meta: {
           title: '角色',
           icon: 'team'
@@ -196,7 +196,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'tag',
-        component: BlankLayout,
+        component: PageLayout,
         meta: {
           title: '标签',
           icon: 'tags'
@@ -238,7 +238,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'permission',
-        component: BlankLayout,
+        component: PageLayout,
         meta: {
           title: '权限',
           icon: 'lock'

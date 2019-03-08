@@ -91,7 +91,7 @@ export const actions = {
   UpdateLoadingStatus ({ commit }, loading) {
     commit('UPDATE_LOADING_STATUS', loading)
   },
-  SetScreen ({ commit, dispatch }, screen) {
+  SetScreen ({ commit, dispatch, state }, screen) {
     let device
     let sidebar = true
     switch (screen) {
@@ -103,7 +103,7 @@ export const actions = {
       case SCREEN_TYPE.SCREEN_MD:
       case SCREEN_TYPE.SCREEN_LG:
         device = 'tablet'
-        sidebar = false
+        sidebar = true
         break
       case SCREEN_TYPE.SCREEN_XL:
       case SCREEN_TYPE.SCREEN_XXL:
