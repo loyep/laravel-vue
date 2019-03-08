@@ -37,7 +37,7 @@ export default {
       switch (screenType) {
         case SCREEN_TYPE.SCREEN_XS:
           device = 'mobile'
-          sidebar = true
+          sidebar = false
           break
         case SCREEN_TYPE.SCREEN_SM:
         case SCREEN_TYPE.SCREEN_MD:
@@ -49,7 +49,7 @@ export default {
         case SCREEN_TYPE.SCREEN_XXL:
         default:
           device = 'desktop'
-          sidebar = false
+          sidebar = true
           break
       }
 
