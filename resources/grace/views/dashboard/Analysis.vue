@@ -1,11 +1,13 @@
 <template>
   <grid-content>
     <a-row :gutter="24">
-      <a-col :xs="24"
-             :sm="12"
-             :md="12"
-             :lg="12"
-             :xl="6"
+      <a-col
+        :xs="24"
+        :sm="12"
+        :md="12"
+        :lg="12"
+        :xl="6"
+        style="margin-bottom: 24px;"
       >
         <chart-card
           title="访问量"
@@ -37,6 +39,7 @@
              :md="12"
              :lg="12"
              :xl="6"
+             style="margin-bottom: 24px;"
       >
         <chart-card
           title="访问量"
@@ -68,6 +71,7 @@
              :md="12"
              :lg="12"
              :xl="6"
+             style="margin-bottom: 24px;"
       >
         <chart-card
           title="访问量"
@@ -99,6 +103,7 @@
              :md="12"
              :lg="12"
              :xl="6"
+             style="margin-bottom: 24px;"
       >
         <chart-card
           title="访问量"
