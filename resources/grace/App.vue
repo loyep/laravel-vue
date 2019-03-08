@@ -11,7 +11,7 @@
 import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
 import { LocaleProvider } from 'ant-design-vue'
 import Loading from '@/components/Loading'
-import { deviceEnquire, SCREEN_TYPE } from '@/utils/device'
+import { deviceEnquire } from '@/utils/device'
 
 export default {
   name: 'App',
@@ -32,30 +32,7 @@ export default {
   },
   mounted () {
     deviceEnquire((screenType) => {
-      let device
-      let sidebar = true
-      switch (screenType) {
-        case SCREEN_TYPE.SCREEN_XS:
-          device = 'mobile'
-          sidebar = false
-          break
-        case SCREEN_TYPE.SCREEN_SM:
-        case SCREEN_TYPE.SCREEN_MD:
-        case SCREEN_TYPE.SCREEN_LG:
-          device = 'tablet'
-          sidebar = false
-          break
-        case SCREEN_TYPE.SCREEN_XL:
-        case SCREEN_TYPE.SCREEN_XXL:
-        default:
-          device = 'desktop'
-          sidebar = true
-          break
-      }
-
-      this.$store.commit('app/TOGGLE_DEVICE', device)
-      this.$store.dispatch('app/SetSidebar', sidebar)
-      this.$store.commit('app/SET_SCREEN', screenType)
+      this.$store.dispatch('app/SetScreen', screenType)
     })
   },
   methods: {

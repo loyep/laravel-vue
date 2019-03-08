@@ -1,5 +1,6 @@
 import config from '@/config'
 import Storage from '@/utils/storage'
+import { SCREEN_TYPE } from '@/utils/device'
 
 import {
   SIDEBAR_TYPE,
@@ -89,6 +90,32 @@ export const mutations = {
 export const actions = {
   UpdateLoadingStatus ({ commit }, loading) {
     commit('UPDATE_LOADING_STATUS', loading)
+  },
+  SetScreen ({ commit, dispatch }, screen) {
+    let device
+    let sidebar = true
+    switch (screen) {
+      case SCREEN_TYPE.SCREEN_XS:
+        device = 'mobile'
+        sidebar = false
+        break
+      case SCREEN_TYPE.SCREEN_SM:
+      case SCREEN_TYPE.SCREEN_MD:
+      case SCREEN_TYPE.SCREEN_LG:
+        device = 'tablet'
+        sidebar = false
+        break
+      case SCREEN_TYPE.SCREEN_XL:
+      case SCREEN_TYPE.SCREEN_XXL:
+      default:
+        device = 'desktop'
+        sidebar = true
+        break
+    }
+
+    commit('TOGGLE_DEVICE', device)
+    dispatch('SetSidebar', sidebar)
+    commit('SET_SCREEN', screen)
   },
   SetSidebar ({ commit }, type) {
     commit('SET_SIDEBAR_TYPE', type)
