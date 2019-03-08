@@ -178,7 +178,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 .icon {
   width: 14px;
   vertical-align: baseline;

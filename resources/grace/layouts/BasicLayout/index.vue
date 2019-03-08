@@ -1,5 +1,5 @@
 <template>
-  <div class="screen-xs">
+  <div :class="screen">
     <a-layout>
       <sider-menu
         :menus="menus"
@@ -29,7 +29,6 @@ import SettingDrawer from '@/components/SettingDrawer'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import { mapState, mapActions } from 'vuex'
-import logo from '@/assets/images/logo.png'
 import { themeMixin, deviceMixin } from '@/mixins'
 
 export default {
@@ -47,14 +46,14 @@ export default {
   data () {
     return {
       menus: [],
-      collapsed: false,
-      logo
+      collapsed: false
     }
   },
   computed: {
     ...mapState({
       sidebar: state => state.app.sidebar,
-      mainMenu: state => state.permission.addRouters
+      mainMenu: state => state.permission.addRouters,
+      screen: state => state.app.screen
     })
   },
   created () {

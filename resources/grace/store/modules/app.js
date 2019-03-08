@@ -26,6 +26,7 @@ export const state = {
   color: Storage.get(DEFAULT_COLOR, config.primaryColor),
   weak: Storage.get(DEFAULT_COLOR_WEAK, config.colorWeak),
   locale: Storage.get(DEFAULT_LOCALE, config.locale),
+  screen: 'screen-lg',
   isLoading: false
 }
 
@@ -36,8 +37,6 @@ export const mutations = {
   SET_SIDEBAR_TYPE: (state, type) => {
     state.sidebar = type
     Storage.set(SIDEBAR_TYPE, type)
-
-    console.log('SET_SIDEBAR_TYPE', type)
   },
   CLOSE_SIDEBAR: (state) => {
     Storage.set(SIDEBAR_TYPE, true)
@@ -47,13 +46,11 @@ export const mutations = {
     state.device = device
   },
   TOGGLE_THEME: (state, theme) => {
-    // setStore('_DEFAULT_THEME', theme)
     Storage.set(DEFAULT_THEME, theme)
     state.theme = theme
   },
   TOGGLE_LAYOUT_MODE: (state, layout) => {
     Storage.set(DEFAULT_LAYOUT_MODE, layout)
-    console.log(layout)
     state.layout = layout
   },
   TOGGLE_FIXED_HEADER: (state, fixed) => {
@@ -83,6 +80,9 @@ export const mutations = {
   SET_LOCALE: (state, locale) => {
     Storage.set(DEFAULT_LOCALE, locale)
     state.locale = locale
+  },
+  SET_SCREEN: (state, screen) => {
+    state.screen = screen
   }
 }
 

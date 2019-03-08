@@ -71,13 +71,13 @@ export default {
 
 <style lang="less">
 
-  .drawer .drawer-content {
-    background: #001529;
+.drawer .drawer-content {
+  background: #001529;
+}
+.ant-drawer-left {
+  .ant-drawer-body {
+    padding: 0;
   }
-  .ant-drawer-left {
-    .ant-drawer-body {
-      padding: 0;
-    }
-  }
+}
 
 </style>
