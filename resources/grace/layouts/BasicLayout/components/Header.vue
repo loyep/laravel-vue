@@ -8,7 +8,7 @@
 <script>
 import TopNavHeader from '@/components/TopNavHeader'
 import GlobalHeader from '@/components/GlobalHeader'
-import { themeMixin, deviceMixin } from '@/mixins'
+import { themeMixin } from '@/mixins'
 
 export default {
   name: 'Header',
@@ -16,7 +16,7 @@ export default {
     TopNavHeader,
     GlobalHeader
   },
-  mixins: [ themeMixin, deviceMixin ],
+  mixins: [ themeMixin ],
   props: {
     collapsed: {
       type: Boolean,

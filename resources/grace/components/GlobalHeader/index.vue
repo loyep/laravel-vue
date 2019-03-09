@@ -12,7 +12,7 @@
 
 <script>
 import RightContent from './RightContent'
-import { deviceMixin } from '@/mixins'
+import { themeMixin } from '@/mixins'
 
 export default {
   name: 'GlobalHeader',
@@ -20,7 +20,7 @@ export default {
     RightContent
   },
   mixins: [
-    deviceMixin
+    themeMixin
   ],
   props: {
     collapsed: {

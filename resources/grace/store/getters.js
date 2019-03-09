@@ -1,11 +1,11 @@
 const getters = {
-  device: state => state.app.device,
+  device: state => state.theme.device,
   locale: state => state.app.locale,
-  color: state => state.app.color
+  color: state => state.theme.color,
   // token: state => state.user.token,
   // avatar: state => state.user.avatar,
   // welcome: state => state.user.welcome,
-  // roles: state => state.user.roles,
+  roles: state => state.auth.roles
   // addRouters: state => state.permission.addRouters,
 }
 

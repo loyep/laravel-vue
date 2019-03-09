@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import routes from './routes'
 import { getBaseUrl } from '@/utils/utils'
 import { beforeEach, afterEach } from './permission'
-// import store from '@/store'
 
 Vue.use(Router)
 

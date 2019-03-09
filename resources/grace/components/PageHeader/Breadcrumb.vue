@@ -33,7 +33,7 @@ export default {
   methods: {
     getBreadcrumb () {
       const breadList = []
-      breadList.push({ name: 'dashboard', path: '/', meta: { title: '首页' } })
+      breadList.push({ name: 'dashboard', path: '/', meta: { title: '仪表盘' } })
       const routes = this.$route.matched.concat().filter(item => item.path)
       this.name = this.$route.name
       this.breadList = breadList.concat(routes)

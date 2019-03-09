@@ -1,28 +1,36 @@
+import { DEVICE_TYPE } from '@/utils/device'
 import { mapState } from 'vuex'
 
 const themeMixin = {
   computed: {
     ...mapState({
-      layoutMode: state => state.app.layout,
-      navTheme: state => state.app.theme,
-      primaryColor: state => state.app.color,
-      colorWeak: state => state.app.weak,
-      fixedHeader: state => state.app.fixedHeader,
-      fixSidebar: state => state.app.fixSidebar,
-      contentWidth: state => state.app.contentWidth,
-      autoHideHeader: state => state.app.autoHideHeader,
-      sidebarOpened: state => state.app.sidebar
+      layoutMode: state => state.theme.layout,
+      navTheme: state => state.theme.theme,
+      primaryColor: state => state.theme.color,
+      colorWeak: state => state.theme.weak,
+      fixedHeader: state => state.theme.fixedHeader,
+      fixSidebar: state => state.theme.fixSidebar,
+      contentWidth: state => state.theme.contentWidth,
+      autoHideHeader: state => state.theme.autoHideHeader,
+      sidebarOpened: state => state.theme.sidebar,
+      device: state => state.theme.device
     }),
     isTopMenu () {
       return this.layoutMode === 'topmenu'
     },
     isSideMenu () {
       return this.layoutMode === 'sidemenu'
-    }
-  },
-  getters: {
-    getTheme () {
-      return this.navTheme
+    },
+    isMobile () {
+      return this.device === DEVICE_TYPE.MOBILE
+    },
+
+    isDesktop () {
+      return this.device === DEVICE_TYPE.DESKTOP
+    },
+
+    isTablet () {
+      return this.device === DEVICE_TYPE.TABLET
     }
   }
 }

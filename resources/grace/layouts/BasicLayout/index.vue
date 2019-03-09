@@ -16,7 +16,9 @@
           :onCollapse="handleMenuCollapse"
         />
         <a-layout-content class="basic-content" :style="contentStyle">
-          <router-view />
+          <grid-content>
+            <router-view />
+          </grid-content>
         </a-layout-content>
         <basic-footer />
         <setting-drawer />
@@ -30,8 +32,9 @@ import SiderMenu from '@/components/SiderMenu'
 import SettingDrawer from '@/components/SettingDrawer'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import { mapState, mapActions } from 'vuex'
-import { themeMixin, deviceMixin } from '@/mixins'
+import GridContent from '@/layouts/PageLayout/GridContent'
+import { mapState } from 'vuex'
+import { themeMixin } from '@/mixins'
 
 export default {
   name: 'BasicLayout',
@@ -39,12 +42,10 @@ export default {
     BasicFooter: Footer,
     BasicHeader: Header,
     SiderMenu,
-    SettingDrawer
+    SettingDrawer,
+    GridContent
   },
-  mixins: [
-    deviceMixin,
-    themeMixin
-  ],
+  mixins: [ themeMixin ],
   data () {
     return {
       menus: [],
@@ -53,9 +54,9 @@ export default {
   },
   computed: {
     ...mapState({
-      sidebar: state => state.app.sidebar,
+      sidebar: state => state.theme.sidebar,
       mainMenu: state => state.permission.addRouters,
-      screen: state => state.app.screen
+      screen: state => state.theme.screen
     }),
     contentStyle () {
       if (this.fixSidebar) {
@@ -76,9 +77,9 @@ export default {
     this.menus = this.mainMenu.find((item) => item.path === '/').children
   },
   methods: {
-    ...mapActions({
-      setSidebar: 'app/SetSidebar'
-    }),
+    setSidebar (value) {
+      this.$store.dispatch('theme/SetSidebar', value)
+    },
     handleMenuCollapse (collapsed) {
       this.collapsed = !this.collapsed
       this.setSidebar(this.collapsed)

@@ -1,5 +1,6 @@
 import config from '@/config'
 import Storage from '@/utils/storage'
+import { SCREEN_TYPE } from '@/utils/device'
 
 import {
   SIDEBAR_TYPE,
@@ -11,7 +12,7 @@ import {
   DEFAULT_FIXED_SIDEMENU,
   DEFAULT_FIXED_HEADER_HIDDEN,
   DEFAULT_CONTENT_WIDTH_TYPE,
-  DEFAULT_LOCALE
+  CONTENT_WIDTH_TYPE
 } from '@/store/mutation-types'
 
 export const state = {
@@ -25,19 +26,13 @@ export const state = {
   autoHideHeader: Storage.get(DEFAULT_FIXED_HEADER_HIDDEN, config.autoHideHeader),
   color: Storage.get(DEFAULT_COLOR, config.primaryColor),
   weak: Storage.get(DEFAULT_COLOR_WEAK, config.colorWeak),
-  locale: Storage.get(DEFAULT_LOCALE, config.locale),
-  isLoading: false
+  screen: 'screen-lg'
 }
 
 export const mutations = {
-  UPDATE_LOADING_STATUS: (state, isLoading) => {
-    state.isLoading = isLoading
-  },
   SET_SIDEBAR_TYPE: (state, type) => {
-    state.sidebar = type
     Storage.set(SIDEBAR_TYPE, type)
-
-    console.log('SET_SIDEBAR_TYPE', type)
+    state.sidebar = type
   },
   CLOSE_SIDEBAR: (state) => {
     Storage.set(SIDEBAR_TYPE, true)
@@ -47,13 +42,11 @@ export const mutations = {
     state.device = device
   },
   TOGGLE_THEME: (state, theme) => {
-    // setStore('_DEFAULT_THEME', theme)
     Storage.set(DEFAULT_THEME, theme)
     state.theme = theme
   },
   TOGGLE_LAYOUT_MODE: (state, layout) => {
     Storage.set(DEFAULT_LAYOUT_MODE, layout)
-    console.log(layout)
     state.layout = layout
   },
   TOGGLE_FIXED_HEADER: (state, fixed) => {
@@ -80,15 +73,37 @@ export const mutations = {
     Storage.set(DEFAULT_COLOR_WEAK, flag)
     state.weak = flag
   },
-  SET_LOCALE: (state, locale) => {
-    Storage.set(DEFAULT_LOCALE, locale)
-    state.locale = locale
+  SET_SCREEN: (state, screen) => {
+    state.screen = screen
   }
 }
 
 export const actions = {
-  UpdateLoadingStatus ({ commit }, loading) {
-    commit('UPDATE_LOADING_STATUS', loading)
+  SetScreen ({ commit, dispatch, state }, screen) {
+    let device
+    let sidebar = true
+    switch (screen) {
+      case SCREEN_TYPE.SCREEN_XS:
+        device = 'mobile'
+        sidebar = false
+        break
+      case SCREEN_TYPE.SCREEN_SM:
+      case SCREEN_TYPE.SCREEN_MD:
+      case SCREEN_TYPE.SCREEN_LG:
+        device = 'tablet'
+        sidebar = true
+        break
+      case SCREEN_TYPE.SCREEN_XL:
+      case SCREEN_TYPE.SCREEN_XXL:
+      default:
+        device = 'desktop'
+        sidebar = true
+        break
+    }
+
+    commit('TOGGLE_DEVICE', device)
+    dispatch('SetSidebar', sidebar)
+    commit('SET_SCREEN', screen)
   },
   SetSidebar ({ commit }, type) {
     commit('SET_SIDEBAR_TYPE', type)
@@ -103,6 +118,9 @@ export const actions = {
     commit('TOGGLE_THEME', theme)
   },
   ToggleLayoutMode ({ commit }, mode) {
+    if (mode === 'sidemenu') {
+      commit('TOGGLE_CONTENT_WIDTH', CONTENT_WIDTH_TYPE.Fluid)
+    }
     commit('TOGGLE_LAYOUT_MODE', mode)
   },
   ToggleFixedHeader ({ commit }, fixedHeader) {
@@ -121,13 +139,10 @@ export const actions = {
     commit('TOGGLE_CONTENT_WIDTH', type)
   },
   ToggleColor ({ commit }, color) {
+    console.log('%c ' + color, 'color:' + color + ';')
     commit('TOGGLE_COLOR', color)
   },
   ToggleWeak ({ commit }, weakFlag) {
-    console.log('color')
     commit('TOGGLE_WEAK', weakFlag)
-  },
-  SetLocale ({ commit }, locale) {
-    commit('SET_LOCALE', locale)
   }
 }

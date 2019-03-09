@@ -32,7 +32,7 @@ export default {
   },
   mounted () {
     deviceEnquire((screenType) => {
-      this.$store.dispatch('app/SetScreen', screenType)
+      this.$store.dispatch('theme/SetScreen', screenType)
     })
   },
   methods: {

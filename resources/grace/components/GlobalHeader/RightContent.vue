@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { themeMixin, deviceMixin } from '@/mixins'
+import { themeMixin } from '@/mixins'
 import { Avatar, Menu, Tooltip, Dropdown } from 'ant-design-vue'
 import SelectLang from '@/components/SelectLang'
 import HeaderSearch from '@/components/HeaderSearch'
@@ -65,7 +65,7 @@ export default {
     'AMenuItem': Menu.Item,
     'ATooltip': Tooltip
   },
-  mixins: [ themeMixin, deviceMixin ],
+  mixins: [ themeMixin ],
   data () {
     return {
       user: { }

@@ -27,7 +27,7 @@
 <script>
 import { Drawer } from 'ant-design-vue'
 import SiderMenu from './SiderMenu'
-import { deviceMixin } from '@/mixins'
+import { themeMixin } from '@/mixins'
 
 export default {
   name: 'SiderMenuWrapper',
@@ -35,7 +35,7 @@ export default {
     SiderMenu,
     'ADrawer': Drawer
   },
-  mixins: [deviceMixin],
+  mixins: [ themeMixin ],
   props: {
     mode: {
       type: String,

@@ -26,14 +26,14 @@
 
 <script>
 import BaseMenu from './BaseMenu'
-import { deviceMixin, themeMixin } from '@/mixins'
+import { themeMixin } from '@/mixins'
 
 export default {
   name: 'SiderMenu',
   components: {
     BaseMenu
   },
-  mixins: [themeMixin, deviceMixin],
+  mixins: [ themeMixin ],
   props: {
     collapsed: {
       type: Boolean,

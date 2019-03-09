@@ -209,36 +209,36 @@ export default {
     changeSetting (setting, value) {
       switch (setting) {
         case 'layoutMode':
-          this.$store.dispatch('app/ToggleLayoutMode', value)
+          this.$store.dispatch('theme/ToggleLayoutMode', value)
           break
 
         case 'fixedHeader':
-          this.$store.dispatch('app/ToggleFixedHeader', value)
+          this.$store.dispatch('theme/ToggleFixedHeader', value)
           break
 
         case 'navTheme':
-          this.$store.dispatch('app/ToggleTheme', value)
+          this.$store.dispatch('theme/ToggleTheme', value)
           break
 
         case 'primaryColor':
-          this.$store.dispatch('app/ToggleColor', value)
+          this.$store.dispatch('theme/ToggleColor', value)
           break
 
         case 'contentWidth':
-          this.$store.dispatch('app/ToggleContentWidth', value)
+          this.$store.dispatch('theme/ToggleContentWidth', value)
           break
 
         case 'autoHideHeader':
-          this.$store.dispatch('app/ToggleFixedHeaderHidden', value)
+          this.$store.dispatch('theme/ToggleFixedHeaderHidden', value)
           break
 
         case 'fixSidebar':
           console.log(value)
-          this.$store.dispatch('app/ToggleFixSidebar', value)
+          this.$store.dispatch('theme/ToggleFixSidebar', value)
           break
 
         case 'colorWeak':
-          this.$store.dispatch('app/ToggleWeak', value)
+          this.$store.dispatch('theme/ToggleWeak', value)
           break
 
         default:

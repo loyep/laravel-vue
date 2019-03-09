@@ -20,10 +20,12 @@ const modules = requireContext
     return { ...modules, [name]: module }
   }, {})
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   modules,
   state: {},
   mutations: {},
   actions: {},
   getters
 })
+
+export default store

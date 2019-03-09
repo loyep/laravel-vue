@@ -1,6 +1,6 @@
 <template>
   <div class="pageHeader">
-    <div :class="{ wide: wide }">
+    <div :class="{ 'wide': wide }">
       <!-- <a-skeleton :loading="loading" active :paragraph="{rows: 4}" :avatar="{ size: 'large', shape: 'circle' }"> -->
       <breadcrumb />
       <div class="detail">
@@ -33,12 +33,15 @@
 <script >
 import { Skeleton } from 'ant-design-vue'
 import Breadcrumb from './Breadcrumb'
+import { themeMixin } from '@/mixins'
+
 export default {
   name: 'PageHeader',
   components: {
     'ASkeleton': Skeleton,
     Breadcrumb
   },
+  mixins: [ themeMixin ],
   props: {
     title: {
       type: String,
@@ -61,6 +64,7 @@ export default {
   },
   computed: {
     wide () {
+      console.log(this.contentWidth)
       return this.contentWidth === 'Fixed'
     }
   }
