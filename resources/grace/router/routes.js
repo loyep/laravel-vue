@@ -21,16 +21,12 @@ export const asyncRouterMap = [
   {
     path: '/',
     component: BasicLayout,
-    meta: {
-      title: '仪表盘',
-      icon: 'dashboard'
-    },
     children: [
       {
-        path: '/',
-        component: BlankLayout,
+        path: '',
+        component: PageLayout,
         meta: {
-          title: 'Dashboard',
+          title: '仪表盘',
           icon: 'dashboard'
         },
         children: [

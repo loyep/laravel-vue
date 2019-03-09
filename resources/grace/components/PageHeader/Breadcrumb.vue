@@ -1,6 +1,6 @@
 <template>
   <a-breadcrumb class="breadcrumb">
-    <a-breadcrumb-item v-for="(item, index) in breadList" :key="index">
+    <a-breadcrumb-item v-for="(item, key) in breadList" :key="key">
       <router-link v-if="item.name != name" :to="{ path: item.path }">
         {{ item.meta.title }}
       </router-link><span v-else>{{ item.meta.title }}</span>
@@ -10,6 +10,7 @@
 
 <script>
 import { Breadcrumb } from 'ant-design-vue'
+import path from 'path'
 export default {
   name: 'Breadcrumb',
   components: {
@@ -32,11 +33,15 @@ export default {
   },
   methods: {
     getBreadcrumb () {
-      const breadList = []
-      breadList.push({ name: 'dashboard', path: '/', meta: { title: '仪表盘' } })
-      const routes = this.$route.matched.concat().filter(item => item.path)
+      const breadList = {
+        '/': { name: 'dashboard', path: '/', meta: { title: '仪表盘' } }
+      }
+      this.$route.matched.concat().filter(item => item.path).forEach((item) => {
+        breadList[path.resolve(item.path)] = item
+      })
+
       this.name = this.$route.name
-      this.breadList = breadList.concat(routes)
+      this.breadList = breadList
     }
   }
 }
