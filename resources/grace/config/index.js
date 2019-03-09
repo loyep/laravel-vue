@@ -16,17 +16,11 @@
 export default {
   primaryColor: '#1890FF', // primary color of ant design
   navTheme: 'light', // theme for nav menu
-  layout: 'topmenu', // nav menu position: sidemenu or topmenu
+  layout: 'sidemenu', // nav menu position: sidemenu or topmenu
   contentWidth: 'Fluid', // layout of content: Fluid or Fixed, only works when layout is topmenu
   fixedHeader: false, // sticky header
   fixSidebar: false, // sticky SideBar
   autoHideHeader: false, //  auto hide header
   colorWeak: false,
-  locale: 'zh-CN',
-  // vue-ls options`
-  storageOptions: {
-    namespace: 'pro__', // key prefix
-    name: 'ls', // name variable Vue.[ls] or this.[$ls],
-    storage: 'local' // storage name session, local, memory
-  }
+  locale: 'zh-CN'
 }
