@@ -1,0 +1,68 @@
+<template>
+  <div style="margin: -24px -24px 0;">
+    <slot name="top" />
+    <page-header
+      :logo="logo"
+      :title="title"
+      :content="content"
+      :extraContent="extraContent"
+    >
+      <template v-if="$slots.logo" v-slot:logo>
+        <slot name="logo" />
+      </template>
+      <slot slot="content" name="headerContent" />
+    </page-header>
+    <div class="content">
+      <grid-content>
+        <slot />
+      </grid-content>
+    </div>
+  </div>
+</template>
+
+<script>
+import PageHeader from '@/components/PageHeader'
+import GridContent from './GridContent'
+import { themeMixin } from '@/mixins'
+export default {
+  name: 'PageView',
+  components: {
+    PageHeader,
+    GridContent
+  },
+  mixins: [ themeMixin ],
+  props: {
+    extraContent: {
+      type: String,
+      default: null
+    },
+    title: {
+      type: String,
+      default: null
+    },
+    content: {
+      type: String,
+      default: null
+    },
+    logo: {
+      type: String,
+      default: null
+    }
+  }
+}
+</script>
+
+<style lang="less" scoped>
+
+@import '~@/styles/variables.less';
+
+.content {
+  margin: 24px 24px 0;
+}
+
+@media screen and (max-width: @screen-sm) {
+  .content {
+    margin: 24px 0 0;
+  }
+}
+</style>

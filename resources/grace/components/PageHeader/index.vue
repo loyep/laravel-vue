@@ -4,17 +4,12 @@
       <!-- <a-skeleton :loading="loading" active :paragraph="{rows: 4}" :avatar="{ size: 'large', shape: 'circle' }"> -->
       <breadcrumb />
       <div class="detail">
-        <div v-if="$slots.logo" class="logo">
-          <slot name="logo" />
-        </div>
+        <img v-if="logo" :src="logo" class="logo">
         <div class="main">
           <div class="row">
-            <h1 class="title">
+            <h1 v-if="title" class="title">
               {{ title }}
             </h1>
-            <div v-if="$slots.action" class="action">
-              <slot name="action" />
-            </div>
           </div>
           <div class="row">
             <div v-if="content" class="content">
@@ -43,6 +38,10 @@ export default {
   },
   mixins: [ themeMixin ],
   props: {
+    logo: {
+      type: String,
+      default: null
+    },
     title: {
       type: String,
       default: null
@@ -58,8 +57,7 @@ export default {
   },
   data () {
     return {
-      loading: false,
-      logo: ''
+      loading: false
     }
   },
   computed: {

@@ -1,12 +1,23 @@
 <template>
-  <div>
+  <page-view title="仪表盘" content="交互专家 |蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED" :logo="user.avatar">
     Dashboard
-  </div>
+  </page-view>
 </template>
 
 <script>
+import PageView from '@/layouts/PageLayout/PageView'
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'Dashboard'
+  name: 'Dashboard',
+  components: {
+    PageView
+  },
+  computed: {
+    ...mapGetters({
+      'user': 'auth/user'
+    })
+  }
 }
 </script>
 

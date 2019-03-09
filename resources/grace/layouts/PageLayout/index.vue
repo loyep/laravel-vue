@@ -1,32 +1,16 @@
 <template>
-  <div style="margin: -24px -24px 0;">
-    <slot name="top" />
-    <page-header
-      :title="title"
-      :content="content"
-      :extraContent="extraContent"
-    >
-      <template v-if="$slots.logo" v-slot:logo>
-        <slot name="logo" />
-      </template>
-    </page-header>
-    <div class="content">
-      <grid-content>
-        <router-view ref="content" />
-      </grid-content>
-    </div>
-  </div>
+  <page-view :title="title" :extraContent="extraContent" :content="content" :logo="logo">
+    <router-view ref="content" />
+  </page-view>
 </template>
 
 <script>
-import PageHeader from '@/components/PageHeader'
-import GridContent from './GridContent'
+import PageView from './PageView'
 import { themeMixin } from '@/mixins'
 export default {
   name: 'PageLayout',
   components: {
-    PageHeader,
-    GridContent
+    PageView
   },
   mixins: [ themeMixin ],
   data () {

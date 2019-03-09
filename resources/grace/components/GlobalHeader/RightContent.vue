@@ -47,11 +47,13 @@
 </template>
 
 <script>
-import { themeMixin } from '@/mixins'
 import { Avatar, Menu, Tooltip, Dropdown } from 'ant-design-vue'
 import SelectLang from '@/components/SelectLang'
 import HeaderSearch from '@/components/HeaderSearch'
 import NoticeIcon from '@/components/NoticeIcon'
+import { themeMixin } from '@/mixins'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'RightContent',
   components: {
@@ -66,22 +68,16 @@ export default {
     'ATooltip': Tooltip
   },
   mixins: [ themeMixin ],
-  data () {
-    return {
-      user: { }
-    }
-  },
   computed: {
+    ...mapGetters({
+      'user': 'auth/user'
+    }),
     darkClass () {
       if (this.isMobile || !this.isTopMenu) {
         return false
       }
       return this.navTheme === 'dark'
     }
-  },
-  created () {
-    this.user = this.$store.getters['auth/user']
-    console.log(this.navTheme)
   },
   methods: {
     logout () {

@@ -51,6 +51,6 @@ export const beforeEach = (to, from, next) => {
   }
 }
 
-export const afterEach = () => {
+export const afterEach = (to, from) => {
   NProgress.done()
 }
