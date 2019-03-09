@@ -21,7 +21,7 @@
           </grid-content>
         </a-layout-content>
         <basic-footer />
-        <setting-drawer />
+        <setting-drawer v-if="showSettingDrawer" />
       </a-layout>
     </a-layout>
   </div>
@@ -49,7 +49,8 @@ export default {
   data () {
     return {
       menus: [],
-      collapsed: false
+      collapsed: false,
+      showSettingDrawer: false
     }
   },
   computed: {
@@ -75,6 +76,7 @@ export default {
   },
   created () {
     this.menus = this.mainMenu.find((item) => item.path === '/').children
+    this.showSettingDrawer = process.env.NODE_ENV === 'development'
   },
   methods: {
     setSidebar (value) {

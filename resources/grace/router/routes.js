@@ -1,4 +1,4 @@
-import BasicLayout from '@/layouts/BasicLayout'
+// import BasicLayout from '@/layouts/BasicLayout'
 import BlankLayout from '@/layouts/BlankLayout'
 import PageLayout from '@/layouts/PageLayout'
 
@@ -7,20 +7,20 @@ export const routes = [
     path: '/login',
     name: 'login',
     hidden: true,
-    component: () => import('@/views/auth/Login')
+    component: () => import(/* webpackChunkName: "login" */'@/views/auth/Login')
   },
   {
     path: '/register',
     name: 'register',
     hidden: true,
-    component: () => import('@/views/auth/Register')
+    component: () => import(/* webpackChunkName: "register" */'@/views/auth/Register')
   }
 ]
 
 export const asyncRouterMap = [
   {
     path: '/',
-    component: BasicLayout,
+    component: () => import(/* webpackChunkName: "layout" */'@/layouts/BasicLayout'),
     children: [
       {
         path: '',
@@ -59,7 +59,7 @@ export const asyncRouterMap = [
           {
             path: '',
             name: 'post.index',
-            component: () => import(/* webpackChunkName: "post" */'@/views/posts/Index'),
+            component: () => import('@/views/posts/Index'),
             meta: {
               title: '文章列表'
             }
@@ -67,7 +67,7 @@ export const asyncRouterMap = [
           {
             path: 'create',
             name: 'post.create',
-            component: () => import(/* webpackChunkName: "post-create" */'@/views/posts/Create'),
+            component: () => import('@/views/posts/Create'),
             meta: {
               title: '创建文章'
             }
@@ -75,7 +75,7 @@ export const asyncRouterMap = [
           {
             path: ':id/edit',
             name: 'post.edit',
-            component: () => import(/* webpackChunkName: "post-edit" */'@/views/posts/Update'),
+            component: () => import('@/views/posts/Update'),
             meta: {
               title: '编辑文章'
             }
@@ -83,7 +83,7 @@ export const asyncRouterMap = [
           {
             path: ':id',
             name: 'post.detail',
-            component: () => import(/* webpackChunkName: "post-show" */'@/views/posts/Detail'),
+            component: () => import('@/views/posts/Detail'),
             meta: {
               title: '文章详情'
             }
