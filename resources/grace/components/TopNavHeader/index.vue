@@ -1,44 +1,65 @@
 <template>
-  <div class="head">
-    <div class="main">
+  <div :class="{ head: true, light: navTheme === 'light' }">
+    <div :class="{ main: true, wide: contentWidth === 'Fixed' }">
       <div class="left">
         <div id="logo" class="logo">
           <router-link :to="{ path: '/' }">
-            <img :src="logo" alt="logo">
+            <img src="~@/assets/images/logo.svg" alt="logo">
             <h1>{{ title }}</h1>
           </router-link>
         </div>
         <div :style="{ maxWidth }">
-          BaseMenu
+          <base-menu
+            :collapsed="collapsed"
+            :menu="menus"
+            mode="horizontal"
+            :theme="navTheme"
+            class="menu"
+            @select="onSelect"
+          />
         </div>
       </div>
-      RightContent
+      <right-content />
     </div>
   </div>
 </template>
 
-<script type="text/ecmascript-6">
-import logo from '@/assets/images/logo.png'
+<script >
+import BaseMenu from '@/components/SiderMenu/BaseMenu'
+import RightContent from '@/components/GlobalHeader/RightContent'
+import { themeMixin } from '@/mixins'
+
 export default {
   name: 'TopNavHeader',
+  components: {
+    BaseMenu, RightContent
+  },
+  mixins: [ themeMixin ],
   props: {
-    title: {
-      type: String,
-      default: () => {
-        return window.config.name
-      },
-      required: false
+    collapsed: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    menus: {
+      type: Array,
+      required: true
     }
   },
   data () {
     return {
-      logo
+      title: window.config.name
     }
   },
   computed: {
     maxWidth () {
-    //   return maxWidth: (props.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 165 - 40,
-      return 1200
+      const width = (this.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 165 - 40
+      return width + 'px'
+    }
+  },
+  methods: {
+    onSelect () {
+      console.log(222)
     }
   }
 }
@@ -48,12 +69,20 @@ export default {
 @import '~@/styles/variables.less';
 
 .head {
+  position: relative;
   width: 100%;
-  transition: background 0.3s, width 0.2s;
   height: @layout-header-height;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-  position: relative;
-
+  transition: background 0.3s, width 0.2s;
+  :global {
+    .ant-menu-submenu.ant-menu-submenu-horizontal {
+      height: 100%;
+      line-height: @layout-header-height;
+      .ant-menu-submenu-title {
+        height: 100%;
+      }
+    }
+  }
   &.light {
     background-color: #fff;
   }
@@ -67,34 +96,34 @@ export default {
       padding-left: 0;
     }
     .left {
-      flex: 1;
       display: flex;
+      flex: 1;
     }
-    .right {
-      width: 324px;
-    }
+    // .right {
+      // width: 324px;
+    // }
   }
 }
 
 .logo {
+  position: relative;
   width: 165px;
   height: @layout-header-height;
-  position: relative;
+  overflow: hidden;
   line-height: @layout-header-height;
   transition: all 0.3s;
-  overflow: hidden;
   img {
     display: inline-block;
-    vertical-align: middle;
     height: 32px;
+    vertical-align: middle;
   }
   h1 {
-    color: #fff;
     display: inline-block;
-    vertical-align: top;
-    font-size: 16px;
     margin: 0 0 0 12px;
+    color: #fff;
     font-weight: 400;
+    font-size: 16px;
+    vertical-align: top;
   }
 }
 
@@ -105,25 +134,9 @@ export default {
 }
 
 .menu {
-  border: none;
   height: @layout-header-height;
   line-height: @layout-header-height;
-}
-
-</style>
-
-<style lang="less">
-
-@import '~@/styles/variables.less';
-
-.head {
-    .ant-menu-submenu.ant-menu-submenu-horizontal {
-        line-height: @layout-header-height;
-        height: 100%;
-        .ant-menu-submenu-title {
-        height: 100%;
-        }
-    }
+  border: none;
 }
 
 </style>

@@ -3,7 +3,6 @@ import { mapState } from 'vuex'
 
 const deviceMixin = {
   computed: {
-
     ...mapState({
       device: state => state.app.device
     }),

@@ -162,6 +162,12 @@ export default {
           openKeys: this.openKeys,
           selectedKeys: this.selectedKeys
         },
+        class: [
+          this.$class,
+          {
+            'top-nav-menu': this.$props.mode === 'horizontal'
+          }
+        ],
         on: {
           openChange: this.onOpenChange,
           select: obj => {

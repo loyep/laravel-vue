@@ -1,7 +1,7 @@
 <template>
   <div :class="{
-    'right':true,
-    'dark': navTheme === 'dark'
+    right: true,
+    dark: navTheme === 'dark' && !isMobile
   }"
   >
     <header-search class="action search" />
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { themeMixin } from '@/mixins'
+import { themeMixin, deviceMixin } from '@/mixins'
 import { Avatar, Menu, Tooltip, Dropdown } from 'ant-design-vue'
 import SelectLang from '@/components/SelectLang'
 import HeaderSearch from '@/components/HeaderSearch'
@@ -65,7 +65,7 @@ export default {
     'AMenuItem': Menu.Item,
     'ATooltip': Tooltip
   },
-  mixins: [ themeMixin ],
+  mixins: [ themeMixin, deviceMixin ],
   data () {
     return {
       user: { }
@@ -73,6 +73,7 @@ export default {
   },
   created () {
     this.user = this.$store.getters['auth/user']
+    console.log(this.navTheme)
   },
   methods: {
     logout () {
@@ -145,6 +146,19 @@ export default {
   }
 }
 
+.dark {
+  height: @layout-header-height;
+  .action {
+    color: rgba(255, 255, 255, 0.85);
+    > :global(i) {
+      color: rgba(255, 255, 255, 0.85);
+    }
+    &:hover {
+      background: @primary-color;
+    }
+  }
+}
+
 @media only screen and (max-width: @screen-md) {
   .header {
     :global(.ant-divider-vertical) {
@@ -174,4 +188,5 @@ export default {
     }
   }
 }
+
 </style>

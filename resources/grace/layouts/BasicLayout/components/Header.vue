@@ -1,13 +1,14 @@
 <template>
-  <a-layout-header :style="{ padding: 0, background: '#fff' }">
-    <top-nav-header v-if="isTop" />
-    <global-header v-if="!isTop" :collapsed="collapsed" :onCollapse="onCollapse" />
+  <a-layout-header :style="{ padding: 0 }">
+    <top-nav-header v-if="isTopMenu && !isMobile" :menus="menus" :collapsed="collapsed" />
+    <global-header v-else :collapsed="collapsed" :onCollapse="onCollapse" />
   </a-layout-header>
 </template>
 
 <script>
 import TopNavHeader from '@/components/TopNavHeader'
 import GlobalHeader from '@/components/GlobalHeader'
+import { themeMixin, deviceMixin } from '@/mixins'
 
 export default {
   name: 'Header',
@@ -15,6 +16,7 @@ export default {
     TopNavHeader,
     GlobalHeader
   },
+  mixins: [ themeMixin, deviceMixin ],
   props: {
     collapsed: {
       type: Boolean,
@@ -23,14 +25,10 @@ export default {
     onCollapse: {
       type: Function,
       required: true
-    }
-  },
-  computed: {
-    isMobile () {
-      return false
     },
-    isTop () {
-      return false
+    menus: {
+      type: Array,
+      required: true
     }
   },
   methods: {

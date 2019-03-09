@@ -12,7 +12,7 @@
     <sider-menu
       :menus="menus"
       :mode="mode"
-      :collapsed="false"
+      :collapsed="(isMobile ? false : isMobile)"
       @select="onSelect"
     />
   </a-drawer>

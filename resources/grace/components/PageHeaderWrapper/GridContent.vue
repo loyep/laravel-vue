@@ -1,12 +1,15 @@
 <template>
-  <div :class="{ main: true, wide: true }">
+  <div :class="{ main: true, wide: contentWidth !== 'Fixed' }">
     <slot />
   </div>
 </template>
 
 <script>
+import { themeMixin } from '@/mixins'
+
 export default {
-  name: 'GridContent'
+  name: 'GridContent',
+  mixins: [ themeMixin ]
 }
 </script>
 

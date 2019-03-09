@@ -22,19 +22,25 @@
 <script>
 import PageHeader from '@/components/PageHeader'
 import GridContent from './GridContent'
+import { themeMixin } from '@/mixins'
 export default {
   name: 'PageLayout',
   components: {
     PageHeader,
     GridContent
   },
+  mixins: [ themeMixin ],
   data () {
     return {
       extraContent: null,
-      wide: false,
       title: null,
       content: null,
       logo: null
+    }
+  },
+  computed: {
+    wide () {
+      return this.contentWidth !== 'Fixed'
     }
   },
   mounted () {

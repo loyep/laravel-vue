@@ -2,18 +2,20 @@
   <div :class="screen">
     <a-layout>
       <sider-menu
+        v-if="!(isTopMenu && !isMobile)"
         :menus="menus"
         :collapsed="collapsed"
         :onCollapse="handleMenuCollapse"
         mode="inline"
         :collapsible="true"
       />
-      <a-layout :style="[{ minHeight: '100vh' }, getLayoutStyle()]">
+      <a-layout :style="[{ minHeight: '100vh' }, layoutStyle]">
         <basic-header
+          :menus="menus"
           :collapsed="collapsed"
           :onCollapse="handleMenuCollapse"
         />
-        <a-layout-content class="basic-content" :style="contentStyle()">
+        <a-layout-content class="basic-content" :style="contentStyle">
           <router-view />
         </a-layout-content>
         <basic-footer />
@@ -54,32 +56,32 @@ export default {
       sidebar: state => state.app.sidebar,
       mainMenu: state => state.permission.addRouters,
       screen: state => state.app.screen
-    })
-  },
-  created () {
-    this.menus = this.mainMenu.find((item) => item.path === '/').children
-  },
-  methods: {
+    }),
     contentStyle () {
       if (this.fixSidebar) {
         return {}
       }
       return { paddingTop: 0 }
     },
-    ...mapActions({
-      setSidebar: 'app/SetSidebar'
-    }),
-    handleMenuCollapse (collapsed) {
-      this.collapsed = !this.collapsed
-      this.setSidebar(this.collapsed)
-    },
-    getLayoutStyle () {
+    layoutStyle () {
       if (this.fixSidebar && this.layoutMode !== 'topmenu' && !this.isMobile) {
         return {
           paddingLeft: this.collapsed ? '80px' : '256px'
         }
       }
       return {}
+    }
+  },
+  created () {
+    this.menus = this.mainMenu.find((item) => item.path === '/').children
+  },
+  methods: {
+    ...mapActions({
+      setSidebar: 'app/SetSidebar'
+    }),
+    handleMenuCollapse (collapsed) {
+      this.collapsed = !this.collapsed
+      this.setSidebar(this.collapsed)
     }
   }
 }

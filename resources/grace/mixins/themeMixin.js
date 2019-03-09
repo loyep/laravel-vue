@@ -12,19 +12,17 @@ const themeMixin = {
       contentWidth: state => state.app.contentWidth,
       autoHideHeader: state => state.app.autoHideHeader,
       sidebarOpened: state => state.app.sidebar
-    })
-  },
-  getters: {
-    getTheme () {
-      return this.navTheme
-    }
-  },
-  methods: {
+    }),
     isTopMenu () {
       return this.layoutMode === 'topmenu'
     },
     isSideMenu () {
-      return !this.isTopMenu()
+      return this.layoutMode === 'sidemenu'
+    }
+  },
+  getters: {
+    getTheme () {
+      return this.navTheme
     }
   }
 }
