@@ -1,6 +1,6 @@
 <template>
   <a-layout-sider
-    :class="['sider', {'fixSiderbar': fixSiderbar, 'light': navTheme === 'light'} ]"
+    :class="['sider', {'fixSidebar': fixSidebar, 'light': navTheme === 'light'} ]"
     :width="256"
     breakpoint="lg"
     :collapsed="collapsed"
@@ -93,7 +93,7 @@ export default {
   z-index: 10;
   min-height: 100vh;
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
-  &.fixSiderBar {
+  &.fixSideBar {
     position: fixed;
     top: 0;
     left: 0;

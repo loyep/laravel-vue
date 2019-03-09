@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     onChange (key) {
-      console.log(key)
+      this.$emit('change', key)
     }
   }
 }

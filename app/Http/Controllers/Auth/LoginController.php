@@ -29,13 +29,6 @@ class LoginController extends Controller
     protected $auth;
 
     /**
-     * User name type.
-     *
-     * @var string
-     */
-    protected $type = 'email';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -57,21 +50,6 @@ class LoginController extends Controller
     }
 
     /**
-     * Validate the user login request.
-     *
-     * @param Request $request
-     */
-    protected function validateLogin(Request $request)
-    {
-        $this->type = filter_var($request->input($this->username()), FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
-
-        $request->validate([
-            $this->username() => 'required|string',
-            'password' => 'required|string',
-        ]);
-    }
-
-    /**
      * Attempt to log the user into the application.
      *
      * @param  \Illuminate\Http\Request $request
@@ -79,7 +57,10 @@ class LoginController extends Controller
      */
     protected function attemptLogin(Request $request)
     {
-        $token = $this->guard()->attempt($this->credentials($request));
+        $token = $this->guard()->attempt(
+            $this->credentials($request)
+        );
+
         if ($token) {
             $this->guard()->setToken($token);
             return true;
@@ -101,7 +82,24 @@ class LoginController extends Controller
         $expiration = $this->guard()->getPayload()->get('exp') - time();
 
         $user = $this->guard()->user();
-        $welcome = Str::ucfirst($user->name) . ', ';
+        $welcome = $this->generateWelcome($user);
+
+        return response()
+            ->json([
+                'token' => $token,
+                'expires_in' => $expiration,
+                'welcome' => $welcome
+            ])
+            ->header('authorization', $token);
+    }
+
+    /**
+     * @param $user
+     * @return string
+     */
+    protected function generateWelcome($user)
+    {
+        $welcome = Str::ucfirst($user->nick_name) . ', ';
         $h = date('H');
         if ($h < 11) {
             $welcome .= '早上好!';
@@ -114,14 +112,7 @@ class LoginController extends Controller
         } else {
             $welcome .= '晚上好！';
         }
-
-        return response()
-            ->json([
-                'token' => $token,
-                'expires_in' => $expiration,
-                'welcome' => $welcome
-            ])
-            ->header('authorization', $token);
+        return $welcome;
     }
 
     /**
@@ -132,8 +123,11 @@ class LoginController extends Controller
      */
     protected function credentials(Request $request)
     {
+        $username = $request->input($this->username());
+        $type = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+
         return [
-            $this->type => $request->input($this->username()),
+            $type => $username,
             'password' => $request->input('password')
         ];
     }

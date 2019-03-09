@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     contentStyle () {
-      if (this.fixSiderbar) {
+      if (this.fixSidebar) {
         return {}
       }
       return { paddingTop: 0 }
@@ -74,7 +74,7 @@ export default {
       this.setSidebar(this.collapsed)
     },
     getLayoutStyle () {
-      if (this.fixSiderbar && this.layoutMode !== 'topmenu' && !this.isMobile) {
+      if (this.fixSidebar && this.layoutMode !== 'topmenu' && !this.isMobile) {
         return {
           paddingLeft: this.collapsed ? '80px' : '256px'
         }

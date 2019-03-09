@@ -12,7 +12,8 @@ import {
   DEFAULT_FIXED_SIDEMENU,
   DEFAULT_FIXED_HEADER_HIDDEN,
   DEFAULT_CONTENT_WIDTH_TYPE,
-  DEFAULT_LOCALE
+  DEFAULT_LOCALE,
+  CONTENT_WIDTH_TYPE
 } from '@/store/mutation-types'
 
 export const state = {
@@ -22,7 +23,7 @@ export const state = {
   layout: Storage.get(DEFAULT_LAYOUT_MODE, config.layout),
   contentWidth: Storage.get(DEFAULT_CONTENT_WIDTH_TYPE, config.contentWidth),
   fixedHeader: Storage.get(DEFAULT_FIXED_HEADER, config.fixedHeader),
-  fixSideBar: Storage.get(DEFAULT_FIXED_SIDEMENU, config.fixSideBar),
+  fixSidebar: Storage.get(DEFAULT_FIXED_SIDEMENU, config.fixSidebar),
   autoHideHeader: Storage.get(DEFAULT_FIXED_HEADER_HIDDEN, config.autoHideHeader),
   color: Storage.get(DEFAULT_COLOR, config.primaryColor),
   weak: Storage.get(DEFAULT_COLOR_WEAK, config.colorWeak),
@@ -60,7 +61,7 @@ export const mutations = {
   },
   TOGGLE_FIXED_SIDEBAR: (state, fixed) => {
     Storage.set(DEFAULT_FIXED_SIDEMENU, fixed)
-    state.fixSideBar = fixed
+    state.fixSidebar = fixed
   },
   TOGGLE_FIXED_HEADER_HIDDEN: (state, show) => {
     Storage.set(DEFAULT_FIXED_HEADER_HIDDEN, show)
@@ -130,6 +131,9 @@ export const actions = {
     commit('TOGGLE_THEME', theme)
   },
   ToggleLayoutMode ({ commit }, mode) {
+    if (mode === 'sidemenu') {
+      commit('TOGGLE_CONTENT_WIDTH', CONTENT_WIDTH_TYPE.Fluid)
+    }
     commit('TOGGLE_LAYOUT_MODE', mode)
   },
   ToggleFixedHeader ({ commit }, fixedHeader) {
@@ -138,8 +142,8 @@ export const actions = {
     }
     commit('TOGGLE_FIXED_HEADER', fixedHeader)
   },
-  ToggleFixSideBar ({ commit }, fixSideBar) {
-    commit('TOGGLE_FIXED_SIDEBAR', fixSideBar)
+  ToggleFixSidebar ({ commit }, fixSidebar) {
+    commit('TOGGLE_FIXED_SIDEBAR', fixSidebar)
   },
   ToggleFixedHeaderHidden ({ commit }, show) {
     commit('TOGGLE_FIXED_HEADER_HIDDEN', show)
@@ -148,10 +152,10 @@ export const actions = {
     commit('TOGGLE_CONTENT_WIDTH', type)
   },
   ToggleColor ({ commit }, color) {
+    console.log('%c ' + color, 'color:' + color + ';')
     commit('TOGGLE_COLOR', color)
   },
   ToggleWeak ({ commit }, weakFlag) {
-    console.log('color')
     commit('TOGGLE_WEAK', weakFlag)
   },
   SetLocale ({ commit }, locale) {

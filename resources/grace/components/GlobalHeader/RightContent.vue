@@ -17,7 +17,7 @@
       <span class="dropDown">
         <a-avatar class="avatar" size="small" :src="user.avatar" />
         <span class="name">
-          {{ user.name }}
+          {{ user.nick_name }}
         </span>
       </span>
       <template v-slot:overlay>

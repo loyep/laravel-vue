@@ -10,6 +10,7 @@
           :style="{
             backgroundColor: color.color,
           }"
+          @click="onChange(color.color)"
         >
           <a-icon v-if="value === color.color" type="check" />
         </div>
@@ -79,7 +80,13 @@ export default {
   },
   data () {
     return {
-      colorList
+      // colorList
+    }
+  },
+  methods: {
+    onChange (color) {
+      console.log('%c ' + color, 'color:' + color + ';')
+      this.$emit('change', color)
     }
   }
 }

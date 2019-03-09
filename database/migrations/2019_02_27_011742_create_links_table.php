@@ -13,6 +13,7 @@ class CreateLinksTable extends Migration
      */
     public function up()
     {
+        Schema::defaultStringLength(191);
         Schema::create('links', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();

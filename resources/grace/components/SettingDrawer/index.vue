@@ -9,10 +9,9 @@
       @close="togglerContent"
     >
       <div class="content">
-        <div
-          :style="{
-            marginBottom: 24,
-          }"
+        <div :style="{
+          marginBottom: 24,
+        }"
         >
           <h3 class="title">
             整体风格设置
@@ -61,7 +60,7 @@
               },
             ]"
             :value="layoutMode"
-            @change="value => changeSetting('layout', value)"
+            @change="value => changeSetting('layoutMode', value)"
           />
         </div>
 
@@ -72,6 +71,7 @@
             <span :style="{ opacity: '' }">内容区域宽度</span>
             <template v-slot:actions>
               <a-select
+                :value="contentWidth"
                 :defaultValue="contentWidth"
                 size="small"
                 style="width: 80px;"
@@ -117,8 +117,8 @@
                 <a-switch
                   size="small"
                   :disabled="layoutMode === 'topmenu'"
-                  :checked="fixSiderbar"
-                  @change="checked => changeSetting('fixSiderbar', checked)"
+                  :checked="fixSidebar"
+                  @change="checked => changeSetting('fixSidebar', checked)"
                 />
               </template>
             </a-list-item>
@@ -200,7 +200,6 @@ export default {
     this.collapse = true
     setTimeout(() => {
       this.collapse = false
-      console.log(this.layoutMode)
     }, 20)
   },
   methods: {
@@ -208,7 +207,43 @@ export default {
       this.collapse = !this.collapse
     },
     changeSetting (setting, value) {
-      console.log(value)
+      switch (setting) {
+        case 'layoutMode':
+          this.$store.dispatch('app/ToggleLayoutMode', value)
+          break
+
+        case 'fixedHeader':
+          this.$store.dispatch('app/ToggleFixedHeader', value)
+          break
+
+        case 'navTheme':
+          this.$store.dispatch('app/ToggleTheme', value)
+          break
+
+        case 'primaryColor':
+          this.$store.dispatch('app/ToggleColor', value)
+          break
+
+        case 'contentWidth':
+          this.$store.dispatch('app/ToggleContentWidth', value)
+          break
+
+        case 'autoHideHeader':
+          this.$store.dispatch('app/ToggleFixedHeaderHidden', value)
+          break
+
+        case 'fixSidebar':
+          console.log(value)
+          this.$store.dispatch('app/ToggleFixSidebar', value)
+          break
+
+        case 'colorWeak':
+          this.$store.dispatch('app/ToggleWeak', value)
+          break
+
+        default:
+          break
+      }
     }
   }
 }
