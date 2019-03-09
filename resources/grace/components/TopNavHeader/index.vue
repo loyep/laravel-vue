@@ -1,6 +1,6 @@
 <template>
   <div :class="{ head: true, light: navTheme === 'light' }">
-    <div :class="{ main: true, wide: contentWidth === 'Fixed' }">
+    <div :class="[ 'main', { wide: wide }]">
       <div class="left">
         <div id="logo" class="logo">
           <router-link :to="{ path: '/' }">
@@ -52,6 +52,9 @@ export default {
     }
   },
   computed: {
+    wide () {
+      return this.contentWidth === 'Fixed'
+    },
     maxWidth () {
       const width = (this.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 165 - 40
       return width + 'px'

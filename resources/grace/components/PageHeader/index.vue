@@ -1,9 +1,6 @@
 <template>
-  <div :class="{
-    'pageHeader': true
-  }"
-  >
-    <div :class="{ 'wide': false }">
+  <div class="pageHeader">
+    <div :class="{ wide: wide }">
       <!-- <a-skeleton :loading="loading" active :paragraph="{rows: 4}" :avatar="{ size: 'large', shape: 'circle' }"> -->
       <breadcrumb />
       <div class="detail">
@@ -54,16 +51,17 @@ export default {
     extraContent: {
       type: String,
       default: null
-    },
-    wide: {
-      type: Boolean,
-      default: false
     }
   },
   data () {
     return {
       loading: false,
       logo: ''
+    }
+  },
+  computed: {
+    wide () {
+      return this.contentWidth === 'Fixed'
     }
   }
 }

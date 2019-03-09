@@ -1,5 +1,5 @@
 <template>
-  <a-dropdown>
+  <a-dropdown placement="bottomRight">
     <span class="dropDown">
       <a-icon type="global" />
     </span>

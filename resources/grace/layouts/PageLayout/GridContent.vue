@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ main: true, wide: wide }">
+  <div :class="[ 'main', { wide: wide }]">
     <slot />
   </div>
 </template>
@@ -10,10 +10,9 @@ import { themeMixin } from '@/mixins'
 export default {
   name: 'GridContent',
   mixins: [ themeMixin ],
-  props: {
-    wide: {
-      type: Boolean,
-      default: true
+  computed: {
+    wide () {
+      return this.contentWidth === 'Fixed'
     }
   }
 }

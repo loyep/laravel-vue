@@ -5,7 +5,6 @@
       :title="title"
       :content="content"
       :extraContent="extraContent"
-      :wide="wide"
     >
       <template v-if="$slots.logo" v-slot:logo>
         <slot name="logo" />
@@ -36,11 +35,6 @@ export default {
       title: null,
       content: null,
       logo: null
-    }
-  },
-  computed: {
-    wide () {
-      return this.contentWidth !== 'Fixed'
     }
   },
   mounted () {
