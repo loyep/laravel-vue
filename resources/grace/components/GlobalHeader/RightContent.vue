@@ -1,7 +1,7 @@
 <template>
   <div :class="{
     right: true,
-    dark: navTheme === 'dark' && !isMobile
+    dark: darkClass
   }"
   >
     <header-search class="action search" />
@@ -69,6 +69,14 @@ export default {
   data () {
     return {
       user: { }
+    }
+  },
+  computed: {
+    darkClass () {
+      if (this.isMobile || !this.isTopMenu) {
+        return false
+      }
+      return this.navTheme === 'dark'
     }
   },
   created () {
