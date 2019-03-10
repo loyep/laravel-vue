@@ -44,7 +44,7 @@ service.interceptors.response.use(
           description: error.response.data.error
         })
       default: {
-        if (error.response.data.errors && error.response.data.errors.length > 0) {
+        if (error.response.data.errors && Object.keys(error.response.data.errors).length > 0) {
           error.showMessages = (form) => {
             const errors = error.response.data.errors
             const values = form.getFieldsValue()
