@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '@/store'
 import { getToken, removeToken } from './auth'
-import { message } from 'ant-design-vue'
+import { notification } from 'ant-design-vue'
 
 // 创建axios实例
 const service = axios.create({
@@ -39,22 +39,33 @@ service.interceptors.response.use(
         break
       }
       case 400:
-        return message.error(error.response.data.error)
+        return notification.error({
+          message: '错误',
+          description: error.response.data.error
+        })
       default: {
-        // error.showMessages = (form) => {
-        //   const errors = error.response.data.errors
-        //   const values = form.getFieldsValue()
-        //   const fields = {}
-        //   for (var e in errors) {
-        //     fields[e] = {
-        //       value: values[e],
-        //       errors: errors[e].map((msg) => {
-        //         return new Error(msg)
-        //       })
-        //     }
-        //   }
-        //   form.setFields(fields)
-        // }
+        if (error.response.data.errors && error.response.data.errors.length > 0) {
+          error.showMessages = (form) => {
+            const errors = error.response.data.errors
+            const values = form.getFieldsValue()
+            const fields = {}
+            for (var e in errors) {
+              fields[e] = {
+                value: values[e],
+                errors: errors[e].map((msg) => {
+                  return new Error(msg)
+                })
+              }
+            }
+            form.setFields(fields)
+          }
+        } else if (error.response.data.message) {
+          notification.error({
+            message: '错误',
+            description: error.response.data.message
+          })
+        }
+
         break
       }
     }

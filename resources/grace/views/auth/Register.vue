@@ -31,7 +31,7 @@
               {
                 rules: [
                   { required: true, message: $t('validation.required', { attribute: $t('validation.attributes.email') }) },
-                  { type: 'email', message: $t('validation.email.wrong-format') }
+                  { type: 'email', message: $t('validation.wrong-format', { attribute: $t('validation.attributes.email') }) }
                 ],
                 validateTrigger: ['change', 'blur']
               }

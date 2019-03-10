@@ -2,7 +2,7 @@
   <div class="pageHeader">
     <div :class="{ 'wide': wide }">
       <!-- <a-skeleton :loading="loading" active :paragraph="{rows: 4}" :avatar="{ size: 'large', shape: 'circle' }"> -->
-      <breadcrumb />
+      <breadcrumb v-if="!hideBread" />
       <div class="detail">
         <img v-if="logo" :src="logo" class="logo">
         <div class="main">
@@ -38,6 +38,10 @@ export default {
   },
   mixins: [ themeMixin ],
   props: {
+    hideBread: {
+      type: Boolean,
+      default: false
+    },
     logo: {
       type: String,
       default: null

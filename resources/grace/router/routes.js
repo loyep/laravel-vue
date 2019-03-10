@@ -275,6 +275,48 @@ export const asyncRouterMap = [
         ]
       },
       {
+        path: 'widget',
+        component: PageLayout,
+        meta: {
+          title: '插件',
+          icon: 'edit'
+        },
+        children: [
+          {
+            path: '',
+            name: 'widget.index',
+            component: () => import('@/views/widgets/Index'),
+            meta: {
+              title: '插件列表'
+            }
+          },
+          {
+            path: 'create',
+            name: 'widget.create',
+            component: () => import('@/views/widgets/Create'),
+            meta: {
+              title: '创建插件'
+            }
+          },
+          {
+            path: ':id/edit',
+            name: 'widget.edit',
+            component: () => import('@/views/widgets/Update'),
+            meta: {
+              title: '编辑插件'
+            }
+          },
+          {
+            path: ':id',
+            name: 'widget.detail',
+            component: () => import('@/views/widgets/Detail'),
+            meta: {
+              title: '插件详情'
+            }
+          }
+        ]
+      },
+      {
         path: 'setting',
         component: BlankLayout,
         meta: {

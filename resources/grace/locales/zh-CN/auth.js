@@ -1,7 +1,8 @@
 const messages = {
   validation: {
     email: {
-      required: '请输入邮箱地址或用户名！'
+      required: '请输入邮箱地址或用户名！',
+      'wrong-format': '格式错误'
     },
     name: {
       required: '请输入用户名'

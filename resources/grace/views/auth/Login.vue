@@ -71,7 +71,6 @@
             <div class="other">
               <span>{{ $t('messages.other_login') }}</span>
               <a-icon type="wechat" class="icon" theme="outlined" />
-              <a-icon type="weibo" class="icon" theme="outlined" />
               <a-icon type="github" class="icon" theme="outlined" />
               <router-link class="register" :to="{ name: 'register' }">
                 {{ $t('messages.sign_up') }}
@@ -117,8 +116,7 @@ export default {
               }, 1000)
             }
           }).catch(err => {
-            console.log(err)
-            // this.form.showMessages(err)
+            err.showMessages && err.showMessages(this.form)
             this.submitting = false
           })
         }

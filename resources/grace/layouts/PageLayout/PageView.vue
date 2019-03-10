@@ -2,6 +2,7 @@
   <div style="margin: -24px -24px 0;">
     <slot name="top" />
     <page-header
+      :hideBread="hideBread"
       :logo="logo"
       :title="title"
       :content="content"
@@ -32,6 +33,10 @@ export default {
   },
   mixins: [ themeMixin ],
   props: {
+    hideBread: {
+      type: Boolean,
+      default: false
+    },
     extraContent: {
       type: String,
       default: null

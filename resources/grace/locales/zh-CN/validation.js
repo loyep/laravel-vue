@@ -1,5 +1,6 @@
 const message = {
-  'required': ' {attribute} 不能为空。',
+  'required': '{attribute}不能为空',
+  'wrong-format': '{attribute}格式错误',
   'attributes': {
     'name': '名称',
     'username': '用户名',
@@ -29,8 +30,8 @@ const message = {
     'date': '日期',
     'time': '时间',
     'available': '可用的',
-    'size': '大小',
-  },
+    'size': '大小'
+  }
 }
 
 export default message
