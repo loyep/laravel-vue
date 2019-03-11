@@ -1,12 +1,16 @@
 import Vue from 'vue'
+import store from '@/store'
 import Router from 'vue-router'
 import routes from './routes'
 import { getBaseUrl } from '@/utils/utils'
 import { beforeEach, afterEach } from './permission'
+import { sync } from 'vuex-router-sync'
 
 Vue.use(Router)
 
 const router = createRouter({ base: getBaseUrl() })
+
+sync(store, router)
 
 export default router
 
