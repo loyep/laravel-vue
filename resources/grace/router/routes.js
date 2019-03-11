@@ -14,6 +14,12 @@ export const routes = [
     name: 'register',
     hidden: true,
     component: () => import(/* webpackChunkName: "register" */'@/views/auth/Register')
+  },
+  {
+    path: '/password/reset',
+    name: 'forgot.password',
+    hidden: true,
+    component: () => import(/* webpackChunkName: "password.reset" */'@/views/auth/ForgotPassword')
   }
 ]
 

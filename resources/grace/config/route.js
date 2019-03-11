@@ -1,4 +1,5 @@
 export const whiteList = [
   '/login',
-  '/register'
+  '/register',
+  '/password/reset'
 ]

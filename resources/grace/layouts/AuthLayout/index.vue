@@ -1,7 +1,10 @@
 <template>
-  <div class="container" :style="{
-    backgroundImage: 'url(' + require('@/assets/images/loginBg.svg') +')'
-}">
+  <div
+    class="container"
+    :style="{
+      backgroundImage: 'url(' + require('@/assets/images/loginBg.svg') + ')'
+    }"
+  >
     <div class="lang">
       <select-lang />
     </div>
@@ -10,9 +13,7 @@
         <div class="header">
           <router-link :to="{ path: '/' }">
             <img alt="logo" class="logo" :src="logo">
-            <span class="title">
-              {{ name }}
-            </span>
+            <span class="title">{{ name }}</span>
           </router-link>
         </div>
         <div class="desc">
@@ -21,19 +22,21 @@
       </div>
       <slot />
     </div>
-    <global-footer :links="[
-      {
-        key: 'github',
-        icon: 'github',
-        path: 'https://github.com/loyep/grace',
-        blankTarget: true
-      }
-    ]"
+    <global-footer
+      :links="[
+        {
+          key: 'github',
+          icon: 'github',
+          path: 'https://github.com/loyep/grace',
+          blankTarget: true
+        }
+      ]"
     >
       <template v-slot:copyright>
-        Copyright <a-icon type="copyright" /> {{ year }} Power By <a href="https://github.com/loyep/grace">
-          Grace
-        </a>
+        Copyright
+        <a-icon type="copyright" />
+        {{ year }} Power By
+        <a href="https://github.com/loyep/grace">Grace</a>
       </template>
     </global-footer>
   </div>
@@ -64,7 +67,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~@/styles/variables.less';
+@import "~@/styles/variables.less";
 
 .container {
   display: flex;
@@ -98,7 +101,7 @@ export default {
   }
 
   .content {
-      padding: 32px 0 24px 0;
+    padding: 32px 0 24px 0;
   }
 }
 
@@ -110,7 +113,7 @@ export default {
   height: 44px;
   line-height: 44px;
   a {
-      text-decoration: none;
+    text-decoration: none;
   }
 }
 
@@ -123,7 +126,7 @@ export default {
 .title {
   font-size: 33px;
   color: @heading-color;
-  font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: Avenir, "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 600;
   position: relative;
   top: 2px;
@@ -135,5 +138,4 @@ export default {
   margin-top: 12px;
   margin-bottom: 40px;
 }
-
 </style>

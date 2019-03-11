@@ -53,9 +53,9 @@
               >
                 {{ $t('messages.remember_me') }}
               </a-checkbox>
-              <a :style="{ float: 'right' }" href="#">
+              <router-link :style="{ float: 'right' }" :to="{ name: 'forgot.password' }">
                 {{ $t('messages.forgot_password') }}
-              </a>
+              </router-link>
             </a-form-item>
             <a-form-item>
               <a-button
