@@ -46,7 +46,7 @@ class Helper
             return self::$options[$name]['value'];
         }
 
-        return (!isset($default)) ? $default : null;
+        return isset($default) ? $default : null;
     }
 
     /**

@@ -48,4 +48,18 @@ class Grace
         }
         return config('app.name');
     }
+
+    /**
+     *
+     * @param $group
+     * @return array
+     */
+    public function menus($group)
+    {
+        return [[
+            'url' => '/',
+            'target' => '__selft',
+            'title' => '首页'
+        ]];
+    }
 }

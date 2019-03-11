@@ -1,7 +1,7 @@
 <?php
 
-$header_layout = get_option('header_layout');
-$header_layout = $header_layout == 'center' ? 'container' : 'container-fluid';
+$header_layout = get_option('header_layout', 'center');
+$header_layout = $header_layout === 'center' ? 'container' : 'container-fluid';
 ?>
 
 <section class="nice-mobile-overlay no-user-sign" id="nice-mobile-overlay">
@@ -37,9 +37,8 @@ $header_layout = $header_layout == 'center' ? 'container' : 'container-fluid';
     <div class="{{ $header_layout }} m-header">
         <div class="navbar navbar-expand-lg d-none d-lg-flex">
             <div class="navbar-header d-inline-block">
-                <a class="navbar-brand" href="{{ url('/') }}"
-                   style="background-image: url('{{ asset('assets/admin/images/logo.png') }}');">
-                    {{--{{ get_option('site_info', json_decode(['name' => 'Grace']))->name }}--}}
+                <a class="navbar-brand text-center" href="{{ url('/') }}">
+                    <span class="text-white">{{ config('grace.name') }}</span>
                 </a>
             </div>
             <div class="collapse navbar-collapse">

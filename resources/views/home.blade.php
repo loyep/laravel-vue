@@ -4,7 +4,7 @@ if (Route::current()->named('home')) {
     $bodyClass[] = 'home';
 }
 ?>
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
