@@ -57,6 +57,16 @@ class RegisterController extends Controller
     }
 
     /**
+     * Get the guard to be used during registration.
+     *
+     * @return \Tymon\JWTAuth\JWTAuth
+     */
+    protected function guard()
+    {
+        return Auth::guard('api');
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array $data
@@ -86,15 +96,5 @@ class RegisterController extends Controller
             'avatar' => Helper::getAvatar($data['email']),
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-    /**
-     * Get the guard to be used during registration.
-     *
-     * @return \Tymon\JWTAuth\JWTAuth
-     */
-    protected function guard()
-    {
-        return Auth::guard('api');
     }
 }

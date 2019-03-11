@@ -173,9 +173,9 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\GraceServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\SiteServiceProvider::class,
+        App\Providers\GraceServiceProvider::class,
+        App\Providers\GraceAdminServiceProvider::class,
     ],
 
     /*
@@ -232,6 +232,7 @@ return [
          */
         'Helper' => App\Support\Helper::class,
         'Grace' => App\Facades\Grace::class,
+        'Admin' => App\Facades\GraceAdmin::class,
 
     ],
 

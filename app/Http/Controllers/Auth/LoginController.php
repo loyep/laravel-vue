@@ -40,13 +40,19 @@ class LoginController extends Controller
     }
 
     /**
-     * Get the login username to be used by the controller.
+     * Log the user out of the application.
      *
-     * @return string
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
      */
-    public function username()
+    public function logout(Request $request)
     {
-        return 'username';
+        $this->guard()->logout();
+
+        return response([
+            'result' => true,
+            'message' => '',
+        ]);
     }
 
     /**
@@ -66,6 +72,43 @@ class LoginController extends Controller
             return true;
         }
         return false;
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return $this->auth;
+    }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        $username = $request->input($this->username());
+        $type = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+
+        return [
+            $type => $username,
+            'password' => $request->input('password')
+        ];
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
     }
 
     /**
@@ -113,48 +156,5 @@ class LoginController extends Controller
             $welcome .= '晚上好！';
         }
         return $welcome;
-    }
-
-    /**
-     * Get the needed authorization credentials from the request.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return array
-     */
-    protected function credentials(Request $request)
-    {
-        $username = $request->input($this->username());
-        $type = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
-
-        return [
-            $type => $username,
-            'password' => $request->input('password')
-        ];
-    }
-
-    /**
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
-
-        return response([
-            'result' => true,
-            'message' => '',
-        ]);
-    }
-
-    /**
-     * Get the guard to be used during authentication.
-     *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
-     */
-    protected function guard()
-    {
-        return $this->auth;
     }
 }

@@ -6,7 +6,6 @@ use App\Models\Setting;
 use App\Models\User;
 use App\Models\Widget;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;

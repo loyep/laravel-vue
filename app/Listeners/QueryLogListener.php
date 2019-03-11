@@ -5,7 +5,6 @@ namespace App\Listeners;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 class QueryLogListener
 {

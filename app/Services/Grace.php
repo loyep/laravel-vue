@@ -5,24 +5,15 @@ namespace App\Services;
 class Grace
 {
     /**
-     * @var string
-     */
-    protected static $metaTitle;
-    /**
      * The Grace version.
      *
      * @var string
      */
     const VERSION = '1.0.0';
-
-    public function title()
-    {
-        $title = self::$metaTitle;
-        if (!empty($title)) {
-            return $title;
-        }
-        return config('app.name');
-    }
+    /**
+     * @var string
+     */
+    protected static $metaTitle;
 
     /**
      * Set Grace title.
@@ -32,5 +23,29 @@ class Grace
     public static function setTitle($title)
     {
         self::$metaTitle = $title;
+    }
+
+    /**
+     * The Grace version.
+     *
+     * @return string
+     */
+    public function version()
+    {
+        return self::VERSION;
+    }
+
+    /**
+     * Title
+     *
+     * @return string
+     */
+    public function title()
+    {
+        $title = self::$metaTitle;
+        if (!empty($title)) {
+            return $title;
+        }
+        return config('app.name');
     }
 }

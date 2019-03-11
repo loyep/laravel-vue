@@ -13,16 +13,6 @@ use Illuminate\Support\Facades\Facade;
 class GraceAdmin extends Facade
 {
     /**
-     * Get the registered name of the component.
-     *
-     * @return string
-     */
-    protected static function getFacadeAccessor()
-    {
-        return 'grace.admin';
-    }
-
-    /**
      * Admin path
      *
      * @return string
@@ -30,5 +20,15 @@ class GraceAdmin extends Facade
     public static function path()
     {
         return config('admin.path', '/grace');
+    }
+
+    /**
+     * Get the registered name of the component.
+     *
+     * @return string
+     */
+    protected static function getFacadeAccessor()
+    {
+        return 'grace.admin';
     }
 }

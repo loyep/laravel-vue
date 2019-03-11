@@ -81,6 +81,40 @@ class CacheResponse
     }
 
     /**
+     * 根据请求获取指定的Key
+     *
+     * @return string
+     */
+    protected function resolveKey()
+    {
+        return md5($this->request->fullUrl());
+    }
+
+    /**
+     * 获取缓存的分钟
+     *
+     * @param int|null $minutes
+     *
+     * @return int
+     */
+    protected function resolveMinutes($minutes = null)
+    {
+        return is_null($minutes)
+            ? $this->getDefaultMinutes()
+            : max($this->getDefaultMinutes(), intval($minutes));
+    }
+
+    /**
+     * 返回默认的缓存时间（分钟）
+     *
+     * @return int
+     */
+    protected function getDefaultMinutes()
+    {
+        return 10;
+    }
+
+    /**
      * 生成或读取Response-Cache
      *
      * @return array
@@ -96,6 +130,16 @@ class CacheResponse
         }
         );
         return $this->responseCache;
+    }
+
+    /**
+     * 缓存未命中
+     *
+     * @return mixed
+     */
+    protected function cacheMissed()
+    {
+        $this->cacheHit = 0;
     }
 
     /**
@@ -144,50 +188,6 @@ class CacheResponse
             'X-Cache-Expires' => $this->responseCache['cacheExpireAt'],
         ];
         return $headers;
-    }
-
-    /**
-     * 根据请求获取指定的Key
-     *
-     * @return string
-     */
-    protected function resolveKey()
-    {
-        return md5($this->request->fullUrl());
-    }
-
-    /**
-     * 获取缓存的分钟
-     *
-     * @param int|null $minutes
-     *
-     * @return int
-     */
-    protected function resolveMinutes($minutes = null)
-    {
-        return is_null($minutes)
-            ? $this->getDefaultMinutes()
-            : max($this->getDefaultMinutes(), intval($minutes));
-    }
-
-    /**
-     * 返回默认的缓存时间（分钟）
-     *
-     * @return int
-     */
-    protected function getDefaultMinutes()
-    {
-        return 10;
-    }
-
-    /**
-     * 缓存未命中
-     *
-     * @return mixed
-     */
-    protected function cacheMissed()
-    {
-        $this->cacheHit = 0;
     }
 
 }

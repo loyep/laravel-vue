@@ -13,9 +13,7 @@ class GraceComposer
      */
     public function compose(View $view)
     {
-        $view->with('navigation', [
-            'items1', 'items2', 'item3'
-        ]);
+        //
     }
 
     /**

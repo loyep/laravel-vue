@@ -1,27 +1,37 @@
 <?php
 
-namespace App\Services\Grace;
+namespace App\Services\Admin;
 
-class Factory
+class GraceAdmin
 {
-    /**
-     * @var string
-     */
-    protected static $metaTitle;
-
     /**
      * The Grace version.
      *
      * @var string
      */
     const VERSION = '1.0.0';
+    /**
+     * @var string
+     */
+    protected static $metaTitle;
+
+    /**
+     * Set Grace title.
+     *
+     * @param $title
+     */
+    public static function setTitle($title)
+    {
+        self::$metaTitle = $title;
+    }
 
     /**
      * The Grace version.
      *
      * @return string
      */
-    public function version () {
+    public function version()
+    {
         return self::VERSION;
     }
 
@@ -36,16 +46,6 @@ class Factory
         if (!empty($title)) {
             return $title;
         }
-        return config('admin.name');
-    }
-
-    /**
-     * Set Grace title.
-     *
-     * @param $title
-     */
-    public static function setTitle($title)
-    {
-        self::$metaTitle = $title;
+        return config('app.name');
     }
 }

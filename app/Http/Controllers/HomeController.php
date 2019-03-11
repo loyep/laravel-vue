@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Support\Helper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {

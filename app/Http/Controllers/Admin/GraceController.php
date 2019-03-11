@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Facades\Grace;
+use App\Facades\GraceAdmin;
 use Illuminate\Http\Request;
 
 class GraceController extends Controller
@@ -14,10 +14,10 @@ class GraceController extends Controller
     public function index(Request $request)
     {
         $config = [
-            'base' => Grace::path(),
-            'name' => Grace::title(),
+            'base' => GraceAdmin::path(),
+            'name' => GraceAdmin::title(),
             'description' => '美好源于热爱'
         ];
-        return view('grace.index', compact('config'));
+        return view('admin.index', compact('config'));
     }
 }
