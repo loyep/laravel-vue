@@ -1,5 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container" :style="{
+    backgroundImage: 'url(' + require('@/assets/images/loginBg.svg') +')'
+}">
     <div class="lang">
       <select-lang />
     </div>
@@ -89,7 +91,7 @@ export default {
 
 @media (min-width: @screen-md-min) {
   .container {
-    background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
+    /*background-image: url(require('@/assets/images/loginBg.svg'));*/
     background-repeat: no-repeat;
     background-position: center 110px;
     background-size: 100%;

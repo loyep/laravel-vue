@@ -20,12 +20,12 @@
             :list="[
               {
                 key: 'dark',
-                url: 'https://gw.alipayobjects.com/zos/rmsportal/LCkqqYNmvBEbokSDscrm.svg',
+                url: require('@/assets/setting/darkTheme.svg'),
                 title: '暗色菜单风格',
               },
               {
                 key: 'light',
-                url: 'https://gw.alipayobjects.com/zos/rmsportal/jpRkZQMyYRryryPNtyIC.svg',
+                url: require('@/assets/setting/lightTheme.svg'),
                 title: '亮色菜单风格',
               },
             ]"
@@ -50,12 +50,12 @@
             :list="[
               {
                 key: 'sidemenu',
-                url: 'https://gw.alipayobjects.com/zos/rmsportal/JopDzEhOqwOjeNTXkoje.svg',
+                url: require('@/assets/setting/sidemenu.svg'),
                 title: '侧边菜单布局',
               },
               {
                 key: 'topmenu',
-                url: 'https://gw.alipayobjects.com/zos/rmsportal/KDNDBbriJhLwuqMoxcAr.svg',
+                url: require('@/assets/setting/topmenu.svg'),
                 title: '顶部菜单布局',
               },
             ]"

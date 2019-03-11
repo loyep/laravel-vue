@@ -27,19 +27,19 @@
 <script>
 const types = {
   403: {
-    img: 'https://gw.alipayobjects.com/zos/rmsportal/wZcnGqRDyhPOEYFcZDnb.svg',
+    img: require('@/assets/images/errors/403.svg'),
     title: '403',
     desc: '抱歉，你无权访问该页面',
     backText: '返回首页'
   },
   404: {
-    img: 'https://gw.alipayobjects.com/zos/rmsportal/KpnpchXsobRgLElEozzI.svg',
+    img: require('@/assets/images/errors/404.svg'),
     title: '404',
     desc: '抱歉，你访问的页面不存在',
     backText: '返回首页'
   },
   500: {
-    img: 'https://gw.alipayobjects.com/zos/rmsportal/RVRUAYdCGeYNBWoKiIwB.svg',
+    img: require('@/assets/images/errors/500.svg'),
     title: '500',
     desc: '抱歉，服务器出错了',
     backText: '返回首页'
