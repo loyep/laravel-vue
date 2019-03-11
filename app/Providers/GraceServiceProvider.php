@@ -15,9 +15,6 @@ class GraceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('grace', function () {
-            return $this->app->make(\App\Services\Grace\Factory::class);
-        });
     }
 
     /**

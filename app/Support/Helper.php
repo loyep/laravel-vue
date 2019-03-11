@@ -5,9 +5,12 @@ namespace App\Support;
 use App\Models\Setting;
 use App\Models\User;
 use App\Models\Widget;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class Helper
 {
@@ -44,7 +47,7 @@ class Helper
             return self::$options[$name]['value'];
         }
 
-        return (!empty($default)) ? $default : null;
+        return (!isset($default)) ? $default : null;
     }
 
     /**
@@ -93,5 +96,21 @@ class Helper
         }
 
         return null;
+    }
+
+    public static function getAvatar($email)
+    {
+        $size = 120;
+        $hash = Str::length($email) === 32 && ctype_xdigit($email)
+            ? Str::lower($email)
+            : md5(Str::lower(trim($email)));
+
+        $config = [
+            'size' => $size,
+        ];
+
+        $url = Arr::pull($config, 'url', 'https://secure.gravatar.com/avatar');
+        $query = http_build_query($config, null, '&', PHP_QUERY_RFC3986);
+        return $url . '/' . $hash . ($query ? '?' . $query : '');
     }
 }

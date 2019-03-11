@@ -16,12 +16,11 @@ class CreateWidgetsTable extends Migration
         Schema::defaultStringLength(191);
         Schema::create('widgets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('display_name');
             $table->string('value');
             $table->string('details')->nullable();
             $table->boolean('show');
-            $table->unique('slug');
             $table->timestamps();
         });
     }

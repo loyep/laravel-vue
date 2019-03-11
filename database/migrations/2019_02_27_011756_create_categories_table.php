@@ -13,9 +13,14 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::defaultStringLength(191);
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('image')->nullable();
+            $table->string('description')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable()->default(null);
+            $table->foreign('parent_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
     }

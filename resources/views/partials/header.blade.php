@@ -38,11 +38,13 @@ $header_layout = $header_layout == 'center' ? 'container' : 'container-fluid';
         <div class="navbar navbar-expand-lg d-none d-lg-flex">
             <div class="navbar-header d-inline-block">
                 <a class="navbar-brand" href="{{ url('/') }}"
-                   style="background-image: url('{{ asset('assets/admin/images/logo.png') }}');">{{ get_option('site_info')->name }}</a>
-
+                   style="background-image: url('{{ asset('assets/admin/images/logo.png') }}');">
+                    {{--{{ get_option('site_info', json_decode(['name' => 'Grace']))->name }}--}}
+                </a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav navbar-site align-items-center flex-fill flex-nowrap">
+                    <li><a href="{{ url('/') }}">首页</a></li>
                     @forelse ([] as $topMenu)
 
                     @empty
@@ -64,9 +66,13 @@ $header_layout = $header_layout == 'center' ? 'container' : 'container-fluid';
         <div class="navbar mobile-navbar flex-row flex-nowrap d-flex d-lg-none">
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{ url('/') }}"
-                   style="background-image: url('{{ asset('assets/admin/images/logo.png') }}');">{{ get_option('site_info')->name }}</a>
+                   style="background-image: url('{{ asset('assets/admin/images/logo.png') }}');">
+                    {{--{{ get_option('site_info')->name }}--}}
+                </a>
                 <a class="navbar-brand mobile-navbar-brand d-none d-lg-none" href="{{ url('/') }}"
-                   style="background-image: url('{{ asset('assets/admin/images/logo.png') }}');">{{ get_option('site_info')->name }}</a>
+                   style="background-image: url('{{ asset('assets/admin/images/logo.png') }}');">
+                    {{--{{ get_option('site_info')->name }}--}}
+                </a>
             </div>
             <div class="navbar-collapse">
                 <ul class="navbar-nav flex-row">

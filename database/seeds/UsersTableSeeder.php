@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@loyep.com',
             'password' => bcrypt('123456'),
             'email_verified_at' => now(),
-            'remember_token' => str_random(10),
+            'remember_token' => Str::random(10),
         ]);
     }
 }

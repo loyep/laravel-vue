@@ -22,7 +22,7 @@ if (Route::current()->named('home')) {
 @include('partials.tab-cats')
 {{--@include('partials.slides')--}}
 {{--@include('components.search')--}}
-@include('partials.footer')
+{{--@include('partials.footer')--}}
 <script src="{{ mix('js/app.js', 'assets/app') }}" type="text/javascript"></script>
 </body>
 </html>

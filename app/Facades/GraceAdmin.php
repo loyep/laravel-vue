@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @see \App\Services\Grace\Factory
  */
-class Grace extends Facade
+class GraceAdmin extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -19,6 +19,16 @@ class Grace extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'grace.app';
+        return 'grace.admin';
+    }
+
+    /**
+     * Admin path
+     *
+     * @return string
+     */
+    public static function path()
+    {
+        return config('admin.path', '/grace');
     }
 }

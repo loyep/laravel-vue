@@ -99,7 +99,7 @@ class LoginController extends Controller
      */
     protected function generateWelcome($user)
     {
-        $welcome = Str::ucfirst($user->nick_name) . ', ';
+        $welcome = Str::ucfirst($user->display_name) . ', ';
         $h = date('H');
         if ($h < 11) {
             $welcome .= '早上好!';
