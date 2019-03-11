@@ -85,7 +85,6 @@ export default {
   },
   methods: {
     onChange (color) {
-      console.log('%c ' + color, 'color:' + color + ';')
       this.$emit('change', color)
     }
   }

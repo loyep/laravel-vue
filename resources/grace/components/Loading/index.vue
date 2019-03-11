@@ -7,7 +7,7 @@
 <script type="text/ecmascript-6">
 
 import { Spin } from 'ant-design-vue'
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Loading',
@@ -15,9 +15,9 @@ export default {
     'ASpin': Spin
   },
   computed: {
-    ...mapState({
-      isLoading: state => state.app.isLoading
-    })
+    ...mapGetters('app', [
+      'isLoading'
+    ])
   }
 }
 </script>

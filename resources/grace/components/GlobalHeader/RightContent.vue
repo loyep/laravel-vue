@@ -69,9 +69,9 @@ export default {
   },
   mixins: [ themeMixin ],
   computed: {
-    ...mapGetters({
-      'user': 'auth/user'
-    }),
+    ...mapGetters('auth', [
+      'user'
+    ]),
     darkClass () {
       if (this.isMobile || !this.isTopMenu) {
         return false

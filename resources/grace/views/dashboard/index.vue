@@ -14,9 +14,9 @@ export default {
     PageView
   },
   computed: {
-    ...mapGetters({
-      'user': 'auth/user'
-    })
+    ...mapGetters('auth', [
+      'user'
+    ])
   }
 }
 </script>

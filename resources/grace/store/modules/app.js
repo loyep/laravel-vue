@@ -28,3 +28,8 @@ export const actions = {
     commit('SET_LOCALE', locale)
   }
 }
+
+export const getters = {
+  locale: state => state.locale,
+  isLoading: state => state.isLoading
+}

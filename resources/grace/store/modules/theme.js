@@ -66,6 +66,7 @@ export const mutations = {
     state.contentWidth = type
   },
   TOGGLE_COLOR: (state, color) => {
+    console.log('%c ' + color, 'color:' + color + ';')
     Storage.set(DEFAULT_COLOR, color)
     state.color = color
   },
@@ -139,10 +140,23 @@ export const actions = {
     commit('TOGGLE_CONTENT_WIDTH', type)
   },
   ToggleColor ({ commit }, color) {
-    console.log('%c ' + color, 'color:' + color + ';')
     commit('TOGGLE_COLOR', color)
   },
   ToggleWeak ({ commit }, weakFlag) {
     commit('TOGGLE_WEAK', weakFlag)
   }
+}
+
+export const getters = {
+  sidebar: state => state.sidebar,
+  device: state => state.device,
+  theme: state => state.theme,
+  layout: state => state.layout,
+  contentWidth: state => state.contentWidth,
+  fixedHeader: state => state.fixedHeader,
+  fixSidebar: state => state.fixSidebar,
+  autoHideHeader: state => state.autoHideHeader,
+  color: state => state.color,
+  weak: state => state.weak,
+  screen: state => state.screen
 }

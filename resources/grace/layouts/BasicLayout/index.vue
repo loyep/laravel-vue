@@ -33,7 +33,7 @@ import SettingDrawer from '@/components/SettingDrawer'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import GridContent from '@/layouts/PageLayout/GridContent'
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import { themeMixin } from '@/mixins'
 
 export default {
@@ -54,10 +54,12 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      sidebar: state => state.theme.sidebar,
-      mainMenu: state => state.permission.addRouters,
-      screen: state => state.theme.screen
+    ...mapGetters('theme', [
+      'sidebar',
+      'screen'
+    ]),
+    ...mapGetters('permission', {
+      mainMenu: 'addRouters'
     }),
     contentStyle () {
       if (this.fixSidebar) {

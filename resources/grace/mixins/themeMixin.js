@@ -3,17 +3,17 @@ import { mapState } from 'vuex'
 
 const themeMixin = {
   computed: {
-    ...mapState({
-      layoutMode: state => state.theme.layout,
-      navTheme: state => state.theme.theme,
-      primaryColor: state => state.theme.color,
-      colorWeak: state => state.theme.weak,
-      fixedHeader: state => state.theme.fixedHeader,
-      fixSidebar: state => state.theme.fixSidebar,
-      contentWidth: state => state.theme.contentWidth,
-      autoHideHeader: state => state.theme.autoHideHeader,
-      sidebarOpened: state => state.theme.sidebar,
-      device: state => state.theme.device
+    ...mapState('theme', {
+      layoutMode: state => state.layout,
+      navTheme: state => state.theme,
+      primaryColor: state => state.color,
+      colorWeak: state => state.weak,
+      fixedHeader: state => state.fixedHeader,
+      fixSidebar: state => state.fixSidebar,
+      contentWidth: state => state.contentWidth,
+      autoHideHeader: state => state.autoHideHeader,
+      sidebarOpened: state => state.sidebar,
+      device: state => state.device
     }),
     isTopMenu () {
       return this.layoutMode === 'topmenu'
