@@ -17,12 +17,9 @@
 </template>
 
 <script>
-import { Icon, Tooltip } from 'ant-design-vue'
 export default {
   name: 'BlockCheckbox',
   components: {
-    'AIcon': Icon,
-    'ATooltip': Tooltip
   },
   props: {
     title: {

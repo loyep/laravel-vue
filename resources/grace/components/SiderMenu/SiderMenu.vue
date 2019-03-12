@@ -25,13 +25,15 @@
 </template>
 
 <script>
+import { Layout } from 'ant-design-vue'
 import BaseMenu from './BaseMenu'
 import { themeMixin } from '@/mixins'
 
 export default {
   name: 'SiderMenu',
   components: {
-    BaseMenu
+    BaseMenu,
+    'ALayoutSider': Layout.Sider
   },
   mixins: [ themeMixin ],
   props: {

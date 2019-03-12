@@ -6,6 +6,8 @@
 </template>
 
 <script>
+
+import { Layout } from 'ant-design-vue'
 import TopNavHeader from '@/components/TopNavHeader'
 import GlobalHeader from '@/components/GlobalHeader'
 import { themeMixin } from '@/mixins'
@@ -14,7 +16,8 @@ export default {
   name: 'Header',
   components: {
     TopNavHeader,
-    GlobalHeader
+    GlobalHeader,
+    'ALayoutHeader': Layout.Header
   },
   mixins: [ themeMixin ],
   props: {

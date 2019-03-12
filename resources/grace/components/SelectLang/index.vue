@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { Dropdown, Menu } from 'ant-design-vue'
 const languageLabels = {
   'zh_CN': '简体中文',
   'en_US': 'English'
@@ -31,7 +32,11 @@ const locales = ['zh_CN', 'en_US']
 
 export default {
   name: 'SelectLang',
-  components: { },
+  components: {
+    'ADropdown': Dropdown,
+    'AMenu': Menu,
+    'AMenuItem': Menu.Item
+  },
   inject: ['reload'],
   data () {
     return {

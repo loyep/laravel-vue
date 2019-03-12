@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { Badge, Dropdown, Icon, Spin, Tabs } from 'ant-design-vue'
+import { Badge, Dropdown, Spin, Tabs } from 'ant-design-vue'
 import NoticeList from './NoticeList'
 export default {
   name: 'NoticeIcon',
@@ -37,7 +37,6 @@ export default {
     NoticeList,
     'ABadge': Badge,
     'ADropdown': Dropdown,
-    'AIcon': Icon,
     'ASpin': Spin,
     'ATabs': Tabs,
     'ATabPane': Tabs.TabPane

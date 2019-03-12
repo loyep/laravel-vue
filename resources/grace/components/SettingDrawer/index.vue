@@ -170,7 +170,7 @@
 </template>
 
 <script>
-import { Drawer, Divider, List, Tooltip, Select, Switch, Button, Alert } from 'ant-design-vue'
+import { Drawer, Divider, List, Alert } from 'ant-design-vue'
 import BlockCheckbox from './BlockCheckbox'
 import ThemeColor from './ThemeColor'
 import { themeMixin } from '@/mixins'
@@ -181,12 +181,7 @@ export default {
     'ADivider': Divider,
     'AList': List,
     'AListItem': List.Item,
-    'ATooltip': Tooltip,
-    'ASelect': Select,
-    'ASelectOption': Select.Option,
-    'AButton': Button,
     'AAlert': Alert,
-    'ASwitch': Switch,
     BlockCheckbox,
     ThemeColor
   },

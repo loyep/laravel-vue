@@ -28,6 +28,8 @@
 </template>
 
 <script>
+
+import { Layout } from 'ant-design-vue'
 import SiderMenu from '@/components/SiderMenu'
 import SettingDrawer from '@/components/SettingDrawer'
 import Footer from './components/Footer'
@@ -43,7 +45,9 @@ export default {
     BasicHeader: Header,
     SiderMenu,
     SettingDrawer,
-    GridContent
+    GridContent,
+    'ALayout': Layout,
+    'ALayoutContent': Layout.Content
   },
   mixins: [ themeMixin ],
   data () {

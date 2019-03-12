@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import { Tooltip, Icon } from 'ant-design-vue'
 const colorList = [
   {
     key: 'dust',
@@ -59,8 +58,6 @@ const colorList = [
 export default {
   name: 'ThemeColor',
   components: {
-    'ATooltip': Tooltip,
-    'AIcon': Icon
   },
   props: {
     title: {

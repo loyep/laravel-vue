@@ -14,22 +14,22 @@ import {
   // Carousel,
   // Cascader,
   Checkbox,
-  Col,
+  // Col,
   // Collapse,
   // Comment,
   // ConfigProvider,
   // DatePicker,
   // Divider,
   // Drawer,
-  Dropdown,
+  // Dropdown,
   Form,
   Icon,
   Input,
   // InputNumber,
-  Layout,
+  // Layout,
   // List,
   // LocaleProvider,
-  Menu,
+  // Menu,
   message,
   Modal,
   notification,
@@ -37,21 +37,21 @@ import {
   // Popconfirm,
   // Popover,
   // Progress,
-  // Radio,
+  Radio,
   // Rate,
-  Row
-  // Select,
+  // Row,
+  Select,
   // Skeleton,
   // Slider,
   // Spin,
   // Steps,
-  // Switch,
-  // Table,
+  Switch,
+  Table,
   // Tabs
   // Tag,
   // Timeline,
   // TimePicker,
-  // Tooltip,
+  Tooltip
   // Transfer,
   // Tree,
   // TreeSelect,
@@ -60,10 +60,10 @@ import {
 
 Vue.prototype.$message = message
 Vue.prototype.$notification = notification
-// Vue.prototype.$info = Modal.info;
-// Vue.prototype.$success = Modal.success;
-// Vue.prototype.$error = Modal.error;
-// Vue.prototype.$warning = Modal.warning;
+Vue.prototype.$info = Modal.info
+Vue.prototype.$success = Modal.success
+Vue.prototype.$error = Modal.error
+Vue.prototype.$warning = Modal.warning
 Vue.prototype.$confirm = Modal.confirm
 
 // Vue.use(Affix);
@@ -81,33 +81,33 @@ Vue.use(Button)
 // Vue.use(Carousel);
 // Vue.use(Cascader);
 Vue.use(Checkbox)
-Vue.use(Col)
+// Vue.use(Col)
 // Vue.use(DatePicker);
 // Vue.use(Divider);
 // Vue.use(Drawer);
-Vue.use(Dropdown)
+// Vue.use(Dropdown)
 Vue.use(Form)
 Vue.use(Icon)
 Vue.use(Input)
 // Vue.use(InputNumber);
-Vue.use(Layout)
+// Vue.use(Layout)
 // Vue.use(List);
 // Vue.use(LocaleProvider);
-Vue.use(Menu)
+// Vue.use(Menu)
 Vue.use(Modal)
 // Vue.use(Pagination);
 // Vue.use(Popconfirm);
 // Vue.use(Popover);
 // Vue.use(Progress);
-// Vue.use(Radio);
+Vue.use(Radio)
 // Vue.use(Rate);
-Vue.use(Row)
-// Vue.use(Select);
+// Vue.use(Row)
+Vue.use(Select)
 // Vue.use(Slider);
 // Vue.use(Spin);
 // Vue.use(Steps);
-// Vue.use(Switch);
-// Vue.use(Table);
+Vue.use(Switch)
+Vue.use(Table)
 // Vue.use(Transfer);
 // Vue.use(Tree);
 // Vue.use(TreeSelect);
@@ -115,7 +115,7 @@ Vue.use(Row)
 // Vue.use(Tag);
 // Vue.use(TimePicker);
 // Vue.use(Timeline);
-// Vue.use(Tooltip);
+Vue.use(Tooltip)
 // Vue.use(Upload);
 // Vue.use(Skeleton);
 // Vue.use(Comment);

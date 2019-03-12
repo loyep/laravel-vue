@@ -19,12 +19,15 @@
 </template>
 
 <script>
+
+import { Layout } from 'ant-design-vue'
 import GlobalFooter from '@/components/GlobalFooter'
 
 export default {
   name: 'Footer',
   components: {
-    GlobalFooter
+    GlobalFooter,
+    'ALayoutFooter': Layout.Footer
   },
   data () {
     return {

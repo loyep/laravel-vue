@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { Avatar, Menu, Tooltip, Dropdown } from 'ant-design-vue'
+import { Avatar, Menu, Dropdown } from 'ant-design-vue'
 import SelectLang from '@/components/SelectLang'
 import HeaderSearch from '@/components/HeaderSearch'
 import NoticeIcon from '@/components/NoticeIcon'
@@ -64,8 +64,7 @@ export default {
     'ADropdown': Dropdown,
     'AMenu': Menu,
     'AMenuDivider': Menu.Divider,
-    'AMenuItem': Menu.Item,
-    'ATooltip': Tooltip
+    'AMenuItem': Menu.Item
   },
   mixins: [ themeMixin ],
   computed: {
