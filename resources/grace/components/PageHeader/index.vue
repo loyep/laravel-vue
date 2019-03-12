@@ -1,6 +1,6 @@
 <template>
   <div class="pageHeader">
-    <div :class="{ 'wide': wide }">
+    <div :class="{ wide: wide }">
       <!-- <a-skeleton :loading="loading" active :paragraph="{rows: 4}" :avatar="{ size: 'large', shape: 'circle' }"> -->
       <breadcrumb v-if="!hideBread" />
       <div class="detail">
@@ -38,6 +38,10 @@ export default {
   },
   mixins: [ themeMixin ],
   props: {
+    wide: {
+      type: Boolean,
+      required: true
+    },
     hideBread: {
       type: Boolean,
       default: false
@@ -62,12 +66,6 @@ export default {
   data () {
     return {
       loading: false
-    }
-  },
-  computed: {
-    wide () {
-      console.log(this.contentWidth)
-      return this.contentWidth === 'Fixed'
     }
   }
 }

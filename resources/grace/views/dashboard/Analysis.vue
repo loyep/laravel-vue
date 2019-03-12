@@ -1,5 +1,5 @@
 <template>
-  <grid-content>
+  <grid-content :wide="true">
     <a-row :gutter="24">
       <a-col
         :xs="24"
