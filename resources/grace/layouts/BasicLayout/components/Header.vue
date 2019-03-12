@@ -1,7 +1,7 @@
 <template>
   <a-layout-header :style="{ padding: 0 }">
     <top-nav-header v-if="isTopMenu && !isMobile" :menus="menus" :collapsed="collapsed" />
-    <global-header v-else :collapsed="collapsed" :onCollapse="onCollapse" />
+    <global-header v-else :collapsed="collapsed" @collapse="collapse" />
   </a-layout-header>
 </template>
 
@@ -25,10 +25,10 @@ export default {
       type: Boolean,
       required: true
     },
-    onCollapse: {
-      type: Function,
-      required: true
-    },
+    // collapse: {
+    //   type: Function,
+    //   required: true
+    // },
     menus: {
       type: Array,
       required: true
@@ -37,7 +37,10 @@ export default {
   methods: {
     toggle () {
       console.log('sss' + this.collapsed)
-      this.onCollapse(!this.collapsed)
+      this.collapse(!this.collapsed)
+    },
+    collapse (collapsed) {
+      this.$emit('collapse', collapsed)
     }
   }
 }

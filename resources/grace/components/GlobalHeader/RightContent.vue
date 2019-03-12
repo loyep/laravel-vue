@@ -4,7 +4,7 @@
     dark: darkClass
   }"
   >
-    <header-search class="action search" />
+    <header-search class="action search" @search="onSearch" />
     <a-tooltip title="Help">
       <a target="_blank" href="https://github.com/loyep/grace" rel="noopener noreferrer" class="action">
         <a-icon type="question-circle-o" />
@@ -86,13 +86,16 @@ export default {
         content: '真的要注销登录吗 ?',
         onOk () {
           return that.$store.dispatch('auth/Logout').then(() => {
-            that.$router.push({ path: '/login' })
+            location.reload()
           }).catch(() => {
             console.log('Oops errors!')
           })
         },
         onCancel () {}
       })
+    },
+    onSearch (value) {
+      console.log(value)
     }
   }
 }

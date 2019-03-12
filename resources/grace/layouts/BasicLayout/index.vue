@@ -5,15 +5,15 @@
         v-if="!(isTopMenu && !isMobile)"
         :menus="menus"
         :collapsed="collapsed"
-        :onCollapse="handleMenuCollapse"
         mode="inline"
+        @collapse="handleMenuCollapse"
         :collapsible="true"
       />
       <a-layout :style="[{ minHeight: '100vh' }, layoutStyle]">
         <basic-header
           :menus="menus"
           :collapsed="collapsed"
-          :onCollapse="handleMenuCollapse"
+          @collapse="handleMenuCollapse"
         />
         <a-layout-content class="basic-content" :style="contentStyle">
           <grid-content>

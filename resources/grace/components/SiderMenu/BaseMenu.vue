@@ -115,12 +115,14 @@ export default {
       return menuArr
     },
     onOpenChange (openKeys) {
-      const latestOpenKey = openKeys.find(key => !this.openKeys.includes(key))
-      if (!this.rootSubmenuKeys.includes(latestOpenKey)) {
-        this.openKeys = openKeys
-      } else {
-        this.openKeys = latestOpenKey ? [latestOpenKey] : []
-      }
+      // const latestOpenKey = openKeys.find(key => !this.openKeys.includes(key))
+      this.openKeys = openKeys
+      // if (!this.rootSubmenuKeys.includes(latestOpenKey)) {
+      // this.openKeys = openKeys
+      // } else {
+      // this.openKeys = latestOpenKey ? [latestOpenKey] : []
+      // }
+      console.log(this.openKeys)
     },
     updateMenu () {
       const routes = this.$route.matched.concat().filter(item => item.path).map(item => {

@@ -16,11 +16,10 @@ export const mutations = {
   LOGOUT: (state) => {
     state.token = null
     state.roles = []
-
     /// 防止个人头像退出的瞬间获取不到
     setTimeout(() => {
-      state.user = null
-    }, 20)
+      state.user = {}
+    }, 100)
     removeToken()
   },
   SET_ROLES: (state, roles) => {

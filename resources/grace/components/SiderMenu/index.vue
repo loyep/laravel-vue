@@ -7,7 +7,7 @@
       height: '100vh',
     }"
     placement="left"
-    @close="() => onCollapse(true)"
+    @close="() => collapse(true)"
   >
     <sider-menu
       :menus="menus"
@@ -52,10 +52,10 @@ export default {
       required: false,
       default: false
     },
-    onCollapse: {
-      type: Function,
-      required: true
-    },
+    // collapse: {
+    //   type: Function,
+    //   required: true
+    // },
     menus: {
       type: Array,
       required: true
@@ -64,6 +64,9 @@ export default {
   methods: {
     onSelect (obj) {
       this.$emit('menuSelect', obj)
+    },
+    collapse (collapsed) {
+      this.$emit('collapse', collapsed)
     }
   }
 }

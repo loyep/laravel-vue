@@ -27,15 +27,16 @@ export default {
       type: Boolean,
       required: false,
       default: false
-    },
-    onCollapse: {
-      type: Function,
-      required: true
     }
+    // collapse: {
+    //   type: Function,
+    //   required: true
+    // }
   },
   methods: {
     toggle () {
-      this.onCollapse(!this.collapsed)
+      this.$emit('collapse', !this.collapsed)
+      // this.collapse(!this.collapsed)
     }
   }
 }

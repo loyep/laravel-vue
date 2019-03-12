@@ -7,12 +7,13 @@
       :class="['input ', {'show': searchMode}]"
       :dataSource="dataSource"
       :value="value"
-      @change="onSearchChange(value)"
+      @change="onSearchChange"
       @search="onSearch"
     >
       <a-input
         ref="searchInput"
         :placeholder="placeholder"
+        :value="value"
         :aria-label="placeholder"
         @keydown="(e) => onKeyDown(e)"
         @blur="leaveSearchMode"
@@ -34,14 +35,14 @@ export default {
       default: function () {
         return '站内搜索'
       }
-    },
-    onSearch: {
-      type: Function,
-      required: false,
-      default: function () {
-        return () => { console.log(this.value) }
-      }
     }
+    // onSearch: {
+    //   type: Function,
+    //   required: false,
+    //   default: function () {
+    //     return () => { console.log(this.value) }
+    //   }
+    // }
   },
   data () {
     return {
@@ -51,6 +52,9 @@ export default {
     }
   },
   methods: {
+    onSearch () {
+      this.$emit('search', this.value)
+    },
     onKeyDown (e) {
 
     },

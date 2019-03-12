@@ -34,7 +34,7 @@ export const beforeEach = (to, from, next) => {
             store
               .dispatch('auth/Logout')
               .then(() => {
-                next({ path: '/login' })
+                location.reload()
               })
           })
       } else {
