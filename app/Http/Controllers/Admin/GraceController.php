@@ -16,7 +16,8 @@ class GraceController extends Controller
         $config = [
             'base' => GraceAdmin::path(),
             'name' => GraceAdmin::title(),
-            'description' => '美好源于热爱'
+            'description' => '美好源于热爱',
+            'setting_drawer' => true 
         ];
         return view('admin.index', compact('config'));
     }

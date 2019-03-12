@@ -25,10 +25,6 @@ export default {
       type: Boolean,
       required: true
     },
-    // collapse: {
-    //   type: Function,
-    //   required: true
-    // },
     menus: {
       type: Array,
       required: true

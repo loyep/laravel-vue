@@ -6,8 +6,8 @@
         :menus="menus"
         :collapsed="collapsed"
         mode="inline"
-        @collapse="handleMenuCollapse"
         :collapsible="true"
+        @collapse="handleMenuCollapse"
       />
       <a-layout :style="[{ minHeight: '100vh' }, layoutStyle]">
         <basic-header
@@ -82,7 +82,7 @@ export default {
   },
   created () {
     this.menus = this.mainMenu.find((item) => item.path === '/').children
-    this.showSettingDrawer = process.env.NODE_ENV === 'development'
+    this.showSettingDrawer = window.config.setting_drawer ? window.config.setting_drawer : false
   },
   methods: {
     setSidebar (value) {
