@@ -1,5 +1,5 @@
 <template>
-  <a-layout-header :style="{ padding: 0, width: getHeadWidth }" :class="{ 'fixedHeader': fixedHeader }">
+  <a-layout-header v-show="visible" :style="{ 'padding': 0, 'width': getHeadWidth }" :class="{ 'fixedHeader': fixedHeader }">
     <top-nav-header v-if="isTopMenu && !isMobile" :menus="menus" :collapsed="collapsed" />
     <global-header v-else :collapsed="collapsed" @collapse="collapse" />
   </a-layout-header>
@@ -30,6 +30,13 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      oldScrollTop: 0,
+      ticking: false,
+      visible: true
+    }
+  },
   computed: {
     getHeadWidth () {
       // const { isMobile, collapsed, setting } = this.props;
@@ -44,7 +51,35 @@ export default {
       return this.collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)'
     }
   },
+  beforeDestroy () {
+    document.removeEventListener('scroll', this.handScroll)
+  },
+  mounted () {
+    document.addEventListener('scroll', this.handScroll, { passive: true })
+  },
   methods: {
+    handScroll () {
+      const visible = this.visible
+      if (!this.autoHideHeader) {
+        return
+      }
+      const scrollTop = document.body.scrollTop + document.documentElement.scrollTop
+
+      if (!this.ticking) {
+        this.ticking = true
+        requestAnimationFrame(() => {
+          if (this.oldScrollTop > scrollTop) {
+            this.visible = true
+          } else if (scrollTop > 300 && visible) {
+            this.visible = false
+          } else if (scrollTop < 300 && !visible) {
+            this.visible = true
+          }
+          this.oldScrollTop = scrollTop
+          this.ticking = false
+        }, 1000)
+      }
+    },
     toggle () {
       console.log('sss' + this.collapsed)
       this.collapse(!this.collapsed)

@@ -19,9 +19,9 @@
           <router-view />
         </a-layout-content>
         <basic-footer />
-        <setting-drawer v-if="showSettingDrawer" />
       </a-layout>
     </a-layout>
+    <setting-drawer v-if="showSettingDrawer" />
   </div>
 </template>
 

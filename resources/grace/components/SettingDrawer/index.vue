@@ -4,7 +4,7 @@
       :visible="collapse"
       width="300"
       placement="right"
-      :zIndex="1000"
+      :zIndex="999"
       :getContainer="() => $refs.settingDrawer"
       @close="togglerContent"
     >
