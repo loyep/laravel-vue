@@ -7,7 +7,7 @@
       :title="title"
       :content="content"
       :extraContent="extraContent"
-      :wide="!wide"
+      :wide="wide"
     >
       <template v-if="$slots.logo" v-slot:logo>
         <slot name="logo" />
@@ -15,7 +15,7 @@
       <slot slot="content" name="headerContent" />
     </page-header>
     <div class="content">
-      <grid-content :wide="!wide">
+      <grid-content>
         <slot />
       </grid-content>
     </div>
@@ -57,8 +57,7 @@ export default {
   },
   computed: {
     wide () {
-      console.log(this.contentWidth)
-      return !(this.isTopMenu && this.contentWidth === 'Fixed')
+      return this.contentWidth === 'Fixed'
     }
   }
 }

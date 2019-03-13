@@ -121,6 +121,8 @@ export const actions = {
   ToggleLayoutMode ({ commit }, mode) {
     if (mode === 'sidemenu') {
       commit('TOGGLE_CONTENT_WIDTH', CONTENT_WIDTH_TYPE.Fluid)
+    } else {
+      commit('TOGGLE_CONTENT_WIDTH', CONTENT_WIDTH_TYPE.Fixed)
     }
     commit('TOGGLE_LAYOUT_MODE', mode)
   },

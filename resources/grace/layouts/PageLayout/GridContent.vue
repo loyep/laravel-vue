@@ -10,10 +10,9 @@ import { themeMixin } from '@/mixins'
 export default {
   name: 'GridContent',
   mixins: [ themeMixin ],
-  props: {
-    wide: {
-      type: Boolean,
-      required: true
+  computed: {
+    wide () {
+      return this.contentWidth === 'Fixed'
     }
   }
 }

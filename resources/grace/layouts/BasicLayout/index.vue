@@ -16,9 +16,7 @@
           @collapse="handleMenuCollapse"
         />
         <a-layout-content class="basic-content" :style="contentStyle">
-          <grid-content :wide="false">
-            <router-view />
-          </grid-content>
+          <router-view />
         </a-layout-content>
         <basic-footer />
         <setting-drawer v-if="showSettingDrawer" />
@@ -34,7 +32,6 @@ import SiderMenu from '@/components/SiderMenu'
 import SettingDrawer from '@/components/SettingDrawer'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import GridContent from '@/layouts/PageLayout/GridContent'
 import { mapGetters } from 'vuex'
 import { themeMixin } from '@/mixins'
 
@@ -45,7 +42,6 @@ export default {
     BasicHeader: Header,
     SiderMenu,
     SettingDrawer,
-    GridContent,
     'ALayout': Layout,
     'ALayoutContent': Layout.Content
   },
