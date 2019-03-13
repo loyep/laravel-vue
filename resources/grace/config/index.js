@@ -15,11 +15,11 @@
 // import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
 export default {
   primaryColor: '#1890FF', // primary color of ant design
-  navTheme: 'light', // theme for nav menu
+  navTheme: 'dark', // theme for nav menu
   layout: 'sidemenu', // nav menu position: sidemenu or topmenu
   contentWidth: 'Fluid', // layout of content: Fluid or Fixed, only works when layout is topmenu
-  fixedHeader: false, // sticky header
-  fixSidebar: false, // sticky SideBar
+  fixedHeader: true, // sticky header
+  fixSidebar: true, // sticky SideBar
   autoHideHeader: false, //  auto hide header
   colorWeak: false,
   locale: 'zh-CN'

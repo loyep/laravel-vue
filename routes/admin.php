@@ -25,5 +25,10 @@ Route::prefix('/')->middleware(['auth:api'])->group(function () {
     Route::post('logout', 'Auth\LoginController@logout');
 
     Route::resource('user', 'Admin\UserController');
+    Route::resource('tag', 'Admin\TagController');
+    Route::resource('post', 'Admin\PostController');
+    Route::resource('comment', 'Admin\CommentController');
+    Route::resource('category', 'Admin\CategoryController');
+    Route::resource('setting', 'Admin\SettingController');
 });
 

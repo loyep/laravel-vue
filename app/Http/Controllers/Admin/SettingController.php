@@ -10,11 +10,13 @@ class SettingController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $settings = Setting::paginate($request->get('per_page', 10));
+        return response()->json($settings);
     }
 
     /**
