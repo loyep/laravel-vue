@@ -1,7 +1,10 @@
 # Grace
 
-[![Build Status](https://travis-ci.com/loyep/grace.svg?token=YhCvPgf5uspm18kxdLkJ&branch=master)](https://travis-ci.com/loyep/grace)
-[![License](https://poser.pugx.org/loyep/grace/license)](LICENSE)
+[![Build Status](https://travis-ci.org/loyep/grace.svg?branch=master)](https://travis-ci.org/loyep/grace)
+[![Latest Stable Version](https://poser.pugx.org/loyep/grace/v/stable)](https://packagist.org/packages/loyep/grace)
+[![Total Downloads](https://poser.pugx.org/loyep/grace/downloads)](https://packagist.org/packages/loyep/grace)
+[![Latest Unstable Version](https://poser.pugx.org/loyep/grace/v/unstable)](https://packagist.org/packages/loyep/grace)
+[![License](https://poser.pugx.org/loyep/grace/license)](https://packagist.org/packages/loyep/grace)
 
 > A Laravel-Vue Website.
 
