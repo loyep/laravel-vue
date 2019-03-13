@@ -16,7 +16,7 @@
           @collapse="handleMenuCollapse"
         />
         <a-layout-content class="basic-content" :style="contentStyle">
-          <grid-content :wide="wide">
+          <grid-content :wide="false">
             <router-view />
           </grid-content>
         </a-layout-content>
@@ -78,10 +78,6 @@ export default {
         }
       }
       return {}
-    },
-    wide () {
-      console.log(this.contentWidth)
-      return !(this.isTopMenu && this.contentWidth !== 'Fixed')
     }
   },
   created () {
