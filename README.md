@@ -29,17 +29,29 @@
 #### Development
 
 ```bash
-# build and watch
+# watch
+// 前端
 npm run watch
+// 后台
+npm run watch:grace
 
-# serve with hot reloading
-npm run hot
+# dev
+// 前端
+npm run dev
+// 后台
+npm run dev:grace
+
 ```
 
 #### Production
 
 ```bash
-npm run production
+// 前端
+npm run prod
+
+// 后台
+npm run prod:grace
+
 ```
 
 ## Changelog
