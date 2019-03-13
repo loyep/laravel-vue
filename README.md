@@ -8,6 +8,8 @@
 
 > A Laravel-Vue Website.
 
+![](screenshots/home.png)
+
 ## Features
 
 - Laravel 5.8 
