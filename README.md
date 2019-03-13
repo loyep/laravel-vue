@@ -18,7 +18,7 @@
 
 ## Installation
 
-- `composer create-project --prefer-dist loyep/grace`
+- `composer create-project --prefer-dist loyep/grace blog`
 - Edit `.env` and set your database connection details
 - (When installed via git clone or download, run `php artisan key:generate` and `php artisan grace:install`)
 - `php artisan migrate --seed`
