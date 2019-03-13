@@ -27,6 +27,7 @@ $factory->define(User::class, function (Faker $faker) {
         'display_name' => $name,
         'avatar' => Helper::getAvatar($email),
         'password' => Hash::make('123123'),
+        'url' => 'https://loyep.com',
         'remember_token' => Str::random(10),
     ];
 });

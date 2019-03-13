@@ -64,9 +64,7 @@
           />
         </div>
 
-        <a-list
-          :split="false"
-        >
+        <a-list :split="false">
           <a-list-item>
             <span :style="{ opacity: '' }">内容区域宽度</span>
             <template v-slot:actions>
@@ -153,12 +151,11 @@
         <template v-slot:message>
           <div>
             配置栏只在开发环境用于预览，生产环境不会展现，请拷贝后手动修改配置文件
-            <a href="https://u.ant.design/pro-v2-default-settings"
-               target="_blank"
-               rel="noopener noreferrer"
-            >
-              src/defaultSettings.js
-            </a>
+            <a
+              href="https://u.ant.design/pro-v2-default-settings"
+              target="_blank"
+              rel="noopener noreferrer"
+            >src/defaultSettings.js</a>
           </div>
         </template>
       </a-alert>
@@ -177,15 +174,15 @@ import { themeMixin } from '@/mixins'
 export default {
   name: 'SettingDrawer',
   components: {
-    'ADrawer': Drawer,
-    'ADivider': Divider,
-    'AList': List,
-    'AListItem': List.Item,
-    'AAlert': Alert,
+    ADrawer: Drawer,
+    ADivider: Divider,
+    AList: List,
+    AListItem: List.Item,
+    AAlert: Alert,
     BlockCheckbox,
     ThemeColor
   },
-  mixins: [ themeMixin ],
+  mixins: [themeMixin],
   data () {
     return {
       collapse: false
@@ -202,42 +199,18 @@ export default {
       this.collapse = !this.collapse
     },
     changeSetting (setting, value) {
-      switch (setting) {
-        case 'layoutMode':
-          this.$store.dispatch('theme/ToggleLayoutMode', value)
-          break
-
-        case 'fixedHeader':
-          this.$store.dispatch('theme/ToggleFixedHeader', value)
-          break
-
-        case 'navTheme':
-          this.$store.dispatch('theme/ToggleTheme', value)
-          break
-
-        case 'primaryColor':
-          this.$store.dispatch('theme/ToggleColor', value)
-          break
-
-        case 'contentWidth':
-          this.$store.dispatch('theme/ToggleContentWidth', value)
-          break
-
-        case 'autoHideHeader':
-          this.$store.dispatch('theme/ToggleFixedHeaderHidden', value)
-          break
-
-        case 'fixSidebar':
-          console.log(value)
-          this.$store.dispatch('theme/ToggleFixSidebar', value)
-          break
-
-        case 'colorWeak':
-          this.$store.dispatch('theme/ToggleWeak', value)
-          break
-
-        default:
-          break
+      const config = {
+        layoutMode: 'ToggleLayoutMode',
+        fixedHeader: 'ToggleFixedHeader',
+        navTheme: 'ToggleTheme',
+        primaryColor: 'ToggleColor',
+        contentWidth: 'ToggleContentWidth',
+        autoHideHeader: 'ToggleFixedHeaderHidden',
+        fixSidebar: 'ToggleFixSidebar',
+        colorWeak: 'ToggleWeak'
+      }
+      if (config[setting]) {
+        this.$store.dispatch(`theme/${config[setting]}`, value)
       }
     }
   }
@@ -245,7 +218,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~@/styles/variables.less';
+@import "~@/styles/variables.less";
 
 .content {
   position: relative;
@@ -293,5 +266,4 @@ export default {
   margin-top: 16px;
   font-size: 12px;
 }
-
 </style>

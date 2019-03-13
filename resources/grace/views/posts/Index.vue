@@ -25,25 +25,21 @@
               <a-form-item label="使用状态">
                 <a-select defaultValue="0" placeholder="请选择" style="width: 100%;">
                   <a-select-option value="0">
-                    关闭
-                  </a-select-option>
+关闭
+</a-select-option>
                   <a-select-option value="1">
-                    运行中
-                  </a-select-option>
+运行中
+</a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
 
             <a-col :md="8" :sm="24">
               <span class="submitButtons">
-                <a-button type="primary" htmlType="submit">
-                  查询
-                </a-button>
-                <a-button @click=" () => console.log(2222) ">
-                  重置
-                </a-button>
-                <a @click="toggleForm">
-                  展开 <a-icon type="down" />
+                <a-button type="primary" htmlType="submit">查询</a-button>
+                <a-button @click=" () => console.log(2222) ">重置</a-button>
+                <a @click="toggleForm">展开
+                  <a-icon type="down" />
                 </a>
               </span>
             </a-col>
@@ -52,15 +48,15 @@
       </div>
       <div class="tableListOperator">
         <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">
-          新建
-        </a-button>
+新建
+</a-button>
         <span>
           <a-button>批量操作</a-button>
           <!-- <Dropdown overlay={menu}>
                     <Button>
                       更多操作 <Icon type="down" />
                     </Button>
-                  </Dropdown> -->
+          </Dropdown>-->
         </span>
       </div>
       <standard-table
@@ -76,14 +72,14 @@
 </template>
 
 <script >
-import { Card, Col, Row } from 'ant-design-vue'
-import StandardTable from '@/components/StandardTable'
+import { Card, Col, Row } from 'ant-design-vue';
+import StandardTable from '@/components/StandardTable';
 export default {
   name: 'Index',
   components: {
-    'ACard': Card,
-    'ACol': Col,
-    'ARow': Row,
+    ACard: Card,
+    ACol: Col,
+    ARow: Row,
     StandardTable
   },
   data () {
@@ -95,16 +91,14 @@ export default {
     handleSearch (value) {
       console.log(value)
     },
-    toggleForm () {
-
-    }
+    toggleForm () {}
   }
 }
 </script>
 
 <style lang="less" scoped>
-@import '~@/styles/variables.less';
-@import '~@/styles/components/utils.less';
+@import "~@/styles/variables.less";
+@import "~@/styles/components/utils.less";
 
 .tableList {
   .tableListOperator {
@@ -117,18 +111,18 @@ export default {
 
 .tableListForm {
   :global(.ant-form-item) {
-      display: flex;
-      margin-right: 0;
-      margin-bottom: 24px;
-      > .ant-form-item-label {
-        width: auto;
-        padding-right: 8px;
-        line-height: 32px;
-      }
-      .ant-form-item-control {
-        line-height: 32px;
-      }
-  :global(.ant-form-item-control-wrapper) {
+    display: flex;
+    margin-right: 0;
+    margin-bottom: 24px;
+    > .ant-form-item-label {
+      width: auto;
+      padding-right: 8px;
+      line-height: 32px;
+    }
+    .ant-form-item-control {
+      line-height: 32px;
+    }
+    :global(.ant-form-item-control-wrapper) {
       flex: 1;
     }
   }
@@ -137,7 +131,7 @@ export default {
     margin-bottom: 24px;
     white-space: nowrap;
     :global(.ant-btn) {
-     margin-right: 8px;
+      margin-right: 8px;
     }
   }
 }
@@ -153,5 +147,4 @@ export default {
     margin-right: 8px;
   }
 }
-
 </style>
