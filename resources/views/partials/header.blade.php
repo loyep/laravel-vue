@@ -1,9 +1,3 @@
-<?php
-
-$header_layout = get_option('header_layout', 'center');
-$header_layout = $header_layout === 'center' ? 'container' : 'container-fluid';
-?>
-
 <section class="nice-mobile-overlay no-user-sign" id="nice-mobile-overlay">
     <div class="mobile-action">
         <button id="mobile-close-icon" class="btn btn-transparent btn-sm navbar-close color-white font-22 light-10">
@@ -34,10 +28,10 @@ $header_layout = $header_layout === 'center' ? 'container' : 'container-fluid';
 {{--</section>--}}
 {{--End loading--}}
 <header class="nice-header {{ get_option( 'mobile_header_layout', 'mobile-style01') }}">
-    <div class="{{ $header_layout }} m-header">
+    <div class="container m-header">
         <div class="navbar navbar-expand-lg d-none d-lg-flex">
             <div class="navbar-header d-inline-block">
-                <a class="navbar-brand text-center" href="{{ url('/') }}">
+                <a class="navbar-brand text-left" href="{{ url('/') }}">
                     <span class="text-white">{{ config('grace.name') }}</span>
                 </a>
             </div>

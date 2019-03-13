@@ -14,9 +14,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = User::paginate($request->get('per_page', 10));
+        return response()->json($user);
     }
 
     /**

@@ -4,7 +4,7 @@
       <div
         class="imgEle"
         :style="{
-          backgroundImage: `url(` + config[type].img +`)`
+          backgroundImage: `url(${config[type].img})`
         }"
       />
     </div>

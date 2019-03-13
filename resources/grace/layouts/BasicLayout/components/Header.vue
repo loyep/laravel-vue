@@ -1,5 +1,5 @@
 <template>
-  <a-layout-header :style="{ padding: 0 }">
+  <a-layout-header :style="{ padding: 0, width: getHeadWidth }" :class="{ 'fixedHeader': fixedHeader }">
     <top-nav-header v-if="isTopMenu && !isMobile" :menus="menus" :collapsed="collapsed" />
     <global-header v-else :collapsed="collapsed" @collapse="collapse" />
   </a-layout-header>
@@ -30,6 +30,20 @@ export default {
       required: true
     }
   },
+  computed: {
+    getHeadWidth () {
+      // const { isMobile, collapsed, setting } = this.props;
+    // const { fixedHeader, layout } = setting;
+    // if (isMobile || !fixedHeader || layout === 'topmenu') {
+      // return '100%';
+    // }
+    // return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)';
+      if (this.isMobile || !this.fixedHeader || this.isTopMenu) {
+        return '100%'
+      }
+      return this.collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)'
+    }
+  },
   methods: {
     toggle () {
       console.log('sss' + this.collapsed)
@@ -43,5 +57,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+.fixedHeader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  width: 100%;
+  transition: width 0.2s;
+}
 </style>

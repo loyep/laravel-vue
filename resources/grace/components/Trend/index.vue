@@ -10,7 +10,7 @@
       <slot />
     </span>
     <span v-if="flag" :class="flag">
-      <a-icon :type="'caret-' + flag" />
+      <a-icon :type="`caret-${flag}`" />
     </span>
   </div>
 </template>

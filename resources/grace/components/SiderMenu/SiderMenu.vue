@@ -1,6 +1,6 @@
 <template>
   <a-layout-sider
-    :class="['sider', {'fixSidebar': fixSidebar, 'light': navTheme === 'light'} ]"
+    :class="{'sider': true, 'fixSidebar': fixSidebar, 'light': navTheme === 'light'}"
     :width="256"
     breakpoint="lg"
     :collapsed="collapsed"
@@ -25,17 +25,17 @@
 </template>
 
 <script>
-import { Layout } from 'ant-design-vue'
-import BaseMenu from './BaseMenu'
-import { themeMixin } from '@/mixins'
+import { Layout } from 'ant-design-vue';
+import BaseMenu from './BaseMenu';
+import { themeMixin } from '@/mixins';
 
 export default {
   name: 'SiderMenu',
   components: {
     BaseMenu,
-    'ALayoutSider': Layout.Sider
+    ALayoutSider: Layout.Sider
   },
-  mixins: [ themeMixin ],
+  mixins: [themeMixin],
   props: {
     collapsed: {
       type: Boolean,
@@ -61,8 +61,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
-@import '~@/styles/variables.less';
+@import "~@/styles/variables.less";
 
 @nav-header-height: @layout-header-height;
 
@@ -85,7 +84,7 @@ export default {
     color: white;
     font-weight: 600;
     font-size: 20px;
-    font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-family: Avenir, "Helvetica Neue", Arial, Helvetica, sans-serif;
     vertical-align: middle;
   }
 }
@@ -95,14 +94,15 @@ export default {
   z-index: 10;
   min-height: 100vh;
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
-  &.fixSideBar {
+
+  &.fixSidebar {
     position: fixed;
     top: 0;
     left: 0;
     box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
     :global {
       .ant-menu-root {
-        height: ~'calc(100vh - @{nav-header-height})';
+        height: ~"calc(100vh - @{nav-header-height})";
         overflow-y: auto;
       }
       .ant-menu-inline {
@@ -114,6 +114,7 @@ export default {
       }
     }
   }
+
   &.light {
     background-color: white;
     box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
@@ -143,7 +144,11 @@ export default {
       > .ant-menu-item
       .sider-menu-item-img
       + span,
-    & > .ant-menu-submenu > .ant-menu-submenu-title .sider-menu-item-img + span {
+    &
+      > .ant-menu-submenu
+      > .ant-menu-submenu-title
+      .sider-menu-item-img
+      + span {
       display: inline-block;
       max-width: 0;
       opacity: 0;

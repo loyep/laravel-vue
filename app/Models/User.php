@@ -44,7 +44,7 @@ class User extends Model implements
      *
      * @var array
      */
-    protected $appends = ['roles', 'profileUrl'];
+    protected $appends = ['roles'];
 
     /**
      * The attributes that should be cast to native types.
@@ -81,13 +81,5 @@ class User extends Model implements
     public function getRolesAttribute()
     {
         return ['admin'];
-    }
-
-    /**
-     * @return string
-     */
-    public function getProfileUrlAttribute()
-    {
-        return route('user.show', ['id' => $this->attributes['id']]);
     }
 }

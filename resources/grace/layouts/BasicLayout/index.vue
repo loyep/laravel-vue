@@ -62,7 +62,7 @@ export default {
       mainMenu: 'addRouters'
     }),
     contentStyle () {
-      if (this.fixSidebar) {
+      if (this.fixedHeader) {
         return {}
       }
       return { paddingTop: 0 }

@@ -23,5 +23,7 @@ Route::prefix('/')->middleware(['guest:api'])->group(function () {
 Route::prefix('/')->middleware(['auth:api'])->group(function () {
     Route::get('user/profile', 'Admin\UserController@profile');
     Route::post('logout', 'Auth\LoginController@logout');
+
+    Route::resource('user', 'Admin\UserController');
 });
 

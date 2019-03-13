@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-      <div v-if="$slots.default" class="content" :style="{ height: (contentHeight !== null ? contentHeight + 'px' : 'auto') }">
+      <div v-if="$slots.default" class="content" :style="{ height: (contentHeight !== null ? `${contentHeight}px` : 'auto') }">
         <div :class="{ contentFixed: contentHeight !== null }">
           <slot />
         </div>

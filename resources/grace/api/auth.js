@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export const login = (data) => {
+export function login (data) {
   return request({
     url: '/login',
     method: 'post',
@@ -8,7 +8,7 @@ export const login = (data) => {
   })
 }
 
-export const register = (data) => {
+export function register (data) {
   return request({
     url: '/register',
     method: 'post',
@@ -16,14 +16,14 @@ export const register = (data) => {
   })
 }
 
-export const logout = () => {
+export function logout () {
   return request({
     url: '/logout',
     method: 'post'
   })
 }
 
-export const getInfo = () => {
+export function getInfo () {
   return request({
     url: '/user/profile',
     method: 'get'

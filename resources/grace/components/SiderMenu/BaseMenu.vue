@@ -64,7 +64,7 @@ export default {
       if (typeof icon === 'string') {
         if (isUrl(icon)) {
           return h('Icon', { props: { component: {
-            template: `<img src="` + icon + `" class="icon" />`
+            template: `<img src="${icon}" class="icon" />`
           } } })
         }
         if (icon.startsWith('icon-')) {
@@ -88,7 +88,7 @@ export default {
       const that = this
       const subItem = [h('span', { slot: 'title' }, [this.renderIcon(h, menu.meta.icon), h('span', [menu.meta.title])])]
       const itemArr = []
-      const pIndex_ = pIndex + '_' + index
+      const pIndex_ = `${pIndex}_${index}`
       const routePath = path.resolve(basePath, menu.path)
       if (!menu.hideChildrenInMenu) {
         menu.children.forEach((item, i) => {
