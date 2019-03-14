@@ -51,6 +51,15 @@ export const asyncRouterMap = [
             meta: {
               title: '监控台'
             }
+          },
+          {
+            path: 'profile',
+            name: 'profile',
+            component: () => import('@/views/users/Profile'),
+            hidden: true,
+            meta: {
+              title: '个人资料'
+            }
           }
         ]
       },
@@ -134,14 +143,6 @@ export const asyncRouterMap = [
             component: () => import('@/views/users/Detail'),
             meta: {
               title: '用户详情'
-            }
-          },
-          {
-            path: 'profile',
-            name: 'user.profile',
-            component: () => import('@/views/users/Profile'),
-            meta: {
-              title: '个人资料'
             }
           },
           {

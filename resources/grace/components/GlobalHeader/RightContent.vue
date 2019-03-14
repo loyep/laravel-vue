@@ -23,7 +23,7 @@
       <template v-slot:overlay>
         <a-menu class="menu">
           <a-menu-item>
-            <router-link :to="{ path: '/user/profile' }">
+            <router-link :to="{ name: 'profile' }">
               <a-icon type="user" />
               个人中心
             </router-link>
