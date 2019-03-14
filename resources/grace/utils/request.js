@@ -12,7 +12,7 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(
   request => {
-    const token = 'Bearer ' + getToken()
+    const token = `Bearer ${getToken()}`
     if (token) {
       request.headers.common['Authorization'] = token
     }
@@ -34,7 +34,8 @@ service.interceptors.response.use(
     switch (error.response.status) {
       case 401: {
         if (store.getters['auth/check'] === true) {
-          removeToken()
+          store.commit('auth/LOGOUT')
+          location.reload()
         }
         break
       }

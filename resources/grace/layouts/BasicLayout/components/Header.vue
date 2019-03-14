@@ -39,12 +39,6 @@ export default {
   },
   computed: {
     getHeadWidth () {
-      // const { isMobile, collapsed, setting } = this.props;
-    // const { fixedHeader, layout } = setting;
-    // if (isMobile || !fixedHeader || layout === 'topmenu') {
-      // return '100%';
-    // }
-    // return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)';
       if (this.isMobile || !this.fixedHeader || this.isTopMenu) {
         return '100%'
       }
@@ -59,24 +53,25 @@ export default {
   },
   methods: {
     handScroll () {
-      var that = this
-      const scrollTop = document.body.scrollTop + document.documentElement.scrollTop
-      const visible = this.visible
-      function numSlideFun () {
-        if (that.oldScrollTop > scrollTop) {
-          that.visible = true
-        } else if (scrollTop > 300 && visible) {
-          that.visible = false
-        } else if (scrollTop < 300 && !visible) {
-          that.visible = true
+      if (this.autoHideHeader) {
+        var that = this
+        const scrollTop = document.body.scrollTop + document.documentElement.scrollTop
+        const visible = this.visible
+        const numSlideFun = () => {
+          if (that.oldScrollTop > scrollTop) {
+            that.visible = true
+          } else if (scrollTop > 300 && visible) {
+            that.visible = false
+          } else if (scrollTop < 300 && !visible) {
+            that.visible = true
+          }
+          that.oldScrollTop = scrollTop
+          requestAnimationFrame(numSlideFun)
         }
-        that.oldScrollTop = scrollTop
-        requestAnimationFrame(numSlideFun)
+        numSlideFun()
       }
-      numSlideFun()
     },
     toggle () {
-      console.log('sss' + this.collapsed)
       this.collapse(!this.collapsed)
     },
     collapse (collapsed) {
@@ -93,6 +88,6 @@ export default {
   right: 0;
   z-index: 9;
   width: 100%;
-  transition: width 0.2s;
+  // transition: width 0.1s;
 }
 </style>

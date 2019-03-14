@@ -2,7 +2,7 @@
   <div
     class="container"
     :style="{
-      backgroundImage: 'url(' + require('@/assets/images/loginBg.svg') + ')'
+      backgroundImage: `'url(${require('@/assets/images/loginBg.svg')})'`
     }"
   >
     <div class="lang">
@@ -42,7 +42,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 import GlobalFooter from '@/components/GlobalFooter'
 import SelectLang from '@/components/SelectLang'
 

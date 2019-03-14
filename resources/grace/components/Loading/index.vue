@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 
 import { Spin } from 'ant-design-vue'
 import { mapGetters } from 'vuex'

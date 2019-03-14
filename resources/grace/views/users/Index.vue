@@ -51,17 +51,8 @@
         </a-form>
       </div>
       <div class="tableListOperator">
-        <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">
-          新建
-        </a-button>
-        <span>
-          <a-button>批量操作</a-button>
-          <!-- <Dropdown overlay={menu}>
-                    <Button>
-                      更多操作 <Icon type="down" />
-                    </Button>
-                  </Dropdown> -->
-        </span>
+        <a-button icon="plus" type="primary" @click="(e) => console.log(2222)" />
+        <a-button icon="delete" type="danger" @click="(e) => handleTableDelete(e)" />
       </div>
       <!-- <standard-table
         selectedRows="selectedRows"
@@ -77,18 +68,23 @@
         :loading="loading"
         :dataSource="data"
         :pagination="pagination"
+        :rowSelection="{selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
         @change="handleTableChange"
       >
         <template v-slot:avatar="avatar">
           <a-avatar :src="avatar" />
         </template>
         <template v-slot:action="item">
-          <a-button type="primary" icon="edit">
+          <a-list>
+            <a-list-item />
+          </a-list>
+          <a icon="edit">
             编辑
-          </a-button>
-          <a-button type="danger" icon="delete">
+          </a>
+          <a-divider type="vertical" />
+          <a icon="delete" @click="handleTableDelete(item)">
             删除
-          </a-button>
+          </a>
         </template>
       </a-table>
     </div>
@@ -96,8 +92,8 @@
 </template>
 
 <script >
-import { Card, Col, Row, Avatar } from 'ant-design-vue'
-import { index } from '@/api/user'
+import { Card, Col, Row, Avatar, Divider } from 'ant-design-vue'
+import { index, destroy } from '@/api/user'
 
 export default {
   name: 'Index',
@@ -105,13 +101,15 @@ export default {
     'AAvatar': Avatar,
     'ACard': Card,
     'ACol': Col,
-    'ARow': Row
+    'ARow': Row,
+    'ADivider': Divider
   },
   data () {
     return {
+      selectedRowKeys: [],
       columns: [
         {
-          title: 'id',
+          title: 'ID',
           dataIndex: 'id',
           sorter: true
         },
@@ -178,6 +176,20 @@ export default {
     },
     toggleForm () {
 
+    },
+    handleMultiDelete (e) {
+      e.preventDefault()
+      console.log(this.selectedRowKeys)
+    },
+    handleTableDelete (row) {
+      console.log(row)
+      destroy(row).then(res => {
+        console.log(res)
+      })
+    },
+    onSelectChange (selectedRowKeys) {
+      console.log('selectedRowKeys changed: ', selectedRowKeys)
+      this.selectedRowKeys = selectedRowKeys
     },
     handleTableChange (pagination, filters, sorter) {
       console.log(pagination)

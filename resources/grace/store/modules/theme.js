@@ -66,7 +66,7 @@ export const mutations = {
     state.contentWidth = type
   },
   TOGGLE_COLOR: (state, color) => {
-    console.log('%c ' + color, 'color:' + color + ';')
+    console.log(`'%c ${color}`, `color:${color};`)
     Storage.set(DEFAULT_COLOR, color)
     state.color = color
   },

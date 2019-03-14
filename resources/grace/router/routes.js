@@ -149,7 +149,8 @@ export const asyncRouterMap = [
             name: 'user.setting',
             component: () => import('@/views/users/Setting'),
             meta: {
-              title: '账号设置'
+              title: '账号设置',
+              hiddenHeader: true
             }
           }
         ]

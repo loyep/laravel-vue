@@ -56,8 +56,8 @@ export default {
       return this.contentWidth === 'Fixed'
     },
     maxWidth () {
-      const width = (this.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 165 - 40
-      return width + 'px'
+      const width = (this.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 120 - 40
+      return `${width}px`
     }
   },
   methods: {

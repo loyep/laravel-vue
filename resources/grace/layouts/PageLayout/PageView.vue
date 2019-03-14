@@ -2,6 +2,7 @@
   <div style="margin: -24px -24px 0;">
     <slot name="top" />
     <page-header
+      v-if="!hiddenHeader"
       :hideBread="hideBread"
       :logo="logo"
       :title="title"
@@ -55,9 +56,30 @@ export default {
       default: null
     }
   },
+  data () {
+    return {
+      hiddenHeader: false
+    }
+  },
   computed: {
     wide () {
       return this.contentWidth === 'Fixed'
+    }
+  },
+  watch: {
+    $route () {
+      if (this.$route.meta && this.$route.meta.hiddenHeader) {
+        this.hiddenHeader = true
+      } else {
+        this.hiddenHeader = false
+      }
+    }
+  },
+  mounted () {
+    if (this.$route.meta && this.$route.meta.hiddenHeader) {
+      this.hiddenHeader = true
+    } else {
+      this.hiddenHeader = false
     }
   }
 }

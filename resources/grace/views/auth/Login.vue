@@ -2,9 +2,7 @@
   <auth-layout>
     <div class="main">
       <div class="login">
-        <h3>
-          {{ $t('messages.login') }}
-        </h3>
+        <h3>登录</h3>
         <a-form :form="form" @submit="handleSubmit">
           <a-form-item>
             <a-input
@@ -17,7 +15,7 @@
                   validateTrigger: ['change', 'blur']
                 }
               ]"
-              :placeholder="$t('validation.attributes.username')"
+              placeholder="用户名或邮箱"
               size="large"
             >
               <template v-slot:prefix>
@@ -36,7 +34,7 @@
                   validateTrigger: ['change', 'blur']
                 }
               ]"
-              :placeholder="$t('validation.attributes.password')"
+              placeholder="密码"
               size="large"
               type="password"
             >

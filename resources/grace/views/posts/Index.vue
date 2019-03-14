@@ -77,6 +77,7 @@
         :loading="loading"
         :dataSource="data"
         :pagination="pagination"
+        :rowSelection="{selectedRowKeys: selectedRowKeys}"
         @change="handleTableChange"
       >
         <template slot="name" slot-scope="name">
@@ -100,6 +101,7 @@ export default {
   },
   data () {
     return {
+      selectedRowKeys: [],
       columns: [
         {
           title: 'id',
