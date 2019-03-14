@@ -54,7 +54,7 @@
           </div>
           <div class="total">
             <span>
-              ¥ 126,560
+              {{ total }}
             </span>
           </div>
         </div>
@@ -101,6 +101,10 @@ export default {
     },
     avatar: {
       type: String,
+      default: ''
+    },
+    total: {
+      type: [String, Number],
       default: ''
     },
     contentHeight: {

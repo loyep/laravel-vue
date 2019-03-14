@@ -79,8 +79,16 @@
         :pagination="pagination"
         @change="handleTableChange"
       >
-        <template slot="name" slot-scope="name">
-          {{ name.first }} {{ name.last }}
+        <template v-slot:avatar="avatar">
+          <a-avatar :src="avatar" />
+        </template>
+        <template v-slot:action="item">
+          <a-button type="primary" icon="edit">
+            编辑
+          </a-button>
+          <a-button type="danger" icon="delete">
+            删除
+          </a-button>
         </template>
       </a-table>
     </div>
@@ -88,17 +96,16 @@
 </template>
 
 <script >
-import { Card, Col, Row } from 'ant-design-vue'
-import StandardTable from '@/components/StandardTable'
+import { Card, Col, Row, Avatar } from 'ant-design-vue'
 import { index } from '@/api/user'
 
 export default {
   name: 'Index',
   components: {
+    'AAvatar': Avatar,
     'ACard': Card,
     'ACol': Col,
-    'ARow': Row,
-    StandardTable
+    'ARow': Row
   },
   data () {
     return {
@@ -107,6 +114,11 @@ export default {
           title: 'id',
           dataIndex: 'id',
           sorter: true
+        },
+        {
+          title: '头像',
+          dataIndex: 'avatar',
+          scopedSlots: { customRender: 'avatar' }
         },
         {
           title: '用户名',
@@ -128,6 +140,11 @@ export default {
           title: '创建时间',
           dataIndex: 'created_at',
           sorter: true
+        },
+        {
+          title: '操作',
+          key: 'action',
+          scopedSlots: { customRender: 'action' }
         }
       ],
       form: this.$form.createForm(this),

@@ -59,26 +59,21 @@ export default {
   },
   methods: {
     handScroll () {
-      const visible = this.visible
-      if (!this.autoHideHeader) {
-        return
-      }
+      var that = this
       const scrollTop = document.body.scrollTop + document.documentElement.scrollTop
-
-      if (!this.ticking) {
-        this.ticking = true
-        requestAnimationFrame(() => {
-          if (this.oldScrollTop > scrollTop) {
-            this.visible = true
-          } else if (scrollTop > 300 && visible) {
-            this.visible = false
-          } else if (scrollTop < 300 && !visible) {
-            this.visible = true
-          }
-          this.oldScrollTop = scrollTop
-          this.ticking = false
-        }, 1000)
+      const visible = this.visible
+      function numSlideFun () {
+        if (that.oldScrollTop > scrollTop) {
+          that.visible = true
+        } else if (scrollTop > 300 && visible) {
+          that.visible = false
+        } else if (scrollTop < 300 && !visible) {
+          that.visible = true
+        }
+        that.oldScrollTop = scrollTop
+        requestAnimationFrame(numSlideFun)
       }
+      numSlideFun()
     },
     toggle () {
       console.log('sss' + this.collapsed)

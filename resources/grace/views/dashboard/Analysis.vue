@@ -10,125 +10,129 @@
         style="margin-bottom: 24px;"
       >
         <chart-card
-          title="访问量"
+          title="用户量"
           :contentHeight="46"
           :bordered="false"
+          :total="user.total"
         >
           <template v-slot:action>
-            <a-tooltip title="Introduce">
+            <a-tooltip title="用户数">
               <a-icon type="info-circle-o" />
             </a-tooltip>
           </template>
 
+          <trend style="margin-right: 16;">
+            <!-- 新增 -->
+            <!-- <span class="trendText">{{ user.remark }}</span> -->
+          </trend>
+
           <template v-slot:footer>
             <field
-              label="Daily Sales"
-              value="￥ 12,423"
+              label="新增"
+              :value="user.increased"
             />
           </template>
-
-          <trend flag="up" style="margin-right: 16;">
-            新增
-            <span class="trendText">12%</span>
-          </trend>
         </chart-card>
       </a-col>
-
-      <a-col :xs="24"
-             :sm="12"
-             :md="12"
-             :lg="12"
-             :xl="6"
-             style="margin-bottom: 24px;"
+      <!-- <a-col
+        :xs="24"
+        :sm="12"
+        :md="12"
+        :lg="12"
+        :xl="6"
+        style="margin-bottom: 24px;"
       >
         <chart-card
-          title="访问量"
+          :title="item.title"
           :contentHeight="46"
           :bordered="false"
+          :total="item.total"
         >
           <template v-slot:action>
-            <a-tooltip title="Introduce">
+            <a-tooltip :title="item.title">
               <a-icon type="info-circle-o" />
             </a-tooltip>
           </template>
 
           <template v-slot:footer>
             <field
-              label="Daily Sales"
-              value="￥ 12,423"
+              label="新增"
+              :value="item.remark"
             />
           </template>
 
-          <trend flag="up" style="margin-right: 16;">
+          <trend :flag="item.trend" style="margin-right: 16;">
             新增
-            <span class="trendText">12%</span>
+            <span class="trendText">{{ item.remark }}</span>
           </trend>
         </chart-card>
       </a-col>
-
-      <a-col :xs="24"
-             :sm="12"
-             :md="12"
-             :lg="12"
-             :xl="6"
-             style="margin-bottom: 24px;"
+      <a-col
+        :xs="24"
+        :sm="12"
+        :md="12"
+        :lg="12"
+        :xl="6"
+        style="margin-bottom: 24px;"
       >
         <chart-card
-          title="访问量"
+          :title="item.title"
           :contentHeight="46"
           :bordered="false"
+          :total="item.total"
         >
           <template v-slot:action>
-            <a-tooltip title="Introduce">
+            <a-tooltip :title="item.title">
               <a-icon type="info-circle-o" />
             </a-tooltip>
           </template>
 
           <template v-slot:footer>
             <field
-              label="Daily Sales"
-              value="￥ 12,423"
+              label="新增"
+              :value="item.remark"
             />
           </template>
 
-          <trend flag="up" style="margin-right: 16;">
+          <trend :flag="item.trend" style="margin-right: 16;">
             新增
-            <span class="trendText">12%</span>
+            <span class="trendText">{{ item.remark }}</span>
           </trend>
         </chart-card>
       </a-col>
-
-      <a-col :xs="24"
-             :sm="12"
-             :md="12"
-             :lg="12"
-             :xl="6"
-             style="margin-bottom: 24px;"
+      <a-col
+        :xs="24"
+        :sm="12"
+        :md="12"
+        :lg="12"
+        :xl="6"
+        style="margin-bottom: 24px;"
       >
         <chart-card
-          title="访问量"
+          :title="item.title"
           :contentHeight="46"
           :bordered="false"
+          :total="item.total"
         >
           <template v-slot:action>
-            <a-tooltip title="Introduce">
+            <a-tooltip :title="item.title">
               <a-icon type="info-circle-o" />
             </a-tooltip>
           </template>
 
           <template v-slot:footer>
             <field
-              label="Daily Sales"
-              value="￥ 12,423"
+              label="新增"
+              :value="item.remark"
             />
           </template>
 
-          <trend flag="up" style="margin-right: 16;">
+          <trend :flag="item.trend" style="margin-right: 16;">
             新增
-            <span class="trendText">12%</span>
+            <span class="trendText">{{ item.remark }}</span>
           </trend>
         </chart-card>
-      </a-col>
+      </a-col> -->
     </a-row>
     <!-- <div class="twoColLayout">
       <a-row :gutter="24">
@@ -147,6 +151,8 @@ import GridContent from '@/layouts/PageLayout/GridContent'
 import ChartCard from '@/components/Charts/ChartCard'
 import Trend from '@/components/Trend'
 import Field from '@/components/Charts/Field'
+import { statistics } from '@/api/app'
+
 export default {
   name: 'Analysis',
   components: {
@@ -157,6 +163,43 @@ export default {
     GridContent,
     Trend,
     Field
+  },
+  data () {
+    return {
+      user: {
+        total: 0,
+        trend: ' ',
+        increased: '0'
+      }
+    }
+  },
+  mounted () {
+    this.getStatistics()
+  },
+  methods: {
+    getStatistics () {
+      statistics().then(res => {
+        console.log(res)
+        this.updateTotal(res.data.user.total)
+      })
+    },
+    updateTotal (total, key) {
+      var that = this
+      let numText = this.user.total
+      const step = Math.ceil(total / 60)
+      let golb
+      function numSlideFun () {
+        numText += step
+        if (numText >= total) {
+          numText = total
+          cancelAnimationFrame(golb)
+        } else {
+          golb = requestAnimationFrame(numSlideFun)
+        }
+        that.user.total = numText
+      }
+      numSlideFun() // 调用数字动画
+    }
   }
 }
 </script>
