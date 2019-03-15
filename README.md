@@ -1,6 +1,7 @@
 # Prism
 
 [![Build Status](https://travis-ci.org/loyep/prism.svg?branch=master)](https://travis-ci.org/loyep/prism)
+[![StyleCI](https://github.styleci.io/repos/175727773/shield?branch=master)](https://github.styleci.io/repos/175727773)
 [![Latest Stable Version](https://poser.pugx.org/loyep/prism/v/stable)](https://packagist.org/packages/loyep/prism)
 [![Total Downloads](https://poser.pugx.org/loyep/prism/downloads)](https://packagist.org/packages/loyep/prism)
 [![Latest Unstable Version](https://poser.pugx.org/loyep/prism/v/unstable)](https://packagist.org/packages/loyep/prism)

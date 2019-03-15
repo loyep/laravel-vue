@@ -12,6 +12,7 @@ addons:
   apt:
     packages:
       - sshpass
+
   ssh_known_hosts:
     - $DEPLOY_HOST
 
