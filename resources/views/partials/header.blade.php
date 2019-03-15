@@ -59,11 +59,11 @@
         <div class="navbar mobile-navbar flex-row flex-nowrap d-flex d-lg-none">
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{ url('/') }}"
-                   style="background-image: url('{{ asset('assets/admin/images/logo.png') }}');">
+                   style="background-image: url('{{ asset('static/admin/images/logo.png') }}');">
                     {{--{{ get_option('site_info')->name }}--}}
                 </a>
                 <a class="navbar-brand mobile-navbar-brand d-none d-lg-none" href="{{ url('/') }}"
-                   style="background-image: url('{{ asset('assets/admin/images/logo.png') }}');">
+                   style="background-image: url('{{ asset('static/admin/images/logo.png') }}');">
                     {{--{{ get_option('site_info')->name }}--}}
                 </a>
             </div>
