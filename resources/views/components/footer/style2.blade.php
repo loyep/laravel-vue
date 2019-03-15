@@ -1,16 +1,16 @@
-<footer class="nice-footer footer-style-2 {{ $black }}">
+<footer class="nice-footer footer-style-2 {{ config('prism.site.footer.black') ? 'footer-black': '' }}">
     <div class="container">
         <div class="footer-top">
             <div class="row">
                 <div class="col-12 col-lg-5 mb-5 mb-lg-0">
-                    @if (!empty($footer_info))
-                        <aside class="footer-widget footer-widget-text">
-                            <h3 class="widget-title">{{ $footer_info->title }}</h3>
-                            <div class="text-widget">
-                                <p>{{ $footer_info->text }}</p>
-                            </div>
-                        </aside>
-                    @endif
+                    {{--@if (!empty($footer_info))--}}
+                    <aside class="footer-widget footer-widget-text">
+                        <h3 class="widget-title">{{ config('prism.name') }}</h3>
+                        <div class="text-widget">
+                            <p>{{ config('prism.site.footer.description') }}</p>
+                        </div>
+                    </aside>
+                    {{--@endif--}}
                     <aside class="footer-widget footer-widget-social mt-3">
                         <ul>
                             <li data-toggle="tooltip" title="微信">
@@ -57,12 +57,7 @@
         <div class="footer-bottom">
             <div class="row">
                 <div class="col-12 col-md-12 footer-copyright">
-                    <p class="text-secondary">Copyright © {{ get_footer_year($site_info->year) }}
-                        <a href="{{ url('/') }}">{{ $site_info->name }}</a>.
-                        @if(!empty($footer_info->miitbeian))
-                            <a href="http://www.miitbeian.gov.cn/" target="_blank">{{ $footer_info->miitbeian }}</a>
-                        @endif
-                        Designed by <a href="https://github.com/loyep/prism" target="_blank">Prism</a>.</p>
+                    <p class="text-secondary">@include('components.footer.copyright')</p>
                 </div>
             </div>
         </div>

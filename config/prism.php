@@ -41,6 +41,14 @@ return [
 
     'path' => '/admin',
 
-    '',
+    'site' => [
+
+        'footer' => [
+            'description' => '美好源于热爱',
+            'miitbeian' => '',
+            'style' => 2,
+            'black' => true
+        ]
+    ]
 
 ];
