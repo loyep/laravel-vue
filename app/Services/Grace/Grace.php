@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Grace;
+namespace App\Services\Prism;
 
-class Grace
+class Prism
 {
     /**
-     * The Grace version.
+     * The Prism version.
      *
      * @var string
      */
@@ -16,7 +16,7 @@ class Grace
     protected static $metaTitle;
 
     /**
-     * Set Grace title.
+     * Set Prism title.
      *
      * @param $title
      */
@@ -26,7 +26,7 @@ class Grace
     }
 
     /**
-     * The Grace version.
+     * The Prism version.
      *
      * @return string
      */

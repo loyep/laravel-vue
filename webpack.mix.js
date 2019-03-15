@@ -13,12 +13,12 @@ const { env } = require('yargs').argv
  |
  */
 
-if (env && env.grace) {
-  return require(path.resolve(__dirname, 'webpack.grace.js'))
+if (env && env.admin) {
+  return require(path.resolve(__dirname, 'webpack.admin.js'))
 }
 
 mix
-  .setResourceRoot('/assets/app')
-  .setPublicPath('public/assets/app')
-  .js('resources/js/app.js', 'public/assets/app/js')
-  .less('resources/less/app.less', 'public/assets/app/css')
+  .setResourceRoot('/static/app')
+  .setPublicPath('public/static/app')
+  .js('resources/js/app.js', 'public/static/app/js')
+  .less('resources/less/app.less', 'public/static/app/css')

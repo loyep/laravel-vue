@@ -20,7 +20,7 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.vue'],
     alias: {
-      '@': path.resolve(__dirname, 'resources/grace')
+      '@': path.resolve(__dirname, 'resources/admin')
     },
     modules: [
       'node_modules'
@@ -39,16 +39,16 @@ const config = {
   },
   output: {
     chunkFilename: 'js/[name].[chunkhash].js',
-    publicPath: '/assets/admin/'
+    publicPath: '/static/admin/'
   }
 }
 
 mix
-  .setResourceRoot('/assets/admin')
-  .setPublicPath('public/assets/admin')
-  .js('resources/grace/main.js', 'public/assets/admin/admin.js')
-  .less('resources/grace/styles/index.less', 'public/assets/admin/admin.css')
-  .copyDirectory('resources/grace/themes', 'public/assets/admin/themes')
+  .setResourceRoot('/static/admin')
+  .setPublicPath('public/static/admin')
+  .js('resources/admin/main.js', 'public/static/admin/admin.js')
+  .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
+  .copyDirectory('resources/admin/themes', 'public/static/admin/themes')
   .version()
 
 if (mix.inProduction()) {

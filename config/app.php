@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Grace'),
+    'name' => env('APP_NAME', 'Prism'),
 
     /*
     |--------------------------------------------------------------------------
@@ -174,8 +174,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\GraceServiceProvider::class,
-        App\Providers\GraceAdminServiceProvider::class,
+        App\Providers\PrismServiceProvider::class,
+        App\Providers\PrismAdminServiceProvider::class,
     ],
 
     /*
@@ -228,11 +228,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         /**
-         * Grace Aliases...
+         * Prism Aliases...
          */
         'Helper' => App\Support\Helper::class,
-        'Grace' => App\Facades\Grace::class,
-        'Admin' => App\Facades\GraceAdmin::class,
+        'Prism' => App\Facades\Prism::class,
+        'Admin' => App\Facades\PrismAdmin::class,
 
     ],
 

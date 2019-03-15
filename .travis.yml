@@ -22,13 +22,13 @@ services:
   - mysql
 
 before_install:
-  - mysql -e 'CREATE DATABASE grace;'
+  - mysql -e 'CREATE DATABASE prism;'
 
 install:
   - cp .env.travis .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
-#  - php artisan grace:install
+#  - php artisan prism:install
   - php artisan vendor:publish --tag=storage
   - php artisan migrate
   - npm install

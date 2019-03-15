@@ -1,5 +1,5 @@
 {
-    "name": "loyep/grace",
+    "name": "loyep/prism",
     "type": "project",
     "description": "A awesome system powered by laravel and vuejs.",
     "keywords": ["blog", "laravel", "vue", "ant-design"],

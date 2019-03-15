@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Facades\GraceAdmin;
+use App\Facades\PrismAdmin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class GraceAdminServiceProvider extends ServiceProvider
+class PrismAdminServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -15,8 +15,8 @@ class GraceAdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('grace.app', function () {
-            return $this->app->make(\App\Services\Grace::class);
+        $this->app->singleton('prism.app', function () {
+            return $this->app->make(\App\Services\Prism::class);
         });
     }
 
@@ -39,9 +39,9 @@ class GraceAdminServiceProvider extends ServiceProvider
      */
     protected function loadRoutes()
     {
-        $prefix = GraceAdmin::path();
-        Route::get($prefix, '\App\Http\Controllers\Admin\GraceController@index')->name('dashboard');
-        Route::get($prefix . '/{any}', '\App\Http\Controllers\Admin\GraceController@index')->where('any', '.*');
+        $prefix = PrismAdmin::path();
+        Route::get($prefix, '\App\Http\Controllers\Admin\PrismController@index')->name('dashboard');
+        Route::get($prefix . '/{any}', '\App\Http\Controllers\Admin\PrismController@index')->where('any', '.*');
 
         $namespace = 'App\Http\Controllers';
         Route::prefix('api')

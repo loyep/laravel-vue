@@ -11,14 +11,14 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'grace:install';
+    protected $signature = 'prism:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Install all of the Grace resources';
+    protected $description = 'Install all of the Prism resources';
 
     /**
      * Create a new command instance.

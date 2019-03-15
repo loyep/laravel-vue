@@ -1,7 +1,7 @@
-# Grace
+# Prism
 
-[![Build Status](https://travis-ci.com/loyep/grace.svg?token=YhCvPgf5uspm18kxdLkJ&branch=master)](https://travis-ci.com/loyep/grace)
-[![License](https://poser.pugx.org/loyep/grace/license)](LICENSE)
+[![Build Status](https://travis-ci.com/loyep/prism.svg?token=YhCvPgf5uspm18kxdLkJ&branch=master)](https://travis-ci.com/loyep/prism)
+[![License](https://poser.pugx.org/loyep/prism/license)](LICENSE)
 
 > A Laravel-Vue Website.
 
@@ -15,9 +15,9 @@
 
 ## Installation
 
-- `composer create-project --prefer-dist loyep/grace`
+- `composer create-project --prefer-dist loyep/prism`
 - Edit `.env` and set your database connection details
-- (When installed via git clone or download, run `php artisan key:generate` and `php artisan grace:install`)
+- (When installed via git clone or download, run `php artisan key:generate` and `php artisan prism:install`)
 - `php artisan migrate --seed`
 - `npm install`
 
@@ -46,4 +46,4 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## License
 
-Grace is released under an MIT license. See [License](https://github.com/loyep/grace/blob/master/LICENSE) for more information.
+Prism is released under an MIT license. See [License](https://github.com/loyep/prism/blob/master/LICENSE) for more information.

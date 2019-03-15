@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Facades\GraceAdmin;
+use App\Facades\PrismAdmin;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class GraceController extends Controller
+class PrismController extends Controller
 {
     /**
      * @param Request $request
@@ -20,8 +20,8 @@ class GraceController extends Controller
     public function index(Request $request)
     {
         $config = [
-            'base' => GraceAdmin::path(),
-            'name' => GraceAdmin::title(),
+            'base' => PrismAdmin::path(),
+            'name' => PrismAdmin::title(),
             'description' => '美好源于热爱',
             'setting_drawer' => true
         ];

@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class GraceServiceProvider extends ServiceProvider
+class PrismServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -13,8 +13,8 @@ class GraceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('grace.admin', function () {
-            return $this->app->make(\App\Services\GraceAdmin::class);
+        $this->app->singleton('prism.admin', function () {
+            return $this->app->make(\App\Services\PrismAdmin::class);
         });
     }
 

@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-class GraceAdmin
+class PrismAdmin
 {
     /**
-     * The Grace version.
+     * The Prism version.
      *
      * @var string
      */
@@ -16,7 +16,7 @@ class GraceAdmin
     protected static $metaTitle;
 
     /**
-     * Set Grace title.
+     * Set Prism title.
      *
      * @param $title
      */
@@ -26,7 +26,7 @@ class GraceAdmin
     }
 
     /**
-     * The Grace version.
+     * The Prism version.
      *
      * @return string
      */

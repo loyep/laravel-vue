@@ -1,10 +1,10 @@
-# Grace
+# Prism
 
-[![Build Status](https://travis-ci.org/loyep/grace.svg?branch=master)](https://travis-ci.org/loyep/grace)
-[![Latest Stable Version](https://poser.pugx.org/loyep/grace/v/stable)](https://packagist.org/packages/loyep/grace)
-[![Total Downloads](https://poser.pugx.org/loyep/grace/downloads)](https://packagist.org/packages/loyep/grace)
-[![Latest Unstable Version](https://poser.pugx.org/loyep/grace/v/unstable)](https://packagist.org/packages/loyep/grace)
-[![License](https://poser.pugx.org/loyep/grace/license)](https://packagist.org/packages/loyep/grace)
+[![Build Status](https://travis-ci.org/loyep/prism.svg?branch=master)](https://travis-ci.org/loyep/prism)
+[![Latest Stable Version](https://poser.pugx.org/loyep/prism/v/stable)](https://packagist.org/packages/loyep/prism)
+[![Total Downloads](https://poser.pugx.org/loyep/prism/downloads)](https://packagist.org/packages/loyep/prism)
+[![Latest Unstable Version](https://poser.pugx.org/loyep/prism/v/unstable)](https://packagist.org/packages/loyep/prism)
+[![License](https://poser.pugx.org/loyep/prism/license)](https://packagist.org/packages/loyep/prism)
 
 > A Laravel-Vue Website.
 
@@ -20,9 +20,9 @@
 
 ## Installation
 
-- `composer create-project --prefer-dist loyep/grace blog`
+- `composer create-project --prefer-dist loyep/prism blog`
 - Edit `.env` and set your database connection details
-- (When installed via git clone or download, run `php artisan key:generate` and `php artisan grace:install`)
+- (When installed via git clone or download, run `php artisan key:generate` and `php artisan prism:install`)
 - `php artisan migrate --seed`
 - `npm install`
 
@@ -35,13 +35,13 @@
 // 前端
 npm run watch
 // 后台
-npm run watch:grace
+npm run watch:prism
 
 # dev
 // 前端
 npm run dev
 // 后台
-npm run dev:grace
+npm run dev:prism
 
 ```
 
@@ -52,7 +52,7 @@ npm run dev:grace
 npm run prod
 
 // 后台
-npm run prod:grace
+npm run prod:prism
 
 ```
 
@@ -63,4 +63,4 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## License
 
-Grace is released under an MIT license. See [License](LICENSE) for more information.
+Prism is released under an MIT license. See [License](LICENSE) for more information.

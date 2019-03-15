@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Facade;
  * @method static string name();
  * @method static string title();
  *
- * @see \App\Services\Grace\Factory
+ * @see \App\Services\Prism\Factory
  */
-class Grace extends Facade
+class Prism extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -19,6 +19,6 @@ class Grace extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'grace.app';
+        return 'prism.app';
     }
 }
