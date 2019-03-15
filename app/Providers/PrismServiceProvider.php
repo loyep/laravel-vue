@@ -27,5 +27,4 @@ class PrismServiceProvider extends ServiceProvider
     {
         //
     }
-
 }

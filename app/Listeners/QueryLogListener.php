@@ -26,9 +26,9 @@ class QueryLogListener
     public function handle(QueryExecuted $event)
     {
         if (App::environment() == 'local') {
-            $sql = str_replace("?", "'%s'", $event->sql);
+            $sql = str_replace('?', "'%s'", $event->sql);
             $log = vsprintf($sql, $event->bindings);
-            $log = '[' . date('Y-m-d H:i:s') . '] ' . $log . "\r\n";
+            $log = '['.date('Y-m-d H:i:s').'] '.$log."\r\n";
             Log::info($log);
         }
     }

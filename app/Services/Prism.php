@@ -36,7 +36,7 @@ class Prism
     }
 
     /**
-     * Title
+     * Title.
      *
      * @return string
      */
@@ -46,20 +46,21 @@ class Prism
         if (!empty($title)) {
             return $title;
         }
+
         return config('app.name');
     }
 
     /**
-     *
      * @param $group
+     *
      * @return array
      */
     public function menus($group)
     {
         return [[
-            'url' => '/',
+            'url'    => '/',
             'target' => '__selft',
-            'title' => '首页'
+            'title'  => '首页',
         ]];
     }
 }

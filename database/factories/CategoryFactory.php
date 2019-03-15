@@ -1,7 +1,7 @@
 <?php
 
-use Faker\Generator as Faker;
 use App\Models\Category;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------

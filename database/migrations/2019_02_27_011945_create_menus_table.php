@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateMenusTable extends Migration
 {
@@ -18,7 +18,7 @@ class CreateMenusTable extends Migration
             $table->string('title');
             $table->string('url')->nullable();
             $table->string('target')->default('_self');
-            $table->string('group')->nullable()->default( null);
+            $table->string('group')->nullable()->default(null);
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
             $table->unsignedTinyInteger('order');
             $table->string('route')->nullable();

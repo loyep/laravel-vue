@@ -29,7 +29,8 @@ class LinkController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Link $link
+     * @param \App\Models\Link $link
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Link $link)
@@ -44,7 +45,5 @@ class LinkController extends Controller
      */
     public function short(string $slug)
     {
-
     }
-
 }
