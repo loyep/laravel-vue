@@ -1,6 +1,7 @@
 * text=auto
-*.css linguist-language=php
-*.less linguist-language=vue
+*.less linguist-language=less
 *.js linguist-language=vue
+*.vue linguist-language=vue
 *.php linguist-language=php
+*.css export-ignore
 CHANGELOG.md export-ignore
