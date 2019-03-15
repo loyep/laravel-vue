@@ -23,7 +23,7 @@ class CreateTagsTable extends Migration
         });
 
         Schema::create('taggables', function (Blueprint $table) {
-            $table->unsignedInteger('tag_id');
+            $table->unsignedBigInteger('tag_id');
             $table->morphs('taggable');
 
             $table->foreign('tag_id')
