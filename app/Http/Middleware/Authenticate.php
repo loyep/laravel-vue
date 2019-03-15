@@ -2,14 +2,13 @@
 
 namespace App\Http\Middleware;
 
+use App\Exceptions\AuthenticationException as PrismAuthenticationException;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Auth\Middleware\Authenticate as BaseAuthenticationMiddleware;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
-class Authenticate extends Middleware
+class Authenticate extends BaseAuthenticationMiddleware
 {
     /**
      * @var string
@@ -30,14 +29,44 @@ class Authenticate extends Middleware
     {
         try {
             $this->authenticate($request, $guards);
-            $this->refreshToken($request);
-        } catch (AuthenticationException $authenticationException) {
-            throw new AuthenticationException(
-                '登录超时，请重新登录.', $guards, $this->redirectTo($request)
+            $this->refreshToken($request, $guards);
+        } catch (AuthenticationException $e) {
+            throw new PrismAuthenticationException(
+                '登录超时，请重新登录.', $e->guards()
             );
         }
-
         return $this->setAuthenticationHeader($next($request));
+    }
+
+    /**
+     * @param Request $request
+     * @param array $guards
+     * @return mixed
+     * @throws AuthenticationException
+     */
+    protected function refreshToken(Request $request, array $guards)
+    {
+        if ($this->guard()->parser()->setRequest($request)->hasToken()
+            && $this->guard()->getPayload()->get('exp') - time() < 3600) {
+            return tap($this->guard()->refresh(), function ($token) {
+                $this->token = $token;
+                $this->guard()->setToken($token);
+            });
+        }
+
+        throw new AuthenticationException(
+            'Unauthenticated.', $guards, $this->redirectTo($request)
+        );
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return $this->auth->guard('api');
     }
 
     /**
@@ -56,27 +85,6 @@ class Authenticate extends Middleware
     }
 
     /**
-     * @param Request $request
-     */
-    protected function refreshToken(Request $request)
-    {
-        try {
-            if (!$this->guard()->parser()->setRequest($request)->hasToken()) {
-                return;
-            }
-
-            if ($this->guard()->getPayload()->get('exp') - time() < 3600) {
-                $this->token = $this->guard()->refresh();
-                $this->guard()->setToken($this->token);
-            }
-        } catch (\Exception $exception) {
-            throw new UnauthorizedHttpException(
-                '登录超时，请重新登录.'
-            );
-        }
-    }
-
-    /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
      * @param  \Illuminate\Http\Request $request
@@ -87,16 +95,6 @@ class Authenticate extends Middleware
         if (!$request->expectsJson()) {
             return route('login');
         }
-    }
-
-    /**
-     * Get the guard to be used during authentication.
-     *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
-     */
-    protected function guard()
-    {
-        return $this->auth->guard('api');
     }
 
 }
