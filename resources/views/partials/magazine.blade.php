@@ -18,16 +18,15 @@ if ($magazine_layout === 'black') {
 }
 ?>
 
-@if ($magazine_layout === 'full')
-    <section class="nice-featured mt-0 mt-md-4 mt-lg-4-2">
-        <div class="container-fluid">
-            @include('components.magazine')
+<section class="nice-featured nice-featured-style02 mt-0 mt-md-4 mt-lg-4-2" style="{{ $bg_style }}">
+    <div class="container">
+        <div class="row no-gutters">
+            @include('components.magazine.left')
+            <div class="items items-right col-12 col-md-6 mt-2 mt-md-0">
+                <div class="row no-gutters flex-nowrap flex-md-wrap">
+                    @each('components.magazine.right', [1,2,3,4], 'post')
+                </div>
+            </div>
         </div>
-    </section>
-@else
-    <section class="nice-featured nice-featured-style02 mt-0 mt-md-4 mt-lg-4-2" style="{{ $bg_style }}">
-        <div class="container">
-            @include('components.magazine')
-        </div>
-    </section>
-@endif
+    </div>
+</section>

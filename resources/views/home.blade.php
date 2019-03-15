@@ -19,7 +19,8 @@ if (Route::current()->named('home')) {
 <body class="{{ implode(' ', $bodyClass) }}">
 @include('partials.header')
 @include('partials.magazine')
-@include('partials.tab-cats')
+@include('partials.pushes')
+{{--@include('partials.tab-cats')--}}
 {{--@include('partials.slides')--}}
 {{--@include('components.search')--}}
 @include('partials.footer')
