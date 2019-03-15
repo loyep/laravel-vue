@@ -6,7 +6,7 @@
   >
     <header-search class="action search" @search="onSearch" />
     <a-tooltip title="Help">
-      <a target="_blank" href="https://github.com/loyep/grace" rel="noopener noreferrer" class="action">
+      <a target="_blank" href="https://github.com/loyep/prism" rel="noopener noreferrer" class="action">
         <a-icon type="question-circle-o" />
       </a>
     </a-tooltip>

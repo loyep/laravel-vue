@@ -27,7 +27,7 @@
         {
           key: 'github',
           icon: 'github',
-          path: 'https://github.com/loyep/grace',
+          path: 'https://github.com/loyep/prism',
           blankTarget: true
         }
       ]"
@@ -36,7 +36,7 @@
         Copyright
         <a-icon type="copyright" />
         {{ year }} Power By
-        <a href="https://github.com/loyep/grace">Grace</a>
+        <a href="https://github.com/loyep/prism">Prism</a>
       </template>
     </global-footer>
   </div>

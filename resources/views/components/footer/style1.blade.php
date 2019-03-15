@@ -9,7 +9,7 @@
                     @if(!empty($footer_info->miitbeian))
                         <a href="http://www.miitbeian.gov.cn/" target="_blank">{{ $footer_info->miitbeian }}</a>
                     @endif
-                    Designed by <a href="https://github.com/loyep/grace" target="_blank">Grace</a>.
+                    Designed by <a href="https://github.com/loyep/prism" target="_blank">Prism</a>.
                 </p>
             </div>
         </div>

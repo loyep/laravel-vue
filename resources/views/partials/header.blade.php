@@ -32,7 +32,7 @@
         <div class="navbar navbar-expand-lg d-none d-lg-flex">
             <div class="navbar-header d-inline-block">
                 <a class="navbar-brand text-left" href="{{ url('/') }}">
-                    <span class="text-white">{{ config('grace.name') }}</span>
+                    <span class="text-white">{{ config('prism.name') }}</span>
                 </a>
             </div>
             <div class="collapse navbar-collapse">

@@ -11,7 +11,7 @@
       window.config = @json($config)
     </script>
     <style>
-      #grace-loader {
+      #prism-loader {
   background:#F9F9F9;
   position:fixed;
   width:100%;
@@ -21,7 +21,7 @@
   z-index:99;
 }
 
-#grace-loader span{
+#prism-loader span{
   width:60px;
   height:60px;
   position:absolute;
@@ -30,7 +30,7 @@
   margin-top: -60px;
   margin-left:-30px;
   margin-right:-30px;
-  
+
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
           transform: rotate(45deg);
@@ -38,30 +38,30 @@
           animation: gRotate 1.2s infinite linear;
 }
 
-#grace-loader i:nth-child(1) {
+#prism-loader i:nth-child(1) {
   left: 0;
   top: 0;
 }
-#grace-loader i:nth-child(2) {
+#prism-loader i:nth-child(2) {
   right: 0;
   top: 0;
   -webkit-animation-delay: 0.4s;
           animation-delay: 0.4s;
 }
-#grace-loader i:nth-child(3) {
+#prism-loader i:nth-child(3) {
   right: 0;
   bottom: 0;
   -webkit-animation-delay: 0.8s;
           animation-delay: 0.8s;
 }
-#grace-loader i:nth-child(4) {
+#prism-loader i:nth-child(4) {
   left: 0;
   bottom: 0;
   -webkit-animation-delay: 1.2s;
           animation-delay: 1.2s;
 }
 
-#grace-loader i {
+#prism-loader i {
   width: 30px;
   height: 30px;
   border-radius: 100%;
@@ -103,7 +103,7 @@
 }      </style>
 </head>
 <body>
-<div id="grace-loader"><span class="ant-spin-dot2 ant-spin-dot-spin2"><i></i><i></i><i></i><i></i></span>
+<div id="prism-loader"><span class="ant-spin-dot2 ant-spin-dot-spin2"><i></i><i></i><i></i><i></i></span>
 </div>
 <div id="app"></div>
 <script src="{{ mix('admin.js', 'assets/admin')}}" type="text/javascript"></script>

@@ -30,6 +30,6 @@ Route::prefix('/')->middleware(['auth:api'])->group(function () {
     Route::resource('comment', 'Admin\CommentController');
     Route::resource('category', 'Admin\CategoryController');
     Route::resource('setting', 'Admin\SettingController');
-    Route::get('statistics', 'Admin\GraceController@statistics');
+    Route::get('statistics', 'Admin\PrismController@statistics');
 });
 

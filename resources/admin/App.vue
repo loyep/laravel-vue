@@ -32,7 +32,7 @@ export default {
   },
   mounted () {
     setTimeout(() => {
-      document.getElementById('grace-loader').style.display = 'none'
+      document.getElementById('prism-loader').style.display = 'none'
     }, 200)
     deviceEnquire((screenType) => {
       this.$store.dispatch('theme/SetScreen', screenType)
