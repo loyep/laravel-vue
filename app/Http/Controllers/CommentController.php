@@ -29,12 +29,12 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comment $comment
+     * @param \App\Models\Comment $comment
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Comment $comment)
     {
         //
     }
-
 }

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Facade;
 class PrismAdmin extends Facade
 {
     /**
-     * Admin path
+     * Admin path.
      *
      * @return string
      */

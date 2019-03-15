@@ -10,6 +10,6 @@ class Setting extends Model
      * @var array
      */
     protected $fillable = [
-        'key', 'display_name', 'value', 'details', 'type', 'group'
+        'key', 'display_name', 'value', 'details', 'type', 'group',
     ];
 }

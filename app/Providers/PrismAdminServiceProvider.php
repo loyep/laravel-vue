@@ -41,7 +41,7 @@ class PrismAdminServiceProvider extends ServiceProvider
     {
         $prefix = PrismAdmin::path();
         Route::get($prefix, '\App\Http\Controllers\Admin\PrismController@index')->name('dashboard');
-        Route::get($prefix . '/{any}', '\App\Http\Controllers\Admin\PrismController@index')->where('any', '.*');
+        Route::get($prefix.'/{any}', '\App\Http\Controllers\Admin\PrismController@index')->where('any', '.*');
 
         $namespace = 'App\Http\Controllers';
         Route::prefix('api')

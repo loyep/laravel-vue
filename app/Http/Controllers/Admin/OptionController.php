@@ -30,7 +30,8 @@ class OptionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +42,8 @@ class OptionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Option $option
+     * @param \App\Models\Option $option
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Option $option)
@@ -52,7 +54,8 @@ class OptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Option $option
+     * @param \App\Models\Option $option
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Option $option)
@@ -63,8 +66,9 @@ class OptionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Models\Option $option
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Option       $option
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Option $option)
@@ -75,7 +79,8 @@ class OptionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Option $option
+     * @param \App\Models\Option $option
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Option $option)

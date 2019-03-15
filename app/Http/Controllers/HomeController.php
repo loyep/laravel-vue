@@ -27,14 +27,16 @@ class HomeController extends Controller
     }
 
     /**
-     * Search
+     * Search.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function search(Request $request)
     {
         $q = trim($request->get('q'));
+
         return view('search', compact('q'));
     }
 
@@ -43,7 +45,5 @@ class HomeController extends Controller
      */
     public function feed(Request $request)
     {
-
     }
-
 }

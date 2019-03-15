@@ -17,7 +17,6 @@ class User extends Model implements
     AuthorizableContract,
     CanResetPasswordContract,
     JWTSubject
-
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, Notifiable;
 
@@ -27,7 +26,7 @@ class User extends Model implements
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'display_name', 'password', 'avatar'
+        'name', 'email', 'display_name', 'password', 'avatar',
     ];
 
     /**

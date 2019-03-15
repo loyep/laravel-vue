@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 
 class Helper
 {
-
     /**
      * @var array
      */
@@ -25,11 +24,12 @@ class Helper
     protected static $options;
 
     /**
-     * Get Option
+     * Get Option.
      *
      * @param string $name
      * @param string $default
-     * @param null $group
+     * @param null   $group
+     *
      * @return mixed|string|null
      */
     public static function getOption($name = '', $default = '', $group = null)
@@ -50,14 +50,16 @@ class Helper
     }
 
     /**
-     * Get Menus
+     * Get Menus.
      *
      * @param string $name
+     *
      * @return array
      */
     public static function getMenus($name = 'home')
     {
         Log::info($name);
+
         return [];
     }
 
@@ -73,11 +75,13 @@ class Helper
         if (!isset($user)) {
             $user = new User();
         }
+
         return $user;
     }
 
     /**
      * @param $slug
+     *
      * @return mixed|null
      */
     public static function getWidget($slug)
@@ -93,8 +97,6 @@ class Helper
         if (!empty($slug) && !empty(self::$widgets[$slug]) && !empty(self::$widgets[$slug]['value'])) {
             return self::$widgets[$slug]['value'];
         }
-
-        return null;
     }
 
     public static function getAvatar($email)
@@ -110,6 +112,7 @@ class Helper
 
         $url = Arr::pull($config, 'url', 'https://secure.gravatar.com/avatar');
         $query = http_build_query($config, null, '&', PHP_QUERY_RFC3986);
-        return $url . '/' . $hash . ($query ? '?' . $query : '');
+
+        return $url.'/'.$hash.($query ? '?'.$query : '');
     }
 }

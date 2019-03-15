@@ -6,9 +6,9 @@ use Illuminate\View\View;
 
 class PrismComposer
 {
-
     /**
-     * @param  View $view
+     * @param View $view
+     *
      * @return void
      */
     public function compose(View $view)
@@ -17,7 +17,8 @@ class PrismComposer
     }
 
     /**
-     * @param  View $view
+     * @param View $view
+     *
      * @return void
      */
     public function footerCompose(View $view)
