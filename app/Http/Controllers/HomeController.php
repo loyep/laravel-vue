@@ -38,4 +38,12 @@ class HomeController extends Controller
         return view('search', compact('q'));
     }
 
+    /**
+     * @param Request $request
+     */
+    public function feed(Request $request)
+    {
+
+    }
+
 }

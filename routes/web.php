@@ -13,14 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Auth::routes();
-
-//Route::middleware([\App\Http\Middleware\CacheResponse::class])->group(function () {
+// 首页
 Route::get('/', 'HomeController@index')->name('home');
-//});
 
+// 搜索页
 Route::get('search', 'HomeController@search')->name('search');
 
-Route::get('t/{slug}', 'LinkController@shortLink')->name('short');
+// 短链接
+Route::get('t/{slug}', 'LinkController@short')->name('short');
 
-Route::get('user/{id}', 'UserController@show')->name('user.show');
+// 友情链接
+Route::get('links', 'LinkController@index')->name('short');
+
+// 作者页
+Route::get('author/{slug}', 'UserController@show')->name('user.show');
+
+// 文章页
+Route::get('post/{slug}', 'PostController@show')->name('post.show');
+
+// 分类页
+Route::get('category/{slug}', 'CategoryController@show')->name('category.show');
+
+// 标签页
+Route::get('tag/{slug}', 'TagController@show')->name('tag.show');
+
+// 热门标签
+Route::get('tags', 'TagController@index')->name('tag.index');
+

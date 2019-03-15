@@ -8,7 +8,7 @@
     <link rel="icon" href="{{ asset('favicon.png') }}" sizes="192x192"/>
     <link rel="apple-touch-icon-precomposed" href="{{ asset('favicon.png') }}"/>
     <title>@yield('page_title', Prism::title())</title>
-    <link href="{{ mix('css/app.css', 'assets/app') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css', 'static/app') }}" rel="stylesheet">
 </head>
 <body class="home black-top grid-hover grid-radius grid-border">
 <section class="nice-mobile-overlay" id="nice-mobile-overlay">
@@ -1393,6 +1393,6 @@
 <div class="scroll-to-top floating-button d-sm-none d-none d-sm-block"><a href="#"><i class="fal fa-angle-up"></i></a>
 </div>
 
-<script src="{{ mix('js/app.js', 'assets/app') }}" type="text/javascript"></script>
+<script src="{{ mix('js/app.js', 'static/app') }}" type="text/javascript"></script>
 </body>
 </html>

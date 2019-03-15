@@ -8,7 +8,7 @@
     <link rel="icon" href="{{ asset('favicon.png') }}" sizes="192x192" />
     <link rel="apple-touch-icon-precomposed" href="{{ asset('favicon.png') }}" />
     <title>@yield('page_title', Prism::title())</title>
-    <link href="{{ mix('css/app.css', 'assets/app') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css', 'static/app') }}" rel="stylesheet">
 </head>
 <body>
 <section class="nice-warp mt-30 mb-5">
@@ -28,6 +28,6 @@
         </div>
     </div>
 </section>
-<script src="{{ mix('js/app.js', 'assets/app') }}" type="text/javascript"></script>
+<script src="{{ mix('js/app.js', 'static/app') }}" type="text/javascript"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@ if (Route::current()->named('home')) {
     <link rel="icon" href="{{ asset('favicon.png') }}" sizes="192x192"/>
     <link rel="apple-touch-icon-precomposed" href="{{ asset('favicon.png') }}"/>
     <title>@yield('page_title', Prism::title())</title>
-    <link href="{{ mix('css/app.css', 'assets/app') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css', 'static/app') }}" rel="stylesheet">
 </head>
 <body class="{{ implode(' ', $bodyClass) }}">
 @include('partials.header')
@@ -23,6 +23,6 @@ if (Route::current()->named('home')) {
 {{--@include('partials.slides')--}}
 {{--@include('components.search')--}}
 {{--@include('partials.footer')--}}
-<script src="{{ mix('js/app.js', 'assets/app') }}" type="text/javascript"></script>
+<script src="{{ mix('js/app.js', 'static/app') }}" type="text/javascript"></script>
 </body>
 </html>

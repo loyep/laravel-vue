@@ -21,6 +21,16 @@ class CreateTagsTable extends Migration
             $table->string('description')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('taggables', function (Blueprint $table) {
+            $table->unsignedInteger('tag_id');
+            $table->morphs('taggable');
+
+            $table->foreign('tag_id')
+                ->references('id')->on('tags')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+        });
     }
 
     /**
@@ -30,6 +40,7 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('taggables');
         Schema::dropIfExists('tags');
     }
 }

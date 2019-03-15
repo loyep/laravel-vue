@@ -42,7 +42,7 @@ class LinkController extends Controller
      *
      * @param string $slug
      */
-    public function shortLink(string $slug)
+    public function short(string $slug)
     {
 
     }

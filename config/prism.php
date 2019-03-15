@@ -41,4 +41,7 @@ return [
 
     'path' => '/admin',
 
+
+    ''
+
 ];
