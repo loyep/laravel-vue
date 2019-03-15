@@ -39,4 +39,3 @@ Route::get('tag/{slug}', 'TagController@show')->name('tag.show');
 
 // 热门标签
 Route::get('tags', 'TagController@index')->name('tag.index');
-

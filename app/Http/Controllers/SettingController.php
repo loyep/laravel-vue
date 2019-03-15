@@ -29,7 +29,8 @@ class SettingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Setting $setting
+     * @param \App\Models\Setting $setting
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Setting $setting)

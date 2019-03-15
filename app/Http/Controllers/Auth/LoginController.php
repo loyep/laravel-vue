@@ -42,7 +42,8 @@ class LoginController extends Controller
     /**
      * Log the user out of the application.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)
@@ -50,7 +51,7 @@ class LoginController extends Controller
         $this->guard()->logout();
 
         return response([
-            'result' => true,
+            'result'  => true,
             'message' => '',
         ]);
     }
@@ -58,7 +59,8 @@ class LoginController extends Controller
     /**
      * Attempt to log the user into the application.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return bool
      */
     protected function attemptLogin(Request $request)
@@ -69,8 +71,10 @@ class LoginController extends Controller
 
         if ($token) {
             $this->guard()->setToken($token);
+
             return true;
         }
+
         return false;
     }
 
@@ -87,7 +91,8 @@ class LoginController extends Controller
     /**
      * Get the needed authorization credentials from the request.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     protected function credentials(Request $request)
@@ -96,8 +101,8 @@ class LoginController extends Controller
         $type = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
         return [
-            $type => $username,
-            'password' => $request->input('password')
+            $type      => $username,
+            'password' => $request->input('password'),
         ];
     }
 
@@ -114,7 +119,8 @@ class LoginController extends Controller
     /**
      * Send the response after the user was authenticated.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     protected function sendLoginResponse(Request $request)
@@ -129,32 +135,34 @@ class LoginController extends Controller
 
         return response()
             ->json([
-                'token' => $token,
+                'token'      => $token,
                 'expires_in' => $expiration,
-                'welcome' => $welcome
+                'welcome'    => $welcome,
             ])
             ->header('authorization', $token);
     }
 
     /**
      * @param $user
+     *
      * @return string
      */
     protected function generateWelcome($user)
     {
-        $welcome = Str::ucfirst($user->display_name) . ', ';
+        $welcome = Str::ucfirst($user->display_name).', ';
         $h = date('H');
         if ($h < 11) {
             $welcome .= '早上好!';
-        } else if ($h < 13) {
+        } elseif ($h < 13) {
             $welcome .= '中午好！';
-        } else if ($h < 17) {
+        } elseif ($h < 17) {
             $welcome .= '下午好！';
-        } else if ($h < 19) {
+        } elseif ($h < 19) {
             $welcome .= '傍晚好！';
         } else {
             $welcome .= '晚上好！';
         }
+
         return $welcome;
     }
 }

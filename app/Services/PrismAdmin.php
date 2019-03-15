@@ -36,7 +36,7 @@ class PrismAdmin
     }
 
     /**
-     * Title
+     * Title.
      *
      * @return string
      */
@@ -46,6 +46,7 @@ class PrismAdmin
         if ($title && !empty($title)) {
             return $title;
         }
+
         return config('admin.name');
     }
 }

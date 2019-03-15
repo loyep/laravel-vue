@@ -10,5 +10,4 @@ class Post extends Model
      * @var array
      */
     protected $hidden = ['content'];
-
 }

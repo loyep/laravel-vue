@@ -1,7 +1,7 @@
 <?php
 
-use Faker\Generator as Faker;
 use App\Models\Tag;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +16,9 @@ use App\Models\Tag;
 
 $factory->define(Tag::class, function (Faker $faker) {
     return [
-        'name' => $faker->word,
-        'slug' => $faker->unique()->name,
-        'image' => '',
+        'name'        => $faker->word,
+        'slug'        => $faker->unique()->name,
+        'image'       => '',
         'description' => $faker->sentence,
     ];
 });

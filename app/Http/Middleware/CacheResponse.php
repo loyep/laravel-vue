@@ -27,32 +27,32 @@ class CacheResponse
     protected $minutes;
 
     /**
-     * 缓存数据
+     * 缓存数据.
      *
      * @var array
      */
     protected $responseCache;
 
     /**
-     * 缓存命中状态，1为命中，0为未命中
+     * 缓存命中状态，1为命中，0为未命中.
      *
      * @var int
      */
     protected $cacheHit = 1;
 
     /**
-     * 缓存Key
+     * 缓存Key.
      *
      * @var string
      */
     protected $cacheKey;
 
     /**
-     * Handle an incoming request
+     * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
-     * @param int|null $minutes
+     * @param \Closure                 $next
+     * @param int|null                 $minutes
      *
      * @return mixed
      */
@@ -61,15 +61,16 @@ class CacheResponse
         $this->prepare($request, $next, $minutes);
         $this->responseCache();
         $response = response($this->responseCache['content']);
+
         return $this->addHeaders($response);
     }
 
     /**
-     * 预备
+     * 预备.
      *
      * @param $request
      * @param Closure $next
-     * @param null $minutes
+     * @param null    $minutes
      */
     protected function prepare($request, Closure $next, $minutes = null)
     {
@@ -81,7 +82,7 @@ class CacheResponse
     }
 
     /**
-     * 根据请求获取指定的Key
+     * 根据请求获取指定的Key.
      *
      * @return string
      */
@@ -105,7 +106,7 @@ class CacheResponse
     }
 
     /**
-     * 返回默认的缓存时间（分钟）
+     * 返回默认的缓存时间（分钟）.
      *
      * @return int
      */
@@ -115,7 +116,7 @@ class CacheResponse
     }
 
     /**
-     * 生成或读取Response-Cache
+     * 生成或读取Response-Cache.
      *
      * @return array
      */
@@ -124,16 +125,18 @@ class CacheResponse
         $this->responseCache = Cache::remember($this->cacheKey, $this->minutes, function () {
             $this->cacheMissed();
             $response = ($this->next)($this->request);
+
             return $this->resolveResponseCache($response) + [
                     'cacheExpireAt' => Carbon::now()->addMinutes($this->minutes)->format('Y-m-d H:i:s T'),
                 ];
         }
         );
+
         return $this->responseCache;
     }
 
     /**
-     * 缓存未命中
+     * 缓存未命中.
      *
      * @return mixed
      */
@@ -143,7 +146,7 @@ class CacheResponse
     }
 
     /**
-     * 确定需要缓存Response的数据
+     * 确定需要缓存Response的数据.
      *
      * @param \Illuminate\Http\Response $response
      *
@@ -157,9 +160,10 @@ class CacheResponse
     }
 
     /**
-     * 追加Headers
+     * 追加Headers.
      *
      * @param $response
+     *
      * @return mixed
      */
     protected function addHeaders($response)
@@ -172,22 +176,23 @@ class CacheResponse
         $response->headers->add(
             $this->getHeaders()
         );
+
         return $response;
     }
 
     /**
-     * 返回Headers
+     * 返回Headers.
      *
      * @return array
      */
     protected function getHeaders()
     {
         $headers = [
-            'X-Cache' => $this->cacheHit ? 'Hit from cache' : 'Missed',
-            'X-Cache-Key' => $this->cacheKey,
+            'X-Cache'         => $this->cacheHit ? 'Hit from cache' : 'Missed',
+            'X-Cache-Key'     => $this->cacheKey,
             'X-Cache-Expires' => $this->responseCache['cacheExpireAt'],
         ];
+
         return $headers;
     }
-
 }

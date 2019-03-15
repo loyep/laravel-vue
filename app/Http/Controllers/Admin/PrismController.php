@@ -15,21 +15,24 @@ class PrismController extends Controller
 {
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
         $config = [
-            'base' => PrismAdmin::path(),
-            'name' => PrismAdmin::title(),
-            'description' => '美好源于热爱',
-            'setting_drawer' => true
+            'base'           => PrismAdmin::path(),
+            'name'           => PrismAdmin::title(),
+            'description'    => '美好源于热爱',
+            'setting_drawer' => true,
         ];
+
         return view('admin.index', compact('config'));
     }
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function statistics(Request $request)
@@ -46,7 +49,7 @@ class PrismController extends Controller
             ->orderBy('date', 'DESC')
             ->get([
                 DB::raw('Date(created_at) as date'),
-                DB::raw('COUNT(*) as value')
+                DB::raw('COUNT(*) as value'),
             ])->first();
 
         $user_trend = 0;
@@ -57,8 +60,8 @@ class PrismController extends Controller
 
         $statistics = [
             'user' => [
-                'total' => $users_count,
-                'increased' => !empty($stats) ? $stats->value : 0
+                'total'     => $users_count,
+                'increased' => !empty($stats) ? $stats->value : 0,
             ],
 //            [
 //                'title' => '用户数',
@@ -85,6 +88,7 @@ class PrismController extends Controller
 //                'remark' => '0%'
 //            ]
         ];
+
         return response()->json($statistics);
     }
 }

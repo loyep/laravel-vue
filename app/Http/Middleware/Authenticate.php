@@ -18,12 +18,13 @@ class Authenticate extends BaseAuthenticationMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
-     * @param  string[] ...$guards
-     * @return mixed
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     * @param string[]                 ...$guards
      *
      * @throws \Illuminate\Auth\AuthenticationException
+     *
+     * @return mixed
      */
     public function handle($request, Closure $next, ...$guards)
     {
@@ -35,14 +36,17 @@ class Authenticate extends BaseAuthenticationMiddleware
                 '登录超时，请重新登录.', $e->guards()
             );
         }
+
         return $this->setAuthenticationHeader($next($request));
     }
 
     /**
      * @param Request $request
-     * @param array $guards
-     * @return mixed
+     * @param array   $guards
+     *
      * @throws AuthenticationException
+     *
+     * @return mixed
      */
     protected function refreshToken(Request $request, array $guards)
     {
@@ -72,7 +76,7 @@ class Authenticate extends BaseAuthenticationMiddleware
     /**
      * Set the authentication header.
      *
-     * @param  \Illuminate\Http\Response|\Illuminate\Http\JsonResponse $response
+     * @param \Illuminate\Http\Response|\Illuminate\Http\JsonResponse $response
      *
      * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
@@ -81,13 +85,15 @@ class Authenticate extends BaseAuthenticationMiddleware
         if (!empty($this->token)) {
             $response->headers->set('Authorization', $this->token);
         }
+
         return $response;
     }
 
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return string
      */
     protected function redirectTo($request)
@@ -96,5 +102,4 @@ class Authenticate extends BaseAuthenticationMiddleware
             return route('login');
         }
     }
-
 }
