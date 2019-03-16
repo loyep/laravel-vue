@@ -30,5 +30,5 @@ mix.scripts([
   'resources/js/vendor/owl.carousel.min.js',
   'resources/js/vendor/plugins.min.js',
   'resources/js/vendor/theia-sticky-sidebar.min.js',
-  'resources/js/vendor/nicetheme.js',
-], 'public/static/app/js/vendor.js')
+  'resources/js/app.js',
+], 'public/static/app/js/app.js')

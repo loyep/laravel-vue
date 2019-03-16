@@ -37,6 +37,6 @@ if (Route::current()->named('home')) {
 </section>
 @include('partials.footer')
 {{--<script src="{{ mix('js/app.js', 'static/app') }}" type="text/javascript"></script>--}}
-<script src="{{ mix('js/vendor.js', 'static/app') }}" type="text/javascript"></script>
+<script src="{{ mix('js/app.js', 'static/app') }}" type="text/javascript"></script>
 </body>
 </html>
