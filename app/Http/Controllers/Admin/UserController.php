@@ -101,6 +101,8 @@ class UserController extends Controller
      */
     public function profile(Request $request)
     {
-        return response()->json(Auth::user());
+        $user = Auth::user();
+        $user->role = ['admin'];
+        return response()->json($user);
     }
 }
