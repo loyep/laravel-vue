@@ -23,7 +23,20 @@ if (Route::current()->named('home')) {
 {{--@include('partials.tab-cats')--}}
 {{--@include('partials.slides')--}}
 {{--@include('components.search')--}}
+<section class="nice-warp nice-warp-single my-4 my-md-5">
+    <div class="container">
+
+        <main class="nice-main">
+            <div class="posts-list">
+                <div class="list-inner home-list row  row-10 row-xs-15 ">
+
+                </div>
+                <div class="m-3 m-md-4"></div>    </div>
+        </main>
+    </div>
+</section>
 @include('partials.footer')
-<script src="{{ mix('js/app.js', 'static/app') }}" type="text/javascript"></script>
+{{--<script src="{{ mix('js/app.js', 'static/app') }}" type="text/javascript"></script>--}}
+<script src="{{ mix('js/vendor.js', 'static/app') }}" type="text/javascript"></script>
 </body>
 </html>

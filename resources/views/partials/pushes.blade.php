@@ -7,6 +7,10 @@
     <div class="container">
         <div class="row row-10 row-xs-15 flex-nowrap flex-md-wrap">
             @each('components.index.push-card', [1,2,3,4], 'post')
+            @each('components.index.push-card', [1,2,3,4,5,6,7,8,9], 'post')
+            @each('components.index.push-card', [1,2,3,4,5,6,7,8,9], 'post')
+            @each('components.index.push-card', [1,2,3,4,5,6,7,8,9], 'post')
+            @each('components.index.push-card', [1,2,3,4,5,6,7,8,9], 'post')
         </div>
     </div>
 </section>
