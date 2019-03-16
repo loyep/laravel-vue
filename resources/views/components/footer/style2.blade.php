@@ -48,7 +48,7 @@
                     <aside class="footer-widget footer-widget-links">
                         <h3 class="widget-title">朋友</h3>
                         <ul>
-                            <li><a href="https://get233.com/" title="Hran 的博客" target="_blank">Hran</a></li>
+                            <li><a href="https://loyep.com/" title="Loyep 的博客" target="_blank">Loyep</a></li>
                         </ul>
                     </aside>
                 </div>
