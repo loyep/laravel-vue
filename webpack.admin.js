@@ -18,7 +18,7 @@ const config = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.vue'],
+    extensions: ['.js', '.jsx', '.json', '.vue', '.ts', '.tsx'],
     alias: {
       '@': path.resolve(__dirname, 'resources/admin')
     },
@@ -46,9 +46,9 @@ const config = {
 mix
   .setResourceRoot('/static/admin')
   .setPublicPath('public/static/admin')
-  .js('resources/admin/main.js', 'public/static/admin/admin.js')
-  .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
-  .copyDirectory('resources/admin/themes', 'public/static/admin/themes')
+  .ts('resources/admin/main.ts', 'public/static/admin/admin.js')
+  // .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
+  // .copyDirectory('resources/admin/themes', 'public/static/admin/themes')
   .version()
 
 if (mix.inProduction()) {
