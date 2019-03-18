@@ -23,58 +23,55 @@
   </div>
 </template>
 
-<script>
-import PageHeader from '@/components/PageHeader'
-import GridContent from './GridContent'
-import { themeMixin } from '@/mixins'
-export default {
-  name: 'PageView',
+<script lang="ts">
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { State, Mutation, namespace } from 'vuex-class';
+import PageHeader from '@/components/PageHeader/index.vue'
+import GridContent from './GridContent.vue'
+// import { themeMixin } from '@/mixins'
+
+const themeModule = namespace('theme');
+
+@Component({
   components: {
     PageHeader,
     GridContent
-  },
-  mixins: [ themeMixin ],
-  props: {
-    hideBread: {
-      type: Boolean,
-      default: false
-    },
-    extraContent: {
-      type: String,
-      default: null
-    },
-    title: {
-      type: String,
-      default: null
-    },
-    content: {
-      type: String,
-      default: null
-    },
-    logo: {
-      type: String,
-      default: null
+  }
+})
+export default class PageView extends Vue {
+  @Prop({ default: false})
+  hideBread: boolean
+
+  @Prop({ default: ''})
+  extraContent: string
+
+  @Prop({ default: ''})
+  title: string
+
+  @Prop({ default: ''})
+  content: string
+
+  @Prop({ default: ''})
+  logo: string
+
+  private hiddenHeader: boolean = false
+
+  @themeModule.Getter('contentWidth')
+  contentWidth: string
+
+  get wide() {
+    return this.contentWidth === 'Fixed'
+  }
+
+  @Watch('$route')
+  onRouteChanged(val: string, oldVal: string) { 
+    if (this.$route.meta && this.$route.meta.hiddenHeader) {
+      this.hiddenHeader = true
+    } else {
+      this.hiddenHeader = false
     }
-  },
-  data () {
-    return {
-      hiddenHeader: false
-    }
-  },
-  computed: {
-    wide () {
-      return this.contentWidth === 'Fixed'
-    }
-  },
-  watch: {
-    $route () {
-      if (this.$route.meta && this.$route.meta.hiddenHeader) {
-        this.hiddenHeader = true
-      } else {
-        this.hiddenHeader = false
-      }
-    }
-  },
+  }
+
   mounted () {
     if (this.$route.meta && this.$route.meta.hiddenHeader) {
       this.hiddenHeader = true

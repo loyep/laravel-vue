@@ -9,44 +9,35 @@
             display: value === item.key ? 'block' : 'none',
           }"
         >
-          <a-icon type="check" />
+          <a-icon type="check"/>
         </div>
       </div>
     </a-tooltip>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'BlockCheckbox',
-  components: {
-  },
-  props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    value: {
-      type: String,
-      default: ''
-    },
-    list: {
-      type: Array,
-      default: function () {
-        return []
-      }
-    }
-  },
-  methods: {
-    onChange (key) {
-      this.$emit('change', key)
-    }
+<script lang="ts">
+import { Component, Vue, Prop } from "vue-property-decorator";
+
+@Component
+export default class BlockCheckbox extends Vue {
+  @Prop({ default: "" })
+  title: string;
+
+  @Prop({ default: "" })
+  value: string;
+
+  @Prop({ default: [] })
+  list: Array<any>;
+
+  onChange(key) {
+    this.$emit("change", key);
   }
 }
 </script>
 
 <style lang="less" scoped>
-@import '~@/styles/variables.less';
+@import "~@/styles/variables.less";
 
 .blockChecbox {
   display: flex;

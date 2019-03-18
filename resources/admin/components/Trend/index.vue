@@ -1,41 +1,36 @@
 <template>
-  <div :class="{
+  <div
+    :class="{
          trendItem: true,
          trendItemGrey: !colorful,
          reverseColor: false
        }"
-       style="margin-right: 16px;"
+    style="margin-right: 16px;"
   >
     <span>
-      <slot />
+      <slot/>
     </span>
     <span v-if="flag" :class="flag">
-      <a-icon :type="`caret-${flag}`" />
+      <a-icon :type="`caret-${flag}`"/>
     </span>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Trend',
-  components: {
-  },
-  props: {
-    colorful: {
-      type: Boolean,
-      default: true
-    },
-    flag: {
-      type: String,
-      required: false,
-      default: null
-    }
-  }
+<script lang="ts">
+import { Component, Vue, Prop } from "vue-property-decorator";
+
+@Component
+export default class Trend extends Vue {
+  @Prop({ default: true })
+  colorful: boolean;
+
+  @Prop({ default: "" })
+  flag: string;
 }
 </script>
 
 <style lang="less" scoped>
-@import '~@/styles/variables.less';
+@import "~@/styles/variables.less";
 
 .trendItem {
   display: inline-block;
@@ -72,5 +67,4 @@ export default {
     color: @red-6;
   }
 }
-
 </style>

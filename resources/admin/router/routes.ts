@@ -1,5 +1,5 @@
 import BlankLayout from '@/layouts/BlankLayout/index.vue'
-import PageLayout from '@/layouts/PageLayout'
+import PageLayout from '@/layouts/PageLayout/index.vue'
 
 export const routes = [
   {
@@ -147,7 +147,7 @@ export const asyncRouterMap = [
           {
             path: 'setting',
             name: 'user.setting',
-            component: () => import('@/views/users/Setting/index.vue'),
+            component: () => import('@/views/users/Setting.vue'),
             meta: {
               title: '账号设置',
               hiddenHeader: true

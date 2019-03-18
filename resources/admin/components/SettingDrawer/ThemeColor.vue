@@ -19,8 +19,9 @@
   </div>
 </template>
 
-<script>
-const colorList = [
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
+const colorList: Array<object> = [
   {
     key: 'dust',
     color: '#F5222D'
@@ -55,35 +56,21 @@ const colorList = [
   }
 ]
 
-export default {
-  name: 'ThemeColor',
-  components: {
-  },
-  props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    colors: {
-      type: Array,
-      default: function () {
-        return colorList
-      }
-    },
-    value: {
-      type: String,
-      required: true
-    }
-  },
-  data () {
-    return {
-      // colorList
-    }
-  },
-  methods: {
-    onChange (color) {
-      this.$emit('change', color)
-    }
+@Component
+export default class ThemeColor extends Vue {
+  @Prop({ default : ''})
+  title:string
+
+  @Prop({ default : function () {
+    return colorList
+  }})
+  colors: Array<object>
+
+  @Prop()
+  value:string
+
+  onChange (color) {
+    this.$emit('change', color)
   }
 }
 </script>

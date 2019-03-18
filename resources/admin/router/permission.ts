@@ -1,4 +1,4 @@
-import Router, {Route} from 'vue-router';
+import Router, { Route } from 'vue-router';
 import router from './index'
 
 import store from '@/store'

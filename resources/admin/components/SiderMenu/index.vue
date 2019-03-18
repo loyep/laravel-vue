@@ -25,50 +25,43 @@
   />
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
+import { State, Mutation, namespace } from 'vuex-class';
 import { Drawer } from 'ant-design-vue'
-import SiderMenu from './SiderMenu'
-import { themeMixin } from '@/mixins'
+import SiderMenu from './SiderMenu.vue'
 
-export default {
-  name: 'SiderMenuWrapper',
+const themeModule = namespace('theme');
+
+@Component({
   components: {
     SiderMenu,
     'ADrawer': Drawer
-  },
-  mixins: [ themeMixin ],
-  props: {
-    mode: {
-      type: String,
-      required: false,
-      default: 'inline'
-    },
-    collapsible: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    collapsed: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    // collapse: {
-    //   type: Function,
-    //   required: true
-    // },
-    menus: {
-      type: Array,
-      required: true
-    }
-  },
-  methods: {
-    onSelect (obj) {
-      this.$emit('menuSelect', obj)
-    },
-    collapse (collapsed) {
-      this.$emit('collapse', collapsed)
-    }
+  }
+})
+export default class SiderMenuWrapper extends Vue {
+
+  @Prop({ default: 'inline' })
+  mode: string
+
+  @Prop({ default: false })
+  collapsible: boolean
+
+  @Prop({ default: false })
+  collapsed: boolean
+
+  @Prop()
+  menus: Array<any>
+
+  @themeModule.Getter('isMobile')
+  isMobile: boolean
+
+  onSelect (obj) {
+    this.$emit('menuSelect', obj)
+  }
+
+  collapse (collapsed) {
+    this.$emit('collapse', collapsed)
   }
 }
 </script>

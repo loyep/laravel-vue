@@ -1,6 +1,6 @@
 <template>
   <a-layout-sider
-    :class="{'sider': true, 'fixSidebar': fixSidebar, 'light': navTheme === 'light'}"
+    :class="{'sider': true, 'fixSidebar': fixSidebar, 'light': theme === 'light'}"
     :width="256"
     breakpoint="lg"
     :collapsed="collapsed"
@@ -15,47 +15,49 @@
     </div>
     <base-menu
       :collapsed="collapsed"
-      :menu="menus"
+      :menus="menus"
       mode="inline"
-      :theme="navTheme"
+      :theme="theme"
       :style="{ padding: '16px 0', width: '100%' }"
       @select="onSelect"
     />
   </a-layout-sider>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
+import { State, Mutation, namespace } from 'vuex-class';
 import { Layout } from 'ant-design-vue';
-import BaseMenu from './BaseMenu';
-import { themeMixin } from '@/mixins';
+import BaseMenu from './BaseMenu.vue';
 
-export default {
-  name: 'SiderMenu',
+const themeModule = namespace('theme');
+
+@Component({
   components: {
     BaseMenu,
-    ALayoutSider: Layout.Sider
-  },
-  mixins: [themeMixin],
-  props: {
-    collapsed: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    menus: {
-      type: Array,
-      required: true
-    }
-  },
-  data () {
-    return {
-      title: window.config.name
-    }
-  },
-  methods: {
-    onSelect (obj) {
-      this.$emit('onSelect', obj)
-    }
+    'ALayoutSider': Layout.Sider
+  }
+})
+export default class SiderMenu extends Vue {
+
+  @Prop({ default: false })
+  collapsed: boolean
+
+  @Prop()
+  menus: Array<any>
+
+  @themeModule.Getter('fixSidebar')
+  fixSidebar: boolean
+
+  @themeModule.Getter('theme')
+  theme: string
+
+  get title() {
+    return (<any>window).config.name
+  }
+  
+  onSelect (obj) {
+    this.$emit('onSelect', obj)
   }
 }
 </script>

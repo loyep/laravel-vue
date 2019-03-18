@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <router-link v-if="isMobile" class="logo" :to="{path:'/'}">
+    <router-link v-if="isMobile" class="logo" :to="{ path: '/' }">
       <img src="~@/assets/images/logo.svg" alt="logo" width="32">
     </router-link>
     <span class="trigger" @click="toggle">
@@ -10,34 +10,27 @@
   </div>
 </template>
 
-<script>
-import RightContent from './RightContent'
-import { themeMixin } from '@/mixins'
+<script lang="ts">
+import RightContent from './RightContent.vue'
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import { State, Mutation, namespace } from 'vuex-class';
 
-export default {
-  name: 'GlobalHeader',
+const themeModule = namespace('theme');
+
+@Component({
   components: {
     RightContent
-  },
-  mixins: [
-    themeMixin
-  ],
-  props: {
-    collapsed: {
-      type: Boolean,
-      required: false,
-      default: false
-    }
-    // collapse: {
-    //   type: Function,
-    //   required: true
-    // }
-  },
-  methods: {
-    toggle () {
-      this.$emit('collapse', !this.collapsed)
-      // this.collapse(!this.collapsed)
-    }
+  }
+})
+export default class GlobalHeader extends Vue {
+  @Prop()
+  collapsed: boolean = false
+
+  @themeModule.Getter('isMobile')
+  isMobile: boolean
+
+  toggle () {
+    this.$emit('collapse', !this.collapsed)
   }
 }
 </script>

@@ -2,12 +2,12 @@
   <router-view />
 </template>
 
-<script>
-export default {
-  name: 'BlankLayout'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component({
+  components: { }
+})
+export default class BlankLayout extends Vue {
 }
 </script>
-
-<style lang="less" scoped>
-
-</style>

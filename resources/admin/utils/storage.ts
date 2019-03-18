@@ -16,7 +16,7 @@ Vue.use(VueStorage, {
 export const setStore = (name: string, value: string|any, expire: number = 604800) => {
   const stringifyValue = JSON.stringify({
     value,
-    expire: expire !== null ? new Date().getTime() + expire : null,
+    expire: expire !== null ? new Date().getTime() + expire * 1000 : null,
   });
 
   localStorage.setItem(name, stringifyValue);

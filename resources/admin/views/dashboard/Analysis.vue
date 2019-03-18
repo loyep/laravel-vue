@@ -1,23 +1,11 @@
 <template>
   <grid-content>
     <a-row :gutter="24">
-      <a-col
-        :xs="24"
-        :sm="12"
-        :md="12"
-        :lg="12"
-        :xl="6"
-        style="margin-bottom: 24px;"
-      >
-        <chart-card
-          title="用户量"
-          :contentHeight="46"
-          :bordered="false"
-          :total="user.total"
-        >
+      <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" style="margin-bottom: 24px;">
+        <chart-card title="用户量" :contentHeight="46" :bordered="false" :total="user.total">
           <template v-slot:action>
             <a-tooltip title="用户数">
-              <a-icon type="info-circle-o" />
+              <a-icon type="info-circle-o"/>
             </a-tooltip>
           </template>
 
@@ -27,10 +15,7 @@
           </trend>
 
           <template v-slot:footer>
-            <field
-              label="新增"
-              :value="user.increased"
-            />
+            <field label="新增" :value="user.increased"/>
           </template>
         </chart-card>
       </a-col>
@@ -132,7 +117,7 @@
             <span class="trendText">{{ item.remark }}</span>
           </trend>
         </chart-card>
-      </a-col> -->
+      </a-col>-->
     </a-row>
     <!-- <div class="twoColLayout">
       <a-row :gutter="24">
@@ -141,72 +126,69 @@
         </a-col>
         <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24" />
       </a-row>
-    </div> -->
+    </div>-->
   </grid-content>
 </template>
 
-<script>
-import { Row, Col, Tooltip } from 'ant-design-vue'
-import GridContent from '@/layouts/PageLayout/GridContent'
-import ChartCard from '@/components/Charts/ChartCard'
-import Trend from '@/components/Trend'
-import Field from '@/components/Charts/Field'
-import { statistics } from '@/api/app'
+<script lang="ts">
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { Row, Col, Tooltip } from "ant-design-vue";
+import GridContent from "@/layouts/PageLayout/GridContent.vue";
+import ChartCard from "@/components/Charts/ChartCard.vue";
+import Trend from "@/components/Trend/index.vue";
+import Field from "@/components/Charts/Field.vue";
+import { statistics } from "@/api/app";
 
-export default {
-  name: 'Analysis',
+@Component({
   components: {
-    'ARow': Row,
-    'ACol': Col,
-    'ATooltip': Tooltip,
+    ARow: Row,
+    ACol: Col,
+    ATooltip: Tooltip,
     ChartCard,
     GridContent,
     Trend,
     Field
-  },
-  data () {
-    return {
-      user: {
-        total: 0,
-        trend: ' ',
-        increased: '0'
+  }
+})
+export default class Analysis extends Vue {
+  private user: any = {
+    total: 0,
+    trend: " ",
+    increased: "0"
+  };
+
+  mounted() {
+    this.getStatistics();
+  }
+  getStatistics() {
+    statistics().then(res => {
+      console.log(res);
+      this.updateTotal(res.data.user.total);
+    });
+  }
+  updateTotal(total) {
+    var that = this;
+    let numText = this.user.total;
+    const step = Math.ceil(total / 60);
+    let golb;
+    function numSlideFun() {
+      numText += step;
+      if (numText >= total) {
+        numText = total;
+        cancelAnimationFrame(golb);
+      } else {
+        golb = requestAnimationFrame(numSlideFun);
       }
+      that.user.total = numText;
     }
-  },
-  mounted () {
-    this.getStatistics()
-  },
-  methods: {
-    getStatistics () {
-      statistics().then(res => {
-        console.log(res)
-        this.updateTotal(res.data.user.total)
-      })
-    },
-    updateTotal (total, key) {
-      var that = this
-      let numText = this.user.total
-      const step = Math.ceil(total / 60)
-      let golb
-      function numSlideFun () {
-        numText += step
-        if (numText >= total) {
-          numText = total
-          cancelAnimationFrame(golb)
-        } else {
-          golb = requestAnimationFrame(numSlideFun)
-        }
-        that.user.total = numText
-      }
-      numSlideFun() // 调用数字动画
-    }
+    numSlideFun(); // 调用数字动画
   }
 }
 </script>
 
 <style lang="less" scoped>
-@import '~@/styles/variables.less';
-@import '~@/styles/components/utils.less';
+@import "~@/styles/variables.less";
+@import "~@/styles/components/utils.less";
 
 .iconGroup {
   i {
@@ -346,7 +328,7 @@ export default {
   .salesCard {
     height: calc(100% - 24px);
   }
-  div[class^='ant-col']:last-child {
+  div[class^="ant-col"]:last-child {
     position: absolute\9;
     right: 0\9;
     height: 100%\9;
@@ -403,5 +385,4 @@ export default {
     }
   }
 }
-
 </style>

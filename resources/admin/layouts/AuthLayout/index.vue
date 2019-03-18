@@ -44,7 +44,6 @@
 
 <script lang="ts">
 import GlobalFooter from '@/components/GlobalFooter/index.vue';
-// import SelectLang from '@/components/SelectLang/index.vue';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({

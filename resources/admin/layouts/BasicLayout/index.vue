@@ -27,17 +27,15 @@
 
 <script lang="ts">
 import { Layout } from 'ant-design-vue'
-import SiderMenu from '@/components/SiderMenu'
-import SettingDrawer from '@/components/SettingDrawer'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import { mapGetters } from 'vuex'
-import { themeMixin } from '@/mixins'
+import SiderMenu from '@/components/SiderMenu/index.vue'
+import SettingDrawer from '@/components/SettingDrawer/index.vue'
+import Footer from './components/Footer.vue'
+import Header from './components/Header.vue'
 import { Component, Vue } from 'vue-property-decorator';
 
-import { State, Mutation, namespace } from 'vuex-class';
+import { namespace } from 'vuex-class';
 
-const themeModule = namespace('app');
+const themeModule = namespace('theme');
 const permissionModule = namespace('permission');
 
 @Component({
@@ -49,7 +47,6 @@ const permissionModule = namespace('permission');
     'ALayout': Layout,
     'ALayoutContent': Layout.Content
   },
-  mixins: [ themeMixin ]
 })
 export default class BasicLayout extends Vue {
   
@@ -59,25 +56,22 @@ export default class BasicLayout extends Vue {
 
   private showSettingDrawer: boolean = false
 
-  @themeModule.State('sidebar')
-  private sidebar: boolean;
-
-  @themeModule.State('screen')
+  @themeModule.Getter('screen')
   private screen: string;
 
-  @themeModule.State('fixedHeader')
+  @themeModule.Getter('fixedHeader')
   private fixedHeader: boolean;
 
-  @themeModule.State('fixSidebar')
+  @themeModule.Getter('fixSidebar')
   private fixSidebar: boolean;
 
-  @themeModule.State('layoutMode')
-  private layoutMode: string;
+  @themeModule.Getter('isTopMenu')
+  private isTopMenu: boolean;
 
-  @themeModule.State('device')
-  private device: string;
+  @themeModule.Getter('isMobile')
+  private isMobile: boolean;
 
-  @permissionModule.State('addRouters')
+  @permissionModule.Getter('addRouters')
   private mainMenu: Array<any>;
 
   get contentStyle() {
@@ -88,7 +82,7 @@ export default class BasicLayout extends Vue {
   }
 
   get layoutStyle () {
-    if (this.fixSidebar && this.layoutMode !== 'topmenu' && this.device !== 'mobile' ) {
+    if (this.fixSidebar && !this.isTopMenu && !this.isMobile ) {
       return {
         paddingLeft: this.collapsed ? '80px' : '256px'
       }

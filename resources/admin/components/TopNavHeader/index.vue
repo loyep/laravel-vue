@@ -11,7 +11,7 @@
         <div :style="{ maxWidth }">
           <base-menu
             :collapsed="collapsed"
-            :menu="menus"
+            :menus="menus"
             mode="horizontal"
             :theme="navTheme"
             class="menu"
@@ -24,46 +24,49 @@
   </div>
 </template>
 
-<script >
-import BaseMenu from '@/components/SiderMenu/BaseMenu'
-import RightContent from '@/components/GlobalHeader/RightContent'
-import { themeMixin } from '@/mixins'
+<script lang="ts">
+import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
+import { State, Mutation, namespace } from 'vuex-class';
+import BaseMenu from '@/components/SiderMenu/BaseMenu.vue'
+import RightContent from '@/components/GlobalHeader/RightContent.vue'
 
-export default {
-  name: 'TopNavHeader',
+const themeModule = namespace('theme');
+
+@Component({
   components: {
-    BaseMenu, RightContent
-  },
-  mixins: [ themeMixin ],
-  props: {
-    collapsed: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    menus: {
-      type: Array,
-      required: true
-    }
-  },
-  data () {
-    return {
-      title: window.config.name
-    }
-  },
-  computed: {
-    wide () {
-      return this.contentWidth === 'Fixed'
-    },
-    maxWidth () {
-      const width = (this.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 120 - 40
-      return `${width}px`
-    }
-  },
-  methods: {
-    onSelect () {
-      console.log(222)
-    }
+    BaseMenu,
+    RightContent
+  }
+})
+export default class TopNavHeader extends Vue {
+
+  @Prop({ default: false })
+  collapsed: boolean
+
+  @Prop()
+  menus: Array<any>
+
+  @themeModule.Getter('contentWidth')
+  contentWidth: string
+
+  @themeModule.Getter('theme')
+  navTheme: string
+
+  get title() {
+    return (<any>window).config.name
+  }
+
+  get wide () {
+    return this.contentWidth === 'Fixed'
+  }
+  
+  get maxWidth () {
+    const width = (this.contentWidth === 'Fixed' ? 1200 : (<any>window).innerWidth) - 280 - 120 - 40
+    return `${width}px`
+  }
+
+  onSelect () {
+    console.log(222)
   }
 }
 </script>

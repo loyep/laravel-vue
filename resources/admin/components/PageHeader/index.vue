@@ -25,49 +25,41 @@
   </div>
 </template>
 
-<script >
+<script lang="ts">
+import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
+import { State, Mutation, namespace } from 'vuex-class';
 import { Skeleton } from 'ant-design-vue'
-import Breadcrumb from './Breadcrumb'
-import { themeMixin } from '@/mixins'
+import Breadcrumb from './Breadcrumb.vue'
 
-export default {
-  name: 'PageHeader',
+const themeModule = namespace('theme');
+
+@Component({
   components: {
     'ASkeleton': Skeleton,
     Breadcrumb
-  },
-  mixins: [ themeMixin ],
-  props: {
-    wide: {
-      type: Boolean,
-      required: true
-    },
-    hideBread: {
-      type: Boolean,
-      default: false
-    },
-    logo: {
-      type: String,
-      default: null
-    },
-    title: {
-      type: String,
-      default: null
-    },
-    content: {
-      type: String,
-      default: null
-    },
-    extraContent: {
-      type: String,
-      default: null
-    }
-  },
-  data () {
-    return {
-      loading: false
-    }
   }
+})
+export default class PageHeader extends Vue {
+
+  @Prop()
+  wide: boolean
+
+  @Prop({ default: false })
+  hideBread: boolean
+
+  @Prop({ default: '' })
+  logo: string
+
+  @Prop({ default: '' })
+  title: string
+
+  @Prop({ default: '' })
+  content: string
+
+  @Prop({ default: '' })
+  extraContent: string
+
+  private loading: boolean = false
 }
 </script>
 

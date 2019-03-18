@@ -42,22 +42,24 @@
         </a-menu>
       </template>
     </a-dropdown>
-    <select-lang class="action" />
+    <!-- <select-lang class="action" /> -->
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Avatar, Menu, Dropdown } from 'ant-design-vue'
-import SelectLang from '@/components/SelectLang'
-import HeaderSearch from '@/components/HeaderSearch'
-import NoticeIcon from '@/components/NoticeIcon'
-import { themeMixin } from '@/mixins'
-import { mapGetters } from 'vuex'
+import HeaderSearch from '@/components/HeaderSearch/index.vue'
+import NoticeIcon from '@/components/NoticeIcon/index.vue'
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import { State, Mutation, namespace } from 'vuex-class';
+import theme from '@/store/modules/theme';
 
-export default {
-  name: 'RightContent',
+const authModule = namespace('auth');
+const themeModule = namespace('theme');
+
+@Component({
   components: {
-    SelectLang,
+    // SelectLang,
     NoticeIcon,
     HeaderSearch,
     'AAvatar': Avatar,
@@ -65,38 +67,46 @@ export default {
     'AMenu': Menu,
     'AMenuDivider': Menu.Divider,
     'AMenuItem': Menu.Item
-  },
-  mixins: [ themeMixin ],
-  computed: {
-    ...mapGetters('auth', [
-      'user'
-    ]),
-    darkClass () {
-      if (this.isMobile || !this.isTopMenu) {
-        return false
-      }
-      return this.navTheme === 'dark'
+  }
+})
+export default class RightContent extends Vue {
+  @authModule.Getter('user')
+  user: any
+
+  @themeModule.Getter('isMobile')
+  isMobile: boolean
+
+  @themeModule.Getter('isTopMenu')
+  isTopMenu: boolean
+
+  @themeModule.Getter('theme')
+  theme: string
+
+  get darkClass () {
+    if (this.isMobile || !this.isTopMenu) {
+      return false
     }
-  },
-  methods: {
-    logout () {
-      const that = this
-      this.$confirm({
-        title: '提示',
-        content: '真的要注销登录吗 ?',
-        onOk () {
-          return that.$store.dispatch('auth/Logout').then(() => {
-            location.reload()
-          }).catch(() => {
-            console.log('Oops errors!')
-          })
-        },
-        onCancel () {}
-      })
-    },
-    onSearch (value) {
-      console.log(value)
-    }
+    return this.theme === 'dark'
+  }
+
+  logout () {
+    const that = this
+    this.$confirm({
+      title: '提示',
+      content: '真的要注销登录吗 ?',
+      onOk () {
+        return that.$store.dispatch('auth/Logout').then(() => {
+          location.reload()
+        }).catch(() => {
+          console.log('Oops errors!')
+        })
+      },
+      onCancel () {}
+    })
+  }
+  
+  onSearch (value) {
+    console.log(value)
   }
 }
 </script>

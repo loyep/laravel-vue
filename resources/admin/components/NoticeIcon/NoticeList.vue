@@ -7,35 +7,21 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'NoticeList',
-  components: {
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
-  },
-  props: {
-    data: {
-      type: Array,
-      required: false,
-      default: function () {
-        return []
-      }
-    },
-    emptyImage: {
-      type: String,
-      required: false,
-      default: function () {
-        return ''
-      }
-    },
-    emptyText: {
-      type: String,
-      required: false,
-      default: function () {
-        return 'Not Found'
-      }
-    }
-  }
+@Component
+export default class NoticeList extends Vue {
+  @Prop({ default: function() {
+    return []
+  }})
+  data: Array<any>
+
+  @Prop({ default: '' })
+  emptyImage: string
+
+  @Prop({ default: '' })
+  emptyText: string
 }
 </script>
 

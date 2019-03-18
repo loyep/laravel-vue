@@ -1,6 +1,6 @@
 import config from '@/config/index'
 import Storage from '@/utils/storage'
-import { SCREEN_TYPE } from '@/utils/device'
+import { SCREEN_TYPE, DEVICE_TYPE } from '@/utils/device'
 import { Module, MutationTree, ActionTree, GetterTree, ActionContext } from 'vuex';
 import { RootState } from '@/store/index';
 
@@ -177,7 +177,12 @@ export const getters: GetterTree<IThemeState, RootState> = {
   autoHideHeader: state => state.autoHideHeader,
   color: state => state.color,
   weak: state => state.weak,
-  screen: state => state.screen
+  screen: state => state.screen,
+  isTopMenu: state => state.layout === 'topmenu',
+  isSideMenu: state => state.layout === 'sidemenu',
+  isMobile: state => state.device === DEVICE_TYPE.MOBILE,
+  isDesktop: state => state.device === DEVICE_TYPE.DESKTOP,
+  isTablet: state => state.device === DEVICE_TYPE.TABLET
 }
 
 const theme: Module<IThemeState, RootState> = {

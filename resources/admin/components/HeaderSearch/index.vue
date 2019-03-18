@@ -22,66 +22,61 @@
   </span>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import { State, Mutation, namespace } from 'vuex-class';
 import { AutoComplete } from 'ant-design-vue'
-export default {
-  name: 'HeaderSearch',
+
+const authModule = namespace('auth');
+const themeModule = namespace('theme');
+
+@Component({
   components: {
     'AAutoComplete': AutoComplete
-  },
-  props: {
-    placeholder: {
-      type: String,
-      default: function () {
-        return '站内搜索'
-      }
-    }
-    // onSearch: {
-    //   type: Function,
-    //   required: false,
-    //   default: function () {
-    //     return () => { console.log(this.value) }
-    //   }
-    // }
-  },
-  data () {
-    return {
-      searchMode: false,
-      dataSource: [],
-      value: ''
-    }
-  },
-  methods: {
-    onSearch () {
-      this.$emit('search', this.value)
-    },
-    onKeyDown (e) {
+  }
+})
+export default class HeaderSearch extends Vue {
+  @Prop({ default: '站内搜索' })
+  placeholder: string
 
-    },
-    onSearchChange (value) {
-      this.value = value
-      if (this.onChange) {
-        this.onChange()
-      }
-    },
-    enterSearchMode () {
-      this.searchMode = true
-      // const input = this.$refs.input
-      // setTimeout(() => input.focus(), 300)
-      // this.setState({ searchMode: true }, () => {
-      //   const { searchMode } = this.state
-      //   if (searchMode) {
-      //     this.input.focus()
-      //   }
-      // })
-      setTimeout(() => {
-        this.$refs.input.focus()
-      }, 300)
-    },
-    leaveSearchMode () {
-      this.value = ''
-      this.searchMode = false
+  @Prop({ default: function() {
+    return (value) => { console.log(value) }
+  }})
+  onChange: Function
+
+  private searchMode: boolean =  false
+  private dataSource: Array<any> = []
+  private value: string = ''
+
+  onSearch () {
+    this.$emit('search', this.value)
+  }
+  onKeyDown (e) {
+
+  }
+  onSearchChange (value) {
+    this.value = value
+    if (this.onChange) {
+      this.onChange(value)
     }
+  }
+  enterSearchMode () {
+    this.searchMode = true
+    // const input = this.$refs.input
+    // setTimeout(() => input.focus(), 300)
+    // this.setState({ searchMode: true }, () => {
+    //   const { searchMode } = this.state
+    //   if (searchMode) {
+    //     this.input.focus()
+    //   }
+    // })
+    setTimeout(() => {
+      // this.$refs.input.focus()
+    }, 300)
+  }
+  leaveSearchMode () {
+    this.value = ''
+    this.searchMode = false
   }
 }
 </script>

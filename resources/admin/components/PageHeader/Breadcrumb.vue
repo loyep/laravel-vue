@@ -8,41 +8,43 @@
   </a-breadcrumb>
 </template>
 
-<script>
-import { Breadcrumb } from 'ant-design-vue'
+<script lang="ts">
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Breadcrumb as ABreadcrumb } from 'ant-design-vue'
 import path from 'path'
-export default {
-  name: 'Breadcrumb',
-  components: {
-    'ABreadcrumb': Breadcrumb,
-    'ABreadcrumbItem': Breadcrumb.Item
-  },
-  data () {
-    return {
-      name: '',
-      breadList: []
-    }
-  },
-  watch: {
-    $route () {
-      this.getBreadcrumb()
-    }
-  },
-  created () {
-    this.getBreadcrumb()
-  },
-  methods: {
-    getBreadcrumb () {
-      const breadList = {
-        '/': { name: 'dashboard', path: '/', meta: { title: '仪表盘' } }
-      }
-      this.$route.matched.concat().filter(item => item.path).forEach((item) => {
-        breadList[path.resolve(item.path)] = item
-      })
 
-      this.name = this.$route.name
-      this.breadList = breadList
+@Component({
+  components: {
+    'ABreadcrumb': ABreadcrumb,
+    'ABreadcrumbItem': ABreadcrumb.Item
+  }
+})
+export default class Breadcrumb extends Vue {
+  
+  private name?: string = ''
+  
+  private breadList: object = {}
+
+
+  @Watch('$route')
+  onRouteChanged(val: any, oldVal: any) {
+    this.getBreadcrumb()
+  }
+
+  getBreadcrumb () {
+    const breadList = {
+      '/': { name: 'dashboard', path: '/', meta: { title: '仪表盘' } }
     }
+    this.$route.matched.concat().filter(item => item.path).forEach((item) => {
+      breadList[path.resolve(item.path)] = item
+    })
+
+    this.name = this.$route.name
+    this.breadList = breadList
+  }
+
+  created() {
+    this.getBreadcrumb()
   }
 }
 </script>

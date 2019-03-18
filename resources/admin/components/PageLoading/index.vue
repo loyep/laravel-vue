@@ -4,8 +4,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'PageLoading'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component
+export default class PageLoading extends Vue {
 }
 </script>

@@ -4,17 +4,22 @@
   </div>
 </template>
 
-<script>
-import { themeMixin } from '@/mixins'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { State, Mutation, namespace } from 'vuex-class';
 
-export default {
-  name: 'GridContent',
-  mixins: [ themeMixin ],
-  computed: {
-    wide () {
-      return this.contentWidth === 'Fixed'
-    }
+const themeModule = namespace('theme');
+
+@Component
+export default class GridContent extends Vue {
+
+  @themeModule.Getter('contentWidth')
+  private contentWidth: string;
+
+  get wide() {
+    return this.contentWidth === 'Fixed'
   }
+
 }
 </script>
 
