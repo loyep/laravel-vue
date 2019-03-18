@@ -103,6 +103,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $user->role = ['admin'];
+
         return response()->json($user);
     }
 }

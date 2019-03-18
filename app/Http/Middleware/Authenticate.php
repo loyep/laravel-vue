@@ -19,8 +19,8 @@ class Authenticate extends BaseAuthenticationMiddleware
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
-     * @param string[] ...$guards
+     * @param \Closure                 $next
+     * @param string[]                 ...$guards
      *
      * @throws \Illuminate\Auth\AuthenticationException
      *
@@ -42,15 +42,17 @@ class Authenticate extends BaseAuthenticationMiddleware
 
     /**
      * @param Request $request
-     * @param array $guards
-     * @return mixed|null
+     * @param array   $guards
+     *
      * @throws AuthenticationException
+     *
+     * @return mixed|null
      */
     protected function refreshToken(Request $request, array $guards)
     {
         if ($this->guard()->parser()->setRequest($request)->hasToken()) {
             if ($this->guard()->getPayload()->get('exp') - time() >= config('admin.token_exp')) {
-                return null;
+                return;
             } else {
                 return tap($this->guard()->refresh(), function ($token) {
                     $this->token = $token;
