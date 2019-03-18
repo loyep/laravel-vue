@@ -3,7 +3,6 @@
 # NPM
 /node_modules
 npm-debug.log
-/package-lock.json
 
 # Laravel 4 specific
 bootstrap/compiled.php

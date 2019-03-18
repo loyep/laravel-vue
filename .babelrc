@@ -1,6 +1,6 @@
 {
   "plugins": [
-    "syntax-dynamic-import",
+    "@babel/syntax-dynamic-import",
     "transform-vue-jsx",
     [
       "import",

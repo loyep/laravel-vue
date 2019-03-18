@@ -10,7 +10,6 @@
 <script lang="ts">
 import zhCN from "ant-design-vue/lib/locale-provider/zh_CN";
 import { LocaleProvider } from "ant-design-vue";
-// import Loading from '@/components/Loading'
 import { deviceEnquire } from "@/utils/device";
 import { Component, Vue } from "vue-property-decorator";
 
