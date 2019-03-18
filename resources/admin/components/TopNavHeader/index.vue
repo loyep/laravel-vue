@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ head: true, light: navTheme === 'light' }">
+  <div :class="{ head: true, light: theme === 'light' }">
     <div :class="[ 'main', { wide: wide }]">
       <div class="left">
         <div id="logo" class="logo">
@@ -13,7 +13,7 @@
             :collapsed="collapsed"
             :menus="menus"
             mode="horizontal"
-            :theme="navTheme"
+            :theme="theme"
             class="menu"
             @select="onSelect"
           />
@@ -50,7 +50,7 @@ export default class TopNavHeader extends Vue {
   contentWidth: string
 
   @themeModule.Getter('theme')
-  navTheme: string
+  theme: string
 
   get title() {
     return (<any>window).config.name

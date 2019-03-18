@@ -26,8 +26,8 @@
                 title: '亮色菜单风格',
               },
             ]"
-            :value="navTheme"
-            @change="value => changeSetting('navTheme', value)"
+            :value="theme"
+            @change="value => changeSetting('theme', value)"
           />
         </div>
 
@@ -177,7 +177,7 @@ export default class SettingDrawer extends Vue {
   private collapse: boolean = false;
 
   @themeModule.Getter("theme")
-  navTheme: string;
+  theme: string;
 
   @themeModule.Getter("layout")
   layoutMode: string;
@@ -208,7 +208,7 @@ export default class SettingDrawer extends Vue {
     const config = {
       layoutMode: "ToggleLayoutMode",
       fixedHeader: "ToggleFixedHeader",
-      navTheme: "ToggleTheme",
+      theme: "ToggleTheme",
       primaryColor: "ToggleColor",
       contentWidth: "ToggleContentWidth",
       autoHideHeader: "ToggleFixedHeaderHidden",

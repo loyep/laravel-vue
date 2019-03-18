@@ -179,7 +179,6 @@ export default {
   methods: {
     getStatistics () {
       statistics().then(res => {
-        console.log(res)
         this.updateTotal(res.data.user.total)
       })
     },

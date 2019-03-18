@@ -141,7 +141,6 @@ export default {
   created () {
     this.loading = true
     index().then(res => {
-      console.log(res)
       this.data = res.data.data
 
       const paginationProps = {
@@ -170,7 +169,6 @@ export default {
       }
       this.loading = true
       index(query).then(res => {
-        console.log(res)
         this.data = res.data.data
 
         const paginationProps = {

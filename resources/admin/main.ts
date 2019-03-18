@@ -3,8 +3,7 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store'
 
-// import i18n from './locales'
-// import importDirective from '@/directive'
+import importDirective from '@/directives/index'
 
 import bootstrap from './bootstrap'
 
@@ -13,13 +12,13 @@ Vue.config.productionTip = false
 /**
  * 注册指令
  */
-// importDirective(Vue)
+importDirective()
 
 new Vue({
   router,
-//   i18n,
+  //   i18n,
   store,
-  created () {
+  created() {
     bootstrap()
   },
   render: h => h(App)

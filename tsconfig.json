@@ -24,7 +24,7 @@
     },
     "include": [
       "resources/admin/**/*.ts",
-      "resources/admin/**/*.vue"
+      "resources/admin/**/*.vue",
     ],
     "exclude": [
       "node_modules",

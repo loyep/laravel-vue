@@ -35,7 +35,7 @@ export interface IThemeState {
 export const state: IThemeState = {
   sidebar: Storage.get(SIDEBAR_TYPE, true),
   device: 'desktop',
-  theme: Storage.get(DEFAULT_THEME, config.navTheme),
+  theme: Storage.get(DEFAULT_THEME, config.theme),
   layout: Storage.get(DEFAULT_LAYOUT_MODE, config.layout),
   contentWidth: Storage.get(DEFAULT_CONTENT_WIDTH_TYPE, config.contentWidth),
   fixedHeader: Storage.get(DEFAULT_FIXED_HEADER, config.fixedHeader),

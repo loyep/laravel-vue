@@ -103,7 +103,6 @@ export default class Login extends Vue {
   }
 
   handleSubmit  (e) {
-      console.log(this.form)
       e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {

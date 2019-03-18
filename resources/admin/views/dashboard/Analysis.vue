@@ -162,7 +162,6 @@ export default class Analysis extends Vue {
   }
   getStatistics() {
     statistics().then(res => {
-      console.log(res);
       this.updateTotal(res.data.user.total);
     });
   }

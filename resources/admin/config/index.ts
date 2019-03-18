@@ -1,7 +1,7 @@
 /**
  * 项目默认配置项
  * primaryColor - 默认主题色
- * navTheme - sidebar theme ['dark', 'light'] 两种主题
+ * theme - sidebar theme ['dark', 'light'] 两种主题
  * colorWeak - 色盲模式
  * layout - 整体布局方式 ['sidemenu', 'topmenu'] 两种布局
  * fixedHeader - 固定 Header : boolean
@@ -15,7 +15,7 @@
 // import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
 export default {
   primaryColor: '#1890FF', // primary color of ant design
-  navTheme: 'dark', // theme for nav menu
+  theme: 'dark', // theme for nav menu
   layout: 'sidemenu', // nav menu position: sidemenu or topmenu
   contentWidth: 'Fluid', // layout of content: Fluid or Fixed, only works when layout is topmenu
   fixedHeader: true, // sticky header
