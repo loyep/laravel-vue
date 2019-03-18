@@ -7,19 +7,19 @@ export const routes = [
     path: '/login',
     name: 'login',
     hidden: true,
-    component: () => import(/* webpackChunkName: "login" */'@/views/auth/Login')
+    component: () => import(/* webpackChunkName: "login" */'@/views/auth/Login.vue')
   },
   {
     path: '/register',
     name: 'register',
     hidden: true,
-    component: () => import(/* webpackChunkName: "register" */'@/views/auth/Register')
+    component: () => import(/* webpackChunkName: "register" */'@/views/auth/Register.vue')
   },
   {
     path: '/password/reset',
     name: 'forgot.password',
     hidden: true,
-    component: () => import(/* webpackChunkName: "password.reset" */'@/views/auth/ForgotPassword')
+    component: () => import(/* webpackChunkName: "password.reset" */'@/views/auth/ForgotPassword.vue')
   }
 ]
 

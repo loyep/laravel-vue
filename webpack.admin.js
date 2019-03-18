@@ -47,8 +47,8 @@ mix
   .setResourceRoot('/static/admin')
   .setPublicPath('public/static/admin')
   .ts('resources/admin/main.ts', 'public/static/admin/admin.js')
-  // .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
-  // .copyDirectory('resources/admin/themes', 'public/static/admin/themes')
+  .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
+  .copyDirectory('resources/admin/themes', 'public/static/admin/themes')
   .version()
 
 if (mix.inProduction()) {

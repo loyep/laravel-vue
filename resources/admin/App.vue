@@ -1,23 +1,29 @@
 <template>
-  <!-- <locale-provider :locale="locale"> -->
+  <!-- <a-locale-provider :locale="locale"> -->
   <div id="app">
     <!-- <loading /> -->
     <router-view v-if="isRouterAlive" />
   </div>
-  <!-- </locale-provider> -->
+  <!-- </a-locale-provider> -->
 </template>
 
 <script lang="ts">
 // import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
-// import { LocaleProvider } from 'ant-design-vue'
+import { LocaleProvider } from 'ant-design-vue'
 // import Loading from '@/components/Loading'
 // import { deviceEnquire } from '@/utils/device'
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator';
 
-@Component
-export default class App extends Vue {
-
-  isRouterAlive: boolean = true
+@Component({
+  components: {
+    'ALocaleProvider': LocaleProvider,
+  },
+})
+export default class App extends Vue { 
+  
+  private isRouterAlive: boolean = true
+  
+  // private locale: string 
 
   // name: 'App',
   // components: {
@@ -37,7 +43,7 @@ export default class App extends Vue {
   // },
   mounted () {
     setTimeout(() => {
-      // document.getElementById('prism-loader').style.display = 'none'
+      (<any>document).getElementById('prism-loader').style.display = 'none'
     }, 200)
     // deviceEnquire((screenType) => {
       // this.$store.dispatch('theme/SetScreen', screenType)

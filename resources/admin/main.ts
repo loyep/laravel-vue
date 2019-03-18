@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
-// import router from './router'
-// import store from './store'
+import router from './router/index'
+import store from './store'
 
 // import i18n from './locales'
 // import importDirective from '@/directive'
 
-// import bootstrap from './bootstrap'
+import bootstrap from './bootstrap'
 
 Vue.config.productionTip = false
 
@@ -16,11 +16,11 @@ Vue.config.productionTip = false
 // importDirective(Vue)
 
 new Vue({
-//   router,
+  router,
 //   i18n,
-//   store,
+  store,
   created () {
-    // bootstrap()
+    bootstrap()
   },
   render: h => h(App)
 }).$mount('#app')
