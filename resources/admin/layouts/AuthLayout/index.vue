@@ -5,9 +5,9 @@
       backgroundImage: `'url(${require('@/assets/images/loginBg.svg')})'`
     }"
   >
-    <!-- <div class="lang"> -->
-      <!-- <select-lang /> -->
-    <!-- </div> -->
+    <div class="lang">
+      <select-lang />
+    </div>
     <div class="content">
       <div class="top">
         <div class="header">
@@ -44,11 +44,13 @@
 
 <script lang="ts">
 import GlobalFooter from '@/components/GlobalFooter/index.vue';
+import SelectLang from '@/components/SelectLang/index.vue'
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
   components: {
-    GlobalFooter
+    GlobalFooter,
+    SelectLang
   }
 })
 export default class AuthLayout extends Vue {

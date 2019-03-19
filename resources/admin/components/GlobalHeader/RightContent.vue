@@ -42,7 +42,7 @@
         </a-menu>
       </template>
     </a-dropdown>
-    <!-- <select-lang class="action" /> -->
+    <select-lang class="action" />
   </div>
 </template>
 
@@ -50,6 +50,7 @@
 import { Avatar, Menu, Dropdown } from 'ant-design-vue'
 import HeaderSearch from '@/components/HeaderSearch/index.vue'
 import NoticeIcon from '@/components/NoticeIcon/index.vue'
+import SelectLang from '@/components/SelectLang/index.vue'
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { State, Mutation, namespace } from 'vuex-class';
 import theme from '@/store/modules/theme';
@@ -59,7 +60,7 @@ const themeModule = namespace('theme');
 
 @Component({
   components: {
-    // SelectLang,
+    SelectLang,
     NoticeIcon,
     HeaderSearch,
     'AAvatar': Avatar,
