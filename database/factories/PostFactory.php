@@ -1,13 +1,13 @@
 <?php
 
-use Faker\Generator as Faker;
 use App\Models\Post;
+use Faker\Generator as Faker;
 
 $factory->define(Post::class, function (Faker $faker) {
     return [
-        'user_id' => 1,
-        'title' => $faker->name,
-        'slug' => $faker->slug,
+        'user_id'     => 1,
+        'title'       => $faker->name,
+        'slug'        => $faker->slug,
         'category_id' => 1,
 //        $table->bigIncrements('id');
 //    $table->unsignedBigInteger('user_id')->index();

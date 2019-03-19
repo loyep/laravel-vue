@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Post extends Model
 {
-
     /**
      * @return HasOne
      */
@@ -14,5 +13,4 @@ class Post extends Model
     {
         return $this->hasOne('App\Models\PostContent');
     }
-
 }
