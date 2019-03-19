@@ -27,7 +27,7 @@ class Helper
      *
      * @param string $name
      * @param string $default
-     * @param null $group
+     * @param null   $group
      *
      * @return mixed|string|null
      */
@@ -108,6 +108,6 @@ class Helper
         $url = Arr::pull($config, 'url', 'https://secure.gravatar.com/avatar');
         $query = http_build_query($config, null, '&', PHP_QUERY_RFC3986);
 
-        return $url . '/' . $hash . ($query ? '?' . $query : '');
+        return $url.'/'.$hash.($query ? '?'.$query : '');
     }
 }
