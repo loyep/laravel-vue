@@ -34,7 +34,7 @@ class Helper
     public static function getOption($name = '', $default = '', $group = null)
     {
         if (!isset(self::$options)) {
-            self::$options = Setting::cache(100)->where('group', $group)->get()->each(function ($option, $key) {
+            self::$options = Setting::cache(100)->where('group', $group)->get()->each(function ($option) {
                 $option->value = json_decode($option->value);
             })->keyBy('key')->toArray();
         }
