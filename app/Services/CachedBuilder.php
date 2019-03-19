@@ -45,7 +45,8 @@ class CachedBuilder extends Builder
     /**
      * Execute the query as a "select" statement.
      *
-     * @param  array $columns
+     * @param array $columns
+     *
      * @return array|static[]
      */
     public function get($columns = ['*'])
@@ -53,13 +54,15 @@ class CachedBuilder extends Builder
         if (!is_null($this->cacheSeconds)) {
             return $this->getCached($columns);
         }
+
         return parent::get($columns);
     }
 
     /**
      * Execute the query as a cached "select" statement.
      *
-     * @param  array $columns
+     * @param array $columns
+     *
      * @return array
      */
     public function getCached($columns = ['*'])
@@ -79,26 +82,30 @@ class CachedBuilder extends Builder
         if ($seconds instanceof DateTime || $seconds > 0) {
             return $cache->remember($key, $seconds, $callback);
         }
+
         return $cache->rememberForever($key, $callback);
     }
 
     /**
      * Indicate that the query results should be cached.
      *
-     * @param  \DateTime|int $seconds
-     * @param  string $key
+     * @param \DateTime|int $seconds
+     * @param string        $key
+     *
      * @return $this
      */
     public function cache($seconds, $key = null)
     {
         list($this->cacheSeconds, $this->cacheKey) = [$seconds, $key];
+
         return $this;
     }
 
     /**
      * Indicate that the query results should be cached forever.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return \Illuminate\Database\Query\Builder|static
      */
     public function cacheForever($key = null)
@@ -114,30 +121,35 @@ class CachedBuilder extends Builder
     public function disableCache()
     {
         $this->cacheSeconds = $this->cacheKey = $this->cacheTags = null;
+
         return $this;
     }
 
     /**
      * Indicate that the results, if cached, should use the given cache tags.
      *
-     * @param  array|mixed $cacheTags
+     * @param array|mixed $cacheTags
+     *
      * @return $this
      */
     public function cacheTags($cacheTags)
     {
         $this->cacheTags = $cacheTags;
+
         return $this;
     }
 
     /**
      * Indicate that the results, if cached, should use the given cache driver.
      *
-     * @param  string $cacheDriver
+     * @param string $cacheDriver
+     *
      * @return $this
      */
     public function cacheDriver($cacheDriver)
     {
         $this->cacheDriver = $cacheDriver;
+
         return $this;
     }
 
@@ -149,6 +161,7 @@ class CachedBuilder extends Builder
     protected function getCache()
     {
         $cache = $this->getCacheDriver();
+
         return $this->cacheTags ? $cache->tags($this->cacheTags) : $cache;
     }
 
@@ -179,7 +192,7 @@ class CachedBuilder extends Builder
      */
     public function getCacheKey()
     {
-        return $this->cachePrefix . ':' . ($this->cacheKey ?: $this->generateCacheKey());
+        return $this->cachePrefix.':'.($this->cacheKey ?: $this->generateCacheKey());
     }
 
     /**
@@ -190,14 +203,16 @@ class CachedBuilder extends Builder
     public function generateCacheKey()
     {
         $name = $this->connection->getName();
-        return hash('sha256', $name . $this->toSql() . serialize($this->getBindings()));
+
+        return hash('sha256', $name.$this->toSql().serialize($this->getBindings()));
     }
 
     /**
-     * Flush the cache for the current model or a given tag name
+     * Flush the cache for the current model or a given tag name.
      *
-     * @param  mixed $cacheTags
-     * @return boolean
+     * @param mixed $cacheTags
+     *
+     * @return bool
      */
     public function flushCache($cacheTags = null)
     {
@@ -207,19 +222,22 @@ class CachedBuilder extends Builder
         }
         $cacheTags = $cacheTags ?: $this->cacheTags;
         $cache->tags($cacheTags)->flush();
+
         return true;
     }
 
     /**
      * Get the Closure callback used when caching queries.
      *
-     * @param  array $columns
+     * @param array $columns
+     *
      * @return \Closure
      */
     protected function getCacheCallback($columns)
     {
         return function () use ($columns) {
             $this->cacheSeconds = null;
+
             return $this->get($columns);
         };
     }
@@ -234,6 +252,7 @@ class CachedBuilder extends Builder
     public function prefix($prefix)
     {
         $this->cachePrefix = $prefix;
+
         return $this;
     }
 }

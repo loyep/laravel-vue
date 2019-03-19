@@ -22,6 +22,7 @@ trait Cachable
     {
         if (!$this->isCachable()) {
             $this->isCachable = true;
+
             return $this->getConnection()->query();
         }
         $conn = $this->getConnection();
