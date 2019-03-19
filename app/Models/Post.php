@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 class Post extends Model
 {
+
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
+     * @return HasOne
      */
-    protected $hidden = ['content'];
+    public function content(): HasOne
+    {
+        return $this->hasOne('App\Models\PostContent');
+    }
+
 }
