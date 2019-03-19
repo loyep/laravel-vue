@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Widget;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -28,18 +27,16 @@ class Helper
      *
      * @param string $name
      * @param string $default
-     * @param null   $group
+     * @param null $group
      *
      * @return mixed|string|null
      */
     public static function getOption($name = '', $default = '', $group = null)
     {
         if (!isset(self::$options)) {
-            self::$options = Cache::remember('site.options', 10, function () use ($group) {
-                return Setting::where('group', $group)->get()->each(function ($option, $key) {
-                    $option->value = json_decode($option->value);
-                })->keyBy('key')->toArray();
-            });
+            self::$options = Setting::cache(100)->where('group', $group)->get()->each(function ($option, $key) {
+                $option->value = json_decode($option->value);
+            })->keyBy('key')->toArray();
         }
 
         if (!empty($name) && !empty(self::$options[$name]) && !empty(self::$options[$name]['value'])) {
@@ -87,11 +84,9 @@ class Helper
     public static function getWidget($slug)
     {
         if (!isset(self::$widgets)) {
-            self::$widgets = Cache::remember('site.widgets', 10, function () {
-                return Widget::where('show', true)->get()->each(function ($widget) {
-                    $widget->value = json_decode($widget->value);
-                })->keyBy('slug')->toArray();
-            });
+            self::$widgets = Widget::cache(100)->where('show', true)->get()->each(function ($widget) {
+                $widget->value = json_decode($widget->value);
+            })->keyBy('slug')->toArray();
         }
 
         if (!empty($slug) && !empty(self::$widgets[$slug]) && !empty(self::$widgets[$slug]['value'])) {
@@ -113,6 +108,6 @@ class Helper
         $url = Arr::pull($config, 'url', 'https://secure.gravatar.com/avatar');
         $query = http_build_query($config, null, '&', PHP_QUERY_RFC3986);
 
-        return $url.'/'.$hash.($query ? '?'.$query : '');
+        return $url . '/' . $hash . ($query ? '?' . $query : '');
     }
 }
