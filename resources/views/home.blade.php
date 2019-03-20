@@ -4,7 +4,7 @@ if (Route::current()->named('home')) {
     $bodyClass[] = 'home';
 }
 ?>
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -29,9 +29,58 @@ if (Route::current()->named('home')) {
         <main class="nice-main">
             <div class="posts-list">
                 <div class="list-inner home-list row  row-10 row-xs-15 ">
+                    @foreach($posts as $post)
+                        <div class="item-card d-flex col-12 col-sm-6 col-md-3 col-lg-3">
+                            <article class="card flex-fill mb-4 mb-sm-4-2 mb-md-4 mb-lg-4-2">
+                                <div class="image">
+                                    <a class=""
+                                       href="http://wp.loyep.com/index.php/2019/02/25/%e6%b5%8b%e8%af%95%e6%96%87%e7%ab%a01/"
+                                       title="测试文章1">
+                                        <div class="custom-hover d-block">
+                                            <img class="timthumb_php"
+                                                 src="http://wp.loyep.com/wp-content/themes/cosy2.05/timthumb.php?src=http://wp.loyep.com/wp-content/themes/cosy2.05/static/images/default.png&h=270&w=360&zc=1&a=c&q=100&s=1"
+                                                 title="测试文章1" alt="测试文章1">
+                                        </div>
+                                        <div class="post-format-icon"><i class="fas fa-camera"></i></div>
+                                    </a>
+                                </div>
+                                <div class="card-body d-flex flex-column content mt-1 mt-md-2">
 
+                                    <div class="meta mt-2 light-12 ">
+                                        <span class="u-cat-name font-12 d-block  "><a class="text-primary"
+                                                                                      href="http://wp.loyep.com/index.php/category/uncategorized/">未分类</a></span>
+                                    </div>
+                                    <div class="title flex-grow-1 mt-2"><h2
+                                                class="font-16 font-md-14 font-xs-16 text-l2 font-weight-bold light-14">
+                                            <a href="http://wp.loyep.com/index.php/2019/02/25/%e6%b5%8b%e8%af%95%e6%96%87%e7%ab%a01/"
+                                               title="测试文章1">测试文章1</a></h2></div>
+                                    <div class="desc mt-2 d-none d-md-block"><p
+                                                class="text-l2 font-md-12 text-secondary">f
+                                            sssssssss
+                                            ...</p></div>
+
+                                    <div class="data nodots d-flex align-items-center flex-row font-12 font-md-10 text-muted mt-2 mt-lg-3 light-12 d-flex d-lg-none">
+                                        <div class="flex-fill d-flex ">
+                                            <span class="u-time">2019-02-25</span>
+                                        </div>
+                                        <div class="text-nowrap">
+                                            <span class="u-view d-none d-lg-none"><i class="icon icon-eye"></i> 3</span>
+
+                                            <span class="u-comment d-none d-lg-inline-block"><i
+                                                        class="fal fa-comment-alt-lines"></i>  0</span>
+
+                                            <span class="u-like d-inline-block d-lg-none d-lg-inline-block"><i
+                                                        class="fal fa-heart"></i> 0</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </article>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="m-3 m-md-4"></div>    </div>
+                <div class="m-3 m-md-4"></div>
+            </div>
         </main>
     </div>
 </section>

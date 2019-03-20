@@ -2,17 +2,35 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Traits\Cachable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
+/**
+ * Class Post
+ *
+ * @property \App\Models\User user
+ */
 class Post extends Model
 {
+    use Cachable;
+
+    protected $with = [
+        'user', 'content',
+    ];
 
     /**
-     * @return HasOne
+     * @return MorphOne
      */
-    public function content(): HasOne
+    public function content(): MorphOne
     {
-        return $this->hasOne('App\Models\PostContent');
+        return $this->morphOne(Content::class, 'contentable');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

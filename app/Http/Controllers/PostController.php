@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class PostController extends Controller
 {
     /**
@@ -17,11 +19,16 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $posts = Post::paginate();
+        if ($request->expectsJson()) {
+            return response()->json($posts);
+        }
+//    return view()
     }
 
     /**

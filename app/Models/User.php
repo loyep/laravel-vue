@@ -2,23 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Auth\MustVerifyEmail;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract,
-    JWTSubject
+/**
+ * Class User
+ * @package App\Models
+ */
+class User extends Authenticatable implements JWTSubject
 {
-    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -43,7 +37,9 @@ class User extends Model implements
      *
      * @var array
      */
-    protected $appends = ['roles'];
+    protected $appends = [
+        'roles'
+    ];
 
     /**
      * The attributes that should be cast to native types.
@@ -79,6 +75,8 @@ class User extends Model implements
      */
     public function getRolesAttribute()
     {
-        return ['admin'];
+        return [
+            'admin'
+        ];
     }
 }
