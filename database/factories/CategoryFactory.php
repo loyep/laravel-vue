@@ -16,6 +16,9 @@ use Faker\Generator as Faker;
 
 $factory->define(Category::class, function (Faker $faker) {
     return [
-        //
+        'name'        => $faker->word,
+        'slug'        => $faker->unique()->slug,
+        'image'       => '',
+        'description' => $faker->sentence,
     ];
 });

@@ -36,7 +36,6 @@ if (Route::current()->named('home')) {
 {{--@include('components.search')--}}
 <section class="nice-warp nice-warp-single my-4 my-md-5">
     <div class="container">
-
         <main class="nice-main">
             <div class="posts-list">
                 <div class="list-inner home-list row  row-10 row-xs-15 ">

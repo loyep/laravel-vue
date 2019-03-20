@@ -3,7 +3,7 @@
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
-class TagsTableSeeder extends Seeder
+class CategoriesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Tag::class, 30)->create();
+        factory(\App\Models\Category::class, 10)->create();
     }
 }
