@@ -15,11 +15,11 @@ class UsersTableSeeder extends Seeder
     {
 //        factory(User::class, 300)->create();
         $admin = factory(User::class)->create([
-            'name' => 'admin',
-            'email' => 'admin@loyep.com',
-            'password' => bcrypt('123456'),
+            'name'              => 'admin',
+            'email'             => 'admin@loyep.com',
+            'password'          => bcrypt('123456'),
             'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
+            'remember_token'    => Str::random(10),
         ]);
     }
 }
