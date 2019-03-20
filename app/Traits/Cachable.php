@@ -22,9 +22,9 @@ trait Cachable
     {
         if (!$this->isCachable()) {
             $this->isCachable = true;
-
             return $this->getConnection()->query();
         }
+
         $conn = $this->getConnection();
         $grammar = $conn->getQueryGrammar();
         $builder = new CachedBuilder($conn, $grammar, $conn->getPostProcessor());

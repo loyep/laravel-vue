@@ -17,7 +17,7 @@ class Post extends Model
     use Cachable;
 
     protected $with = [
-        'user', 'content',
+        'user',
     ];
 
     /**

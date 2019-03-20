@@ -24,8 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate();
-
+        $posts = Post::cache(10 * 60)->with([
+            'content' => function ($q) {
+                $q->cache(60 * 60);
+            }
+        ])->paginate();
         return view('home', compact('posts'));
     }
 
