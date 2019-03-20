@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use phpDocumentor\Reflection\Types\Self_;
 
 class LoginController extends Controller
 {
@@ -150,11 +149,13 @@ class LoginController extends Controller
      */
     protected function generateWelcome($user)
     {
-        $welcome = Str::ucfirst($user->display_name).', ' . self::getPeriodOfTime() . '好!';
+        $welcome = Str::ucfirst($user->display_name).', '.self::getPeriodOfTime().'好!';
+
         return $welcome;
     }
 
-    public static function getPeriodOfTime($hour = null) {
+    public static function getPeriodOfTime($hour = null)
+    {
         $hour = $hour ? $hour : (int) date('G', time());
         $period = '';
         if (0 <= $hour && 6 > $hour) {
@@ -176,6 +177,7 @@ class LoginController extends Controller
         } elseif (22 <= $hour && 23 >= $hour) {
             $period = '深夜';
         }
+
         return $period;
     }
 }

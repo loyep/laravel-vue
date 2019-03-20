@@ -27,6 +27,7 @@ class HomeController extends Controller
     {
         Log::info('home');
         $posts = Post::with('category')->paginate();
+
         return view('home', compact('posts'));
     }
 
