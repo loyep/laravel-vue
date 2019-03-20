@@ -1,6 +1,6 @@
 <div class="item d-flex col-6 col-md-6 mr-2 mr-md-0">
     <div class="d-flex flex-fill flex-column align-self-stretch bg-white">
-        <a class="custom-hover d-flex flex-fill flex-column" href="#" target="_blank"
+        <a class="custom-hover d-flex flex-fill flex-column" href="{{ route('post.show', ['slug' => $post->slug]) }}" target="_blank"
            title="{{ $post->title }}">
             <div class="custom-hover-img image"
                  style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>

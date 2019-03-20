@@ -29,7 +29,7 @@ if (Route::current()->named('home')) {
 </head>
 <body class="{{ implode(' ', $bodyClass) }}">
 @include('partials.header')
-@include('partials.magazine', ['posts' => $posts->take(4)])
+@include('partials.magazine', ['posts' => $posts->take(5)])
 @include('partials.pushes')
 {{--@include('partials.tab-cats')--}}
 {{--@include('partials.slides')--}}
