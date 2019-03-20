@@ -8,14 +8,15 @@ use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
 class Authenticate extends BaseMiddleware
 {
-
     /**
      * Handle an incoming request.
      *
      * @param $request
      * @param Closure $next
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|mixed
+     *
      * @throws AuthenticationException
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|mixed
      */
     public function handle($request, Closure $next)
     {
@@ -28,6 +29,7 @@ class Authenticate extends BaseMiddleware
             if ($this->auth->parseToken()->authenticate()) {
                 return $next($request);
             }
+
             throw new AuthenticationException('jwt-auth', '未登录');
         } catch (\Exception $exception) {
             // 此处捕获到了 token 过期所抛出的 TokenExpiredException 异常，我们在这里需要做的是刷新该用户的 token 并将它添加到响应头中
@@ -45,5 +47,4 @@ class Authenticate extends BaseMiddleware
         // 在响应头中返回新的 token
         return $this->setAuthenticationHeader($next($request), $token);
     }
-
 }
