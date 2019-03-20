@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Exceptions\AuthenticationException;
 use Closure;
+use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
 class Authenticate extends BaseMiddleware
@@ -34,8 +35,10 @@ class Authenticate extends BaseMiddleware
         } catch (\Exception $exception) {
             // 此处捕获到了 token 过期所抛出的 TokenExpiredException 异常，我们在这里需要做的是刷新该用户的 token 并将它添加到响应头中
             try {
+
                 // 刷新用户的 token
                 $token = $this->auth->refresh();
+
                 // 使用一次性登录以保证此次请求的成功
                 Auth::guard('api')->onceUsingId($this->auth->manager()->getPayloadFactory()->buildClaimsCollection()->toPlainArray()['sub']);
             } catch (\Exception $exception) {

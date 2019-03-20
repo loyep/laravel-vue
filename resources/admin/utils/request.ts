@@ -12,7 +12,7 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(
   request => {
-    const token = `Bearer ${getToken()}`
+    const token = getToken()
     if (token) {
       request.headers.common['Authorization'] = token
     }
