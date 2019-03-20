@@ -15,6 +15,6 @@ class PostsTableSeeder extends Seeder
     {
         factory(Post::class, 20)->create()->each(function ($user) {
             $user->content()->save(factory(Content::class)->make());
-        });;
+        });
     }
 }
