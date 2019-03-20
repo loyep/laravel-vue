@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         Log::info('home');
         $posts = Post::with([
-            'content'
+            'content',
         ])->paginate();
 //        return response()->json($posts);
         return view('home', compact('posts'));
