@@ -2,107 +2,48 @@
 
 namespace App\Http\Middleware;
 
-use App\Exceptions\AuthenticationException as PrismAuthenticationException;
+use App\Exceptions\AuthenticationException;
 use Closure;
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Auth\Middleware\Authenticate as BaseAuthenticationMiddleware;
-use Illuminate\Http\Request;
+use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
-class Authenticate extends BaseAuthenticationMiddleware
+class Authenticate extends BaseMiddleware
 {
-    /**
-     * @var string
-     */
-    protected $token;
 
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     * @param string[]                 ...$guards
-     *
-     * @throws \Illuminate\Auth\AuthenticationException
-     *
-     * @return mixed
-     */
-    public function handle($request, Closure $next, ...$guards)
-    {
-        try {
-            $this->authenticate($request, $guards);
-            $this->refreshToken($request, $guards);
-        } catch (AuthenticationException $e) {
-            throw new PrismAuthenticationException(
-                '登录超时，请重新登录.', $e->guards()
-            );
-        }
-
-        return $this->setAuthenticationHeader($next($request));
-    }
-
-    /**
-     * @param Request $request
-     * @param array   $guards
-     *
+     * @param $request
+     * @param Closure $next
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|mixed
      * @throws AuthenticationException
-     *
-     * @return mixed|null
      */
-    protected function refreshToken(Request $request, array $guards)
+    public function handle($request, Closure $next)
     {
-        if ($this->guard()->parser()->setRequest($request)->hasToken()) {
-            if ($this->guard()->getPayload()->get('exp') - time() >= config('admin.token_exp')) {
-                return;
-            } else {
-                return tap($this->guard()->refresh(), function ($token) {
-                    $this->token = $token;
-                    $this->guard()->setToken($token);
-                });
+        // 检查此次请求中是否带有 token，如果没有则抛出异常。
+        $this->checkForToken($request);
+
+        // 使用 try 包裹，以捕捉 token 过期所抛出的 TokenExpiredException  异常
+        try {
+            // 检测用户的登录状态，如果正常则通过
+            if ($this->auth->parseToken()->authenticate()) {
+                return $next($request);
+            }
+            throw new AuthenticationException('jwt-auth', '未登录');
+        } catch (\Exception $exception) {
+            // 此处捕获到了 token 过期所抛出的 TokenExpiredException 异常，我们在这里需要做的是刷新该用户的 token 并将它添加到响应头中
+            try {
+                // 刷新用户的 token
+                $token = $this->auth->refresh();
+                // 使用一次性登录以保证此次请求的成功
+                Auth::guard('api')->onceUsingId($this->auth->manager()->getPayloadFactory()->buildClaimsCollection()->toPlainArray()['sub']);
+            } catch (\Exception $exception) {
+                // 如果捕获到此异常，即代表 refresh 也过期了，用户无法刷新令牌，需要重新登录。
+                throw new AuthenticationException('jwt-auth', $exception->getMessage());
             }
         }
 
-        throw new AuthenticationException(
-            'Unauthenticated.', $guards, $this->redirectTo($request)
-        );
+        // 在响应头中返回新的 token
+        return $this->setAuthenticationHeader($next($request), $token);
     }
 
-    /**
-     * Get the guard to be used during authentication.
-     *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
-     */
-    protected function guard()
-    {
-        return $this->auth->guard('api');
-    }
-
-    /**
-     * Set the authentication header.
-     *
-     * @param \Illuminate\Http\Response|\Illuminate\Http\JsonResponse $response
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
-     */
-    protected function setAuthenticationHeader($response)
-    {
-        if (!empty($this->token)) {
-            $response->headers->set('Authorization', $this->token);
-        }
-
-        return $response;
-    }
-
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return string
-     */
-    protected function redirectTo($request)
-    {
-        if (!$request->expectsJson()) {
-            return route('login');
-        }
-    }
 }

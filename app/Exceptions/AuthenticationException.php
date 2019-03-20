@@ -2,9 +2,9 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Auth\AuthenticationException as BaseAuthenticationException;
+use Exception;
 
-class AuthenticationException extends BaseAuthenticationException
+class AuthenticationException extends Exception
 {
     /**
      * Render the exception.
