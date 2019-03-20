@@ -13,24 +13,9 @@
                     {{--@endif--}}
                     <aside class="footer-widget footer-widget-social mt-3">
                         <ul>
-                            <li data-toggle="tooltip" title="微信">
-                                <a data-selector="#footer_qrcode-1" data-module="miPopup" href="javascript:void(0);"
-                                   class="link btn-social-weixin">
-                                    <i class="fab fa-weixin"></i>
-                                </a>
-                                <div id="footer_qrcode-1" class="dialog-suxing">
-                                    <div class="dialog-content dialog-wechat-content">
-                                        <p class="text-secondary">微信</p>
-                                        <img src="#" alt="微信">
-                                        <div class="btn-close">
-                                            <i class="icon icon-close"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a data-toggle="tooltip" href="#" class="link" title="微博" target="_blank">
-                                    <i class="fab fa-weibo"></i>
+                            <li data-toggle="tooltip" title="Github">
+                                <a href="https://github.com/loyep" target="_blank">
+                                    <i class="fab fa-github"></i>
                                 </a>
                             </li>
                         </ul>

@@ -15,6 +15,17 @@ if (Route::current()->named('home')) {
     <link rel="apple-touch-icon-precomposed" href="{{ asset('favicon.png') }}"/>
     <title>@yield('page_title', Prism::title())</title>
     <link href="{{ mix('css/app.css', 'static/app') }}" rel="stylesheet">
+    <script>
+        var globals = {
+          'image_popup': 'null',
+          'new_comment_position': 'asc',
+          'single': '0',
+          'post_style': '0',
+          'home': '1',
+          'page': '0',
+          'silide': '0',
+        };
+    </script>
 </head>
 <body class="{{ implode(' ', $bodyClass) }}">
 @include('partials.header')
@@ -85,7 +96,6 @@ if (Route::current()->named('home')) {
     </div>
 </section>
 @include('partials.footer')
-{{--<script src="{{ mix('js/app.js', 'static/app') }}" type="text/javascript"></script>--}}
 <script src="{{ mix('js/app.js', 'static/app') }}" type="text/javascript"></script>
 </body>
 </html>

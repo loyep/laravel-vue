@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -24,11 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::cache(10 * 60)->with([
-            'content' => function ($q) {
-                $q->cache(60 * 60);
-            }
+        Log::info('home');
+        $posts = Post::with([
+            'content'
         ])->paginate();
+//        return response()->json($posts);
         return view('home', compact('posts'));
     }
 

@@ -20,7 +20,6 @@ if (env && env.admin) {
 mix
   .setResourceRoot('/static/app')
   .setPublicPath('public/static/app')
-  .js('resources/js/app.js', 'public/static/app/js')
   .less('resources/less/app.less', 'public/static/app/css')
 
 mix.scripts([
