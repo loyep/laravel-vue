@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
- * Class Post
+ * Class Post.
  *
  * @property \App\Models\User user
  */
@@ -32,5 +32,4 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
 }

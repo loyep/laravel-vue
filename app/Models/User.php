@@ -7,8 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
- * Class User
- * @package App\Models
+ * Class User.
  */
 class User extends Authenticatable implements JWTSubject
 {
@@ -38,7 +37,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $appends = [
-        'roles'
+        'roles',
     ];
 
     /**
@@ -76,7 +75,7 @@ class User extends Authenticatable implements JWTSubject
     public function getRolesAttribute()
     {
         return [
-            'admin'
+            'admin',
         ];
     }
 }
