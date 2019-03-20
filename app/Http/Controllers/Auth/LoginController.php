@@ -51,7 +51,7 @@ class LoginController extends Controller
         $this->guard()->logout();
 
         return response([
-            'result' => true,
+            'result'  => true,
             'message' => '',
         ]);
     }
@@ -101,7 +101,7 @@ class LoginController extends Controller
         $type = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
         return [
-            $type => $username,
+            $type      => $username,
             'password' => $request->input('password'),
         ];
     }
@@ -135,11 +135,11 @@ class LoginController extends Controller
 
         return response()
             ->json([
-                'token' => 'Bearer ' . $token,
+                'token'      => 'Bearer '.$token,
                 'expires_in' => $expiration,
-                'welcome' => $welcome,
+                'welcome'    => $welcome,
             ])
-            ->header('authorization', 'Bearer ' . $token);
+            ->header('authorization', 'Bearer '.$token);
     }
 
     /**
@@ -149,7 +149,7 @@ class LoginController extends Controller
      */
     protected function generateWelcome($user)
     {
-        $welcome = Str::ucfirst($user->display_name) . ', ';
+        $welcome = Str::ucfirst($user->display_name).', ';
         $h = date('H');
         if ($h < 11) {
             $welcome .= '早上好!';
