@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use phpDocumentor\Reflection\Types\Self_;
 
 class LoginController extends Controller
 {
@@ -149,20 +150,32 @@ class LoginController extends Controller
      */
     protected function generateWelcome($user)
     {
-        $welcome = Str::ucfirst($user->display_name).', ';
-        $h = date('H');
-        if ($h < 11) {
-            $welcome .= '早上好!';
-        } elseif ($h < 13) {
-            $welcome .= '中午好！';
-        } elseif ($h < 17) {
-            $welcome .= '下午好！';
-        } elseif ($h < 19) {
-            $welcome .= '傍晚好！';
-        } else {
-            $welcome .= '晚上好！';
-        }
-
+        $welcome = Str::ucfirst($user->display_name).', ' . self::getPeriodOfTime() . '好!';
         return $welcome;
+    }
+
+    public static function getPeriodOfTime($hour = null) {
+        $hour = $hour ? $hour : (int) date('G', time());
+        $period = '';
+        if (0 <= $hour && 6 > $hour) {
+            $period = '凌晨';
+        } elseif (6 <= $hour && 8 > $hour) {
+            $period = '早上';
+        } elseif (8 <= $hour && 11 > $hour) {
+            $period = '上午';
+        } elseif (11 <= $hour && 13 > $hour) {
+            $period = '中午';
+        } elseif (13 <= $hour && 15 > $hour) {
+            $period = '响午';
+        } elseif (15 <= $hour && 18 > $hour) {
+            $period = '下午';
+        } elseif (18 <= $hour && 20 > $hour) {
+            $period = '傍晚';
+        } elseif (20 <= $hour && 22 > $hour) {
+            $period = '晚上';
+        } elseif (22 <= $hour && 23 >= $hour) {
+            $period = '深夜';
+        }
+        return $period;
     }
 }

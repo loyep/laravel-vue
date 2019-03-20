@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Page;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -18,20 +17,9 @@ class PageController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,23 +30,10 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Page $page
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Page $page)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Page $page
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Page $page)
+    public function show($id)
     {
         //
     }
@@ -66,12 +41,11 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Page         $page
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Page $page)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -79,11 +53,10 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Page $page
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Page $page)
+    public function destroy($id)
     {
         //
     }

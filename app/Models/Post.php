@@ -20,12 +20,24 @@ class Post extends Model
         'user',
     ];
 
+    protected $dates = [
+        'published_at',
+    ];
+
     /**
      * @return MorphOne
      */
     public function content(): MorphOne
     {
         return $this->morphOne(Content::class, 'contentable');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function user(): BelongsTo
