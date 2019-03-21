@@ -3,7 +3,7 @@
 $magazine_layout = 'black';
 $bg_style = '';
 if ($magazine_layout === 'black') {
-    $bg_type = get_option('bg_type');
+    $bg_type = get_option('bg_type', 'image');
     switch ($bg_type) {
         case 'color':
             $bg_style .= 'background: ' . get_option('magazine_layout_black_bg_color', '#000');
@@ -21,7 +21,7 @@ if ($magazine_layout === 'black') {
 <section class="nice-featured nice-featured-style02 mt-0 mt-md-4 mt-lg-4-2" style="{{ $bg_style }}">
     <div class="container">
         <div class="row no-gutters">
-            @if(count($posts) > 0)
+            @if(!empty($posts))
                 @include('components.magazine.left', [
                     'post' => $posts->first()
                     ])

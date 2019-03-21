@@ -13,7 +13,7 @@
                         <span class="u-cat mr-2 mr-md-3">{{ $post->category->name }}</span>
                     </div>
                     <div class="text-nowrap">
-                        <span class="u-time">2017-09-28</span>
+                        <span class="u-time">{{ $post->published_date }}</span>
                         <span class="u-comment"><i class="fal fa-comment-alt-lines"></i>  34</span>
                         <span class="u-like"><i class="fal fa-heart"></i>  {{ $post->likes }}</span>
                     </div>

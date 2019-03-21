@@ -10,7 +10,7 @@
                         {{ $post->title }}</h2></div>
                 <div class="data nodots d-none d-md-flex align-items-center flex-row font-12 text-light mt-2 mt-md-3">
                     <div class="flex-fill d-flex"><span class="u-cat">{{ $post->category->name }}</span></div>
-                    <div class="text-nowrap"><span class="u-time d-none d-lg-inline-block"> {{ $post->published_at }}</span><span
+                    <div class="text-nowrap"><span class="u-time d-none d-lg-inline-block"> {{ $post->published_date }}</span><span
                                 class="u-like"><i class="fal fa-heart"></i>  {{ $post->views }}</span></div>
                 </div>
             </div>

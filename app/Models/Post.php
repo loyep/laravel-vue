@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\Cachable;
 use App\Traits\CanLike;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -63,4 +64,10 @@ class Post extends Model
     {
         return route('post.show', ['slug' => $this->slug]);
     }
+
+    public function getPublishedDateAttribute()
+    {
+        return Carbon::parse($this->published_at)->toDateString();
+    }
+
 }

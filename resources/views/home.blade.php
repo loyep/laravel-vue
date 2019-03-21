@@ -81,7 +81,7 @@ if (Route::current()->named('home')) {
 
                                     <div class="data nodots d-flex align-items-center flex-row font-12 font-md-10 text-muted mt-2 mt-lg-3 light-12 d-flex d-lg-none">
                                         <div class="flex-fill d-flex ">
-                                            <span class="u-time">{{ $post->published_at }}</span>
+                                            <span class="u-time">{{ $post->published_date }}</span>
                                         </div>
                                         <div class="text-nowrap">
                                             <span class="u-view d-none d-lg-none"><i class="icon icon-eye"></i> {{ $post->views }}</span>

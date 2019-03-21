@@ -44,8 +44,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                   <span class="u-avatar mr-2 mr-md-2">
                     <a href="{{ $author->permLink }}" target="_blank">
                       <img alt=''
-                           src='http://cdn.v2ex.com/gravatar/c69a76b02f13013f5309202c16a655d3?s=50&#038;d=mm&#038;r=g'
-                           srcset='http://cdn.v2ex.com/gravatar/c69a76b02f13013f5309202c16a655d3?s=100&#038;d=mm&#038;r=g 2x'
+                           src='{{ $author->avatar }}'
                            class='avatar avatar-50 photo' height='50' width='50'/> </a>
                   </span>
                                 <span class="u-name">
@@ -55,7 +54,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                         <small class="blink-dot" data-toggle="tooltip" data-placement="top" title="站长"></small>
                       </b>
                       <small class="text-muted">
-                        <time class="date mr-1">22小时前</time><i class="d-none d-md-inline-block">发布在</i><a
+                        <time class="date mr-1">{{ $post->published_date }}</time><i class="d-none d-md-inline-block">发布在</i><a
                                   class="text-secondary" href="{{ $category->permLink }}"
                                   rel="category tag"
                                   target="_blank">{{ $category->name }}</a>
@@ -88,7 +87,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
 
                     <div class="hr-short"></div>
                     <div class="post-declare  mt-3 mt-md-4-2">
-                        <p>本文系作者 @<a href="http://wp.loyep.com/author/loren/" title="由{{ $author->display_name }}发布"
+                        <p>本文系作者 @<a href="{{ $author->perm_link }}" title="由{{ $author->display_name }}发布"
                                      rel="author">{{ $author->display_name }}</a>
                             原创发布在
                             {{ config('prism.name') }}。未经许可，禁止转载。</p>
@@ -131,10 +130,9 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                 </div>
                 <div class="media post-author p-4 p-lg-4-2 my-4">
                     <div class="author-avatar mr-2 mr-md-3">
-                        <a href="http://wp.loyep.com/author/loren/">
+                        <a href="{{ $author->perm_link }}">
                             <img alt=''
-                                 src='http://cdn.v2ex.com/gravatar/c69a76b02f13013f5309202c16a655d3?s=65&#038;d=mm&#038;r=g'
-                                 srcset='http://cdn.v2ex.com/gravatar/c69a76b02f13013f5309202c16a655d3?s=130&#038;d=mm&#038;r=g 2x'
+                                 src='{{ $author->avatar }}'
                                  class='avatar avatar-65 photo' height='65' width='65'/> </a>
                     </div>
                     <div class="media-body author-info">
@@ -294,7 +292,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                                         </h6>
                                         <div class="flex-fill"></div>
                                         <div class="pl-3">
-                                            <time class="comment-date text-muted font-12">22小时前</time>
+                                            <time class="comment-date text-muted font-12">{{ $post->published_date }}</time>
                                         </div>
                                     </div>
                                     <div class="comment-content">

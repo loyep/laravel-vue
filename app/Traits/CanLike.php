@@ -3,8 +3,6 @@
 namespace App\Traits;
 
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 
 trait CanLike
 {
