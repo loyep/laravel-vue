@@ -59,8 +59,9 @@ if (Route::current()->named('home')) {
                                     </a>
                                 </div>
                                 <div class="card-body d-flex flex-column content mt-1 mt-md-2">
+
                                     <div class="meta mt-2 light-12 ">
-                                        <span class="u-cat-name font-12 d-block">
+                                        <span class="u-cat-name font-12 d-block u-cat-dot u-color-red">
                                             <a class="text-primary" href="{{ $post->category->permLink }}">
                                                 {{ $post->category->name }}
                                             </a>
@@ -79,7 +80,7 @@ if (Route::current()->named('home')) {
                                         </p>
                                     </div>
 
-                                    <div class="data nodots d-flex align-items-center flex-row font-12 font-md-10 text-muted mt-2 mt-lg-3 light-12 d-flex d-lg-none">
+                                    <div class="data nodots d-flex align-items-center flex-row font-12 font-md-10 text-muted mt-2 mt-lg-3 light-12 d-flex d-lg-flex">
                                         <div class="flex-fill d-flex ">
                                             <span class="u-time">{{ $post->published_date }}</span>
                                         </div>
@@ -87,7 +88,7 @@ if (Route::current()->named('home')) {
                                             <span class="u-view d-none d-lg-none"><i class="icon icon-eye"></i> {{ $post->views }}</span>
 
                                             <span class="u-comment d-none d-lg-inline-block"><i
-                                                        class="fal fa-comment-alt-lines"></i>  0</span>
+                                                        class="fal fa-comment-alt-lines"></i>  {{ $post->comments_count }}</span>
 
                                             <span class="u-like d-inline-block d-lg-none d-lg-inline-block"><i
                                                         class="fal fa-heart"></i> 0</span>

@@ -374,12 +374,6 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                         </li>
                     </ul>
                 </div>
-                <div id="archives-2" class="widget widget_archive">
-                    <h3 class="widget-title">文章归档</h3>
-                    <ul>
-                        <li><a href='http://wp.loyep.com/2019/03/'>2019年三月</a></li>
-                    </ul>
-                </div>
                 <div id="categories-2" class="widget widget_categories">
                     <h3 class="widget-title">分类目录</h3>
                     <ul>
@@ -387,7 +381,6 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                         </li>
                     </ul>
                 </div>
-
                 <div id="recent-posts-4" class="widget widget_related_posts">
                     <h3 class="widget-title">相关文章</h3>
                     <ul class="row row-10">
@@ -454,7 +447,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
             <span class="d-flex justify-content-center item item-comment">
                 <a href="#comments" class="d-flex flex-column flex-lg-row">
                     <i class="fal fa-comment-alt-lines"></i>
-                    <small class="mt-auto mt-lg-0">11</small>
+                    <small class="mt-auto mt-lg-0">{{ $post->comments->count() }}</small>
                 </a></span>
             <span class="d-flex justify-content-center item item-like">
                 <a class="d-flex flex-column flex-lg-row btn-action btn-like post-like {{ $is_like ? 'current' : '' }}"

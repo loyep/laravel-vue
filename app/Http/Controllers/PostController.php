@@ -6,6 +6,7 @@ use App\Facades\Prism;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Psy\Util\Str;
 
 class PostController extends Controller
 {
@@ -49,11 +50,8 @@ class PostController extends Controller
             $author = $post->user;
             $category = $post->category;
             $is_like = $post->isLiked();
-            $content = $post->content->body;
-            if (empty($content)) {
-                $content = Prism::markdown($post->content->markdown);
-            }
-
+            $content = $post->content->html();
+            $post->excerpt = $this->getDescriptionFromContent($content, 120);
             Prism::setShare($post->perm_link, $post->title, $post->excerpt, $post->image);
         } catch (ModelNotFoundException $e) {
             abort(404);
@@ -61,11 +59,23 @@ class PostController extends Controller
         return view('posts.show', compact('post', 'author', 'category', 'is_like', 'content'));
     }
 
+    function getDescriptionFromContent($content, $count)
+    {
+        $content = preg_replace("@<(.*?)>@is", "", $content);
+        $content = str_replace(PHP_EOL, '', $content);
+        $content= preg_replace('# #', '', $content);
+        $res = mb_substr($content, 0, $count, 'UTF-8');
+        if (mb_strlen($content, 'UTF-8') > $count) {
+            $res = $res . "...";
+        }
+        return $res;
+    }
+
     public function like($slug)
     {
         try {
             $post = Post::with('content')->where('slug', $slug)->firstOrFail();
-            $post->likes = $post->likes + 1;
+            $post->likes += 1;
             $post->save();
             return response([
                 'result' => true,

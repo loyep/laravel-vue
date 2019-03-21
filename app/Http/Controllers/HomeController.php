@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         Log::info('home');
-        $posts = Post::with('category')->paginate();
+        $posts = Post::with('category')->withCount('comments')->paginate();
 
         return view('home', compact('posts'));
     }
