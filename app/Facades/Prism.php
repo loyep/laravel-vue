@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static string name();
  * @method static string title();
+ * @method static string markdown($text);
+ * @method static void setShare(string $url, string $title = null, string $des = null, string $pic = null);
  *
- * @see \App\Services\Prism\Factory
+ * @see \App\Services\Prism
  */
 class Prism extends Facade
 {

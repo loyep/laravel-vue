@@ -13,11 +13,16 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 /**
  * Class Post.
  *
- * @property \App\Models\User user
- * @property \App\Models\Category category
+ * @property User user
+ * @property Category category
  * @property int likes
  * @property int views
  * @property int id
+ * @property-read  string perm_link
+ * @property string image
+ * @property string title
+ * @property string excerpt
+ * @property Content content
  */
 class Post extends Model
 {

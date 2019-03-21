@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Prism;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -48,10 +49,16 @@ class PostController extends Controller
             $author = $post->user;
             $category = $post->category;
             $is_like = $post->isLiked();
+            $content = $post->content->body;
+            if (empty($content)) {
+                $content = Prism::markdown($post->content->markdown);
+            }
+
+            Prism::setShare($post->perm_link, $post->title, $post->excerpt, $post->image);
         } catch (ModelNotFoundException $e) {
             abort(404);
         }
-        return view('posts.show', compact('post', 'author', 'category', 'is_like'));
+        return view('posts.show', compact('post', 'author', 'category', 'is_like', 'content'));
     }
 
     public function like($slug)

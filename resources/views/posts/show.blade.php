@@ -67,10 +67,11 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                       <i class="icon icon-eye"></i><small>{{ $post->views }}</small>
                   </span>
                                 <span class="u-comment text-secondary font-16 font-xs-14 ml-2 ml-md-3 ml-lg-4 d-none d-md-inline-block">
-                      <a href="#comments"><i class="fal fa-comment-alt-lines"></i><small>1</small></a>
+                      <a href="#comments"><i class="fal fa-comment-alt-lines"></i><small>{{ $post->comments->count() }}</small></a>
                   </span>
                                 <span class="u-like font-16 font-xs-14 ml-2 ml-md-3 ml-lg-4 d-none d-md-inline-block">
-                    <a class="btn-action btn-like post-like font-16 font-xs-14 {{ $is_like ? 'current' : '' }}" href="javascript:;" data-action="ding"
+                    <a class="btn-action btn-like post-like font-16 font-xs-14 {{ $is_like ? 'current' : '' }}"
+                       href="javascript:;" data-action="ding"
                        data-id="1">
                       <i class="fal fa-heart"></i>
                       <small class="count">{{ $post->likes }}</small>
@@ -80,7 +81,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                         </div>
                     </div>
                     <article class="post-content suxing-popup-gallery">
-                        {!! $post->content->body !!}
+                        {!! $content !!}
                     </article>
                     <div class="post-tags mt-3 mt-md-4">
                     </div>
@@ -107,21 +108,33 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                             <ul class="social bdsharebuttonbox">
                                 <li data-toggle="tooltip" data-placement="top" title="分享至微博">
                                     <a class="weibo" rel="nofollow" target="_blank"
-                                       href="//service.weibo.com/share/share.php?url=http%3A%2F%2Fwp.loyep.com%2F2019%2F03%2F20%2Fhello-world%2F&type=button&language=zh_cn&title=%E3%80%90%E4%B8%96%E7%95%8C%EF%BC%8C%E6%82%A8%E5%A5%BD%EF%BC%81%E3%80%91%E6%AC%A2%E8%BF%8E%E4%BD%BF%E7%94%A8WordPress%E3%80%82%E8%BF%99%E6%98%AF%E6%82%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E3%80%82%E7%BC%96%E8%BE%91%E6%88%96%E5%88%A0%E9%99%A4%E5%AE%83%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BC%80%E5%A7%8B%E5%86%99%E4%BD%9C%E5%90%A7%EF%BC%81&pic=http%3A%2F%2Fwp.loyep.com%2Fwp-content%2Fthemes%2Fcosy2.05%2Fstatic%2Fimages%2Fdefault.png&searchPic=true">
+                                       href="{{ Prism::share()->weibo() }}">
                                         <i class="fab fa-weibo"></i>
                                     </a>
                                 </li>
                                 <li data-toggle="tooltip" data-placement="top" title="分享至微信">
                                     <a class="weixin single-weixin"
-                                       data-img="http://wp.loyep.com/wp-content/themes/cosy2.05/core/functions/share/qrcode.php?data=http%3A%2F%2Fwp.loyep.com%2F2019%2F03%2F20%2Fhello-world%2F"
+                                       data-img="{!! Prism::share()->weixin() !!}"
                                        rel="nofollow" href="javascript:;">
                                         <i class="fab fa-weixin"></i>
                                     </a>
                                 </li>
                                 <li data-toggle="tooltip" data-placement="top" title="分享至QQ">
                                     <a class="qq" rel="nofollow" target="_blank"
-                                       href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fwp.loyep.com%2F2019%2F03%2F20%2Fhello-world%2F&title=%E4%B8%96%E7%95%8C%EF%BC%8C%E6%82%A8%E5%A5%BD%EF%BC%81&pics=http%3A%2F%2Fwp.loyep.com%2Fwp-content%2Fthemes%2Fcosy2.05%2Fstatic%2Fimages%2Fdefault.png&summary=%E6%AC%A2%E8%BF%8E%E4%BD%BF%E7%94%A8WordPress%E3%80%82%E8%BF%99%E6%98%AF%E6%82%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E3%80%82%E7%BC%96%E8%BE%91%E6%88%96%E5%88%A0%E9%99%A4%E5%AE%83%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BC%80%E5%A7%8B%E5%86%99%E4%BD%9C%E5%90%A7%EF%BC%81">
+                                       href="{{ Prism::share()->qq() }}">
                                         <i class="fab fa-qq"></i>
+                                    </a>
+                                </li>
+                                <li data-toggle="tooltip" data-placement="top" title="分享至Fackbook">
+                                    <a class="fackbook" rel="nofollow" target="_blank"
+                                       href="{{ Prism::share()->facebook() }}">
+                                        <i class="fab fa-facebook-square"></i>
+                                    </a>
+                                </li>
+                                <li data-toggle="tooltip" data-placement="top" title="分享至Twitter">
+                                    <a class="twitter" rel="nofollow" target="_blank"
+                                       href="{{ Prism::share()->twitter() }}">
+                                        <i class="fab fa-twitter"></i>
                                     </a>
                                 </li>
                             </ul>
@@ -155,7 +168,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                 <div id="comments" class="nice-comments mt-3 mt-md-4-2 mt-lg-5">
                     <h4 class="font-16 mb-4 mt-lg-4-2"><span class="font-18 text-muted mr-2">
                             <i class="fal fa-comment-alt-lines"></i> </span> 文章评论
-                        <small class="font-theme">(1)</small>
+                        <small class="font-theme">({{ $post->comments->count() }})</small>
                     </h4>
                     <div id="respond" class="comment-respond mb-4 mb-lg-5">
                         <form method="post" action="http://wp.loyep.com/wp-comments-post.php" id="commentform"
@@ -350,6 +363,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                         </li>
                     </ul>
                 </div>
+
                 <div id="recent-comments-2" class="widget widget_recent_comments">
                     <h3 class="widget-title">近期评论</h3>
                     <ul id="recentcomments">
@@ -373,16 +387,53 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                         </li>
                     </ul>
                 </div>
-                <div id="meta-2" class="widget widget_meta">
-                    <h3 class="widget-title">功能</h3>
-                    <ul>
-                        <li><a href="http://wp.loyep.com/wp-login.php">登录</a></li>
-                        <li><a href="http://wp.loyep.com/feed/">文章<abbr title="Really Simple Syndication">RSS</abbr></a>
+
+                <div id="recent-posts-4" class="widget widget_related_posts">
+                    <h3 class="widget-title">相关文章</h3>
+                    <ul class="row row-10">
+                        <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
+                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/3546.html" target="_blank"
+                               title="17天女生独行，如何用4000元横跨南北三省四个城市？">
+                                <div class="image custom-hover-img"
+                                     style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/2018092214591613-e1537980861650.jpeg&h=300&w=300&zc=1&a=c&q=100&s=1')">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center  content text-center p-md-2 p-lg-3">
+                                    <h4 class="title font-14 color-white text-l3">17天女生独行，如何用4000元横跨南北三省四个城市？</h4>
+                                </div>
+                            </a>
                         </li>
-                        <li><a href="http://wp.loyep.com/comments/feed/">评论<abbr
-                                        title="Really Simple Syndication">RSS</abbr></a>
+                        <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
+                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1944.html" target="_blank"
+                               title="在别人看不到的角落努力，在看得见的原野绽放光芒">
+                                <div class="image custom-hover-img"
+                                     style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/2018092212393345.jpeg&h=300&w=300&zc=1&a=c&q=100&s=1')">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center  content text-center p-md-2 p-lg-3">
+                                    <h4 class="title font-14 color-white text-l3">在别人看不到的角落努力，在看得见的原野绽放光芒</h4>
+                                </div>
+                            </a>
                         </li>
-                        <li><a href="https://cn.wordpress.org/" title="基于WordPress，一个优美、先进的个人信息发布平台。">WordPress.org</a>
+                        <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
+                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1594.html" target="_blank"
+                               title="耶鲁大学的这场音乐会，邀请听众用手机和他们一起演奏">
+                                <div class="image custom-hover-img"
+                                     style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/bigger-5b927f1b65d4a.jpg&h=300&w=300&zc=1&a=c&q=100&s=1')">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center  content text-center p-md-2 p-lg-3">
+                                    <h4 class="title font-14 color-white text-l3">耶鲁大学的这场音乐会，邀请听众用手机和他们一起演奏</h4>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
+                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1873.html" target="_blank"
+                               title="2014，我是一名大一新生；2018，我是一名旅行摄影师">
+                                <div class="image custom-hover-img"
+                                     style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/2018092216535846-e1537606449598.jpeg&h=300&w=300&zc=1&a=c&q=100&s=1')">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center  content text-center p-md-2 p-lg-3">
+                                    <h4 class="title font-14 color-white text-l3">2014，我是一名大一新生；2018，我是一名旅行摄影师</h4>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -406,7 +457,8 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                     <small class="mt-auto mt-lg-0">11</small>
                 </a></span>
             <span class="d-flex justify-content-center item item-like">
-                <a class="d-flex flex-column flex-lg-row btn-action btn-like post-like {{ $is_like ? 'current' : '' }}" href="javascript:;"
+                <a class="d-flex flex-column flex-lg-row btn-action btn-like post-like {{ $is_like ? 'current' : '' }}"
+                   href="javascript:;"
                    data-action="ding" data-id="3546">
                     <i class="fal fa-heart"></i>
                     <small class="count mt-auto mt-lg-0">{{ $post->likes }}</small>
