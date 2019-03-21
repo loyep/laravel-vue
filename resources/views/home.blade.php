@@ -91,7 +91,7 @@ if (Route::current()->named('home')) {
                                                         class="fal fa-comment-alt-lines"></i>  {{ $post->comments_count }}</span>
 
                                             <span class="u-like d-inline-block d-lg-none d-lg-inline-block"><i
-                                                        class="fal fa-heart"></i> 0</span>
+                                                        class="fal fa-heart"></i> {{ $post->likes }}</span>
                                         </div>
                                     </div>
 

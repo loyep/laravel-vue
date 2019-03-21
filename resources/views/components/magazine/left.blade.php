@@ -14,7 +14,7 @@
                     </div>
                     <div class="text-nowrap">
                         <span class="u-time">{{ $post->published_date }}</span>
-                        <span class="u-comment"><i class="fal fa-comment-alt-lines"></i>  34</span>
+                        <span class="u-comment"><i class="fal fa-comment-alt-lines"></i>  {{ $post->comments_count }}</span>
                         <span class="u-like"><i class="fal fa-heart"></i>  {{ $post->likes }}</span>
                     </div>
                 </div>

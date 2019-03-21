@@ -6,7 +6,6 @@ use App\Facades\Prism;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Psy\Util\Str;
 
 class PostController extends Controller
 {
@@ -53,6 +52,7 @@ class PostController extends Controller
             $content = $post->content->html();
             $post->excerpt = $this->getDescriptionFromContent($content, 120);
             Prism::setShare($post->perm_link, $post->title, $post->excerpt, $post->image);
+            Prism::setTitle($post->title . ' - ' . config('prism.name'));
         } catch (ModelNotFoundException $e) {
             abort(404);
         }
@@ -63,7 +63,7 @@ class PostController extends Controller
     {
         $content = preg_replace("@<(.*?)>@is", "", $content);
         $content = str_replace(PHP_EOL, '', $content);
-        $content= preg_replace('# #', '', $content);
+        $content = preg_replace('# #', '', $content);
         $res = mb_substr($content, 0, $count, 'UTF-8');
         if (mb_strlen($content, 'UTF-8') > $count) {
             $res = $res . "...";

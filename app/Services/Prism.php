@@ -42,7 +42,7 @@ class Prism
      *
      * @param $title
      */
-    public static function setTitle($title)
+    public function setTitle($title)
     {
         self::$metaTitle = $title;
     }
