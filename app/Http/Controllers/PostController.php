@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -41,6 +43,29 @@ class PostController extends Controller
      */
     public function show($slug)
     {
-        //
+        try {
+            $post = Post::with('content')->where('slug', $slug)->firstOrFail();
+            $author = $post->user;
+            $category = $post->category;
+            $is_like = $post->isLiked();
+        } catch (ModelNotFoundException $e) {
+            abort(404);
+        }
+        return view('posts.show', compact('post', 'author', 'category', 'is_like'));
+    }
+
+    public function like($slug)
+    {
+        try {
+            $post = Post::with('content')->where('slug', $slug)->firstOrFail();
+            $post->likes = $post->likes + 1;
+            $post->save();
+            return response([
+                'result' => true,
+                'data' => $post->likes
+            ])->cookie($post->getLikeKey(), true, 9999999);
+        } catch (ModelNotFoundException $e) {
+            abort(404);
+        }
     }
 }

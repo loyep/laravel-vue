@@ -3,18 +3,24 @@
 namespace App\Models;
 
 use App\Traits\Cachable;
+use App\Traits\CanLike;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * Class Post.
  *
  * @property \App\Models\User user
+ * @property \App\Models\Category category
+ * @property int likes
+ * @property int views
+ * @property int id
  */
 class Post extends Model
 {
-    use Cachable;
+    use Cachable, CanLike;
 
     protected $with = [
         'user',
@@ -43,5 +49,18 @@ class Post extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    /**
+     * @return string
+     */
+    public function getPermLinkAttribute()
+    {
+        return route('post.show', ['slug' => $this->slug]);
     }
 }

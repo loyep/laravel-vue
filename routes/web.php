@@ -26,10 +26,11 @@ Route::get('t/{slug}', 'LinkController@short')->name('short');
 Route::get('links', 'LinkController@index')->name('short');
 
 // 作者页
-Route::get('author/{slug}', 'UserController@show')->name('user.show');
+Route::get('author/{name}', 'UserController@show')->name('user.show');
 
 // 文章页
 Route::get('post/{slug}', 'PostController@show')->name('post.show');
+Route::post('post/{slug}/like', 'PostController@like')->name('post.like');
 
 // 分类页
 Route::get('category/{slug}', 'CategoryController@show')->name('category.show');

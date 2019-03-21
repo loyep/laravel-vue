@@ -1,6 +1,6 @@
 <div class="items items-left col-12 col-md-6">
     <div class="item">
-        <a class="custom-hover d-block" href="{{ route('post.show', ['slug' => $post->slug]) }}" target="_blank"
+        <a class="custom-hover d-block" href="{{ $post->permLink }}" target="_blank"
            title="{{ $post->title }}">
             <div class="custom-hover-img image"
                  style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
@@ -15,7 +15,7 @@
                     <div class="text-nowrap">
                         <span class="u-time">2017-09-28</span>
                         <span class="u-comment"><i class="fal fa-comment-alt-lines"></i>  34</span>
-                        <span class="u-like"><i class="fal fa-heart"></i>  94</span>
+                        <span class="u-like"><i class="fal fa-heart"></i>  {{ $post->likes }}</span>
                     </div>
                 </div>
             </div>

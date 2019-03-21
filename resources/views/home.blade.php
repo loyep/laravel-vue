@@ -16,15 +16,19 @@ if (Route::current()->named('home')) {
     <title>@yield('page_title', Prism::title())</title>
     <link href="{{ mix('css/app.css', 'static/app') }}" rel="stylesheet">
     <script>
-      var globals = {
-        'image_popup': 'null',
-        'new_comment_position': 'asc',
-        'single': '0',
-        'post_style': '0',
-        'home': '1',
-        'page': '0',
-        'silide': '0',
-      };
+        /* <![CDATA[ */
+        var globals = {
+          'ajax_url': '',
+          'url_theme': '',
+          'image_popup': 'gallery',
+          'new_comment_position': 'asc',
+          'single': '1',
+          'post_style': 'two',
+          'home': '0',
+          'page': '0',
+          'silide': '0',
+        };
+        /* ]]> */
     </script>
 </head>
 <body class="{{ implode(' ', $bodyClass) }}">
@@ -44,7 +48,7 @@ if (Route::current()->named('home')) {
                             <article class="card flex-fill mb-4 mb-sm-4-2 mb-md-4 mb-lg-4-2">
                                 <div class="image">
                                     <a class=""
-                                       href="{{ route('post.show', ['slug'=> $post->slug]) }}"
+                                       href="{{ $post->permLink }}"
                                        title="{{ $post->title }}">
                                         <div class="custom-hover d-block">
                                             <img class="timthumb_php"
@@ -55,17 +59,18 @@ if (Route::current()->named('home')) {
                                     </a>
                                 </div>
                                 <div class="card-body d-flex flex-column content mt-1 mt-md-2">
-
                                     <div class="meta mt-2 light-12 ">
-                                        <span class="u-cat-name font-12 d-block  ">
-                                            <a class="text-primary"
-                                               href="{{ route('category.show', ['slug' => $post->category->slug]) }}">{{ $post->category->name }}</a></span>
+                                        <span class="u-cat-name font-12 d-block">
+                                            <a class="text-primary" href="{{ $post->category->permLink }}">
+                                                {{ $post->category->name }}
+                                            </a>
+                                        </span>
                                     </div>
                                     <div class="title flex-grow-1 mt-2">
                                         <h2 class="font-16 font-md-14 font-xs-16 text-l2 font-weight-bold light-14">
-                                            <a href="{{ route('post.show', ['slug'=> $post->slug]) }}"
-                                               title="{{ $post->title }}">
-                                                {{ $post->title }}</a>
+                                            <a href="{{ $post->permLink }}" title="{{ $post->title }}">
+                                                {{ $post->title }}
+                                            </a>
                                         </h2>
                                     </div>
                                     <div class="desc mt-2 d-none d-md-block">

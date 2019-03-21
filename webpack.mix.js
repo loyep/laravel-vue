@@ -26,6 +26,7 @@ mix.scripts([
   'resources/js/vendor/jquery.js',
   'resources/js/vendor/jquery-migrate.min.js',
   'resources/js/vendor/jquery.magnific-popup.min.js',
+  'resources/js/vendor/axios.min.js',
   'resources/js/vendor/owl.carousel.min.js',
   'resources/js/vendor/plugins.min.js',
   'resources/js/vendor/theia-sticky-sidebar.min.js',

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * Class Comment.
@@ -31,5 +32,10 @@ class Comment extends Model
     public function content(): MorphOne
     {
         return $this->morphOne(Content::class, 'contentable');
+    }
+
+    public function commentable(): MorphTo
+    {
+        return $this->morphTo();
     }
 }

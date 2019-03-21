@@ -29,11 +29,11 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\User $user
+     * @param $name
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($name)
     {
         //
     }

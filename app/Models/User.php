@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
@@ -77,5 +78,13 @@ class User extends Authenticatable implements JWTSubject
         return [
             'admin',
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getPermLinkAttribute()
+    {
+        return route('user.show', ['name' => $this->name]);
     }
 }
