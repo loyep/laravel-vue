@@ -13,7 +13,6 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::defaultStringLength(191);
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->morphs('commentable');

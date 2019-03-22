@@ -4,7 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\URL;
 
+/**
+ * Class Category
+ *
+ * @property string slug
+ *
+ * @package App\Models
+ */
 class Category extends Model
 {
 
@@ -18,6 +26,11 @@ class Category extends Model
      */
     public function getPermLinkAttribute()
     {
-        return route('category.show', ['slug' => $this->slug]);
+        return URL::route('category.show', ['slug' => $this->slug]);
+    }
+
+    public function meta()
+    {
+        return $this->morphOne(Meta::class, 'metaable');
     }
 }

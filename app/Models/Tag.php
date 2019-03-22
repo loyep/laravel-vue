@@ -3,7 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
+/**
+ * Class Tag
+ *
+ * @property string slug
+ *
+ * @package App\Models
+ */
 class Tag extends Model
 {
 
@@ -12,6 +20,11 @@ class Tag extends Model
      */
     public function getPermLinkAttribute()
     {
-        return route('tag.show', ['slug' => $this->slug]);
+        return URL::route('tag.show', ['slug' => $this->slug]);
+    }
+
+    public function meta()
+    {
+        return $this->morphOne(Meta::class, 'metaable');
     }
 }

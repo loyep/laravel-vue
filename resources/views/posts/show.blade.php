@@ -20,7 +20,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
         'image_popup': 'null',
         'new_comment_position': 'asc',
         'single': '1',
-        'post_style': '0',
+        'post_style': 'two',
         'home': '0',
         'page': '0',
         'silide': '0',
@@ -33,7 +33,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
 
 <section class="nice-warp my-4 my-md-5">
     <div class="container">
-        @include('components.breadcrumbs')
+        @include('posts.breadcrumbs', ['post' => $post, 'category' => $category])
         <div class="inner-row row">
             <main class="nice-main col-12 col-md-8">
                 <div class="nice-post">
@@ -385,7 +385,8 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                     <h3 class="widget-title">相关文章</h3>
                     <ul class="row row-10">
                         <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
-                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/3546.html" target="_blank"
+                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/3546.html"
+                               target="_blank"
                                title="17天女生独行，如何用4000元横跨南北三省四个城市？">
                                 <div class="image custom-hover-img"
                                      style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/2018092214591613-e1537980861650.jpeg&h=300&w=300&zc=1&a=c&q=100&s=1')">
@@ -396,7 +397,8 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                             </a>
                         </li>
                         <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
-                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1944.html" target="_blank"
+                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1944.html"
+                               target="_blank"
                                title="在别人看不到的角落努力，在看得见的原野绽放光芒">
                                 <div class="image custom-hover-img"
                                      style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/2018092212393345.jpeg&h=300&w=300&zc=1&a=c&q=100&s=1')">
@@ -407,7 +409,8 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                             </a>
                         </li>
                         <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
-                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1594.html" target="_blank"
+                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1594.html"
+                               target="_blank"
                                title="耶鲁大学的这场音乐会，邀请听众用手机和他们一起演奏">
                                 <div class="image custom-hover-img"
                                      style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/bigger-5b927f1b65d4a.jpg&h=300&w=300&zc=1&a=c&q=100&s=1')">
@@ -418,7 +421,8 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                             </a>
                         </li>
                         <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
-                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1873.html" target="_blank"
+                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1873.html"
+                               target="_blank"
                                title="2014，我是一名大一新生；2018，我是一名旅行摄影师">
                                 <div class="image custom-hover-img"
                                      style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/2018092216535846-e1537606449598.jpeg&h=300&w=300&zc=1&a=c&q=100&s=1')">

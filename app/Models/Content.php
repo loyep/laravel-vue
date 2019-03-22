@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Content
  *
- * @property string body
+ * @property string html
  * @property string markdown
+ * @property boolean is_html
  *
  * @package App\Models
  */
@@ -18,12 +19,13 @@ class Content extends Model
 {
     use Cachable;
 
-    public function html()
+    public function content()
     {
-        $content = $this->body;
-        if (empty($content)) {
-            $content = Prism::markdown($this->markdown);
+        if ($this->is_html) {
+            $html = $this->html;
+        } else {
+            $html = Prism::markdown($this->markdown);
         }
-        return $content;
+        return $html;
     }
 }

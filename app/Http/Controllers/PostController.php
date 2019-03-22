@@ -46,11 +46,13 @@ class PostController extends Controller
     {
         try {
             $post = Post::with('content')->where('slug', $slug)->firstOrFail();
+            $post->increment('views');
+            $post->post_layout = 'two';
             $author = $post->user;
             $category = $post->category;
             $is_like = $post->isLiked();
-            $content = $post->content->html();
-            $post->excerpt = $this->getDescriptionFromContent($content, 120);
+            $content = $post->content->content();
+            $post->excerpt = $this->getExcerptFromContent($content, 120);
             Prism::setShare($post->perm_link, $post->title, $post->excerpt, $post->image);
             Prism::setTitle($post->title . ' - ' . config('prism.name'));
         } catch (ModelNotFoundException $e) {
@@ -59,7 +61,7 @@ class PostController extends Controller
         return view('posts.show', compact('post', 'author', 'category', 'is_like', 'content'));
     }
 
-    function getDescriptionFromContent($content, $count)
+    function getExcerptFromContent($content, $count)
     {
         $content = preg_replace("@<(.*?)>@is", "", $content);
         $content = str_replace(PHP_EOL, '', $content);
@@ -75,8 +77,7 @@ class PostController extends Controller
     {
         try {
             $post = Post::with('content')->where('slug', $slug)->firstOrFail();
-            $post->likes += 1;
-            $post->save();
+            $post->increment('likes');
             return response([
                 'result' => true,
                 'data' => $post->likes

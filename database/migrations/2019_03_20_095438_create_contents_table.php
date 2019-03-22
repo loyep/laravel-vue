@@ -15,10 +15,10 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->morphs('contentable'); // contentable_id, contentable_type
-            $table->mediumText('body')->nullable();
+            $table->morphs('contentable');
+            $table->boolean('is_html')->default(true);
+            $table->mediumText('html')->nullable();
             $table->mediumText('markdown')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

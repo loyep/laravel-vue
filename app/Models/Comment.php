@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $type
  * @property string $ip
  * @property string $agent
+ *
+ * @package App\Models
  */
 class Comment extends Model
 {

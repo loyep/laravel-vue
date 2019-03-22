@@ -5,10 +5,16 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
- * Class User.
+ * Class User
+ *
+ * @property string name
+ * @property string display_name
+ *
+ * @package App\Models
  */
 class User extends Authenticatable implements JWTSubject
 {
@@ -85,6 +91,11 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getPermLinkAttribute()
     {
-        return route('user.show', ['name' => $this->name]);
+        return URL::route('user.show', ['name' => $this->name]);
+    }
+
+    public function meta()
+    {
+        return $this->morphOne(Meta::class, 'metaable');
     }
 }

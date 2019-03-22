@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Support\Facades\URL;
 
 /**
  * Class Post.
@@ -23,14 +24,12 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property string title
  * @property string excerpt
  * @property Content content
+ * @property string published_at
+ * @property string slug
  */
 class Post extends Model
 {
     use Cachable, CanLike;
-
-    protected $with = [
-        'user',
-    ];
 
     protected $dates = [
         'published_at',
@@ -62,17 +61,19 @@ class Post extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
-    /**
-     * @return string
-     */
     public function getPermLinkAttribute()
     {
-        return route('post.show', ['slug' => $this->slug]);
+        return URL::route('post.show', ['slug' => $this->slug]);
     }
 
     public function getPublishedDateAttribute()
     {
         return Carbon::parse($this->published_at)->toDateString();
+    }
+
+    public function meta()
+    {
+        return $this->morphOne(Meta::class, 'metaable');
     }
 
 }
