@@ -54,22 +54,24 @@ class PostController extends Controller
             $content = $post->content->content();
             $post->excerpt = $this->getExcerptFromContent($content, 120);
             Prism::setShare($post->perm_link, $post->title, $post->excerpt, $post->image);
-            Prism::setTitle($post->title . ' - ' . config('prism.name'));
+            Prism::setTitle($post->title.' - '.config('prism.name'));
         } catch (ModelNotFoundException $e) {
             abort(404);
         }
+
         return view('posts.show', compact('post', 'author', 'category', 'is_like', 'content'));
     }
 
-    function getExcerptFromContent($content, $count)
+    public function getExcerptFromContent($content, $count)
     {
-        $content = preg_replace("@<(.*?)>@is", "", $content);
+        $content = preg_replace('@<(.*?)>@is', '', $content);
         $content = str_replace(PHP_EOL, '', $content);
         $content = preg_replace('# #', '', $content);
         $res = mb_substr($content, 0, $count, 'UTF-8');
         if (mb_strlen($content, 'UTF-8') > $count) {
-            $res = $res . "...";
+            $res = $res.'...';
         }
+
         return $res;
     }
 
@@ -78,9 +80,10 @@ class PostController extends Controller
         try {
             $post = Post::with('content')->where('slug', $slug)->firstOrFail();
             $post->increment('likes');
+
             return response([
                 'result' => true,
-                'data' => $post->likes
+                'data'   => $post->likes,
             ])->cookie($post->getLikeKey(), true, 9999999);
         } catch (ModelNotFoundException $e) {
             abort(404);

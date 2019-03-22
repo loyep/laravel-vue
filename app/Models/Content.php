@@ -7,13 +7,11 @@ use App\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Content
+ * Class Content.
  *
  * @property string html
  * @property string markdown
- * @property boolean is_html
- *
- * @package App\Models
+ * @property bool is_html
  */
 class Content extends Model
 {
@@ -26,6 +24,7 @@ class Content extends Model
         } else {
             $html = Prism::markdown($this->markdown);
         }
+
         return $html;
     }
 }

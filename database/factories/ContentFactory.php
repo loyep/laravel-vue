@@ -5,8 +5,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Content::class, function (Faker $faker) {
     return [
-        'html' => $faker->randomHtml(3, 4),
-        'is_html' => true,
+        'html'     => $faker->randomHtml(3, 4),
+        'is_html'  => true,
         'markdown' => '## 环境版本
 
 ```shell
@@ -277,6 +277,6 @@ $ composer install -vvv
 
 ```shell
 $ cp .env.example .env
-```'
+```',
     ];
 });

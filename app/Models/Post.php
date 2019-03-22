@@ -86,5 +86,4 @@ class Post extends Model
     {
         return $this->morphOne(Meta::class, 'metaable');
     }
-
 }

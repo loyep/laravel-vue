@@ -107,9 +107,9 @@ class Prism
     public function menus($group)
     {
         return [[
-            'url' => '/',
+            'url'    => '/',
             'target' => '__selft',
-            'title' => '首页',
+            'title'  => '首页',
         ]];
     }
 }
