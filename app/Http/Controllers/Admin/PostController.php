@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -23,12 +22,13 @@ class PostController extends Controller
             $builder = $builder->where('user_id', $user_id);
         }
 
-        if ($orderBy = $request->get('orderBy') ) {
+        if ($orderBy = $request->get('orderBy')) {
             $sortedBy = $request->get('sortedBy', 'asc');
             $builder = $builder->orderBy($orderBy, $sortedBy);
         }
 
         $posts = $builder->paginate($request->get('per_page', 10));
+
         return response()->json($posts);
     }
 
