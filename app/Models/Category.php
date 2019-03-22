@@ -7,15 +7,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\URL;
 
 /**
- * Class Category
+ * Class Category.
  *
  * @property string slug
- *
- * @package App\Models
  */
 class Category extends Model
 {
-
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);

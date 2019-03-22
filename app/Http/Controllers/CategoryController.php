@@ -38,6 +38,7 @@ class CategoryController extends Controller
     {
         $category = Category::withCount('posts')->where('slug', $slug)->first();
         $posts = Post::where('category_id', $category->id)->paginate(16);
+
         return view('categories.show', compact('posts', 'category'));
     }
 }

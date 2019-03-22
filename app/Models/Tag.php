@@ -7,15 +7,12 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\URL;
 
 /**
- * Class Tag
+ * Class Tag.
  *
  * @property string slug
- *
- * @package App\Models
  */
 class Tag extends Model
 {
-
     /**
      * @return string
      */

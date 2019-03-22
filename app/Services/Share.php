@@ -6,7 +6,6 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Share
 {
-
     protected $title;
 
     protected $des;
@@ -17,7 +16,8 @@ class Share
 
     /**
      * Share constructor.
-     * @param string $url
+     *
+     * @param string      $url
      * @param string|null $title
      * @param string|null $des
      * @param string|null $pic
@@ -35,7 +35,7 @@ class Share
      */
     public function weibo()
     {
-        $pic = isset($this->pic) ? '&pic=' . urlencode($this->pic) : '';
+        $pic = isset($this->pic) ? '&pic='.urlencode($this->pic) : '';
 
         if (isset($this->des)) {
             $text = urlencode(sprintf('【%s】%s', $this->title, $this->des));
@@ -53,8 +53,8 @@ class Share
      */
     public function qq()
     {
-        $pic = isset($this->pic) ? '&pics=' . urlencode($this->pic) : '';
-        $des = isset($this->des) ? '&summary=' . urlencode($this->des) : '';
+        $pic = isset($this->pic) ? '&pics='.urlencode($this->pic) : '';
+        $des = isset($this->des) ? '&summary='.urlencode($this->des) : '';
 
         $share_link = sprintf('https://connect.qq.com/widget/shareqq/index.html?url=%s&title=%s%s%s', urlencode($this->url), urlencode($this->title), $pic, $des);
 
@@ -66,26 +66,28 @@ class Share
      */
     public function weixin()
     {
-        $share_link = 'data:image/png;base64,' . base64_encode(QrCode::format('png')->size(320)->generate($this->url));
+        $share_link = 'data:image/png;base64,'.base64_encode(QrCode::format('png')->size(320)->generate($this->url));
+
         return $share_link;
     }
 
     /**
-     * facebook
+     * facebook.
      */
     public function facebook()
     {
         $share_link = sprintf('https://www.facebook.com/sharer.php?u=%s', urlencode($this->url));
+
         return $share_link;
     }
 
     /**
-     * twitter
+     * twitter.
      */
     public function twitter()
     {
         $share_link = sprintf('https://twitter.com/intent/tweet?url=%s', urlencode($this->url));
+
         return $share_link;
     }
-
 }

@@ -8,7 +8,7 @@ trait CanLike
 {
     public function getLikeKey()
     {
-        return md5('prism_like_' . __CLASS__ . $this->getKey());
+        return md5('prism_like_'.__CLASS__.$this->getKey());
     }
 
     public function isLiked()

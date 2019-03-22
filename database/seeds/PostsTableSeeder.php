@@ -2,8 +2,8 @@
 
 use App\Models\Content;
 use App\Models\Post;
-use Illuminate\Database\Seeder;
 use App\Models\Tag;
+use Illuminate\Database\Seeder;
 
 class PostsTableSeeder extends Seeder
 {
