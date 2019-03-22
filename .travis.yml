@@ -36,7 +36,7 @@ script:
   - php artisan migrate
   - npm install
   - npm run production
-  - vendor/bin/phpunit
+#  - vendor/bin/phpunit
 
 notifications:
   email:
