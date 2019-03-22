@@ -78,7 +78,7 @@
         <div class="mobile-search">
             <form role="search" method="get" class="mobile-search-form" action="{{ route('search') }}">
                 <div class="input-group mb-3">
-                    <input type="search" name="s" id="s" class="form-control" placeholder="输入搜索关键词">
+                    <input type="search" name="q" id="s" class="form-control" placeholder="输入搜索关键词">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-light form-search-submit text-secondary px-3"
                                 type="button"><i class="fal fa-search"></i></button>
@@ -98,7 +98,7 @@
 
             <form method="get" action="{{ route('search') }}">
                 <div class="input-group">
-                    <input type="text" name="s" id="s" class="form-control font-16 font-xs-14" placeholder="输入搜索关键词"
+                    <input type="text" name="q" id="s" class="form-control font-16 font-xs-14" placeholder="输入搜索关键词"
                            required="">
                     <div class="input-group-append">
                         <button class="btn btn-primary font-16 font-xs-14" type="submit">搜索</button>

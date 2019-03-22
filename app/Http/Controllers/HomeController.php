@@ -41,8 +41,9 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $q = trim($request->get('q'));
+        $posts = Post::where('title', 'like', '%' . $q . '%')->paginate();
 
-        return view('search', compact('q'));
+        return view('search', compact('q', 'posts'));
     }
 
     /**

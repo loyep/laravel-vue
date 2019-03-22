@@ -18,9 +18,9 @@
             <h1 class="font-theme">404</h1>
             <p>抱歉，没有你要找的内容...</p>
             <div class="data-search">
-                <form role="search" method="get" action="/">
+                <form role="search" method="get" action="{{ route('search') }}">
                     <div class="form-group">
-                        <input type="search" class="form-control" name="s" id="s" placeholder="键入要搜索的关键词">
+                        <input type="search" class="form-control" name="q" id="s" placeholder="键入要搜索的关键词">
                         <button type="submit" class="btn btn-primary btn-search"><i class="fa fa-search"></i></button>
                     </div>
                 </form>

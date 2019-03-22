@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Post;
+
 class Prism
 {
     /**
@@ -85,6 +87,11 @@ class Prism
         }
 
         return config('app.name');
+    }
+
+    public function relatedPosts($post)
+    {
+        return Post::where('category_id', $post->category_id)->take(0)->get();
     }
 
     /**

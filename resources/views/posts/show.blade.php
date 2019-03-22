@@ -350,7 +350,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                     <form role="search" method="get" id="searchform" class="searchform" action="http://wp.loyep.com/">
                         <div>
                             <label class="screen-reader-text" for="s">搜索：</label>
-                            <input type="text" value="" name="s" id="s"/>
+                            <input type="text" value="" name="q" id="s"/>
                             <input type="submit" id="searchsubmit" value="搜索"/>
                         </div>
                     </form>
@@ -477,6 +477,7 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
         </div>
     </div>
 </section>
+@include('components.post.footer-related-posts', ['post' => $post])
 @include('partials.footer')
 
 <script>
