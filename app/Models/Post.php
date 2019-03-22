@@ -66,6 +66,11 @@ class Post extends Model
         return URL::route('post.show', ['slug' => $this->slug]);
     }
 
+    public function getImageAttribute($value)
+    {
+        return $value ?: asset('static/images/default.png');
+    }
+
     public function getPublishedDateAttribute()
     {
         return Carbon::parse($this->published_at)->toDateString();

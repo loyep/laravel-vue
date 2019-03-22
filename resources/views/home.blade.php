@@ -52,10 +52,20 @@ if (Route::current()->named('home')) {
                                        title="{{ $post->title }}">
                                         <div class="custom-hover d-block">
                                             <img class="timthumb_php"
-                                                 src="http://wp.loyep.com/wp-content/themes/cosy2.05/timthumb.php?src=http://wp.loyep.com/wp-content/themes/cosy2.05/static/images/default.png&h=270&w=360&zc=1&a=c&q=100&s=1"
+                                                 src="{{ $post->image }}"
                                                  title="{{ $post->title }}" alt="{{ $post->title }}">
                                         </div>
-                                        <div class="post-format-icon"><i class="fas fa-camera"></i></div>
+                                        {{--$post_extend = wp_parse_args( (array) $post_extend, array(--}}
+                                        {{--'post_layout' => 'one',--}}
+                                        {{--'head_img'    => '',--}}
+                                        {{--)--}}
+                                        {{--);--}}
+                                        {{--if( $post_extend['post_layout'] == 'six' || $post_extend['post_layout'] == 'seven' ){--}}
+                                        {{--echo '<div class="post-format-icon"><i class="fas fa-play"></i></div>';--}}
+                                        {{--}else if( $post_extend['post_layout'] == 'five' && $post_extend['post_layout_gallery'] ){--}}
+                                        {{--echo '<div class="post-format-icon"><i class="fas fa-camera"></i></div>';--}}
+                                        {{--}--}}
+                                        {{--<div class="post-format-icon"><i class="fas fa-play"></i></div>--}}
                                     </a>
                                 </div>
                                 <div class="card-body d-flex flex-column content mt-1 mt-md-2">
