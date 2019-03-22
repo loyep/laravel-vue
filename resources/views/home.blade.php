@@ -110,7 +110,9 @@ if (Route::current()->named('home')) {
                         </div>
                     @endforeach
                 </div>
-                <div class="m-3 m-md-4"></div>
+                <div class="m-3 m-md-4">
+                    {{ $posts->links() }}
+                </div>
             </div>
         </main>
     </div>

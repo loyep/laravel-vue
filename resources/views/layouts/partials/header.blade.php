@@ -142,28 +142,31 @@
                 //                    $img = $img[0];
                 //                }
                 ?>
+                @forelse(Prism::stickyPosts() as $stkPost)
+                    <div class="item col-12 col-sm-12 col-md-12 col-lg-3">
+                        <article>
+                            <a class="custom-hover d-block" href="{{ $stkPost->permLink }}" target="_blank">
+                                <div class="custom-hover-img image"
+                                     style="background-image: url('{{ $stkPost->image }}');"></div>
+                                <div class="content p-3 p-md-4">
+                                    <div class="title"><h2
+                                                class="font-18 <?php //echo get_title_font_weight() ?> text-l2 color-white">{{ $stkPost->title }}</h2>
+                                    </div>
+                                    <div class="data nodots d-flex align-items-center flex-row font-12 text-light mt-3">
+                                        <div class="flex-fill">
+                                            <span class="u-cat">{{ $stkPost->category->name }}</span>
+                                        </div>
+                                        <div class="text-nowrap">
+                                            <span class="u-time">{{ $stkPost->published_date }}<?php //echo timeago(get_gmt_from_date(get_the_time('Y-m-d', get_the_ID()))); ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                @empty
 
-                {{--<div class="item col-12 col-sm-12 col-md-12 col-lg-3">--}}
-                {{--<article>--}}
-                {{--<a class="custom-hover d-block" href="<?php //the_permalink(); ?>" target="_blank">--}}
-                {{--<div class="custom-hover-img image"--}}
-                {{--style="background-image: url('<?php //echo $img; ?>');"></div>--}}
-                {{--<div class="content p-3 p-md-4">--}}
-                {{--<div class="title"><h2--}}
-                {{--class="font-18 <?php //echo get_title_font_weight() ?> text-l2 color-white"><?php //the_title(); ?></h2>--}}
-                {{--</div>--}}
-                {{--<div class="data nodots d-flex align-items-center flex-row font-12 text-light mt-3">--}}
-                {{--<div class="flex-fill">--}}
-                {{--<span class="u-cat"><?php //echo $category[0]->cat_name; ?></span>--}}
-                {{--</div>--}}
-                {{--<div class="text-nowrap">--}}
-                {{--<span class="u-time"><?php //echo timeago(get_gmt_from_date(get_the_time('Y-m-d', get_the_ID()))); ?></span>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--</a>--}}
-                {{--</article>--}}
-                {{--</div>--}}
+                @endforelse
                 <?php
                 //                endwhile;
                 //                else :
@@ -180,15 +183,15 @@
 </section>
 @if (get_option('duang_all'))
 
-<section class="main-preloader">
-    <div class="preloader-inner">
-        <div class="loader-inner ball-scale-multiple">
-            <div></div>
-            <div></div>
-            <div></div>
+    <section class="main-preloader">
+        <div class="preloader-inner">
+            <div class="loader-inner ball-scale-multiple">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 @endif
 <header class="nice-header <?php //echo cs_get_option('mobile_header_layout'); ?>">
     <div class="<?php //echo $header_layout; ?> m-header">
@@ -219,27 +222,28 @@
                     </li>
                     @if (get_option('head_user_info'))
 
-                    <li><a class="font-16 text-secondary d-block px-2"
-                           href="<?php //echo admin_url('post-new.php'); ?>"><i class="fal fa-edit"></i></a></li>
-                    <?php
-                    if ($current_user->ID == 0): ?>
-                    <li><a href="<?php //echo esc_url(wp_login_url()); ?>"
-                           class="btn btn-outline-primary btn-sm btn-signin ml-2">登录</a></li>
+                        <li><a class="font-16 text-secondary d-block px-2"
+                               href="<?php //echo admin_url('post-new.php'); ?>"><i class="fal fa-edit"></i></a></li>
+                        <?php
+                        if ($current_user->ID == 0): ?>
+                        <li><a href="<?php //echo esc_url(wp_login_url()); ?>"
+                               class="btn btn-outline-primary btn-sm btn-signin ml-2">登录</a></li>
                     @else
-                    <li class="nice-dropmenu flex-shrink-0 ml-2">
-                        <a id="sign-menu" class="sign-avatar" ref="#" role="button" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            <?php //echo get_avatar($current_user->data->ID, 64, '', ''); ?>
-                        </a>
-                        <ul class="dropdown-inner" aria-labelledby="sign-menu">
-                            <li><a href="<?php // echo get_author_posts_url(get_current_user_ID());?>"><i
-                                            class="icon icon-grid text-secondary"></i>个人主页</a></li>
-                            <li><a href="<?php //echo get_edit_profile_url();?>"><i
-                                            class="icon icon-settings text-secondary"></i>账号设置</a></li>
-                            <li><a href="<?php //echo wp_logout_url() ?>"><i class="icon icon-logout text-secondary"></i>退出登录</a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li class="nice-dropmenu flex-shrink-0 ml-2">
+                            <a id="sign-menu" class="sign-avatar" ref="#" role="button" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <?php //echo get_avatar($current_user->data->ID, 64, '', ''); ?>
+                            </a>
+                            <ul class="dropdown-inner" aria-labelledby="sign-menu">
+                                <li><a href="<?php // echo get_author_posts_url(get_current_user_ID());?>"><i
+                                                class="icon icon-grid text-secondary"></i>个人主页</a></li>
+                                <li><a href="<?php //echo get_edit_profile_url();?>"><i
+                                                class="icon icon-settings text-secondary"></i>账号设置</a></li>
+                                <li><a href="<?php //echo wp_logout_url() ?>"><i
+                                                class="icon icon-logout text-secondary"></i>退出登录</a>
+                                </li>
+                            </ul>
+                        </li>
                     @endif
                     <?php
                     endif; ?>

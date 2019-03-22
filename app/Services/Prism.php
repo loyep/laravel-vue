@@ -94,6 +94,11 @@ class Prism
         return Post::where('category_id', $post->category_id)->take(0)->get();
     }
 
+    public function stickyPosts($count = 4)
+    {
+        return Post::withCount('comments')->with('category')->orderBy('comments_count', 'desc')->orderBy('views', 'desc')->take($count)->get();
+    }
+
     /**
      * @param $group
      *

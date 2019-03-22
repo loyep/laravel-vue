@@ -45,7 +45,7 @@ class PostController extends Controller
     public function show($slug)
     {
         try {
-            $post = Post::with('content')->where('slug', $slug)->firstOrFail();
+            $post = Post::with('content', 'category', 'tags', 'user')->where('slug', $slug)->firstOrFail();
             $post->increment('views');
             $post->post_layout = 'two';
             $author = $post->user;

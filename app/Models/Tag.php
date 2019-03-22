@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\URL;
 
 /**
@@ -21,6 +22,11 @@ class Tag extends Model
     public function getPermLinkAttribute()
     {
         return URL::route('tag.show', ['slug' => $this->slug]);
+    }
+
+    public function posts(): MorphToMany
+    {
+        return $this->morphedByMany(Post::class, 'taggable');
     }
 
     public function meta()

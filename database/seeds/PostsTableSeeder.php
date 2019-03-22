@@ -3,6 +3,7 @@
 use App\Models\Content;
 use App\Models\Post;
 use Illuminate\Database\Seeder;
+use App\Models\Tag;
 
 class PostsTableSeeder extends Seeder
 {
@@ -13,8 +14,9 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Post::class, 20)->create()->each(function ($user) {
-            $user->content()->save(factory(Content::class)->make());
+        factory(Post::class, 3)->create()->each(function ($post) {
+            $post->content()->save(factory(Content::class)->make());
+            $post->tags()->createMany(factory(Tag::class, 2)->make()->toArray());
         });
     }
 }

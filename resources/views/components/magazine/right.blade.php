@@ -3,7 +3,7 @@
         <a class="custom-hover d-flex flex-fill flex-column" href="{{ $post->permLink }}" target="_blank"
            title="{{ $post->title }}">
             <div class="custom-hover-img image"
-                 style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
+                 style="background-image: url('{{ $post->image }}');"></div>
             <div class="content p-2 p-sm-3 p-lg-4">
                 <div class="title text-l2 mb-1 mb-sm-0 mb-md-0"><h2
                             class="font-18 font-md-16 font-sm-16 font-xs-14 light-14 font-weight-normal color-white">

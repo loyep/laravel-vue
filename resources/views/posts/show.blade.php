@@ -30,7 +30,6 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
 
 <body class="{{ implode(' ', $bodyClass) }}">
 @include('partials.header')
-
 <section class="nice-warp my-4 my-md-5">
     <div class="container">
         @include('posts.breadcrumbs', ['post' => $post, 'category' => $category])
@@ -84,86 +83,14 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                         {!! $content !!}
                     </article>
                     <div class="post-tags mt-3 mt-md-4">
+                        @foreach($post->tags as $tag)
+                            #<a href="{{ $tag->permLink }}" rel="tag">{{ $tag->name }}</a>
+                        @endforeach
                     </div>
-
-                    <div class="hr-short"></div>
-                    <div class="post-declare  mt-3 mt-md-4-2">
-                        <p>本文系作者 @<a href="{{ $author->perm_link }}" title="由{{ $author->display_name }}发布"
-                                     rel="author">{{ $author->display_name }}</a>
-                            原创发布在
-                            {{ config('prism.name') }}。未经许可，禁止转载。</p>
-                    </div>
-
-                    <div class="post-footer d-flex flex-column flex-md-row align-items-center my-5">
-                        <div class="post-action mb-4 mb-md-0">
-                            <a class="btn-action btn-like post-like font-theme {{ $is_like ? 'current' : '' }} d-none d-md-inline-block"
-                               href="javascript:;"
-                               data-action="ding" data-id="1"><i class="icon icon-heart font-22"></i>
-                                <span class="count font-14 font-xs-12 mt-2 mt-md-0">{{ $post->likes }}</span>
-                            </a>
-                        </div>
-                        <div class="flex-fill">
-                        </div>
-                        <div class="text-nowrap">
-                            <ul class="social bdsharebuttonbox">
-                                <li data-toggle="tooltip" data-placement="top" title="分享至微博">
-                                    <a class="weibo" rel="nofollow" target="_blank"
-                                       href="{{ Prism::share()->weibo() }}">
-                                        <i class="fab fa-weibo"></i>
-                                    </a>
-                                </li>
-                                <li data-toggle="tooltip" data-placement="top" title="分享至微信">
-                                    <a class="weixin single-weixin"
-                                       data-img="{!! Prism::share()->weixin() !!}"
-                                       rel="nofollow" href="javascript:;">
-                                        <i class="fab fa-weixin"></i>
-                                    </a>
-                                </li>
-                                <li data-toggle="tooltip" data-placement="top" title="分享至QQ">
-                                    <a class="qq" rel="nofollow" target="_blank"
-                                       href="{{ Prism::share()->qq() }}">
-                                        <i class="fab fa-qq"></i>
-                                    </a>
-                                </li>
-                                <li data-toggle="tooltip" data-placement="top" title="分享至Fackbook">
-                                    <a class="fackbook" rel="nofollow" target="_blank"
-                                       href="{{ Prism::share()->facebook() }}">
-                                        <i class="fab fa-facebook-square"></i>
-                                    </a>
-                                </li>
-                                <li data-toggle="tooltip" data-placement="top" title="分享至Twitter">
-                                    <a class="twitter" rel="nofollow" target="_blank"
-                                       href="{{ Prism::share()->twitter() }}">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="media post-author p-4 p-lg-4-2 my-4">
-                    <div class="author-avatar mr-2 mr-md-3">
-                        <a href="{{ $author->perm_link }}">
-                            <img alt=''
-                                 src='{{ $author->avatar }}'
-                                 class='avatar avatar-65 photo' height='65' width='65'/> </a>
-                    </div>
-                    <div class="media-body author-info">
-                        <h4 class="name">
-                            <a href="{{ $author->permLink }}">
-                                {{ $author->display_name }} </a>
-                        </h4>
-                        <div class="desc text-secondary font-14">
-                        </div>
-                        <div class="links mt-3 mt-md-2">
-                            <ul>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="post-navigation-with-image my-2">
-                    <div class="row row-10">
-                    </div>
+                    @include('components.post.copyright',compact('post'))
+                    @include('components.post.author', compact('author'))
+                    @include('components.post.navigation', compact('post'))
+                    @include('components.post.footer', compact('post', 'is_like'))
                 </div>
                 <div id="comments" class="nice-comments mt-3 mt-md-4-2 mt-lg-5">
                     <h4 class="font-16 mb-4 mt-lg-4-2"><span class="font-18 text-muted mr-2">
@@ -176,8 +103,8 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                             <div class="d-flex w-100">
                                 <div class="d-flex flex-shrink-0 mr-3 comment-avatar-author">
                                     <img alt='' src='http://cdn.v2ex.com/gravatar/?s=50&#038;d=mm&#038;r=g'
-                                         srcset='http://cdn.v2ex.com/gravatar/?s=100&#038;d=mm&#038;r=g 2x'
-                                         class='avatar avatar-50 photo avatar-default' height='50' width='50'/></div>
+                                         class='avatar avatar-50 photo avatar-default' height='50' width='50'/>
+                                </div>
                                 <div class="flex-fill comment-from-author">
                                     <div class="comment-form-info">
                                         <div class="form-group">

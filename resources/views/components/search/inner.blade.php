@@ -25,21 +25,22 @@
         </div>
         <div class="featured-search d-flex flex-column pb-md-5">
             <div class="row row-10 row-xs-15 flex-nowrap flex-lg-wrap">
-                @forelse([] as $post)
+                @forelse(Prism::stickyPosts() as $stkPost)
                     <div class="item col-12 col-sm-12 col-md-12 col-lg-3">
                         <article>
-                            <a class="custom-hover d-block" href="#" target="_blank">
+                            <a class="custom-hover d-block" href="{{ $stkPost->permLink }}" target="_blank">
                                 <div class="custom-hover-img image"
-                                     style="background-image: url('{{ asset('images/example.jpeg') }}');"></div>
+                                     style="background-image: url('{{ $stkPost->image }}');"></div>
                                 <div class="content p-3 p-md-4">
-                                    <div class="title"><h2 class="font-18 font-weight-normal text-l2 color-white">
-                                            你青春期做过的梦，在镰仓都能一一实现</h2></div>
+                                    <div class="title"><h2
+                                                class="font-18 <?php //echo get_title_font_weight() ?> text-l2 color-white">{{ $stkPost->title }}</h2>
+                                    </div>
                                     <div class="data nodots d-flex align-items-center flex-row font-12 text-light mt-3">
                                         <div class="flex-fill">
-                                            <span class="u-cat">生活着</span>
+                                            <span class="u-cat">{{ $stkPost->category->name }}</span>
                                         </div>
                                         <div class="text-nowrap">
-                                            <span class="u-time">2017-09-26</span>
+                                            <span class="u-time">{{ $stkPost->published_date }}<?php //echo timeago(get_gmt_from_date(get_the_time('Y-m-d', get_the_ID()))); ?></span>
                                         </div>
                                     </div>
                                 </div>

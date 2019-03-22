@@ -3,7 +3,7 @@
         <a class="custom-hover d-block" href="{{ $post->permLink }}" target="_blank"
            title="{{ $post->title }}">
             <div class="custom-hover-img image"
-                 style="background-image: url('{{ asset('static/images/bg.jpg') }}');"></div>
+                 style="background-image: url('{{ $post->image }}');"></div>
             <div class="content p-3 p-lg-4">
                 <div class="title text-l2"><h2
                             class="font-24 font-md-20 font-xs-20 color-white light-14 font-weight-normal">
