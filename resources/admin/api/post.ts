@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function index (params) {
+export function index (params: Object = {}) {
   return request({
     url: '/post',
     method: 'get',
