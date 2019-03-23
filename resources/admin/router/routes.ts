@@ -38,7 +38,7 @@ export const asyncRouterMap = [
           {
             path: '',
             name: 'dashboard',
-            component: () => import('@/views/dashboard/index.vue'),
+            component: () => import('@/views/dashboard/Index.vue'),
             meta: {
               title: '仪表盘'
             }
@@ -73,7 +73,7 @@ export const asyncRouterMap = [
           {
             path: '',
             name: 'post.index',
-            component: () => import('@/views/posts/Index.vue'),
+            component: () => import('@/views/posts/List.vue'),
             meta: {
               title: '文章列表'
             }
@@ -82,6 +82,7 @@ export const asyncRouterMap = [
             path: 'create',
             name: 'post.create',
             component: () => import('@/views/posts/Create.vue'),
+            hidden: true,
             meta: {
               title: '创建文章'
             }
@@ -90,6 +91,7 @@ export const asyncRouterMap = [
             path: ':id/edit',
             name: 'post.edit',
             component: () => import('@/views/posts/Update.vue'),
+            hidden: true,
             meta: {
               title: '编辑文章'
             }
@@ -98,8 +100,55 @@ export const asyncRouterMap = [
             path: ':id',
             name: 'post.detail',
             component: () => import('@/views/posts/Detail.vue'),
+            hidden: true,
             meta: {
               title: '文章详情'
+            }
+          }
+        ]
+      },
+
+      {
+        path: 'category',
+        component: PageLayout,
+        meta: {
+          title: '分类',
+          icon: 'edit'
+        },
+        children: [
+          {
+            path: '',
+            name: 'category.index',
+            component: () => import('@/views/categories/List.vue'),
+            meta: {
+              title: '分类列表'
+            }
+          },
+          {
+            path: 'create',
+            name: 'category.create',
+            component: () => import('@/views/categories/Create.vue'),
+            hidden: true,
+            meta: {
+              title: '创建分类'
+            }
+          },
+          {
+            path: ':id/edit',
+            name: 'category.edit',
+            component: () => import('@/views/categories/Update.vue'),
+            hidden: true,
+            meta: {
+              title: '编辑分类'
+            }
+          },
+          {
+            path: ':id',
+            name: 'category.detail',
+            component: () => import('@/views/categories/Detail.vue'),
+            hidden: true,
+            meta: {
+              title: '分类详情'
             }
           }
         ]
@@ -115,7 +164,7 @@ export const asyncRouterMap = [
           {
             path: '',
             name: 'user.index',
-            component: () => import('@/views/users/Index.vue'),
+            component: () => import('@/views/users/List.vue'),
             meta: {
               title: '用户列表'
             }
@@ -124,6 +173,7 @@ export const asyncRouterMap = [
             path: 'create',
             name: 'user.create',
             component: () => import('@/views/users/Create.vue'),
+            hidden: true,
             meta: {
               title: '创建用户'
             }
@@ -132,6 +182,7 @@ export const asyncRouterMap = [
             path: ':id/edit',
             name: 'user.edit',
             component: () => import('@/views/users/Update.vue'),
+            hidden: true,
             meta: {
               title: '编辑用户'
             }
@@ -140,6 +191,7 @@ export const asyncRouterMap = [
             path: 'detail',
             name: 'user.detail',
             component: () => import('@/views/users/Detail.vue'),
+            hidden: true,
             meta: {
               title: '用户详情'
             }
@@ -166,7 +218,7 @@ export const asyncRouterMap = [
           {
             path: '',
             name: 'role.index',
-            component: () => import('@/views/roles/Index.vue'),
+            component: () => import('@/views/roles/List.vue'),
             meta: {
               title: '角色列表'
             }
@@ -175,6 +227,7 @@ export const asyncRouterMap = [
             path: 'create',
             name: 'role.create',
             component: () => import('@/views/roles/Create.vue'),
+            hidden: true,
             meta: {
               title: '创建角色'
             }
@@ -183,6 +236,7 @@ export const asyncRouterMap = [
             path: 'edit',
             name: 'role.edit',
             component: () => import('@/views/roles/Update.vue'),
+            hidden: true,
             meta: {
               title: '编辑角色'
             }
@@ -191,6 +245,7 @@ export const asyncRouterMap = [
             path: 'detail',
             name: 'role.detail',
             component: () => import('@/views/roles/Detail.vue'),
+            hidden: true,
             meta: {
               title: '角色详情'
             }
@@ -208,7 +263,7 @@ export const asyncRouterMap = [
           {
             path: '',
             name: 'tag.index',
-            component: () => import('@/views/tags/Index.vue'),
+            component: () => import('@/views/tags/List.vue'),
             meta: {
               title: '标签列表'
             }
@@ -217,6 +272,7 @@ export const asyncRouterMap = [
             path: 'create',
             name: 'tag.create',
             component: () => import('@/views/tags/Create.vue'),
+            hidden: true,
             meta: {
               title: '新建标签'
             }
@@ -225,6 +281,7 @@ export const asyncRouterMap = [
             path: 'edit',
             name: 'tag.edit',
             component: () => import('@/views/tags/Update.vue'),
+            hidden: true,
             meta: {
               title: '编辑标签'
             }
@@ -233,6 +290,7 @@ export const asyncRouterMap = [
             path: 'detail',
             name: 'tag.detail',
             component: () => import('@/views/tags/Detail.vue'),
+            hidden: true,
             meta: {
               title: '标签详情'
             }
@@ -250,7 +308,7 @@ export const asyncRouterMap = [
           {
             path: '',
             name: 'permission.index',
-            component: () => import('@/views/permissions/Index.vue'),
+            component: () => import('@/views/permissions/List.vue'),
             meta: {
               title: '权限列表'
             }
@@ -292,7 +350,7 @@ export const asyncRouterMap = [
           {
             path: '',
             name: 'widget.index',
-            component: () => import('@/views/widgets/Index.vue'),
+            component: () => import('@/views/widgets/List.vue'),
             meta: {
               title: '插件列表'
             }
@@ -334,7 +392,7 @@ export const asyncRouterMap = [
           {
             path: '',
             name: 'setting.index',
-            component: () => import('@/views/settings/Index.vue'),
+            component: () => import('@/views/settings/List.vue'),
             meta: {
               title: '设置列表'
             }

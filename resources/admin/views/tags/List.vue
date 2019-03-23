@@ -3,8 +3,8 @@
     <div class="tableList">
       <div class="tableListForm">
         <a-form :form="form" layout="inline" @submit="handleSearch">
-          <a-row :gutter="{ md: 8, lg: 24, xl: 48 }">
-            <a-col :md="8" :sm="24">
+          <a-row :gutter="{ md: 6, lg: 24, xl: 48 }">
+            <a-col :md="6" :sm="24">
               <a-form-item label="用户名">
                 <a-input
                   v-decorator="[
@@ -21,7 +21,7 @@
               </a-form-item>
             </a-col>
 
-            <a-col :md="8" :sm="24">
+            <a-col :md="6" :sm="24">
               <a-form-item label="权限">
                 <a-select defaultValue="0" placeholder="请选择" style="width: 100%;">
                   <a-select-option value="0">
@@ -34,18 +34,13 @@
               </a-form-item>
             </a-col>
 
-            <a-col :md="8" :sm="24">
-              <span class="submitButtons">
-                <a-button type="primary" htmlType="submit">
-                  查询
-                </a-button>
-                <a-button @click=" () => console.log(2222) ">
-                  重置
-                </a-button>
-                <a @click="toggleForm">
-                  展开 <a-icon type="down" />
-                </a>
-              </span>
+            <a-col :md="6" :sm="24">
+              <a-form-item>
+                <span class="submitButtons">
+                  <a-button icon="search" type="primary" htmlType="submit">查询</a-button>
+                  <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
+                </span>
+              </a-form-item>
             </a-col>
           </a-row>
         </a-form>
@@ -89,7 +84,7 @@
 
 <script >
 import { Card, Col, Row } from 'ant-design-vue'
-import { index } from '@/api/setting'
+import { index } from '@/api/tag'
 
 export default {
   name: 'Index',
@@ -102,7 +97,7 @@ export default {
     return {
       columns: [
         {
-          title: 'id',
+          title: 'ID',
           dataIndex: 'id',
           sorter: true
         },

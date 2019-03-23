@@ -14,7 +14,7 @@
         <slot name="logo" />
       </template>
       <template #content>
-        <slot name="content" />
+        <slot name="headerContent" />
       </template>
     </page-header>
     <div class="content">

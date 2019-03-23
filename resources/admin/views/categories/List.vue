@@ -2,16 +2,11 @@
   <a-card>
     <div class="tableList">
       <div class="tableListForm">
-        <a-form :form="form" layout="inline" @submit="handleSearch">
-          <a-row :gutter="{ md: 8, lg: 24, xl: 48 }">
+        <a-form :form="form" layout="inline" @submit="handleSubmit">
+          <a-row :gutter="{ md: 6, lg: 24, xl: 48 }">
             <a-col :md="6" :sm="24">
-              <a-form-item label="用户名">
-                <a-input
-                  v-decorator="[
-                    'username',
-                  ]"
-                  placeholder="请输入"
-                />
+              <a-form-item label="关键词">
+                <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词"/>
               </a-form-item>
             </a-col>
 
@@ -19,25 +14,41 @@
               <a-form-item label="状态">
                 <a-select
                   v-decorator="[ 
-                    'role',
+                    'status',
                    ]"
                   allowClear
                   placeholder="请选择"
                   style="width: 100%;"
                 >
-                  <a-select-option value="admin">管理员</a-select-option>
+                  <a-select-option value="published">已发布</a-select-option>
+                  <a-select-option value="draft">草稿</a-select-option>
+                  <a-select-option value="private">私密</a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
 
             <a-col :md="6" :sm="24">
-              <a-form-item></a-form-item>
+              <a-form-item label="分类">
+                <a-select
+                  v-decorator="[ 
+                    'category_id',
+                   ]"
+                  allowClear
+                  placeholder="请选择"
+                  style="width: 100%;"
+                >
+                  <a-select-option value="published">已发布</a-select-option>
+                  <a-select-option value="draft">草稿</a-select-option>
+                  <a-select-option value="private">私密</a-select-option>
+                </a-select>
+              </a-form-item>
             </a-col>
 
             <a-col :md="6" :sm="24">
               <a-form-item>
                 <span class="submitButtons">
-                  <a-button type="primary" htmlType="submit">查询</a-button>
+                  <a-button icon="search" type="primary" htmlType="submit">查询</a-button>
+                  <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
                 </span>
               </a-form-item>
             </a-col>
@@ -50,7 +61,6 @@
           <a-button>批量操作
             <a-icon type="down"/>
           </a-button>
-
           <template #overlay>
             <a-menu>
               <a-menu-item key="1">
@@ -60,39 +70,37 @@
           </template>
         </a-dropdown>
       </div>
-
       <a-table
         rowKey="id"
         :columns="columns"
         :loading="loading"
         :dataSource="data"
         :pagination="pagination"
-        :rowSelection="{selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
+        :rowSelection="{ selectedRowKeys, onChange: onSelectChange }"
         @change="handleTableChange"
       >
-        <template v-slot:avatar="avatar">
-          <a-avatar :src="avatar"/>
+        <template #post_title="title, post">
+          <router-link :to="{ name: 'post.edit', params: {id: post.id}}">{{ title }}</router-link>
         </template>
 
-        <template #name="name, record">
-          <router-link :to="{ name: 'user.edit', params: { id: record.id } }">{{ name }}</router-link>
+        <template #post_author="author, post">
+          <a @click="handleSearch({user: post.user.name})">{{ author }}</a>
         </template>
 
-        <template #url="url">
-          <a target="_blank" :href="url">{{ url }}</a>
+        <template #post_category="category">
+          <a href="javascript:;">{{ category.name }}</a>
         </template>
 
-        <template #email="email">
-          <a :href="`mailto:${email}`">{{ email }}</a>
+        <template #post_status="status">
+          <a-tag :color="statusMap(status).color">{{ statusMap(status).label }}</a-tag>
         </template>
 
-        <template #action="item">
-          <a-list>
-            <a-list-item/>
-          </a-list>
-          <a icon="edit">编辑</a>
-          <a-divider type="vertical"/>
-          <a icon="delete" @click="handleTableDelete(item)">删除</a>
+        <template #post_tags="tags">
+          <template v-for="tag in tags">
+            <a-tag :key="tag.id" color="blue">
+              <a href="javascript:;">{{ tag.name }}</a>
+            </a-tag>
+          </template>
         </template>
       </a-table>
     </div>
@@ -101,71 +109,58 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import {
-  Card,
-  Col,
-  Row,
-  Tag,
-  Avatar,
-  Divider,
-  Dropdown,
-  Menu
-} from "ant-design-vue";
-import { getList, destroy } from "@/api/user";
-import { link } from "fs";
+import { Card, Col, Row, Tag, Menu, Dropdown } from "ant-design-vue";
+import { index } from "@/api/post";
 
 const columns = [
   {
-    title: "头像",
-    dataIndex: "avatar",
-    scopedSlots: { customRender: "avatar" }
+    title: "名称",
+    dataIndex: "title",
+    scopedSlots: { customRender: "post_title" }
   },
   {
-    title: "用户名",
-    dataIndex: "name",
-    scopedSlots: { customRender: "name" }
+    title: "作者",
+    dataIndex: "user.name",
+    scopedSlots: { customRender: "post_author" }
   },
   {
-    title: "昵称",
-    dataIndex: "display_name"
+    title: "分类",
+    dataIndex: "category",
+    scopedSlots: { customRender: "post_category" }
   },
   {
-    title: "邮箱",
-    dataIndex: "email",
-    scopedSlots: { customRender: "email" }
+    title: "标签",
+    dataIndex: "tags",
+    scopedSlots: { customRender: "post_tags" }
   },
   {
-    title: "网站",
-    dataIndex: "url",
-    scopedSlots: { customRender: "url" }
+    title: "状态",
+    dataIndex: "status",
+    scopedSlots: { customRender: "post_status" }
   },
   {
-    title: "创建时间",
-    dataIndex: "created_at",
-    sorter: true
+    title: "总数",
+    dataIndex: "comments_count"
   },
   {
-    title: "操作",
-    key: "action",
-    scopedSlots: { customRender: "action" }
+    title: "发布时间",
+    dataIndex: "published_at"
   }
 ];
 
 @Component({
   components: {
-    AAvatar: Avatar,
     ACard: Card,
     ACol: Col,
     ARow: Row,
     ATag: Tag,
-    ADivider: Divider,
     ADropdown: Dropdown,
     ADropdownButton: Dropdown.Button,
     AMenu: Menu,
     AMenuItem: Menu.Item
   }
 })
-export default class UserList extends Vue {
+export default class PostList extends Vue {
   protected selectedRowKeys: Array<number> = [];
 
   private columns = columns;
@@ -178,6 +173,8 @@ export default class UserList extends Vue {
 
   private pagination: Object = {};
 
+  private query: Object = {};
+
   beforeCreate() {
     this.form = this.$form.createForm(this);
   }
@@ -186,15 +183,21 @@ export default class UserList extends Vue {
     this.handleSearch();
   }
 
-  handleSearch(query: Object = {}) {
-    this.loading = true;
-    getList(query).then(res => {
-      this.data = res.data.data;
+  handleSubmit(e) {
+    e.preventDefault();
+    this.form.validateFields((err, values) => {
+      if (!err) {
+        this.handleSearch(values);
+      }
+    });
+  }
 
-      console.log(res.data.data);
+  handleSearch(query: Object = {}) {
+    this.query = query;
+    this.loading = true;
+    index(query).then(res => {
+      this.data = res.data.data;
       const paginationProps = {
-        showSizeChanger: true,
-        showQuickJumper: true,
         total: parseInt(res.data.total),
         pageSize: parseInt(res.data.per_page),
         current: res.data.current_page
@@ -210,32 +213,31 @@ export default class UserList extends Vue {
     this.selectedRowKeys = selectedRowKeys;
   }
 
+  statusMap(status) {
+    const colorMap = {
+      published: {
+        color: "blue",
+        label: "已发布"
+      },
+      draft: {
+        color: "cyan",
+        label: "草稿"
+      },
+      private: {
+        color: "green",
+        label: "私密"
+      }
+    };
+    return colorMap[status];
+  }
+
   handleTableChange(pagination, filters, sorter) {
-    console.log(pagination);
-    const query: any = {
+    const query: any = Object.assign(this.query, {
       per_page: pagination.pageSize,
       page: pagination.current
-    };
-    if (sorter) {
-      query.orderBy = sorter.columnKey;
-      query.sortedBy = sorter.order === "ascend" ? "asc" : "desc";
-    }
-    console.log(sorter);
-    this.loading = true;
-    getList(query).then(res => {
-      this.data = res.data.data;
-
-      console.log(res.data.data);
-      const paginationProps = {
-        showSizeChanger: true,
-        showQuickJumper: true,
-        total: parseInt(res.data.total),
-        pageSize: parseInt(res.data.per_page),
-        current: res.data.current_page
-      };
-      this.pagination = paginationProps;
-      this.loading = false;
     });
+
+    this.handleSearch(query);
   }
 }
 </script>

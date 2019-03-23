@@ -89,7 +89,7 @@
 
 <script >
 import { Card, Col, Row } from 'ant-design-vue'
-import { index } from '@/api/tag'
+import { index } from '@/api/setting'
 
 export default {
   name: 'Index',
@@ -102,7 +102,7 @@ export default {
     return {
       columns: [
         {
-          title: 'id',
+          title: 'ID',
           dataIndex: 'id',
           sorter: true
         },

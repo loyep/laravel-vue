@@ -1,6 +1,6 @@
 <template>
   <span class="headerSearch" @click="enterSearchMode">
-    <a-icon type="search" />
+    <a-icon type="search"/>
     <a-auto-complete
       key="AutoComplete"
       ref="input"
@@ -23,66 +23,60 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-import { State, Mutation, namespace } from 'vuex-class';
-import { AutoComplete } from 'ant-design-vue'
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { State, Mutation, namespace } from "vuex-class";
+import { AutoComplete } from "ant-design-vue";
 
-const authModule = namespace('auth');
-const themeModule = namespace('theme');
+const authModule = namespace("auth");
+const themeModule = namespace("theme");
 
 @Component({
   components: {
-    'AAutoComplete': AutoComplete
+    AAutoComplete: AutoComplete
   }
 })
 export default class HeaderSearch extends Vue {
-  @Prop({ default: '站内搜索' })
-  placeholder: string
+  @Prop({ default: "站内搜索" })
+  placeholder: string;
 
-  @Prop({ default: function() {
-    return (value) => { console.log(value) }
-  }})
-  onChange: Function
+  @Prop({
+    default: function() {
+      return value => {
+        console.log(value);
+      };
+    }
+  })
+  onChange: Function;
 
-  private searchMode: boolean =  false
-  private dataSource: Array<any> = []
-  private value: string = ''
+  private searchMode: boolean = false;
+  private dataSource: Array<any> = [];
+  private value: string = "";
 
-  onSearch () {
-    this.$emit('search', this.value)
+  onSearch() {
+    this.$emit("search", this.value);
   }
-  onKeyDown (e) {
-
-  }
-  onSearchChange (value) {
-    this.value = value
+  onKeyDown(e) {}
+  onSearchChange(value) {
+    this.value = value;
     if (this.onChange) {
-      this.onChange(value)
+      this.onChange(value);
     }
   }
-  enterSearchMode () {
-    this.searchMode = true
-    // const input = this.$refs.input
-    // setTimeout(() => input.focus(), 300)
-    // this.setState({ searchMode: true }, () => {
-    //   const { searchMode } = this.state
-    //   if (searchMode) {
-    //     this.input.focus()
-    //   }
-    // })
+  enterSearchMode() {
+    this.searchMode = true;
     setTimeout(() => {
-      // this.$refs.input.focus()
-    }, 300)
+      (<any>this.$refs.input).focus();
+    }, 300);
   }
-  leaveSearchMode () {
-    this.value = ''
-    this.searchMode = false
+  leaveSearchMode() {
+    this.value = "";
+    this.searchMode = false;
   }
 }
 </script>
 
 <style lang="less" scope>
-@import '~@/styles/variables.less';
+@import "~@/styles/variables.less";
 
 .headerSearch {
   :global(.anticon-search) {
@@ -114,5 +108,4 @@ export default class HeaderSearch extends Vue {
     }
   }
 }
-
 </style>

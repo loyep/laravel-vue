@@ -3,7 +3,7 @@
     <div class="tableList">
       <div class="tableListForm">
         <a-form :form="form" layout="inline" @submit="handleSubmit">
-          <a-row :gutter="{ md: 8, lg: 24, xl: 48 }">
+          <a-row :gutter="{ md: 6, lg: 24, xl: 48 }">
             <a-col :md="6" :sm="24">
               <a-form-item label="关键词">
                 <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词"/>
@@ -46,14 +46,16 @@
 
             <a-col :md="6" :sm="24">
               <a-form-item>
-                <a-button type="primary" html-type="submit">查询</a-button>
+                <span class="submitButtons">
+                  <a-button icon="search" type="primary" html-type="submit">查询</a-button>
+                  <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
+                </span>
               </a-form-item>
             </a-col>
           </a-row>
         </a-form>
       </div>
       <div class="tableListOperator">
-        <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
         <a-dropdown>
           <a-button>批量操作
             <a-icon type="down"/>
