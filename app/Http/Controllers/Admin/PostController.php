@@ -19,7 +19,7 @@ class PostController extends Controller
         $builder = Post::with('tags:id,name', 'user:id,name', 'category:id,name')->withCount('comments');
 
         if ($keywords = $request->get('keywords')) {
-            $builder = $builder->where('title', 'like', '%' . $keywords . '%');
+            $builder = $builder->where('title', 'like', '%'.$keywords.'%');
         }
 
         if ($status = $request->get('status')) {
@@ -63,7 +63,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
