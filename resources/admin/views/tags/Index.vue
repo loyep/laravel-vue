@@ -79,7 +79,7 @@
         :pagination="pagination"
         @change="handleTableChange"
       >
-        <template slot="name" slot-scope="name">
+        <template #name="name">
           {{ name.first }} {{ name.last }}
         </template>
       </a-table>

@@ -18,16 +18,19 @@ class PostController extends Controller
     {
         $builder = Post::with('tags:id,name', 'user:id,name', 'category:id,name')->withCount('comments');
 
-        if ($user_id = $request->get('user_id')) {
-            $builder = $builder->where('user_id', $user_id);
+        if ($keywords = $request->get('keywords')) {
+            $builder = $builder->where('title', 'like', '%' . $keywords . '%');
         }
 
-        if ($orderBy = $request->get('orderBy')) {
-            $sortedBy = $request->get('sortedBy', 'asc');
-            $builder = $builder->orderBy($orderBy, $sortedBy);
+        if ($status = $request->get('status')) {
+            $builder = $builder->where('status', $status);
         }
 
-        $posts = $builder->paginate($request->get('per_page', 10));
+        if ($category_id = $request->get('category_id')) {
+            $builder = $builder->where('category_id', $category_id);
+        }
+
+        $posts = $builder->orderByDesc('published_at')->paginate($request->get('per_page', 10));
 
         return response()->json($posts);
     }
@@ -60,7 +63,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

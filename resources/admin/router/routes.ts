@@ -129,7 +129,7 @@ export const asyncRouterMap = [
             }
           },
           {
-            path: 'edit',
+            path: ':id/edit',
             name: 'user.edit',
             component: () => import('@/views/users/Update.vue'),
             meta: {

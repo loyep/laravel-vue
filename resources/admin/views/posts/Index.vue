@@ -2,29 +2,24 @@
   <a-card>
     <div class="tableList">
       <div class="tableListForm">
-        <a-form :form="form" layout="inline" @submit="handleSearch">
+        <a-form :form="form" layout="inline" @submit="handleSubmit">
           <a-row :gutter="{ md: 8, lg: 24, xl: 48 }">
-            <a-col :md="8" :sm="24">
-              <a-form-item label="用户名">
-                <a-input
-                  v-decorator="[
-                    'username',
-                    {
-                      rules: [
-                        //{ required: true, message: $t('validation.required', { attribute: $t('validation.attributes.username') }) }
-                      ],
-                      validateTrigger: ['change', 'blur']
-                    }
-                  ]"
-                  placeholder="请输入"
-                />
+            <a-col :md="6" :sm="24">
+              <a-form-item label="关键词">
+                <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词"/>
               </a-form-item>
             </a-col>
 
-            <a-col :md="8" :sm="24">
+            <a-col :md="6" :sm="24">
               <a-form-item label="状态">
-                <a-select defaultValue="" placeholder="请选择" style="width: 100%;">
-                  <a-select-option value="">全部</a-select-option>
+                <a-select
+                  v-decorator="[ 
+                    'status',
+                   ]"
+                  allowClear
+                  placeholder="请选择"
+                  style="width: 100%;"
+                >
                   <a-select-option value="published">已发布</a-select-option>
                   <a-select-option value="draft">草稿</a-select-option>
                   <a-select-option value="private">私密</a-select-option>
@@ -32,24 +27,45 @@
               </a-form-item>
             </a-col>
 
-            <a-col :md="8" :sm="24">
-              <span class="submitButtons">
-                <a-button type="primary" @click="handleSearch">查询</a-button>
-                <a-button @click=" () => console.log(2222) ">重置</a-button>
-                <a @click="toggleForm">
-                  展开
-                  <a-icon type="down"/>
-                </a>
-              </span>
+            <a-col :md="6" :sm="24">
+              <a-form-item label="分类">
+                <a-select
+                  v-decorator="[ 
+                    'category_id',
+                   ]"
+                  allowClear
+                  placeholder="请选择"
+                  style="width: 100%;"
+                >
+                  <a-select-option value="published">已发布</a-select-option>
+                  <a-select-option value="draft">草稿</a-select-option>
+                  <a-select-option value="private">私密</a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+
+            <a-col :md="6" :sm="24">
+              <a-form-item>
+                <a-button type="primary" html-type="submit">查询</a-button>
+              </a-form-item>
             </a-col>
           </a-row>
         </a-form>
       </div>
       <div class="tableListOperator">
         <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
-        <span>
-          <a-button>批量操作</a-button>
-        </span>
+        <a-dropdown>
+          <a-button>批量操作
+            <a-icon type="down"/>
+          </a-button>
+          <template #overlay>
+            <a-menu>
+              <a-menu-item key="1">
+                <a-icon type="delete"/>删除
+              </a-menu-item>
+            </a-menu>
+          </template>
+        </a-dropdown>
       </div>
       <a-table
         rowKey="id"
@@ -60,23 +76,23 @@
         :rowSelection="{ selectedRowKeys, onChange: onSelectChange }"
         @change="handleTableChange"
       >
-        <template slot="post_title" slot-scope="title, post">
+        <template #post_title="title, post">
           <router-link :to="{ name: 'post.edit', params: {id: post.id}}">{{ title }}</router-link>
         </template>
 
-        <template slot="post_author" slot-scope="author, post">
+        <template #post_author="author, post">
           <a @click="handleSearch({user: post.user.name})">{{ author }}</a>
         </template>
 
-        <template slot="post_category" slot-scope="category">
+        <template #post_category="category">
           <a href="javascript:;">{{ category.name }}</a>
         </template>
 
-        <template slot="post_status" slot-scope="status">
+        <template #post_status="status">
           <a-tag :color="statusMap(status).color">{{ statusMap(status).label }}</a-tag>
         </template>
 
-        <template slot="post_tags" slot-scope="tags">
+        <template #post_tags="tags">
           <template v-for="tag in tags">
             <a-tag :key="tag.id" color="blue">
               <a href="javascript:;">{{ tag.name }}</a>
@@ -90,7 +106,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Card, Col, Row, Tag } from "ant-design-vue";
+import { Card, Col, Row, Tag, Menu, Dropdown } from "ant-design-vue";
 import { index } from "@/api/post";
 
 const columns = [
@@ -126,10 +142,6 @@ const columns = [
   {
     title: "发布时间",
     dataIndex: "published_at"
-  },
-  {
-    title: "日期",
-    dataIndex: "created_at"
   }
 ];
 
@@ -138,7 +150,11 @@ const columns = [
     ACard: Card,
     ACol: Col,
     ARow: Row,
-    ATag: Tag
+    ATag: Tag,
+    ADropdown: Dropdown,
+    ADropdownButton: Dropdown.Button,
+    AMenu: Menu,
+    AMenuItem: Menu.Item
   }
 })
 export default class PostList extends Vue {
@@ -154,6 +170,8 @@ export default class PostList extends Vue {
 
   private pagination: Object = {};
 
+  private query: Object = {};
+
   beforeCreate() {
     this.form = this.$form.createForm(this);
   }
@@ -162,15 +180,21 @@ export default class PostList extends Vue {
     this.handleSearch();
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    this.form.validateFields((err, values) => {
+      if (!err) {
+        this.handleSearch(values);
+      }
+    });
+  }
+
   handleSearch(query: Object = {}) {
+    this.query = query;
     this.loading = true;
     index(query).then(res => {
       this.data = res.data.data;
-
-      console.log(res.data.data);
       const paginationProps = {
-        showSizeChanger: true,
-        showQuickJumper: true,
         total: parseInt(res.data.total),
         pageSize: parseInt(res.data.per_page),
         current: res.data.current_page
@@ -187,7 +211,6 @@ export default class PostList extends Vue {
   }
 
   statusMap(status) {
-    console.log(status);
     const colorMap = {
       published: {
         color: "blue",
@@ -206,31 +229,12 @@ export default class PostList extends Vue {
   }
 
   handleTableChange(pagination, filters, sorter) {
-    console.log(pagination);
-    const query: any = {
+    const query: any = Object.assign(this.query, {
       per_page: pagination.pageSize,
       page: pagination.current
-    };
-    if (sorter) {
-      query.orderBy = sorter.columnKey;
-      query.sortedBy = sorter.order === "ascend" ? "asc" : "desc";
-    }
-    console.log(sorter);
-    this.loading = true;
-    index(query).then(res => {
-      this.data = res.data.data;
-
-      console.log(res.data.data);
-      const paginationProps = {
-        showSizeChanger: true,
-        showQuickJumper: true,
-        total: parseInt(res.data.total),
-        pageSize: parseInt(res.data.per_page),
-        current: res.data.current_page
-      };
-      this.pagination = paginationProps;
-      this.loading = false;
     });
+
+    this.handleSearch(query);
   }
 }
 </script>

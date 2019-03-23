@@ -20,7 +20,7 @@
             size="large"
             placeholder="邮箱"
           >
-            <template v-slot="prefix">
+            <template #prefix>
               <a-icon type="mail" style="color:rgba(0,0,0,.25)" />
             </template>
           </a-input>

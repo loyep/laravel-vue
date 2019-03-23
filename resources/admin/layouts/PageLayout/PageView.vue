@@ -10,10 +10,12 @@
       :extraContent="extraContent"
       :wide="wide"
     >
-      <template v-if="$slots.logo" v-slot:logo>
+      <template #logo>
         <slot name="logo" />
       </template>
-      <slot slot="content" name="headerContent" />
+      <template #content>
+        <slot name="content" />
+      </template>
     </page-header>
     <div class="content">
       <grid-content>

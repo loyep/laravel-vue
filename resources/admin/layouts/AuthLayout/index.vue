@@ -32,7 +32,7 @@
         }
       ]"
     >
-      <template v-slot:copyright>
+      <template #copyright>
         Copyright
         <a-icon type="copyright" />
         {{ year }} Power By
