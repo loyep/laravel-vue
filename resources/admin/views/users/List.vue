@@ -47,8 +47,8 @@
       </div>
       <div class="tableListOperator">
         <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
-        <a-dropdown>
-          <a-button>批量操作
+        <a-dropdown >
+          <a-button :disabled="selectedRowKeys.length === 0">批量操作
             <a-icon type="down"/>
           </a-button>
 
@@ -113,7 +113,7 @@ import {
   Menu
 } from "ant-design-vue";
 import { getList, destroy } from "@/api/user";
-import { link } from "fs";
+import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
 const columns = [
   {
@@ -171,7 +171,7 @@ export default class UserList extends Vue {
 
   private columns = columns;
 
-  private form: any;
+  private form: WrappedFormUtils;
 
   private data: Array<Object> = [];
 
@@ -258,7 +258,7 @@ export default class UserList extends Vue {
   :global(.ant-form-item) {
     display: flex;
     margin-right: 0;
-    margin-bottom: 24px;
+    // margin-bottom: 24px;
     > .ant-form-item-label {
       width: auto;
       padding-right: 8px;

@@ -10,18 +10,18 @@ import {
   // Breadcrumb,
   Button,
   // Calendar,
-  // Card,
+  Card,
   // Carousel,
   // Cascader,
   Checkbox,
-  // Col,
+  Col,
   // Collapse,
   // Comment,
   // ConfigProvider,
   // DatePicker,
   // Divider,
   // Drawer,
-  // Dropdown,
+  Dropdown,
   Form,
   Icon,
   Input,
@@ -29,7 +29,7 @@ import {
   // Layout,
   List,
   // LocaleProvider,
-  // Menu,
+  Menu,
   message,
   Modal,
   notification,
@@ -39,7 +39,7 @@ import {
   // Progress,
   Radio,
   // Rate,
-  // Row,
+  Row,
   Select,
   // Skeleton,
   // Slider,
@@ -76,16 +76,16 @@ Vue.prototype.$confirm = Modal.confirm
 // Vue.use(Breadcrumb)
 Vue.use(Button)
 // Vue.use(Calendar);
-// Vue.use(Card);
+Vue.use(Card);
 // Vue.use(Collapse);
 // Vue.use(Carousel);
 // Vue.use(Cascader);
 Vue.use(Checkbox)
-// Vue.use(Col)
+Vue.use(Col)
 // Vue.use(DatePicker);
 // Vue.use(Divider);
 // Vue.use(Drawer);
-// Vue.use(Dropdown)
+Vue.use(Dropdown)
 Vue.use(Form)
 Vue.use(Icon)
 Vue.use(Input)
@@ -93,7 +93,7 @@ Vue.use(Input)
 // Vue.use(Layout)
 Vue.use(List)
 // Vue.use(LocaleProvider);
-// Vue.use(Menu)
+Vue.use(Menu)
 Vue.use(Modal)
 // Vue.use(Pagination);
 // Vue.use(Popconfirm);

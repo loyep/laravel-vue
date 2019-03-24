@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getList (params) {
+export function getList (params: Object = {}) {
   return request({
     url: '/user',
     method: 'get',
@@ -8,7 +8,7 @@ export function getList (params) {
   })
 }
 
-export function store (data) {
+export function store (data: Object = {}) {
   return request({
     url: '/user',
     method: 'post',

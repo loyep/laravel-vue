@@ -51,7 +51,7 @@ if (Route::current()->named('home')) {
                                        href="{{ $post->permLink }}"
                                        title="{{ $post->title }}">
                                         <div class="custom-hover d-block">
-                                            <img class="timthumb_php"
+                                            <img class="original"
                                                  src="{{ $post->image }}"
                                                  title="{{ $post->title }}" alt="{{ $post->title }}">
                                         </div>

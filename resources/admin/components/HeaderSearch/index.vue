@@ -15,7 +15,7 @@
         :placeholder="placeholder"
         :value="value"
         :aria-label="placeholder"
-        @keydown="(e) => onKeyDown(e)"
+        @keydown="onKeyDown()"
         @blur="leaveSearchMode"
       />
     </a-auto-complete>
@@ -55,7 +55,9 @@ export default class HeaderSearch extends Vue {
   onSearch() {
     this.$emit("search", this.value);
   }
-  onKeyDown(e) {}
+  
+  onKeyDown(e: Event) {}
+
   onSearchChange(value) {
     this.value = value;
     if (this.onChange) {

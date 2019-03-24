@@ -197,7 +197,7 @@ export default {
   :global(.ant-form-item) {
       display: flex;
       margin-right: 0;
-      margin-bottom: 24px;
+      // margin-bottom: 24px;
       > .ant-form-item-label {
         width: auto;
         padding-right: 8px;

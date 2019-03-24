@@ -47,6 +47,9 @@
 <script lang="ts">
 import AuthLayout from '@/layouts/AuthLayout/index.vue';
 import { Component, Vue } from 'vue-property-decorator';
+import { WrappedFormUtils } from 'ant-design-vue/types/form/form';
+import { setFiledsWithErrors } from "@/utils/form";
+import { resetPass } from '@/api/auth'
 
 @Component({
   components: {
@@ -57,17 +60,26 @@ export default class ForgotPassword extends Vue {
 
   private submitting = false
 
-  private form: any
+  private form: WrappedFormUtils
 
   beforeCreate() {
     this.form = this.$form.createForm(this)
   }
 
-  handleSubmit  (e) {
+  handleSubmit  (e: Event) {
       e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
           this.submitting = true
+          resetPass(values).then(res => {
+            this.submitting = false
+            if (!res.data.error) {
+              this.$notification.success({
+                message: "提示",
+                description: '发送邮件成功'
+              });            
+            }
+          }
           // this.$store.dispatch('auth/Register', values).then((res) => {
           // this.submitting = false
           // this.$router.push({ path: this.$route.query.redirect || '/' })
