@@ -77,7 +77,6 @@ import AuthLayout from "@/layouts/AuthLayout/index.vue";
 import { Component, Vue } from "vue-property-decorator";
 import { Action } from "vuex-class";
 import Router, { Location } from "vue-router";
-import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 import { setFiledsWithErrors } from "@/utils/form";
 
 @Component({
@@ -88,7 +87,7 @@ import { setFiledsWithErrors } from "@/utils/form";
 export default class Login extends Vue {
   private submitting = false;
 
-  private form: WrappedFormUtils;
+  private form: any;
 
   beforeCreate() {
     this.form = this.$form.createForm(this);

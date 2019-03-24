@@ -110,7 +110,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Card, Col, Row, Tag, Menu, Dropdown } from "ant-design-vue";
 import { index } from "@/api/post";
-import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
 const columns = [
   {
@@ -161,11 +160,11 @@ const columns = [
   }
 })
 export default class PostList extends Vue {
-  protected selectedRowKeys?: string[] = [];
+  protected selectedRowKeys?: Array<string> = [];
 
   private columns: any = columns;
 
-  private form: WrappedFormUtils;
+  private form: any;
 
   private data: Array<Object> = [];
 

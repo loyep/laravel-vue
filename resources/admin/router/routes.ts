@@ -82,6 +82,7 @@ export const asyncRouterMap = [
             path: 'create',
             name: 'post.create',
             component: () => import('@/views/posts/Create.vue'),
+            hidden: true,
             meta: {
               title: '创建文章'
             }
@@ -127,6 +128,7 @@ export const asyncRouterMap = [
             path: 'create',
             name: 'category.create',
             component: () => import('@/views/categories/Create.vue'),
+            hidden: true,
             meta: {
               title: '创建分类'
             }
@@ -171,6 +173,7 @@ export const asyncRouterMap = [
             path: 'create',
             name: 'user.create',
             component: () => import('@/views/users/Create.vue'),
+            hidden: true,
             meta: {
               title: '创建用户'
             }
@@ -224,6 +227,7 @@ export const asyncRouterMap = [
             path: 'create',
             name: 'role.create',
             component: () => import('@/views/roles/Create.vue'),
+            hidden: true,
             meta: {
               title: '创建角色'
             }
@@ -268,6 +272,7 @@ export const asyncRouterMap = [
             path: 'create',
             name: 'tag.create',
             component: () => import('@/views/tags/Create.vue'),
+            hidden: true,
             meta: {
               title: '新建标签'
             }

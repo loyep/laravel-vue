@@ -113,7 +113,6 @@ import {
   Menu
 } from "ant-design-vue";
 import { getList, destroy } from "@/api/user";
-import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
 const columns = [
   {
@@ -171,7 +170,7 @@ export default class UserList extends Vue {
 
   private columns = columns;
 
-  private form: WrappedFormUtils;
+  private form: any;
 
   private data: Array<Object> = [];
 

@@ -47,7 +47,6 @@
 <script lang="ts">
 import AuthLayout from '@/layouts/AuthLayout/index.vue';
 import { Component, Vue } from 'vue-property-decorator';
-import { WrappedFormUtils } from 'ant-design-vue/types/form/form';
 import { setFiledsWithErrors } from "@/utils/form";
 import { passwordEmail } from '@/api/auth'
 
@@ -60,7 +59,7 @@ export default class ForgotPassword extends Vue {
 
   private submitting = false
 
-  private form: WrappedFormUtils
+  private form: any
 
   beforeCreate() {
     this.form = this.$form.createForm(this)

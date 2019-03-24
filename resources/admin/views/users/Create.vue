@@ -114,7 +114,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Card, Col, Row, Tag } from "ant-design-vue";
 import { store } from '@/api/user';
-import { WrappedFormUtils, Field } from "ant-design-vue/types/form/form";
 import { setFiledsWithErrors } from '@/utils/form'
 
 @Component({
@@ -126,7 +125,7 @@ import { setFiledsWithErrors } from '@/utils/form'
   }
 })
 export default class UserCreate extends Vue {
-  private form: WrappedFormUtils;
+  private form: any;
 
   beforeCreate() {
     this.form = this.$form.createForm(this);
