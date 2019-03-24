@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function login (data: any) {
+export function login (data: Object) {
   return request({
     url: '/login',
     method: 'post',
@@ -8,7 +8,7 @@ export function login (data: any) {
   })
 }
 
-export function passwordEmail (data: any) {
+export function passwordEmail (data: Object) {
   return request({
     url: '/password/email',
     method: 'post',
@@ -16,7 +16,7 @@ export function passwordEmail (data: any) {
   })
 }
 
-export function register (data: any) {
+export function register (data: Object) {
   return request({
     url: '/register',
     method: 'post',

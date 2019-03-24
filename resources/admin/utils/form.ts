@@ -1,7 +1,7 @@
 import { WrappedFormUtils, Field } from "ant-design-vue/types/form/form";
 
 export function setFiledsWithErrors(form: WrappedFormUtils, errors: any) {
-  const filedValues: object = Object.assign({}, (<any>form).getFieldsValue())
+  const filedValues: Object = Object.assign({}, (<any>form).getFieldsValue())
   const fields: Field = {}
   Object.keys(filedValues).forEach(key => {
     fields[key] = {

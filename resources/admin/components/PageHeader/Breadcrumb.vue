@@ -23,7 +23,7 @@ export default class Breadcrumb extends Vue {
   
   private name?: string = ''
   
-  private breadList: object = {}
+  private breadList: Object = {}
 
 
   @Watch('$route')

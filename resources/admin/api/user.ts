@@ -8,7 +8,7 @@ export function getList (params: Object = {}) {
   })
 }
 
-export function store (data: Object = {}) {
+export function store (data: Object) {
   return request({
     url: '/user',
     method: 'post',

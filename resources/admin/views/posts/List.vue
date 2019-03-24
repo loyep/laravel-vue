@@ -171,7 +171,7 @@ export default class PostList extends Vue {
 
   private loading: boolean = false;
 
-  private pagination: object = {};
+  private pagination: Object = {};
 
   private query: Object = {};
 

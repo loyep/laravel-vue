@@ -4,7 +4,7 @@ import { getToken, removeToken, setToken } from '@/utils/auth';
 import { RootState } from '@/store/index';
 
 export interface IAuthState {
-  user?: object,
+  user?: Object,
   token?: string,
   roles: Array<string>
 }
@@ -33,7 +33,7 @@ export const mutations: MutationTree<IAuthState> = {
   SET_ROLES: (state: IAuthState, roles) => {
     state.roles = roles
   },
-  UPDATE_USER: (state: IAuthState, user: object) => {
+  UPDATE_USER: (state: IAuthState, user: Object) => {
     state.user = user
   }
 }

@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-const colorList: Array<object> = [
+const colorList: Array<Object> = [
   {
     key: 'dust',
     color: '#F5222D'
@@ -64,7 +64,7 @@ export default class ThemeColor extends Vue {
   @Prop({ default : function () {
     return colorList
   }})
-  colors: Array<object>
+  colors: Array<Object>
 
   @Prop()
   value:string
