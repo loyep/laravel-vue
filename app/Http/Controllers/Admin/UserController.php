@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Support\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
@@ -36,8 +35,8 @@ class UserController extends Controller
     {
         try {
             $request->validate([
-                'email' => 'required|unique:users|string',
-                'name' => 'required|unique:users|string',
+                'email'        => 'required|unique:users|string',
+                'name'         => 'required|unique:users|string',
                 'display_name' => 'unique:users|string',
             ]);
 
@@ -46,14 +45,14 @@ class UserController extends Controller
             $user->save();
             $response = [
                 'message' => 'User created.',
-                'data' => $user->toArray(),
+                'data'    => $user->toArray(),
             ];
 
             return response()->json($response);
         } catch (ValidationException $e) {
             return response()->json([
-                'error' => true,
-                'message' => $e->errors()
+                'error'   => true,
+                'message' => $e->errors(),
             ]);
         }
     }
@@ -74,7 +73,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
