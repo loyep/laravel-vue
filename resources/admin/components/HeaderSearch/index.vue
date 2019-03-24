@@ -15,7 +15,7 @@
         :placeholder="placeholder"
         :value="value"
         :aria-label="placeholder"
-        @keydown="onKeyDown()"
+        @keydown="onKeyDown"
         @blur="leaveSearchMode"
       />
     </a-auto-complete>

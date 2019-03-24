@@ -8,11 +8,11 @@ export function login (data: any) {
   })
 }
 
-export function resetPass (data: any) {
+export function passwordEmail (data: any) {
   return request({
     url: '/password/email',
     method: 'post',
-    data
+    data: data
   })
 }
 

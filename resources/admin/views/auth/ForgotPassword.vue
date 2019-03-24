@@ -49,7 +49,7 @@ import AuthLayout from '@/layouts/AuthLayout/index.vue';
 import { Component, Vue } from 'vue-property-decorator';
 import { WrappedFormUtils } from 'ant-design-vue/types/form/form';
 import { setFiledsWithErrors } from "@/utils/form";
-import { resetPass } from '@/api/auth'
+import { passwordEmail } from '@/api/auth'
 
 @Component({
   components: {
@@ -66,12 +66,12 @@ export default class ForgotPassword extends Vue {
     this.form = this.$form.createForm(this)
   }
 
-  handleSubmit  (e: Event) {
+  handleSubmit (e: Event) {
       e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
           this.submitting = true
-          resetPass(values).then(res => {
+          passwordEmail(values).then(res => {
             this.submitting = false
             if (!res.data.error) {
               this.$notification.success({
@@ -79,15 +79,7 @@ export default class ForgotPassword extends Vue {
                 description: '发送邮件成功'
               });            
             }
-          }
-          // this.$store.dispatch('auth/Register', values).then((res) => {
-          // this.submitting = false
-          // this.$router.push({ path: this.$route.query.redirect || '/' })
-          // }).catch(err => {
-          // console.log(err)
-          // this.form.showMessages(err)
-          // this.submitting = false
-          // })
+          })
         }
       })
     }

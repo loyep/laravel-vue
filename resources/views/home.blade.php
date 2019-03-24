@@ -33,8 +33,13 @@ if (Route::current()->named('home')) {
 </head>
 <body class="{{ implode(' ', $bodyClass) }}">
 @include('partials.header')
-@include('partials.magazine', ['posts' => $posts->take(5)])
-@include('partials.pushes')
+@if (Request::get('page', 1) === 1)
+    @include('partials.magazine', ['posts' => $posts->take(5)])
+    @include('partials.pushes')
+@else
+    <section class="nice-featured mt-0 mt-md-4 mt-lg-4-2" style="background: #000">
+    </section>
+@endif
 {{--@include('partials.tab-cats')--}}
 {{--@include('partials.slides')--}}
 {{--@include('components.search')--}}

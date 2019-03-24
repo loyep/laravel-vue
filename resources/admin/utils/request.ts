@@ -28,7 +28,7 @@ service.interceptors.response.use(
     if (token) {
       store.dispatch('auth/RefreshToken', token)
     }
-    return response
+    return response.data
   },
   error => {
     switch (error.response.status) {
@@ -44,31 +44,8 @@ service.interceptors.response.use(
           message: '错误',
           description: error.response.data.error
         })
-      default: {
-        if (error.response.data.errors && Object.keys(error.response.data.errors).length > 0) {
-          error.showMessages = (form) => {
-            const errors = error.response.data.errors
-            const values = form.getFieldsValue()
-            const fields = {}
-            for (var e in errors) {
-              fields[e] = {
-                value: values[e],
-                errors: errors[e].map((msg) => {
-                  return new Error(msg)
-                })
-              }
-            }
-            form.setFields(fields)
-          }
-        } else if (error.response.data.message) {
-          notification.error({
-            message: '错误',
-            description: error.response.data.message
-          })
-        }
-
+      default:
         break
-      }
     }
     return Promise.reject(error)
   })
