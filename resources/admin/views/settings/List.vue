@@ -139,14 +139,15 @@ export default {
   created () {
     this.loading = true
     index().then(res => {
-      this.data = res.data.data
+      const data = res.data
 
+      this.data = data.data
       const paginationProps = {
         showSizeChanger: true,
         showQuickJumper: true,
-        total: parseInt(res.data.total),
-        pageSize: parseInt(res.data.per_page),
-        current: res.data.current_page
+        total: parseInt(data.total),
+        pageSize: parseInt(data.per_page),
+        current: data.current_page
       }
       this.pagination = paginationProps
       this.loading = false
@@ -160,21 +161,21 @@ export default {
 
     },
     handleTableChange (pagination, filters, sorter) {
-      console.log(pagination)
       const query = {
         per_page: pagination.pageSize,
         page: pagination.current
       }
       this.loading = true
       index(query).then(res => {
-        this.data = res.data.data
+        const data = res.data
 
+        this.data = data.data
         const paginationProps = {
           showSizeChanger: true,
           showQuickJumper: true,
-          total: parseInt(res.data.total),
-          pageSize: parseInt(res.data.per_page),
-          current: res.data.current_page
+          total: parseInt(data.total),
+          pageSize: parseInt(data.per_page),
+          current: data.current_page
         }
         this.pagination = paginationProps
         this.loading = false

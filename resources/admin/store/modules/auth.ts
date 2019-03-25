@@ -46,13 +46,13 @@ export const actions: ActionTree<IAuthState, RootState> = {
   // 注册
   Register (context: ActionContext<IAuthState, RootState>, userInfo: any) {
     return new Promise((resolve, reject) => {
-      register(userInfo).then(response => {
-        const data = response.data
+      register(userInfo).then(res => {
+        const data = res.data
         if (data.token) {
           context.commit('SET_TOKEN', data.token)
-          resolve(response)
+          resolve(res)
         } else {
-          reject(response.data.message)
+          reject(data.message)
         }
       }).catch(error => {
         reject(error)
@@ -62,13 +62,13 @@ export const actions: ActionTree<IAuthState, RootState> = {
   // 登录
   Login (context: ActionContext<IAuthState, RootState>, userInfo: any) {
     return new Promise((resolve, reject) => {
-      login(userInfo).then(response => {
-        const data = response.data
+      login(userInfo).then(res => {
+        const data = res.data
         if (data.token) {
           context.commit('SET_TOKEN', data.token)
-          resolve(response)
+          resolve(res)
         } else {
-          reject(response.data.message)
+          reject(data.message)
         }
       }).catch(error => {
         reject(error)
@@ -78,8 +78,8 @@ export const actions: ActionTree<IAuthState, RootState> = {
   // 获取用户信息
   GetInfo (context: ActionContext<IAuthState, RootState>) {
     return new Promise((resolve, reject) => {
-      getInfo().then(response => {
-        const data = response.data
+      getInfo().then(res => {
+        const data = res.data
 
         if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
           context.commit('SET_ROLES', data.roles)
@@ -87,7 +87,7 @@ export const actions: ActionTree<IAuthState, RootState> = {
           reject(new Error('getInfo: roles must be a non-null array !'))
         }
         context.commit('UPDATE_USER', data)
-        resolve(response)
+        resolve(res)
       }).catch(error => {
         reject(error)
       })

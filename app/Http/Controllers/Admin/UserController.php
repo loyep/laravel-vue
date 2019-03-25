@@ -21,7 +21,11 @@ class UserController extends Controller
     {
         $users = User::paginate($request->get('per_page', 10));
 
-        return response()->json($users);
+        $response = [
+            'message' => 'User created.',
+            'data'    => $users,
+        ];
+        return response()->json($response);
     }
 
     /**
@@ -47,7 +51,6 @@ class UserController extends Controller
                 'message' => 'User created.',
                 'data'    => $user->toArray(),
             ];
-
             return response()->json($response);
         } catch (ValidationException $e) {
             return response()->json([
@@ -102,8 +105,11 @@ class UserController extends Controller
     public function profile(Request $request)
     {
         $user = Auth::user();
-        $user->role = ['admin'];
+        $user->roles = ['admin'];
 
-        return response()->json($user);
+        return response()->json([
+            'message' => '',
+            'data' => $user
+        ]);
     }
 }

@@ -136,9 +136,11 @@ export default class UserCreate extends Vue {
     e.preventDefault();
     this.form.validateFields((err, values) => {
       if (!err) {
-        store(values).then((res: any) => {
-          if (res.data.error) {
-            setFiledsWithErrors(this.form, res.data.message)
+        store(values).then(res => {
+          const data = res.data
+
+          if (data.error) {
+            setFiledsWithErrors(this.form, data.message)
           }
         })
       }

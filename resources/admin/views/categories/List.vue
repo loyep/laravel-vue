@@ -111,6 +111,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Card, Col, Row, Tag, Menu, Dropdown } from "ant-design-vue";
 import { getList } from "@/api/category";
+import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
 const columns = [
   {
@@ -165,7 +166,7 @@ export default class CategoryList extends Vue {
 
   private columns = columns;
 
-  private form: any;
+  private form: WrappedFormUtils;
 
   private data: Array<Object> = [];
 
@@ -196,11 +197,13 @@ export default class CategoryList extends Vue {
     this.query = query;
     this.loading = true;
     getList(query).then(res => {
-      this.data = res.data.data;
+      const data = res.data
+      this.data = data.data;
+
       const paginationProps = {
-        total: parseInt(res.data.total),
-        pageSize: parseInt(res.data.per_page),
-        current: res.data.current_page
+        total: parseInt(data.total),
+        pageSize: parseInt(data.per_page),
+        current: data.current_page
       };
       this.pagination = paginationProps;
       this.loading = false;

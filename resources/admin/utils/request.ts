@@ -1,37 +1,39 @@
-import axios from 'axios'
 import store from '@/store/index'
 import { getToken, removeToken } from './auth'
 import { notification } from 'ant-design-vue'
+import axios, { AxiosError, AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosPromise } from 'axios'
 
-// 创建axios实例
-const service = axios.create({
+const axiosRequestConfig: AxiosRequestConfig = {
   baseURL: 'api', // api 的 base_url
-  timeout: 5000 // 请求超时时间
-})
+  timeout: 5000, // 请求超时时间
+  withCredentials: true,  // 携带cookie信息
+};
+
+const axiosInstance: AxiosInstance = axios.create(axiosRequestConfig);
 
 // request拦截器
-service.interceptors.request.use(
-  request => {
+axiosInstance.interceptors.request
+.use((request: AxiosRequestConfig) => {
     const token = getToken()
     if (token) {
       request.headers.common['Authorization'] = token
     }
     return request
   },
-  error => {
+  (error: AxiosError) => {
     return Promise.reject(error)
   })
 
-service.interceptors.response.use(
-  response => {
+axiosInstance.interceptors.response.use(
+  (response: AxiosResponse) => {
     const token = response.headers.authorization
     if (token) {
       store.dispatch('auth/RefreshToken', token)
     }
     return response.data
   },
-  error => {
-    switch (error.response.status) {
+  (error: AxiosError) => {
+    switch (error.response!.status) {
       case 401: {
         if (store.getters['auth/check'] === true) {
           store.commit('auth/LOGOUT')
@@ -42,7 +44,7 @@ service.interceptors.response.use(
       case 400:
         return notification.error({
           message: '错误',
-          description: error.response.data.error
+          description: error.response!.data.error
         })
       default:
         break
@@ -50,4 +52,6 @@ service.interceptors.response.use(
     return Promise.reject(error)
   })
 
-export default service
+export default function request(config: AxiosRequestConfig) : AxiosPromise {
+  return axiosInstance(config);
+}

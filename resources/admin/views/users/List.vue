@@ -113,6 +113,7 @@ import {
   Menu
 } from "ant-design-vue";
 import { getList, destroy } from "@/api/user";
+import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
 const columns = [
   {
@@ -170,13 +171,13 @@ export default class UserList extends Vue {
 
   private columns = columns;
 
-  private form: any;
+  private form: WrappedFormUtils;
 
   private data: Array<Object> = [];
 
   private loading = false;
 
-  private pagination: Object = {};
+  private pagination: object = {};
 
   beforeCreate() {
     this.form = this.$form.createForm(this);
@@ -186,18 +187,18 @@ export default class UserList extends Vue {
     this.handleSearch();
   }
 
-  handleSearch(query: Object = {}) {
+  handleSearch(query: object = {}) {
     this.loading = true;
     getList(query).then(res => {
-      this.data = res.data.data;
+      const data = res.data
 
-      console.log(res.data.data);
+      this.data = data.data
       const paginationProps = {
         showSizeChanger: true,
         showQuickJumper: true,
-        total: parseInt(res.data.total),
-        pageSize: parseInt(res.data.per_page),
-        current: res.data.current_page
+        total: parseInt(data.total),
+        pageSize: parseInt(data.per_page),
+        current: data.current_page
       };
       this.pagination = paginationProps;
       this.loading = false;
@@ -223,15 +224,15 @@ export default class UserList extends Vue {
     console.log(sorter);
     this.loading = true;
     getList(query).then(res => {
-      this.data = res.data.data;
+      const data = res.data
 
-      console.log(res.data.data);
+      this.data = data.data
       const paginationProps = {
         showSizeChanger: true,
         showQuickJumper: true,
-        total: parseInt(res.data.total),
-        pageSize: parseInt(res.data.per_page),
-        current: res.data.current_page
+        total: parseInt(data.total),
+        pageSize: parseInt(data.per_page),
+        current: data.current_page
       };
       this.pagination = paginationProps;
       this.loading = false;

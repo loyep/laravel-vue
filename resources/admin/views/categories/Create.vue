@@ -7,6 +7,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Card, Col, Row } from "ant-design-vue";
+import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
 @Component({
   components: {
@@ -16,7 +17,8 @@ import { Card, Col, Row } from "ant-design-vue";
   }
 })
 export default class CategoryCreate extends Vue {
-  private form: any;
+  
+  private form: WrappedFormUtils;
 
   beforeCreate() {
     this.form = this.$form.createForm(this);

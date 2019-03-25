@@ -77,6 +77,7 @@ import AuthLayout from "@/layouts/AuthLayout/index.vue";
 import { Component, Vue } from "vue-property-decorator";
 import { Action } from "vuex-class";
 import { setFiledsWithErrors } from "@/utils/form";
+import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
 @Component({
   components: {
@@ -86,7 +87,7 @@ import { setFiledsWithErrors } from "@/utils/form";
 export default class Login extends Vue {
   private submitting = false;
 
-  private form: any;
+  private form: WrappedFormUtils;
 
   beforeCreate() {
     this.form = this.$form.createForm(this);
@@ -104,11 +105,14 @@ export default class Login extends Vue {
             this.$router.push(<any>{
               path: this.$route.query.redirect || "/"
             });
-            if (res.data.welcome) {
+
+            const data = res.data
+
+            if (data.welcome) {
               setTimeout(() => {
                 this.$notification.success({
                   message: "欢迎",
-                  description: res.data.welcome
+                  description: data.welcome
                 });
               }, 1000);
             }

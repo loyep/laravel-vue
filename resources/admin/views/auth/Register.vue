@@ -107,6 +107,7 @@
 import AuthLayout from '@/layouts/AuthLayout/index.vue';
 import { Component, Vue } from 'vue-property-decorator';
 import { setFiledsWithErrors } from "@/utils/form";
+import { WrappedFormUtils } from 'ant-design-vue/types/form/form';
 
 @Component({
   components: {
@@ -117,7 +118,7 @@ export default class Register extends Vue {
   
   private submitting = false
 
-  private form: any
+  private form: WrappedFormUtils
 
   beforeCreate() {
     this.form = this.$form.createForm(this)
