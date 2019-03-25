@@ -2,6 +2,9 @@ const webpack = require('webpack');
 const mix = require('laravel-mix');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const os = require('os');
+const HappyPack = require('happypack');
+const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length});
 
 /*
  |--------------------------------------------------------------------------
@@ -22,24 +25,13 @@ const config = {
     })
   ],
   resolve: {
-    // extensions: ['.js', '.vue', '.ts'],
+    extensions: ['.js', '.vue', '.ts'],
     alias: {
       '@': path.resolve(__dirname, 'resources/admin')
     },
     modules: [
       // 'resources/admin',
       'node_modules'
-    ]
-  },
-  module: {
-    rules: [
-      {
-        test: /\.less$/,
-        loader: 'less-loader',
-        options: {
-          javascriptEnabled: true
-        },
-      }
     ]
   },
   output: {
@@ -53,22 +45,10 @@ mix.options({processCssUrls: false});
 mix
   .setResourceRoot('/static/admin')
   .setPublicPath('public/static/admin')
-  .ts('resources/admin/main.ts', 'public/static/admin/admin.js', {
-    options: {
-      javascriptEnabled: true
-    }
-  })
-  .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
-  // .less('resources/admin/styles/index.less', 'public/static/admin/admin.css', {
-  //   options: {
-  //     javascriptEnabled: true
-  //   }
-  // })
+  // .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
+  .ts('resources/admin/main.ts', 'public/static/admin/admin.js')
   .copyDirectory('resources/admin/themes', 'public/static/admin/themes')
   .version()
-
-// mix
-  // .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
 
 if (mix.inProduction()) {
   mix.disableNotifications()
