@@ -440,14 +440,8 @@ export const asyncRouterMap = [
       },
       {
         path: '*',
-        component: BlankLayout,
+        component: () => import('@/views/errorPage/404.vue'),
         hidden: true,
-        children: [
-          {
-            path: '',
-            component: () => import('@/views/errorPage/404.vue')
-          }
-        ]
       }
     ]
   }
