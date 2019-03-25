@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const mix = require('laravel-mix');
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 /*
  |--------------------------------------------------------------------------
@@ -16,6 +17,9 @@ const path = require('path');
 const config = {
   plugins: [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new CleanWebpackPlugin({ 
+      cleanOnceBeforeBuildPatterns: path.resolve(__dirname + '/public/{static/admin/*,js/*.{js,map},css/*.{css,map},images}')
+    })
   ],
   resolve: {
     // extensions: ['.js', '.vue', '.ts'],
@@ -29,13 +33,13 @@ const config = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.less$/,
-      //   loader: 'less-loader',
-      //   options: {
-      //     javascriptEnabled: true
-      //   },
-      // }
+      {
+        test: /\.less$/,
+        loader: 'less-loader',
+        options: {
+          javascriptEnabled: true
+        },
+      }
     ]
   },
   output: {
@@ -49,13 +53,17 @@ mix.options({processCssUrls: false});
 mix
   .setResourceRoot('/static/admin')
   .setPublicPath('public/static/admin')
-  .ts('resources/admin/main.ts', 'public/static/admin/admin.js');
-  // .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
-
-mix
-  .less('resources/admin/styles/index.less', 'public/static/admin/admin.css', {
-    javascriptEnabled: true
+  .ts('resources/admin/main.ts', 'public/static/admin/admin.js', {
+    options: {
+      javascriptEnabled: true
+    }
   })
+  .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
+  // .less('resources/admin/styles/index.less', 'public/static/admin/admin.css', {
+  //   options: {
+  //     javascriptEnabled: true
+  //   }
+  // })
   .copyDirectory('resources/admin/themes', 'public/static/admin/themes')
   .version()
 

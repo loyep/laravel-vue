@@ -10,6 +10,8 @@ import bootstrap from './bootstrap'
 
 Vue.config.productionTip = false
 
+import '@/styles/index.less'
+
 /**
  * 注册指令
  */
