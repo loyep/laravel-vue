@@ -1,7 +1,13 @@
 <?php
+
+use Illuminate\Support\Facades\Route;
+
 $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
 if (Route::current()->named('home')) {
     $bodyClass[] = 'home';
+}
+if (intval(\request()->get('page', '1')) > 1) {
+    $bodyClass[] = 'paged-2';
 }
 ?>
         <!DOCTYPE html>
@@ -33,8 +39,10 @@ if (Route::current()->named('home')) {
 </head>
 <body class="{{ implode(' ', $bodyClass) }}">
 @include('partials.header')
-@include('partials.magazine', ['posts' => $posts->take(5)])
-@include('partials.pushes')
+@if (intval(\request()->get('page', '1')) === 1)
+    @include('partials.magazine', ['posts' => $posts->take(5)])
+    @include('partials.pushes')
+@endif
 {{--@include('partials.tab-cats')--}}
 {{--@include('partials.slides')--}}
 {{--@include('components.search')--}}
@@ -51,7 +59,7 @@ if (Route::current()->named('home')) {
                                        href="{{ $post->permLink }}"
                                        title="{{ $post->title }}">
                                         <div class="custom-hover d-block">
-                                            <img class="timthumb_php"
+                                            <img class="original"
                                                  src="{{ $post->image }}"
                                                  title="{{ $post->title }}" alt="{{ $post->title }}">
                                         </div>

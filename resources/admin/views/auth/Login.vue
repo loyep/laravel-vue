@@ -19,7 +19,7 @@
               size="large"
             >
               <template v-slot:prefix>
-                <a-icon type="mail" style="color:rgba(0,0,0,.25)" />
+                <a-icon type="mail" style="color:rgba(0,0,0,.25)"/>
               </template>
             </a-input>
           </a-form-item>
@@ -39,7 +39,7 @@
               type="password"
             >
               <template v-slot:prefix>
-                <a-icon type="lock" style="color:rgba(0,0,0,.25)" />
+                <a-icon type="lock" style="color:rgba(0,0,0,.25)"/>
               </template>
             </a-input>
           </a-form-item>
@@ -47,13 +47,8 @@
             <a-form-item style="margin-bottom: 0px; margin-top: -12px">
               <a-checkbox v-decorator="[
                 'remember_me'
-              ]"
-              >
-                记住我
-              </a-checkbox>
-              <router-link :style="{ float: 'right' }" :to="{ name: 'forgot.password' }">
-                忘记密码
-              </router-link>
+              ]">记住我</a-checkbox>
+              <router-link :style="{ float: 'right' }" :to="{ name: 'forgot.password' }">忘记密码</router-link>
             </a-form-item>
             <a-form-item>
               <a-button
@@ -62,17 +57,13 @@
                 type="primary"
                 htmlType="submit"
                 class="submit"
-              >
-                登录
-              </a-button>
+              >登录</a-button>
             </a-form-item>
             <div class="other">
               <span>其他登录方式</span>
-              <a-icon type="wechat" class="icon" theme="outlined" />
-              <a-icon type="github" class="icon" theme="outlined" />
-              <router-link class="register" :to="{ name: 'register' }">
-                注册账号
-              </router-link>
+              <a-icon type="wechat" class="icon" theme="outlined"/>
+              <a-icon type="github" class="icon" theme="outlined"/>
+              <router-link class="register" :to="{ name: 'register' }">注册账号</router-link>
             </div>
           </div>
         </a-form>
@@ -82,10 +73,10 @@
 </template>
 
 <script lang="ts">
-import AuthLayout from '@/layouts/AuthLayout/index.vue';
-import { Component, Vue } from 'vue-property-decorator';
-import { Action } from 'vuex-class';
-import Router, { Location } from 'vue-router'
+import AuthLayout from "@/layouts/AuthLayout/index.vue";
+import { Component, Vue } from "vue-property-decorator";
+import { Action } from "vuex-class";
+import { setFiledsWithErrors } from "@/utils/form";
 
 @Component({
   components: {
@@ -93,47 +84,49 @@ import Router, { Location } from 'vue-router'
   }
 })
 export default class Login extends Vue {
+  private submitting = false;
 
-  private submitting = false
-
-  private form: any
+  private form: any;
 
   beforeCreate() {
-    this.form = this.$form.createForm(this)
+    this.form = this.$form.createForm(this);
   }
 
-  handleSubmit  (e) {
-      e.preventDefault()
-      this.form.validateFields((err, values) => {
-        if (!err) {
-          this.submitting = true
-          this.$store.dispatch('auth/Login', values).then((res) => {
-            this.submitting = false
-            this.$router.push(<any>{ path: this.$route.query.redirect || '/' })
+  handleSubmit(e: Event) {
+    e.preventDefault();
+    this.form.validateFields((err, values) => {
+      if (!err) {
+        this.submitting = true;
+        this.$store
+          .dispatch("auth/Login", values)
+          .then(res => {
+            this.submitting = false;
+            this.$router.push(<any>{
+              path: this.$route.query.redirect || "/"
+            });
             if (res.data.welcome) {
               setTimeout(() => {
                 this.$notification.success({
-                  message: '欢迎',
+                  message: "欢迎",
                   description: res.data.welcome
-                })
-              }, 1000)
+                });
+              }, 1000);
             }
-          }).catch(err => {
-            err.showMessages && err.showMessages(this.form)
-            this.submitting = false
           })
-        }
-      })
+          .catch(err => {
+            this.submitting = false;
+            setFiledsWithErrors(this.form, err);
+          });
+      }
+    });
   }
 }
-
 </script>
 
 <style lang="less" scoped>
 @import '~@/styles/variables.less';
 
 .login {
-
   .icon {
     font-size: 24px;
     color: rgba(0, 0, 0, 0.2);
@@ -204,5 +197,4 @@ export default class Login extends Vue {
     }
   }
 }
-
 </style>

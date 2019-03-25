@@ -106,6 +106,7 @@
 <script lang="ts">
 import AuthLayout from '@/layouts/AuthLayout/index.vue';
 import { Component, Vue } from 'vue-property-decorator';
+import { setFiledsWithErrors } from "@/utils/form";
 
 @Component({
   components: {
@@ -122,7 +123,7 @@ export default class Register extends Vue {
     this.form = this.$form.createForm(this)
   }
 
-  handleSubmit  (e) {
+  handleSubmit  (e: Event) {
     e.preventDefault()
     this.form.validateFields((err, values) => {
       if (!err) {
@@ -131,9 +132,8 @@ export default class Register extends Vue {
           this.submitting = false
           this.$router.push(<any>{ path: this.$route.query.redirect || '/' })
         }).catch(err => {
-          console.log(err)
-          // this.form.showMessages(err)
           this.submitting = false
+          setFiledsWithErrors(this.form, err);
         })
       }
     })

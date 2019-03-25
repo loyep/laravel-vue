@@ -6,7 +6,7 @@
       padding: 0,
       height: '100vh',
     }"
-    zIndex="10"
+    :zIndex="10"
     placement="left"
     @close="() => collapse(true)"
   >

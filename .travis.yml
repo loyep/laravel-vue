@@ -35,7 +35,9 @@ script:
   - php artisan vendor:publish --tag=storage
   - php artisan migrate
   - npm install
-  - npm run production
+  - npm i -g npm
+  - npm run prod:admin 
+  - npm run prod
 #  - vendor/bin/phpunit
 
 notifications:

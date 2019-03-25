@@ -30,7 +30,9 @@ class PostController extends Controller
     {
         $posts = Post::paginate();
         if ($request->expectsJson()) {
-            return response()->json($posts);
+            return response()->json([
+                'data' => $posts,
+            ]);
         }
 //    return view()
     }

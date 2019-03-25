@@ -1,7 +1,7 @@
 import store from '@/store'
 
 /**
- * @param {Array<String>} value
+ * @param {Array<string>} value
  * @returns {Boolean}
  * @example see @/views/permission/directive.vue
  */

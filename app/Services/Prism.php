@@ -91,7 +91,7 @@ class Prism
 
     public function relatedPosts($post)
     {
-        return Post::where('category_id', $post->category_id)->take(0)->get();
+        return Post::where('category_id', $post->category_id)->take(4)->get();
     }
 
     public function stickyPosts($count = 4)

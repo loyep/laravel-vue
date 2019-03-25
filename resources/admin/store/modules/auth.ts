@@ -52,7 +52,7 @@ export const actions: ActionTree<IAuthState, RootState> = {
           context.commit('SET_TOKEN', data.token)
           resolve(response)
         } else {
-          reject(new Error())
+          reject(response.data.message)
         }
       }).catch(error => {
         reject(error)
@@ -68,7 +68,7 @@ export const actions: ActionTree<IAuthState, RootState> = {
           context.commit('SET_TOKEN', data.token)
           resolve(response)
         } else {
-          reject(new Error())
+          reject(response.data.message)
         }
       }).catch(error => {
         reject(error)

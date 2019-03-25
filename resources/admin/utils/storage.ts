@@ -13,7 +13,7 @@ Vue.use(VueStorage, {
  * @param content
  * @param expires 1 week
  */
-export const setStore = (name: string, value: string|any, expire: number = 604800) => {
+export function setStore (name: string, value: string|any, expire: number = 604800) {
   const stringifyValue = JSON.stringify({
     value,
     expire: expire !== null ? new Date().getTime() + expire * 1000 : null,
@@ -22,7 +22,7 @@ export const setStore = (name: string, value: string|any, expire: number = 60480
   localStorage.setItem(name, stringifyValue);
 }
 
-export const getStore: any  = (name: string, def: any = null) => {
+export function getStore (name: string, def: any = null) : any {
   const item = localStorage.getItem(name);
 
   if (item !== null) {
@@ -46,11 +46,11 @@ export const getStore: any  = (name: string, def: any = null) => {
   return def;
 }
 
-export const removeStore = (name: string) => {
+export function removeStore (name: string) {
   localStorage.removeItem(name)
 }
 
-export const clearStore = () => {
+export function clearStore () {
   localStorage.clear()
 }
 

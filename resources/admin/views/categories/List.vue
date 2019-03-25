@@ -110,7 +110,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Card, Col, Row, Tag, Menu, Dropdown } from "ant-design-vue";
-import { index } from "@/api/post";
+import { getList } from "@/api/category";
 
 const columns = [
   {
@@ -160,7 +160,7 @@ const columns = [
     AMenuItem: Menu.Item
   }
 })
-export default class PostList extends Vue {
+export default class CategoryList extends Vue {
   protected selectedRowKeys: Array<number> = [];
 
   private columns = columns;
@@ -183,7 +183,7 @@ export default class PostList extends Vue {
     this.handleSearch();
   }
 
-  handleSubmit(e) {
+  handleSubmit(e: Event) {
     e.preventDefault();
     this.form.validateFields((err, values) => {
       if (!err) {
@@ -195,7 +195,7 @@ export default class PostList extends Vue {
   handleSearch(query: Object = {}) {
     this.query = query;
     this.loading = true;
-    index(query).then(res => {
+    getList(query).then(res => {
       this.data = res.data.data;
       const paginationProps = {
         total: parseInt(res.data.total),
@@ -259,7 +259,7 @@ export default class PostList extends Vue {
   :global(.ant-form-item) {
     display: flex;
     margin-right: 0;
-    margin-bottom: 24px;
+    // margin-bottom: 24px;
     > .ant-form-item-label {
       width: auto;
       padding-right: 8px;

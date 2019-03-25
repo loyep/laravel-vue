@@ -16,24 +16,23 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 import { Menu } from 'ant-design-vue'
-export default {
-  name: 'Setting',
+
+@Component({
   components: {
     'AMenu': Menu,
     'AMenuItem': Menu.Item
-  },
-  data () {
-    return {
-      mode: 'inline',
-      selectedKey: '1'
-    }
-  },
-  methods: {
-    selectKey (val) {
+  }
+})
+export default class UserSetting extends Vue {
+  private mode: string = 'inline'
 
-    }
+  private selectedKey: string | number = '1'
+
+  selectKey (val) {
+
   }
 }
 </script>

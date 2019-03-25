@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const mix = require('laravel-mix')
 const path = require('path')
+const HappyPack = require('happypack');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,12 +14,16 @@ const path = require('path')
  |
  */
 
+function resolve(dir) {
+  return path.resolve(__dirname, '..', dir)
+}
+
 const config = {
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.vue', '.ts', '.tsx'],
+    extensions: ['.js', '.vue', '.ts', '.tsx'],
     alias: {
       '@': path.resolve(__dirname, 'resources/admin')
     },
@@ -43,6 +48,8 @@ const config = {
   }
 }
 
+mix.webpackConfig(config)
+
 mix
   .setResourceRoot('/static/admin')
   .setPublicPath('public/static/admin')
@@ -56,5 +63,3 @@ if (mix.inProduction()) {
 } else {
   mix.sourceMaps()
 }
-
-mix.webpackConfig(config)

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Support\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -31,7 +33,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'email'        => 'required|unique:users|string',
+                'name'         => 'required|unique:users|string',
+                'display_name' => 'unique:users|string',
+            ]);
+
+            $user = new User($request->all());
+            $user->avatar = Helper::getAvatar($user->email);
+            $user->save();
+            $response = [
+                'message' => 'User created.',
+                'data'    => $user->toArray(),
+            ];
+
+            return response()->json($response);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'error'   => true,
+                'message' => $e->errors(),
+            ]);
+        }
     }
 
     /**

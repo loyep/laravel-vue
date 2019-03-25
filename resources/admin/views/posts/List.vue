@@ -48,7 +48,6 @@
               <a-form-item>
                 <span class="submitButtons">
                   <a-button icon="search" type="primary" html-type="submit">查询</a-button>
-                  <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
                 </span>
               </a-form-item>
             </a-col>
@@ -56,12 +55,13 @@
         </a-form>
       </div>
       <div class="tableListOperator">
+        <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
         <a-dropdown>
-          <a-button>批量操作
+          <a-button :disabled="selectedRowKeys.length === 0">批量操作
             <a-icon type="down"/>
           </a-button>
           <template #overlay>
-            <a-menu>
+            <a-menu @click="handleMoreAction">
               <a-menu-item key="1">
                 <a-icon type="delete"/>删除
               </a-menu-item>
@@ -109,7 +109,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Card, Col, Row, Tag, Menu, Dropdown } from "ant-design-vue";
-import { index } from "@/api/post";
+import { getList } from "@/api/post";
 
 const columns = [
   {
@@ -160,15 +160,15 @@ const columns = [
   }
 })
 export default class PostList extends Vue {
-  protected selectedRowKeys: Array<number> = [];
+  protected selectedRowKeys?: Array<string> = [];
 
-  private columns = columns;
+  private columns: any = columns;
 
   private form: any;
 
   private data: Array<Object> = [];
 
-  private loading = false;
+  private loading: boolean = false;
 
   private pagination: Object = {};
 
@@ -182,7 +182,7 @@ export default class PostList extends Vue {
     this.handleSearch();
   }
 
-  handleSubmit(e) {
+  handleSubmit(e: Event) {
     e.preventDefault();
     this.form.validateFields((err, values) => {
       if (!err) {
@@ -194,9 +194,11 @@ export default class PostList extends Vue {
   handleSearch(query: Object = {}) {
     this.query = query;
     this.loading = true;
-    index(query).then(res => {
+    getList(query).then(res => {
       this.data = res.data.data;
+      this.selectedRowKeys = []
       const paginationProps = {
+        showSizeChanger: true,
         total: parseInt(res.data.total),
         pageSize: parseInt(res.data.per_page),
         current: res.data.current_page
@@ -206,7 +208,9 @@ export default class PostList extends Vue {
     });
   }
 
-  toggleForm() {}
+  handleMoreAction(e: Event) {
+    e.preventDefault();
+  }
 
   onSelectChange(selectedRowKeys, selectedRows) {
     this.selectedRowKeys = selectedRowKeys;
@@ -258,7 +262,7 @@ export default class PostList extends Vue {
   :global(.ant-form-item) {
     display: flex;
     margin-right: 0;
-    margin-bottom: 24px;
+    // margin-bottom: 24px;
     > .ant-form-item-label {
       width: auto;
       padding-right: 8px;

@@ -311,54 +311,20 @@ $bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
                 <div id="recent-posts-4" class="widget widget_related_posts">
                     <h3 class="widget-title">相关文章</h3>
                     <ul class="row row-10">
-                        <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
-                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/3546.html"
-                               target="_blank"
-                               title="17天女生独行，如何用4000元横跨南北三省四个城市？">
-                                <div class="image custom-hover-img"
-                                     style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/2018092214591613-e1537980861650.jpeg&h=300&w=300&zc=1&a=c&q=100&s=1')">
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center  content text-center p-md-2 p-lg-3">
-                                    <h4 class="title font-14 color-white text-l3">17天女生独行，如何用4000元横跨南北三省四个城市？</h4>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
-                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1944.html"
-                               target="_blank"
-                               title="在别人看不到的角落努力，在看得见的原野绽放光芒">
-                                <div class="image custom-hover-img"
-                                     style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/2018092212393345.jpeg&h=300&w=300&zc=1&a=c&q=100&s=1')">
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center  content text-center p-md-2 p-lg-3">
-                                    <h4 class="title font-14 color-white text-l3">在别人看不到的角落努力，在看得见的原野绽放光芒</h4>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
-                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1594.html"
-                               target="_blank"
-                               title="耶鲁大学的这场音乐会，邀请听众用手机和他们一起演奏">
-                                <div class="image custom-hover-img"
-                                     style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/bigger-5b927f1b65d4a.jpg&h=300&w=300&zc=1&a=c&q=100&s=1')">
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center  content text-center p-md-2 p-lg-3">
-                                    <h4 class="title font-14 color-white text-l3">耶鲁大学的这场音乐会，邀请听众用手机和他们一起演奏</h4>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
-                            <a class="custom-hover d-block" href="https://demo.nicetheme.xyz/cosy-style1/1873.html"
-                               target="_blank"
-                               title="2014，我是一名大一新生；2018，我是一名旅行摄影师">
-                                <div class="image custom-hover-img"
-                                     style="background-image: url('https://demo.nicetheme.xyz/cosy-style1/wp-content/themes/Cosy-2.1.0/timthumb.php?src=https://demo.nicetheme.xyz/cosy-style1/wp-content/uploads/sites/11/2017/09/2018092216535846-e1537606449598.jpeg&h=300&w=300&zc=1&a=c&q=100&s=1')">
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center  content text-center p-md-2 p-lg-3">
-                                    <h4 class="title font-14 color-white text-l3">2014，我是一名大一新生；2018，我是一名旅行摄影师</h4>
-                                </div>
-                            </a>
-                        </li>
+                        @foreach ( $relPosts = Prism::relatedPosts($post) as $relPost)
+                            <li class="item col-12 col-sm-12 col-md-12 col-lg-6">
+                                <a class="custom-hover d-block" href="{{ $relPost->permLink }}"
+                                   target="_blank"
+                                   title="{{ $relPost->title }}">
+                                    <div class="image custom-hover-img"
+                                         style="background-image: url('{{ $relPost->image }}')">
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center  content text-center p-md-2 p-lg-3">
+                                        <h4 class="title font-14 color-white text-l3">{{ $relPost->title }}</h4>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </aside>

@@ -4,9 +4,12 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Profile'
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
+export default class Profile extends Vue {
+
 }
 </script>
 
