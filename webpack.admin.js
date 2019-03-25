@@ -22,16 +22,27 @@ const config = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new CleanWebpackPlugin({ 
       cleanOnceBeforeBuildPatterns: path.resolve(__dirname + '/public/{static/admin/*,js/*.{js,map},css/*.{css,map},images}')
-    })
+    }),
   ],
   resolve: {
-    extensions: ['.js', '.vue', '.ts'],
+    // extensions: ['.js', '.vue', '.ts'],
     alias: {
       '@': path.resolve(__dirname, 'resources/admin')
     },
     modules: [
       // 'resources/admin',
       'node_modules'
+    ]
+  },
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        loader: 'less-loader',
+        options: {
+          javascriptEnabled: true
+        },
+      },
     ]
   },
   output: {
