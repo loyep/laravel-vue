@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -9,11 +10,19 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $categories = Category::with([])->orderByDesc('published_at')->paginate($request->get('per_page', 10));
+
+        $response = [
+            'message' => '',
+            'data'    => $categories,
+        ];
+
+        return response()->json($response);
     }
 
     /**

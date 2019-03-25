@@ -38,6 +38,7 @@
         "@babel/plugin-syntax-dynamic-import": "^7.2.0",
         "@babel/plugin-syntax-jsx": "^7.2.0",
         "@types/node": "^11.11.6",
+        "@types/nprogress": "0.0.29",
         "autoprefixer": "^8.6.5",
         "babel-helper-vue-jsx-merge-props": "^2.0.3",
         "babel-plugin-import": "^1.11.0",

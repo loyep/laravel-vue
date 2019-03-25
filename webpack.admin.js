@@ -1,7 +1,6 @@
-const webpack = require('webpack')
-const mix = require('laravel-mix')
-const path = require('path')
-const HappyPack = require('happypack');
+const webpack = require('webpack');
+const mix = require('laravel-mix');
+const path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,32 +13,29 @@ const HappyPack = require('happypack');
  |
  */
 
-function resolve(dir) {
-  return path.resolve(__dirname, '..', dir)
-}
-
 const config = {
   plugins: [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
   resolve: {
-    extensions: ['.js', '.vue', '.ts', '.tsx'],
+    // extensions: ['.js', '.vue', '.ts'],
     alias: {
       '@': path.resolve(__dirname, 'resources/admin')
     },
     modules: [
+      // 'resources/admin',
       'node_modules'
     ]
   },
   module: {
     rules: [
-      {
-        test: /\.less$/,
-        loader: 'less-loader',
-        options: {
-          javascriptEnabled: true
-        }
-      }
+      // {
+      //   test: /\.less$/,
+      //   loader: 'less-loader',
+      //   options: {
+      //     javascriptEnabled: true
+      //   },
+      // }
     ]
   },
   output: {
@@ -48,18 +44,28 @@ const config = {
   }
 }
 
-mix.webpackConfig(config)
+mix.options({processCssUrls: false});
 
 mix
   .setResourceRoot('/static/admin')
   .setPublicPath('public/static/admin')
-  .ts('resources/admin/main.ts', 'public/static/admin/admin.js')
-  .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
+  .ts('resources/admin/main.ts', 'public/static/admin/admin.js');
+  // .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
+
+mix
+  .less('resources/admin/styles/index.less', 'public/static/admin/admin.css', {
+    javascriptEnabled: true
+  })
   .copyDirectory('resources/admin/themes', 'public/static/admin/themes')
   .version()
+
+// mix
+  // .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
 
 if (mix.inProduction()) {
   mix.disableNotifications()
 } else {
   mix.sourceMaps()
 }
+
+mix.webpackConfig(config)
