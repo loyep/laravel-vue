@@ -25,6 +25,7 @@ class UserController extends Controller
             'message' => 'User created.',
             'data'    => $users,
         ];
+
         return response()->json($response);
     }
 
@@ -51,6 +52,7 @@ class UserController extends Controller
                 'message' => 'User created.',
                 'data'    => $user->toArray(),
             ];
+
             return response()->json($response);
         } catch (ValidationException $e) {
             return response()->json([
@@ -109,7 +111,7 @@ class UserController extends Controller
 
         return response()->json([
             'message' => '',
-            'data' => $user
+            'data'    => $user,
         ]);
     }
 }
