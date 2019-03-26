@@ -7,7 +7,8 @@
       {
         "libraryName": "ant-design-vue",
         "libraryDirectory": "es",
-        "style": false
+        "style": false,
+        "css": false
       }
     ]
   ]

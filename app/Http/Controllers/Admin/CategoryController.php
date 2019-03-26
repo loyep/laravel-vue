@@ -23,6 +23,7 @@ class CategoryController extends Controller
             'data'    => $categories,
         ];
 
+        dd();
         return response()->json($response);
     }
 
