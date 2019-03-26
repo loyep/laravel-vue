@@ -20,7 +20,7 @@ class SaveLastTokenJob implements ShouldQueue
     /**
      * SaveLastTokenJob constructor.
      *
-     * @param Model $model
+     * @param Model  $model
      * @param string $token
      */
     public function __construct(Model $model, string $token)
