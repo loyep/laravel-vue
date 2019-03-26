@@ -22,7 +22,7 @@ class CategoryController extends Controller
             'message' => '',
             'data'    => $categories,
         ];
-
+        
         return response()->json($response);
     }
 
