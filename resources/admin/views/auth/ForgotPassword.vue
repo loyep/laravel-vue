@@ -46,6 +46,7 @@
 
 <script lang="ts">
 import AuthLayout from '@/layouts/AuthLayout/index.vue';
+import { Button } from 'ant-design-vue'
 import { Component, Vue } from 'vue-property-decorator';
 import { setFiledsWithErrors } from "@/utils/form";
 import { passwordEmail } from '@/api/auth'
@@ -53,7 +54,8 @@ import { WrappedFormUtils } from 'ant-design-vue/types/form/form';
 
 @Component({
   components: {
-    AuthLayout
+    AuthLayout,
+    AButton: Button
   }
 })
 export default class ForgotPassword extends Vue {

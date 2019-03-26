@@ -12,23 +12,22 @@
   </footer>
 </template>
 
-<script>
-export default {
-  name: 'GlobalFooter',
-  props: {
-    links: {
-      type: Array,
-      default: () => {
-        return []
-      }
-    }
-  },
-  computed: {
-    footerLinks () {
-      // role.permissionList = role.permissions.map(permission => { return permission.permissionId })
+<script lang="ts">
+import { Layout } from 'ant-design-vue'
+import { Component, Vue, Prop } from 'vue-property-decorator';
+
+export default class GlobalFooter extends Vue {
+
+  @Prop({ default:function(){
+      return []
+  }})
+  private links: Array<any>
+
+  get footerLinks() {
+    // role.permissionList = role.permissions.map(permission => { return permission.permissionId })
       return this.links.map(link => {
         if (link.path !== undefined && link.path.substr(0, 7).toLowerCase() !== 'http://' && link.path.substr(0, 8).toLowerCase() !== 'https://') {
-          link.path = `${this.$router.base}/${(this.$router.mode === 'hash' ? '#/' : '')}${link.path}`
+          link.path = `${(<any>this.$router).base}/${(this.$router.mode === 'hash' ? '#/' : '')}${link.path}`
         }
 
         if (link.blankTarget) {
@@ -38,7 +37,6 @@ export default {
         }
         return link
       })
-    }
   }
 }
 </script>

@@ -24,8 +24,11 @@
   </div>
 </template>
 
-<script>
-const types = {
+<script lang="ts">
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { Button } from "ant-design-vue";
+
+const types: Object = {
   403: {
     img: require('@/assets/images/errors/403.svg'),
     title: '403',
@@ -46,23 +49,19 @@ const types = {
   }
 }
 
-export default {
-  name: 'ErrorPage',
-  props: {
-    type: {
-      type: String,
-      default: '404'
-    }
-  },
-  data () {
-    return {
-      config: types
-    }
-  },
-  methods: {
-    handleToHome () {
-      this.$router.push({ path: '/' })
-    }
+@Component({
+  components: {
+    AButton: Button
+  }
+})
+export default class ErrorPage extends Vue {
+  @Prop({ default: '404' })
+  private type: string;
+
+  private config: Object = types;
+
+  handleToHome () {
+    this.$router.push({ path: '/' })
   }
 }
 </script>

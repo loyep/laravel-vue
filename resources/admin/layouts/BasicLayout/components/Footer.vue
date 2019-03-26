@@ -20,11 +20,8 @@
 
 <script lang="ts">
 import { Layout } from 'ant-design-vue'
-import GlobalFooter from '@/components/GlobalFooter/index.vue'
+const GlobalFooter = () => import('@/components/GlobalFooter/index.vue')
 import { Component, Vue } from 'vue-property-decorator';
-import { State, Mutation, namespace } from 'vuex-class';
-
-const themeModule = namespace('theme');
 
 @Component({
   components: {

@@ -109,7 +109,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Card, Col, Row, Tag, Menu, Dropdown } from "ant-design-vue";
+import { Card, Col, Row, Tag, Menu, Dropdown, Button } from "ant-design-vue";
 import { getList } from "@/api/category";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
@@ -158,7 +158,8 @@ const columns = [
     ADropdown: Dropdown,
     ADropdownButton: Dropdown.Button,
     AMenu: Menu,
-    AMenuItem: Menu.Item
+    AMenuItem: Menu.Item,
+    AButton: Button
   }
 })
 export default class CategoryList extends Vue {

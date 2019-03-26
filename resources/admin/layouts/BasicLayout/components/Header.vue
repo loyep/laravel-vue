@@ -11,8 +11,10 @@
 
 <script lang="ts">
 import { Layout } from "ant-design-vue";
-import TopNavHeader from "@/components/TopNavHeader/index.vue";
-import GlobalHeader from "@/components/GlobalHeader/index.vue";
+const TopNavHeader = () =>  import("@/components/TopNavHeader/index.vue");
+const GlobalHeader = () =>  import("@/components/GlobalHeader/index.vue");
+// import TopNavHeader from "@/components/TopNavHeader/index.vue";
+// import GlobalHeader from "@/components/GlobalHeader/index.vue";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 
@@ -22,7 +24,7 @@ const themeModule = namespace("theme");
   components: {
     TopNavHeader,
     GlobalHeader,
-    'ALayoutHeader': Layout.Header
+    ALayoutHeader: Layout.Header
   }
 })
 export default class Header extends Vue {

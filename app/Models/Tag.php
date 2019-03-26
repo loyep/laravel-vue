@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\URL;
 class Tag extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'slug', 'image', 'description',
+    ];
+
+    /**
      * @return string
      */
     public function getPermLinkAttribute()

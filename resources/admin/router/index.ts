@@ -15,46 +15,6 @@ Vue.use(Router)
 
 const router = createRouter(getBaseUrl())
 
-sync(store, router)
-
-export default router
-
-function scrollBehavior (to: Route, from: Route, savedPosition: any) : any {
-  if (savedPosition) {
-    return savedPosition
-  }
-
-  if (to.hash) {
-    return { selector: to.hash }
-  }
-
-  const [component]: Array<any> = router.getMatchedComponents({ ...to }).slice(-1)
-
-  if (component && component.scrollToTop === false) {
-    return {}
-  }
-
-  return { x: 0, y: 0 }
-}
-
-/**
- * The router factory
- */
-function createRouter (base: string) : Router {
-  const router = new Router({
-    base,
-    scrollBehavior,
-    // mode: 'history',
-    routes
-  })
-
-  router.beforeResolve(beforeResolve)
-  router.afterEach(afterEach)
-
-  return router
-}
-
-
 const beforeResolve: NavigationGuard = async (to: Route, from: Route, next: any) => {
   NProgress.start()
   if (getToken()) {
@@ -101,4 +61,46 @@ const beforeResolve: NavigationGuard = async (to: Route, from: Route, next: any)
 const afterEach: (to: Route, from: Route) => void = async (to: Route, from: Route) => {
   await router.app.$nextTick()
   NProgress.done()
+}
+
+router.beforeResolve(beforeResolve)
+router.afterEach(afterEach)
+
+sync(store, router)
+
+export default router
+
+function scrollBehavior (to: Route, from: Route, savedPosition: any) : any {
+  if (savedPosition) {
+    return savedPosition
+  }
+
+  if (to.hash) {
+    return { selector: to.hash }
+  }
+
+  const [component]: Array<any> = router.getMatchedComponents({ ...to }).slice(-1)
+
+  if (component && component.scrollToTop === false) {
+    return {}
+  }
+
+  return { x: 0, y: 0 }
+}
+
+
+
+
+/**
+ * The router factory
+ */
+function createRouter (base: string) : Router {
+  const router = new Router({
+    base,
+    scrollBehavior,
+    // mode: 'history',
+    routes
+  })
+
+  return router
 }

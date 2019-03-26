@@ -154,7 +154,7 @@
 </template>
 
 <script lang="ts">
-import { Drawer, Divider, List, Alert } from "ant-design-vue";
+import { Drawer, Divider, List, Alert, Button } from "ant-design-vue";
 import BlockCheckbox from "./BlockCheckbox.vue";
 import ThemeColor from "./ThemeColor.vue";
 import { Component, Vue, Prop, Provide } from "vue-property-decorator";
@@ -164,6 +164,7 @@ const themeModule = namespace("theme");
 
 @Component({
   components: {
+    AButton: Button,
     ADrawer: Drawer,
     ADivider: Divider,
     AList: List,
