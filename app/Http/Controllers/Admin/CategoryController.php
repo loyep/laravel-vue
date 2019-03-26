@@ -24,6 +24,7 @@ class CategoryController extends Controller
         ];
 
         dd();
+
         return response()->json($response);
     }
 
