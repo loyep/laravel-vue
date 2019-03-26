@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
-class TopicController extends Controller
+class TopicController extends ApiController
 {
     /**
      * Display a listing of the resource.

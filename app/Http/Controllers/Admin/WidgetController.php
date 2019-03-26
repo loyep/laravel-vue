@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Widget;
 use Illuminate\Http\Request;
 
-class WidgetController extends Controller
+class WidgetController extends ApiController
 {
     /**
      * Display a listing of the resource.

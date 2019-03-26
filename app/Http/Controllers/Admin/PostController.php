@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class PostController extends ApiController
 {
     /**
      * Display a listing of the resource.
