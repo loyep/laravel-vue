@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
-class PermissionController extends ApiController
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.

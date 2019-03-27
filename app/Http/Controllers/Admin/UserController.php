@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class UserController extends ApiController
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.

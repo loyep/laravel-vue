@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\Http\Controllers\Admin\ApiController;
+use App\Http\Controllers\Admin\Controller;
 use App\Models\User;
 use App\Support\Helper;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
-class RegisterController extends ApiController
+class RegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -25,8 +24,6 @@ class RegisterController extends ApiController
     | provide this functionality without requiring any additional code.
     |
     */
-
-    use RegistersUsers;
 
     /**
      * Create a new controller instance.
@@ -51,8 +48,7 @@ class RegisterController extends ApiController
         $token = $this->guard()->getToken()->get();
         $expiration = $this->guard()->getPayload()->get('exp') - time();
 
-        return response()
-            ->json([
+        return response()->json([
                 'data' => [
                     'user'       => $user,
                     'token'      => $token,
@@ -79,8 +75,7 @@ class RegisterController extends ApiController
 
             $this->guard()->login($user);
 
-            return $this->registered($request, $user)
-                ?: redirect($this->redirectPath());
+            return $this->registered($request, $user);
         } catch (ValidationException $e) {
             return response()->json([
                 'error'   => true,

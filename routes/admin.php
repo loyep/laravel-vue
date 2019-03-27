@@ -13,21 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/')->middleware(['guest:api'])->as('admin.')->group(function () {
+Route::prefix('/')->middleware(['guest:api'])->namespace('Admin')->as('admin.')->group(function () {
     Route::post('login', 'Auth\LoginController@login');
     Route::post('register', 'Auth\RegisterController@register');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 });
 
-Route::prefix('/')->middleware(['auth:api'])->as('admin.')->group(function () {
-    Route::get('user/profile', 'Admin\UserController@profile');
+Route::prefix('/')->middleware(['auth:api'])->namespace('Admin')->as('admin.')->group(function () {
+    Route::get('user/profile', 'UserController@profile');
     Route::post('logout', 'Auth\LoginController@logout');
 
-    Route::resource('user', 'Admin\UserController');
-    Route::resource('tag', 'Admin\TagController');
-    Route::resource('post', 'Admin\PostController');
-    Route::resource('comment', 'Admin\CommentController');
-    Route::resource('category', 'Admin\CategoryController');
-    Route::resource('setting', 'Admin\SettingController');
-    Route::get('statistics', 'Admin\PrismController@statistics');
+    Route::resource('user', 'UserController');
+    Route::resource('tag', 'TagController');
+    Route::resource('post', 'PostController');
+    Route::resource('comment', 'CommentController');
+    Route::resource('category', 'CategoryController');
+    Route::resource('setting', 'SettingController');
+    Route::get('statistics', 'PrismController@statistics');
 });
