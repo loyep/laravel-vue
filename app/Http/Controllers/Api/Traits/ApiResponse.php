@@ -21,7 +21,7 @@ trait ApiResponse
     }
 
     /**
-     * @param int $statusCode
+     * @param int      $statusCode
      * @param int|null $httpCode
      *
      * @return $this
@@ -30,12 +30,14 @@ trait ApiResponse
     {
         $statusCode = $httpCode ?? $statusCode;
         $this->statusCode = $statusCode;
+
         return $this;
     }
 
     /**
      * @param $data
      * @param array $header
+     *
      * @return mixed
      */
     public function respond($data, $header = [])
@@ -46,7 +48,8 @@ trait ApiResponse
     /**
      * @param $status
      * @param array $data
-     * @param null $code
+     * @param null  $code
+     *
      * @return mixed
      */
     public function status($status, array $data, $code = null)
@@ -56,15 +59,18 @@ trait ApiResponse
         }
         $status = [
             'status' => $status,
-            'code' => $this->statusCode
+            'code'   => $this->statusCode,
         ];
         $data = array_merge($status, $data);
+
         return $this->respond($data);
     }
+
     /**
      * @param $message
-     * @param int $code
+     * @param int    $code
      * @param string $status
+     *
      * @return mixed
      */
     /*
@@ -82,29 +88,32 @@ trait ApiResponse
     /**
      * @param $message
      * @param string $status
+     *
      * @return mixed
      */
-    public function message($message, $status = "success")
+    public function message($message, $status = 'success')
     {
         return $this->status($status, [
-            'message' => $message
+            'message' => $message,
         ]);
     }
 
     /**
      * @param string $message
+     *
      * @return mixed
      */
-    public function internalError($message = "Internal Error!")
+    public function internalError($message = 'Internal Error!')
     {
         return $this->error($message, FoundationResponse::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     /**
      * @param string $message
+     *
      * @return mixed
      */
-    public function created($message = "created")
+    public function created($message = 'created')
     {
         return $this->setStatusCode(FoundationResponse::HTTP_CREATED)
             ->message($message);
@@ -113,15 +122,17 @@ trait ApiResponse
     /**
      * @param $data
      * @param string $status
+     *
      * @return mixed
      */
-    public function success($data, $status = "success")
+    public function success($data, $status = 'success')
     {
         return $this->status($status, compact('data'));
     }
 
     /**
      * @param string $message
+     *
      * @return mixed
      */
     public function notFond($message = 'Not Fond!')
