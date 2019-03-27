@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.

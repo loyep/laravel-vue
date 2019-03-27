@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Admin\Controller;
+use App\Http\Controllers\Api\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -80,7 +80,7 @@ class LoginController extends Controller
     /**
      * Get the guard to be used during authentication.
      *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     * @return \Tymon\JWTAuth\Contracts\Providers\Auth
      */
     protected function guard()
     {

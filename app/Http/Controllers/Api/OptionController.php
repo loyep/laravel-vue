@@ -1,29 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class OptionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $categories = Category::with([])->orderByDesc('published_at')->paginate($request->get('per_page', 10));
-
-        $response = [
-            'message' => '',
-            'data'    => $categories,
-        ];
-
-        return response()->json($response);
+        //
     }
 
     /**

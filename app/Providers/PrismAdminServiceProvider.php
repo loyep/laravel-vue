@@ -40,10 +40,10 @@ class PrismAdminServiceProvider extends ServiceProvider
     protected function loadRoutes()
     {
         $prefix = PrismAdmin::path();
-        Route::get($prefix, '\App\Http\Controllers\Admin\PrismController@index')->name('dashboard');
-        Route::get($prefix.'/{any}', '\App\Http\Controllers\Admin\PrismController@index')->where('any', '.*');
+        Route::get($prefix, '\App\Http\Controllers\Api\PrismController@index')->name('dashboard');
+        Route::get($prefix.'/{any}', '\App\Http\Controllers\Api\PrismController@index')->where('any', '.*');
 
-        $namespace = 'App\Http\Controllers';
+        $namespace = 'App\Http\Controllers\Api' ;
         Route::prefix('api')
             ->middleware('api')
             ->namespace($namespace)

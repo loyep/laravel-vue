@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Admin\Controller;
+use App\Http\Controllers\Api\Controller;
 use App\Models\User;
 use App\Support\Helper;
 use Illuminate\Auth\Events\Registered;

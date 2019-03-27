@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/')->middleware(['guest:api'])->namespace('Admin')->as('admin.')->group(function () {
+Route::prefix('/')->middleware(['guest:api'])->as('admin.')->group(function () {
     Route::post('login', 'Auth\LoginController@login');
     Route::post('register', 'Auth\RegisterController@register');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 });
 
-Route::prefix('/')->middleware(['auth:api'])->namespace('Admin')->as('admin.')->group(function () {
+Route::prefix('/')->middleware(['auth:api'])->as('admin.')->group(function () {
     Route::get('user/profile', 'UserController@profile');
     Route::post('logout', 'Auth\LoginController@logout');
 

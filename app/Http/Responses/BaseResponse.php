@@ -2,6 +2,6 @@
 
 namespace App\Http\Responses;
 
-trait ApiResponse
+abstract class BaseResponse
 {
 }

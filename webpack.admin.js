@@ -65,11 +65,11 @@ if (mix.inProduction()) {
      * 本地调试 dev-server 配置
      */
 
-    mix.browserSync({
-        files: [
-            'resources/admin/**',
-        ]
-    })
+    // mix.browserSync({
+    //     files: [
+    //         'resources/admin/**',
+    //     ]
+    // })
 }
 
 mix.webpackConfig(config);
