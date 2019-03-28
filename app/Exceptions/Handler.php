@@ -5,7 +5,6 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
@@ -58,8 +57,8 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ValidationException) {
             return new Response([
                 'status_code' => $exception->status,
-                'message' => $exception->errorBag,
-                'errors' => $exception->errors()
+                'message'     => $exception->errorBag,
+                'errors'      => $exception->errors(),
             ]);
         }
 
@@ -67,7 +66,7 @@ class Handler extends ExceptionHandler
         if ($exception instanceof UnauthorizedHttpException) {
             return new Response([
                 'status_code' => $exception->getCode(),
-                'message' => $exception->getMessage(),
+                'message'     => $exception->getMessage(),
             ]);
         }
 
