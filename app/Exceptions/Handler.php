@@ -5,9 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,7 +46,7 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Exception               $exception
+     * @param \Exception $exception
      *
      * @return \Illuminate\Http\Response
      */
@@ -59,16 +57,15 @@ class Handler extends ExceptionHandler
             return new Response([
                 'status_code' => $exception->status,
                 'message' => $exception->errorBag,
-                'errors' => $exception->errors()
+                'errors' => $exception->errors(),
             ]);
         }
 
         // 用户认证的异常，我们需要返回 401 的 http code 和错误信息
-        if ($exception instanceof UnauthorizedHttpException) {
+        if ($exception instanceof AuthenticationException) {
             return new Response([
-                'status_code' => 401,
-                'message' => $exception->getMessage(),
-            ]);
+                'message' => $this->getMessage()
+            ], 401);
         }
 
         return parent::render($request, $exception);

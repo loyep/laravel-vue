@@ -45,6 +45,7 @@ trait ApiResponse
         if (method_exists($this->response(), $method) || $method == 'array') {
             return call_user_func_array([$this->response(), $method], $parameters);
         }
+
         throw new ErrorException('Undefined method '.get_class($this).'::'.$method);
     }
 
