@@ -7,13 +7,11 @@ use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
  * Class ThemePresenter.
- *
- * @package namespace App\Presenters;
  */
 class ThemePresenter extends FractalPresenter
 {
     /**
-     * Transformer
+     * Transformer.
      *
      * @return \League\Fractal\TransformerAbstract
      */

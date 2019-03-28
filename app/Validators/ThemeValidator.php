@@ -2,18 +2,16 @@
 
 namespace App\Validators;
 
-use \Prettus\Validator\Contracts\ValidatorInterface;
-use \Prettus\Validator\LaravelValidator;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\LaravelValidator;
 
 /**
  * Class ThemeValidator.
- *
- * @package namespace App\Validators;
  */
 class ThemeValidator extends LaravelValidator
 {
     /**
-     * Validation Rules
+     * Validation Rules.
      *
      * @var array
      */

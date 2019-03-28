@@ -3,21 +3,17 @@
 namespace App\Repositories;
 
 use App\Models\User;
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\ThemeRepository;
-use App\Entities\Theme;
 use App\Validators\ThemeValidator;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class UserRepositoryEloquent.
- *
- * @package namespace App\Repositories;
  */
 class UserRepositoryEloquent extends BaseRepository implements ThemeRepository
 {
     /**
-     * Specify Model class name
+     * Specify Model class name.
      *
      * @return string
      */
@@ -27,23 +23,20 @@ class UserRepositoryEloquent extends BaseRepository implements ThemeRepository
     }
 
     /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
+     * Specify Validator class name.
+     *
+     * @return mixed
+     */
     public function validator()
     {
-
         return ThemeValidator::class;
     }
 
-
     /**
-     * Boot up the repository, pushing criteria
+     * Boot up the repository, pushing criteria.
      */
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-
 }

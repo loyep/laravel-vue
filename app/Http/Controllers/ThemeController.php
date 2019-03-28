@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\ThemeCreateRequest;
 use App\Http\Requests\ThemeUpdateRequest;
 use App\Repositories\ThemeRepository;
 use App\Validators\ThemeValidator;
+use Illuminate\Http\Request;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class ThemeController.
- *
- * @package namespace App\Http\Controllers;
  */
 class ThemeController extends Controller
 {
@@ -32,12 +29,12 @@ class ThemeController extends Controller
      * ThemeController constructor.
      *
      * @param ThemeRepository $repository
-     * @param ThemeValidator $validator
+     * @param ThemeValidator  $validator
      */
     public function __construct(ThemeRepository $repository, ThemeValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -51,7 +48,6 @@ class ThemeController extends Controller
         $themes = $this->repository->all();
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'data' => $themes,
             ]);
@@ -63,16 +59,15 @@ class ThemeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ThemeCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
+     * @param ThemeCreateRequest $request
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
+     *
+     * @return \Illuminate\Http\Response
      */
     public function store(ThemeCreateRequest $request)
     {
         try {
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $theme = $this->repository->create($request->all());
@@ -83,7 +78,6 @@ class ThemeController extends Controller
             ];
 
             if ($request->wantsJson()) {
-
                 return response()->json($response);
             }
 
@@ -92,7 +86,7 @@ class ThemeController extends Controller
             if ($request->wantsJson()) {
                 return response()->json([
                     'error'   => true,
-                    'message' => $e->getMessageBag()
+                    'message' => $e->getMessageBag(),
                 ]);
             }
 
@@ -103,7 +97,7 @@ class ThemeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -112,7 +106,6 @@ class ThemeController extends Controller
         $theme = $this->repository->find($id);
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'data' => $theme,
             ]);
@@ -124,7 +117,7 @@ class ThemeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -138,17 +131,16 @@ class ThemeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  ThemeUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
+     * @param ThemeUpdateRequest $request
+     * @param string             $id
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
+     *
+     * @return Response
      */
     public function update(ThemeUpdateRequest $request, $id)
     {
         try {
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
             $theme = $this->repository->update($request->all(), $id);
@@ -159,18 +151,15 @@ class ThemeController extends Controller
             ];
 
             if ($request->wantsJson()) {
-
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-
             if ($request->wantsJson()) {
-
                 return response()->json([
                     'error'   => true,
-                    'message' => $e->getMessageBag()
+                    'message' => $e->getMessageBag(),
                 ]);
             }
 
@@ -178,11 +167,10 @@ class ThemeController extends Controller
         }
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -191,7 +179,6 @@ class ThemeController extends Controller
         $deleted = $this->repository->delete($id);
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'message' => 'Theme deleted.',
                 'deleted' => $deleted,

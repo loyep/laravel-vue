@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
+use Illuminate\Http\Request;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class UsersController.
- *
- * @package namespace App\Http\Controllers;
  */
 class UsersController extends Controller
 {
@@ -33,12 +29,12 @@ class UsersController extends Controller
      * UsersController constructor.
      *
      * @param UserRepository $repository
-     * @param UserValidator $validator
+     * @param UserValidator  $validator
      */
     public function __construct(UserRepository $repository, UserValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -52,7 +48,6 @@ class UsersController extends Controller
         $users = $this->repository->all();
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'data' => $users,
             ]);
@@ -64,16 +59,15 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  UserCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
+     * @param UserCreateRequest $request
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
+     *
+     * @return \Illuminate\Http\Response
      */
     public function store(UserCreateRequest $request)
     {
         try {
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $user = $this->repository->create($request->all());
@@ -84,7 +78,6 @@ class UsersController extends Controller
             ];
 
             if ($request->wantsJson()) {
-
                 return response()->json($response);
             }
 
@@ -93,7 +86,7 @@ class UsersController extends Controller
             if ($request->wantsJson()) {
                 return response()->json([
                     'error'   => true,
-                    'message' => $e->getMessageBag()
+                    'message' => $e->getMessageBag(),
                 ]);
             }
 
@@ -104,7 +97,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -113,7 +106,6 @@ class UsersController extends Controller
         $user = $this->repository->find($id);
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'data' => $user,
             ]);
@@ -125,7 +117,7 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -139,17 +131,16 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  UserUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
+     * @param UserUpdateRequest $request
+     * @param string            $id
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
+     *
+     * @return Response
      */
     public function update(UserUpdateRequest $request, $id)
     {
         try {
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
             $user = $this->repository->update($request->all(), $id);
@@ -160,18 +151,15 @@ class UsersController extends Controller
             ];
 
             if ($request->wantsJson()) {
-
                 return response()->json($response);
             }
 
             return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-
             if ($request->wantsJson()) {
-
                 return response()->json([
                     'error'   => true,
-                    'message' => $e->getMessageBag()
+                    'message' => $e->getMessageBag(),
                 ]);
             }
 
@@ -179,11 +167,10 @@ class UsersController extends Controller
         }
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -192,7 +179,6 @@ class UsersController extends Controller
         $deleted = $this->repository->delete($id);
 
         if (request()->wantsJson()) {
-
             return response()->json([
                 'message' => 'User deleted.',
                 'deleted' => $deleted,
