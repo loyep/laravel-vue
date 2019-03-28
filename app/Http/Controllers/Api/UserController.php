@@ -21,6 +21,7 @@ class UserController extends Controller
         $users = User::paginate($request->get('per_page', 10));
 
         $response = $users;
+
         return response()->json($response);
     }
 
@@ -34,8 +35,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required|unique:users|string',
-            'name' => 'required|unique:users|string',
+            'email'        => 'required|unique:users|string',
+            'name'         => 'required|unique:users|string',
             'display_name' => 'unique:users|string',
         ]);
 
@@ -44,7 +45,7 @@ class UserController extends Controller
         $user->save();
         $response = [
             'message' => 'User created.',
-            'data' => $user->toArray(),
+            'data'    => $user->toArray(),
         ];
 
         return response()->json($response);
@@ -66,7 +67,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
