@@ -6,7 +6,6 @@ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class AuthenticationException extends UnauthorizedHttpException
 {
-
     /**
      * Render the exception.
      *

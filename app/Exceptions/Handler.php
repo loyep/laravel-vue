@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Exception $exception
+     * @param \Exception               $exception
      *
      * @return \Illuminate\Http\Response
      */
@@ -56,15 +56,15 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ValidationException) {
             return new Response([
                 'status_code' => $exception->status,
-                'message' => $exception->errorBag,
-                'errors' => $exception->errors(),
+                'message'     => $exception->errorBag,
+                'errors'      => $exception->errors(),
             ]);
         }
 
         // 用户认证的异常，我们需要返回 401 的 http code 和错误信息
         if ($exception instanceof AuthenticationException) {
             return new Response([
-                'message' => $this->getMessage()
+                'message' => $this->getMessage(),
             ], 401);
         }
 
