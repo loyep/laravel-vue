@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Support\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -21,11 +20,7 @@ class UserController extends Controller
     {
         $users = User::paginate($request->get('per_page', 10));
 
-        $response = [
-            'message' => 'User created.',
-            'data'    => $users,
-        ];
-
+        $response = $users;
         return response()->json($response);
     }
 
@@ -38,28 +33,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                'email'        => 'required|unique:users|string',
-                'name'         => 'required|unique:users|string',
-                'display_name' => 'unique:users|string',
-            ]);
+        $request->validate([
+            'email' => 'required|unique:users|string',
+            'name' => 'required|unique:users|string',
+            'display_name' => 'unique:users|string',
+        ]);
 
-            $user = new User($request->all());
-            $user->avatar = Helper::getAvatar($user->email);
-            $user->save();
-            $response = [
-                'message' => 'User created.',
-                'data'    => $user->toArray(),
-            ];
+        $user = new User($request->all());
+        $user->avatar = Helper::getAvatar($user->email);
+        $user->save();
+        $response = [
+            'message' => 'User created.',
+            'data' => $user->toArray(),
+        ];
 
-            return response()->json($response);
-        } catch (ValidationException $e) {
-            return response()->json([
-                'error'   => true,
-                'message' => $e->errors(),
-            ]);
-        }
+        return response()->json($response);
     }
 
     /**
@@ -78,7 +66,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -109,9 +97,6 @@ class UserController extends Controller
         $user = Auth::user();
         $user->roles = ['admin'];
 
-        return response()->json([
-            'message' => '',
-            'data'    => $user,
-        ]);
+        return response()->json($user);
     }
 }

@@ -48,12 +48,9 @@ class RegisterController extends Controller
         $expiration = $this->guard()->getPayload()->get('exp') - time();
 
         return response()->json([
-            'data' => [
-                'user' => $user,
-                'token' => $token,
-                'expires_in' => $expiration,
-            ],
-            'message' => '',
+            'user' => $user,
+            'token' => $token,
+            'expires_in' => $expiration,
         ])
             ->header('authorization', $token);
     }

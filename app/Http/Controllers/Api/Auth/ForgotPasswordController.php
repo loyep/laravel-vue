@@ -48,7 +48,6 @@ class ForgotPasswordController extends Controller
 
         return response()->json([
             'message' => '发送邮件成功',
-            'data'    => '',
         ]);
 //        $response = $this->broker()->sendResetLink(
 //            $request->only('email')

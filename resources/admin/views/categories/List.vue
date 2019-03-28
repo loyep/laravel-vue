@@ -79,29 +79,6 @@
         :rowSelection="{ selectedRowKeys, onChange: onSelectChange }"
         @change="handleTableChange"
       >
-        <template #post_title="title, post">
-          <router-link :to="{ name: 'post.edit', params: {id: post.id}}">{{ title }}</router-link>
-        </template>
-
-        <template #post_author="author, post">
-          <a @click="handleSearch({user: post.user.name})">{{ author }}</a>
-        </template>
-
-        <template #post_category="category">
-          <a href="javascript:;">{{ category.name }}</a>
-        </template>
-
-        <template #post_status="status">
-          <a-tag :color="statusMap(status).color">{{ statusMap(status).label }}</a-tag>
-        </template>
-
-        <template #post_tags="tags">
-          <template v-for="tag in tags">
-            <a-tag :key="tag.id" color="blue">
-              <a href="javascript:;">{{ tag.name }}</a>
-            </a-tag>
-          </template>
-        </template>
       </a-table>
     </div>
   </a-card>
@@ -116,36 +93,24 @@ import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 const columns = [
   {
     title: "名称",
-    dataIndex: "title",
-    scopedSlots: { customRender: "post_title" }
+    dataIndex: "name",
+    scopedSlots: { customRender: "category_name" }
   },
   {
-    title: "作者",
-    dataIndex: "user.name",
-    scopedSlots: { customRender: "post_author" }
+    title: "Slug",
+    dataIndex: "slug",
   },
   {
-    title: "分类",
-    dataIndex: "category",
-    scopedSlots: { customRender: "post_category" }
-  },
-  {
-    title: "标签",
-    dataIndex: "tags",
-    scopedSlots: { customRender: "post_tags" }
-  },
-  {
-    title: "状态",
-    dataIndex: "status",
-    scopedSlots: { customRender: "post_status" }
+    title: "描述",
+    dataIndex: "description",
   },
   {
     title: "总数",
-    dataIndex: "comments_count"
+    dataIndex: "posts_count",
   },
   {
-    title: "发布时间",
-    dataIndex: "published_at"
+    title: "更新时间",
+    dataIndex: "updated_at"
   }
 ];
 

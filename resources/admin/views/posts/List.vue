@@ -55,7 +55,7 @@
         </a-form>
       </div>
       <div class="tableListOperator">
-        <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
+        <!-- <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button> -->
         <a-dropdown>
           <a-button :disabled="selectedRowKeys.length === 0">批量操作
             <a-icon type="down"/>
@@ -161,6 +161,7 @@ const columns = [
   }
 })
 export default class PostList extends Vue {
+
   protected selectedRowKeys?: Array<string> = [];
 
   private columns: any = columns;

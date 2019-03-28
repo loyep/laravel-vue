@@ -6,7 +6,6 @@ import { getBaseUrl } from '@/utils/utils'
 import { sync } from 'vuex-router-sync'
 import NProgress from 'nprogress'
 import { getToken } from '@/utils/auth'
-import { notification } from 'ant-design-vue'
 import { whiteList } from '@/config/route'
 
 NProgress.configure({ showSpinner: false })

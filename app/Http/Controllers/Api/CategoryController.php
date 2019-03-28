@@ -16,14 +16,9 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::with([])->orderByDesc('published_at')->paginate($request->get('per_page', 10));
+        $categories = Category::withCount('posts')->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
 
-        $response = [
-            'message' => '',
-            'data'    => $categories,
-        ];
-
-        return response()->json($response);
+        return response()->json($categories);
     }
 
     /**

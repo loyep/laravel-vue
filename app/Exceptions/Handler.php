@@ -66,7 +66,7 @@ class Handler extends ExceptionHandler
         // 用户认证的异常，我们需要返回 401 的 http code 和错误信息
         if ($exception instanceof UnauthorizedHttpException) {
             return new Response([
-                'status_code' => $exception->getCode(),
+                'status_code' => 401,
                 'message' => $exception->getMessage(),
             ]);
         }

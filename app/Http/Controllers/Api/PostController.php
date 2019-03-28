@@ -32,9 +32,7 @@ class PostController extends Controller
 
         $posts = $builder->orderByDesc('published_at')->paginate($request->get('per_page', 10));
 
-        return response()->json([
-            'data' => $posts,
-        ]);
+        return response()->json($posts);
     }
 
     /**

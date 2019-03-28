@@ -48,7 +48,6 @@ export const actions: ActionTree<IAuthState, RootState> = {
     return new Promise((resolve, reject) => {
       register(userInfo).then(res => {
         const data = res.data
-        console.log(data)
         if (data.token) {
           context.commit('SET_TOKEN', data.token)
           resolve(res)
@@ -81,11 +80,11 @@ export const actions: ActionTree<IAuthState, RootState> = {
     return new Promise((resolve, reject) => {
       getInfo().then(res => {
         const data = res.data
-
-        if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
+        // 验证返回的roles是否是一个非空数组
+        if (data.roles && data.roles.length > 0) { 
           context.commit('SET_ROLES', data.roles)
         } else {
-          reject(new Error('getInfo: roles must be a non-null array !'))
+          reject(new Error(data.message))
         }
         context.commit('UPDATE_USER', data)
         resolve(res)
