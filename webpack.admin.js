@@ -37,7 +37,7 @@ const config = {
     module: {
         rules: [{
             test: /\.less$/,
-            loader: 'less-loader',
+            loader: 'less-loader', // compiles Less to CSS
             options: {
                 javascriptEnabled: true
             },
@@ -52,6 +52,7 @@ const config = {
 mix.options({})
     .setResourceRoot('/static/admin')
     .setPublicPath(path.normalize('public/static/admin'))
+    .less('resources/admin/styles/index.less', 'public/static/admin/admin.css')
     .ts('resources/admin/main.ts', 'public/static/admin/admin.js')
     .copyDirectory('resources/admin/themes', 'public/static/admin/themes')
     .version();
