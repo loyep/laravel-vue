@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use App\Prism\PrismAdmin;
 use Illuminate\Support\ServiceProvider;
 
-class PrismServiceProvider extends ServiceProvider
+class PrismAppServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -14,7 +15,7 @@ class PrismServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('prism.admin', function () {
-            return $this->app->make(\App\Services\PrismAdmin::class);
+            return $this->app->make(PrismAdmin::class);
         });
     }
 

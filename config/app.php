@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Prism'),
+    'name' => env('APP_NAME', 'PrismApp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -174,7 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\PrismServiceProvider::class,
+        App\Providers\PrismAppServiceProvider::class,
         App\Providers\PrismAdminServiceProvider::class,
     ],
 
@@ -228,10 +228,10 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
 
         /*
-         * Prism Aliases...
+         * PrismApp Aliases...
          */
         'Helper' => App\Support\Helper::class,
-        'Prism'  => App\Facades\Prism::class,
+        'PrismApp'  => App\Facades\Prism::class,
         'Admin'  => App\Facades\PrismAdmin::class,
 
     ],

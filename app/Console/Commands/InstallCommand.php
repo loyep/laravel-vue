@@ -18,7 +18,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Install all of the Prism resources';
+    protected $description = 'Install all of the PrismApp resources';
 
     /**
      * Create a new command instance.

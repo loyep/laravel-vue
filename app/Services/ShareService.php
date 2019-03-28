@@ -4,7 +4,7 @@ namespace App\Services;
 
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-class Share
+class ShareService
 {
     protected $title;
 
@@ -15,7 +15,7 @@ class Share
     protected $url;
 
     /**
-     * Share constructor.
+     * ShareService constructor.
      *
      * @param string      $url
      * @param string|null $title

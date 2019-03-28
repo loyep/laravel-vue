@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static void setShare(string $url, string $title = null, string $des = null, string $pic = null);
  * @method static void setTitle(string $title);
  *
- * @see \App\Services\Prism
+ * @see \App\Services\PrismApp
  */
 class Prism extends Facade
 {

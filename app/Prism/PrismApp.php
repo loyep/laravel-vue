@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Services;
+namespace App\Prism;
 
 use App\Models\Post;
+use App\Services\ShareService;
 
-class Prism
+class PrismApp
 {
     /**
-     * The Prism version.
+     * The PrismApp version.
      *
      * @var string
      */
@@ -40,7 +41,7 @@ class Prism
     protected static $metaTitle;
 
     /**
-     * Set Prism title.
+     * Set PrismApp title.
      *
      * @param $title
      */
@@ -50,7 +51,7 @@ class Prism
     }
 
     /**
-     * The Prism version.
+     * The PrismApp version.
      *
      * @return string
      */
@@ -61,7 +62,7 @@ class Prism
 
     public function setShare(string $url, string $title = null, string $des = null, string $pic = null)
     {
-        $this->socialShare = new Share($url, $title, $des, $pic);
+        $this->socialShare = new ShareService($url, $title, $des, $pic);
     }
 
     public function share()
@@ -107,9 +108,9 @@ class Prism
     public function menus($group)
     {
         return [[
-            'url'    => '/',
+            'url' => '/',
             'target' => '__selft',
-            'title'  => '首页',
+            'title' => '首页',
         ]];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Facades\PrismAdmin;
+use App\Prism\PrismApp;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +17,7 @@ class PrismAdminServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('prism.app', function () {
-            return $this->app->make(\App\Services\Prism::class);
+            return $this->app->make(PrismApp::class);
         });
     }
 

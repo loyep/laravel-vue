@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Prism;
 
 class PrismAdmin
 {
     /**
-     * The Prism version.
+     * The PrismApp version.
      *
      * @var string
      */
@@ -16,7 +16,7 @@ class PrismAdmin
     protected static $metaTitle;
 
     /**
-     * Set Prism title.
+     * Set PrismApp title.
      *
      * @param $title
      */
@@ -26,7 +26,7 @@ class PrismAdmin
     }
 
     /**
-     * The Prism version.
+     * The PrismApp version.
      *
      * @return string
      */
