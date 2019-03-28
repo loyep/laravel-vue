@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
     <title>{{ $config['name'] }}</title>
     <link rel="icon" href="{{ asset('static/admin/images/logo.png') }}" type="image/x-icon">
-    {{-- <link href="{{ mix('admin.css', 'static/admin') }}" rel="stylesheet"> --}}
+    <link href="{{ mix('css/admin.css', 'static/admin') }}" rel="stylesheet">
     <script>
       window.config = @json($config)
     </script>
@@ -106,6 +106,6 @@
 <div id="prism-loader"><span class="ant-spin-dot2 ant-spin-dot-spin2"><i></i><i></i><i></i><i></i></span>
 </div>
 <div id="app"></div>
-<script src="{{ mix('admin.js', 'static/admin')}}" type="text/javascript"></script>
+<script src="{{ mix('js/admin.js', 'static/admin')}}" type="text/javascript"></script>
 </body>
 </html>
