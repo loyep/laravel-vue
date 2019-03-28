@@ -25,19 +25,16 @@ const beforeResolve: NavigationGuard = async (to: Route, from: Route, next: any)
       if (store.getters['auth/roles'].length === 0) {
         store
           .dispatch('auth/GetInfo')
-          .then(response => {
-            const roles = response.data.roles
+          .then(res => {
+            const data = res.data;
+            const roles = data.roles
             store
               .dispatch('permission/GenerateRoutes', { roles })
               .then(() => {
                 router.addRoutes(store.getters['permission/addRouters'])
                 next({ ...to, replace: true })
               })
-          }).catch((error) => {
-            notification.error({
-              message: '错误',
-              description: error.response.data.message
-            })
+          }).catch(() => {
             store
               .dispatch('auth/Logout')
               .then(() => {

@@ -30,7 +30,7 @@ axiosInstance.interceptors.response.use(
     if (token) {
       store.dispatch('auth/RefreshToken', token)
     }
-    return response.data
+    return response
   },
   (error: AxiosError) => {
     switch (error.response!.status) {

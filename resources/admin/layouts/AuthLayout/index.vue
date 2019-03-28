@@ -6,7 +6,7 @@
     }"
   >
     <div class="lang">
-      <select-lang />
+      <select-lang/>
     </div>
     <div class="content">
       <div class="top">
@@ -16,11 +16,9 @@
             <span class="title">{{ name }}</span>
           </router-link>
         </div>
-        <div class="desc">
-          {{ description }}
-        </div>
+        <div class="desc">{{ description }}</div>
       </div>
-      <slot />
+      <slot/>
     </div>
     <global-footer
       :links="[
@@ -34,7 +32,7 @@
     >
       <template #copyright>
         Copyright
-        <a-icon type="copyright" />
+        <a-icon type="copyright"/>
         {{ year }} Power By
         <a href="https://github.com/loyep/prism">Prism</a>
       </template>
@@ -43,9 +41,9 @@
 </template>
 
 <script lang="ts">
-import GlobalFooter from '@/components/GlobalFooter/index.vue';
-import SelectLang from '@/components/SelectLang/index.vue'
-import { Component, Vue } from 'vue-property-decorator';
+import GlobalFooter from "@/components/GlobalFooter/index.vue";
+import SelectLang from "@/components/SelectLang/index.vue";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({
   components: {
@@ -54,12 +52,11 @@ import { Component, Vue } from 'vue-property-decorator';
   }
 })
 export default class AuthLayout extends Vue {
-  
-  private year: number = new Date().getFullYear()
+  private year: number = new Date().getFullYear();
 
-  private name: any = (<any>window).config.name
+  private name: any = (<any>window).config.name;
 
-  private description: any = (<any>window).config.description
+  private description: any = (<any>window).config.description;
 }
 </script>
 

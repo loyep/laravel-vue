@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
@@ -39,7 +38,7 @@ class RegisterController extends Controller
      * The user has been registered.
      *
      * @param \Illuminate\Http\Request $request
-     * @param mixed                    $user
+     * @param mixed $user
      *
      * @return mixed
      */
@@ -49,13 +48,13 @@ class RegisterController extends Controller
         $expiration = $this->guard()->getPayload()->get('exp') - time();
 
         return response()->json([
-                'data' => [
-                    'user'       => $user,
-                    'token'      => $token,
-                    'expires_in' => $expiration,
-                ],
-                'message' => '',
-            ])
+            'data' => [
+                'user' => $user,
+                'token' => $token,
+                'expires_in' => $expiration,
+            ],
+            'message' => '',
+        ])
             ->header('authorization', $token);
     }
 
@@ -68,20 +67,13 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
-        try {
-            $this->validator($request->all())->validate();
+        $this->validator($request->all())->validate();
 
-            event(new Registered($user = $this->create($request->all())));
+        event(new Registered($user = $this->create($request->all())));
 
-            $this->guard()->login($user);
+        $this->guard()->login($user);
 
-            return $this->registered($request, $user);
-        } catch (ValidationException $e) {
-            return response()->json([
-                'error'   => true,
-                'message' => $e->errors(),
-            ]);
-        }
+        return $this->registered($request, $user);
     }
 
     /**
@@ -104,8 +96,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => ['required', 'string', 'max:255'],
-            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -120,11 +112,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name'         => $data['name'],
+            'name' => $data['name'],
             'display_name' => $data['name'],
-            'email'        => $data['email'],
-            'avatar'       => Helper::getAvatar($data['email']),
-            'password'     => Hash::make($data['password']),
+            'email' => $data['email'],
+            'avatar' => Helper::getAvatar($data['email']),
+            'password' => Hash::make($data['password']),
         ]);
     }
 }

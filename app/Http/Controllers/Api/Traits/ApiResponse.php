@@ -2,11 +2,52 @@
 
 namespace App\Http\Controllers\Api\Traits;
 
+use App\Http\Responses\Factory;
+use ErrorException;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response as FoundationResponse;
 
 trait ApiResponse
 {
+    /**
+     * Get the authenticated user.
+     *
+     * @return mixed
+     */
+    protected function user()
+    {
+        return Auth::user();
+    }
+
+    /**
+     * Get the response factory instance.
+     *
+     * @return \App\Http\Responses\Factory
+     */
+    protected function response()
+    {
+        return app(Factory::class);
+    }
+
+    /**
+     * Magically handle calls to certain methods on the response factory.
+     *
+     * @param string $method
+     * @param array  $parameters
+     *
+     * @throws \ErrorException
+     *
+     * @return \App\Http\Responses\Response
+     */
+    public function __call($method, $parameters)
+    {
+        if (method_exists($this->response(), $method) || $method == 'array') {
+            return call_user_func_array([$this->response(), $method], $parameters);
+        }
+        throw new ErrorException('Undefined method '.get_class($this).'::'.$method);
+    }
+
     /**
      * @var int
      */

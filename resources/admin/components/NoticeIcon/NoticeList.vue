@@ -1,6 +1,6 @@
 <template>
   <div v-if="data.length === 0" class="notFound">
-    <div className="notFound">
+    <div class="notFound">
       <img v-show="emptyImage" :src="emptyImage" alt="not found">
       <div>{{ emptyText }}</div>
     </div>
@@ -8,25 +8,28 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
 export default class NoticeList extends Vue {
-  @Prop({ default: function() {
-    return []
-  }})
-  data: Array<any>
+  @Prop({
+    type: Array,
+    default: function() {
+      return [];
+    }
+  })
+  data: Array<any>;
 
-  @Prop({ default: '' })
-  emptyImage: string
+  @Prop({ default: "" })
+  emptyImage: string;
 
-  @Prop({ default: '' })
-  emptyText: string
+  @Prop({ default: "" })
+  emptyText: string;
 }
 </script>
 
 <style lang="less" scoped>
-@import '~@/styles/variables.less';
+@import "~@/styles/variables.less";
 
 .list {
   max-height: 400px;
@@ -131,5 +134,4 @@ export default class NoticeList extends Vue {
     }
   }
 }
-
 </style>

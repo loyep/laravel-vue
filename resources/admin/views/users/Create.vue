@@ -139,8 +139,8 @@ export default class UserCreate extends Vue {
         store(values).then(res => {
           const data = res.data
 
-          if (data.error) {
-            setFiledsWithErrors(this.form, data.message)
+          if (data.errors) {
+            setFiledsWithErrors(this.form, data.errors)
           }
         })
       }

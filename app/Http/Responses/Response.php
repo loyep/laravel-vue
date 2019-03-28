@@ -2,6 +2,6 @@
 
 namespace App\Http\Responses;
 
-abstract class BaseResponse
+abstract class Response
 {
 }

@@ -48,11 +48,12 @@ export const actions: ActionTree<IAuthState, RootState> = {
     return new Promise((resolve, reject) => {
       register(userInfo).then(res => {
         const data = res.data
+        console.log(data)
         if (data.token) {
           context.commit('SET_TOKEN', data.token)
           resolve(res)
         } else {
-          reject(data.message)
+          reject(data.errors)
         }
       }).catch(error => {
         reject(error)
@@ -68,7 +69,7 @@ export const actions: ActionTree<IAuthState, RootState> = {
           context.commit('SET_TOKEN', data.token)
           resolve(res)
         } else {
-          reject(data.message)
+          reject(data.errors)
         }
       }).catch(error => {
         reject(error)

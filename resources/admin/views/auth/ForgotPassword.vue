@@ -76,7 +76,7 @@ export default class ForgotPassword extends Vue {
           passwordEmail(values).then(res => {
             this.submitting = false
             const data = res.data
-            if (!data.error) {
+            if (data) {
               this.$notification.success({
                 message: "提示",
                 description: '发送邮件成功'

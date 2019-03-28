@@ -1,13 +1,9 @@
 const webpack = require('webpack');
 const mix = require('laravel-mix');
 const path = require('path');
-const cleanWebpackPlugin = require('clean-webpack-plugin');
-const os = require('os');
-const HappyPack = require('happypack');
-const happyThreadPool = HappyPack.ThreadPool({
-    size: os.cpus().length
-});
-
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { admin } = require('yargs').argv.env
+  
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -19,14 +15,43 @@ const happyThreadPool = HappyPack.ThreadPool({
  |
  */
 
+
+mix.setResourceRoot('static/admin');
+
+if (admin.css) {
+    mix
+        .setPublicPath('public/static/admin/styles')
+        .less('resources/admin/styles/index.less', 'public/static/admin/styles/admin.css')
+        .copyDirectory('resources/admin/themes', 'public/static/admin/themes');
+} else {
+    mix
+        .setPublicPath('public/static/admin')
+        .ts('resources/admin/main.ts', 'public/static/admin/js/admin.js');
+}
+
+mix.version();
+
+if (mix.inProduction()) {
+    mix.disableNotifications();
+} else {
+    mix.sourceMaps();
+}
+
 const config = {
     plugins: [
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-        new cleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: path.resolve(__dirname + '/public/{static/admin/*,js/*.{js,map},css/*.{css,map},images}')
-        }),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [
+                '**/*',
+                '!styles/**',
+                '!themes/**'
+            ],
+            verbose: true,
+            exclude: ['index.php', 'svg/', 'favicon.ico']
+        })
     ],
     resolve: {
+        extensions: ['.ts', '.tsx'],
         alias: {
             '@': path.resolve(__dirname, 'resources/admin')
         },
@@ -36,41 +61,42 @@ const config = {
     },
     module: {
         rules: [{
-            test: /\.less$/,
-            loader: 'less-loader', // compiles Less to CSS
-            options: {
-                javascriptEnabled: true
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                options: {
+                    appendTsSuffixTo: [/\.vue$/],
+                },
+                exclude: /node_modules/,
             },
-        }, ]
+            {
+                test: /\.less$/,
+                loader: 'less-loader', // compiles Less to CSS
+                options: {
+                    javascriptEnabled: true
+                },
+            },
+        ]
     },
     output: {
-        chunkFilename: `js/[name].${ mix.inProduction() ? '[chunkhash].' : '' }js`,
-        publicPath: '/static/admin/'
+        chunkFilename: `chunk/[name].${ mix.inProduction() ? '[chunkhash].' : '' }js`,
+        publicPath: 'static/admin/'
     }
 }
 
-mix.options({})
-    .setResourceRoot('/static/admin')
-    .setPublicPath(path.normalize('public/static/admin'))
-    .less('resources/admin/styles/index.less', 'public/static/admin/css/admin.css')
-    .ts('resources/admin/main.ts', 'public/static/admin/js/admin.js')
-    .copyDirectory('resources/admin/themes', 'public/static/admin/themes')
-    .version();
-
-if (mix.inProduction()) {
-    mix.disableNotifications();
-} else {
-    mix.sourceMaps();
-
-    /**
-     * 本地调试 dev-server 配置
-     */
-
-    // mix.browserSync({
-    //     files: [
-    //         'resources/admin/**',
-    //     ]
-    // })
-}
-
 mix.webpackConfig(config);
+
+Mix.listen('configReady', (webpackConfig) => {
+    // console.log(JSON.stringify(webpackConfig))
+    // if (Mix.isUsing('hmr')) {
+    //   webpackConfig.entry = Object.keys(webpackConfig.entry).reduce((entries, entry) => {
+    //     entries[entry.replace(/^\//, '')] = webpackConfig.entry[entry];
+    //     return entries;
+    //   }, {});
+
+    //   webpackConfig.plugins.forEach((plugin) => {
+    //     if (plugin.constructor.name === 'ExtractTextPlugin') {
+    //       plugin.filename = plugin.filename.replace(/^\//, '');
+    //     }
+    //   });
+    // }
+});

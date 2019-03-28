@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Api\Controller;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -19,6 +21,8 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+
+    use ThrottlesLogins;
 
     /**
      * @var \Tymon\JWTAuth\Contracts\Providers\Auth
@@ -108,19 +112,12 @@ class LoginController extends Controller
     /**
      * Get the failed login response instance.
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-        return response()->json([
-            'error'   => true,
-            'message' => [
-                $this->username() => [
-                    trans('auth.failed'),
-                ],
-            ],
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.failed')],
         ]);
     }
 
@@ -158,7 +155,6 @@ class LoginController extends Controller
                     'expires_in' => $expiration,
                     'welcome'    => $welcome,
                 ],
-                'message' => '',
             ])
             ->header('authorization', 'Bearer '.$token);
     }
