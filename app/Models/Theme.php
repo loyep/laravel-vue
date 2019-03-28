@@ -8,8 +8,6 @@ use Prettus\Repository\Traits\TransformableTrait;
 
 /**
  * Class Theme.
- *
- * @package namespace App\Entities;
  */
 class Theme extends Model implements Transformable
 {
@@ -21,7 +19,4 @@ class Theme extends Model implements Transformable
      * @var array
      */
     protected $fillable = [];
-
-
-
 }

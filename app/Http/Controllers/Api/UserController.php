@@ -26,7 +26,7 @@ class UserController extends Controller
      * UsersController constructor.
      *
      * @param UserRepository $repository
-     * @param UserValidator $validator
+     * @param UserValidator  $validator
      */
     public function __construct(UserRepository $repository, UserValidator $validator)
     {
@@ -38,23 +38,25 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $users = $this->repository->paginate($request->get('per_page', 10));
+
         return response()->json($users);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  UserCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
+     * @param UserCreateRequest $request
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
+     *
+     * @return \Illuminate\Http\Response
      */
     public function store(UserCreateRequest $request)
     {
@@ -62,15 +64,16 @@ class UserController extends Controller
         $user = $this->repository->create($request->all());
         $response = [
             'message' => 'User created.',
-            'data' => $user->toArray(),
+            'data'    => $user->toArray(),
         ];
+
         return response()->json($response);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -84,31 +87,29 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  UserUpdateRequest $request
-     * @param  string $id
-     *
-     * @return Response
+     * @param UserUpdateRequest $request
+     * @param string            $id
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
+     *
+     * @return Response
      */
     public function update(UserUpdateRequest $request, $id)
     {
-
         $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
         $user = $this->repository->update($request->all(), $id);
         $response = [
             'message' => 'User updated.',
-            'data' => $user->toArray(),
+            'data'    => $user->toArray(),
         ];
 
         return response()->json($response);
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

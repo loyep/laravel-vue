@@ -6,8 +6,6 @@ use App\Models\Theme;
 
 /**
  * Class ThemeTransformer.
- *
- * @package namespace App\Transformers;
  */
 class ThemeTransformer extends TransformerAbstract
 {
@@ -26,7 +24,7 @@ class ThemeTransformer extends TransformerAbstract
             /* place your other model properties here */
 
             'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
+            'updated_at' => $model->updated_at,
         ];
     }
 }

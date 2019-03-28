@@ -4,5 +4,4 @@ namespace App\Support;
 
 class Response
 {
-
 }

@@ -8,8 +8,6 @@ use Prettus\Repository\Traits\TransformableTrait;
 
 /**
  * Class User.
- *
- * @package namespace App\Entities;
  */
 class User extends Model implements Transformable
 {
@@ -21,5 +19,4 @@ class User extends Model implements Transformable
      * @var array
      */
     protected $fillable = [];
-
 }
