@@ -3,12 +3,10 @@
 namespace App\Traits;
 
 /**
- * Class TransformableTrait
- * @package Prettus\Repository\Traits
+ * Class TransformableTrait.
  */
 trait TransformableTrait
 {
-
     /**
      * @return array
      */

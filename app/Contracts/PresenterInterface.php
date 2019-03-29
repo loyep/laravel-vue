@@ -1,14 +1,14 @@
 <?php
+
 namespace App\Contracts;
 
 /**
- * Interface PresenterInterface
- * @package Prettus\Repository\Contracts
+ * Interface PresenterInterface.
  */
 interface PresenterInterface
 {
     /**
-     * Prepare data to present
+     * Prepare data to present.
      *
      * @param $data
      *
