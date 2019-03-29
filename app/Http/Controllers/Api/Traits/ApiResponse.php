@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Traits;
 
-use App\Http\Responses\Factory;
+use App\Http\Response\Factory;
 use ErrorException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +23,7 @@ trait ApiResponse
     /**
      * Get the response factory instance.
      *
-     * @return \App\Http\Responses\Factory
+     * @return \App\Http\Response\Factory
      */
     protected function response()
     {
@@ -38,7 +38,7 @@ trait ApiResponse
      *
      * @throws \ErrorException
      *
-     * @return \App\Http\Responses\Response
+     * @return \App\Http\Response\Response
      */
     public function __call($method, $parameters)
     {

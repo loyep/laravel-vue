@@ -2,37 +2,63 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\PostResource;
+use App\Models\Model;
 use App\Models\Post;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     /**
+     * @var Model
+     */
+    protected $model;
+
+    /**
+     * The validation factory implementation.
+     *
+     * @var \Illuminate\Contracts\Validation\Factory
+     */
+    protected $validation;
+
+    /**
+     * PostController constructor.
+     *
+     * @param ValidationFactory $validation
+     */
+    public function __construct(ValidationFactory $validation)
+    {
+        $this->model = app(Post::class);
+        $this->validation = $validation;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @return PostResource
      */
     public function index(Request $request)
     {
-        $builder = Post::with('tags:id,name', 'user:id,name', 'category:id,name')->withCount('comments');
+        $this->model->with('tags:id,name', 'user:id,name', 'category:id,name')->withCount('comments');
 
+        $conditions = [];
         if ($keywords = $request->get('keywords')) {
-            $builder = $builder->where('title', 'like', '%'.$keywords.'%');
+            $conditions[] = ['title', 'like', '%' . $keywords . '%'];
         }
 
         if ($status = $request->get('status')) {
-            $builder = $builder->where('status', $status);
+            $conditions[] = ['status', $status];
         }
 
         if ($category_id = $request->get('category_id')) {
-            $builder = $builder->where('category_id', $category_id);
+            $conditions[] = ['category_id', $category_id];
         }
 
-        $posts = $builder->orderByDesc('published_at')->paginate($request->get('per_page', 10));
+        $posts = $this->model->orderByDesc('published_at', 'desc')->where($conditions)->paginate($request->get('per_page', 10));
 
-        return response()->json($posts);
+        return new PostResource($posts);
     }
 
     /**
@@ -63,7 +89,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

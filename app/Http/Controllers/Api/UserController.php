@@ -2,68 +2,70 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\UserCreateRequest;
-use App\Http\Requests\UserUpdateRequest;
-use App\Repositories\UserRepository;
-use App\Validators\UserValidator;
+use App\Http\Requests\SettingRequest;
+use App\Http\Requests\UserRequest;
+use App\Http\Resources\UserResource;
+use App\Models\Model;
+use App\Models\User;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Prettus\Validator\Contracts\ValidatorInterface;
 
 class UserController extends Controller
 {
     /**
-     * @var UserRepository
+     * @var Model
      */
-    protected $repository;
+    protected $model;
 
     /**
-     * @var UserValidator
+     * The validation factory implementation.
+     *
+     * @var \Illuminate\Contracts\Validation\Factory
      */
-    protected $validator;
+    protected $validation;
 
     /**
      * UsersController constructor.
      *
-     * @param UserRepository $repository
-     * @param UserValidator  $validator
+     * @param ValidationFactory $validation
      */
-    public function __construct(UserRepository $repository, UserValidator $validator)
+    public function __construct(ValidationFactory $validation)
     {
-        $this->repository = $repository;
-        $this->validator = $validator;
+        $this->model = User::class;
+        $this->validation = $validation;
     }
 
     /**
      * Display a listing of the resource.
      *
      * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @return UserResource
      */
     public function index(Request $request)
     {
-        $users = $this->repository->paginate($request->get('per_page', 10));
+        $users = $this->model->paginate($request->get('per_page', 10));
 
-        return response()->json($users);
+        return new UserResource($users);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param UserCreateRequest $request
-     *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
-     *
-     * @return \Illuminate\Http\Response
+     * @param UserRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(UserCreateRequest $request)
+    public function store(UserRequest $request)
     {
-        $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-        $user = $this->repository->create($request->all());
+        $this->validation->make($request->all(), [
+            //
+        ])->validate();
+
+        $user = $this->model->create($request->all());
+
         $response = [
             'message' => 'User created.',
-            'data'    => $user->toArray(),
+            'data' => $user->toArray(),
         ];
 
         return response()->json($response);
@@ -72,34 +74,29 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return UserResource
      */
     public function show($id)
     {
-        $user = $this->repository->find($id);
+        $user = $this->model->find($id);
 
-        return response()->json($user);
+        return new UserResource($user);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param UserUpdateRequest $request
-     * @param string            $id
-     *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
-     *
-     * @return Response
+     * @param SettingRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(SettingRequest $request, $id)
     {
-        $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-        $user = $this->repository->update($request->all(), $id);
+        $user = $this->model->update($request->all(), $id);
         $response = [
             'message' => 'User updated.',
-            'data'    => $user->toArray(),
+            'data' => $user->toArray(),
         ];
 
         return response()->json($response);
@@ -108,13 +105,14 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $deleted = $this->model->findOrFail($id);
+        $deleted->delete();
 
         return response()->json([
             'message' => 'User deleted.',
@@ -124,14 +122,13 @@ class UserController extends Controller
 
     /**
      * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @return UserResource
      */
     public function profile(Request $request)
     {
         $user = Auth::user();
         $user->roles = ['admin'];
 
-        return response()->json($user);
+        return new UserResource($user);
     }
 }

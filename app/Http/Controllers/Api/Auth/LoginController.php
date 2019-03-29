@@ -233,11 +233,7 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     *
-     * @return void
+     * @param Request $request
      */
     protected function validateLogin(Request $request)
     {

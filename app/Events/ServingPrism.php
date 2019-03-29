@@ -5,7 +5,7 @@ namespace App\Events;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Http\Request;
 
-class ServingPrism
+class ServingPrism extends Event
 {
     use Dispatchable;
 

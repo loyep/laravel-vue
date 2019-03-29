@@ -26,7 +26,7 @@ export default class App extends Vue {
   mounted() {
     setTimeout(() => {
       (<any>document).getElementById("prism-loader").style.display = "none";
-    }, 200);
+    }, 500);
 
     deviceEnquire(screenType => {
       this.$store.dispatch("theme/SetScreen", screenType);

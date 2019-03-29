@@ -15,18 +15,6 @@ class AuthenticationException extends UnauthorizedHttpException
      */
     public function render($request)
     {
-        return $request->expectsJson()
-            ? response()->json(['message' => $this->getMessage()], 401)
-            : redirect()->guest($this->location());
-    }
-
-    /**
-     * Determine the location the user should be redirected to.
-     *
-     * @return string
-     */
-    protected function location()
-    {
-        return '/';
+        return response()->json(['message' => $this->getMessage()], 401);
     }
 }

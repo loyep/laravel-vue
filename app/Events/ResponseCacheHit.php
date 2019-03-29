@@ -7,7 +7,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ResponseCacheHit
+class ResponseCacheHit extends Event
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

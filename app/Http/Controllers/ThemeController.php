@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ThemeCreateRequest;
-use App\Http\Requests\ThemeUpdateRequest;
+use App\Http\Requests\ThemeRequest;
+use App\Http\Requests\TagRequest;
 use App\Repositories\ThemeRepository;
 use App\Validators\ThemeValidator;
 use Illuminate\Http\Request;
@@ -59,13 +59,13 @@ class ThemeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param ThemeCreateRequest $request
+     * @param ThemeRequest $request
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(ThemeCreateRequest $request)
+    public function store(ThemeRequest $request)
     {
         try {
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
@@ -131,14 +131,14 @@ class ThemeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param ThemeUpdateRequest $request
+     * @param TagRequest $request
      * @param string             $id
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      *
      * @return Response
      */
-    public function update(ThemeUpdateRequest $request, $id)
+    public function update(TagRequest $request, $id)
     {
         try {
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
