@@ -25,6 +25,7 @@ export const actions: ActionTree<IPermissionState, RootState> = {
     return new Promise(resolve => {
       const { roles } = data
       let accessedRouters: any
+      console.log(roles)
       if (roles.includes('admin')) {
         accessedRouters = asyncRouterMap
       } else {

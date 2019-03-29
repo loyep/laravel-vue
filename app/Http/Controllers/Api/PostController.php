@@ -45,7 +45,7 @@ class PostController extends Controller
         $this->model->with('tags:id,name', 'user:id,name', 'category:id,name')->withCount('comments');
 
         $conditions = [];
-        if ($keywords = $request->get('keywords')) {
+        if ($keywords = $request->get('title')) {
             $conditions[] = ['title', 'like', '%'.$keywords.'%'];
         }
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\SlugScope;
 use App\Traits\Cachable;
 use App\Traits\CanLike;
 use Carbon\Carbon;
@@ -30,7 +31,7 @@ use Illuminate\Support\Facades\URL;
  */
 class Post extends Model
 {
-    use Cachable, CanLike;
+    use Cachable, CanLike, SlugScope;
 
     protected $dates = [
         'published_at',

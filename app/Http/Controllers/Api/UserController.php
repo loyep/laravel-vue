@@ -133,8 +133,8 @@ class UserController extends Controller
      */
     public function profile(Request $request)
     {
-        $user = Auth::user();
-        $user->roles = ['admin'];
+        $user = User::find(1);
+//        $user->roles = ['admin'];
 
         return new UserResource($user);
     }

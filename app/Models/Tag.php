@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\SlugScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\URL;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\URL;
  */
 class Tag extends Model
 {
+    use SlugScope;
+
     /**
      * The attributes that are mass assignable.
      *
