@@ -29,7 +29,5 @@ abstract class ServiceAbstract implements Arrayable
 
     public function toArray()
     {
-
     }
-
 }

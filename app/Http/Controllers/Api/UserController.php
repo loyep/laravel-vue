@@ -40,6 +40,7 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     *
      * @return UserResource
      */
     public function index(Request $request)
@@ -53,6 +54,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param UserRequest $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(UserRequest $request)
@@ -65,7 +67,7 @@ class UserController extends Controller
 
         $response = [
             'message' => 'User created.',
-            'data' => $user->toArray(),
+            'data'    => $user->toArray(),
         ];
 
         return response()->json($response);
@@ -75,6 +77,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param $id
+     *
      * @return UserResource
      */
     public function show($id)
@@ -89,6 +92,7 @@ class UserController extends Controller
      *
      * @param SettingRequest $request
      * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(SettingRequest $request, $id)
@@ -96,7 +100,7 @@ class UserController extends Controller
         $user = $this->model->update($request->all(), $id);
         $response = [
             'message' => 'User updated.',
-            'data' => $user->toArray(),
+            'data'    => $user->toArray(),
         ];
 
         return response()->json($response);
@@ -106,8 +110,10 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param $id
-     * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
@@ -122,6 +128,7 @@ class UserController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return UserResource
      */
     public function profile(Request $request)
