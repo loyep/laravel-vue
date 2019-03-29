@@ -43,7 +43,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $users = $this->repository->paginate($request->get('per_page', 10));
 
         return response()->json($users);

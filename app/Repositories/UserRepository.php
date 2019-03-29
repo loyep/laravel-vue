@@ -2,12 +2,43 @@
 
 namespace App\Repositories;
 
-use Prettus\Repository\Contracts\RepositoryInterface;
+use App\Criteria\RequestCriteria;
+use App\Models\User;
+use App\Validators\UserValidator;
 
 /**
- * Interface UserRepository.
+ * Class UserRepository
+ * @package App\Repositories
  */
-interface UserRepository extends RepositoryInterface
+class UserRepository extends BaseRepository
 {
-    //
+    /**
+     * Specify Model class name.
+     *
+     * @return string
+     */
+    public function model()
+    {
+        return User::class;
+    }
+
+    /**
+     * Specify Validator class name.
+     *
+     * @return mixed
+     */
+    public function validator()
+    {
+        return UserValidator::class;
+    }
+
+    /**
+     * Boot up the repository, pushing criteria.
+     *
+     * @throws \App\Exceptions\RepositoryException
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
+    }
 }

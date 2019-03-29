@@ -2,12 +2,39 @@
 
 namespace App\Repositories;
 
-use Prettus\Repository\Contracts\RepositoryInterface;
+use App\Criteria\RequestCriteria;
+use App\Models\Theme;
+use App\Validators\ThemeValidator;
 
-/**
- * Interface ThemeRepository.
- */
-interface ThemeRepository extends RepositoryInterface
+class ThemeRepository extends BaseRepository
 {
-    //
+    /**
+     * Specify Model class name.
+     *
+     * @return string
+     */
+    public function model()
+    {
+        return Theme::class;
+    }
+
+    /**
+     * Specify Validator class name.
+     *
+     * @return mixed
+     */
+    public function validator()
+    {
+        return ThemeValidator::class;
+    }
+
+    /**
+     * Boot up the repository, pushing criteria.
+     *
+     * @throws \App\Exceptions\RepositoryException
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
+    }
 }
