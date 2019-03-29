@@ -6,6 +6,5 @@ class PostService
 {
     public function paginate()
     {
-
     }
 }
