@@ -8,7 +8,8 @@ trait SlugScope
 {
     /**
      * @param Builder $query
-     * @param string $slug
+     * @param string  $slug
+     *
      * @return Builder
      */
     public function scopeSlugBy(Builder $query, string $slug)

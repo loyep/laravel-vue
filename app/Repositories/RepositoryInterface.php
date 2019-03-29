@@ -14,12 +14,14 @@ interface RepositoryInterface
 
     /**
      * @param $id
+     *
      * @return Model|null
      */
     public function getOneById($id): ?Model;
 
     /**
      * @param array $ids
+     *
      * @return Collection
      */
     public function getByIds(array $ids): Collection;

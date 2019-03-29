@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Exception $exception
+     * @param \Exception               $exception
      *
      * @return \Illuminate\Http\Response
      */
@@ -56,8 +56,8 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ValidationException) {
             return new Response([
                 'status_code' => $exception->status,
-                'message' => $exception->errorBag,
-                'errors' => $exception->errors(),
+                'message'     => $exception->errorBag,
+                'errors'      => $exception->errors(),
             ]);
         }
 
@@ -68,7 +68,8 @@ class Handler extends ExceptionHandler
      * Convert an authentication exception into a response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param AuthenticationException $exception
+     * @param AuthenticationException  $exception
+     *
      * @return Response
      */
     public function unauthenticated($request, AuthenticationException $exception): Response

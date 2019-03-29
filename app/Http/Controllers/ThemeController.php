@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ThemeRequest;
 use App\Http\Requests\TagRequest;
+use App\Http\Requests\ThemeRequest;
 use App\Repositories\ThemeRepository;
 use App\Validators\ThemeValidator;
 use Illuminate\Http\Request;
@@ -132,7 +132,7 @@ class ThemeController extends Controller
      * Update the specified resource in storage.
      *
      * @param TagRequest $request
-     * @param string             $id
+     * @param string     $id
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      *

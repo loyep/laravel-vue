@@ -37,6 +37,7 @@ class PostController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     *
      * @return PostResource
      */
     public function index(Request $request)
@@ -45,7 +46,7 @@ class PostController extends Controller
 
         $conditions = [];
         if ($keywords = $request->get('keywords')) {
-            $conditions[] = ['title', 'like', '%' . $keywords . '%'];
+            $conditions[] = ['title', 'like', '%'.$keywords.'%'];
         }
 
         if ($status = $request->get('status')) {
@@ -89,7 +90,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */

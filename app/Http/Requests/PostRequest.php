@@ -18,5 +18,4 @@ class PostRequest extends Request
     {
         return [];
     }
-
 }

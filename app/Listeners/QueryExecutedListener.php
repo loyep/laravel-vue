@@ -36,11 +36,11 @@ class QueryExecutedListener
                 }
             }
         }
-        $query = str_replace(array('%', '?'), array('%%', '%s'), $queryExecuted->sql);
-        return vsprintf("[ SQL ] [ Driver: %s] %s [ RunTime: %u ms]", [
+        $query = str_replace(['%', '?'], ['%%', '%s'], $queryExecuted->sql);
+
+        return vsprintf('[ SQL ] [ Driver: %s] %s [ RunTime: %u ms]', [
             $queryExecuted->connectionName,
             vsprintf($query, $queryExecuted->bindings),
-            $queryExecuted->time]);
+            $queryExecuted->time, ]);
     }
-
 }
