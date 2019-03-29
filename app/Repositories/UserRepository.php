@@ -7,8 +7,7 @@ use App\Models\User;
 use App\Validators\UserValidator;
 
 /**
- * Class UserRepository
- * @package App\Repositories
+ * Class UserRepository.
  */
 class UserRepository extends BaseRepository
 {

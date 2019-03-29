@@ -3,13 +3,12 @@
 namespace App\Events;
 
 /**
- * Class RepositoryEntityCreated
- * @package Prettus\Repository\Events
+ * Class RepositoryEntityCreated.
  */
 class RepositoryEntityCreated extends RepositoryEventBase
 {
     /**
      * @var string
      */
-    protected $action = "created";
+    protected $action = 'created';
 }

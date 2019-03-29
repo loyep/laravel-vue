@@ -2,26 +2,24 @@
 
 namespace App\Traits;
 
-use Illuminate\Contracts\Cache\Repository as CacheRepository;
 use App\Contracts\CriteriaInterface;
 use App\Helpers\CacheKeys;
-use ReflectionObject;
 use Exception;
+use Illuminate\Contracts\Cache\Repository as CacheRepository;
+use ReflectionObject;
 
 /**
- * Class CacheableRepository
- * @package Prettus\Repository\Traits
+ * Class CacheableRepository.
  */
 trait CacheableRepository
 {
-
     /**
      * @var CacheRepository
      */
     protected $cacheRepository = null;
 
     /**
-     * Set Cache Repository
+     * Set Cache Repository.
      *
      * @param CacheRepository $repository
      *
@@ -35,7 +33,7 @@ trait CacheableRepository
     }
 
     /**
-     * Return instance of Cache Repository
+     * Return instance of Cache Repository.
      *
      * @return CacheRepository
      */
@@ -49,7 +47,7 @@ trait CacheableRepository
     }
 
     /**
-     * Skip Cache
+     * Skip Cache.
      *
      * @param bool $status
      *
@@ -110,7 +108,7 @@ trait CacheableRepository
     }
 
     /**
-     * Get Cache key for the method
+     * Get Cache key for the method.
      *
      * @param $method
      * @param $args
@@ -119,16 +117,14 @@ trait CacheableRepository
      */
     public function getCacheKey($method, $args = null)
     {
-
         $request = app('Illuminate\Http\Request');
         $args = serialize($args);
         $criteria = $this->serializeCriteria();
-        $key = sprintf('%s@%s-%s', get_called_class(), $method, md5($args . $criteria . $request->fullUrl()));
+        $key = sprintf('%s@%s-%s', get_called_class(), $method, md5($args.$criteria.$request->fullUrl()));
 
         CacheKeys::putKey(get_called_class(), $key);
 
         return $key;
-
     }
 
     /**
@@ -150,10 +146,11 @@ trait CacheableRepository
     /**
      * Serialize single criterion with customized serialization of Closures.
      *
-     * @param  \Prettus\Repository\Contracts\CriteriaInterface $criterion
-     * @return \Prettus\Repository\Contracts\CriteriaInterface|array
+     * @param \Prettus\Repository\Contracts\CriteriaInterface $criterion
      *
      * @throws \Exception
+     *
+     * @return \Prettus\Repository\Contracts\CriteriaInterface|array
      */
     protected function serializeCriterion($criterion)
     {
@@ -171,14 +168,14 @@ trait CacheableRepository
             $r = new ReflectionObject($criterion);
 
             return [
-                'hash' => md5((string) $r),
+                'hash'       => md5((string) $r),
                 'properties' => $r->getProperties(),
             ];
         }
     }
 
     /**
-     * Get cache minutes
+     * Get cache minutes.
      *
      * @return int
      */
@@ -190,7 +187,7 @@ trait CacheableRepository
     }
 
     /**
-     * Retrieve all data of repository
+     * Retrieve all data of repository.
      *
      * @param array $columns
      *
@@ -210,14 +207,15 @@ trait CacheableRepository
 
         $this->resetModel();
         $this->resetScope();
+
         return $value;
     }
 
     /**
-     * Retrieve all data of repository, paginated
+     * Retrieve all data of repository, paginated.
      *
-     * @param null  $limit
-     * @param array $columns
+     * @param null   $limit
+     * @param array  $columns
      * @param string $method
      *
      * @return mixed
@@ -237,11 +235,12 @@ trait CacheableRepository
 
         $this->resetModel();
         $this->resetScope();
+
         return $value;
     }
 
     /**
-     * Find data by id
+     * Find data by id.
      *
      * @param       $id
      * @param array $columns
@@ -262,11 +261,12 @@ trait CacheableRepository
 
         $this->resetModel();
         $this->resetScope();
+
         return $value;
     }
 
     /**
-     * Find data by field and value
+     * Find data by field and value.
      *
      * @param       $field
      * @param       $value
@@ -288,11 +288,12 @@ trait CacheableRepository
 
         $this->resetModel();
         $this->resetScope();
+
         return $value;
     }
 
     /**
-     * Find data by multiple fields
+     * Find data by multiple fields.
      *
      * @param array $where
      * @param array $columns
@@ -313,11 +314,12 @@ trait CacheableRepository
 
         $this->resetModel();
         $this->resetScope();
+
         return $value;
     }
 
     /**
-     * Find data by Criteria
+     * Find data by Criteria.
      *
      * @param CriteriaInterface $criteria
      *
@@ -337,6 +339,7 @@ trait CacheableRepository
 
         $this->resetModel();
         $this->resetScope();
+
         return $value;
     }
 }

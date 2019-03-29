@@ -6,8 +6,7 @@ use App\Contracts\RepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class RepositoryEventBase
- * @package A\Events
+ * Class RepositoryEventBase.
  */
 abstract class RepositoryEventBase
 {
@@ -28,7 +27,7 @@ abstract class RepositoryEventBase
 
     /**
      * @param RepositoryInterface $repository
-     * @param Model $model
+     * @param Model               $model
      */
     public function __construct(RepositoryInterface $repository, Model $model)
     {

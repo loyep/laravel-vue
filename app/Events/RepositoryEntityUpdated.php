@@ -3,13 +3,12 @@
 namespace App\Events;
 
 /**
- * Class RepositoryEntityUpdated
- * @package App\Events
+ * Class RepositoryEntityUpdated.
  */
 class RepositoryEntityUpdated extends RepositoryEventBase
 {
     /**
      * @var string
      */
-    protected $action = "updated";
+    protected $action = 'updated';
 }

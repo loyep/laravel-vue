@@ -1,9 +1,9 @@
 <?php
+
 namespace App\Contracts;
 
 /**
- * Interface Presentable
- * @package App\Contracts
+ * Interface Presentable.
  */
 interface Presentable
 {

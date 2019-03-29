@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 /**
- * Class RequestCriteria
- * @package Prettus\Repository\Criteria
+ * Class RequestCriteria.
  */
 class RequestCriteria implements CriteriaInterface
 {
@@ -24,15 +23,15 @@ class RequestCriteria implements CriteriaInterface
         $this->request = $request;
     }
 
-
     /**
-     * Apply criteria in query repository
+     * Apply criteria in query repository.
      *
-     * @param         Builder|Model $model
+     * @param Builder|Model       $model
      * @param RepositoryInterface $repository
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function apply($model, RepositoryInterface $repository)
     {
@@ -47,7 +46,6 @@ class RequestCriteria implements CriteriaInterface
         $sortedBy = !empty($sortedBy) ? $sortedBy : 'asc';
 
         if ($search && is_array($fieldsSearchable) && count($fieldsSearchable)) {
-
             $searchFields = is_array($searchFields) || is_null($searchFields) ? $searchFields : explode(';', $searchFields);
             $fields = $this->parserFieldsSearch($fieldsSearchable, $searchFields);
             $isFirstField = true;
@@ -56,13 +54,12 @@ class RequestCriteria implements CriteriaInterface
             $modelForceAndWhere = strtolower($searchJoin) === 'and';
 
             $model = $model->where(function ($query) use ($fields, $search, $searchData, $isFirstField, $modelForceAndWhere) {
-                /** @var Builder $query */
+                /* @var Builder $query */
 
                 foreach ($fields as $field => $condition) {
-
                     if (is_numeric($field)) {
                         $field = $condition;
-                        $condition = "=";
+                        $condition = '=';
                     }
 
                     $value = null;
@@ -70,10 +67,10 @@ class RequestCriteria implements CriteriaInterface
                     $condition = trim(strtolower($condition));
 
                     if (isset($searchData[$field])) {
-                        $value = ($condition == "like" || $condition == "ilike") ? "%{$searchData[$field]}%" : $searchData[$field];
+                        $value = ($condition == 'like' || $condition == 'ilike') ? "%{$searchData[$field]}%" : $searchData[$field];
                     } else {
                         if (!is_null($search)) {
-                            $value = ($condition == "like" || $condition == "ilike") ? "%{$search}%" : $search;
+                            $value = ($condition == 'like' || $condition == 'ilike') ? "%{$search}%" : $search;
                         }
                     }
 
@@ -91,7 +88,7 @@ class RequestCriteria implements CriteriaInterface
                                     $query->where($field, $condition, $value);
                                 });
                             } else {
-                                $query->where($modelTableName . '.' . $field, $condition, $value);
+                                $query->where($modelTableName.'.'.$field, $condition, $value);
                             }
                             $isFirstField = false;
                         }
@@ -102,7 +99,7 @@ class RequestCriteria implements CriteriaInterface
                                     $query->where($field, $condition, $value);
                                 });
                             } else {
-                                $query->orWhere($modelTableName . '.' . $field, $condition, $value);
+                                $query->orWhere($modelTableName.'.'.$field, $condition, $value);
                             }
                         }
                     }
@@ -127,7 +124,7 @@ class RequestCriteria implements CriteriaInterface
                 $split = explode(':', $sortTable);
                 if (count($split) > 1) {
                     $sortTable = $split[0];
-                    $keyName = $table . '.' . $split[1];
+                    $keyName = $table.'.'.$split[1];
                 } else {
                     /*
                      * If you do not define which column to use as a joining column on current table, it will
@@ -137,13 +134,13 @@ class RequestCriteria implements CriteriaInterface
                      * products -> product_id
                      */
                     $prefix = str_singular($sortTable);
-                    $keyName = $table . '.' . $prefix . '_id';
+                    $keyName = $table.'.'.$prefix.'_id';
                 }
 
                 $model = $model
-                    ->leftJoin($sortTable, $keyName, '=', $sortTable . '.id')
+                    ->leftJoin($sortTable, $keyName, '=', $sortTable.'.id')
                     ->orderBy($sortColumn, $sortedBy)
-                    ->addSelect($table . '.*');
+                    ->addSelect($table.'.*');
             } else {
                 $model = $model->orderBy($orderBy, $sortedBy);
             }
@@ -197,7 +194,6 @@ class RequestCriteria implements CriteriaInterface
      */
     protected function parserSearchValue($search)
     {
-
         if (stripos($search, ';') || stripos($search, ':')) {
             $values = explode(';', $search);
             foreach ($values as $value) {
@@ -207,19 +203,18 @@ class RequestCriteria implements CriteriaInterface
                 }
             }
 
-            return null;
+            return;
         }
 
         return $search;
     }
-
 
     protected function parserFieldsSearch(array $fields = [], array $searchFields = null)
     {
         if (!is_null($searchFields) && count($searchFields)) {
             $acceptedConditions = config('repository.criteria.acceptedConditions', [
                 '=',
-                'like'
+                'like',
             ]);
             $originalFields = $fields;
             $fields = [];
@@ -242,7 +237,7 @@ class RequestCriteria implements CriteriaInterface
             foreach ($originalFields as $field => $condition) {
                 if (is_numeric($field)) {
                     $field = $condition;
-                    $condition = "=";
+                    $condition = '=';
                 }
                 if (in_array($field, $searchFields)) {
                     $fields[$field] = $condition;
@@ -252,7 +247,6 @@ class RequestCriteria implements CriteriaInterface
             if (count($fields) == 0) {
                 throw new \Exception(trans('repository::criteria.fields_not_accepted', ['field' => implode(',', $searchFields)]));
             }
-
         }
 
         return $fields;

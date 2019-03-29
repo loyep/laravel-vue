@@ -5,10 +5,8 @@ namespace App\Exceptions;
 use Exception;
 
 /**
- * Class RepositoryException
- * @package App\Exceptions
+ * Class RepositoryException.
  */
 class RepositoryException extends Exception
 {
-
 }
