@@ -4,16 +4,19 @@
       <!-- <a-skeleton :loading="loading" active :paragraph="{rows: 4}" :avatar="{ size: 'large', shape: 'circle' }"> -->
       <breadcrumb v-if="!hideBread" />
       <div class="detail">
-        <img v-if="logo" :src="logo" class="logo">
+        <img v-if="logo" :src="logo" class="logo" />
+        <slot name="pageLogo" />
         <div class="main">
           <div class="row">
-            <h1 v-if="title" class="title">
+            <h1 class="title">
               {{ title }}
+              <slot name="pageTitle" />
             </h1>
           </div>
           <div class="row">
-            <div v-if="content" class="content">
+            <div class="content">
               {{ content }}
+              <slot name="pageContent" />
             </div>
             <div v-if="extraContent" class="extraContent">
               {{ extraContent }}

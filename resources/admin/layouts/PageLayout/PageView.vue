@@ -1,6 +1,6 @@
 <template>
   <div style="margin: -24px -24px 0;">
-    <slot name="top" />
+    <slot name="top"/>
     <page-header
       v-if="!hiddenHeader"
       :hideBread="hideBread"
@@ -10,30 +10,29 @@
       :extraContent="extraContent"
       :wide="wide"
     >
-    <slot name="logo" />
-      <template #logo>
-        <slot name="logo" />
+      <template #pageLogo>
+        <slot name="pageLogo"/>
       </template>
-      <template #content>
-        <slot name="headerContent" />
+      <template #pageContent>
+        <slot name="pageContent"/>
       </template>
     </page-header>
     <div class="content">
       <grid-content>
-        <slot />
+        <slot/>
       </grid-content>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import { State, Mutation, namespace } from 'vuex-class';
-import PageHeader from '@/components/PageHeader/index.vue'
-import GridContent from './GridContent.vue'
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { State, Mutation, namespace } from "vuex-class";
+import PageHeader from "@/components/PageHeader/index.vue";
+import GridContent from "./GridContent.vue";
 // import { themeMixin } from '@/mixins'
 
-const themeModule = namespace('theme');
+const themeModule = namespace("theme");
 
 @Component({
   components: {
@@ -42,52 +41,51 @@ const themeModule = namespace('theme');
   }
 })
 export default class PageView extends Vue {
-  @Prop({ default: false})
-  hideBread: boolean
+  @Prop({ default: false })
+  hideBread: boolean;
 
-  @Prop({ default: ''})
-  extraContent: string
+  @Prop({ default: "" })
+  extraContent: string;
 
-  @Prop({ default: ''})
-  title: string
+  @Prop({ default: "" })
+  title: string;
 
-  @Prop({ default: ''})
-  content: string
+  @Prop({ default: "" })
+  content: string;
 
-  @Prop({ default: ''})
-  logo: string
+  @Prop({ default: "" })
+  logo: string;
 
-  private hiddenHeader: boolean = false
+  private hiddenHeader: boolean = false;
 
-  @themeModule.Getter('contentWidth')
-  contentWidth: string
+  @themeModule.Getter("contentWidth")
+  contentWidth: string;
 
   get wide() {
-    return this.contentWidth === 'Fixed'
+    return this.contentWidth === "Fixed";
   }
 
-  @Watch('$route')
-  onRouteChanged(val: string, oldVal: string) { 
+  @Watch("$route")
+  onRouteChanged(val: string, oldVal: string) {
     if (this.$route.meta && this.$route.meta.hiddenHeader) {
-      this.hiddenHeader = true
+      this.hiddenHeader = true;
     } else {
-      this.hiddenHeader = false
+      this.hiddenHeader = false;
     }
   }
 
-  mounted () {
+  mounted() {
     if (this.$route.meta && this.$route.meta.hiddenHeader) {
-      this.hiddenHeader = true
+      this.hiddenHeader = true;
     } else {
-      this.hiddenHeader = false
+      this.hiddenHeader = false;
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-
-@import '~@/styles/variables.less';
+@import "~@/styles/variables.less";
 
 .content {
   margin: 24px 24px 0;
