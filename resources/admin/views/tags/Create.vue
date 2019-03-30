@@ -54,6 +54,7 @@
 
       <a-col :md="8" :sm="12">
         <a-card>
+          <mavon-editor :style="{ width: '100%', height: '100vh' }" ></mavon-editor>
           <br>
           <br>
           <br>
@@ -85,14 +86,17 @@ import { Card, Col, Row, Tag } from "ant-design-vue";
 import { store } from "@/api/tag";
 import { setFiledsWithErrors } from "@/utils/form";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
-import { setTimeout } from "timers";
+// import { setTimeout } from "timers";
+import { mavonEditor } from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 
 @Component({
   components: {
     ACard: Card,
     ACol: Col,
     ARow: Row,
-    ATag: Tag
+    ATag: Tag,
+    mavonEditor
   }
 })
 export default class TagCreate extends Vue {
