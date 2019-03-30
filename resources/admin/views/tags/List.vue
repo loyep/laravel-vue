@@ -31,7 +31,7 @@
               <a-form-item>
                 <span class="submitButtons">
                   <a-button icon="search" type="primary" htmlType="submit">查询</a-button>
-                  <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
+                  <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
                 </span>
               </a-form-item>
             </a-col>
@@ -61,6 +61,9 @@
         :rowSelection="{ selectedRowKeys, onChange: onSelectChange }"
         @change="handleTableChange"
       >
+        <template #tag_name="name, record">
+          <router-link :to="{ name: 'tag.edit', params: { id: record.id } }">{{ name }}</router-link>
+        </template>
       </a-table>
     </div>
   </a-card>
@@ -76,7 +79,7 @@ const columns = [
   {
     title: "名称",
     dataIndex: "name",
-    scopedSlots: { customRender: "category_name" }
+    scopedSlots: { customRender: "tag_name" }
   },
   {
     title: "Slug",
@@ -143,6 +146,13 @@ export default class TagList extends Vue {
       if (!err) {
         this.handleSearch(values);
       }
+    });
+  }
+
+  handleCreate(e: Event) {
+    e.preventDefault();
+    this.$router.push({
+      name: 'tag.create'
     });
   }
 

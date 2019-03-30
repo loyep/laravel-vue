@@ -138,6 +138,7 @@ export const asyncRouterMap = [
             name: 'category.edit',
             component: () => import('@/views/categories/Update.vue'),
             hidden: true,
+            props: true,
             meta: {
               title: '编辑分类'
             }
@@ -147,6 +148,7 @@ export const asyncRouterMap = [
             name: 'category.detail',
             component: () => import('@/views/categories/Detail.vue'),
             hidden: true,
+            props: true,
             meta: {
               title: '分类详情'
             }
@@ -192,6 +194,7 @@ export const asyncRouterMap = [
             name: 'comment.detail',
             component: () => import('@/views/comments/Detail.vue'),
             hidden: true,
+            props: true,
             meta: {
               title: '评论详情'
             }
@@ -234,10 +237,11 @@ export const asyncRouterMap = [
             }
           },
           {
-            path: 'detail',
+            path: ':id',
             name: 'user.detail',
             component: () => import('@/views/users/Detail.vue'),
             hidden: true,
+            props: true,
             meta: {
               title: '用户详情'
             }
@@ -279,19 +283,21 @@ export const asyncRouterMap = [
             }
           },
           {
-            path: 'edit',
+            path: ':id/edit',
             name: 'role.edit',
             component: () => import('@/views/roles/Update.vue'),
             hidden: true,
+            props: true,
             meta: {
               title: '编辑角色'
             }
           },
           {
-            path: 'detail',
+            path: ':id',
             name: 'role.detail',
             component: () => import('@/views/roles/Detail.vue'),
             hidden: true,
+            props: true,
             meta: {
               title: '角色详情'
             }
@@ -324,19 +330,21 @@ export const asyncRouterMap = [
             }
           },
           {
-            path: 'edit',
+            path: ':id/edit',
             name: 'tag.edit',
             component: () => import('@/views/tags/Update.vue'),
             hidden: true,
+            props: true,
             meta: {
               title: '编辑标签'
             }
           },
           {
-            path: 'detail',
+            path: ':id',
             name: 'tag.detail',
             component: () => import('@/views/tags/Detail.vue'),
             hidden: true,
+            props: true,
             meta: {
               title: '标签详情'
             }
@@ -368,17 +376,19 @@ export const asyncRouterMap = [
             }
           },
           {
-            path: 'edit',
+            path: ':id/edit',
             name: 'permission.edit',
             component: () => import('@/views/permissions/Update.vue'),
+            props: true,
             meta: {
               title: '编辑权限'
             }
           },
           {
-            path: 'detail',
+            path: ':id',
             name: 'permission.detail',
             component: () => import('@/views/permissions/Detail.vue'),
+            props: true,
             meta: {
               title: '权限详情'
             }
@@ -413,6 +423,7 @@ export const asyncRouterMap = [
             path: ':id/edit',
             name: 'widget.edit',
             component: () => import('@/views/widgets/Update.vue'),
+            props: true,
             meta: {
               title: '编辑插件'
             }
@@ -421,6 +432,7 @@ export const asyncRouterMap = [
             path: ':id',
             name: 'widget.detail',
             component: () => import('@/views/widgets/Detail.vue'),
+            props: true,
             meta: {
               title: '插件详情'
             }
@@ -452,17 +464,19 @@ export const asyncRouterMap = [
             }
           },
           {
-            path: 'edit',
+            path: ':id/edit',
             name: 'setting.edit',
             component: () => import('@/views/settings/Update.vue'),
+            props: true,
             meta: {
               title: '编辑设置'
             }
           },
           {
-            path: 'detail',
+            path: ':id',
             name: 'setting.detail',
             component: () => import('@/views/settings/Detail.vue'),
+            props: true,
             meta: {
               title: '设置详情'
             }

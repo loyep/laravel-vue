@@ -8,7 +8,7 @@ export function getList(params: object = {}) {
   })
 }
 
-export function show(id: string | boolean) {
+export function show(id: [string, number]) {
   return request({
     url: `/user/${id}`,
     method: 'get',

@@ -8,6 +8,13 @@ export function getList(params: object) {
   })
 }
 
+export function show(id: [string, number]) {
+  return request({
+    url: `/category/${id}`,
+    method: 'get',
+  })
+}
+
 export function store(data: object) {
   return request({
     url: '/category',
@@ -16,14 +23,10 @@ export function store(data: object) {
   })
 }
 
-export function update(data = { id: undefined}) {
-  let id = undefined;
-  if (data.hasOwnProperty('id')) {
-    id = data['id']
-  }
+export function update(id: [string, number], data: object) {
   return request({
     url: `/category/${id}`,
-    method: 'post',
+    method: 'put',
     data
   })
 }

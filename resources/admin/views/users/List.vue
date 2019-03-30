@@ -74,7 +74,7 @@
           <a-avatar :src="avatar"/>
         </template>
 
-        <template #name="name, record">
+        <template #user_name="name, record">
           <router-link :to="{ name: 'user.edit', params: { id: record.id } }">{{ name }}</router-link>
         </template>
 
@@ -123,7 +123,7 @@ const columns = [
   {
     title: "用户名",
     dataIndex: "name",
-    scopedSlots: { customRender: "name" }
+    scopedSlots: { customRender: "user_name" }
   },
   {
     title: "昵称",

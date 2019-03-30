@@ -8,6 +8,13 @@ export function getList (params: object = {}) {
   })
 }
 
+export function show(id: [string, number]) {
+  return request({
+    url: `/tag/${id}`,
+    method: 'get',
+  })
+}
+
 export function store (data: object = {}) {
   return request({
     url: '/tag',

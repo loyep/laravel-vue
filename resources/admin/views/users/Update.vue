@@ -4,7 +4,12 @@
       <a-col :md="16" :sm="24">
         <a-card>
           <a-form :form="form" @submit="handleSubmit">
-            <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }" label="用户名">
+            <a-form-item
+              :label-col="{ span: 4 }"
+              :wrapper-col="{ span: 12 }"
+              label="用户名"
+              extra="此用户名将作为用户登录时所用的名称. 请不要与系统中现有的用户名重复."
+            >
               <a-input
                 v-decorator="[
                   'name',
@@ -14,7 +19,12 @@
               />
             </a-form-item>
 
-            <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }" label="邮箱">
+            <a-form-item
+              :label-col="{ span: 4 }"
+              :wrapper-col="{ span: 12 }"
+              label="邮箱"
+              extra="电子邮箱地址将作为此用户的主要联系方式.请不要与系统中现有的电子邮箱地址重复."
+            >
               <a-input
                 v-decorator="[
                   'email',
@@ -28,7 +38,12 @@
               />
             </a-form-item>
 
-            <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }" label="昵称">
+            <a-form-item
+              :label-col="{ span: 4 }"
+              :wrapper-col="{ span: 12 }"
+              label="昵称"
+              extra="用户昵称可以与用户名不同, 用于前台显示.如果你将此项留空, 将默认使用用户名."
+            >
               <a-input
                 v-decorator="[
                   'display_name',
@@ -37,7 +52,12 @@
               />
             </a-form-item>
 
-            <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }" label="个人网址">
+            <a-form-item
+              :label-col="{ span: 4 }"
+              :wrapper-col="{ span: 12 }"
+              label="个人网址"
+              extra="此用户的个人主页地址, 请用 http:// 开头."
+            >
               <a-input
                 v-decorator="[
                   'url',
@@ -51,29 +71,42 @@
               />
             </a-form-item>
 
-            <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }" label="密码">
+            <a-form-item
+              :label-col="{ span: 4 }"
+              :wrapper-col="{ span: 12 }"
+              label="密码"
+              extra="为此用户分配一个密码.建议使用特殊字符与字母、数字的混编样式,以增加系统安全性."
+            >
               <a-input
                 type="password"
                 v-decorator="[
                   'password',
-                  {rules: [{ required: true, message: '请输入密码' }]}
                 ]"
                 placeholder="请输入密码"
               />
             </a-form-item>
 
-            <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }" label="确认密码">
+            <a-form-item
+              :label-col="{ span: 4 }"
+              :wrapper-col="{ span: 12 }"
+              label="确认密码"
+              extra="请确认你的密码, 与上面输入的密码保持一致."
+            >
               <a-input
                 type="password"
                 v-decorator="[
                   'password_confirmation',
-                  {rules: [{ required: true, message: '请输入确认密码' }]}
                 ]"
                 placeholder="请输入确认密码"
               />
             </a-form-item>
 
-            <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }" label="用户角色">
+            <a-form-item
+              :label-col="{ span: 4 }"
+              :wrapper-col="{ span: 12 }"
+              label="用户角色"
+              extra="不同的用户组拥有不同的权限."
+            >
               <a-select
                 v-decorator="[
                   'role',
@@ -94,7 +127,7 @@
                 sm: { span: 12, offset: 4 },
               }"
             >
-              <a-button type="primary" html-type="submit">创建</a-button>
+              <a-button type="primary" html-type="submit">编辑</a-button>
             </a-form-item>
           </a-form>
         </a-card>
@@ -144,8 +177,8 @@ import { setTimeout } from "timers";
   }
 })
 export default class UserUpdate extends Vue {
-  @Prop([String, Boolean])
-  public id: string | boolean;
+  @Prop({ type: [String, Number] })
+  public id: [string, number];
 
   private form: WrappedFormUtils;
 
@@ -153,14 +186,14 @@ export default class UserUpdate extends Vue {
     this.form = this.$form.createForm(this);
   }
 
-  mounted() {
+  created() {
     this.$nextTick(() => {
       show(this.id).then(res => {
         const { data } = res.data;
-        const fields = (<any>this.form).getFieldsValue()
-        for(var field in fields){
+        const fields = (<any>this.form).getFieldsValue();
+        for (let field in fields) {
           if (data.hasOwnProperty(field)) {
-            fields[field] = data[field]
+            fields[field] = data[field];
           }
         }
         this.form.setFieldsValue(fields);
