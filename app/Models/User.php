@@ -96,4 +96,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->morphOne(Meta::class, 'metaable');
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

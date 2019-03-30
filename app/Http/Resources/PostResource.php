@@ -17,4 +17,9 @@ class PostResource extends JsonResource
     {
         return parent::toArray($request);
     }
+
+    public static function collection($resource)
+    {
+        return parent::collection($resource);
+    }
 }

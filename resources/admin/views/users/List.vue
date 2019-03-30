@@ -2,13 +2,13 @@
   <a-card>
     <div class="tableList">
       <div class="tableListForm">
-        <a-form :form="form" layout="inline" @submit="handleSearch">
+        <a-form :form="form" layout="inline" @submit="handleSubmit">
           <a-row :gutter="{ md: 6, lg: 24, xl: 48 }">
             <a-col :md="6" :sm="24">
               <a-form-item label="用户名">
                 <a-input
                   v-decorator="[
-                    'username',
+                    'name',
                   ]"
                   placeholder="请输入"
                 />
@@ -179,6 +179,8 @@ export default class UserList extends Vue {
 
   private pagination: object = {};
 
+  private query: Object = {};
+
   beforeCreate() {
     this.form = this.$form.createForm(this);
   }
@@ -187,15 +189,26 @@ export default class UserList extends Vue {
     this.handleSearch();
   }
 
-  handleSearch(query: object = {}) {
+  handleSubmit(e: Event) {
+    e.preventDefault();
+    this.form.validateFields((err, values) => {
+      if (!err) {
+        this.handleSearch(values);
+      }
+    });
+  }
+
+  handleSearch(query: Object = {}) {
+    this.query = query
     this.loading = true;
+    console.log(this.query)
     getList(query).then(res => {
       const data = res.data
 
       this.data = data.data
+      this.selectedRowKeys = []
       const paginationProps = {
         showSizeChanger: true,
-        showQuickJumper: true,
         total: parseInt(data.total),
         pageSize: parseInt(data.per_page),
         current: data.current_page
@@ -212,31 +225,12 @@ export default class UserList extends Vue {
   }
 
   handleTableChange(pagination, filters, sorter) {
-    console.log(pagination);
-    const query: any = {
+    const query: any = Object.assign(this.query, {
       per_page: pagination.pageSize,
       page: pagination.current
-    };
-    if (sorter) {
-      query.orderBy = sorter.columnKey;
-      query.sortedBy = sorter.order === "ascend" ? "asc" : "desc";
-    }
-    console.log(sorter);
-    this.loading = true;
-    getList(query).then(res => {
-      const data = res.data
-
-      this.data = data.data
-      const paginationProps = {
-        showSizeChanger: true,
-        showQuickJumper: true,
-        total: parseInt(data.total),
-        pageSize: parseInt(data.per_page),
-        current: data.current_page
-      };
-      this.pagination = paginationProps;
-      this.loading = false;
     });
+
+    this.handleSearch(query);
   }
 }
 </script>

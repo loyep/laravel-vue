@@ -8,6 +8,7 @@ use App\Http\Resources\UserResource;
 use App\Models\Model;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -31,7 +32,7 @@ class UserController extends Controller
      */
     public function __construct(ValidationFactory $validation)
     {
-        $this->model = User::class;
+        $this->model = app(User::class);
         $this->validation = $validation;
     }
 
@@ -39,12 +40,16 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     *
      * @return UserResource
      */
     public function index(Request $request)
     {
-        $users = $this->model->paginate($request->get('per_page', 10));
+        $users = $this->model
+            ->withCount('posts')
+            ->when($request->get('name'), function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->get('name') . '%');
+            })
+            ->paginate($request->get('per_page', 10));
 
         return new UserResource($users);
     }
@@ -66,7 +71,7 @@ class UserController extends Controller
 
         $response = [
             'message' => 'User created.',
-            'data'    => $user->toArray(),
+            'data' => $user->toArray(),
         ];
 
         return response()->json($response);
@@ -99,7 +104,7 @@ class UserController extends Controller
         $user = $this->model->update($request->all(), $id);
         $response = [
             'message' => 'User updated.',
-            'data'    => $user->toArray(),
+            'data' => $user->toArray(),
         ];
 
         return response()->json($response);

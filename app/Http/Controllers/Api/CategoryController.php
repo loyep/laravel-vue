@@ -3,10 +3,34 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Category;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    /**
+     * @var Model
+     */
+    protected $model;
+
+    /**
+     * The validation factory implementation.
+     *
+     * @var \Illuminate\Contracts\Validation\Factory
+     */
+    protected $validation;
+
+    /**
+     * PostController constructor.
+     *
+     * @param ValidationFactory $validation
+     */
+    public function __construct(ValidationFactory $validation)
+    {
+        $this->model = app(Category::class);
+        $this->validation = $validation;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +40,12 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::withCount('posts')->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
+        $categories = $this->model
+            ->withCount('posts')
+            ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
+                $query->where('name', 'like', '%' . $keywords . '%')->orWhere('description', 'like', '%' . $keywords . '%');
+            })
+            ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
 
         return response()->json($categories);
     }
@@ -49,7 +78,7 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

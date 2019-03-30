@@ -42,22 +42,17 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $this->model->with('tags:id,name', 'user:id,name', 'category:id,name')->withCount('comments');
-
-        $conditions = [];
-        if ($keywords = $request->get('title')) {
-            $conditions[] = ['title', 'like', '%'.$keywords.'%'];
-        }
-
-        if ($status = $request->get('status')) {
-            $conditions[] = ['status', $status];
-        }
-
-        if ($category_id = $request->get('category_id')) {
-            $conditions[] = ['category_id', $category_id];
-        }
-
-        $posts = $this->model->orderByDesc('published_at', 'desc')->where($conditions)->paginate($request->get('per_page', 10));
+        $posts = $this->model
+            ->with('tags:id,name', 'user:id,name', 'category:id,name')
+            ->withCount('comments')
+            ->when($request->get('keywords'), function ($query) use ($request) {
+                $query->where('title', 'like', '%' . $request->get('keywords') . '%');
+            })
+            ->when($request->get('status'), function ($query) use ($request) {
+                $query->where('status', $request->get('status'));
+            })
+            ->orderByDesc('published_at', 'desc')
+            ->paginate($request->get('per_page', 10));
 
         return new PostResource($posts);
     }
@@ -90,7 +85,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

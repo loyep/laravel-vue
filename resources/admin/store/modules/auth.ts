@@ -64,8 +64,8 @@ export const actions: ActionTree<IAuthState, RootState> = {
     return new Promise((resolve, reject) => {
       login(userInfo).then(res => {
         const data = res.data
-        if (data.token) {
-          context.commit('SET_TOKEN', data.token)
+        if (data.data.token) {
+          context.commit('SET_TOKEN', data.data.token)
           resolve(res)
         } else {
           reject(data.errors)
@@ -79,14 +79,14 @@ export const actions: ActionTree<IAuthState, RootState> = {
   GetInfo (context: ActionContext<IAuthState, RootState>) {
     return new Promise((resolve, reject) => {
       getInfo().then(res => {
-        const data = res.data.data
+        const data = res.data
         // 验证返回的roles是否是一个非空数组
-        if (data.roles && data.roles.length > 0) { 
-          context.commit('SET_ROLES', data.roles)
+        if (data.data && data.data.roles && data.data.roles.length > 0) { 
+          context.commit('SET_ROLES', data.data.roles)
         } else {
-          reject(new Error(data.message))
+          reject(new Error(data.errors))
         }
-        context.commit('UPDATE_USER', data)
+        context.commit('UPDATE_USER', data.data)
         resolve(res.data)
       }).catch(error => {
         reject(error)
