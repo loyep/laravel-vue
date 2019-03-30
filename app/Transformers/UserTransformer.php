@@ -4,5 +4,4 @@ namespace App\Transformers;
 
 class UserTransformer
 {
-
 }

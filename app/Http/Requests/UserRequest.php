@@ -17,10 +17,10 @@ class UserRequest extends Request
     public function createRules()
     {
         return [
-            'name' => 'required|unique:users|string|max:255',
-            'email' => 'required|unique:users|string|email|max:255',
+            'name'         => 'required|unique:users|string|max:255',
+            'email'        => 'required|unique:users|string|email|max:255',
             'display_name' => 'required|unique:users|string',
-            'password' => 'required|string|min:8|confirmed',
+            'password'     => 'required|string|min:8|confirmed',
         ];
     }
 }

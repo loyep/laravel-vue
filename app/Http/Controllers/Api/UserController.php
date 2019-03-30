@@ -38,6 +38,7 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     *
      * @return UserResource
      */
     public function index(Request $request)
@@ -45,7 +46,7 @@ class UserController extends Controller
         $users = $this->model
             ->withCount('posts')
             ->when($name = $request->get('name'), function ($query) use ($name) {
-                $query->where('name', 'like', '%' . $name . '%');
+                $query->where('name', 'like', '%'.$name.'%');
             })
             ->paginate($request->get('per_page', 10));
 
@@ -65,7 +66,7 @@ class UserController extends Controller
 
         $response = [
             'message' => 'User created.',
-            'data' => new UserResource($user),
+            'data'    => new UserResource($user),
         ];
 
         return response()->json($response);
@@ -90,6 +91,7 @@ class UserController extends Controller
      *
      * @param UserRequest $request
      * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(UserRequest $request, $id)
@@ -97,7 +99,7 @@ class UserController extends Controller
         $user = $this->model->update($request->all(), $id);
         $response = [
             'message' => 'User updated.',
-            'data' => $user->toArray(),
+            'data'    => $user->toArray(),
         ];
 
         return response()->json($response);

@@ -4,6 +4,4 @@ namespace App\Repositories;
 
 class UserRepository
 {
-
-
 }

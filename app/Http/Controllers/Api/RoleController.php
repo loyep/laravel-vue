@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\RoleResource;
 use App\Models\Role;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
+use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
@@ -36,6 +36,7 @@ class RoleController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     *
      * @return RoleResource
      */
     public function index(Request $request)
