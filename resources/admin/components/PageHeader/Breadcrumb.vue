@@ -11,7 +11,8 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import { Breadcrumb as ABreadcrumb } from 'ant-design-vue'
-import path from 'path'
+import path,{ parse } from 'path'
+import { RawLocation } from 'vue-router';
 
 @Component({
   components: {
@@ -21,10 +22,9 @@ import path from 'path'
 })
 export default class Breadcrumb extends Vue {
   
-  private name?: string = ''
+  private name?: string
   
   private breadList: object = {}
-
 
   @Watch('$route')
   onRouteChanged(val: any, oldVal: any) {
@@ -35,9 +35,13 @@ export default class Breadcrumb extends Vue {
     const breadList = {
       '/': { name: 'dashboard', path: '/', meta: { title: '仪表盘' } }
     }
+
     this.$route.matched.concat().filter(item => item.path).forEach((item) => {
-      breadList[path.resolve(item.path)] = item
+      if (!item.redirect) {
+        breadList[path.resolve(item.path)] = item
+      }
     })
+
 
     this.name = this.$route.name
     this.breadList = breadList

@@ -23,15 +23,19 @@ export const mutations: MutationTree<IPermissionState> = {
 export const actions: ActionTree<IPermissionState, RootState> = {
   GenerateRoutes (context: ActionContext<IPermissionState, RootState>, data: any) {
     return new Promise(resolve => {
+      
       const { roles } = data
+      
       let accessedRouters: any
-      console.log(roles)
+
       if (roles.includes('admin')) {
         accessedRouters = asyncRouterMap
       } else {
         accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
       }
+      
       context.commit('SET_ROUTERS', accessedRouters)
+      
       resolve()
     })
   }

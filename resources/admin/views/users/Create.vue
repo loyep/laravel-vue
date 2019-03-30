@@ -165,7 +165,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Card, Col, Row, Tag } from "ant-design-vue";
-import { store, show } from "@/api/user";
+import { store } from "@/api/user";
 import { setFiledsWithErrors } from "@/utils/form";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 import { setTimeout } from "timers";
@@ -179,28 +179,11 @@ import { setTimeout } from "timers";
   }
 })
 export default class UserUpdate extends Vue {
-  @Prop({ type: [String, Number] })
-  public id: [string, number];
 
   private form: WrappedFormUtils;
 
   beforeCreate() {
     this.form = this.$form.createForm(this);
-  }
-
-  created() {
-    this.$nextTick(() => {
-      show(this.id).then(res => {
-        const { data } = res.data;
-        const fields = (<any>this.form).getFieldsValue();
-        for (let field in fields) {
-          if (data.hasOwnProperty(field)) {
-            fields[field] = data[field];
-          }
-        }
-        this.form.setFieldsValue(fields);
-      });
-    });
   }
 
   handleSubmit(e: Event) {

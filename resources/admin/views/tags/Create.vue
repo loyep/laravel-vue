@@ -82,7 +82,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Card, Col, Row, Tag } from "ant-design-vue";
-import { update, show } from "@/api/tag";
+import { store, show } from "@/api/tag";
 import { setFiledsWithErrors } from "@/utils/form";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 import { setTimeout } from "timers";
@@ -96,38 +96,18 @@ import { setTimeout } from "timers";
   }
 })
 export default class TagCreate extends Vue {
-  @Prop({ type: [String, Number] })
-  public id: [string, number];
 
   private form: WrappedFormUtils;
 
-  private data: any = {};
-
   beforeCreate() {
     this.form = this.$form.createForm(this);
-  }
-
-  created() {
-    this.$nextTick(() => {
-      show(this.id).then(res => {
-        const { data } = res.data;
-        this.data = data;
-        const fields = (<any>this.form).getFieldsValue();
-        for (let field in fields) {
-          if (data.hasOwnProperty(field)) {
-            fields[field] = data[field];
-          }
-        }
-        this.form.setFieldsValue(fields);
-      });
-    });
   }
 
   handleSubmit(e: Event) {
     e.preventDefault();
     this.form.validateFields((err, values) => {
       if (!err) {
-        update(values).then(res => {
+        store(values).then(res => {
           const data = res.data;
 
           if (data.errors) {

@@ -23,11 +23,10 @@ export function store (data: object = {}) {
   })
 }
 
-export function update (data) {
-  const id = data.id
+export function update(id: [string, number], data: object) {
   return request({
     url: `/tag/${id}`,
-    method: 'post',
+    method: 'put',
     data
   })
 }

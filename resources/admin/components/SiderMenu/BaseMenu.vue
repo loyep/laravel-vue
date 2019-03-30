@@ -98,7 +98,7 @@ export default class BaseMenu extends Vue {
     const itemArr: Array<any> = [];
     const pIndex_ = `${pIndex}_${index}`;
     const routePath = path.resolve(basePath, menu.path);
-    if (!menu.hideChildrenInMenu) {
+    if (!menu.meta.hideChildrenInMenu) {
       menu.children.forEach((item, i) => {
         itemArr.push(that.renderItem(h, item, pIndex_, i, routePath));
       });
@@ -108,7 +108,7 @@ export default class BaseMenu extends Vue {
 
   renderItem(h, menu, pIndex, index, basePath): any {
     if (!menu.hidden) {
-      return menu.children && !menu.hideChildrenInMenu
+      return menu.children && !menu.meta.hideChildrenInMenu
         ? this.renderSubMenu(h, menu, pIndex, index, basePath)
         : this.renderMenuItem(h, menu, pIndex, index, basePath);
     }
@@ -139,16 +139,23 @@ export default class BaseMenu extends Vue {
   }
 
   updateMenu() {
-    const routes: Array<string> = this.$route.matched
-      .concat()
-      .filter(item => item.path)
-      .map(item => {
-        return item.path;
-      });
+    const routes: string[] = [];
+    this.$route.matched.concat().every(item => {
+      if (item.path) {
+        routes.push(item.path)
+      }
+
+      if ((<any>item).meta.hideChildrenInMenu) {
+        return false
+      }
+      return true
+    });
 
     if (routes.length >= 4 && this.$route.meta.hidden) {
       routes.pop();
     }
+
+    
     let routePath: string | undefined = routes.pop();
     let selectedKeys: Array<string | undefined> = [routePath].map(item => {
       if (item !== undefined && item !== "/") {
@@ -157,15 +164,12 @@ export default class BaseMenu extends Vue {
       return item;
     });
 
+    console.log(selectedKeys)
+
     this.selectedKeys = selectedKeys;
 
-    const openKeys: Array<string> = [];
-    routes.forEach(item => {
-      if (item.length > 0) {
-        if (this.mode === "inline") {
-          openKeys.push(item);
-        }
-      }
+    const openKeys: Array<string> = routes.filter(item => {
+      return item.length > 0 && this.mode === "inline"
     });
 
     this.collapsed

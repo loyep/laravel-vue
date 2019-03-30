@@ -8,7 +8,7 @@ export function getList (params: object = {}) {
   })
 }
 
-export function store (data) {
+export function store (data: object) {
   return request({
     url: '/comment',
     method: 'post',
@@ -16,17 +16,15 @@ export function store (data) {
   })
 }
 
-export function update (data) {
-  const id = data.id
+export function update(id: [string, number], data: object) {
   return request({
     url: `/comment/${id}`,
-    method: 'post',
+    method: 'put',
     data
   })
 }
 
-export function destroy (data) {
-  const id = data.id
+export function destroy (id: [string, number]) {
   return request({
     url: `/comment/${id}`,
     method: 'delete'

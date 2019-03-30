@@ -127,7 +127,7 @@ export default class CategoryUpdate extends Vue {
     e.preventDefault();
     this.form.validateFields((err, values) => {
       if (!err) {
-        update(this.data.id, values).then(res => {
+        update(this.id, values).then(res => {
           const data = res.data;
 
           if (data.errors) {

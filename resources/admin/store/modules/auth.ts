@@ -40,53 +40,61 @@ export const mutations: MutationTree<IAuthState> = {
 
 export const actions: ActionTree<IAuthState, RootState> = {
   // 将刷新的 token 保存至本地
-  RefreshToken (context: ActionContext<IAuthState, RootState>, token: string) {
+  RefreshToken(context: ActionContext<IAuthState, RootState>, token: string) {
     context.commit('SET_TOKEN', token)
   },
   // 注册
-  Register (context: ActionContext<IAuthState, RootState>, userInfo: any) {
+  Register(context: ActionContext<IAuthState, RootState>, userInfo: any) {
     return new Promise((resolve, reject) => {
       register(userInfo).then(res => {
-        const data = res.data
+        const { data } = res.data
+
         if (data.token) {
           context.commit('SET_TOKEN', data.token)
           resolve(res)
         } else {
-          reject(data.errors)
+          reject(res.data.errors)
         }
+        
       }).catch(error => {
         reject(error)
       })
     })
   },
   // 登录
-  Login (context: ActionContext<IAuthState, RootState>, userInfo: any) {
+  Login(context: ActionContext<IAuthState, RootState>, userInfo: any) {
     return new Promise((resolve, reject) => {
       login(userInfo).then(res => {
-        const data = res.data
-        if (data.data.token) {
-          context.commit('SET_TOKEN', data.data.token)
+
+        const { data } = res.data;
+
+        if (data.token) {
+          context.commit('SET_TOKEN', data.token)
           resolve(res)
         } else {
-          reject(data.errors)
+          reject(res.data.errors)
         }
+
       }).catch(error => {
         reject(error)
       })
     })
   },
   // 获取用户信息
-  GetInfo (context: ActionContext<IAuthState, RootState>) {
+  GetInfo(context: ActionContext<IAuthState, RootState>) {
     return new Promise((resolve, reject) => {
       getInfo().then(res => {
-        const data = res.data
+        const { data } = res.data
+
         // 验证返回的roles是否是一个非空数组
-        if (data.data && data.data.roles && data.data.roles.length > 0) { 
-          context.commit('SET_ROLES', data.data.roles)
+        if (data && data.roles && data.roles.length > 0) {
+          context.commit('SET_ROLES', data.roles)
         } else {
           reject(new Error(data.errors))
         }
-        context.commit('UPDATE_USER', data.data)
+
+        context.commit('UPDATE_USER', data)
+
         resolve(res.data)
       }).catch(error => {
         reject(error)
@@ -94,7 +102,7 @@ export const actions: ActionTree<IAuthState, RootState> = {
     })
   },
   // 登出
-  Logout (context: ActionContext<IAuthState, RootState>) {
+  Logout(context: ActionContext<IAuthState, RootState>) {
     return new Promise((resolve, reject) => {
       logout().then(() => {
         context.commit('LOGOUT')

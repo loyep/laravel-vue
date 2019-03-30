@@ -17,6 +17,7 @@ export function checkPermission (value: Array<string>): boolean {
     if (!hasPermission) {
       return false
     }
+    
     return true
   } else {
     console.error(`need roles! Like v-permission="['admin','editor']"`)
@@ -43,7 +44,7 @@ export function hasPermission (roles: Array<string>, route: any) {
  * @param roles
  */
 export function filterAsyncRouter (routes: Array<object>, roles: Array<string>) {
-  const res: Array<any> = []
+  const res: any[] = []
 
   routes.forEach(route => {
     const tmp: any = { ...route }

@@ -40,7 +40,8 @@
       </div>
       <div class="tableListOperator">
         <a-dropdown>
-          <a-button :disabled="selectedRowKeys.length === 0">批量操作
+          <a-button :disabled="selectedRowKeys.length === 0">
+            批量操作
             <a-icon type="down"/>
           </a-button>
           <template #overlay>
@@ -83,15 +84,15 @@ const columns = [
   },
   {
     title: "Slug",
-    dataIndex: "slug",
+    dataIndex: "slug"
   },
   {
     title: "描述",
-    dataIndex: "description",
+    dataIndex: "description"
   },
   {
     title: "总数",
-    dataIndex: "posts_count",
+    dataIndex: "posts_count"
   },
   {
     title: "更新时间",
@@ -126,10 +127,10 @@ export default class CategoryList extends Vue {
   private pagination: Object = {};
 
   private query: Object = {};
-  
-  @Watch('data')
-  onDataChanged(val: Array<Object>, oldVal: Array<Object>) { 
-    this.selectedRowKeys = []
+
+  @Watch("data")
+  onDataChanged(val: Array<Object>, oldVal: Array<Object>) {
+    this.selectedRowKeys = [];
   }
 
   beforeCreate() {
@@ -152,7 +153,7 @@ export default class CategoryList extends Vue {
   handleCreate(e: Event) {
     e.preventDefault();
     this.$router.push({
-      name: 'category.create'
+      name: "category.create"
     });
   }
 
@@ -160,14 +161,16 @@ export default class CategoryList extends Vue {
     this.query = query;
     this.loading = true;
     getList(query).then(res => {
-      const data = res.data
-      this.data = data.data;
+      const { data, total, per_page, current_page } = res.data;
+
+      this.data = data;
 
       const paginationProps = {
-        total: parseInt(data.total),
-        pageSize: parseInt(data.per_page),
-        current: data.current_page
+        total: parseInt(total),
+        pageSize: parseInt(per_page),
+        current: current_page
       };
+      
       this.pagination = paginationProps;
       this.loading = false;
     });

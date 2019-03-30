@@ -2,9 +2,12 @@
   <page-view
     :hideBread="true"
     title="仪表盘"
-    content="交互专家 |蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED"
-    :logo="user.avatar"
-  >Dashboard</page-view>
+  >
+  <template #logo>
+    <img :src="user.avatar" class="logo">
+  </template>
+    <template #headerContent>交互专家 |蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED</template>
+  </page-view>
 </template>
 
 <script lang="ts">

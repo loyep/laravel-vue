@@ -10,6 +10,7 @@
       :extraContent="extraContent"
       :wide="wide"
     >
+    <slot name="logo" />
       <template #logo>
         <slot name="logo" />
       </template>

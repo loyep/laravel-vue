@@ -1,6 +1,11 @@
 const BlankLayout = () => import('@/layouts/BlankLayout/index.vue')
 const PageLayout = () => import('@/layouts/PageLayout/index.vue')
 
+import tagRoutes from './modules/tag'
+import postRoutes from './modules/post'
+import categoryRoutes from './modules/category'
+import commentRoutes from './modules/comment'
+
 export const routes = [
   {
     path: '/login',
@@ -63,142 +68,18 @@ export const asyncRouterMap = [
         ]
       },
       {
-        path: 'post',
-        component: PageLayout,
+        path: 'content',
+        component: BlankLayout,
+        redirect: { name: 'post.index' },
         meta: {
-          title: '文章',
+          title: '内容',
           icon: 'edit'
         },
         children: [
-          {
-            path: '',
-            name: 'post.index',
-            component: () => import('@/views/posts/List.vue'),
-            meta: {
-              title: '文章列表'
-            }
-          },
-          {
-            path: 'create',
-            name: 'post.create',
-            component: () => import('@/views/posts/Create.vue'),
-            hidden: true,
-            meta: {
-              title: '创建文章'
-            }
-          },
-          {
-            path: ':id/edit',
-            name: 'post.edit',
-            component: () => import('@/views/posts/Update.vue'),
-            hidden: true,
-            meta: {
-              title: '编辑文章'
-            }
-          },
-          {
-            path: ':id',
-            name: 'post.detail',
-            component: () => import('@/views/posts/Detail.vue'),
-            hidden: true,
-            meta: {
-              title: '文章详情'
-            }
-          }
-        ]
-      },
-
-      {
-        path: 'category',
-        component: PageLayout,
-        meta: {
-          title: '分类',
-          icon: 'edit'
-        },
-        children: [
-          {
-            path: '',
-            name: 'category.index',
-            component: () => import('@/views/categories/List.vue'),
-            meta: {
-              title: '分类列表'
-            }
-          },
-          {
-            path: 'create',
-            name: 'category.create',
-            component: () => import('@/views/categories/Create.vue'),
-            hidden: true,
-            meta: {
-              title: '创建分类'
-            }
-          },
-          {
-            path: ':id/edit',
-            name: 'category.edit',
-            component: () => import('@/views/categories/Update.vue'),
-            hidden: true,
-            props: true,
-            meta: {
-              title: '编辑分类'
-            }
-          },
-          {
-            path: ':id',
-            name: 'category.detail',
-            component: () => import('@/views/categories/Detail.vue'),
-            hidden: true,
-            props: true,
-            meta: {
-              title: '分类详情'
-            }
-          }
-        ]
-      },
-      {
-        path: 'comment',
-        component: PageLayout,
-        meta: {
-          title: '评论',
-          icon: 'edit'
-        },
-        children: [
-          {
-            path: '',
-            name: 'comment.index',
-            component: () => import('@/views/comments/List.vue'),
-            meta: {
-              title: '评论列表'
-            }
-          },
-          {
-            path: 'create',
-            name: 'comment.create',
-            component: () => import('@/views/comments/Create.vue'),
-            hidden: true,
-            meta: {
-              title: '创建评论'
-            }
-          },
-          {
-            path: ':id/edit',
-            name: 'comment.edit',
-            component: () => import('@/views/comments/Update.vue'),
-            hidden: true,
-            meta: {
-              title: '编辑评论'
-            }
-          },
-          {
-            path: ':id',
-            name: 'comment.detail',
-            component: () => import('@/views/comments/Detail.vue'),
-            hidden: true,
-            props: true,
-            meta: {
-              title: '评论详情'
-            }
-          }
+          ...postRoutes,
+          ...categoryRoutes,
+          ...tagRoutes,
+          ...commentRoutes,
         ]
       },
       {
@@ -300,53 +181,6 @@ export const asyncRouterMap = [
             props: true,
             meta: {
               title: '角色详情'
-            }
-          }
-        ]
-      },
-      {
-        path: 'tag',
-        component: PageLayout,
-        meta: {
-          title: '标签',
-          icon: 'tags'
-        },
-        children: [
-          {
-            path: '',
-            name: 'tag.index',
-            component: () => import('@/views/tags/List.vue'),
-            meta: {
-              title: '标签列表'
-            }
-          },
-          {
-            path: 'create',
-            name: 'tag.create',
-            component: () => import('@/views/tags/Create.vue'),
-            hidden: true,
-            meta: {
-              title: '新建标签'
-            }
-          },
-          {
-            path: ':id/edit',
-            name: 'tag.edit',
-            component: () => import('@/views/tags/Update.vue'),
-            hidden: true,
-            props: true,
-            meta: {
-              title: '编辑标签'
-            }
-          },
-          {
-            path: ':id',
-            name: 'tag.detail',
-            component: () => import('@/views/tags/Detail.vue'),
-            hidden: true,
-            props: true,
-            meta: {
-              title: '标签详情'
             }
           }
         ]

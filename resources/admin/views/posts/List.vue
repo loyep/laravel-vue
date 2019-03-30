@@ -210,14 +210,15 @@ export default class PostList extends Vue {
     this.query = query;
     this.loading = true;
     getList(query).then(res => {
-      const data = res.data;
+      const { data, total, per_page, current_page } = res.data;
 
-      this.data = data.data;
+      this.data = data;
+
       const paginationProps = {
         showSizeChanger: true,
-        total: parseInt(data.total),
-        pageSize: parseInt(data.per_page),
-        current: data.current_page
+        total: parseInt(total),
+        pageSize: parseInt(per_page),
+        current: current_page
       };
       this.pagination = paginationProps;
       this.loading = false;

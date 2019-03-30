@@ -15,7 +15,6 @@
                   'name',
                   {rules: [{ required: true, message: '请输入用户名' }]}
                 ]"
-                placeholder="请输入用户名"
               />
             </a-form-item>
 
@@ -34,7 +33,6 @@
                   { type: 'email', message: '邮箱格式错误' }
                   ]}
                 ]"
-                placeholder="请输入邮箱"
               />
             </a-form-item>
 
@@ -48,7 +46,6 @@
                 v-decorator="[
                   'display_name',
                 ]"
-                placeholder="请输入昵称"
               />
             </a-form-item>
 
@@ -67,7 +64,6 @@
                     ]
                   }
                 ]"
-                placeholder="请输入个人网址"
               />
             </a-form-item>
 
@@ -82,7 +78,6 @@
                 v-decorator="[
                   'password',
                 ]"
-                placeholder="请输入密码"
               />
             </a-form-item>
 
@@ -97,7 +92,6 @@
                 v-decorator="[
                   'password_confirmation',
                 ]"
-                placeholder="请输入确认密码"
               />
             </a-form-item>
 
@@ -163,7 +157,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Card, Col, Row, Tag } from "ant-design-vue";
-import { store, show } from "@/api/user";
+import { update, show } from "@/api/user";
 import { setFiledsWithErrors } from "@/utils/form";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 import { setTimeout } from "timers";
@@ -205,7 +199,7 @@ export default class UserUpdate extends Vue {
     e.preventDefault();
     this.form.validateFields((err, values) => {
       if (!err) {
-        store(values).then(res => {
+        update(this.id, values).then(res => {
           const data = res.data;
 
           if (data.errors) {

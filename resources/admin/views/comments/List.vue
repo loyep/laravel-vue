@@ -31,7 +31,6 @@
               <a-form-item>
                 <span class="submitButtons">
                   <a-button icon="search" type="primary" htmlType="submit">查询</a-button>
-                  <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
                 </span>
               </a-form-item>
             </a-col>
@@ -150,13 +149,14 @@ export default class CommentList extends Vue {
     this.query = query;
     this.loading = true;
     getList(query).then(res => {
-      const data = res.data
-      this.data = data.data;
+      const { data, total, per_page, current_page } = res.data;
+
+      this.data = data;
 
       const paginationProps = {
-        total: parseInt(data.total),
-        pageSize: parseInt(data.per_page),
-        current: data.current_page
+        total: parseInt(total),
+        pageSize: parseInt(per_page),
+        current: current_page
       };
       this.pagination = paginationProps;
       this.loading = false;
