@@ -46,7 +46,7 @@ class PostController extends Controller
             ->with('tags:id,name', 'user:id,name', 'category:id,name')
             ->withCount('comments')
             ->when($request->get('keywords'), function ($query) use ($request) {
-                $query->where('title', 'like', '%' . $request->get('keywords') . '%');
+                $query->where('title', 'like', '%'.$request->get('keywords').'%');
             })
             ->when($request->get('status'), function ($query) use ($request) {
                 $query->where('status', $request->get('status'));
@@ -85,7 +85,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
