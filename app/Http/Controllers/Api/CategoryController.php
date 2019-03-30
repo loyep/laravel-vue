@@ -70,6 +70,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = $this->model->find($id);
+
         return new CategoryResource($category);
     }
 
