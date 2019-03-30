@@ -82,7 +82,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Card, Col, Row, Tag } from "ant-design-vue";
-import { store, show } from "@/api/tag";
+import { store } from "@/api/tag";
 import { setFiledsWithErrors } from "@/utils/form";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 import { setTimeout } from "timers";
