@@ -201,8 +201,6 @@ class LoginController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @throws \Illuminate\Validation\ValidationException
-     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
     public function login(Request $request)

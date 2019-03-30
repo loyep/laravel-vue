@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\SettingRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Model;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -46,8 +44,8 @@ class UserController extends Controller
     {
         $users = $this->model
             ->withCount('posts')
-            ->when($request->get('name'), function ($query) use ($request) {
-                $query->where('name', 'like', '%' . $request->get('name') . '%');
+            ->when($name = $request->get('name'), function ($query) use ($name) {
+                $query->where('name', 'like', '%' . $name . '%');
             })
             ->paginate($request->get('per_page', 10));
 
@@ -63,15 +61,11 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $this->validation->make($request->all(), [
-            //
-        ])->validate();
-
         $user = $this->model->create($request->all());
 
         $response = [
             'message' => 'User created.',
-            'data' => $user->toArray(),
+            'data' => new UserResource($user),
         ];
 
         return response()->json($response);
@@ -94,12 +88,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param SettingRequest $request
+     * @param UserRequest $request
      * @param $id
-     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(SettingRequest $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $user = $this->model->update($request->all(), $id);
         $response = [

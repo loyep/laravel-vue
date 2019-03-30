@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function index (params) {
+export function getList (params: object = {}) {
   return request({
     url: '/role',
     method: 'get',
@@ -8,7 +8,7 @@ export function index (params) {
   })
 }
 
-export function store (data) {
+export function store (data: object = {}) {
   return request({
     url: '/role',
     method: 'post',
@@ -16,7 +16,7 @@ export function store (data) {
   })
 }
 
-export function update (data) {
+export function update (data = { id: undefined}) {
   const id = data.id
   return request({
     url: `/role/${id}`,

@@ -2,18 +2,51 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\RoleResource;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
 class RoleController extends Controller
 {
     /**
+     * @var Model
+     */
+    protected $model;
+
+    /**
+     * The validation factory implementation.
+     *
+     * @var \Illuminate\Contracts\Validation\Factory
+     */
+    protected $validation;
+
+    /**
+     * PostController constructor.
+     *
+     * @param ValidationFactory $validation
+     */
+    public function __construct(ValidationFactory $validation)
+    {
+        $this->model = app(Role::class);
+        $this->validation = $validation;
+    }
+
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RoleResource
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $roles = $this->model
+//            ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
+//                $query->where('key', 'like', '%' . $keywords . '%');
+//            })
+            ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
+
+        return new RoleResource($roles);
     }
 
     /**

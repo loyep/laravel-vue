@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function index (params) {
+export function getList (params: object = {}) {
   return request({
     url: '/comment',
     method: 'get',

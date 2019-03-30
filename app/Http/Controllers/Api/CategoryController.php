@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * @var Model
-     */
     protected $model;
 
     /**
@@ -35,8 +33,7 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @return CategoryResource
      */
     public function index(Request $request)
     {
@@ -47,7 +44,7 @@ class CategoryController extends Controller
             })
             ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
 
-        return response()->json($categories);
+        return new CategoryResource($categories);
     }
 
     /**

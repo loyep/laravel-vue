@@ -38,7 +38,7 @@
               <a-form-item>
                 <span class="submitButtons">
                   <a-button icon="search" type="primary" htmlType="submit">查询</a-button>
-                  <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
+                  <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
                 </span>
               </a-form-item>
             </a-col>
@@ -46,7 +46,6 @@
         </a-form>
       </div>
       <div class="tableListOperator">
-        <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
         <a-dropdown >
           <a-button :disabled="selectedRowKeys.length === 0">批量操作
             <a-icon type="down"/>
@@ -101,7 +100,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import {
   Card,
   Col,
@@ -167,6 +166,7 @@ const columns = [
   }
 })
 export default class UserList extends Vue {
+  
   protected selectedRowKeys: Array<number> = [];
 
   private columns = columns;
@@ -180,6 +180,11 @@ export default class UserList extends Vue {
   private pagination: object = {};
 
   private query: Object = {};
+
+  @Watch('data')
+  onDataChanged(val: Array<Object>, oldVal: Array<Object>) { 
+    this.selectedRowKeys = []
+  }
 
   beforeCreate() {
     this.form = this.$form.createForm(this);
@@ -198,6 +203,13 @@ export default class UserList extends Vue {
     });
   }
 
+  handleCreate(e: Event) {
+    e.preventDefault();
+    this.$router.push({
+      name: 'user.create'
+    });
+  }
+
   handleSearch(query: Object = {}) {
     this.query = query
     this.loading = true;
@@ -206,7 +218,6 @@ export default class UserList extends Vue {
       const data = res.data
 
       this.data = data.data
-      this.selectedRowKeys = []
       const paginationProps = {
         showSizeChanger: true,
         total: parseInt(data.total),

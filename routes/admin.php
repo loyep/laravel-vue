@@ -29,5 +29,6 @@ Route::prefix('/')->middleware(['auth:api'])->as('admin.')->group(function () {
     Route::resource('comment', 'CommentController');
     Route::resource('category', 'CategoryController');
     Route::resource('setting', 'SettingController');
+    Route::resource('role', 'RoleController');
     Route::get('statistics', 'PrismController@statistics');
 });

@@ -2,18 +2,51 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\SettingResource;
+use App\Models\Setting;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
     /**
+     * @var Model
+     */
+    protected $model;
+
+    /**
+     * The validation factory implementation.
+     *
+     * @var \Illuminate\Contracts\Validation\Factory
+     */
+    protected $validation;
+
+    /**
+     * PostController constructor.
+     *
+     * @param ValidationFactory $validation
+     */
+    public function __construct(ValidationFactory $validation)
+    {
+        $this->model = app(Setting::class);
+        $this->validation = $validation;
+    }
+
+    /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return SettingResource
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $settings = $this->model
+            ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
+                $query->where('key', 'like', '%' . $keywords . '%');
+            })
+            ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
+
+        return new SettingResource($settings);
     }
 
     /**
@@ -44,7 +77,7 @@ class SettingController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

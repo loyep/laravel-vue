@@ -48,6 +48,7 @@
               <a-form-item>
                 <span class="submitButtons">
                   <a-button icon="search" type="primary" html-type="submit">查询</a-button>
+                  <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
                 </span>
               </a-form-item>
             </a-col>
@@ -57,7 +58,8 @@
       <div class="tableListOperator">
         <!-- <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button> -->
         <a-dropdown>
-          <a-button :disabled="selectedRowKeys.length === 0">批量操作
+          <a-button :disabled="selectedRowKeys.length === 0">
+            批量操作
             <a-icon type="down"/>
           </a-button>
           <template #overlay>
@@ -107,7 +109,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { Card, Col, Row, Tag, Menu, Dropdown } from "ant-design-vue";
 import { getList } from "@/api/post";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
@@ -161,7 +163,6 @@ const columns = [
   }
 })
 export default class PostList extends Vue {
-
   protected selectedRowKeys?: Array<string> = [];
 
   private columns: any = columns;
@@ -175,6 +176,11 @@ export default class PostList extends Vue {
   private pagination: Object = {};
 
   private query: Object = {};
+
+  @Watch("data")
+  onDataChanged(val: Array<Object>, oldVal: Array<Object>) {
+    this.selectedRowKeys = [];
+  }
 
   beforeCreate() {
     this.form = this.$form.createForm(this);
@@ -193,14 +199,20 @@ export default class PostList extends Vue {
     });
   }
 
+  handleCreate(e: Event) {
+    e.preventDefault();
+    this.$router.push({
+      name: 'post.create'
+    });
+  }
+
   handleSearch(query: Object = {}) {
     this.query = query;
     this.loading = true;
     getList(query).then(res => {
-      const data = res.data
+      const data = res.data;
 
       this.data = data.data;
-      this.selectedRowKeys = []
       const paginationProps = {
         showSizeChanger: true,
         total: parseInt(data.total),

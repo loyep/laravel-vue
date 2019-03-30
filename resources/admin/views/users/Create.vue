@@ -53,6 +53,7 @@
 
             <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }" label="密码">
               <a-input
+                type="password"
                 v-decorator="[
                   'password',
                   {rules: [{ required: true, message: '请输入密码' }]}
@@ -63,12 +64,28 @@
 
             <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }" label="确认密码">
               <a-input
+                type="password"
                 v-decorator="[
                   'password_confirmation',
                   {rules: [{ required: true, message: '请输入确认密码' }]}
                 ]"
                 placeholder="请输入确认密码"
               />
+            </a-form-item>
+
+            <a-form-item :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }" label="用户角色">
+              <a-select
+                v-decorator="[
+                  'role',
+                  {
+                    initialValue: 'admin'
+                  }
+                ]"
+              >
+                <a-select-option value="visitor">访问者</a-select-option>
+                <a-select-option value="editor">编辑</a-select-option>
+                <a-select-option value="admin">管理员</a-select-option>
+              </a-select>
             </a-form-item>
 
             <a-form-item
@@ -113,8 +130,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Card, Col, Row, Tag } from "ant-design-vue";
-import { store } from '@/api/user';
-import { setFiledsWithErrors } from '@/utils/form'
+import { store } from "@/api/user";
+import { setFiledsWithErrors } from "@/utils/form";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
 @Component({
@@ -137,12 +154,23 @@ export default class UserCreate extends Vue {
     this.form.validateFields((err, values) => {
       if (!err) {
         store(values).then(res => {
-          const data = res.data
+          const data = res.data;
 
           if (data.errors) {
-            setFiledsWithErrors(this.form, data.errors)
+            setFiledsWithErrors(this.form, data.errors);
+          } else {
+            this.$confirm({
+              title: data.message,
+              okText: "确认",
+              cancelText: "取消",
+              onOk: () => {
+                this.$router.push({
+                  name: "user.index"
+                });
+              }
+            });
           }
-        })
+        });
       }
     });
   }

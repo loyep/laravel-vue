@@ -28,23 +28,6 @@
             </a-col>
 
             <a-col :md="6" :sm="24">
-              <a-form-item label="分类">
-                <a-select
-                  v-decorator="[ 
-                    'category_id',
-                   ]"
-                  allowClear
-                  placeholder="请选择"
-                  style="width: 100%;"
-                >
-                  <a-select-option value="published">已发布</a-select-option>
-                  <a-select-option value="draft">草稿</a-select-option>
-                  <a-select-option value="private">私密</a-select-option>
-                </a-select>
-              </a-form-item>
-            </a-col>
-
-            <a-col :md="6" :sm="24">
               <a-form-item>
                 <span class="submitButtons">
                   <a-button icon="search" type="primary" htmlType="submit">查询</a-button>
@@ -56,9 +39,8 @@
         </a-form>
       </div>
       <div class="tableListOperator">
-        <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button>
         <a-dropdown>
-          <a-button>批量操作
+          <a-button :disabled="selectedRowKeys.length === 0">批量操作
             <a-icon type="down"/>
           </a-button>
           <template #overlay>
@@ -85,7 +67,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { Card, Col, Row, Tag, Menu, Dropdown, Button } from "ant-design-vue";
 import { getList } from "@/api/category";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
@@ -141,6 +123,11 @@ export default class CategoryList extends Vue {
   private pagination: Object = {};
 
   private query: Object = {};
+  
+  @Watch('data')
+  onDataChanged(val: Array<Object>, oldVal: Array<Object>) { 
+    this.selectedRowKeys = []
+  }
 
   beforeCreate() {
     this.form = this.$form.createForm(this);

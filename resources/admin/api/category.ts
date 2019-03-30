@@ -16,7 +16,7 @@ export function store(data: object) {
   })
 }
 
-export function update(data: object) {
+export function update(data = { id: undefined}) {
   let id = undefined;
   if (data.hasOwnProperty('id')) {
     id = data['id']

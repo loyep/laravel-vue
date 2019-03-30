@@ -69,7 +69,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Card, Col, Row, Tag, Menu, Dropdown, Button } from "ant-design-vue";
-import { getList } from "@/api/tag";
+import { getList } from "@/api/comment";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
 const columns = [
@@ -109,7 +109,7 @@ const columns = [
     AButton: Button
   }
 })
-export default class TagList extends Vue {
+export default class CommentList extends Vue {
   protected selectedRowKeys: Array<number> = [];
 
   private columns = columns;
