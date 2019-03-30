@@ -41,7 +41,7 @@ class TagController extends Controller
         $tags = $this->model
             ->withCount('posts')
             ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
-                $query->where('name', 'like', '%' . $keywords . '%');
+                $query->where('name', 'like', '%'.$keywords.'%');
             })
             ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
 
@@ -64,11 +64,13 @@ class TagController extends Controller
      * Display the specified resource.
      *
      * @param int $id
+     *
      * @return TagResource
      */
     public function show(int $id)
     {
         $tag = $this->model->find($id);
+
         return new TagResource($tag);
     }
 
@@ -76,7 +78,7 @@ class TagController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
