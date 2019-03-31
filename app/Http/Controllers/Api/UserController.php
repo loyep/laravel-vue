@@ -96,7 +96,9 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        $user = $this->model->update($request->all(), $id);
+        $user = $this->model->findOrFail($id);
+        $user->fill($request->all());
+        $user->save();
         $response = [
             'message' => 'User updated.',
             'data'    => $user->toArray(),

@@ -16,6 +16,10 @@ class Category extends Model
 {
     use SlugScope;
 
+    protected $fillable = [
+        'name', 'slug', 'image', 'description',
+    ];
+
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);

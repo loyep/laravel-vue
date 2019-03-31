@@ -21,7 +21,7 @@ const tagRoutes: Array<object> = [
             {
                 path: 'create',
                 name: 'tag.create',
-                component: () => import('@/views/tags/Create.vue'),
+                component: () => import('@/views/tags/Update.vue'),
                 meta: {
                     title: '新建标签'
                 }

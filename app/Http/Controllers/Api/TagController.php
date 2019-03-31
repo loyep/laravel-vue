@@ -41,7 +41,7 @@ class TagController extends Controller
         $tags = $this->model
             ->withCount('posts')
             ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
-                $query->where('name', 'like', '%'.$keywords.'%');
+                $query->where('name', 'like', '%' . $keywords . '%');
             })
             ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
 
@@ -57,7 +57,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tag = $this->model->create($request->all());
+
+        $response = [
+            'message' => 'Tag created.',
+            'data' => new TagResource($tag),
+        ];
+
+        return response()->json($response);
     }
 
     /**
@@ -78,13 +85,21 @@ class TagController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $tag = $this->model->findOrFail($id);
+        $tag->fill($request->all());
+        $tag->save();
+        $response = [
+            'message' => 'Tag updated.',
+            'data' => $tag->toArray(),
+        ];
+
+        return response()->json($response);
     }
 
     /**

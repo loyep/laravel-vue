@@ -41,7 +41,7 @@ class CategoryController extends Controller
         $categories = $this->model
             ->withCount('posts')
             ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
-                $query->where('name', 'like', '%'.$keywords.'%')->orWhere('description', 'like', '%'.$keywords.'%');
+                $query->where('name', 'like', '%' . $keywords . '%')->orWhere('description', 'like', '%' . $keywords . '%');
             })
             ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
 
@@ -57,15 +57,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $category = $this->model->create($request->all());
+
+        $response = [
+            'message' => 'Category created.',
+            'data'    => new CategoryResource($category),
+        ];
+
+        return response()->json($response);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return CategoryResource
      */
     public function show($id)
     {
@@ -78,13 +85,21 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = $this->model->findOrFail($id);
+        $category->fill($request->all());
+        $category->save();
+        $response = [
+            'message' => 'Category updated.',
+            'data' => $category->toArray(),
+        ];
+
+        return response()->json($response);
     }
 
     /**

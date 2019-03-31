@@ -23,12 +23,12 @@ Route::prefix('/')->middleware(['auth:api'])->as('admin.')->group(function () {
     Route::get('user/profile', 'UserController@profile');
     Route::post('logout', 'Auth\LoginController@logout');
 
-    Route::resource('user', 'UserController');
-    Route::resource('tag', 'TagController');
-    Route::resource('post', 'PostController');
-    Route::resource('comment', 'CommentController');
-    Route::resource('category', 'CategoryController');
-    Route::resource('setting', 'SettingController');
-    Route::resource('role', 'RoleController');
+    Route::apiResource('user', 'UserController');
+    Route::apiResource('tag', 'TagController');
+    Route::apiResource('post', 'PostController');
+    Route::apiResource('comment', 'CommentController');
+    Route::apiResource('category', 'CategoryController');
+    Route::apiResource('setting', 'SettingController');
+    Route::apiResource('role', 'RoleController');
     Route::get('statistics', 'PrismController@statistics');
 });

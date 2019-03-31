@@ -89,7 +89,9 @@
         </template>
 
         <template #post_category="category">
-          <a href="javascript:;">{{ category.name }}</a>
+          <router-link
+            :to="{ name: 'post.index', query: {category: category.id}}"
+          >{{ category.name }}</router-link>
         </template>
 
         <template #post_status="status">
@@ -99,7 +101,7 @@
         <template #post_tags="tags">
           <template v-for="tag in tags">
             <a-tag :key="tag.id" color="blue">
-              <a href="javascript:;">{{ tag.name }}</a>
+              <router-link :to="{ name: 'post.index', query: {tag: tag.id}}">{{ tag.name }}</router-link>
             </a-tag>
           </template>
         </template>
@@ -111,8 +113,9 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Card, Col, Row, Tag, Menu, Dropdown } from "ant-design-vue";
-import { getList } from "@/api/post";
+import { getList, destroy } from "@/api/post";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
+import { RouteRecord } from "vue-router";
 
 const columns = [
   {
@@ -182,11 +185,18 @@ export default class PostList extends Vue {
     this.selectedRowKeys = [];
   }
 
+  @Watch("$route")
+  onRouteChanged() {
+    console.log(this.$route.query.tag);
+    this.handleSearch();
+  }
+
   beforeCreate() {
     this.form = this.$form.createForm(this);
   }
 
   created() {
+    console.log(this.$route.query.tag);
     this.handleSearch();
   }
 
@@ -202,16 +212,18 @@ export default class PostList extends Vue {
   handleCreate(e: Event) {
     e.preventDefault();
     this.$router.push({
-      name: 'post.create'
+      name: "post.create"
     });
   }
 
   handleSearch(query: Object = {}) {
     this.query = query;
     this.loading = true;
+
+    query = Object.assign(query, this.$route.query);
+    console.log(query);
     getList(query).then(res => {
       const { data, total, per_page, current_page } = res.data;
-
       this.data = data;
 
       const paginationProps = {
@@ -225,8 +237,19 @@ export default class PostList extends Vue {
     });
   }
 
-  handleMoreAction(e: Event) {
-    e.preventDefault();
+  handleMoreAction() {
+    destroy(this.selectedRowKeys!).then(res => {
+      console.log(res);
+      if (res.data.message) {
+        this.$notification.success({
+          message: "删除提示",
+          description: res.data.message
+        });
+        this.$nextTick(() => {
+          this.handleSearch();
+        });
+      }
+    });
   }
 
   onSelectChange(selectedRowKeys, selectedRows) {

@@ -42,11 +42,9 @@
               label="昵称"
               extra="用户昵称可以与用户名不同, 用于前台显示.如果你将此项留空, 将默认使用用户名."
             >
-              <a-input
-                v-decorator="[
+              <a-input v-decorator="[
                   'display_name',
-                ]"
-              />
+                ]"/>
             </a-form-item>
 
             <a-form-item
@@ -205,15 +203,12 @@ export default class UserUpdate extends Vue {
           if (data.errors) {
             setFiledsWithErrors(this.form, data.errors);
           } else {
-            this.$confirm({
-              title: data.message,
-              okText: "确认",
-              cancelText: "取消",
-              onOk: () => {
-                this.$router.push({
-                  name: "user.index"
-                });
-              }
+            this.$notification.success({
+              message: "提示",
+              description: res.data.message
+            });
+            this.$router.push({
+              name: "user.index"
             });
           }
         });

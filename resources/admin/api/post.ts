@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getList (params: object = {}) {
+export function getList(params: object = {}) {
   return request({
     url: '/post',
     method: 'get',
@@ -8,7 +8,7 @@ export function getList (params: object = {}) {
   })
 }
 
-export function store (data: object) {
+export function store(data: object) {
   return request({
     url: '/post',
     method: 'post',
@@ -16,11 +16,8 @@ export function store (data: object) {
   })
 }
 
-export function update (data: object) {
-  let id = undefined;
-  if (data.hasOwnProperty('id')) {
-    id = data['id'] 
-  }
+export function update(id: number | string, data: object) {
+  delete data['id'];
   return request({
     url: `/post/${id}`,
     method: 'post',
@@ -28,11 +25,7 @@ export function update (data: object) {
   })
 }
 
-export function destroy (data: object) {
-  let id = undefined;
-  if (data.hasOwnProperty('id')) {
-    id = data['id'] 
-  }  
+export function destroy(id: number | string | Array<string>) {
   return request({
     url: `/post/${id}`,
     method: 'delete'

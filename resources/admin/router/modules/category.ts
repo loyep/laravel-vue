@@ -22,7 +22,7 @@ const categoryRoutes: Array<object> = [
           {
             path: 'create',
             name: 'category.create',
-            component: () => import('@/views/categories/Create.vue'),
+            component: () => import('@/views/categories/Update.vue'),
             hidden: true,
             meta: {
               title: '创建分类'

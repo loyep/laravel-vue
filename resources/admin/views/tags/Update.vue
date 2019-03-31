@@ -46,7 +46,7 @@
                 sm: { span: 12, offset: 4 },
               }"
             >
-              <a-button type="primary" html-type="submit">创建</a-button>
+              <a-button type="primary" html-type="submit">{{ this.id ? '编辑' : '创建' }}</a-button>
             </a-form-item>
           </a-form>
         </a-card>
@@ -82,10 +82,11 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import { Card, Col, Row, Tag } from "ant-design-vue";
-import { update, show } from "@/api/tag";
+import { update, show, store } from "@/api/tag";
 import { setFiledsWithErrors } from "@/utils/form";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 import { setTimeout } from "timers";
+import { AxiosPromise } from "axios";
 
 @Component({
   components: {
@@ -108,40 +109,51 @@ export default class TagUpdate extends Vue {
   }
 
   created() {
-    this.$nextTick(() => {
-      show(this.id).then(res => {
-        const { data } = res.data;
-        this.data = data;
-        const fields = (<any>this.form).getFieldsValue();
-        for (let field in fields) {
-          if (data.hasOwnProperty(field)) {
-            fields[field] = data[field];
+    this.loadInfo();
+  }
+
+  loadInfo() {
+    if (this.id) {
+      this.$nextTick(() => {
+        show(this.id).then(res => {
+          const { data } = res.data;
+          this.data = data;
+          const fields = (<any>this.form).getFieldsValue();
+          for (let field in fields) {
+            if (data.hasOwnProperty(field)) {
+              fields[field] = data[field];
+            }
           }
-        }
-        this.form.setFieldsValue(fields);
+          this.form.setFieldsValue(fields);
+        });
       });
-    });
+    }
   }
 
   handleSubmit(e: Event) {
     e.preventDefault();
     this.form.validateFields((err, values) => {
       if (!err) {
-        update(this.id, values).then(res => {
+        let updateOrCreate: AxiosPromise<any>
+        
+        if (this.id) {
+          updateOrCreate = update(this.id, values);
+        } else {
+          updateOrCreate = store(values)
+        }
+
+        updateOrCreate.then(res => {
           const data = res.data;
 
           if (data.errors) {
             setFiledsWithErrors(this.form, data.errors);
           } else {
-            this.$confirm({
-              title: data.message,
-              okText: "确认",
-              cancelText: "取消",
-              onOk: () => {
-                this.$router.push({
-                  name: "user.index"
-                });
-              }
+            this.$notification.success({
+              message: "提示",
+              description: res.data.message
+            });
+            this.$router.push({
+              name: "tag.index"
             });
           }
         });

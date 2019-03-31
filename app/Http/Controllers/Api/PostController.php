@@ -3,16 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\PostResource;
-use App\Models\Model;
 use App\Models\Post;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * @var Model
-     */
     protected $model;
 
     /**
@@ -45,8 +41,16 @@ class PostController extends Controller
         $posts = $this->model
             ->with('tags:id,name', 'user:id,name', 'category:id,name')
             ->withCount('comments')
-            ->when($request->get('keywords'), function ($query) use ($request) {
-                $query->where('title', 'like', '%'.$request->get('keywords').'%');
+            ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
+                $query->where('title', 'like', '%{$keywords}%');
+            })
+            ->when($tag = $request->get('tag'), function ($query) use ($tag) {
+                $query->whereHas('tags', function ($query) use ($tag) {
+                    $query->where('id', $tag);
+                });
+            })
+            ->when($category = $request->get('category'), function ($query) use ($category) {
+                $query->where('category_id', $category);
             })
             ->when($request->get('status'), function ($query) use ($request) {
                 $query->where('status', $request->get('status'));
@@ -91,18 +95,29 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = $this->model->findOrFail($id);
+        $post->fill($request->all());
+        $post->save();
+        $response = [
+            'message' => 'Post updated.',
+            'data'    => $post->toArray(),
+        ];
+
+        return response()->json($response);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @param $ids
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy($ids)
     {
-        //
+        $ids = explode(',', $ids);
+        $this->model->destroy($ids);
+        return response()->json([
+            'message' => 'Delete success',
+        ]);
     }
 }
