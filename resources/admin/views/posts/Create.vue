@@ -30,14 +30,9 @@
             </a-form-item>
 
             <a-form-item
-              :label-col="{ span: 4 }"
               :wrapper-col="{ span: 12 }"
-              label="描述"
-              extra="标签描述"
             >
-              <a-input v-decorator="[
-                  'description',
-                ]"/>
+              <editor/>
             </a-form-item>
 
             <a-form-item
@@ -86,17 +81,18 @@ import { store } from "@/api/post";
 import { setFiledsWithErrors } from "@/utils/form";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 import { setTimeout } from "timers";
+import Editor from "@/components/Editor/index";
 
 @Component({
   components: {
     ACard: Card,
     ACol: Col,
     ARow: Row,
-    ATag: Tag
+    ATag: Tag,
+    Editor: Editor
   }
 })
 export default class PostCreate extends Vue {
-
   private form: WrappedFormUtils;
 
   beforeCreate() {
