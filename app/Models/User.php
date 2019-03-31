@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Models\Scopes\SlugScope;
+use App\Support\Helper;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\URL;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use App\Support\Helper;
 
 /**
  * Class User.
@@ -93,7 +93,7 @@ class User extends Authenticatable implements JWTSubject
         return URL::route('user.show', ['name' => $this->name]);
     }
 
-    public function setEmailAttribute($value) 
+    public function setEmailAttribute($value)
     {
         if (empty($this->attributes['avatar'])) {
             $this->attributes['avatar'] = Helper::getAvatar($value);
