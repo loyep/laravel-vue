@@ -41,7 +41,7 @@ class CategoryController extends Controller
         $categories = $this->model
             ->withCount('posts')
             ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
-                $query->where('name', 'like', '%' . $keywords . '%')->orWhere('description', 'like', '%' . $keywords . '%');
+                $query->where('name', 'like', '%'.$keywords.'%')->orWhere('description', 'like', '%'.$keywords.'%');
             })
             ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
 
@@ -61,7 +61,7 @@ class CategoryController extends Controller
 
         $response = [
             'message' => 'Category created.',
-            'data' => new CategoryResource($category),
+            'data'    => new CategoryResource($category),
         ];
 
         return response()->json($response);
@@ -85,7 +85,7 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -96,7 +96,7 @@ class CategoryController extends Controller
         $category->save();
         $response = [
             'message' => 'Category updated.',
-            'data' => $category->toArray(),
+            'data'    => $category->toArray(),
         ];
 
         return response()->json($response);
@@ -106,6 +106,7 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param $ids
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($ids)
