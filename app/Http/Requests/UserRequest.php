@@ -20,7 +20,7 @@ class UserRequest extends Request
             'name'         => 'required|unique:users|string|max:255',
             'email'        => 'required|unique:users|string|email|max:255',
             'password'     => 'required|string|min:8|confirmed',
-            'url'          => 'url'
+            'url'          => 'url',
         ];
     }
 }
