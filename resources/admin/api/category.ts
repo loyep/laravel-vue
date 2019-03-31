@@ -31,11 +31,7 @@ export function update(id: [string, number], data: object) {
   })
 }
 
-export function destroy(data: object) {
-  let id = undefined;
-  if (data.hasOwnProperty('id')) {
-    id = data['id']
-  }
+export function destroy(id: number | string | Array<string | number>) {
   return request({
     url: `/category/${id}`,
     method: 'delete'

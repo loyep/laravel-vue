@@ -31,20 +31,22 @@
               <a-form-item>
                 <span class="submitButtons">
                   <a-button icon="search" type="primary" htmlType="submit">查询</a-button>
-                  <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
                 </span>
               </a-form-item>
             </a-col>
           </a-row>
         </a-form>
       </div>
+
       <div class="tableListOperator">
+        <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
         <a-dropdown>
-          <a-button :disabled="selectedRowKeys.length === 0">批量操作
+          <a-button :disabled="selectedRowKeys.length === 0">
+            批量操作
             <a-icon type="down"/>
           </a-button>
           <template #overlay>
-            <a-menu>
+            <a-menu @click="handleMoreAction">
               <a-menu-item key="1">
                 <a-icon type="delete"/>删除
               </a-menu-item>
@@ -52,6 +54,7 @@
           </template>
         </a-dropdown>
       </div>
+
       <a-table
         rowKey="id"
         :columns="columns"
@@ -72,7 +75,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Card, Col, Row, Tag, Menu, Dropdown, Button } from "ant-design-vue";
-import { getList } from "@/api/tag";
+import { getList, destroy } from "@/api/tag";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
 const columns = [
@@ -85,21 +88,21 @@ const columns = [
   {
     title: "Slug",
     dataIndex: "slug",
-    width: 300,
+    width: 300
   },
   {
     title: "描述",
-    dataIndex: "description",
+    dataIndex: "description"
   },
   {
     title: "总数",
     dataIndex: "posts_count",
-    width: 100,
+    width: 100
   },
   {
     title: "更新时间",
     dataIndex: "updated_at",
-    width: 240,
+    width: 240
   }
 ];
 
@@ -117,7 +120,7 @@ const columns = [
   }
 })
 export default class TagList extends Vue {
-  protected selectedRowKeys: Array<number> = [];
+  protected selectedRowKeys?: Array<string | number> = [];
 
   private columns = columns;
 
@@ -130,10 +133,10 @@ export default class TagList extends Vue {
   private pagination: Object = {};
 
   private query: Object = {};
-  
-  @Watch('data')
-  onDataChanged(val: Array<Object>, oldVal: Array<Object>) { 
-    this.selectedRowKeys = []
+
+  @Watch("data")
+  onDataChanged(val: Array<Object>, oldVal: Array<Object>) {
+    this.selectedRowKeys = [];
   }
 
   beforeCreate() {
@@ -156,7 +159,7 @@ export default class TagList extends Vue {
   handleCreate(e: Event) {
     e.preventDefault();
     this.$router.push({
-      name: 'tag.create'
+      name: "tag.create"
     });
   }
 
@@ -164,7 +167,7 @@ export default class TagList extends Vue {
     this.query = query;
     this.loading = true;
     getList(query).then(res => {
-      const data = res.data
+      const data = res.data;
       this.data = data.data;
 
       const paginationProps = {
@@ -199,6 +202,21 @@ export default class TagList extends Vue {
       }
     };
     return colorMap[status];
+  }
+
+  handleMoreAction() {
+    destroy(this.selectedRowKeys!).then(res => {
+      console.log(res);
+      if (res.data.message) {
+        this.$notification.success({
+          message: "删除提示",
+          description: res.data.message
+        });
+        this.$nextTick(() => {
+          this.handleSearch();
+        });
+      }
+    });
   }
 
   handleTableChange(pagination, filters, sorter) {

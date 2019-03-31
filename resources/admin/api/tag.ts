@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getList (params: object = {}) {
+export function getList(params: object = {}) {
   return request({
     url: '/tag',
     method: 'get',
@@ -15,7 +15,7 @@ export function show(id: [string, number]) {
   })
 }
 
-export function store (data: object = {}) {
+export function store(data: object = {}) {
   return request({
     url: '/tag',
     method: 'post',
@@ -31,8 +31,7 @@ export function update(id: [string, number], data: object) {
   })
 }
 
-export function destroy (data) {
-  const id = data.id
+export function destroy(id: number | string | Array<string | number>) {
   return request({
     url: `/tag/${id}`,
     method: 'delete'

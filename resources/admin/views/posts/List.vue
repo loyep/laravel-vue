@@ -48,8 +48,7 @@
               <a-form-item>
                 <span class="submitButtons">
                   <a-button icon="search" type="primary" html-type="submit">查询</a-button>
-                  <a-button icon="search" type="primary" @click="handleReset">重置</a-button>
-                  <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
+                  <a-button icon="undo" @click="handleReset">重置</a-button>
                 </span>
               </a-form-item>
             </a-col>
@@ -57,7 +56,7 @@
         </a-form>
       </div>
       <div class="tableListOperator">
-        <!-- <a-button icon="plus" type="primary" @click=" () => console.log(2222) ">新建</a-button> -->
+        <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
         <a-dropdown>
           <a-button :disabled="selectedRowKeys.length === 0">
             批量操作
@@ -72,6 +71,7 @@
           </template>
         </a-dropdown>
       </div>
+      
       <a-table
         rowKey="id"
         :columns="columns"
@@ -86,9 +86,7 @@
         </template>
 
         <template #post_user="user, post">
-          <router-link
-            :to="{ name: 'post.index', query: {user: user.id}}"
-          >{{ user.name }}</router-link>
+          <router-link :to="{ name: 'post.index', query: {user: user.id}}">{{ user.name }}</router-link>
         </template>
 
         <template #post_category="category">
@@ -98,7 +96,10 @@
         </template>
 
         <template #post_status="status">
-            <a-tag :color="statusMap(status).color" @click="searchByStatus(status)">{{ statusMap(status).label }}</a-tag>
+          <a-tag
+            :color="statusMap(status).color"
+            @click="searchByStatus(status)"
+          >{{ statusMap(status).label }}</a-tag>
         </template>
 
         <template #post_tags="tags">
@@ -173,8 +174,7 @@ const columns = [
   }
 })
 export default class PostList extends Vue {
-
-  protected selectedRowKeys?: Array<string> = [];
+  protected selectedRowKeys?: Array<string | number> = [];
 
   private columns: any = columns;
 
@@ -209,7 +209,7 @@ export default class PostList extends Vue {
   }
 
   searchByStatus(status: string) {
-    this.form.setFieldsValue({ status })
+    this.form.setFieldsValue({ status });
     this.form.validateFields((err, values) => {
       if (!err) {
         this.handleSearch(values);
@@ -242,7 +242,7 @@ export default class PostList extends Vue {
     this.form.resetFields();
     this.$router.replace({
       name: "post.index"
-    })
+    });
   }
 
   handleSearch(query: Object = {}) {

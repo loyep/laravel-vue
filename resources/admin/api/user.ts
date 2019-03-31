@@ -31,8 +31,7 @@ export function update(id: [string, number], data: object) {
   })
 }
 
-export function destroy(data) {
-  const id = data.id
+export function destroy(id: number | string | Array<string | number>) {
   return request({
     url: `/user/${id}`,
     method: 'delete'

@@ -25,7 +25,7 @@ export function update(id: number | string, data: object) {
   })
 }
 
-export function destroy(id: number | string | Array<string>) {
+export function destroy(id: number | string | Array<string | number>) {
   return request({
     url: `/post/${id}`,
     method: 'delete'

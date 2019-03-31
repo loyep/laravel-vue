@@ -46,13 +46,14 @@
         </a-form>
       </div>
       <div class="tableListOperator">
-        <a-dropdown >
-          <a-button :disabled="selectedRowKeys.length === 0">批量操作
+        <a-dropdown>
+          <a-button :disabled="selectedRowKeys.length === 0">
+            批量操作
             <a-icon type="down"/>
           </a-button>
 
           <template #overlay>
-            <a-menu>
+            <a-menu @click="handleMoreAction">
               <a-menu-item key="1">
                 <a-icon type="delete"/>删除
               </a-menu-item>
@@ -67,7 +68,7 @@
         :loading="loading"
         :dataSource="data"
         :pagination="pagination"
-        :rowSelection="{selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
+        :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange, getCheckboxProps: getCheckboxProps}"
         @change="handleTableChange"
       >
         <template v-slot:avatar="avatar">
@@ -84,15 +85,6 @@
 
         <template #email="email">
           <a :href="`mailto:${email}`">{{ email }}</a>
-        </template>
-
-        <template #action="item">
-          <a-list>
-            <a-list-item/>
-          </a-list>
-          <a icon="edit">编辑</a>
-          <a-divider type="vertical"/>
-          <a icon="delete" @click="handleTableDelete(item)">删除</a>
         </template>
       </a-table>
     </div>
@@ -112,7 +104,10 @@ import {
   Menu
 } from "ant-design-vue";
 import { getList, destroy } from "@/api/user";
+import { State, Mutation, namespace } from "vuex-class";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
+
+const authModule = namespace("auth");
 
 const columns = [
   {
@@ -141,13 +136,7 @@ const columns = [
   },
   {
     title: "创建时间",
-    dataIndex: "created_at",
-    sorter: true
-  },
-  {
-    title: "操作",
-    key: "action",
-    scopedSlots: { customRender: "action" }
+    dataIndex: "created_at"
   }
 ];
 
@@ -166,7 +155,6 @@ const columns = [
   }
 })
 export default class UserList extends Vue {
-  
   protected selectedRowKeys: Array<number> = [];
 
   private columns = columns;
@@ -181,9 +169,12 @@ export default class UserList extends Vue {
 
   private query: Object = {};
 
-  @Watch('data')
-  onDataChanged(val: Array<Object>, oldVal: Array<Object>) { 
-    this.selectedRowKeys = []
+  @authModule.Getter("user")
+  private user: any;
+
+  @Watch("data")
+  onDataChanged(val: Array<Object>, oldVal: Array<Object>) {
+    this.selectedRowKeys = [];
   }
 
   beforeCreate() {
@@ -206,18 +197,18 @@ export default class UserList extends Vue {
   handleCreate(e: Event) {
     e.preventDefault();
     this.$router.push({
-      name: 'user.create'
+      name: "user.create"
     });
   }
 
   handleSearch(query: Object = {}) {
-    this.query = query
+    this.query = query;
     this.loading = true;
-    console.log(this.query)
+    console.log(this.query);
     getList(query).then(res => {
-      const data = res.data
+      const data = res.data;
 
-      this.data = data.data
+      this.data = data.data;
       const paginationProps = {
         showSizeChanger: true,
         total: parseInt(data.total),
@@ -233,6 +224,29 @@ export default class UserList extends Vue {
 
   onSelectChange(selectedRowKeys, selectedRows) {
     this.selectedRowKeys = selectedRowKeys;
+  }
+
+  handleMoreAction() {
+    destroy(this.selectedRowKeys!).then(res => {
+      console.log(res);
+      if (res.data.message) {
+        this.$notification.success({
+          message: "删除提示",
+          description: res.data.message
+        });
+        this.$nextTick(() => {
+          this.handleSearch();
+        });
+      }
+    });
+  }
+
+  getCheckboxProps(row) {
+    return {
+      props: {
+        disabled: row.id === this.user.id,
+      }
+    };
   }
 
   handleTableChange(pagination, filters, sorter) {

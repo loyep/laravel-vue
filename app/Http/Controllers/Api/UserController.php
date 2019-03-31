@@ -110,20 +110,16 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param $id
-     *
-     * @throws \Exception
-     *
+     * @param $ids
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy($ids)
     {
-        $deleted = $this->model->findOrFail($id);
-        $deleted->delete();
+        $ids = explode(',', $ids);
+        $this->model->destroy($ids);
 
         return response()->json([
-            'message' => 'User deleted.',
-            'deleted' => $deleted,
+            'message' => 'Delete success',
         ]);
     }
 
