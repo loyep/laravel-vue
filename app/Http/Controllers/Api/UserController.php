@@ -111,6 +111,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param $ids
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($ids)
