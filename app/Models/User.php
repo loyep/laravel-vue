@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\URL;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Support\Helper;
 
 /**
  * Class User.
@@ -24,7 +25,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'display_name', 'password', 'avatar',
+        'name', 'email', 'display_name', 'password', 'avatar', 'url',
     ];
 
     /**
@@ -90,6 +91,13 @@ class User extends Authenticatable implements JWTSubject
     public function getPermLinkAttribute()
     {
         return URL::route('user.show', ['name' => $this->name]);
+    }
+
+    public function setEmailAttribute($value) 
+    {
+        if (empty($this->attributes['avatar'])) {
+            $this->attributes['avatar'] = Helper::getAvatar($value);
+        }
     }
 
     public function meta()

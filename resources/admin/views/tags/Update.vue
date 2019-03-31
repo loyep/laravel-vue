@@ -35,9 +35,13 @@
               label="描述"
               extra="标签描述"
             >
-              <a-input v-decorator="[
+              <a-input
+                v-decorator="[
                   'description',
-                ]"/>
+                ]"
+                type="textarea"
+                :autosize="{ minRows: 3, maxRows: 6 }"
+              />
             </a-form-item>
 
             <a-form-item
@@ -134,12 +138,12 @@ export default class TagUpdate extends Vue {
     e.preventDefault();
     this.form.validateFields((err, values) => {
       if (!err) {
-        let updateOrCreate: AxiosPromise<any>
-        
+        let updateOrCreate: AxiosPromise<any>;
+
         if (this.id) {
           updateOrCreate = update(this.id, values);
         } else {
-          updateOrCreate = store(values)
+          updateOrCreate = store(values);
         }
 
         updateOrCreate.then(res => {

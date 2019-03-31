@@ -79,11 +79,13 @@ const columns = [
   {
     title: "名称",
     dataIndex: "name",
+    width: 240,
     scopedSlots: { customRender: "tag_name" }
   },
   {
     title: "Slug",
     dataIndex: "slug",
+    width: 300,
   },
   {
     title: "描述",
@@ -92,10 +94,12 @@ const columns = [
   {
     title: "总数",
     dataIndex: "posts_count",
+    width: 100,
   },
   {
     title: "更新时间",
-    dataIndex: "updated_at"
+    dataIndex: "updated_at",
+    width: 240,
   }
 ];
 

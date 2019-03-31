@@ -48,6 +48,7 @@
               <a-form-item>
                 <span class="submitButtons">
                   <a-button icon="search" type="primary" html-type="submit">查询</a-button>
+                  <a-button icon="search" type="primary" @click="handleReset">重置</a-button>
                   <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
                 </span>
               </a-form-item>
@@ -84,8 +85,10 @@
           <router-link :to="{ name: 'post.edit', params: {id: post.id}}">{{ title }}</router-link>
         </template>
 
-        <template #post_author="author, post">
-          <a @click="handleSearch({user: post.user.name})">{{ author }}</a>
+        <template #post_user="user, post">
+          <router-link
+            :to="{ name: 'post.index', query: {user: user.id}}"
+          >{{ user.name }}</router-link>
         </template>
 
         <template #post_category="category">
@@ -95,7 +98,7 @@
         </template>
 
         <template #post_status="status">
-          <a-tag :color="statusMap(status).color">{{ statusMap(status).label }}</a-tag>
+            <a-tag :color="statusMap(status).color" @click="searchByStatus(status)">{{ statusMap(status).label }}</a-tag>
         </template>
 
         <template #post_tags="tags">
@@ -111,7 +114,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 import { Card, Col, Row, Tag, Menu, Dropdown } from "ant-design-vue";
 import { getList, destroy } from "@/api/post";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
@@ -121,21 +124,25 @@ const columns = [
   {
     title: "名称",
     dataIndex: "title",
+    width: 300,
     scopedSlots: { customRender: "post_title" }
   },
   {
     title: "作者",
-    dataIndex: "user.name",
-    scopedSlots: { customRender: "post_author" }
+    dataIndex: "user",
+    width: 100,
+    scopedSlots: { customRender: "post_user" }
   },
   {
     title: "分类",
     dataIndex: "category",
+    width: 120,
     scopedSlots: { customRender: "post_category" }
   },
   {
     title: "标签",
     dataIndex: "tags",
+    width: 300,
     scopedSlots: { customRender: "post_tags" }
   },
   {
@@ -166,6 +173,7 @@ const columns = [
   }
 })
 export default class PostList extends Vue {
+
   protected selectedRowKeys?: Array<string> = [];
 
   private columns: any = columns;
@@ -188,7 +196,7 @@ export default class PostList extends Vue {
   @Watch("$route")
   onRouteChanged() {
     console.log(this.$route.query.tag);
-    this.handleSearch();
+    this.initForm();
   }
 
   beforeCreate() {
@@ -197,6 +205,19 @@ export default class PostList extends Vue {
 
   created() {
     console.log(this.$route.query.tag);
+    this.initForm();
+  }
+
+  searchByStatus(status: string) {
+    this.form.setFieldsValue({ status })
+    this.form.validateFields((err, values) => {
+      if (!err) {
+        this.handleSearch(values);
+      }
+    });
+  }
+
+  initForm() {
     this.handleSearch();
   }
 
@@ -214,6 +235,14 @@ export default class PostList extends Vue {
     this.$router.push({
       name: "post.create"
     });
+  }
+
+  handleReset(e: Event) {
+    e.preventDefault();
+    this.form.resetFields();
+    this.$router.replace({
+      name: "post.index"
+    })
   }
 
   handleSearch(query: Object = {}) {

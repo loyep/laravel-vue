@@ -49,6 +49,9 @@ class PostController extends Controller
                     $query->where('id', $tag);
                 });
             })
+            ->when($user = $request->get('user'), function ($query) use ($user) {
+                $query->where('user_id', $user);
+            })
             ->when($category = $request->get('category'), function ($query) use ($category) {
                 $query->where('category_id', $category);
             })

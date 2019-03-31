@@ -1,12 +1,12 @@
 <template>
   <div>
     <a-row :gutter="{ md: 24 }">
-      <a-col :md="16" :sm="24">
+      <a-col :md="24" :sm="24">
         <a-card>
           <a-form :form="form" @submit="handleSubmit">
             <a-form-item
-              :label-col="{ span: 4 }"
-              :wrapper-col="{ span: 12 }"
+              :label-col="{ span: 2 }"
+              :wrapper-col="{ span: 6 }"
               label="标签名"
               extra="“这将是它在站点上显示的名字。"
             >
@@ -19,20 +19,14 @@
             </a-form-item>
 
             <a-form-item
-              :label-col="{ span: 4 }"
-              :wrapper-col="{ span: 12 }"
+              :label-col="{ span: 2 }"
+              :wrapper-col="{ span: 6 }"
               label="别名"
               extra="“别名”是在URL中使用的别称，它可以令URL更美观。通常使用小写，只能包含字母，数字和连字符（-）。"
             >
               <a-input v-decorator="[
                   'slug',
                 ]"/>
-            </a-form-item>
-
-            <a-form-item
-              :wrapper-col="{ span: 12 }"
-            >
-              <editor/>
             </a-form-item>
 
             <a-form-item
@@ -47,8 +41,9 @@
         </a-card>
       </a-col>
 
-      <a-col :md="8" :sm="12">
+      <a-col :md="24" :sm="12">
         <a-card>
+          <editor/>
           <br>
           <br>
           <br>
@@ -81,7 +76,7 @@ import { store } from "@/api/post";
 import { setFiledsWithErrors } from "@/utils/form";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 import { setTimeout } from "timers";
-import Editor from "@/components/Editor/index";
+import Editor from "@/components/Editor/index.vue";
 
 @Component({
   components: {

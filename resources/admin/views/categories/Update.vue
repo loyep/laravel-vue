@@ -35,9 +35,13 @@
               label="描述"
               extra="标签描述"
             >
-              <a-input v-decorator="[
+              <a-input
+                v-decorator="[
                   'description',
-                ]"/>
+                ]"
+                type="textarea"
+                :autosize="{ minRows: 3, maxRows: 6 }"
+              />
             </a-form-item>
 
             <a-form-item
