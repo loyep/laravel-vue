@@ -113,6 +113,7 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * @param string $key
+     *
      * @return mixed
      */
     public function __get($key)
@@ -121,6 +122,7 @@ class User extends Authenticatable implements JWTSubject
         if ($value === null && !property_exists($this, $key)) {
             return $this->getMetaValue($key);
         }
+
         return $value;
     }
 }

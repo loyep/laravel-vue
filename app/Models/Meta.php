@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
- * Class Meta
+ * Class Meta.
  *
  * @property string $key
  * @property string $value
  */
 class Meta extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *
@@ -34,6 +33,7 @@ class Meta extends Model
 
     /**
      * @param array $models
+     *
      * @return MetaCollection
      */
     public function newCollection(array $models = [])

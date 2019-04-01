@@ -22,11 +22,11 @@ $factory->define(User::class, function (Faker $faker) {
     $email = $faker->unique()->safeEmail;
 
     return [
-        'name' => Str::slug($name),
-        'email' => $email,
+        'name'         => Str::slug($name),
+        'email'        => $email,
         'display_name' => $name,
-        'avatar' => Helper::getAvatar($email),
-        'password' => Hash::make('123123'),
-        'url' => 'https://loyep.com',
+        'avatar'       => Helper::getAvatar($email),
+        'password'     => Hash::make('123123'),
+        'url'          => 'https://loyep.com',
     ];
 });

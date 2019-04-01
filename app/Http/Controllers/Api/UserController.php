@@ -47,7 +47,7 @@ class UserController extends Controller
         $users = $this->model
             ->withCount('posts')
             ->when($name = $request->get('name'), function ($query) use ($name) {
-                $query->where('name', 'like', '%' . $name . '%');
+                $query->where('name', 'like', '%'.$name.'%');
             })
             ->paginate($request->get('per_page', 10));
 
@@ -71,7 +71,7 @@ class UserController extends Controller
 
         $response = [
             'message' => 'User created.',
-            'data' => new UserResource($user),
+            'data'    => new UserResource($user),
         ];
 
         return response()->json($response);
@@ -109,7 +109,7 @@ class UserController extends Controller
         $user->save();
         $response = [
             'message' => 'User updated.',
-            'data' => $user->toArray(),
+            'data'    => $user->toArray(),
         ];
 
         return response()->json($response);
