@@ -1,8 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Models\Permission;
 
-$factory->define(App\Models\Permission::class, function (Faker $faker) {
+$factory->define(Permission::class, function (Faker $faker) {
     return [
         //
     ];

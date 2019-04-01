@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Scopes\SlugScope;
 use App\Traits\Cachable;
 use App\Traits\CanLike;
+use App\Traits\MetaFields;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,10 +29,11 @@ use Illuminate\Support\Facades\URL;
  * @property Content content
  * @property string published_at
  * @property string slug
+ * @property meta
  */
 class Post extends Model
 {
-    use Cachable, CanLike, SlugScope;
+    use Cachable, CanLike, SlugScope, MetaFields;
 
     protected $dates = [
         'published_at',
@@ -83,8 +85,16 @@ class Post extends Model
         return Carbon::parse($this->published_at)->toDateString();
     }
 
-    public function meta()
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    public function __get($key)
     {
-        return $this->morphOne(Meta::class, 'metaable');
+        $value = parent::__get($key);
+        if ($value === null && !property_exists($this, $key)) {
+            return $this->getMetaValue($key);
+        }
+        return $value;
     }
 }

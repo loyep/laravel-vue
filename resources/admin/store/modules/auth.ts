@@ -55,7 +55,6 @@ export const actions: ActionTree<IAuthState, RootState> = {
         } else {
           reject(res.data.errors)
         }
-        
       }).catch(error => {
         reject(error)
       })
@@ -65,14 +64,13 @@ export const actions: ActionTree<IAuthState, RootState> = {
   Login(context: ActionContext<IAuthState, RootState>, userInfo: any) {
     return new Promise((resolve, reject) => {
       login(userInfo).then(res => {
+        const { data, errors } = res.data;
 
-        const { data } = res.data;
-
-        if (data.token) {
+        if (errors) {
           context.commit('SET_TOKEN', data.token)
           resolve(res)
         } else {
-          reject(res.data.errors)
+          reject(errors)
         }
 
       }).catch(error => {

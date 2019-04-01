@@ -8,6 +8,7 @@ use App\Models\Model;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -46,7 +47,7 @@ class UserController extends Controller
         $users = $this->model
             ->withCount('posts')
             ->when($name = $request->get('name'), function ($query) use ($name) {
-                $query->where('name', 'like', '%'.$name.'%');
+                $query->where('name', 'like', '%' . $name . '%');
             })
             ->paginate($request->get('per_page', 10));
 
@@ -62,11 +63,15 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = $this->model->create($request->all());
+        $data = array_merge($request->all(), [
+            'password' => Hash::make($request->get('password')),
+        ]);
+
+        $user = $this->model->create($data);
 
         $response = [
             'message' => 'User created.',
-            'data'    => new UserResource($user),
+            'data' => new UserResource($user),
         ];
 
         return response()->json($response);
@@ -97,11 +102,14 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         $user = $this->model->findOrFail($id);
-        $user->fill($request->all());
+        $data = array_merge($request->all(), [
+            'password' => Hash::make($request->get('password')),
+        ]);
+        $user->fill($data);
         $user->save();
         $response = [
             'message' => 'User updated.',
-            'data'    => $user->toArray(),
+            'data' => $user->toArray(),
         ];
 
         return response()->json($response);
@@ -116,7 +124,6 @@ class UserController extends Controller
      */
     public function destroy($ids)
     {
-        $ids = explode(',', $ids);
         $this->model->destroy($ids);
 
         return response()->json([

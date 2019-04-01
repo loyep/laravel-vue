@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -25,7 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Log::info('home');
         $posts = Post::with('category')->withCount('comments')->paginate();
 
         return view('home', compact('posts'));

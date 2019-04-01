@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\SlugScope;
+use App\Traits\MetaFields;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\URL;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\URL;
  */
 class Category extends Model
 {
-    use SlugScope;
+    use SlugScope, MetaFields;
 
     protected $fillable = [
         'name', 'slug', 'image', 'description',
@@ -33,8 +34,16 @@ class Category extends Model
         return URL::route('category.show', ['slug' => $this->slug]);
     }
 
-    public function meta()
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    public function __get($key)
     {
-        return $this->morphOne(Meta::class, 'metaable');
+        $value = parent::__get($key);
+        if ($value === null && !property_exists($this, $key)) {
+            return $this->getMetaValue($key);
+        }
+        return $value;
     }
 }

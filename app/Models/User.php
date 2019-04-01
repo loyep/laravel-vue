@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Scopes\SlugScope;
 use App\Support\Helper;
+use App\Traits\MetaFields;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\URL;
@@ -17,7 +18,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  */
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, SlugScope;
+    use Notifiable, SlugScope, MetaFields;
 
     /**
      * The attributes that are mass assignable.
@@ -43,7 +44,6 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $appends = [
-        'roles',
     ];
 
     /**
@@ -98,15 +98,29 @@ class User extends Authenticatable implements JWTSubject
         if (empty($this->attributes['avatar'])) {
             $this->attributes['avatar'] = Helper::getAvatar($value);
         }
+        $this->attributes['email'] = $value;
     }
 
     public function meta()
     {
-        return $this->morphOne(Meta::class, 'metaable');
+        return $this->morphMany(Meta::class, 'metaable');
     }
 
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    public function __get($key)
+    {
+        $value = parent::__get($key);
+        if ($value === null && !property_exists($this, $key)) {
+            return $this->getMetaValue($key);
+        }
+        return $value;
     }
 }

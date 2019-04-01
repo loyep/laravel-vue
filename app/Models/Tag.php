@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\SlugScope;
+use App\Traits\MetaFields;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\URL;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\URL;
  */
 class Tag extends Model
 {
-    use SlugScope;
+    use SlugScope, MetaFields;
 
     /**
      * The attributes that are mass assignable.

@@ -1,8 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Models\Menu;
 
-$factory->define(App\Models\Menu::class, function (Faker $faker) {
+$factory->define(Menu::class, function (Faker $faker) {
     return [
         //
     ];

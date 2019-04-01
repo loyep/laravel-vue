@@ -1,8 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Models\Link;
 
-$factory->define(App\Models\Link::class, function (Faker $faker) {
+$factory->define(Link::class, function (Faker $faker) {
     return [
         //
     ];

@@ -13,7 +13,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 30)->create();
+        $users = factory(User::class, 10)->create()->each(function ($user) {
+            $user->meta()->saveMany(factory(App\Models\Meta::class, 5)->make());
+        });
 //        $admin = factory(User::class)->create([
 //            'name'              => 'admin',
 //            'email'             => 'admin@loyep.com',

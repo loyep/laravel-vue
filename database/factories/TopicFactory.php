@@ -1,8 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Models\Topic;
 
-$factory->define(App\Models\Topic::class, function (Faker $faker) {
+$factory->define(Topic::class, function (Faker $faker) {
     return [
         //
     ];

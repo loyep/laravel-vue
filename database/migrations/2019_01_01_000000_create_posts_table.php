@@ -19,9 +19,8 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->unsignedBigInteger('category_id')->index();
-            $table->string('meta_title')->nullable();
-            $table->text('meta_keywords')->nullable();
-            $table->text('meta_description')->nullable();
+            $table->text('keywords')->nullable();
+            $table->text('description')->nullable();
             $table->text('excerpt')->nullable();
             $table->unsignedSmallInteger('order')->default(1);
             $table->unsignedBigInteger('views')->default(0);
@@ -31,10 +30,10 @@ class CreatePostsTable extends Migration
             $table->boolean('is_top')->default(false);
             $table->enum('status', ['published', 'draft', 'private'])->default('published');
             $table->boolean('allow_comment')->default(true);
-            $table->softDeletes();
             $table->timestamp('published_at')->nullable()->useCurrent();
             $table->timestamp('viewed_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
