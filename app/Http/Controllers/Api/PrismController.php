@@ -20,16 +20,14 @@ class PrismController extends Controller
      */
     public function index(Request $request)
     {
-//        $config = [
-//            'base'           => PrismAdmin::path(),
-//            'name'           => PrismAdmin::title(),
-//            'description'    => '美好源于热爱',
-//            'setting_drawer' => true,
-//        ];
-//
-//        return view('admin.index', compact('config'));
-        $user = User::with('meta')->find(2);
-        $user->saveMeta('non', '2222222');
+        $config = [
+            'base'           => PrismAdmin::path(),
+            'name'           => PrismAdmin::title(),
+            'description'    => '美好源于热爱',
+            'setting_drawer' => true,
+        ];
+
+        return view('admin.index', compact('config'));
     }
 
     /**
