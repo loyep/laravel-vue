@@ -66,7 +66,7 @@ export const actions: ActionTree<IAuthState, RootState> = {
       login(userInfo).then(res => {
         const { data, errors } = res.data;
 
-        if (errors) {
+        if (data && data.token) {
           context.commit('SET_TOKEN', data.token)
           resolve(res)
         } else {
