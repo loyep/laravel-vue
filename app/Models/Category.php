@@ -36,6 +36,7 @@ class Category extends Model
 
     /**
      * @param string $key
+     *
      * @return mixed
      */
     public function __get($key)
@@ -44,6 +45,7 @@ class Category extends Model
         if ($value === null && !property_exists($this, $key)) {
             return $this->getMetaValue($key);
         }
+
         return $value;
     }
 }

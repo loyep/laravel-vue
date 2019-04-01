@@ -7,14 +7,15 @@ use App\Models\Meta;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Trait MetaFields
+ * Trait MetaFields.
+ *
  * @property MetaCollection meta
  */
 trait MetaFields
 {
-
     /**
      * @param string $attribute
+     *
      * @return mixed|null
      */
     public function getMeta($attribute)
@@ -22,7 +23,6 @@ trait MetaFields
         if ($meta = $this->meta->{$attribute}) {
             return $meta;
         }
-        return null;
     }
 
     /**
@@ -36,8 +36,9 @@ trait MetaFields
     /**
      * @param Builder $query
      * @param $meta
-     * @param null $value
+     * @param null   $value
      * @param string $operator
+     *
      * @return Builder
      */
     public function scopeHasMeta(Builder $query, $meta, $value = null, string $operator = '=')
@@ -51,10 +52,12 @@ trait MetaFields
                     return $query->where('key', $operator, $value);
                 }
                 $query->where('key', $operator, $key);
+
                 return is_null($value) ? $query :
                     $query->where('value', $operator, $value);
             });
         }
+
         return $query;
     }
 
@@ -62,6 +65,7 @@ trait MetaFields
      * @param Builder $query
      * @param $meta
      * @param null $value
+     *
      * @return Builder
      */
     public function scopeHasMetaLike(Builder $query, $meta, $value = null)
@@ -71,7 +75,8 @@ trait MetaFields
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return bool
      */
     public function saveField($key, $value)
@@ -81,7 +86,8 @@ trait MetaFields
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return bool
      */
     public function saveMeta($key, $value = null)
@@ -91,14 +97,17 @@ trait MetaFields
                 $this->saveOneMeta($k, $v);
             }
             $this->load('meta');
+
             return true;
         }
+
         return $this->saveOneMeta($key, $value);
     }
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return bool
      */
     private function saveOneMeta($key, $value)
@@ -107,12 +116,14 @@ trait MetaFields
             ->firstOrNew(['key' => $key]);
         $result = $meta->fill(['value' => $value])->save();
         $this->load('meta');
+
         return $result;
     }
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function createField($key, $value)
@@ -122,7 +133,8 @@ trait MetaFields
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Support\Collection
      */
     public function createMeta($key, $value = null)
@@ -132,21 +144,24 @@ trait MetaFields
                 return $this->createOneMeta($key, $value);
             });
         }
+
         return $this->createOneMeta($key, $value);
     }
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     private function createOneMeta($key, $value)
     {
         $meta = $this->meta()->create([
-            'key' => $key,
+            'key'   => $key,
             'value' => $value,
         ]);
         $this->load('meta');
+
         return $meta;
     }
 
@@ -160,6 +175,7 @@ trait MetaFields
 
     /**
      * @param $key
+     *
      * @return mixed
      */
     public function getMetaValue($key)
