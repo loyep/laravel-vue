@@ -53,7 +53,7 @@ class LoginController extends Controller
         $this->guard()->logout();
 
         return response([
-            'result' => true,
+            'result'  => true,
             'message' => '',
         ]);
     }
@@ -103,7 +103,7 @@ class LoginController extends Controller
         $type = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
         return [
-            $type => $username,
+            $type      => $username,
             'password' => $request->input('password'),
         ];
     }
@@ -150,28 +150,29 @@ class LoginController extends Controller
         return response()
             ->json([
                 'data' => [
-                    'token' => 'Bearer ' . $token,
+                    'token'      => 'Bearer '.$token,
                     'expires_in' => $expiration,
-                    'welcome' => $welcome,
+                    'welcome'    => $welcome,
                 ],
             ])
-            ->header('authorization', 'Bearer ' . $token);
+            ->header('authorization', 'Bearer '.$token);
     }
 
     /**
      * @param User $user
+     *
      * @return string
      */
     protected function generateWelcome(User $user)
     {
-        $welcome = Str::ucfirst($user->display_name) . ', ' . self::getPeriodOfTime() . '好!';
+        $welcome = Str::ucfirst($user->display_name).', '.self::getPeriodOfTime().'好!';
 
         return $welcome;
     }
 
     public static function getPeriodOfTime($hour = null)
     {
-        $hour = $hour ? $hour : (int)date('G', time());
+        $hour = $hour ? $hour : (int) date('G', time());
         $period = '';
         if (0 <= $hour && 6 > $hour) {
             $period = '凌晨';
@@ -237,7 +238,7 @@ class LoginController extends Controller
     {
         $request->validate([
             $this->username() => 'required|string',
-            'password' => 'required|string',
+            'password'        => 'required|string',
         ]);
     }
 
@@ -245,7 +246,7 @@ class LoginController extends Controller
      * The user has been authenticated.
      *
      * @param \Illuminate\Http\Request $request
-     * @param mixed $user
+     * @param mixed                    $user
      *
      * @return mixed
      */
