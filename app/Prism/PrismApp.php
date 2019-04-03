@@ -102,6 +102,7 @@ class PrismApp
 
     /**
      * @param string $group
+     *
      * @return array
      */
     public function menus(string $group)

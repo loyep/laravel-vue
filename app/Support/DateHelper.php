@@ -27,8 +27,8 @@ class DateHelper
     /**
      * 格式化输出.
      *
-     * @param string $format 目标格式,默认为null则以Y-m-d H:i:s格式输出
-     * @param int $dateTime unix时间戳，默认为null则用当前时间
+     * @param string $format   目标格式,默认为null则以Y-m-d H:i:s格式输出
+     * @param int    $dateTime unix时间戳，默认为null则用当前时间
      *
      * @return string
      */
@@ -41,7 +41,7 @@ class DateHelper
      * 获取日期的某部分.
      *
      * @param string $interval 字符串表达式 ,时间间隔类型
-     * @param mixed $dateTime 表示日期的文字，默认为null则用当前时间
+     * @param mixed  $dateTime 表示日期的文字，默认为null则用当前时间
      *
      * @return string 返回日期的某部分
      */
@@ -53,9 +53,9 @@ class DateHelper
     /**
      * 获取两个日期的差.
      *
-     * @param string $interval 返回两个日期差的间隔类型
-     * @param mixed $startDateTime 开始日期
-     * @param mixed $endDateTime 结束日期
+     * @param string $interval      返回两个日期差的间隔类型
+     * @param mixed  $startDateTime 开始日期
+     * @param mixed  $endDateTime   结束日期
      *
      * @return string
      */
@@ -95,9 +95,9 @@ class DateHelper
      * 返回向指定日期追加指定间隔类型的一段时间间隔后的日期
      *
      * @param string $interval 字符串表达式，是所要加上去的时间间隔类型。
-     * @param int $value 数值表达式，是要加上的时间间隔的数目。其数值可以为正数（得到未来的日期），也可以为负数（得到过去的日期）。
+     * @param int    $value    数值表达式，是要加上的时间间隔的数目。其数值可以为正数（得到未来的日期），也可以为负数（得到过去的日期）。
      * @param string $dateTime 表示日期的文字，这一日期还加上了时间间隔。
-     * @param mixed $format 格式化输出
+     * @param mixed  $format   格式化输出
      *
      * @return string 返回追加后的时间
      */
@@ -157,7 +157,7 @@ class DateHelper
      * 获取该月的天数.
      *
      * @param int $month 月份
-     * @param int $year 年份
+     * @param int $year  年份
      *
      * @return int
      */
@@ -196,7 +196,7 @@ class DateHelper
         $tz = date('Z', $time);
         $tzs = ($tz < 0) ? '-' : '+';
         $tz = abs($tz);
-        $tz = (int)($tz / 3600) * 100 + ($tz % 3600) / 60;
+        $tz = (int) ($tz / 3600) * 100 + ($tz % 3600) / 60;
 
         return sprintf('%s %s%04d', date('D, j M Y H:i:s', $time), $tzs, $tz);
     }
@@ -224,7 +224,7 @@ class DateHelper
      */
     public static function getChinaWeek($week = null)
     {
-        $week = $week ? $week : (int)date('w', time());
+        $week = $week ? $week : (int) date('w', time());
         $weekMap = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
 
         return $weekMap[$week];
@@ -239,7 +239,7 @@ class DateHelper
      */
     public static function getPeriodOfTime($hour = null)
     {
-        $hour = $hour ? $hour : (int)date('G', time());
+        $hour = $hour ? $hour : (int) date('G', time());
         $period = '';
         if (0 <= $hour && 6 > $hour) {
             $period = '凌晨';
@@ -288,7 +288,7 @@ class DateHelper
     /**
      * 获取微秒数.
      *
-     * @param string $mircrotime 微妙时间，默认为null则获取当前时间
+     * @param string $mircrotime   微妙时间，默认为null则获取当前时间
      * @param string $get_as_float 获取微妙时间是否以浮点数返回,默认为false即不以浮点数方式返回
      *
      * @return int
@@ -325,10 +325,10 @@ class DateHelper
     /**
      * 比较两个时间返回离现在最近的一个时间.
      *
-     * @param int $time 当前时间戳
-     * @param int $timestamp 比较的时间戳,默认为null则获取当前时间戳
-     * @param string $format 格式化当前时间戳,默认为null则转化为格式Y-m-d H:i:s
-     * @param array $type 要返回的时间类型，默认为 1则只返回Y-m-d否则返回Y-m-d m-d H:i
+     * @param int    $time      当前时间戳
+     * @param int    $timestamp 比较的时间戳,默认为null则获取当前时间戳
+     * @param string $format    格式化当前时间戳,默认为null则转化为格式Y-m-d H:i:s
+     * @param array  $type      要返回的时间类型，默认为 1则只返回Y-m-d否则返回Y-m-d m-d H:i
      *
      * @return array
      */
@@ -342,31 +342,31 @@ class DateHelper
         $result = self::format($format, $time);
         if (0 >= $decrease) {
             return 1 == $type ? [self::format('Y-m-d', $time), $result] : [
-                self::format('Y-m-d m-d H:i', $time), $result,];
+                self::format('Y-m-d m-d H:i', $time), $result, ];
         }
         if ($currentTime == $compareTime) {
             if (1 == $type) {
                 if (60 >= $decrease) {
-                    return [$decrease . $timelang['second'], $result];
+                    return [$decrease.$timelang['second'], $result];
                 }
 
-                return 3600 >= $decrease ? [ceil($decrease / 60) . $timelang['minute'], $result] : [
-                    ceil($decrease / 3600) . $timelang['hour'], $result,];
+                return 3600 >= $decrease ? [ceil($decrease / 60).$timelang['minute'], $result] : [
+                    ceil($decrease / 3600).$timelang['hour'], $result, ];
             }
 
             return [self::format('H:i', $time), $result];
         } elseif ($currentTime == $compareTime - 86400) {
-            return 1 == $type ? [$timelang['yesterday'] . ' ' . self::format('H:i', $time), $result] : [
-                self::format('m-d H:i', $time), $result,];
+            return 1 == $type ? [$timelang['yesterday'].' '.self::format('H:i', $time), $result] : [
+                self::format('m-d H:i', $time), $result, ];
         } elseif ($currentTime == $compareTime - 172800) {
-            return 1 == $type ? [$timelang['qiantian'] . ' ' . self::format('H:i', $time), $result] : [
-                self::format('m-d H:i', $time), $result,];
+            return 1 == $type ? [$timelang['qiantian'].' '.self::format('H:i', $time), $result] : [
+                self::format('m-d H:i', $time), $result, ];
         } elseif (strtotime(self::format('Y', $time)) == strtotime(self::format('Y', $timestamp))) {
             return 1 == $type ? [self::format('m-d', $time), $result] : [self::format('m-d H:i', $time),
-                $result,];
+                $result, ];
         }
 
         return 1 == $type ? [self::format('Y-m-d', $time), $result] : [self::format('Y-m-d m-d H:i', $time),
-            $result,];
+            $result, ];
     }
 }

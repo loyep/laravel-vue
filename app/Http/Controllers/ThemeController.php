@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TagRequest;
 use App\Http\Requests\ThemeRequest;
-use App\Repositories\ThemeRepository;
-use App\Validators\ThemeValidator;
 use Illuminate\Http\Request;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -15,7 +13,6 @@ use Prettus\Validator\Exceptions\ValidatorException;
  */
 class ThemeController extends Controller
 {
-
     /**
      * The validation factory implementation.
      *
@@ -25,7 +22,6 @@ class ThemeController extends Controller
 
     /**
      * ThemeController constructor.
-     *
      */
     public function __construct()
     {

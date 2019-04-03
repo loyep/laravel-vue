@@ -5,7 +5,8 @@ namespace App\Traits;
 use App\Services\CachedBuilder;
 
 /**
- * Trait Cachable
+ * Trait Cachable.
+ *
  * @method $this cache($time)
  */
 trait Cachable

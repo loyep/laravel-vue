@@ -19,9 +19,10 @@ class Setting extends Model
 
     public function toArray()
     {
-        if ($this instanceof Setting) {
+        if ($this instanceof self) {
             return [$this->key => $this->value];
         }
+
         return parent::toArray();
     }
 }

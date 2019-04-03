@@ -92,7 +92,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -103,7 +103,7 @@ class PostController extends Controller
         $post->save();
         $response = [
             'message' => 'Post updated.',
-            'data' => $post->toArray(),
+            'data'    => $post->toArray(),
         ];
 
         return response()->json($response);
