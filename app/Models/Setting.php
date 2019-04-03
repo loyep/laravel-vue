@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Traits\Cachable;
-use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
@@ -17,4 +16,12 @@ class Setting extends Model
     protected $fillable = [
         'key', 'display_name', 'value', 'details', 'type', 'group',
     ];
+
+    public function toArray()
+    {
+        if ($this instanceof Setting) {
+            return [$this->key => $this->value];
+        }
+        return parent::toArray();
+    }
 }

@@ -43,7 +43,7 @@ class SettingController extends Controller
     {
         $settings = $this->model
             ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
-                $query->where('key', 'like', '%'.$keywords.'%');
+                $query->where('key', 'like', `%${$keywords}%`);
             })
             ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
 
@@ -55,7 +55,7 @@ class SettingController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -67,7 +67,7 @@ class SettingController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -78,9 +78,9 @@ class SettingController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -92,7 +92,7 @@ class SettingController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {

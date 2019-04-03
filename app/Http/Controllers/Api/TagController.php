@@ -41,7 +41,7 @@ class TagController extends Controller
         $tags = $this->model
             ->withCount('posts')
             ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
-                $query->where('name', 'like', '%'.$keywords.'%');
+                $query->where('name', 'like', '%' . $keywords . '%');
             })
             ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
 
@@ -53,7 +53,7 @@ class TagController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -61,7 +61,7 @@ class TagController extends Controller
 
         $response = [
             'message' => 'Tag created.',
-            'data'    => new TagResource($tag),
+            'data' => new TagResource($tag),
         ];
 
         return response()->json($response);
@@ -85,9 +85,9 @@ class TagController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -96,7 +96,7 @@ class TagController extends Controller
         $tag->save();
         $response = [
             'message' => 'Tag updated.',
-            'data'    => $tag->toArray(),
+            'data' => $tag->toArray(),
         ];
 
         return response()->json($response);
@@ -105,14 +105,13 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param $ids
+     * @param string|int $id
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($ids)
+    public function destroy($id)
     {
-        $ids = explode(',', $ids);
-        $this->model->destroy($ids);
+        $this->model->destroy($id);
 
         return response()->json([
             'message' => 'Delete success',

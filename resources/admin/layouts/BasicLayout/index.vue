@@ -28,7 +28,7 @@
 <script lang="ts">
 import { Layout } from 'ant-design-vue'
 import SiderMenu from '@/components/SiderMenu/index.vue'
-import SettingDrawer from '@/components/SettingDrawer/index.vue'
+const SettingDrawer = () => import('@/components/SettingDrawer/index.vue')
 import Footer from './components/Footer.vue'
 import Header from './components/Header.vue'
 import { Component, Vue } from 'vue-property-decorator';
@@ -92,7 +92,7 @@ export default class BasicLayout extends Vue {
 
   created() {
     this.menus = this.mainMenu.find((item) => item.path === '/').children
-    this.showSettingDrawer = (<any>window).config.setting_drawer ? (<any>window).config.setting_drawer : false
+    this.showSettingDrawer = process.env.NODE_ENV === 'development'
   }
 
   setSidebar (value) {

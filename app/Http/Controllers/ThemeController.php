@@ -15,26 +15,21 @@ use Prettus\Validator\Exceptions\ValidatorException;
  */
 class ThemeController extends Controller
 {
-    /**
-     * @var ThemeRepository
-     */
-    protected $repository;
 
     /**
-     * @var ThemeValidator
+     * The validation factory implementation.
+     *
+     * @var \Illuminate\Contracts\Validation\Factory
      */
-    protected $validator;
+    protected $validation;
 
     /**
      * ThemeController constructor.
      *
-     * @param ThemeRepository $repository
-     * @param ThemeValidator  $validator
      */
-    public function __construct(ThemeRepository $repository, ThemeValidator $validator)
+    public function __construct()
     {
-        $this->repository = $repository;
-        $this->validator = $validator;
+        //
     }
 
     /**

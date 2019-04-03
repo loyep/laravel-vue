@@ -10,7 +10,7 @@ class WidgetController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -20,7 +20,7 @@ class WidgetController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create()
     {
@@ -32,7 +32,7 @@ class WidgetController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -44,7 +44,7 @@ class WidgetController extends Controller
      *
      * @param \App\Models\Widget $widget
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Widget $widget)
     {
@@ -56,7 +56,7 @@ class WidgetController extends Controller
      *
      * @param \App\Models\Widget $widget
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function edit(Widget $widget)
     {
@@ -69,7 +69,7 @@ class WidgetController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Widget       $widget
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Widget $widget)
     {
@@ -81,7 +81,7 @@ class WidgetController extends Controller
      *
      * @param \App\Models\Widget $widget
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Widget $widget)
     {

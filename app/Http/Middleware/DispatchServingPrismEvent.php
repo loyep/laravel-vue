@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Nova\Http\Middleware;
+namespace App\Http\Middleware;
 
 use App\Events\ServingPrism;
 

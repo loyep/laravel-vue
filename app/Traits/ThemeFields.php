@@ -2,26 +2,25 @@
 
 namespace App\Traits;
 
-use App\Models\Collection\MetaCollection;
-use App\Models\Meta;
+use App\Models\Theme;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Trait MetaFields.
+ * Trait ThemeFields
  *
- * @property MetaCollection meta
+ * @property ThemeCollection theme
  */
-trait MetaFields
+trait ThemeFields
 {
     /**
      * @param string $attribute
      *
      * @return mixed|null
      */
-    public function getMeta($attribute)
+    public function getTheme($attribute)
     {
-        if ($meta = $this->meta->{$attribute}) {
-            return $meta;
+        if ($theme = $this->theme->{$attribute}) {
+            return $theme;
         }
     }
 
@@ -30,24 +29,24 @@ trait MetaFields
      */
     public function fields()
     {
-        return $this->meta();
+        return $this->theme();
     }
 
     /**
      * @param Builder $query
-     * @param array | string $meta
+     * @param array | string $theme
      * @param null $value
      * @param string $operator
      *
      * @return Builder
      */
-    public function scopeHasMeta(Builder $query, $meta, $value = null, string $operator = '=')
+    public function scopeHasTheme(Builder $query, $theme, $value = null, string $operator = '=')
     {
-        if (!is_array($meta)) {
-            $meta = [$meta => $value];
+        if (!is_array($theme)) {
+            $theme = [$theme => $value];
         }
-        foreach ($meta as $key => $value) {
-            $query->whereHas('meta', function (Builder $query) use ($key, $value, $operator) {
+        foreach ($theme as $key => $value) {
+            $query->whereHas('theme', function (Builder $query) use ($key, $value, $operator) {
                 if (!is_string($key)) {
                     return $query->where('key', $operator, $value);
                 }
@@ -63,14 +62,14 @@ trait MetaFields
 
     /**
      * @param Builder $query
-     * @param string|array $meta
+     * @param string|array $theme
      * @param null $value
      *
      * @return Builder
      */
-    public function scopeHasMetaLike(Builder $query, $meta, $value = null)
+    public function scopeHasThemeLike(Builder $query, $theme, $value = null)
     {
-        return $this->scopeHasMeta($query, $meta, $value, 'like');
+        return $this->scopeHasTheme($query, $theme, $value, 'like');
     }
 
     /**
@@ -81,7 +80,7 @@ trait MetaFields
      */
     public function saveField($key, $value)
     {
-        return $this->saveMeta($key, $value);
+        return $this->saveTheme($key, $value);
     }
 
     /**
@@ -90,18 +89,18 @@ trait MetaFields
      *
      * @return bool
      */
-    public function saveMeta($key, $value = null)
+    public function saveTheme($key, $value = null)
     {
         if (is_array($key)) {
             foreach ($key as $k => $v) {
-                $this->saveOneMeta($k, $v);
+                $this->saveOneTheme($k, $v);
             }
-            $this->load('meta');
+            $this->load('theme');
 
             return true;
         }
 
-        return $this->saveOneMeta($key, $value);
+        return $this->saveOneTheme($key, $value);
     }
 
     /**
@@ -110,12 +109,12 @@ trait MetaFields
      *
      * @return bool
      */
-    private function saveOneMeta($key, $value)
+    private function saveOneTheme($key, $value)
     {
-        $meta = $this->meta()->where('key', $key)
+        $theme = $this->theme()->where('key', $key)
             ->firstOrNew(['key' => $key]);
-        $result = $meta->fill(['value' => $value])->save();
-        $this->load('meta');
+        $result = $theme->fill(['value' => $value])->save();
+        $this->load('theme');
 
         return $result;
     }
@@ -128,7 +127,7 @@ trait MetaFields
      */
     public function createField($key, $value)
     {
-        return $this->createMeta($key, $value);
+        return $this->createTheme($key, $value);
     }
 
     /**
@@ -137,15 +136,15 @@ trait MetaFields
      *
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Support\Collection
      */
-    public function createMeta($key, $value = null)
+    public function createTheme($key, $value = null)
     {
         if (is_array($key)) {
             return collect($key)->map(function ($value, $key) {
-                return $this->createOneMeta($key, $value);
+                return $this->createOneTheme($key, $value);
             });
         }
 
-        return $this->createOneMeta($key, $value);
+        return $this->createOneTheme($key, $value);
     }
 
     /**
@@ -154,31 +153,31 @@ trait MetaFields
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    private function createOneMeta($key, $value)
+    private function createOneTheme($key, $value)
     {
-        $meta = $this->meta()->create([
+        $theme = $this->theme()->create([
             'key' => $key,
             'value' => $value,
         ]);
-        $this->load('meta');
+        $this->load('theme');
 
-        return $meta;
+        return $theme;
     }
 
     /**
      * @return mixed
      */
-    public function meta()
+    public function theme()
     {
-        return $this->morphOne(Meta::class, 'metaable');
+        return $this->morphOne(Theme::class, 'themeable');
     }
 
     /**
      * @param string $key
      * @return mixed
      */
-    public function getMetaValue(string $key)
+    public function getThemeValue(string $key)
     {
-        return $this->meta->$key;
+        return $this->theme->$key;
     }
 }

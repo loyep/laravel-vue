@@ -18,9 +18,9 @@ class PrismAdmin
     /**
      * Set PrismApp title.
      *
-     * @param $title
+     * @param string $title
      */
-    public static function setTitle($title)
+    public static function setTitle(string $title)
     {
         self::$metaTitle = $title;
     }

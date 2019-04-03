@@ -43,9 +43,9 @@ class PrismApp
     /**
      * Set PrismApp title.
      *
-     * @param $title
+     * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         self::$metaTitle = $title;
     }
@@ -101,11 +101,10 @@ class PrismApp
     }
 
     /**
-     * @param $group
-     *
+     * @param string $group
      * @return array
      */
-    public function menus($group)
+    public function menus(string $group)
     {
         return [[
             'url'    => '/',

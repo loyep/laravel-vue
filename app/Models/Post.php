@@ -7,7 +7,6 @@ use App\Traits\Cachable;
 use App\Traits\CanLike;
 use App\Traits\MetaFields;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
