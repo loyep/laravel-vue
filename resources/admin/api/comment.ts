@@ -24,7 +24,7 @@ export function update(id: [string, number], data: object) {
   })
 }
 
-export function destroy (id: [string, number]) {
+export function destroy(id: number | string | Array<string | number>) {
   return request({
     url: `/comment/${id}`,
     method: 'delete'

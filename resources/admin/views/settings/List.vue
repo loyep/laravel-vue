@@ -75,20 +75,20 @@ import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 const columns = [
   {
     title: "名称",
-    dataIndex: "name",
-    scopedSlots: { customRender: "category_name" }
+    dataIndex: "key",
+    scopedSlots: { customRender: "setting_key" }
   },
   {
-    title: "Slug",
-    dataIndex: "slug",
+    title: "Group",
+    dataIndex: "group",
   },
   {
-    title: "描述",
-    dataIndex: "description",
+    title: "名称",
+    dataIndex: "display_name",
   },
   {
-    title: "总数",
-    dataIndex: "posts_count",
+    title: "值",
+    dataIndex: "value",
   },
   {
     title: "更新时间",

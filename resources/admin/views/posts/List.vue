@@ -4,74 +4,67 @@
       <div class="tableListForm">
         <a-form :form="form" layout="inline" @submit="handleSubmit">
           <a-row :gutter="{ md: 6, lg: 24, xl: 48 }">
-            <a-col :md="6" :sm="24">
-              <a-form-item label="关键词">
-                <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词"/>
-              </a-form-item>
-            </a-col>
+            <template v-if="!showActions">
+              <a-col :md="6" :sm="24">
+                <a-form-item label="关键词">
+                  <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词"/>
+                </a-form-item>
+              </a-col>
 
-            <a-col :md="6" :sm="24">
-              <a-form-item label="状态">
-                <a-select
-                  v-decorator="[ 
+              <a-col :md="6" :sm="24">
+                <a-form-item label="状态">
+                  <a-select
+                    v-decorator="[ 
                     'status',
                    ]"
-                  allowClear
-                  placeholder="请选择"
-                  style="width: 100%;"
-                >
-                  <a-select-option value="published">已发布</a-select-option>
-                  <a-select-option value="draft">草稿</a-select-option>
-                  <a-select-option value="private">私密</a-select-option>
-                </a-select>
-              </a-form-item>
-            </a-col>
+                    allowClear
+                    placeholder="请选择"
+                    style="width: 100%;"
+                  >
+                    <a-select-option value="published">已发布</a-select-option>
+                    <a-select-option value="draft">草稿</a-select-option>
+                    <a-select-option value="private">私密</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col>
 
-            <a-col :md="6" :sm="24">
-              <a-form-item label="分类">
-                <a-select
-                  v-decorator="[ 
-                    'category_id',
-                   ]"
-                  allowClear
-                  placeholder="请选择"
-                  style="width: 100%;"
-                >
-                  <a-select-option value="published">已发布</a-select-option>
-                  <a-select-option value="draft">草稿</a-select-option>
-                  <a-select-option value="private">私密</a-select-option>
-                </a-select>
-              </a-form-item>
-            </a-col>
+              <a-col :md="6" :sm="24">
+                <a-form-item>
+                  <span class="submitButtons">
+                    <a-button icon="search" type="primary" html-type="submit">查询</a-button>
+                    <a-button icon="undo" @click="handleReset">重置</a-button>
+                    <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
+                  </span>
+                </a-form-item>
+              </a-col>
+            </template>
 
-            <a-col :md="6" :sm="24">
-              <a-form-item>
-                <span class="submitButtons">
-                  <a-button icon="search" type="primary" html-type="submit">查询</a-button>
-                  <a-button icon="undo" @click="handleReset">重置</a-button>
-                </span>
-              </a-form-item>
-            </a-col>
+            <template v-else>
+              <a-col :md="6" :sm="24">
+                <a-form-item>
+                  <span class="submitButtons">
+                    <a-button icon="delete" @click="handleDelete">删除</a-button>
+                    <a-dropdown>
+                      <a-button>
+                        批量操作
+                        <a-icon type="down"/>
+                      </a-button>
+                      <template #overlay>
+                        <a-menu @click="handleMoreAction">
+                          <a-menu-item key="1">
+                            <a-icon type="delete"/>删除
+                          </a-menu-item>
+                        </a-menu>
+                      </template>
+                    </a-dropdown>
+                  </span>
+                </a-form-item>
+              </a-col>
+            </template>
           </a-row>
         </a-form>
       </div>
-      <div class="tableListOperator">
-        <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
-        <a-dropdown>
-          <a-button :disabled="selectedRowKeys.length === 0">
-            批量操作
-            <a-icon type="down"/>
-          </a-button>
-          <template #overlay>
-            <a-menu @click="handleMoreAction">
-              <a-menu-item key="1">
-                <a-icon type="delete"/>删除
-              </a-menu-item>
-            </a-menu>
-          </template>
-        </a-dropdown>
-      </div>
-      
+
       <a-table
         rowKey="id"
         :columns="columns"
@@ -96,10 +89,11 @@
         </template>
 
         <template #post_status="status">
-          <a-tag
-            :color="statusMap(status).color"
+          <a-badge
+            :status="statusMap(status).type"
+            :text="statusMap(status).label"
             @click="searchByStatus(status)"
-          >{{ statusMap(status).label }}</a-tag>
+          />
         </template>
 
         <template #post_tags="tags">
@@ -116,7 +110,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch, Prop } from "vue-property-decorator";
-import { Card, Col, Row, Tag, Menu, Dropdown } from "ant-design-vue";
+import { Card, Col, Row, Tag, Menu, Dropdown, Badge } from "ant-design-vue";
 import { getList, destroy } from "@/api/post";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 import { RouteRecord } from "vue-router";
@@ -149,20 +143,24 @@ const columns = [
   {
     title: "状态",
     dataIndex: "status",
+    width: 120,
     scopedSlots: { customRender: "post_status" }
   },
   {
     title: "总数",
+    width: 120,
     dataIndex: "comments_count"
   },
   {
     title: "发布时间",
+    width: 200,
     dataIndex: "published_at"
   }
 ];
 
 @Component({
   components: {
+    ABadge: Badge,
     ACard: Card,
     ACol: Col,
     ARow: Row,
@@ -174,7 +172,7 @@ const columns = [
   }
 })
 export default class PostList extends Vue {
-  protected selectedRowKeys?: Array<string | number> = [];
+  protected selectedRowKeys: Array<string | number> = [];
 
   private columns: any = columns;
 
@@ -187,6 +185,10 @@ export default class PostList extends Vue {
   private pagination: Object = {};
 
   private query: Object = {};
+
+  get showActions(): boolean {
+    return this.selectedRowKeys!.length > 0;
+  }
 
   @Watch("data")
   onDataChanged(val: Array<Object>, oldVal: Array<Object>) {
@@ -266,18 +268,28 @@ export default class PostList extends Vue {
     });
   }
 
-  handleMoreAction() {
-    destroy(this.selectedRowKeys!).then(res => {
-      console.log(res);
-      if (res.data.message) {
-        this.$notification.success({
-          message: "删除提示",
-          description: res.data.message
+  handleMoreAction() {}
+
+  handleDelete() {
+    const that = this;
+    this.$confirm({
+      title: "提示",
+      content: "确认要删除吗 ?",
+      onOk() {
+        destroy(that.selectedRowKeys!).then(res => {
+          console.log(res);
+          if (res.data.message) {
+            that.$notification.success({
+              message: "删除提示",
+              description: res.data.message
+            });
+            that.$nextTick(() => {
+              that.handleSearch();
+            });
+          }
         });
-        this.$nextTick(() => {
-          this.handleSearch();
-        });
-      }
+      },
+      onCancel() {}
     });
   }
 
@@ -288,15 +300,18 @@ export default class PostList extends Vue {
   statusMap(status) {
     const colorMap = {
       published: {
-        color: "blue",
+        // color: "blue",
+        type: "success",
         label: "已发布"
       },
       draft: {
-        color: "cyan",
+        // color: "cyan",
+        type: "processing",
         label: "草稿"
       },
       private: {
-        color: "green",
+        // color: "green",
+        type: "warning",
         label: "私密"
       }
     };

@@ -29,21 +29,38 @@
               </a-col>
 
               <a-col :md="6" :sm="24">
+                <a-form-item label="分类">
+                  <a-select
+                    v-decorator="[ 
+                    'category_id',
+                   ]"
+                    allowClear
+                    placeholder="请选择"
+                    style="width: 100%;"
+                  >
+                    <a-select-option value="published">已发布</a-select-option>
+                    <a-select-option value="draft">草稿</a-select-option>
+                    <a-select-option value="private">私密</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col>
+
+              <a-col :md="6" :sm="24">
                 <a-form-item>
                   <span class="submitButtons">
-                    <a-button icon="search" type="primary" htmlType="submit">查询</a-button>
+                    <a-button icon="search" type="primary" html-type="submit">查询</a-button>
                     <a-button icon="undo" @click="handleReset">重置</a-button>
                     <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
                   </span>
                 </a-form-item>
               </a-col>
             </template>
-
+            
             <template v-else>
               <a-col :md="6" :sm="24">
                 <a-form-item>
                   <span class="submitButtons">
-                    <a-button icon="delete" @click="handleDelete">删除</a-button>
+                    <a-button icon="delete" type="danger" @click="handleDelete">删除</a-button>
                     <a-dropdown>
                       <a-button>
                         批量操作
@@ -64,7 +81,7 @@
           </a-row>
         </a-form>
       </div>
-
+      
       <a-table
         rowKey="id"
         :columns="columns"
@@ -74,8 +91,30 @@
         :rowSelection="{ selectedRowKeys, onChange: onSelectChange }"
         @change="handleTableChange"
       >
-        <template #tag_name="name, record">
-          <router-link :to="{ name: 'tag.edit', params: { id: record.id } }">{{ name }}</router-link>
+        <template #post_title="title, post">
+          <router-link :to="{ name: 'post.edit', params: {id: post.id}}">{{ title }}</router-link>
+        </template>
+
+        <template #post_user="user, post">
+          <router-link :to="{ name: 'post.index', query: {user: user.id}}">{{ user.name }}</router-link>
+        </template>
+
+        <template #post_category="category">
+          <router-link
+            :to="{ name: 'post.index', query: {category: category.id}}"
+          >{{ category.name }}</router-link>
+        </template>
+
+        <template #post_status="status">
+          <a-badge :status="statusMap(status).type" :text="statusMap(status).label" @click="searchByStatus(status)" />
+        </template>
+
+        <template #post_tags="tags">
+          <template v-for="tag in tags">
+            <a-tag :key="tag.id" color="blue">
+              <router-link :to="{ name: 'post.index', query: {tag: tag.id}}">{{ tag.name }}</router-link>
+            </a-tag>
+          </template>
         </template>
       </a-table>
     </div>
@@ -83,45 +122,49 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
-import {
-  Card,
-  Col,
-  Row,
-  Tag,
-  Menu,
-  Dropdown,
-  Button,
-  Badge
-} from "ant-design-vue";
-import { getList, destroy } from "@/api/tag";
+import { Component, Vue, Watch, Prop } from "vue-property-decorator";
+import { Card, Col, Row, Tag, Menu, Dropdown, Badge } from "ant-design-vue";
+import { getList, destroy } from "@/api/post";
 import { WrappedFormUtils } from "ant-design-vue/types/form/form";
+import { RouteRecord } from "vue-router";
 
 const columns = [
   {
     title: "名称",
-    dataIndex: "name",
-    width: 240,
-    scopedSlots: { customRender: "tag_name" }
+    dataIndex: "title",
+    width: 300,
+    scopedSlots: { customRender: "post_title" }
   },
   {
-    title: "Slug",
-    dataIndex: "slug",
-    width: 300
+    title: "作者",
+    dataIndex: "user",
+    width: 100,
+    scopedSlots: { customRender: "post_user" }
   },
   {
-    title: "描述",
-    dataIndex: "description"
+    title: "分类",
+    dataIndex: "category",
+    width: 120,
+    scopedSlots: { customRender: "post_category" }
+  },
+  {
+    title: "标签",
+    dataIndex: "tags",
+    width: 300,
+    scopedSlots: { customRender: "post_tags" }
+  },
+  {
+    title: "状态",
+    dataIndex: "status",
+    scopedSlots: { customRender: "post_status" }
   },
   {
     title: "总数",
-    dataIndex: "posts_count",
-    width: 100
+    dataIndex: "comments_count"
   },
   {
-    title: "更新时间",
-    dataIndex: "updated_at",
-    width: 240
+    title: "发布时间",
+    dataIndex: "published_at"
   }
 ];
 
@@ -135,20 +178,19 @@ const columns = [
     ADropdown: Dropdown,
     ADropdownButton: Dropdown.Button,
     AMenu: Menu,
-    AMenuItem: Menu.Item,
-    AButton: Button
+    AMenuItem: Menu.Item
   }
 })
-export default class TagList extends Vue {
-  protected selectedRowKeys?: Array<string | number> = [];
+export default class PostList extends Vue {
+  protected selectedRowKeys: Array<string | number> = [];
 
-  private columns = columns;
+  private columns: any = columns;
 
   private form: WrappedFormUtils;
 
   private data: Array<Object> = [];
 
-  private loading = false;
+  private loading: boolean = false;
 
   private pagination: Object = {};
 
@@ -163,11 +205,31 @@ export default class TagList extends Vue {
     this.selectedRowKeys = [];
   }
 
+  @Watch("$route")
+  onRouteChanged() {
+    console.log(this.$route.query.tag);
+    this.initForm();
+  }
+
   beforeCreate() {
     this.form = this.$form.createForm(this);
   }
 
   created() {
+    console.log(this.$route.query.tag);
+    this.initForm();
+  }
+
+  searchByStatus(status: string) {
+    this.form.setFieldsValue({ status });
+    this.form.validateFields((err, values) => {
+      if (!err) {
+        this.handleSearch(values);
+      }
+    });
+  }
+
+  initForm() {
     this.handleSearch();
   }
 
@@ -183,28 +245,55 @@ export default class TagList extends Vue {
   handleCreate(e: Event) {
     e.preventDefault();
     this.$router.push({
-      name: "tag.create"
+      name: "post.create"
+    });
+  }
+
+  handleReset(e: Event) {
+    e.preventDefault();
+    this.form.resetFields();
+    this.$router.replace({
+      name: "post.index"
     });
   }
 
   handleSearch(query: Object = {}) {
     this.query = query;
     this.loading = true;
+
+    query = Object.assign(query, this.$route.query);
+    console.log(query);
     getList(query).then(res => {
-      const data = res.data;
-      this.data = data.data;
+      const { data, total, per_page, current_page } = res.data;
+      this.data = data;
 
       const paginationProps = {
-        total: parseInt(data.total),
-        pageSize: parseInt(data.per_page),
-        current: data.current_page
+        showSizeChanger: true,
+        total: parseInt(total),
+        pageSize: parseInt(per_page),
+        current: current_page
       };
       this.pagination = paginationProps;
       this.loading = false;
     });
   }
 
-  toggleForm() {}
+  handleMoreAction() {}
+
+  handleDelete() {
+    destroy(this.selectedRowKeys!).then(res => {
+      console.log(res);
+      if (res.data.message) {
+        this.$notification.success({
+          message: "删除提示",
+          description: res.data.message
+        });
+        this.$nextTick(() => {
+          this.handleSearch();
+        });
+      }
+    });
+  }
 
   onSelectChange(selectedRowKeys, selectedRows) {
     this.selectedRowKeys = selectedRowKeys;
@@ -213,44 +302,22 @@ export default class TagList extends Vue {
   statusMap(status) {
     const colorMap = {
       published: {
-        color: "blue",
+        // color: "blue",
+        type: "success",
         label: "已发布"
       },
       draft: {
-        color: "cyan",
+        // color: "cyan",
+        type: "processing",
         label: "草稿"
       },
       private: {
-        color: "green",
+        // color: "green",
+        type: "warning",
         label: "私密"
       }
     };
     return colorMap[status];
-  }
-
-  handleMoreAction() {}
-
-  handleDelete() {
-    const that = this;
-    this.$confirm({
-      title: "提示",
-      content: "确认要删除吗 ?",
-      onOk() {
-        destroy(that.selectedRowKeys!).then(res => {
-          console.log(res);
-          if (res.data.message) {
-            that.$notification.success({
-              message: "删除提示",
-              description: res.data.message
-            });
-            that.$nextTick(() => {
-              that.handleSearch();
-            });
-          }
-        });
-      },
-      onCancel() {}
-    });
   }
 
   handleTableChange(pagination, filters, sorter) {

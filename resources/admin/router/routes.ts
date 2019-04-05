@@ -186,6 +186,24 @@ export const asyncRouterMap = [
         ]
       },
       {
+        path: 'media',
+        component: PageLayout,
+        meta: {
+          title: '媒体',
+          icon: 'picture'
+        },
+        children: [
+          {
+            path: '',
+            name: 'media.index',
+            component: () => import('@/views/medias/List.vue'),
+            meta: {
+              title: '媒体列表'
+            }
+          },
+        ]
+      },
+      {
         path: 'permission',
         component: PageLayout,
         meta: {
