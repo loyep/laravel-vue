@@ -31,4 +31,6 @@ Route::prefix('/')->middleware(['auth:api'])->as('admin.')->group(function () {
     Route::apiResource('setting', 'SettingController');
     Route::apiResource('role', 'RoleController');
     Route::get('statistics', 'PrismController@statistics');
+
+    Route::post('upload', 'MediaController@upload');
 });
