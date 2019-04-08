@@ -38,6 +38,10 @@ class Post extends Model
         'published_at',
     ];
 
+    protected $with = [
+        'meta',
+    ];
+
     /**
      * @return MorphOne
      */

@@ -4,7 +4,7 @@
       <a-col :md="24" :sm="24">
         <a-card :style="{ marginBottom: '16px' }" :title="title">
           <template slot="extra">
-            <a-button type="primary">提交</a-button>
+            <a-button type="primary" @click="handleSubmit">提交</a-button>
           </template>
         </a-card>
       </a-col>
@@ -14,7 +14,6 @@
           <a-form :form="form" @submit="handleSubmit">
             <a-form-item :wrapper-col="{ span: 12 }">
               <a-input
-                v-model="title"
                 placeholder="请输入标题"
                 v-decorator="[
                   'title',
@@ -24,7 +23,16 @@
             </a-form-item>
 
             <a-form-item :wrapper-col="{ span: 24 }">
-              <editor placeholder="开始写作"/>
+              <editor
+                v-decorator="[
+                  'content',
+                  {
+                    initialValue: 'ffffhfjshd',
+                    rules: [{ required: true, message: '请输入标题' }]
+                  }
+                ]"
+                placeholder="开始写作"
+              />
             </a-form-item>
 
             <!-- <a-form-item
@@ -91,12 +99,23 @@ export default class PostCreate extends Vue {
     this.form = this.$form.createForm(this);
   }
 
-  private title: string;
+  private title: string = "";
+
+  private content: string = "ffff";
+
+  created() {
+    const fields = {
+      'content': '222222'
+    }
+    this.form.setFieldsValue(fields); 
+  }
 
   handleSubmit(e: Event) {
     e.preventDefault();
     this.form.validateFields((err, values) => {
       if (!err) {
+        console.log(values);
+        return;
         store(values).then(res => {
           const data = res.data;
 
@@ -109,7 +128,7 @@ export default class PostCreate extends Vue {
               cancelText: "取消",
               onOk: () => {
                 this.$router.push({
-                  name: "user.index"
+                  name: "post.index"
                 });
               }
             });

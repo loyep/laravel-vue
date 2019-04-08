@@ -180,6 +180,14 @@ export default class CommentList extends Vue {
     });
   }
 
+  handleReset(e: Event) {
+    e.preventDefault();
+    this.form.resetFields();
+    this.$router.replace({
+      name: "comment.index"
+    });
+  }
+
   handleMoreAction() {}
 
   handleDelete() {

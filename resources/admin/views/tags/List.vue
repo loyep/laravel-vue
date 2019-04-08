@@ -204,6 +204,14 @@ export default class TagList extends Vue {
     });
   }
 
+  handleReset(e: Event) {
+    e.preventDefault();
+    this.form.resetFields();
+    this.$router.replace({
+      name: "tag.index"
+    });
+  }
+
   toggleForm() {}
 
   onSelectChange(selectedRowKeys, selectedRows) {

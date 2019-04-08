@@ -1,24 +1,33 @@
 <template>
   <grid-content>
     <a-row :gutter="24">
-      <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" style="margin-bottom: 24px;">
-        <chart-card title="用户量" :contentHeight="46" :bordered="false" :total="user.total">
-          <template v-slot:action>
-            <a-tooltip title="用户数">
-              <a-icon type="info-circle-o"/>
-            </a-tooltip>
-          </template>
+      <template v-for="(dimmer, key) in dimmers">
+        <a-col :key="key" :xs="24" :sm="12" :md="12" :lg="12" :xl="6" style="margin-bottom: 24px;">
+          <chart-card
+            :title="dimmer.title"
+            :contentHeight="46"
+            :bordered="false"
+            :total="dimmer.total"
+          >
+            <template v-slot:action>
+              <a-tooltip :title="dimmer.title">
+                <a-icon type="info-circle-o"/>
+              </a-tooltip>
+            </template>
 
-          <trend style="margin-right: 16;">
-            <!-- 新增 -->
-            <!-- <span class="trendText">{{ user.remark }}</span> -->
-          </trend>
+            <trend style="margin-right: 16;">
+              <!-- 新增 -->
+              <span :class="dimmer.trend">{{ user.remark }}</span>
+            </trend>
 
-          <template v-slot:footer>
-            <field label="新增" :value="user.increased"/>
-          </template>
-        </chart-card>
-      </a-col>
+            <template v-slot:footer>
+              <field label="新增" :value="dimmer.remark"/>
+            </template>
+          </chart-card>
+
+        </a-col>
+      </template>
+
       <!-- <a-col
         :xs="24"
         :sm="12"
@@ -157,15 +166,27 @@ export default class Analysis extends Vue {
     increased: "0"
   };
 
+  private dimmers: Array<any> = [];
+
+  private post: any = {
+    total: 0,
+    trend: " ",
+    increased: "0"
+  };
+
   mounted() {
     this.getStatistics();
   }
+
   getStatistics() {
     statistics().then(res => {
-      const data = res.data
+      const data = res.data;
       this.updateTotal(data.user.total);
+      this.post.total = data.post.total;
+      this.dimmers = data;
     });
   }
+
   updateTotal(total) {
     var that = this;
     let numText = this.user.total;

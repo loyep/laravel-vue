@@ -196,6 +196,14 @@ export default class CategoryList extends Vue {
     });
   }
 
+  handleReset(e: Event) {
+    e.preventDefault();
+    this.form.resetFields();
+    this.$router.replace({
+      name: "category.index"
+    });
+  }
+
   onSelectChange(selectedRowKeys, selectedRows) {
     this.selectedRowKeys = selectedRowKeys;
   }
