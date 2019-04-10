@@ -2,48 +2,53 @@
   <div>
     <a-row :gutter="{ md: 24 }">
       <a-col :md="24" :sm="24">
+        <a-card :style="{ marginBottom: '16px' }" :title="title">
+          <template slot="extra">
+            <a-button type="primary" @click="handleSubmit">提交</a-button>
+          </template>
+        </a-card>
+      </a-col>
+
+      <a-col :md="18" :sm="24">
         <a-card>
           <a-form :form="form" @submit="handleSubmit">
-            <a-form-item
-              :label-col="{ span: 2 }"
-              :wrapper-col="{ span: 6 }"
-              label="标签名"
-              extra="“这将是它在站点上显示的名字。"
-            >
+            <a-form-item :wrapper-col="{ span: 12 }">
               <a-input
+                placeholder="请输入标题"
                 v-decorator="[
-                  'name',
-                  {rules: [{ required: true, message: '请输入标签名' }]}
+                  'title',
+                  {rules: [{ required: true, message: '请输入标题' }]}
                 ]"
               />
             </a-form-item>
 
-            <a-form-item
-              :label-col="{ span: 2 }"
-              :wrapper-col="{ span: 6 }"
-              label="别名"
-              extra="“别名”是在URL中使用的别称，它可以令URL更美观。通常使用小写，只能包含字母，数字和连字符（-）。"
-            >
-              <a-input v-decorator="[
-                  'slug',
-                ]"/>
+            <a-form-item :wrapper-col="{ span: 24 }">
+              <editor
+                v-decorator="[
+                  'content',
+                  {
+                    initialValue: 'ffffhfjshd',
+                    rules: [{ required: true, message: '请输入标题' }]
+                  }
+                ]"
+                placeholder="开始写作"
+              />
             </a-form-item>
 
-            <a-form-item
+            <!-- <a-form-item
               :wrapperCol="{
                 xs: { span: 24, offset: 0 },
                 sm: { span: 12, offset: 4 },
               }"
             >
               <a-button type="primary" html-type="submit">创建</a-button>
-            </a-form-item>
+            </a-form-item>-->
           </a-form>
         </a-card>
       </a-col>
 
-      <a-col :md="24" :sm="12">
+      <a-col :md="6" :sm="12">
         <a-card>
-          <editor/>
           <br>
           <br>
           <br>
@@ -94,10 +99,23 @@ export default class PostCreate extends Vue {
     this.form = this.$form.createForm(this);
   }
 
+  private title: string = "";
+
+  private content: string = "ffff";
+
+  created() {
+    const fields = {
+      'content': '222222'
+    }
+    this.form.setFieldsValue(fields); 
+  }
+
   handleSubmit(e: Event) {
     e.preventDefault();
     this.form.validateFields((err, values) => {
       if (!err) {
+        console.log(values);
+        return;
         store(values).then(res => {
           const data = res.data;
 
@@ -110,7 +128,7 @@ export default class PostCreate extends Vue {
               cancelText: "取消",
               onOk: () => {
                 this.$router.push({
-                  name: "user.index"
+                  name: "post.index"
                 });
               }
             });

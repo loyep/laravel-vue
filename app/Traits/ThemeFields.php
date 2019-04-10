@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\Collection\ThemeCollection;
 use App\Models\Theme;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -33,10 +34,10 @@ trait ThemeFields
     }
 
     /**
-     * @param Builder        $query
+     * @param Builder $query
      * @param array | string $theme
-     * @param null           $value
-     * @param string         $operator
+     * @param null $value
+     * @param string $operator
      *
      * @return Builder
      */
@@ -61,9 +62,9 @@ trait ThemeFields
     }
 
     /**
-     * @param Builder      $query
+     * @param Builder $query
      * @param string|array $theme
-     * @param null         $value
+     * @param null $value
      *
      * @return Builder
      */
@@ -74,7 +75,7 @@ trait ThemeFields
 
     /**
      * @param string $key
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -85,7 +86,7 @@ trait ThemeFields
 
     /**
      * @param string|array $key
-     * @param mixed        $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -105,7 +106,7 @@ trait ThemeFields
 
     /**
      * @param string $key
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -121,7 +122,7 @@ trait ThemeFields
 
     /**
      * @param string $key
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -132,7 +133,7 @@ trait ThemeFields
 
     /**
      * @param string|array $key
-     * @param mixed        $value
+     * @param mixed $value
      *
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Support\Collection
      */
@@ -149,14 +150,14 @@ trait ThemeFields
 
     /**
      * @param string $key
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
     private function createOneTheme($key, $value)
     {
         $theme = $this->theme()->create([
-            'key'   => $key,
+            'key' => $key,
             'value' => $value,
         ]);
         $this->load('theme');

@@ -4,55 +4,65 @@
       <div class="tableListForm">
         <a-form :form="form" layout="inline" @submit="handleSubmit">
           <a-row :gutter="{ md: 6, lg: 24, xl: 48 }">
-            <a-col :md="6" :sm="24">
-              <a-form-item label="关键词">
-                <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词"/>
-              </a-form-item>
-            </a-col>
+            <template v-if="!showActions">
+              <a-col :md="6" :sm="24">
+                <a-form-item label="关键词">
+                  <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词"/>
+                </a-form-item>
+              </a-col>
 
-            <a-col :md="6" :sm="24">
-              <a-form-item label="状态">
-                <a-select
-                  v-decorator="[ 
+              <a-col :md="6" :sm="24">
+                <a-form-item label="状态">
+                  <a-select
+                    v-decorator="[ 
                     'status',
                    ]"
-                  allowClear
-                  placeholder="请选择"
-                  style="width: 100%;"
-                >
-                  <a-select-option value="published">已发布</a-select-option>
-                  <a-select-option value="draft">草稿</a-select-option>
-                  <a-select-option value="private">私密</a-select-option>
-                </a-select>
-              </a-form-item>
-            </a-col>
+                    allowClear
+                    placeholder="请选择"
+                    style="width: 100%;"
+                  >
+                    <a-select-option value="published">已发布</a-select-option>
+                    <a-select-option value="draft">草稿</a-select-option>
+                    <a-select-option value="private">私密</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col>
 
-            <a-col :md="6" :sm="24">
-              <a-form-item>
-                <span class="submitButtons">
-                  <a-button icon="search" type="primary" htmlType="submit">查询</a-button>
-                </span>
-              </a-form-item>
-            </a-col>
+              <a-col :md="6" :sm="24">
+                <a-form-item>
+                  <span class="submitButtons">
+                    <a-button icon="search" type="primary" htmlType="submit">查询</a-button>
+                    <a-button icon="undo" @click="handleReset">重置</a-button>
+                    <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
+                  </span>
+                </a-form-item>
+              </a-col>
+            </template>
+
+            <template v-else>
+              <a-col :md="6" :sm="24">
+                <a-form-item>
+                  <span class="submitButtons">
+                    <a-button icon="delete" @click="handleDelete">删除</a-button>
+                    <a-dropdown>
+                      <a-button>
+                        批量操作
+                        <a-icon type="down"/>
+                      </a-button>
+                      <template #overlay>
+                        <a-menu @click="handleMoreAction">
+                          <a-menu-item key="1">
+                            <a-icon type="delete"/>删除
+                          </a-menu-item>
+                        </a-menu>
+                      </template>
+                    </a-dropdown>
+                  </span>
+                </a-form-item>
+              </a-col>
+            </template>
           </a-row>
         </a-form>
-      </div>
-      
-      <div class="tableListOperator">
-        <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
-        <a-dropdown>
-          <a-button :disabled="selectedRowKeys.length === 0">
-            批量操作
-            <a-icon type="down"/>
-          </a-button>
-          <template #overlay>
-            <a-menu @click="handleMoreAction">
-              <a-menu-item key="1">
-                <a-icon type="delete"/>删除
-              </a-menu-item>
-            </a-menu>
-          </template>
-        </a-dropdown>
       </div>
 
       <a-table
@@ -134,6 +144,10 @@ export default class CategoryList extends Vue {
 
   private query: Object = {};
 
+  get showActions(): boolean {
+    return this.selectedRowKeys!.length > 0;
+  }
+
   @Watch("data")
   onDataChanged(val: Array<Object>, oldVal: Array<Object>) {
     this.selectedRowKeys = [];
@@ -182,6 +196,14 @@ export default class CategoryList extends Vue {
     });
   }
 
+  handleReset(e: Event) {
+    e.preventDefault();
+    this.form.resetFields();
+    this.$router.replace({
+      name: "category.index"
+    });
+  }
+
   onSelectChange(selectedRowKeys, selectedRows) {
     this.selectedRowKeys = selectedRowKeys;
   }
@@ -204,18 +226,28 @@ export default class CategoryList extends Vue {
     return colorMap[status];
   }
 
-  handleMoreAction() {
-    destroy(this.selectedRowKeys!).then(res => {
-      console.log(res);
-      if (res.data.message) {
-        this.$notification.success({
-          message: "删除提示",
-          description: res.data.message
+  handleMoreAction() {}
+
+  handleDelete() {
+    const that = this;
+    this.$confirm({
+      title: "提示",
+      content: "确认要删除吗 ?",
+      onOk() {
+        destroy(that.selectedRowKeys!).then(res => {
+          console.log(res);
+          if (res.data.message) {
+            that.$notification.success({
+              message: "删除提示",
+              description: res.data.message
+            });
+            that.$nextTick(() => {
+              that.handleSearch();
+            });
+          }
         });
-        this.$nextTick(() => {
-          this.handleSearch();
-        });
-      }
+      },
+      onCancel() {}
     });
   }
 

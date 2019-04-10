@@ -118,6 +118,15 @@ export const asyncRouterMap = [
             }
           },
           {
+            path: 'setting',
+            name: 'user.setting',
+            component: () => import('@/views/users/Setting.vue'),
+            meta: {
+              title: '账号设置',
+              hiddenHeader: true
+            }
+          },
+          {
             path: ':id',
             name: 'user.detail',
             component: () => import('@/views/users/Detail.vue'),
@@ -125,15 +134,6 @@ export const asyncRouterMap = [
             props: true,
             meta: {
               title: '用户详情'
-            }
-          },
-          {
-            path: 'setting',
-            name: 'user.setting',
-            component: () => import('@/views/users/Setting.vue'),
-            meta: {
-              title: '账号设置',
-              hiddenHeader: true
             }
           }
         ]
@@ -183,6 +183,24 @@ export const asyncRouterMap = [
               title: '角色详情'
             }
           }
+        ]
+      },
+      {
+        path: 'media',
+        component: PageLayout,
+        meta: {
+          title: '媒体',
+          icon: 'picture'
+        },
+        children: [
+          {
+            path: '',
+            name: 'media.index',
+            component: () => import('@/views/medias/List.vue'),
+            meta: {
+              title: '媒体列表'
+            }
+          },
         ]
       },
       {

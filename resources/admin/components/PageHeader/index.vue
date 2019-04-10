@@ -3,7 +3,7 @@
     <div :class="{ wide: wide }">
       <!-- <a-skeleton :loading="loading" active :paragraph="{rows: 4}" :avatar="{ size: 'large', shape: 'circle' }"> -->
       <breadcrumb v-if="!hideBread" />
-      <div class="detail">
+      <!-- <div class="detail">
         <img v-if="logo" :src="logo" class="logo" />
         <slot name="pageLogo" />
         <div class="main">
@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -151,10 +151,10 @@ export default class PageHeader extends Vue {
     width: 100%;
   }
 
-  .title,
-  .action {
-    margin-bottom: 16px;
-  }
+  // .title,
+  // .action {
+    // margin-bottom: 16px;
+  // }
 
   .logo,
   .content,

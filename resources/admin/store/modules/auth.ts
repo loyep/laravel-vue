@@ -3,8 +3,17 @@ import { Module, MutationTree, ActionTree, GetterTree, ActionContext } from 'vue
 import { getToken, removeToken, setToken } from '@/utils/auth';
 import { RootState } from '@/store/index';
 
+export interface IUser {
+  avatar: string,
+  name: string,
+  display_name: string,
+  url: string,
+  id: number
+}
+
+
 export interface IAuthState {
-  user?: object,
+  user?: IUser,
   token?: string,
   roles: Array<string>
 }
@@ -26,15 +35,15 @@ export const mutations: MutationTree<IAuthState> = {
     state.roles = []
     /// 防止个人头像退出的瞬间获取不到
     setTimeout(() => {
-      state.user = {}
+      state.user = undefined
     }, 100)
     removeToken()
   },
   SET_ROLES: (state: IAuthState, roles) => {
     state.roles = roles
   },
-  UPDATE_USER: (state: IAuthState, user: object) => {
-    state.user = user
+  UPDATE_USER: (state: IAuthState, user: IUser | object) => {
+    state.user = <IUser>user;
   }
 }
 
@@ -64,7 +73,7 @@ export const actions: ActionTree<IAuthState, RootState> = {
   Login(context: ActionContext<IAuthState, RootState>, userInfo: any) {
     return new Promise((resolve, reject) => {
       login(userInfo).then(res => {
-        const { data, errors } = res.data;
+        const { data, errors } = res.data
 
         if (data && data.token) {
           context.commit('SET_TOKEN', data.token)

@@ -22,9 +22,9 @@ class PrismController extends Controller
     public function index(Request $request)
     {
         $config = [
-            'base'           => PrismAdmin::path(),
-            'name'           => PrismAdmin::title(),
-            'description'    => '美好源于热爱',
+            'base' => PrismAdmin::path(),
+            'name' => PrismAdmin::title(),
+            'description' => '美好源于热爱',
             'setting_drawer' => true,
         ];
 
@@ -61,33 +61,30 @@ class PrismController extends Controller
 
         $statistics = [
             'user' => [
-                'total'     => $users_count,
+                'total' => $users_count,
                 'increased' => !empty($stats) ? $stats->value : 0,
+                'title' => '用户数',
+                'trend' => 'up',
+                'remark' => sprintf("%01.2f", $user_trend * 100) . '%',
             ],
-//            [
-//                'title' => '用户数',
-//                'total' => $users_count,
-//                'trend' => 'up',
-//                'remark' => sprintf("%01.2f", $user_trend * 100) . '%',
-//            ],
-//            [
-//                'title' => '文章数',
-//                'total' => $posts_count,
-//                'trend' => '',
-//                'remark' => '0%'
-//            ],
-//            [
-//                'title' => '分类数',
-//                'total' => $categories_count,
-//                'trend' => '',
-//                'remark' => '0%'
-//            ],
-//            [
-//                'title' => '标签数',
-//                'total' => $tags_count,
-//                'trend' => '',
-//                'remark' => '0%'
-//            ]
+            'post' => [
+                'title' => '文章数',
+                'total' => $posts_count,
+                'trend' => '',
+                'remark' => '0%'
+            ],
+            'categories' => [
+                'title' => '分类数',
+                'total' => $categories_count,
+                'trend' => '',
+                'remark' => '0%'
+            ],
+            'tags' => [
+                'title' => '标签数',
+                'total' => $tags_count,
+                'trend' => '',
+                'remark' => '0%'
+            ]
         ];
 
         return response()->json($statistics);

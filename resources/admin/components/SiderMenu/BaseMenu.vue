@@ -164,8 +164,6 @@ export default class BaseMenu extends Vue {
       return item;
     });
 
-    console.log(selectedKeys)
-
     this.selectedKeys = selectedKeys;
 
     const openKeys: Array<string> = routes.filter(item => {
