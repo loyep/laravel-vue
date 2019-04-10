@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class PostService
+class PostService extends BaseService
 {
     public function paginate()
     {

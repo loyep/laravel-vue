@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Trend extends Model
+class Trend extends BaseModel
 {
     //
 }

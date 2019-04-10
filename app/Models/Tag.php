@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Scopes\SlugScope;
 use App\Traits\MetaFields;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\URL;
 
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\URL;
  *
  * @property string slug
  */
-class Tag extends Model
+class Tag extends BaseModel
 {
     use SlugScope, MetaFields;
 
@@ -33,12 +34,18 @@ class Tag extends Model
         return URL::route('tag.show', ['slug' => $this->slug]);
     }
 
-    public function posts(): MorphToMany
+    /**
+     * @return MorphToMany|null
+     */
+    public function posts(): ?MorphToMany
     {
         return $this->morphedByMany(Post::class, 'taggable');
     }
 
-    public function meta()
+    /**
+     * @return MorphOne|null
+     */
+    public function meta(): ?MorphOne
     {
         return $this->morphOne(Meta::class, 'metaable');
     }

@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Facades\Prism;
+use App\Prism\Facades\Prism;
 use App\Traits\Cachable;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Content.
@@ -13,10 +12,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string markdown
  * @property bool is_html
  */
-class Content extends Model
+class Content extends BaseModel
 {
     use Cachable;
 
+    /**
+     * @return string
+     */
     public function content()
     {
         if ($this->is_html) {

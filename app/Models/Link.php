@@ -2,13 +2,18 @@
 
 namespace App\Models;
 
-class Link extends Model
-{
-    public function getOption($name, $default = '')
-    {
-    }
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
-    public function meta()
+/**
+ * Class Link
+ * @package App\Models
+ */
+class Link extends BaseModel
+{
+    /**
+     * @return MorphOne
+     */
+    public function meta(): MorphOne
     {
         return $this->morphOne(Meta::class, 'metaable');
     }

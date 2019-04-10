@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Facades\PrismAdmin;
+use App\Prism\Facades\PrismAdmin;
 use App\Prism\PrismApp;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -41,13 +41,20 @@ class PrismAdminServiceProvider extends ServiceProvider
     protected function loadRoutes()
     {
         $prefix = PrismAdmin::path();
-        Route::get($prefix, '\App\Http\Controllers\Api\PrismController@index')->name('dashboard');
-        Route::get($prefix.'/{any}', '\App\Http\Controllers\Api\PrismController@index')->where('any', '.*');
+        $namespace = '\App\Http\Controllers\Admin';
 
-        $namespace = 'App\Http\Controllers\Api';
-        Route::prefix('api')
-            ->middleware('api')
-            ->namespace($namespace)
-            ->group(base_path('routes/admin.php'));
+        Route::group([
+            'namespace' => $namespace,
+
+        ], function () use ($prefix) {
+            Route::prefix($prefix)
+                ->group(function () {
+                    Route::get('/', 'PrismController@index')->name('dashboard');
+                    Route::get('/{any}', 'PrismController@index')->where('any', '.*');
+                });
+            Route::prefix('api')
+                ->middleware('api')
+                ->group(base_path('routes/admin.php'));
+        });
     }
 }

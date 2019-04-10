@@ -12,7 +12,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property string $key
  * @property string $value
  */
-class Theme extends Model
+class Theme extends BaseModel
 {
     use TransformableTrait;
 

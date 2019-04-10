@@ -12,15 +12,21 @@ use Illuminate\Support\Facades\URL;
  *
  * @property string slug
  */
-class Category extends Model
+class Category extends BaseModel
 {
     use SlugScope, MetaFields;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'name', 'slug', 'image', 'description',
     ];
 
-    public function posts(): HasMany
+    /**
+     * @return HasMany|null
+     */
+    public function posts(): ?HasMany
     {
         return $this->hasMany(Post::class);
     }

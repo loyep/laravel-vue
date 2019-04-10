@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Scopes\SlugScope;
 use App\Support\Helper;
 use App\Traits\MetaFields;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\URL;
@@ -76,16 +78,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
-     * @return array
-     */
-    public function getRolesAttribute()
-    {
-        return [
-            'admin',
-        ];
-    }
-
-    /**
      * @return string
      */
     public function getPermLinkAttribute()
@@ -93,6 +85,9 @@ class User extends Authenticatable implements JWTSubject
         return URL::route('user.show', ['name' => $this->name]);
     }
 
+    /**
+     * @param $value
+     */
     public function setEmailAttribute($value)
     {
         if (empty($this->attributes['avatar'])) {
@@ -101,12 +96,18 @@ class User extends Authenticatable implements JWTSubject
         $this->attributes['email'] = $value;
     }
 
-    public function meta()
+    /**
+     * @return MorphMany
+     */
+    public function meta(): MorphMany
     {
         return $this->morphMany(Meta::class, 'metaable');
     }
 
-    public function posts()
+    /**
+     * @return HasMany
+     */
+    public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
     }

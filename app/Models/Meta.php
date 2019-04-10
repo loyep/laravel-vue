@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $key
  * @property string $value
  */
-class Meta extends Model
+class Meta extends BaseModel
 {
     /**
      * The attributes that are mass assignable.
@@ -22,10 +22,11 @@ class Meta extends Model
         'key', 'value',
     ];
 
+
     /**
-     * @return MorphTo
+     * @return MorphTo|null
      */
-    public function metaable(): MorphTo
+    public function metaable(): ?MorphTo
     {
         return $this->morphTo();
     }

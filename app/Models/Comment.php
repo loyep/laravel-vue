@@ -19,8 +19,11 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $ip
  * @property string $agent
  */
-class Comment extends Model
+class Comment extends BaseModel
 {
+    /**
+     * @var array
+     */
     protected $fillable = [
         'commentable_id', 'commentable_type', 'user_id', 'parent_id', 'name', 'email', 'status', 'type', 'ip', 'agent',
     ];
@@ -33,6 +36,9 @@ class Comment extends Model
         return $this->morphOne(Content::class, 'contentable');
     }
 
+    /**
+     * @return MorphTo
+     */
     public function commentable(): MorphTo
     {
         return $this->morphTo();

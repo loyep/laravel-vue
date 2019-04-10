@@ -2,6 +2,7 @@
     "compilerOptions": {
       "allowSyntheticDefaultImports": true,
       "baseUrl": ".",
+      "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "jsx": "preserve",
       "module": "esnext",
@@ -11,9 +12,13 @@
       "strictPropertyInitialization": false,
       "target": "esnext",
       "esModuleInterop": true,
+      "sourceMap": true,
       "lib": [
         "dom",
-        "es2017"
+        "es5",
+        "es6",
+        "es7",
+        "es2015.promise"
       ],
       "paths": {
         "@/*": [
@@ -23,7 +28,7 @@
     },
     "include": [
       "resources/admin/**/*.ts",
-      "resources/admin/**/*.vue",
+      "resources/admin/**/*.vue"
     ],
     "exclude": [
       "node_modules",

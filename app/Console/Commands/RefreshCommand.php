@@ -11,7 +11,7 @@ class RefreshCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'prism:refresh';
 
     /**
      * The console command description.

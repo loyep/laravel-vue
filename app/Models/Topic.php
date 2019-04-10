@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Topic extends Model
+class Topic extends BaseModel
 {
     //
 }

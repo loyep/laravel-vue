@@ -30,10 +30,13 @@ use Illuminate\Support\Facades\URL;
  * @property string slug
  * @property meta
  */
-class Post extends Model
+class Post extends BaseModel
 {
     use Cachable, CanLike, SlugScope, MetaFields;
 
+    /**
+     * @var array
+     */
     protected $dates = [
         'published_at',
     ];
@@ -54,31 +57,50 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * @return MorphToMany
+     */
     public function tags(): MorphToMany
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return MorphMany
+     */
     public function comments(): MorphMany
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
 
+    /**
+     * @return string
+     */
     public function getPermLinkAttribute()
     {
         return URL::route('post.show', ['slug' => $this->slug]);
     }
 
+    /**
+     * @param $value
+     * @return string
+     */
     public function getImageAttribute($value)
     {
         return $value ?: asset('static/images/default.png');
     }
 
+    /**
+     * @return string
+     */
     public function getPublishedDateAttribute()
     {
         return Carbon::parse($this->published_at)->toDateString();

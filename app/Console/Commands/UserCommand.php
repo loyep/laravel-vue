@@ -11,7 +11,7 @@ class UserCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'prism:user';
 
     /**
      * The console command description.

@@ -5,12 +5,6 @@ namespace App\Prism;
 class PrismAdmin
 {
     /**
-     * The PrismApp version.
-     *
-     * @var string
-     */
-    const VERSION = '1.0.0';
-    /**
      * @var string
      */
     protected static $metaTitle;
@@ -23,16 +17,6 @@ class PrismAdmin
     public static function setTitle(string $title)
     {
         self::$metaTitle = $title;
-    }
-
-    /**
-     * The PrismApp version.
-     *
-     * @return string
-     */
-    public function version()
-    {
-        return self::VERSION;
     }
 
     /**

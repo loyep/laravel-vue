@@ -12,17 +12,11 @@ class ServingPrism extends Event
     /**
      * The request instance.
      *
-     * @var \Illuminate\Http\Request
+     * @var Request $request
      */
     public $request;
 
-    /**
-     * Create a new event instance.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return void
-     */
+
     public function __construct(Request $request)
     {
         $this->request = $request;

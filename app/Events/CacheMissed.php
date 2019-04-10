@@ -22,9 +22,7 @@ class CacheMissed extends Event
     }
 
     /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
+     * @return array|PrivateChannel
      */
     public function broadcastOn()
     {

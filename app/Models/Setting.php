@@ -4,7 +4,11 @@ namespace App\Models;
 
 use App\Traits\Cachable;
 
-class Setting extends Model
+/**
+ * Class Setting
+ * @package App\Models
+ */
+class Setting extends BaseModel
 {
     use Cachable;
 
@@ -17,10 +21,15 @@ class Setting extends Model
         'key', 'display_name', 'value', 'details', 'type', 'group',
     ];
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         if ($this instanceof self) {
-            return [$this->key => $this->value];
+            return [
+                $this->key => $this->value,
+            ];
         }
 
         return parent::toArray();

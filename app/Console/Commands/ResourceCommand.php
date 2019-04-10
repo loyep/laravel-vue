@@ -11,7 +11,7 @@ class ResourceCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'prism:resource';
 
     /**
      * The console command description.

@@ -5,25 +5,28 @@ namespace App\Prism;
 use App\Models\Post;
 use App\Services\ShareService;
 
+/**
+ * Class PrismApp
+ * @package App\Prism
+ */
 class PrismApp
 {
-    /**
-     * The PrismApp version.
-     *
-     * @var string
-     */
-    const VERSION = '1.0.0';
-
     /**
      * @var \Parsedown
      */
     protected $parser;
 
+    /**
+     * PrismApp constructor.
+     */
     public function __construct()
     {
         $this->bootParser();
     }
 
+    /**
+     *
+     */
     public function bootParser()
     {
         try {
@@ -33,6 +36,9 @@ class PrismApp
         }
     }
 
+    /**
+     * @var
+     */
     protected $socialShare;
 
     /**
@@ -60,16 +66,29 @@ class PrismApp
         return self::VERSION;
     }
 
+    /**
+     * @param string $url
+     * @param string|null $title
+     * @param string|null $des
+     * @param string|null $pic
+     */
     public function setShare(string $url, string $title = null, string $des = null, string $pic = null)
     {
         $this->socialShare = new ShareService($url, $title, $des, $pic);
     }
 
+    /**
+     * @return mixed
+     */
     public function share()
     {
         return $this->socialShare;
     }
 
+    /**
+     * @param $text
+     * @return string
+     */
     public function markdown($text)
     {
         return $this->parser->text($text);
@@ -90,11 +109,19 @@ class PrismApp
         return config('app.name');
     }
 
+    /**
+     * @param $post
+     * @return mixed
+     */
     public function relatedPosts($post)
     {
         return Post::where('category_id', $post->category_id)->take(4)->get();
     }
 
+    /**
+     * @param int $count
+     * @return mixed
+     */
     public function stickyPosts($count = 4)
     {
         return Post::withCount('comments')->with('category')->orderBy('comments_count', 'desc')->orderBy('views', 'desc')->take($count)->get();

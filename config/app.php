@@ -231,8 +231,8 @@ return [
          * PrismApp Aliases...
          */
         'Helper'    => App\Support\Helper::class,
-        'Prism'     => App\Facades\Prism::class,
-        'Admin'     => App\Facades\PrismAdmin::class,
+        'Prism'     => App\Prism\Facades\Prism::class,
+        'Admin'     => App\Prism\Facades\PrismAdmin::class,
 
     ],
 
