@@ -3,7 +3,7 @@ const mix = require('laravel-mix');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { admin } = require('yargs').argv.env
-  
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -16,7 +16,7 @@ const { admin } = require('yargs').argv.env
  */
 
 
-mix.setResourceRoot('static/admin');
+mix.setResourceRoot('/static/admin');
 
 if (admin.css) {
     mix
@@ -79,24 +79,8 @@ const config = {
     },
     output: {
         chunkFilename: `chunk/[name].${ mix.inProduction() ? '[chunkhash].' : '' }js`,
-        publicPath: 'static/admin/'
+        publicPath: '/static/admin/'
     }
 }
 
 mix.webpackConfig(config);
-
-Mix.listen('configReady', (webpackConfig) => {
-    // console.log(JSON.stringify(webpackConfig))
-    // if (Mix.isUsing('hmr')) {
-    //   webpackConfig.entry = Object.keys(webpackConfig.entry).reduce((entries, entry) => {
-    //     entries[entry.replace(/^\//, '')] = webpackConfig.entry[entry];
-    //     return entries;
-    //   }, {});
-
-    //   webpackConfig.plugins.forEach((plugin) => {
-    //     if (plugin.constructor.name === 'ExtractTextPlugin') {
-    //       plugin.filename = plugin.filename.replace(/^\//, '');
-    //     }
-    //   });
-    // }
-});

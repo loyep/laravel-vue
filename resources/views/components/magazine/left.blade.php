@@ -1,6 +1,7 @@
+@if (!empty($post))
 <div class="items items-left col-12 col-md-6">
     <div class="item">
-        <a class="custom-hover d-block" href="{{ $post->permLink }}" target="_blank"
+        <a class="custom-hover d-block" href="{{ $post->perm_link }}" target="_blank"
            title="{{ $post->title }}">
             <div class="custom-hover-img image"
                  style="background-image: url('{{ $post->image }}');"></div>
@@ -22,3 +23,4 @@
         </a>
     </div>
 </div>
+@endif

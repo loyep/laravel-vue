@@ -98,7 +98,7 @@ function createRouter (base: string) : Router {
   const router = new Router({
     base,
     scrollBehavior,
-    // mode: 'history',
+    mode: 'history',
     routes
   })
 
