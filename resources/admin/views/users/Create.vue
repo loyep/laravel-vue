@@ -162,54 +162,53 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+<script>
 import { Card, Col, Row, Tag } from "ant-design-vue";
 import { store } from "@/api/user";
 import { setFiledsWithErrors } from "@/utils/form";
-import { WrappedFormUtils } from "ant-design-vue/types/form/form";
-import { setTimeout } from "timers";
 
-@Component({
+export default {
+  name: "UserUpdate",
   components: {
     ACard: Card,
     ACol: Col,
     ARow: Row,
     ATag: Tag
-  }
-})
-export default class UserUpdate extends Vue {
-
-  private form: WrappedFormUtils;
-
+  },
+  data() {
+    return {
+      form: undefined
+    };
+  },
   beforeCreate() {
     this.form = this.$form.createForm(this);
-  }
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          store(values).then(res => {
+            const data = res.data;
 
-  handleSubmit(e: Event) {
-    e.preventDefault();
-    this.form.validateFields((err, values) => {
-      if (!err) {
-        store(values).then(res => {
-          const data = res.data;
-
-          if (data.errors) {
-            setFiledsWithErrors(this.form, data.errors);
-          } else {
-            this.$confirm({
-              title: data.message,
-              okText: "确认",
-              cancelText: "取消",
-              onOk: () => {
-                this.$router.push({
-                  name: "user.index"
-                });
-              }
-            });
-          }
-        });
-      }
-    });
+            if (data.errors) {
+              setFiledsWithErrors(this.form, data.errors);
+            } else {
+              this.$confirm({
+                title: data.message,
+                okText: "确认",
+                cancelText: "取消",
+                onOk: () => {
+                  this.$router.push({
+                    name: "user.index"
+                  });
+                }
+              });
+            }
+          });
+        }
+      });
+    }
   }
-}
+};
 </script>

@@ -2,7 +2,7 @@
   <div class="pageHeader">
     <div :class="{ wide: wide }">
       <!-- <a-skeleton :loading="loading" active :paragraph="{rows: 4}" :avatar="{ size: 'large', shape: 'circle' }"> -->
-      <breadcrumb v-if="!hideBread" />
+      <breadcrumb v-if="!hideBread"/>
       <!-- <div class="detail">
         <img v-if="logo" :src="logo" class="logo" />
         <slot name="pageLogo" />
@@ -23,47 +23,53 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>-->
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
-import { State, Mutation, namespace } from 'vuex-class';
-import { Skeleton } from 'ant-design-vue'
-import Breadcrumb from './Breadcrumb.vue'
+<script>
+import { Skeleton } from "ant-design-vue";
+import Breadcrumb from "./Breadcrumb.vue";
 
-const themeModule = namespace('theme');
-
-@Component({
+export default {
+  name: "PageHeader",
   components: {
-    'ASkeleton': Skeleton,
+    ASkeleton: Skeleton,
     Breadcrumb
+  },
+  props: {
+    wide: {
+      type: Boolean,
+      required: true
+    },
+    hideBread: {
+      type: Boolean,
+      default: false
+    },
+    logo: {
+      type: String,
+      default: ""
+    },
+    title: {
+      type: String,
+      default: ""
+    },
+    content: {
+      type: String,
+      default: ""
+    },
+    extraContent: {
+      type: String,
+      default: ""
+    }
+  },
+  data() {
+    return {
+      loading: false
+    };
   }
-})
-export default class PageHeader extends Vue {
-
-  @Prop()
-  wide: boolean
-
-  @Prop({ default: false })
-  hideBread: boolean
-
-  @Prop({ default: '' })
-  logo: string
-
-  @Prop({ default: '' })
-  title: string
-
-  @Prop({ default: '' })
-  content: string
-
-  @Prop({ default: '' })
-  extraContent: string
-
-  private loading: boolean = false
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -228,5 +234,4 @@ export default class PageHeader extends Vue {
     }
   }
 }
-
 </style>

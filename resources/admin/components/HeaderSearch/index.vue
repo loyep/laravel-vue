@@ -22,59 +22,59 @@
   </span>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import { State, Mutation, namespace } from "vuex-class";
+<script>
 import { AutoComplete } from "ant-design-vue";
 
-const authModule = namespace("auth");
-const themeModule = namespace("theme");
-
-@Component({
+export default {
+  name: "HeaderSearch",
   components: {
     AAutoComplete: AutoComplete
-  }
-})
-export default class HeaderSearch extends Vue {
-  @Prop({ default: "站内搜索" })
-  placeholder: string;
-
-  @Prop({
-    default: function() {
-      return value => {
-        console.log(value);
-      };
+  },
+  props: {
+    placeholder: {
+      type: String,
+      default: "站内搜索"
+    },
+    onChange: {
+      type: Function,
+      default: function() {
+        return value => {
+          console.log(value);
+        };
+      }
     }
-  })
-  onChange: Function;
+  },
+  data() {
+    return {
+      searchMode: false,
+      dataSource: [],
+      value: ""
+    };
+  },
+  methods: {
+    onSearch() {
+      this.$emit("search", this.value);
+    },
 
-  private searchMode: boolean = false;
-  private dataSource: Array<any> = [];
-  private value: string = "";
-
-  onSearch() {
-    this.$emit("search", this.value);
-  }
-  
-  onKeyDown(e: Event) {}
-
-  onSearchChange(value) {
-    this.value = value;
-    if (this.onChange) {
-      this.onChange(value);
+    onKeyDown(e) {},
+    onSearchChange(value) {
+      this.value = value;
+      if (this.onChange) {
+        this.onChange(value);
+      }
+    },
+    enterSearchMode() {
+      this.searchMode = true;
+      setTimeout(() => {
+        this.$refs.input.focus();
+      }, 300);
+    },
+    leaveSearchMode() {
+      this.value = "";
+      this.searchMode = false;
     }
   }
-  enterSearchMode() {
-    this.searchMode = true;
-    setTimeout(() => {
-      (<any>this.$refs.input).focus();
-    }, 300);
-  }
-  leaveSearchMode() {
-    this.value = "";
-    this.searchMode = false;
-  }
-}
+};
 </script>
 
 <style lang="less" scope>

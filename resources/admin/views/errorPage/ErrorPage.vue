@@ -10,25 +10,20 @@
     </div>
     <div class="content">
       <h1>{{ config[type].title }}</h1>
-      <div class="desc">
-        {{ config[type].desc }}
-      </div>
+      <div class="desc">{{ config[type].desc }}</div>
       <div class="actions">
         <slot>
-          <a-button type="primary" @click="handleToHome">
-            {{ config[type].backText }}
-          </a-button>
+          <a-button type="primary" @click="handleToHome">{{ config[type].backText }}</a-button>
         </slot>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+<script>
 import { Button } from "ant-design-vue";
 
-const types: Object = {
+const types = {
   403: {
     img: require('@/assets/images/errors/403.svg'),
     title: '403',
@@ -49,112 +44,117 @@ const types: Object = {
   }
 }
 
-@Component({
+export default {
   components: {
     AButton: Button
-  }
-})
-export default class ErrorPage extends Vue {
-  @Prop({ default: '404' })
-  private type: string;
-
-  private config: Object = types;
-
-  handleToHome () {
-    this.$router.push({ path: '/' })
+  },
+  props: {
+    type: {
+      type: string,
+      default: '404'
+    }
+  },
+  data() {
+    return {
+      types: types
+    }
+  },
+  methods: {
+    handleToHome () {
+      this.$router.push({ path: '/' })
+    }
   }
 }
 </script>
 
 <style lang="less" scoped>
-@import '~@/styles/variables.less';
+// @import '~@/styles/variables.less';
 
-.exception {
-  display: flex;
-  align-items: center;
-  height: 80%;
-  min-height: 500px;
+// .exception {
+//   display: flex;
+//   align-items: center;
+//   height: 80%;
+//   min-height: 500px;
 
-  .imgBlock {
-    flex: 0 0 62.5%;
-    width: 62.5%;
-    padding-right: 152px;
-    zoom: 1;
-    &::before,
-    &::after {
-      content: ' ';
-      display: table;
-    }
-    &::after {
-      clear: both;
-      height: 0;
-      font-size: 0;
-      visibility: hidden;
-    }
-  }
+//   .imgBlock {
+//     flex: 0 0 62.5%;
+//     width: 62.5%;
+//     padding-right: 152px;
+//     zoom: 1;
+//     &::before,
+//     &::after {
+//       content: ' ';
+//       display: table;
+//     }
+//     &::after {
+//       clear: both;
+//       height: 0;
+//       font-size: 0;
+//       visibility: hidden;
+//     }
+//   }
 
-  .imgEle {
-    float: right;
-    width: 100%;
-    max-width: 430px;
-    height: 360px;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: contain;
-  }
+//   .imgEle {
+//     float: right;
+//     width: 100%;
+//     max-width: 430px;
+//     height: 360px;
+//     background-repeat: no-repeat;
+//     background-position: 50% 50%;
+//     background-size: contain;
+//   }
 
-  .content {
-    flex: auto;
+//   .content {
+//     flex: auto;
 
-    h1 {
-      margin-bottom: 24px;
-      color: #434e59;
-      font-weight: 600;
-      font-size: 72px;
-      line-height: 72px;
-    }
+//     h1 {
+//       margin-bottom: 24px;
+//       color: #434e59;
+//       font-weight: 600;
+//       font-size: 72px;
+//       line-height: 72px;
+//     }
 
-    .desc {
-      margin-bottom: 16px;
-      color: @text-color-secondary;
-      font-size: 20px;
-      line-height: 28px;
-    }
+//     .desc {
+//       margin-bottom: 16px;
+//       color: @text-color-secondary;
+//       font-size: 20px;
+//       line-height: 28px;
+//     }
 
-    .actions {
-      button:not(:last-child) {
-        margin-right: 8px;
-      }
-    }
-  }
-}
+//     .actions {
+//       button:not(:last-child) {
+//         margin-right: 8px;
+//       }
+//     }
+//   }
+// }
 
-@media screen and (max-width: @screen-xl) {
-  .exception {
-    .imgBlock {
-      padding-right: 88px;
-    }
-  }
-}
+// @media screen and (max-width: @screen-xl) {
+//   .exception {
+//     .imgBlock {
+//       padding-right: 88px;
+//     }
+//   }
+// }
 
-@media screen and (max-width: @screen-sm) {
-  .exception {
-    display: block;
-    text-align: center;
-    .imgBlock {
-      margin: 0 auto 24px;
-      padding-right: 0;
-    }
-  }
-}
+// @media screen and (max-width: @screen-sm) {
+//   .exception {
+//     display: block;
+//     text-align: center;
+//     .imgBlock {
+//       margin: 0 auto 24px;
+//       padding-right: 0;
+//     }
+//   }
+// }
 
-@media screen and (max-width: @screen-xs) {
-  .exception {
-    .imgBlock {
-      margin-bottom: -24px;
-      overflow: hidden;
-    }
-  }
-}
-
+// @media screen and (max-width: @screen-xs) {
+//   .exception {
+//     .imgBlock {
+//       margin-bottom: -24px;
+//       overflow: hidden;
+//     }
+//   }
+// }
 </style>

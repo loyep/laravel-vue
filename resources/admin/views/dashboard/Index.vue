@@ -7,22 +7,21 @@
   </page-view>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import PageView from "@/layouts/PageLayout/PageView.vue";
-import { namespace } from "vuex-class";
+<script>
+import PageView from "@/layouts/PageLayout/PageView";
+import { mapGetters } from "vuex";
 
-const authModule = namespace("auth");
-
-@Component({
+export default {
+  name: "Dashboard",
   components: {
     PageView
+  },
+  computed: {
+    ...mapGetters("auth", {
+      user: "user"
+    })
   }
-})
-export default class Dashboard extends Vue {
-  @authModule.Getter("user")
-  user: any;
-}
+};
 </script>
 
 <style lang="less" scoped>

@@ -40,7 +40,8 @@
       </div>
       <div class="tableListOperator">
         <a-dropdown>
-          <a-button :disabled="selectedRowKeys.length === 0">批量操作
+          <a-button :disabled="selectedRowKeys.length === 0">
+            批量操作
             <a-icon type="down"/>
           </a-button>
           <template #overlay>
@@ -60,17 +61,14 @@
         :pagination="pagination"
         :rowSelection="{ selectedRowKeys, onChange: onSelectChange }"
         @change="handleTableChange"
-      >
-      </a-table>
+      ></a-table>
     </div>
   </a-card>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+<script>
 import { Card, Col, Row, Tag, Menu, Dropdown, Button } from "ant-design-vue";
 import { getList } from "@/api/role";
-import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
 const columns = [
   {
@@ -80,15 +78,15 @@ const columns = [
   },
   {
     title: "Slug",
-    dataIndex: "slug",
+    dataIndex: "slug"
   },
   {
     title: "描述",
-    dataIndex: "description",
+    dataIndex: "description"
   },
   {
     title: "总数",
-    dataIndex: "posts_count",
+    dataIndex: "posts_count"
   },
   {
     title: "更新时间",
@@ -96,7 +94,8 @@ const columns = [
   }
 ];
 
-@Component({
+export default {
+  name: "RoleList",
   components: {
     ACard: Card,
     ACol: Col,
@@ -107,146 +106,142 @@ const columns = [
     AMenu: Menu,
     AMenuItem: Menu.Item,
     AButton: Button
-  }
-})
-export default class RoleList extends Vue {
-  protected selectedRowKeys: Array<number> = [];
+  },
+  data() {
+    return {
+      selectedRowKeys: [],
+      columns: columns,
+      form: undefined,
+      data: [],
+      loading: false,
+      pagination: {},
+      query: {}
+    };
+  },
 
-  private columns = columns;
-
-  private form: WrappedFormUtils;
-
-  private data: Array<Object> = [];
-
-  private loading = false;
-
-  private pagination: Object = {};
-
-  private query: Object = {};
-  
-  @Watch('data')
-  onDataChanged(val: Array<Object>, oldVal: Array<Object>) { 
-    this.selectedRowKeys = []
-  }
+  watch: {
+    data(val, oldVal) {
+      this.selectedRowKeys = [];
+    }
+  },
 
   beforeCreate() {
     this.form = this.$form.createForm(this);
-  }
+  },
 
   created() {
     this.handleSearch();
-  }
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          this.handleSearch(values);
+        }
+      });
+    },
+    handleSearch(query = {}) {
+      this.query = query;
+      this.loading = true;
+      getList(query).then(res => {
+        const data = res.data;
+        this.data = data.data;
 
-  handleSubmit(e: Event) {
-    e.preventDefault();
-    this.form.validateFields((err, values) => {
-      if (!err) {
-        this.handleSearch(values);
-      }
-    });
-  }
+        const paginationProps = {
+          total: parseInt(data.total),
+          pageSize: parseInt(data.per_page),
+          current: data.current_page
+        };
+        this.pagination = paginationProps;
+        this.loading = false;
+      });
+    },
 
-  handleSearch(query: Object = {}) {
-    this.query = query;
-    this.loading = true;
-    getList(query).then(res => {
-      const data = res.data
-      this.data = data.data;
+    toggleForm() {},
 
-      const paginationProps = {
-        total: parseInt(data.total),
-        pageSize: parseInt(data.per_page),
-        current: data.current_page
+    onSelectChange(selectedRowKeys, selectedRows) {
+      this.selectedRowKeys = selectedRowKeys;
+    },
+
+    statusMap(status) {
+      const colorMap = {
+        published: {
+          color: "blue",
+          label: "已发布"
+        },
+        draft: {
+          color: "cyan",
+          label: "草稿"
+        },
+        private: {
+          color: "green",
+          label: "私密"
+        }
       };
-      this.pagination = paginationProps;
-      this.loading = false;
-    });
+      return colorMap[status];
+    },
+    handleTableChange(pagination, filters, sorter) {
+      const query = Object.assign(this.query, {
+        per_page: pagination.pageSize,
+        page: pagination.current
+      });
+
+      this.handleSearch(query);
+    }
   }
-
-  toggleForm() {}
-
-  onSelectChange(selectedRowKeys, selectedRows) {
-    this.selectedRowKeys = selectedRowKeys;
-  }
-
-  statusMap(status) {
-    const colorMap = {
-      published: {
-        color: "blue",
-        label: "已发布"
-      },
-      draft: {
-        color: "cyan",
-        label: "草稿"
-      },
-      private: {
-        color: "green",
-        label: "私密"
-      }
-    };
-    return colorMap[status];
-  }
-
-  handleTableChange(pagination, filters, sorter) {
-    const query: any = Object.assign(this.query, {
-      per_page: pagination.pageSize,
-      page: pagination.current
-    });
-
-    this.handleSearch(query);
-  }
-}
+};
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/variables.less";
-@import "~@/styles/components/utils.less";
+// @import "~@/styles/variables.less";
+// @import "~@/styles/components/utils.less";
 
-.tableList {
-  .tableListOperator {
-    margin-bottom: 16px;
-    button {
-      margin-right: 8px;
-    }
-  }
-}
+// .tableList {
+//   .tableListOperator {
+//     margin-bottom: 16px;
+//     button {
+//       margin-right: 8px;
+//     }
+//   }
+// }
 
-.tableListForm {
-  :global(.ant-form-item) {
-    display: flex;
-    margin-right: 0;
-    // margin-bottom: 24px;
-    > .ant-form-item-label {
-      width: auto;
-      padding-right: 8px;
-      line-height: 32px;
-    }
-    .ant-form-item-control {
-      line-height: 32px;
-    }
-    :global(.ant-form-item-control-wrapper) {
-      flex: 1;
-    }
-  }
-  .submitButtons {
-    display: block;
-    margin-bottom: 24px;
-    white-space: nowrap;
-    :global(.ant-btn) {
-      margin-right: 8px;
-    }
-  }
-}
+// .tableListForm {
+//   :global(.ant-form-item) {
+//     display: flex;
+//     margin-right: 0;
+//     // margin-bottom: 24px;
+//     > .ant-form-item-label {
+//       width: auto;
+//       padding-right: 8px;
+//       line-height: 32px;
+//     }
+//     .ant-form-item-control {
+//       line-height: 32px;
+//     }
+//     :global(.ant-form-item-control-wrapper) {
+//       flex: 1;
+//     }
+//   }
+//   .submitButtons {
+//     display: block;
+//     margin-bottom: 24px;
+//     white-space: nowrap;
+//     :global(.ant-btn) {
+//       margin-right: 8px;
+//     }
+//   }
+// }
 
-@media screen and (max-width: @screen-lg) {
-  .tableListForm :global(.ant-form-item) {
-    margin-right: 24px;
-  }
-}
+// @media screen and (max-width: @screen-lg) {
+//   .tableListForm :global(.ant-form-item) {
+//     margin-right: 24px;
+//   }
+// }
 
-@media screen and (max-width: @screen-md) {
-  .tableListForm :global(.ant-form-item) {
-    margin-right: 8px;
-  }
-}
+// @media screen and (max-width: @screen-md) {
+//   .tableListForm :global(.ant-form-item) {
+//     margin-right: 8px;
+//   }
+// }
 </style>

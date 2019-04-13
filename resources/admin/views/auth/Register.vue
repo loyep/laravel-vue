@@ -1,9 +1,7 @@
 <template>
   <auth-layout>
     <div class="main">
-      <h3>
-        注册
-      </h3>
+      <h3>注册</h3>
       <a-form :form="form" @submit="handleSubmit">
         <a-form-item>
           <a-input
@@ -20,7 +18,7 @@
             placeholder="用户名"
           >
             <template #prefix>
-              <a-icon type="user" style="color:rgba(0,0,0,.25)" />
+              <a-icon type="user" style="color:rgba(0,0,0,.25)"/>
             </template>
           </a-input>
         </a-form-item>
@@ -40,7 +38,7 @@
             placeholder="邮箱"
           >
             <template #prefix>
-              <a-icon type="mail" style="color:rgba(0,0,0,.25)" />
+              <a-icon type="mail" style="color:rgba(0,0,0,.25)"/>
             </template>
           </a-input>
         </a-form-item>
@@ -60,7 +58,7 @@
             type="password"
           >
             <template #prefix>
-              <a-icon type="lock" style="color:rgba(0,0,0,.25)" />
+              <a-icon type="lock" style="color:rgba(0,0,0,.25)"/>
             </template>
           </a-input>
         </a-form-item>
@@ -80,7 +78,7 @@
             type="password"
           >
             <template #prefix>
-              <a-icon type="lock" style="color:rgba(0,0,0,.25)" />
+              <a-icon type="lock" style="color:rgba(0,0,0,.25)"/>
             </template>
           </a-input>
         </a-form-item>
@@ -91,60 +89,56 @@
             type="primary"
             class="submit"
             htmlType="submit"
-          >
-            注册
-          </a-button>
-          <router-link class="login" :to="{ name: 'login' }">
-            使用已有账户登录
-          </router-link>
+          >注册</a-button>
+          <router-link class="login" :to="{ name: 'login' }">使用已有账户登录</router-link>
         </a-form-item>
       </a-form>
     </div>
   </auth-layout>
 </template>
 
-<script lang="ts">
-import AuthLayout from '@/layouts/AuthLayout/index.vue';
-import { Component, Vue } from 'vue-property-decorator';
+<script>
+import AuthLayout from "@/layouts/AuthLayout/index.vue";
 import { setFiledsWithErrors } from "@/utils/form";
-import { WrappedFormUtils } from 'ant-design-vue/types/form/form';
 
-@Component({
+export default {
+  name: "Register",
   components: {
     AuthLayout
-  }
-})
-export default class Register extends Vue {
-  
-  private submitting = false
-
-  private form: WrappedFormUtils
-
+  },
+  data() {
+    return {
+      submitting: false,
+      form: undefined
+    };
+  },
   beforeCreate() {
-    this.form = this.$form.createForm(this)
+    this.form = this.$form.createForm(this);
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          this.submitting = true;
+          this.$store
+            .dispatch("auth/Register", values)
+            .then(res => {
+              this.submitting = false;
+              this.$router.push({ path: this.$route.query.redirect || "/" });
+            })
+            .catch(err => {
+              this.submitting = false;
+              setFiledsWithErrors(this.form, err);
+            });
+        }
+      });
+    }
   }
-
-  handleSubmit  (e: Event) {
-    e.preventDefault()
-    this.form.validateFields((err, values) => {
-      if (!err) {
-        this.submitting = true
-        this.$store.dispatch('auth/Register', values).then((res) => {
-          this.submitting = false
-          this.$router.push(<any>{ path: this.$route.query.redirect || '/' })
-        }).catch(err => {
-          this.submitting = false
-          setFiledsWithErrors(this.form, err);
-        })
-      }
-    })
-  }
-}
-
+};
 </script>
 
 <style lang="less" scoped>
-
 @import '~@/styles/variables.less';
 
 .main {
@@ -196,5 +190,4 @@ export default class Register extends Vue {
     }
   }
 }
-
 </style>

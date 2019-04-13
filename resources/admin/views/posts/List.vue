@@ -108,12 +108,9 @@
   </a-card>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Watch, Prop } from "vue-property-decorator";
+<script>
 import { Card, Col, Row, Tag, Menu, Dropdown, Badge } from "ant-design-vue";
 import { getList, destroy } from "@/api/post";
-import { WrappedFormUtils } from "ant-design-vue/types/form/form";
-import { RouteRecord } from "vue-router";
 
 const columns = [
   {
@@ -158,7 +155,8 @@ const columns = [
   }
 ];
 
-@Component({
+export default {
+  name: "PostList",
   components: {
     ABadge: Badge,
     ACard: Card,
@@ -169,215 +167,208 @@ const columns = [
     ADropdownButton: Dropdown.Button,
     AMenu: Menu,
     AMenuItem: Menu.Item
-  }
-})
-export default class PostList extends Vue {
-  protected selectedRowKeys: Array<string | number> = [];
-
-  private columns: any = columns;
-
-  private form: WrappedFormUtils;
-
-  private data: Array<Object> = [];
-
-  private loading: boolean = false;
-
-  private pagination: Object = {};
-
-  private query: Object = {};
-
-  get showActions(): boolean {
-    return this.selectedRowKeys!.length > 0;
-  }
-
-  @Watch("data")
-  onDataChanged(val: Array<Object>, oldVal: Array<Object>) {
-    this.selectedRowKeys = [];
-  }
-
-  @Watch("$route")
-  onRouteChanged() {
-    console.log(this.$route.query.tag);
-    this.initForm();
-  }
+  },
+  data() {
+    return {
+      selectedRowKeys: [],
+      columns: columns,
+      form: undefined,
+      data: [],
+      loading: false,
+      pagination: {},
+      query: {}
+    };
+  },
+  computed: {
+    showActions() {
+      return this.selectedRowKeys.length > 0;
+    }
+  },
+  watch: {
+    data(val, oldVal) {
+      this.selectedRowKeys = [];
+    },
+    $route() {
+      console.log(this.$route.query.tag);
+      this.initForm();
+    }
+  },
 
   beforeCreate() {
     this.form = this.$form.createForm(this);
-  }
+  },
 
   created() {
     console.log(this.$route.query.tag);
     this.initForm();
-  }
+  },
+  methods: {
+    searchByStatus(status) {
+      this.form.setFieldsValue({ status });
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          this.handleSearch(values);
+        }
+      });
+    },
 
-  searchByStatus(status: string) {
-    this.form.setFieldsValue({ status });
-    this.form.validateFields((err, values) => {
-      if (!err) {
-        this.handleSearch(values);
-      }
-    });
-  }
+    initForm() {
+      this.handleSearch();
+    },
 
-  initForm() {
-    this.handleSearch();
-  }
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          this.handleSearch(values);
+        }
+      });
+    },
 
-  handleSubmit(e: Event) {
-    e.preventDefault();
-    this.form.validateFields((err, values) => {
-      if (!err) {
-        this.handleSearch(values);
-      }
-    });
-  }
+    handleCreate(e) {
+      e.preventDefault();
+      this.$router.push({
+        name: "post.create"
+      });
+    },
 
-  handleCreate(e: Event) {
-    e.preventDefault();
-    this.$router.push({
-      name: "post.create"
-    });
-  }
+    handleReset(e) {
+      e.preventDefault();
+      this.form.resetFields();
+      this.$router.replace({
+        name: "post.index"
+      });
+    },
+    handleSearch(query = {}) {
+      this.query = query;
+      this.loading = true;
 
-  handleReset(e: Event) {
-    e.preventDefault();
-    this.form.resetFields();
-    this.$router.replace({
-      name: "post.index"
-    });
-  }
+      query = Object.assign(query, this.$route.query);
+      console.log(query);
+      getList(query).then(res => {
+        const { data, total, per_page, current_page } = res.data;
+        this.data = data;
 
-  handleSearch(query: Object = {}) {
-    this.query = query;
-    this.loading = true;
+        const paginationProps = {
+          showSizeChanger: true,
+          total: parseInt(total),
+          pageSize: parseInt(per_page),
+          current: current_page
+        };
+        this.pagination = paginationProps;
+        this.loading = false;
+      });
+    },
+    handleMoreAction() {},
+    handleDelete() {
+      const that = this;
+      this.$confirm({
+        title: "提示",
+        content: "确认要删除吗 ?",
+        onOk() {
+          destroy(that.selectedRowKeys).then(res => {
+            console.log(res);
+            if (res.data.message) {
+              that.$notification.success({
+                message: "删除提示",
+                description: res.data.message
+              });
+              that.$nextTick(() => {
+                that.handleSearch();
+              });
+            }
+          });
+        },
+        onCancel() {}
+      });
+    },
 
-    query = Object.assign(query, this.$route.query);
-    console.log(query);
-    getList(query).then(res => {
-      const { data, total, per_page, current_page } = res.data;
-      this.data = data;
+    onSelectChange(selectedRowKeys, selectedRows) {
+      this.selectedRowKeys = selectedRowKeys;
+    },
 
-      const paginationProps = {
-        showSizeChanger: true,
-        total: parseInt(total),
-        pageSize: parseInt(per_page),
-        current: current_page
+    statusMap(status) {
+      const colorMap = {
+        published: {
+          // color: "blue",
+          type: "success",
+          label: "已发布"
+        },
+        draft: {
+          // color: "cyan",
+          type: "processing",
+          label: "草稿"
+        },
+        private: {
+          // color: "green",
+          type: "warning",
+          label: "私密"
+        }
       };
-      this.pagination = paginationProps;
-      this.loading = false;
-    });
+      return colorMap[status];
+    },
+
+    handleTableChange(pagination, filters, sorter) {
+      const query = Object.assign(this.query, {
+        per_page: pagination.pageSize,
+        page: pagination.current
+      });
+
+      this.handleSearch(query);
+    }
   }
-
-  handleMoreAction() {}
-
-  handleDelete() {
-    const that = this;
-    this.$confirm({
-      title: "提示",
-      content: "确认要删除吗 ?",
-      onOk() {
-        destroy(that.selectedRowKeys!).then(res => {
-          console.log(res);
-          if (res.data.message) {
-            that.$notification.success({
-              message: "删除提示",
-              description: res.data.message
-            });
-            that.$nextTick(() => {
-              that.handleSearch();
-            });
-          }
-        });
-      },
-      onCancel() {}
-    });
-  }
-
-  onSelectChange(selectedRowKeys, selectedRows) {
-    this.selectedRowKeys = selectedRowKeys;
-  }
-
-  statusMap(status) {
-    const colorMap = {
-      published: {
-        // color: "blue",
-        type: "success",
-        label: "已发布"
-      },
-      draft: {
-        // color: "cyan",
-        type: "processing",
-        label: "草稿"
-      },
-      private: {
-        // color: "green",
-        type: "warning",
-        label: "私密"
-      }
-    };
-    return colorMap[status];
-  }
-
-  handleTableChange(pagination, filters, sorter) {
-    const query: any = Object.assign(this.query, {
-      per_page: pagination.pageSize,
-      page: pagination.current
-    });
-
-    this.handleSearch(query);
-  }
-}
+};
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/variables.less";
-@import "~@/styles/components/utils.less";
+// @import "~@/styles/variables.less";
+// @import "~@/styles/components/utils.less";
 
-.tableList {
-  .tableListOperator {
-    margin-bottom: 16px;
-    button {
-      margin-right: 8px;
-    }
-  }
-}
+// .tableList {
+//   .tableListOperator {
+//     margin-bottom: 16px;
+//     button {
+//       margin-right: 8px;
+//     }
+//   }
+// }
 
-.tableListForm {
-  :global(.ant-form-item) {
-    display: flex;
-    margin-right: 0;
-    // margin-bottom: 24px;
-    > .ant-form-item-label {
-      width: auto;
-      padding-right: 8px;
-      line-height: 32px;
-    }
-    .ant-form-item-control {
-      line-height: 32px;
-    }
-    :global(.ant-form-item-control-wrapper) {
-      flex: 1;
-    }
-  }
-  .submitButtons {
-    display: block;
-    margin-bottom: 24px;
-    white-space: nowrap;
-    :global(.ant-btn) {
-      margin-right: 8px;
-    }
-  }
-}
+// .tableListForm {
+//   :global(.ant-form-item) {
+//     display: flex;
+//     margin-right: 0;
+//     // margin-bottom: 24px;
+//     > .ant-form-item-label {
+//       width: auto;
+//       padding-right: 8px;
+//       line-height: 32px;
+//     }
+//     .ant-form-item-control {
+//       line-height: 32px;
+//     }
+//     :global(.ant-form-item-control-wrapper) {
+//       flex: 1;
+//     }
+//   }
+//   .submitButtons {
+//     display: block;
+//     margin-bottom: 24px;
+//     white-space: nowrap;
+//     :global(.ant-btn) {
+//       margin-right: 8px;
+//     }
+//   }
+// }
 
-@media screen and (max-width: @screen-lg) {
-  .tableListForm :global(.ant-form-item) {
-    margin-right: 24px;
-  }
-}
+// @media screen and (max-width: @screen-lg) {
+//   .tableListForm :global(.ant-form-item) {
+//     margin-right: 24px;
+//   }
+// }
 
-@media screen and (max-width: @screen-md) {
-  .tableListForm :global(.ant-form-item) {
-    margin-right: 8px;
-  }
-}
+// @media screen and (max-width: @screen-md) {
+//   .tableListForm :global(.ant-form-item) {
+//     margin-right: 8px;
+//   }
+// }
 </style>

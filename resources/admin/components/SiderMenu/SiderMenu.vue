@@ -24,42 +24,45 @@
   </a-layout-sider>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
-import { State, Mutation, namespace } from 'vuex-class';
-import { Layout } from 'ant-design-vue';
-import BaseMenu from './BaseMenu.vue';
+<script>
+import { Component, Vue, Prop, Provide } from "vue-property-decorator";
+import { State, Mutation, namespace } from "vuex-class";
+import { Layout } from "ant-design-vue";
+import BaseMenu from "./BaseMenu.vue";
+import { mapGetters } from "vuex";
 
-const themeModule = namespace('theme');
-
-@Component({
+const themeModule = namespace("theme");
+export default {
+  name: "SiderMenu",
   components: {
     BaseMenu,
-    'ALayoutSider': Layout.Sider
+    ALayoutSider: Layout.Sider
+  },
+  props: {
+    collapsed: {
+      type: Boolean,
+      default: false
+    },
+    menus: {
+      type: Array,
+      required: true
+    }
+  },
+  computed: {
+    ...mapGetters("theme", {
+      fixSidebar: "fixSidebar",
+      theme: "theme"
+    }),
+    title() {
+      return window.config.name;
+    }
+  },
+  methods: {
+    onSelect(obj) {
+      this.$emit("onSelect", obj);
+    }
   }
-})
-export default class SiderMenu extends Vue {
-
-  @Prop({ default: false })
-  collapsed: boolean
-
-  @Prop()
-  menus: Array<any>
-
-  @themeModule.Getter('fixSidebar')
-  fixSidebar: boolean
-
-  @themeModule.Getter('theme')
-  theme: string
-
-  get title() {
-    return (<any>window).config.name
-  }
-  
-  onSelect (obj) {
-    this.$emit('onSelect', obj)
-  }
-}
+};
 </script>
 
 <style lang="less" scoped>

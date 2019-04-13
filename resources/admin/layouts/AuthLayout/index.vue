@@ -40,23 +40,23 @@
   </div>
 </template>
 
-<script lang="ts">
-import GlobalFooter from "@/components/GlobalFooter/index.vue";
-import SelectLang from "@/components/SelectLang/index.vue";
-import { Component, Vue } from "vue-property-decorator";
+<script>
+import GlobalFooter from "@/components/GlobalFooter";
+import SelectLang from "@/components/SelectLang";
 
-@Component({
+export default  {
+  name: 'AuthLayout',
   components: {
     GlobalFooter,
     SelectLang
+  },
+  data() {
+    return {
+      year: new Date().getFullYear(),
+      name: window.config.name,
+      description: window.config.description
+    }
   }
-})
-export default class AuthLayout extends Vue {
-  private year: number = new Date().getFullYear();
-
-  private name: any = (<any>window).config.name;
-
-  private description: any = (<any>window).config.description;
 }
 </script>
 

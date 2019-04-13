@@ -10,27 +10,31 @@
   </div>
 </template>
 
-<script lang="ts">
-import RightContent from './RightContent.vue'
-import { Component, Vue, Prop } from 'vue-property-decorator';
-import { State, Mutation, namespace } from 'vuex-class';
+<script>
+import RightContent from './RightContent'
+import { mapGetters } from 'vuex'
 
-const themeModule = namespace('theme');
-
-@Component({
+export default{ 
+  name: 'GlobalHeader',
   components: {
     RightContent
-  }
-})
-export default class GlobalHeader extends Vue {
-  @Prop()
-  collapsed: boolean = false
-
-  @themeModule.Getter('isMobile')
-  isMobile: boolean
+  },
+  props:{
+    collapsed: {
+      type: Boolean,
+      default: false
+    },
+  },
+  computed: {
+    ...mapGetters('theme', {
+      isMobile: 'isMobile'
+    })
+  },
+  methods: {
 
   toggle () {
     this.$emit('collapse', !this.collapsed)
+  }
   }
 }
 </script>

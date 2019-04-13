@@ -18,21 +18,21 @@
   </a-layout-footer>
 </template>
 
-<script lang="ts">
+<script>
 import { Layout } from 'ant-design-vue'
-const GlobalFooter = () => import('@/components/GlobalFooter/index.vue')
-import { Component, Vue } from 'vue-property-decorator';
+const GlobalFooter = () => import('@/components/GlobalFooter')
 
-@Component({
+export default  {
+  name: "Footer",
   components: {
-    GlobalFooter,
-    'ALayoutFooter': Layout.Footer
+     GlobalFooter,
+    ALayoutFooter: Layout.Footer
+  },
+  data() {
+    return {
+      year: new Date().getFullYear()
+    }
   }
-})
-export default class Footer extends Vue {
-  
-  private year: number = new Date().getFullYear()
-
 }
 </script>
 

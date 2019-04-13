@@ -74,68 +74,67 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+<script>
 import { Card, Col, Row, Tag } from "ant-design-vue";
 import { store } from "@/api/post";
 import { setFiledsWithErrors } from "@/utils/form";
-import { WrappedFormUtils } from "ant-design-vue/types/form/form";
-import { setTimeout } from "timers";
-import Editor from "@/components/Editor/index.vue";
+import Editor from "@/components/Editor";
 
-@Component({
+export default {
+  name: "PostCreate",
   components: {
     ACard: Card,
     ACol: Col,
     ARow: Row,
     ATag: Tag,
     Editor: Editor
-  }
-})
-export default class PostCreate extends Vue {
-  private form: WrappedFormUtils;
+  },
+  data() {
+    return {
+      form: undefined,
+      title: "",
+      content: "ffff"
+    };
+  },
 
   beforeCreate() {
     this.form = this.$form.createForm(this);
-  }
-
-  private title: string = "";
-
-  private content: string = "ffff";
+  },
 
   created() {
     const fields = {
-      'content': '222222'
+      content: "222222"
+    };
+    this.form.setFieldsValue(fields);
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          console.log(values);
+          return;
+          store(values).then(res => {
+            const data = res.data;
+
+            if (data.errors) {
+              setFiledsWithErrors(this.form, data.errors);
+            } else {
+              this.$confirm({
+                title: data.message,
+                okText: "确认",
+                cancelText: "取消",
+                onOk: () => {
+                  this.$router.push({
+                    name: "post.index"
+                  });
+                }
+              });
+            }
+          });
+        }
+      });
     }
-    this.form.setFieldsValue(fields); 
   }
-
-  handleSubmit(e: Event) {
-    e.preventDefault();
-    this.form.validateFields((err, values) => {
-      if (!err) {
-        console.log(values);
-        return;
-        store(values).then(res => {
-          const data = res.data;
-
-          if (data.errors) {
-            setFiledsWithErrors(this.form, data.errors);
-          } else {
-            this.$confirm({
-              title: data.message,
-              okText: "确认",
-              cancelText: "取消",
-              onOk: () => {
-                this.$router.push({
-                  name: "post.index"
-                });
-              }
-            });
-          }
-        });
-      }
-    });
-  }
-}
+};
 </script>

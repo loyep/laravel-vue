@@ -72,61 +72,60 @@
   </auth-layout>
 </template>
 
-<script lang="ts">
-import AuthLayout from "@/layouts/AuthLayout/index.vue";
-import { Button } from 'ant-design-vue'
-import { Component, Vue } from "vue-property-decorator";
-import { Action } from "vuex-class";
+<script>
+import AuthLayout from "@/layouts/AuthLayout";
+import { Button } from "ant-design-vue";
 import { setFiledsWithErrors } from "@/utils/form";
-import { WrappedFormUtils } from "ant-design-vue/types/form/form";
 
-@Component({
+export default {
+  name: "Login",
   components: {
     AuthLayout,
     AButton: Button
-  }
-})
-export default class Login extends Vue {
-  private submitting = false;
-
-  private form: WrappedFormUtils;
-
+  },
+  data() {
+    return {
+      submitting: false,
+      form: undefined
+    };
+  },
   beforeCreate() {
     this.form = this.$form.createForm(this);
-  }
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          this.submitting = true;
+          this.$store
+            .dispatch("auth/Login", values)
+            .then(res => {
+              this.submitting = false;
+              this.$router.push({
+                path: this.$route.query.redirect || "/"
+              });
 
-  handleSubmit(e: Event) {
-    e.preventDefault();
-    this.form.validateFields((err, values) => {
-      if (!err) {
-        this.submitting = true;
-        this.$store
-          .dispatch("auth/Login", values)
-          .then(res => {
-            this.submitting = false;
-            this.$router.push(<any>{
-              path: this.$route.query.redirect || "/"
+              const data = res.data;
+
+              if (data.welcome) {
+                setTimeout(() => {
+                  this.$notification.success({
+                    message: "欢迎",
+                    description: data.welcome
+                  });
+                }, 1000);
+              }
+            })
+            .catch(err => {
+              this.submitting = false;
+              setFiledsWithErrors(this.form, err);
             });
-
-            const data = res.data
-
-            if (data.welcome) {
-              setTimeout(() => {
-                this.$notification.success({
-                  message: "欢迎",
-                  description: data.welcome
-                });
-              }, 1000);
-            }
-          })
-          .catch(err => {
-            this.submitting = false;
-            setFiledsWithErrors(this.form, err);
-          });
-      }
-    });
+        }
+      });
+    }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

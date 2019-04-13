@@ -153,80 +153,57 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { Drawer, Divider, List, Alert, Button } from "ant-design-vue";
-import BlockCheckbox from "./BlockCheckbox.vue";
-import ThemeColor from "./ThemeColor.vue";
-import { Component, Vue, Prop, Provide } from "vue-property-decorator";
-import { State, Mutation, namespace } from "vuex-class";
+import BlockCheckbox from "./BlockCheckbox";
+import ThemeColor from "./ThemeColor"
+import { mapGetters } from 'vuex'
 
-const themeModule = namespace("theme");
-
-@Component({
-  components: {
-    AButton: Button,
-    ADrawer: Drawer,
-    ADivider: Divider,
-    AList: List,
-    AListItem: List.Item,
-    AAlert: Alert,
-    BlockCheckbox,
-    ThemeColor
-  }
-})
-export default class SettingDrawer extends Vue {
-  private collapse: boolean = false;
-
-  @themeModule.Getter("theme")
-  theme: string;
-
-  @themeModule.Getter("layout")
-  layoutMode: string;
-
-  @themeModule.Getter("color")
-  primaryColor: string;
-
-  @themeModule.Getter("contentWidth")
-  contentWidth: string;
-
-  @themeModule.Getter("autoHideHeader")
-  autoHideHeader: boolean;
-
-  @themeModule.Getter("weak")
-  colorWeak: boolean;
-
-  @themeModule.Getter("fixSidebar")
-  fixSidebar: boolean;
-
-  @themeModule.Getter("fixedHeader")
-  fixedHeader: boolean;
-
-  togglerContent() {
-    this.collapse = !this.collapse;
-  }
-
-  changeSetting(setting, value) {
-    const config = {
-      layoutMode: "ToggleLayoutMode",
-      fixedHeader: "ToggleFixedHeader",
-      theme: "ToggleTheme",
-      primaryColor: "ToggleColor",
-      contentWidth: "ToggleContentWidth",
-      autoHideHeader: "ToggleFixedHeaderHidden",
-      fixSidebar: "ToggleFixSidebar",
-      colorWeak: "ToggleWeak"
+export default {
+  name: "SettingDrawer",
+  data() {
+    return {
+      collapse: false
     };
-    if (config[setting]) {
-      this.$store.dispatch(`theme/${config[setting]}`, value);
-    }
-  }
-
+  },
+  computed: {
+    ...mapGetters('theme', {
+      layoutMode: 'layout',
+      primaryColor: 'color',
+      theme: 'theme',
+      contentWidth: 'contentWidth',
+      autoHideHeader: 'autoHideHeader',
+      colorWeak: 'weak',
+      fixSidebar: 'fixSidebar',
+      fixedHeader: 'fixedHeader'
+    })
+  },
   mounted() {
     this.collapse = true;
     setTimeout(() => {
       this.collapse = false;
     }, 20);
-  }
+  },
+  methods: {
+    togglerContent() {
+      this.collapse = !this.collapse;
+    },
+    changeSetting(setting, value) {
+      const config = {
+        layoutMode: "ToggleLayoutMode",
+        fixedHeader: "ToggleFixedHeader",
+        theme: "ToggleTheme",
+        primaryColor: "ToggleColor",
+        contentWidth: "ToggleContentWidth",
+        autoHideHeader: "ToggleFixedHeaderHidden",
+        fixSidebar: "ToggleFixSidebar",
+        colorWeak: "ToggleWeak"
+      };
+      if (config[setting]) {
+        this.$store.dispatch(`theme/${config[setting]}`, value);
+      }
+    }
+  },
 }
 </script>
 

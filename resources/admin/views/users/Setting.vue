@@ -2,43 +2,37 @@
   <div class="main">
     <div class="leftmenu">
       <a-menu :mode="mode" :selectedKeys="[selectedKey]" @click="selectKey">
-        <a-menu-item key="1">
-          基本设置
-        </a-menu-item>
-        <a-menu-item key="2">
-          基本设置
-        </a-menu-item>
-        <a-menu-item key="3">
-          基本设置
-        </a-menu-item>
+        <a-menu-item key="1">基本设置</a-menu-item>
+        <a-menu-item key="2">基本设置</a-menu-item>
+        <a-menu-item key="3">基本设置</a-menu-item>
       </a-menu>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { Menu } from 'ant-design-vue'
+<script>
+import { Menu } from "ant-design-vue"
 
-@Component({
+export default {
+  name: "UserSetting",
   components: {
-    'AMenu': Menu,
-    'AMenuItem': Menu.Item
+    AMenu: Menu,
+    AMenuItem: Menu.Item
+  },
+  data() {
+    return {
+      mode: "inline",
+      selectedKey: "1"
+    };
+  },
+  methods: {
+    selectKey(val) {}
   }
-})
-export default class UserSetting extends Vue {
-  private mode: string = 'inline'
-
-  private selectedKey: string | number = '1'
-
-  selectKey (val) {
-
-  }
-}
+};
 </script>
 
 <style lang="less" scoped>
-@import '~@/styles/variables.less';
+@import "~@/styles/variables.less";
 
 .main {
   display: flex;
@@ -135,5 +129,4 @@ export default class UserSetting extends Vue {
     }
   }
 }
-
 </style>

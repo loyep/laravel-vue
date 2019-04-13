@@ -10,100 +10,82 @@
         @collapse="handleMenuCollapse"
       />
       <a-layout :style="[{ minHeight: '100vh' }, layoutStyle]">
-        <basic-header
-          :menus="menus"
-          :collapsed="collapsed"
-          @collapse="handleMenuCollapse"
-        />
+        <basic-header :menus="menus" :collapsed="collapsed" @collapse="handleMenuCollapse"/>
         <a-layout-content class="basic-content" :style="contentStyle">
-          <router-view />
+          <router-view/>
         </a-layout-content>
-        <basic-footer />
+        <basic-footer/>
       </a-layout>
     </a-layout>
-    <setting-drawer v-if="showSettingDrawer" />
+    <setting-drawer v-if="showSettingDrawer"/>
   </div>
 </template>
 
-<script lang="ts">
-import { Layout } from 'ant-design-vue'
-import SiderMenu from '@/components/SiderMenu/index.vue'
-const SettingDrawer = () => import('@/components/SettingDrawer/index.vue')
-import Footer from './components/Footer.vue'
-import Header from './components/Header.vue'
-import { Component, Vue } from 'vue-property-decorator';
+<script>
+import { Layout } from "ant-design-vue";
+import SiderMenu from "@/components/SiderMenu";
+const SettingDrawer = () => import("@/components/SettingDrawer");
+import Footer from "./components/Footer"
+import Header from "./components/Header"
+import { mapGetters } from "vuex";
 
-import { namespace } from 'vuex-class';
-
-const themeModule = namespace('theme');
-const permissionModule = namespace('permission');
-
-@Component({
+export default {
+  name: "BasicLayout",
   components: {
     BasicFooter: Footer,
     BasicHeader: Header,
     SiderMenu,
     SettingDrawer,
-    'ALayout': Layout,
-    'ALayoutContent': Layout.Content
+    ALayout: Layout,
+    ALayoutContent: Layout.Content
   },
-})
-export default class BasicLayout extends Vue {
-  
-  private menus: Array<any> = []
-
-  private collapsed: boolean = false
-
-  private showSettingDrawer: boolean = false
-
-  @themeModule.Getter('screen')
-  private screen: string;
-
-  @themeModule.Getter('fixedHeader')
-  private fixedHeader: boolean;
-
-  @themeModule.Getter('fixSidebar')
-  private fixSidebar: boolean;
-
-  @themeModule.Getter('isTopMenu')
-  private isTopMenu: boolean;
-
-  @themeModule.Getter('isMobile')
-  private isMobile: boolean;
-
-  @permissionModule.Getter('addRouters')
-  private mainMenu: Array<any>;
-
-  get contentStyle() {
-    if (this.fixedHeader) {
-        return {}
+  data() {
+    return {
+      collapsed: false,
+      showSettingDrawer: false,
+      menus: []
+    };
+  },
+  computed: {
+    ...mapGetters("theme", {
+      screen: "screen",
+      fixedHeader: "fixedHeader",
+      fixSidebar: "fixSidebar",
+      isTopMenu: "isTopMenu",
+      isMobile: "isMobile"
+    }),
+    ...mapGetters("permission", {
+      mainMenu: "addRouters"
+    }),
+    contentStyle() {
+      if (this.fixedHeader) {
+        return {};
       }
-      return { paddingTop: 0 }
-  }
-
-  get layoutStyle () {
-    if (this.fixSidebar && !this.isTopMenu && !this.isMobile ) {
-      return {
-        paddingLeft: this.collapsed ? '80px' : '256px'
+      return { paddingTop: 0 };
+    },
+    layoutStyle() {
+      if (this.fixSidebar && !this.isTopMenu && !this.isMobile) {
+        return {
+          paddingLeft: this.collapsed ? "80px" : "256px"
+        };
       }
+      return {};
     }
-    return {}
-  }
-
+  },
   created() {
-    this.menus = this.mainMenu.find((item) => item.path === '/').children
-    this.showSettingDrawer = process.env.NODE_ENV === 'development'
+    this.menus = this.mainMenu.find(item => item.path === "/").children;
+    this.showSettingDrawer = process.env.NODE_ENV === "development";
+  },
+  methods: {
+    setSidebar(value) {
+      this.$store.dispatch("theme/SetSidebar", value);
+    },
+    handleMenuCollapse(collapsed) {
+      this.collapsed = !this.collapsed;
+      this.setSidebar(this.collapsed);
+    }
   }
-
-  setSidebar (value) {
-    this.$store.dispatch('theme/SetSidebar', value)
-  }
-  
-  handleMenuCollapse (collapsed) {
-    this.collapsed = !this.collapsed
-    this.setSidebar(this.collapsed)
-  }
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -113,5 +95,4 @@ export default class BasicLayout extends Vue {
   margin: 24px;
   padding-top: @layout-header-height;
 }
-
 </style>

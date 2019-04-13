@@ -83,86 +83,87 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+<script>
 import { Card, Col, Row, Tag } from "ant-design-vue";
 import { update, show, store } from "@/api/category";
 import { setFiledsWithErrors } from "@/utils/form";
-import { WrappedFormUtils } from "ant-design-vue/types/form/form";
-import { setTimeout } from "timers";
-import { AxiosPromise } from "axios";
 
-@Component({
+export default {
+  name: "CategoryUpdate",
   components: {
     ACard: Card,
     ACol: Col,
     ARow: Row,
     ATag: Tag
-  }
-})
-export default class CategoryUpdate extends Vue {
-  @Prop({ type: [String, Number] })
-  public id: [string, number];
-
-  private form: WrappedFormUtils;
-
-  private data: any = {};
+  },
+  props: {
+    id: {
+      type: [Number, String],
+      required: true
+    }
+  },
+  data() {
+    return {
+      form: undefined,
+      data: {}
+    };
+  },
 
   beforeCreate() {
     this.form = this.$form.createForm(this);
-  }
+  },
 
   created() {
     this.loadInfo();
-  }
-
-  loadInfo() {
-    if (this.id) {
-      this.$nextTick(() => {
-        show(this.id).then(res => {
-          const { data } = res.data;
-          this.data = data;
-          const fields = (<any>this.form).getFieldsValue();
-          for (let field in fields) {
-            if (data.hasOwnProperty(field)) {
-              fields[field] = data[field];
+  },
+  methods: {
+    loadInfo() {
+      if (this.id) {
+        this.$nextTick(() => {
+          show(this.id).then(res => {
+            const { data } = res.data;
+            this.data = data;
+            const fields = this.form.getFieldsValue();
+            for (let field in fields) {
+              if (data.hasOwnProperty(field)) {
+                fields[field] = data[field];
+              }
             }
-          }
-          this.form.setFieldsValue(fields);
+            this.form.setFieldsValue(fields);
+          });
         });
+      }
+    },
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          let updateOrCreate;
+
+          if (this.id) {
+            updateOrCreate = update(this.id, values);
+          } else {
+            updateOrCreate = store(values);
+          }
+
+          updateOrCreate.then(res => {
+            const data = res.data;
+
+            if (data.errors) {
+              setFiledsWithErrors(this.form, data.errors);
+            } else {
+              this.$notification.success({
+                message: "提示",
+                description: res.data.message
+              });
+              this.$router.push({
+                name: "category.index"
+              });
+            }
+          });
+        }
       });
     }
   }
-
-  handleSubmit(e: Event) {
-    e.preventDefault();
-    this.form.validateFields((err, values) => {
-      if (!err) {
-        let updateOrCreate: AxiosPromise<any>;
-
-        if (this.id) {
-          updateOrCreate = update(this.id, values);
-        } else {
-          updateOrCreate = store(values);
-        }
-
-        updateOrCreate.then(res => {
-          const data = res.data;
-
-          if (data.errors) {
-            setFiledsWithErrors(this.form, data.errors);
-          } else {
-            this.$notification.success({
-              message: "提示",
-              description: res.data.message
-            });
-            this.$router.push({
-              name: "category.index"
-            });
-          }
-        });
-      }
-    });
-  }
-}
+};
 </script>

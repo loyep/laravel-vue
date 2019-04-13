@@ -100,8 +100,7 @@
   </a-card>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+<script>
 import {
   Card,
   Col,
@@ -113,8 +112,7 @@ import {
   Menu
 } from "ant-design-vue";
 import { getList, destroy } from "@/api/user";
-import { State, Mutation, namespace } from "vuex-class";
-import { WrappedFormUtils } from "ant-design-vue/types/form/form";
+import { mapGetters } from "vuex";
 
 const authModule = namespace("auth");
 
@@ -149,7 +147,8 @@ const columns = [
   }
 ];
 
-@Component({
+export default {
+  name: "UserList",
   components: {
     AAvatar: Avatar,
     ACard: Card,
@@ -161,126 +160,120 @@ const columns = [
     ADropdownButton: Dropdown.Button,
     AMenu: Menu,
     AMenuItem: Menu.Item
-  }
-})
-export default class UserList extends Vue {
-  protected selectedRowKeys: Array<number> = [];
-
-  private columns = columns;
-
-  private form: WrappedFormUtils;
-
-  private data: Array<Object> = [];
-
-  private loading = false;
-
-  private pagination: object = {};
-
-  private query: Object = {};
-
-  @authModule.Getter("user")
-  private user: any;
-
-  get showActions(): boolean {
-    return this.selectedRowKeys!.length > 0;
-  }
-
-  @Watch("data")
-  onDataChanged(val: Array<Object>, oldVal: Array<Object>) {
-    this.selectedRowKeys = [];
-  }
-
+  },
+  data() {
+    return {
+      selectedRowKeys: [],
+      columns: columns,
+      form: undefined,
+      data: [],
+      loading: false,
+      pagination: {},
+      query: {}
+    };
+  },
+  computed: {
+    ...mapGetters("auth", {
+      user: "user"
+    }),
+    showActions() {
+      return this.selectedRowKeys.length > 0;
+    }
+  },
+  watch: {
+    data(val) {
+      this.selectedRowKeys = [];
+    }
+  },
   beforeCreate() {
     this.form = this.$form.createForm(this);
-  }
-
+  },
   created() {
     this.handleSearch();
-  }
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          this.handleSearch(values);
+        }
+      });
+    },
 
-  handleSubmit(e: Event) {
-    e.preventDefault();
-    this.form.validateFields((err, values) => {
-      if (!err) {
-        this.handleSearch(values);
-      }
-    });
-  }
+    handleCreate(e) {
+      e.preventDefault();
+      this.$router.push({
+        name: "user.create"
+      });
+    },
 
-  handleCreate(e: Event) {
-    e.preventDefault();
-    this.$router.push({
-      name: "user.create"
-    });
-  }
+    handleSearch(query = {}) {
+      this.query = query;
+      this.loading = true;
+      getList(query).then(res => {
+        const data = res.data;
+        this.data = data.data;
+        const paginationProps = {
+          showSizeChanger: true,
+          total: parseInt(data.total),
+          pageSize: parseInt(data.per_page),
+          current: data.current_page
+        };
+        this.pagination = paginationProps;
+        this.loading = false;
+      });
+    },
 
-  handleSearch(query: Object = {}) {
-    this.query = query;
-    this.loading = true;
-    console.log(this.query);
-    getList(query).then(res => {
-      const data = res.data;
+    toggleForm() {},
 
-      this.data = data.data;
-      const paginationProps = {
-        showSizeChanger: true,
-        total: parseInt(data.total),
-        pageSize: parseInt(data.per_page),
-        current: data.current_page
+    onSelectChange(selectedRowKeys, selectedRows) {
+      this.selectedRowKeys = selectedRowKeys;
+    },
+
+    handleMoreAction() {},
+
+    handleDelete() {
+      const that = this;
+      this.$confirm({
+        title: "提示",
+        content: "确认要删除吗 ?",
+        onOk() {
+          destroy(that.selectedRowKeys).then(res => {
+            console.log(res);
+            if (res.data.message) {
+              that.$notification.success({
+                message: "删除提示",
+                description: res.data.message
+              });
+              that.$nextTick(() => {
+                that.handleSearch();
+              });
+            }
+          });
+        },
+        onCancel() {}
+      });
+    },
+
+    getCheckboxProps(row) {
+      return {
+        props: {
+          disabled: row.id === this.user.id
+        }
       };
-      this.pagination = paginationProps;
-      this.loading = false;
-    });
+    },
+
+    handleTableChange(pagination, filters, sorter) {
+      const query = Object.assign(this.query, {
+        per_page: pagination.pageSize,
+        page: pagination.current
+      });
+
+      this.handleSearch(query);
+    }
   }
-
-  toggleForm() {}
-
-  onSelectChange(selectedRowKeys, selectedRows) {
-    this.selectedRowKeys = selectedRowKeys;
-  }
-
-  handleMoreAction() {}
-
-  handleDelete() {
-    const that = this;
-    this.$confirm({
-      title: "提示",
-      content: "确认要删除吗 ?",
-      onOk() {
-        destroy(that.selectedRowKeys!).then(res => {
-          console.log(res);
-          if (res.data.message) {
-            that.$notification.success({
-              message: "删除提示",
-              description: res.data.message
-            });
-            that.$nextTick(() => {
-              that.handleSearch();
-            });
-          }
-        });
-      },
-      onCancel() {}
-    });
-  }
-
-  getCheckboxProps(row) {
-    return {
-      props: {
-        disabled: row.id === this.user.id
-      }
-    };
-  }
-
-  handleTableChange(pagination, filters, sorter) {
-    const query: any = Object.assign(this.query, {
-      per_page: pagination.pageSize,
-      page: pagination.current
-    });
-
-    this.handleSearch(query);
-  }
-}
+};
 </script>
 
 <style lang="less" scoped>

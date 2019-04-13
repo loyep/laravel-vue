@@ -25,55 +25,61 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { State, Mutation, namespace } from "vuex-class";
-import PageHeader from "@/components/PageHeader/index.vue";
-import GridContent from "./GridContent.vue";
-// import { themeMixin } from '@/mixins'
+<script>
+import PageHeader from "@/components/PageHeader";
+import GridContent from "./GridContent";
+import { mapGetters } from 'vuex';
 
-const themeModule = namespace("theme");
-
-@Component({
+export default {
+  name: "PageView",
   components: {
     PageHeader,
     GridContent
-  }
-})
-export default class PageView extends Vue {
-  @Prop({ default: false })
-  hideBread: boolean;
-
-  @Prop({ default: "" })
-  extraContent: string;
-
-  @Prop({ default: "" })
-  title: string;
-
-  @Prop({ default: "" })
-  content: string;
-
-  @Prop({ default: "" })
-  logo: string;
-
-  private hiddenHeader: boolean = false;
-
-  @themeModule.Getter("contentWidth")
-  contentWidth: string;
-
-  get wide() {
-    return this.contentWidth === "Fixed";
-  }
-
-  @Watch("$route")
-  onRouteChanged(val: string, oldVal: string) {
-    if (this.$route.meta && this.$route.meta.hiddenHeader) {
+  },
+  props: {
+    hideBread: {
+      type: Boolean,
+      default: false,
+    },
+    extraContent: {
+      type: String,
+      default: ""
+    },
+    title: {
+      type: String,
+      default: ""
+    },
+    content: {
+      type: String,
+      default: ""
+    },
+    logo: {
+      type: String,
+      default: ""
+    }
+  },
+  data() {
+    return {
+      hiddenHeader: false,
+    }
+  },
+  computed: {
+    ...mapGetters('theme', {
+      contentWidth: 'contentWidth'
+    }),
+    wide() {
+      return this.contentWidth === "Fixed"
+    }
+  },
+  watch: {
+    '$route' (val, oldVal) {
+       if (this.$route.meta && this.$route.meta.hiddenHeader) {
       this.hiddenHeader = true;
     } else {
       this.hiddenHeader = false;
     }
-  }
-
+    }
+  },
   mounted() {
     if (this.$route.meta && this.$route.meta.hiddenHeader) {
       this.hiddenHeader = true;
@@ -86,7 +92,6 @@ export default class PageView extends Vue {
 
 <style lang="less" scoped>
 @import "~@/styles/variables.less";
-
 .content {
   margin: 24px 24px 0;
 }

@@ -37,12 +37,13 @@
   </a-dropdown>
 </template>
 
-<script lang="ts">
+<script>
 import { Badge, Dropdown, Spin, Tabs } from "ant-design-vue";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import NoticeList from "./NoticeList.vue";
 
-@Component({
+export default {
+  name: "NoticeIcon",
   components: {
     NoticeList,
     ABadge: Badge,
@@ -50,14 +51,18 @@ import NoticeList from "./NoticeList.vue";
     ASpin: Spin,
     ATabs: Tabs,
     ATabPane: Tabs.TabPane
+  },
+  data() {
+    return {
+      visible: false,
+      loading: false,
+      count: 0
+    };
+  },
+  methods: {
+    onTabChange() {}
   }
-})
-export default class NoticeIcon extends Vue {
-  private visible: boolean = false;
-  private loading: boolean = false;
-  private count: number = 0;
-  onTabChange() {}
-}
+};
 </script>
 
 <style lang="less" scoped>

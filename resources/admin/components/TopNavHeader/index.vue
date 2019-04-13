@@ -19,56 +19,60 @@
           />
         </div>
       </div>
-      <right-content />
+      <right-content/>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
-import { State, Mutation, namespace } from 'vuex-class';
-import BaseMenu from '@/components/SiderMenu/BaseMenu.vue'
-import RightContent from '@/components/GlobalHeader/RightContent.vue'
+<script>
+import BaseMenu from '@/components/SiderMenu/BaseMenu'
+import RightContent from '@/components/GlobalHeader/RightContent'
+import { mapGetters } from 'vuex';
 
 const themeModule = namespace('theme');
 
-@Component({
-  components: {
+export default {
+  name: 'TopNavHeader',
+   components: {
     BaseMenu,
     RightContent
-  }
-})
-export default class TopNavHeader extends Vue {
-
-  @Prop({ default: false })
-  collapsed: boolean
-
-  @Prop()
-  menus: Array<any>
-
-  @themeModule.Getter('contentWidth')
-  contentWidth: string
-
-  @themeModule.Getter('theme')
-  theme: string
-
-  get title() {
-    return (<any>window).config.name
-  }
-
-  get wide () {
-    return this.contentWidth === 'Fixed'
-  }
-  
-  get maxWidth () {
-    const width = (this.contentWidth === 'Fixed' ? 1200 : (<any>window).innerWidth) - 280 - 120 - 40
+  },
+  props: {
+     collapsed: {
+      type: Boolean,
+      default: true
+    },
+     menus: {
+      type: Array,
+      default: function() {
+        return []
+      }
+    },
+  },
+  computed:{ 
+    ...mapGetters('theme', {
+      theme: 'theme'
+    }),
+    title () {
+       return window.config.name
+    },
+    wide () {
+      return this.contentWidth === 'Fixed'
+    },
+    maxWidth () {
+     const width = (this.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 120 - 40
     return `${width}px`
-  }
+    }
+  },
+  methods: {
 
   onSelect () {
     console.log(222)
   }
+  }
+
 }
+
 </script>
 
 <style lang="less" scoped>
@@ -144,5 +148,4 @@ export default class TopNavHeader extends Vue {
   line-height: @layout-header-height;
   border: none;
 }
-
 </style>

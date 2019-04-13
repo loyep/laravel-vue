@@ -4,54 +4,48 @@
   </page-view>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { State, Mutation, namespace } from 'vuex-class';
-import PageView from './PageView.vue'
+<script>
+import PageView from "./PageView";
 
-const themeModule = namespace('theme');
-
-@Component({
+export default {
+  name: "PageLayout",
   components: {
     PageView
-  }
-})
-export default class PageLayout extends Vue {
-
-  private extraContent: string = ''
-  
-  private title: string = ''
-  
-  private content: string = ''
-  
-  private logo: string = ''
-
-  mounted () {
-    this.getPageHeaderInfo()
-  }
-
-  updated () {
-    this.getPageHeaderInfo()
-  }
-  
-  getPageHeaderInfo () {
-    this.title = this.$route.meta.title
-    let content: any = this.$refs.content
-    if (content) {
-      if ((<any>content).$children[0]) {
-        content = content.$children[0]
+  },
+  data() {
+    return {
+      extraContent: "",
+      title: "",
+      content: "",
+      logo: ""
+    };
+  },
+  mounted() {
+    this.getPageHeaderInfo();
+  },
+  updated() {
+    this.getPageHeaderInfo();
+  },
+  methods: {
+    getPageHeaderInfo() {
+      this.title = this.$route.meta.title;
+      let content = this.$refs.content;
+      if (content) {
+        if (content.$children[0]) {
+          content = content.$children[0];
+        }
+      }
+      if (content && content.headerInfo) {
+        this.extraContent = content.headerInfo.extraContent;
+        if (content.headerInfo.title) {
+          this.title = content.headerInfo.title;
+        }
+        this.content = content.headerInfo.content;
+        this.logo = content.headerInfo.logo;
       }
     }
-    if (content && content.headerInfo) {
-      this.extraContent = content.headerInfo.extraContent
-      if (content.headerInfo.title) {
-        this.title = content.headerInfo.title
-      }
-      this.content = content.headerInfo.content
-      this.logo = content.headerInfo.logo
-    }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

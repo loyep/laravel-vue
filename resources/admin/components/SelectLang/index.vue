@@ -18,8 +18,7 @@
   </a-dropdown>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+<script>
 import { Dropdown, Menu } from "ant-design-vue";
 const languageLabels = {
   zh_CN: "简体中文"
@@ -31,30 +30,35 @@ const languageIcons = {
 
 const locales = ["zh_CN"];
 
-@Component({
+export default {
+  name: "SelectLang",
   components: {
     ADropdown: Dropdown,
     AMenu: Menu,
     AMenuItem: Menu.Item
+  },
+  data() {
+    return {
+      locales: locales,
+      languageIcons: languageIcons,
+      languageLabels: languageLabels
+    };
+  },
+  computed: {
+    locale() {
+      return this.$i18n.locale;
+    }
+  },
+  methods: {
+    changeLang({ key }) {
+      const locale = key;
+      this.$store.dispatch("app/SetLocale", locale);
+      this.$i18n.locale = locale;
+      // this.$message.success(this.$t("navBar.lang.switch"));
+      // this.reload();
+    }
   }
-})
-export default class SelectLang extends Vue {
-  private locales = locales;
-  private languageIcons = languageIcons;
-  private languageLabels = languageLabels;
-
-  get locale() {
-    return this.$i18n.locale;
-  }
-
-  changeLang({ key }) {
-    const locale = key;
-    this.$store.dispatch("app/SetLocale", locale);
-    this.$i18n.locale = locale;
-    // this.$message.success(this.$t("navBar.lang.switch"));
-    // this.reload();
-  }
-}
+};
 </script>
 
 <style lang="less" scoped>

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import { Icon } from 'ant-design-vue'
 const scriptUrl = ''
 

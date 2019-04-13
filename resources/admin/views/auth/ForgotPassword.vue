@@ -1,9 +1,7 @@
 <template>
   <auth-layout>
     <div class="main">
-      <h3>
-        重置密码
-      </h3>
+      <h3>重置密码</h3>
       <a-form :form="form" @submit="handleSubmit">
         <a-form-item>
           <a-input
@@ -21,7 +19,7 @@
             placeholder="邮箱"
           >
             <template #prefix>
-              <a-icon type="mail" style="color:rgba(0,0,0,.25)" />
+              <a-icon type="mail" style="color:rgba(0,0,0,.25)"/>
             </template>
           </a-input>
         </a-form-item>
@@ -32,66 +30,59 @@
             type="primary"
             class="submit"
             htmlType="submit"
-          >
-            发送密码重置链接
-          </a-button>
-          <router-link class="login" :to="{ name: 'login' }">
-            使用已有账户登录
-          </router-link>
+          >发送密码重置链接</a-button>
+          <router-link class="login" :to="{ name: 'login' }">使用已有账户登录</router-link>
         </a-form-item>
       </a-form>
     </div>
   </auth-layout>
 </template>
 
-<script lang="ts">
-import AuthLayout from '@/layouts/AuthLayout/index.vue';
-import { Button } from 'ant-design-vue'
-import { Component, Vue } from 'vue-property-decorator';
+<script>
+import AuthLayout from "@/layouts/AuthLayout";
+import { Button } from "ant-design-vue";
 import { setFiledsWithErrors } from "@/utils/form";
-import { passwordEmail } from '@/api/auth'
-import { WrappedFormUtils } from 'ant-design-vue/types/form/form';
+import { passwordEmail } from "@/api/auth";
 
-@Component({
+export default {
+  name: "ForgotPassword",
   components: {
     AuthLayout,
     AButton: Button
-  }
-})
-export default class ForgotPassword extends Vue {
-
-  private submitting = false
-
-  private form: WrappedFormUtils
-
+  },
+  data() {
+    return {
+      submitting: false,
+      form: undefined
+    };
+  },
   beforeCreate() {
-    this.form = this.$form.createForm(this)
-  }
-
-  handleSubmit (e: Event) {
-      e.preventDefault()
+    this.form = this.$form.createForm(this);
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.submitting = true
+          this.submitting = true;
           passwordEmail(values).then(res => {
-            this.submitting = false
-            const data = res.data
+            this.submitting = false;
+            const data = res.data;
             if (data) {
               this.$notification.success({
                 message: "提示",
-                description: '发送邮件成功'
-              });            
+                description: "发送邮件成功"
+              });
             }
-          })
+          });
         }
-      })
+      });
     }
-}
-
+  }
+};
 </script>
 
 <style lang="less" scoped>
-
 @import '~@/styles/variables.less';
 
 .main {
@@ -143,5 +134,4 @@ export default class ForgotPassword extends Vue {
     }
   }
 }
-
 </style>

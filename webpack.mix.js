@@ -18,9 +18,9 @@ if (env && env.admin) {
 }
 
 mix
-  .setResourceRoot('/static/app')
-  .setPublicPath('public/static/app')
-  .less('resources/less/app.less', 'public/static/app/css')
+  .setResourceRoot('/static')
+  .setPublicPath('public/static')
+  .less('resources/less/app.less', 'public/static')
 
 mix.scripts([
   'resources/js/vendor/jquery.min.js',
@@ -31,4 +31,4 @@ mix.scripts([
   'resources/js/vendor/plugins.min.js',
   'resources/js/vendor/theia-sticky-sidebar.min.js',
   'resources/js/app.js',
-], 'public/static/app/js/app.js')
+], 'public/static/app.js')

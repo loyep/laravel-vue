@@ -17,57 +17,57 @@
       @select="onSelect"
     />
   </a-drawer>
-  <sider-menu v-else
-              :menus="menus"
-              :mode="mode"
-              :collapsed="collapsed"
-              @select="onSelect"
-  />
+  <sider-menu v-else :menus="menus" :mode="mode" :collapsed="collapsed" @select="onSelect"/>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
-import { State, Mutation, namespace } from 'vuex-class';
-import { Drawer } from 'ant-design-vue'
-import SiderMenu from './SiderMenu.vue'
+<script>
+import { Drawer } from "ant-design-vue";
+import SiderMenu from "./SiderMenu";
+import { mapGetters } from "vuex";
 
-const themeModule = namespace('theme');
-
-@Component({
+const themeModule = namespace("theme");
+export default {
+  name: "SiderMenuWrapper",
   components: {
     SiderMenu,
-    'ADrawer': Drawer
+    ADrawer: Drawer
+  },
+  props: {
+    mode: {
+      type: String,
+      default: "inline"
+    },
+    collapsible: {
+      type: Boolean,
+      default: false
+    },
+    collapsed: {
+      type: Booleanl,
+      default: false
+    },
+    menus: {
+      type: Array,
+      required: true
+    }
+  },
+  computed: {
+    ...mapGetters("theme", {
+      isMobile: "isMobile"
+    })
+  },
+  methods: {
+    onSelect(obj) {
+      this.$emit("menuSelect", obj);
+    },
+
+    collapse(collapsed) {
+      this.$emit("collapse", collapsed);
+    }
   }
-})
-export default class SiderMenuWrapper extends Vue {
-
-  @Prop({ default: 'inline' })
-  mode: string
-
-  @Prop({ default: false })
-  collapsible: boolean
-
-  @Prop({ default: false })
-  collapsed: boolean
-
-  @Prop()
-  menus: Array<any>
-
-  @themeModule.Getter('isMobile')
-  isMobile: boolean
-
-  onSelect (obj) {
-    this.$emit('menuSelect', obj)
-  }
-
-  collapse (collapsed) {
-    this.$emit('collapse', collapsed)
-  }
-}
+};
 </script>
 
 <style lang="less">
-
 .drawer .drawer-content {
   background: #001529;
 }
@@ -76,5 +76,4 @@ export default class SiderMenuWrapper extends Vue {
     padding: 0;
   }
 }
-
 </style>

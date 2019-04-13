@@ -104,7 +104,7 @@ export default {
       default: ''
     },
     total: {
-      type: [String, Number],
+      type,
       default: ''
     },
     contentHeight: {

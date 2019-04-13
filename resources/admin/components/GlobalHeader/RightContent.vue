@@ -2,114 +2,112 @@
   <div :class="{
     right: true,
     dark: darkClass
-  }"
-  >
-    <header-search class="action search" @search="onSearch" />
+  }">
+    <header-search class="action search" @search="onSearch"/>
     <a-tooltip title="Help">
-      <a target="_blank" href="https://github.com/loyep/prism" rel="noopener noreferrer" class="action">
-        <a-icon type="question-circle-o" />
+      <a
+        target="_blank"
+        href="https://github.com/loyep/prism"
+        rel="noopener noreferrer"
+        class="action"
+      >
+        <a-icon type="question-circle-o"/>
       </a>
     </a-tooltip>
-    <notice-icon class="action" />
-    <a-dropdown
-      class="action account"
-    >
+    <notice-icon class="action"/>
+    <a-dropdown class="action account">
       <span class="dropDown">
-        <a-avatar class="avatar" size="small" :src="user.avatar" />
-        <span class="name">
-          {{ user.display_name }}
-        </span>
+        <a-avatar class="avatar" size="small" :src="user.avatar"/>
+        <span class="name">{{ user.display_name }}</span>
       </span>
       <template v-slot:overlay>
         <a-menu class="menu">
           <a-menu-item>
             <router-link :to="{ name: 'profile' }">
-              <a-icon type="user" />
-              个人中心
+              <a-icon type="user"/>个人中心
             </router-link>
           </a-menu-item>
           <a-menu-item key="userinfo">
             <router-link :to="{ path: '/user/setting' }">
-              <a-icon type="setting" />
-              账号设置
+              <a-icon type="setting"/>账号设置
             </router-link>
           </a-menu-item>
-          <a-menu-divider />
+          <a-menu-divider/>
           <a-menu-item @click="logout">
-            <a-icon type="logout" />
-            退出登录
+            <a-icon type="logout"/>退出登录
           </a-menu-item>
         </a-menu>
       </template>
     </a-dropdown>
-    <select-lang class="action" />
+    <select-lang class="action"/>
   </div>
 </template>
 
-<script lang="ts">
-import { Avatar, Menu, Dropdown } from 'ant-design-vue'
-import HeaderSearch from '@/components/HeaderSearch/index.vue'
-import NoticeIcon from '@/components/NoticeIcon/index.vue'
-import SelectLang from '@/components/SelectLang/index.vue'
-import { Component, Vue, Prop } from 'vue-property-decorator';
-import { State, Mutation, namespace } from 'vuex-class';
-import theme from '@/store/modules/theme';
+<script>
+import { Avatar, Menu, Dropdown } from "ant-design-vue";
+import HeaderSearch from "@/components/HeaderSearch/index.vue";
+import NoticeIcon from "@/components/NoticeIcon/index.vue";
+import SelectLang from "@/components/SelectLang/index.vue";
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { State, Mutation, namespace } from "vuex-class";
+import theme from "@/store/modules/theme";
+import { mapGetters } from "vuex";
 
-const authModule = namespace('auth');
-const themeModule = namespace('theme');
+const authModule = namespace("auth");
+const themeModule = namespace("theme");
 
-@Component({
+export default {
+  name: "RightContent",
   components: {
     SelectLang,
     NoticeIcon,
     HeaderSearch,
-    'AAvatar': Avatar,
-    'ADropdown': Dropdown,
-    'AMenu': Menu,
-    'AMenuDivider': Menu.Divider,
-    'AMenuItem': Menu.Item
-  }
-})
-export default class RightContent extends Vue {
-  @authModule.Getter('user')
-  user: any
-
-  @themeModule.Getter('isMobile')
-  isMobile: boolean
-
-  @themeModule.Getter('isTopMenu')
-  isTopMenu: boolean
-
-  @themeModule.Getter('theme')
-  theme: string
-
-  get darkClass () {
-    if (this.isMobile || !this.isTopMenu) {
-      return false
+    AAvatar: Avatar,
+    ADropdown: Dropdown,
+    AMenu: Menu,
+    AMenuDivider: Menu.Divider,
+    AMenuItem: Menu.Item
+  },
+  computed: {
+    ...mapGetters("auth", {
+      user: "user"
+    }),
+    ...mapGetters("theme", {
+      isMobile: "isMobile",
+      isTopMenu: "isTopMenu",
+      theme: "theme"
+    }),
+    darkClass() {
+      if (this.isMobile || !this.isTopMenu) {
+        return false;
+      }
+      return this.theme === "dark";
     }
-    return this.theme === 'dark'
+  },
+  methods: {
+    logout() {
+      const that = this;
+      this.$confirm({
+        title: "提示",
+        content: "真的要注销登录吗 ?",
+        onOk() {
+          return that.$store
+            .dispatch("auth/Logout")
+            .then(() => {
+              location.reload();
+            })
+            .catch(() => {
+              console.log("Oops errors!");
+            });
+        },
+        onCancel() {}
+      });
+    },
+    onSearch(value) {
+      console.log(value);
+    }
   }
-
-  logout () {
-    const that = this
-    this.$confirm({
-      title: '提示',
-      content: '真的要注销登录吗 ?',
-      onOk () {
-        return that.$store.dispatch('auth/Logout').then(() => {
-          location.reload()
-        }).catch(() => {
-          console.log('Oops errors!')
-        })
-      },
-      onCancel () {}
-    })
-  }
-  
-  onSearch (value) {
-    console.log(value)
-  }
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -205,5 +203,4 @@ export default class RightContent extends Vue {
     }
   }
 }
-
 </style>

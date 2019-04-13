@@ -9,91 +9,83 @@
   </a-layout-header>
 </template>
 
-<script lang="ts">
+<script>
 import { Layout } from "ant-design-vue";
-const TopNavHeader = () =>  import("@/components/TopNavHeader/index.vue");
-const GlobalHeader = () =>  import("@/components/GlobalHeader/index.vue");
-// import TopNavHeader from "@/components/TopNavHeader/index.vue";
-// import GlobalHeader from "@/components/GlobalHeader/index.vue";
-import { Component, Vue, Prop } from "vue-property-decorator";
+const TopNavHeader = () => import("@/components/TopNavHeader");
+const GlobalHeader = () => import("@/components/GlobalHeader");
 import { namespace } from "vuex-class";
+import { mapGetters } from "vuex";
 
-const themeModule = namespace("theme");
-
-@Component({
+export default {
+  name: "Header",
   components: {
     TopNavHeader,
     GlobalHeader,
     ALayoutHeader: Layout.Header
-  }
-})
-export default class Header extends Vue {
-  @Prop()
-  collapsed: boolean;
-
-  @Prop()
-  menus: Array<any>;
-
-  @themeModule.Getter("fixedHeader")
-  private fixedHeader: boolean;
-
-  @themeModule.Getter("isTopMenu")
-  private isTopMenu: boolean;
-
-  @themeModule.Getter("isMobile")
-  private isMobile: boolean;
-
-  @themeModule.Getter("autoHideHeader")
-  private autoHideHeader: boolean;
-
-  private oldScrollTop: number = 0;
-  private ticking: boolean = false;
-  private visible: boolean = true;
-
-  get getHeadWidth() {
-    if (this.isMobile || !this.fixedHeader || this.isTopMenu) {
-      return "100%";
+  },
+  props: {
+    collapsed: {
+      type: Boolean
+    },
+    menus: {
+      type: Array
     }
-    return this.collapsed ? "calc(100% - 80px)" : "calc(100% - 256px)";
-  }
-
+  },
+  computed: {
+    ...mapGetters("theme", {
+      fixedHeader: "fixedHeader",
+      isMobile: "isMobile",
+      autoHideHeader: "autoHideHeader"
+    }),
+    getHeadWidth() {
+      if (this.isMobile || !this.fixedHeader || this.isTopMenu) {
+        return "100%";
+      }
+      return this.collapsed ? "calc(100% - 80px)" : "calc(100% - 256px)";
+    }
+  },
+  data() {
+    return {
+      oldScrollTop: 0,
+      ticking: false,
+      visible: true
+    };
+  },
   beforeDestroy() {
     document.removeEventListener("scroll", this.handScroll);
-  }
-
+  },
   mounted() {
     document.addEventListener("scroll", this.handScroll, { passive: true });
-  }
-
-  handScroll() {
-    if (this.autoHideHeader) {
-      var that = this;
-      const scrollTop =
-        document.body.scrollTop + document.documentElement.scrollTop;
-      const visible = this.visible;
-      const numSlideFun = () => {
-        if (that.oldScrollTop > scrollTop) {
-          that.visible = true;
-        } else if (scrollTop > 300 && visible) {
-          that.visible = false;
-        } else if (scrollTop < 300 && !visible) {
-          that.visible = true;
-        }
-        that.oldScrollTop = scrollTop;
-        requestAnimationFrame(numSlideFun);
-      };
-      numSlideFun();
+  },
+  methods: {
+    handScroll() {
+      if (this.autoHideHeader) {
+        var that = this;
+        const scrollTop =
+          document.body.scrollTop + document.documentElement.scrollTop;
+        const visible = this.visible;
+        const numSlideFun = () => {
+          if (that.oldScrollTop > scrollTop) {
+            that.visible = true;
+          } else if (scrollTop > 300 && visible) {
+            that.visible = false;
+          } else if (scrollTop < 300 && !visible) {
+            that.visible = true;
+          }
+          that.oldScrollTop = scrollTop;
+          requestAnimationFrame(numSlideFun);
+        };
+        numSlideFun();
+      }
+    },
+    toggle() {
+      this.collapse(!this.collapsed);
+    },
+    collapse(collapsed) {
+      this.$emit("collapse", collapsed);
     }
   }
-
-  toggle() {
-    this.collapse(!this.collapsed);
-  }
-
-  collapse(collapsed) {
-    this.$emit("collapse", collapsed);
-  }
-}
+};
 </script>
 
 <style lang="less" scoped>

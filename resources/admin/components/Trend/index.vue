@@ -16,17 +16,20 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-
-@Component
-export default class Trend extends Vue {
-  @Prop({ default: true })
-  colorful: boolean;
-
-  @Prop({ default: "" })
-  flag: string;
-}
+<script>
+export default {
+  name: "Trend",
+  props: {
+    colorful: {
+      type: Boolean,
+      default: true
+    },
+    flag: {
+      type: String,
+      default: ""
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>

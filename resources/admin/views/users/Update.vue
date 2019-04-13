@@ -152,37 +152,38 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+<script>
 import { Card, Col, Row, Tag } from "ant-design-vue";
 import { update, show } from "@/api/user";
 import { setFiledsWithErrors } from "@/utils/form";
-import { WrappedFormUtils } from "ant-design-vue/types/form/form";
-import { setTimeout } from "timers";
 
-@Component({
+export default {
+  name: "UserUpdate",
   components: {
     ACard: Card,
     ACol: Col,
     ARow: Row,
     ATag: Tag
-  }
-})
-export default class UserUpdate extends Vue {
-  @Prop({ type: [String, Number] })
-  public id: [string, number];
-
-  private form: WrappedFormUtils;
-
+  },
+  props: {
+    id: {
+      type: [Number, String],
+      required: true
+    }
+  },
+  data() {
+    return {
+      form: undefined
+    };
+  },
   beforeCreate() {
     this.form = this.$form.createForm(this);
-  }
-
+  },
   created() {
     this.$nextTick(() => {
       show(this.id).then(res => {
         const { data } = res.data;
-        const fields = (<any>this.form).getFieldsValue();
+        const fields = this.form.getFieldsValue();
         for (let field in fields) {
           if (data.hasOwnProperty(field)) {
             fields[field] = data[field];
@@ -191,29 +192,30 @@ export default class UserUpdate extends Vue {
         this.form.setFieldsValue(fields);
       });
     });
-  }
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          update(this.id, values).then(res => {
+            const data = res.data;
 
-  handleSubmit(e: Event) {
-    e.preventDefault();
-    this.form.validateFields((err, values) => {
-      if (!err) {
-        update(this.id, values).then(res => {
-          const data = res.data;
-
-          if (data.errors) {
-            setFiledsWithErrors(this.form, data.errors);
-          } else {
-            this.$notification.success({
-              message: "提示",
-              description: res.data.message
-            });
-            this.$router.push({
-              name: "user.index"
-            });
-          }
-        });
-      }
-    });
+            if (data.errors) {
+              setFiledsWithErrors(this.form, data.errors);
+            } else {
+              this.$notification.success({
+                message: "提示",
+                description: res.data.message
+              });
+              this.$router.push({
+                name: "user.index"
+              });
+            }
+          });
+        }
+      });
+    }
   }
 }
 </script>

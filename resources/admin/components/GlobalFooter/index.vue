@@ -18,28 +18,28 @@
   </footer>
 </template>
 
-<script lang="ts">
+<script>
 import { Layout } from "ant-design-vue";
-import { Component, Vue, Prop } from "vue-property-decorator";
 
-@Component
-export default class GlobalFooter extends Vue {
-  @Prop({
-    default: function() {
-      return [];
-    }
-  })
-  links: any[];
-
-  get footerLinks() {
-    // role.permissionList = role.permissions.map(permission => { return permission.permissionId })
-    return this.links.map(link => {
+export default {
+ name: 'GlobalFooter',
+ props: {
+   links: {
+     type: Array,
+     default: function() {
+       return []
+     }
+   }
+ },
+ computed: {
+   footerLinks() {
+     return this.links.map(link => {
       if (
         link.path !== undefined &&
         link.path.substr(0, 7).toLowerCase() !== "http://" &&
         link.path.substr(0, 8).toLowerCase() !== "https://"
       ) {
-        link.path = `${(<any>this.$router).base}/${
+        link.path = `${this.$router.base}/${
           this.$router.mode === "hash" ? "#/" : ""
         }${link.path}`;
       }
@@ -51,7 +51,8 @@ export default class GlobalFooter extends Vue {
       }
       return link;
     });
-  }
+   }
+ }
 }
 </script>
 

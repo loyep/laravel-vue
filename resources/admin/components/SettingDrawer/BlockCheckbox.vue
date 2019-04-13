@@ -16,24 +16,31 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-
-@Component
-export default class BlockCheckbox extends Vue {
-  @Prop({ default: "" })
-  title: string;
-
-  @Prop({ default: "" })
-  value: string;
-
-  @Prop({ default: [] })
-  list: Array<any>;
-
-  onChange(key) {
-    this.$emit("change", key);
+<script>
+export default {
+  name: "BlockCheckbox",
+  props: {
+    title: {
+      type: String,
+      default: undefined
+    },
+    value: {
+      type: String,
+      default: undefined
+    },
+    list: {
+      type: Array,
+      default: function() {
+        return [];
+      }
+    }
+  },
+  methods: {
+    onChange(key) {
+      this.$emit("change", key);
+    }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

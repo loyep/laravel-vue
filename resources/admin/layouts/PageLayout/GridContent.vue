@@ -4,21 +4,19 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { State, Mutation, namespace } from 'vuex-class';
+<script>
+import { mapGetters } from 'vuex';
 
-const themeModule = namespace('theme');
-
-@Component
-export default class GridContent extends Vue {
-
-  @themeModule.Getter('contentWidth')
-  private contentWidth: string;
-
-  get wide() {
-    return this.contentWidth === 'Fixed'
-  }
+export default  {
+  name: "GridContent",
+  computed: {
+    ...mapGetters('theme', {
+      contentWidth: 'contentWidth'
+    }),
+    wide() {
+      return this.contentWidth === 'Fixed'
+    }
+  },
 
 }
 </script>
