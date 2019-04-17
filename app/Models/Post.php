@@ -95,6 +95,7 @@ class Post extends BaseModel
 
     /**
      * @param $value
+     *
      * @return string
      */
     public function getImageAttribute($value)

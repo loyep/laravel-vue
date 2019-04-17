@@ -22,7 +22,6 @@ class Meta extends BaseModel
         'key', 'value',
     ];
 
-
     /**
      * @return MorphTo|null
      */

@@ -34,10 +34,10 @@ trait MetaFields
     }
 
     /**
-     * @param Builder $query
+     * @param Builder        $query
      * @param array | string $meta
-     * @param null $value
-     * @param string $operator
+     * @param null           $value
+     * @param string         $operator
      *
      * @return Builder
      */
@@ -62,9 +62,9 @@ trait MetaFields
     }
 
     /**
-     * @param Builder $query
+     * @param Builder      $query
      * @param string|array $meta
-     * @param null $value
+     * @param null         $value
      *
      * @return Builder
      */
@@ -75,7 +75,7 @@ trait MetaFields
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return bool
      */
@@ -86,7 +86,7 @@ trait MetaFields
 
     /**
      * @param string|array $key
-     * @param mixed $value
+     * @param mixed        $value
      *
      * @return bool
      */
@@ -106,7 +106,7 @@ trait MetaFields
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return bool
      */
@@ -123,6 +123,7 @@ trait MetaFields
     /**
      * @param $key
      * @param $value
+     *
      * @return MetaFields
      */
     public function createField($key, $value)
@@ -133,6 +134,7 @@ trait MetaFields
     /**
      * @param $key
      * @param null $value
+     *
      * @return \Illuminate\Support\Collection
      */
     public function createMeta($key, $value = null)
@@ -149,12 +151,13 @@ trait MetaFields
     /**
      * @param $key
      * @param $value
+     *
      * @return mixed
      */
     private function createOneMeta($key, $value)
     {
         $meta = $this->meta()->create([
-            'key' => $key,
+            'key'   => $key,
             'value' => $value,
         ]);
         $this->load('meta');

@@ -5,8 +5,7 @@ namespace App\Http\ViewComposers\Shared;
 use Illuminate\Contracts\View\View;
 
 /**
- * Class GlobalViewComposer
- * @package App\Http\ViewComposers\Shared
+ * Class GlobalViewComposer.
  */
 class GlobalViewComposer
 {

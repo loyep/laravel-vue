@@ -33,12 +33,11 @@ class MediaController extends Controller
      */
     public function upload(Request $request)
     {
-
         try {
             $file = $request->file->store($request->upload_path, $this->filesystem);
             $success = true;
             $message = '成功上传新文件';
-            $path = url('storage/' . $file);
+            $path = url('storage/'.$file);
         } catch (Exception $e) {
             $success = false;
             $message = $e->getMessage();
@@ -64,7 +63,7 @@ class MediaController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\JsonResponse
      */
