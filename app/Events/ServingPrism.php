@@ -12,10 +12,9 @@ class ServingPrism extends Event
     /**
      * The request instance.
      *
-     * @var Request $request
+     * @var Request
      */
     public $request;
-
 
     public function __construct(Request $request)
     {

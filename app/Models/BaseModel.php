@@ -11,6 +11,7 @@ class BaseModel extends Model
      * Destroy the models for the given IDs.
      *
      * @param array|Collection|int $ids
+     *
      * @return int
      */
     public static function destroy($ids)
@@ -18,6 +19,7 @@ class BaseModel extends Model
         if (is_string($ids)) {
             $ids = explode(',', $ids);
         }
+
         return parent::destroy($ids);
     }
 }

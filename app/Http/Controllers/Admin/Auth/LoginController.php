@@ -57,7 +57,7 @@ class LoginController extends Controller
         $this->guard()->logout();
 
         return response()->json([
-            'result' => true,
+            'result'  => true,
             'message' => '',
         ]);
     }
@@ -76,8 +76,10 @@ class LoginController extends Controller
      * Handle a login request to the application.
      *
      * @param Request $request
-     * @return Response|void
+     *
      * @throws ValidationException
+     *
+     * @return Response|void
      */
     public function login(Request $request)
     {
@@ -109,7 +111,7 @@ class LoginController extends Controller
     {
         return Validator::make($data, [
             $this->username() => 'required|string',
-            'password' => 'required|string',
+            'password'        => 'required|string',
         ]);
     }
 
@@ -138,8 +140,10 @@ class LoginController extends Controller
 
         if ($token) {
             $this->guard()->setToken($token);
+
             return true;
         }
+
         return false;
     }
 
@@ -156,7 +160,7 @@ class LoginController extends Controller
         $type = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
         return [
-            $type => $username,
+            $type      => $username,
             'password' => $request->input('password'),
         ];
     }
@@ -181,12 +185,12 @@ class LoginController extends Controller
         return response()
             ->json([
                 'data' => [
-                    'token' => 'Bearer ' . $token,
+                    'token'      => 'Bearer '.$token,
                     'expires_in' => $expiration,
-                    'welcome' => $welcome,
+                    'welcome'    => $welcome,
                 ],
             ])
-            ->header('authorization', 'Bearer ' . $token);
+            ->header('authorization', 'Bearer '.$token);
     }
 
     /**
@@ -196,14 +200,14 @@ class LoginController extends Controller
      */
     protected function generateWelcome(User $user)
     {
-        $welcome = Str::ucfirst($user->display_name) . ', ' . self::getPeriodOfTime() . '好!';
+        $welcome = Str::ucfirst($user->display_name).', '.self::getPeriodOfTime().'好!';
 
         return $welcome;
     }
 
     public static function getPeriodOfTime($hour = null)
     {
-        $hour = $hour ? $hour : (int)date('G', time());
+        $hour = $hour ? $hour : (int) date('G', time());
         $period = '';
         if (0 <= $hour && 6 > $hour) {
             $period = '凌晨';

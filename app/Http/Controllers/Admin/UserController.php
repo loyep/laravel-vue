@@ -58,7 +58,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param UserRequest $request
-     * @param int $id
+     * @param int         $id
      *
      * @return UserResource
      */
@@ -93,7 +93,6 @@ class UserController extends Controller
     }
 
     /**
-     *
      * @return UserResource
      */
     public function profile()

@@ -34,10 +34,10 @@ trait MetaFields
     }
 
     /**
-     * @param Builder $query
+     * @param Builder        $query
      * @param array | string $meta
-     * @param null $value
-     * @param string $operator
+     * @param null           $value
+     * @param string         $operator
      *
      * @return Builder
      */
@@ -62,9 +62,9 @@ trait MetaFields
     }
 
     /**
-     * @param Builder $query
+     * @param Builder      $query
      * @param string|array $meta
-     * @param null $value
+     * @param null         $value
      *
      * @return Builder
      */
@@ -75,7 +75,7 @@ trait MetaFields
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return bool
      */
@@ -86,7 +86,7 @@ trait MetaFields
 
     /**
      * @param string|array $key
-     * @param mixed $value
+     * @param mixed        $value
      *
      * @return bool
      */
@@ -106,7 +106,7 @@ trait MetaFields
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return bool
      */
@@ -122,7 +122,7 @@ trait MetaFields
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -133,7 +133,7 @@ trait MetaFields
 
     /**
      * @param string|array $key
-     * @param mixed $value
+     * @param mixed        $value
      *
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Support\Collection
      */
@@ -150,14 +150,14 @@ trait MetaFields
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
     private function createOneMeta($key, $value)
     {
         $meta = $this->meta()->create([
-            'key' => $key,
+            'key'   => $key,
             'value' => $value,
         ]);
         $this->load('meta');
@@ -183,6 +183,5 @@ trait MetaFields
         if (isset($this->meta)) {
             return $this->meta->$key;
         }
-        return null;
     }
 }
