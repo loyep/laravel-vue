@@ -70,13 +70,13 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~@/styles/variables.less';
+<style lang="scss" scoped>
+@import '~@/styles/variables';
 
 .pageHeader {
   padding: 16px 32px 0 32px;
-  background: @component-background;
-  border-bottom: @border-width-base @border-style-base @border-color-split;
+  background: $component-background;
+  border-bottom: $border-width-base $border-style-base $border-color-split;
   .wide {
     max-width: 1200px;
     margin: auto;
@@ -114,12 +114,12 @@ export default {
       display: block;
       width: 28px;
       height: 28px;
-      border-radius: @border-radius-base;
+      border-radius: $border-radius-base;
     }
   }
 
   .title {
-    color: @heading-color;
+    color: $heading-color;
     font-weight: 500;
     font-size: 20px;
   }
@@ -177,7 +177,7 @@ export default {
   }
 }
 
-@media screen and (max-width: @screen-xl) {
+@media screen and (max-width: $screen-xl) {
   .pageHeader {
     .extraContent {
       margin-left: 44px;
@@ -185,7 +185,7 @@ export default {
   }
 }
 
-@media screen and (max-width: @screen-lg) {
+@media screen and (max-width: $screen-lg) {
   .pageHeader {
     .extraContent {
       margin-left: 20px;
@@ -193,7 +193,7 @@ export default {
   }
 }
 
-@media screen and (max-width: @screen-md) {
+@media screen and (max-width: $screen-md) {
   .pageHeader {
     .row {
       display: block;
@@ -207,7 +207,7 @@ export default {
   }
 }
 
-@media screen and (max-width: @screen-sm) {
+@media screen and (max-width: $screen-sm) {
   .pageHeader {
     .detail {
       display: block;
@@ -215,7 +215,7 @@ export default {
   }
 }
 
-@media screen and (max-width: @screen-xs) {
+@media screen and (max-width: $screen-xs) {
   .pageHeader {
     .action {
       :global {

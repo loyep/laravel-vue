@@ -13,6 +13,15 @@
   ],
   "plugins": [
     "@babel/syntax-dynamic-import",
-    "transform-vue-jsx"
+    "transform-vue-jsx",
+    [
+      "import",
+      {
+        "libraryName": "ant-design-vue",
+        "libraryDirectory": "lib",
+        "style": false,
+        "css": false
+      }
+    ]
   ]
 }

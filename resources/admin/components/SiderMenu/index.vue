@@ -66,7 +66,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .drawer .drawer-content {
   background: #001529;
 }

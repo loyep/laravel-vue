@@ -82,8 +82,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~@/styles/variables.less';
+<style lang="scss" scoped>
 .themeColor {
   margin-top: 24px;
   overflow: hidden;

@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .main {
   width: 100%;
   height: 100%;
@@ -32,5 +32,4 @@ export default {
     margin: 0 auto;
   }
 }
-
 </style>

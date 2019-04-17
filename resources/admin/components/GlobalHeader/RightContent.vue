@@ -105,8 +105,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~@/styles/variables.less';
+<style lang="scss" scoped>
+@import '~@/styles/variables';
 
 .menu {
   :global(.anticon) {
@@ -126,17 +126,17 @@ export default {
     padding: 0 12px;
     display: inline-block;
     transition: all 0.3s;
-    font-size: @font-size-base;
+    font-size: $font-size-base;
     height: 100%;
     > :global(i) {
       vertical-align: middle;
-      color: @text-color;
+      color: $text-color;
     }
     &:hover {
-      background: @pro-header-hover-bg;
+      background: $pro-header-hover-bg;
     }
     &:global(.opened) {
-      background: @pro-header-hover-bg;
+      background: $pro-header-hover-bg;
     }
   }
   .search {
@@ -147,9 +147,9 @@ export default {
   }
   .account {
     .avatar {
-      margin: ~'calc((@{layout-header-height} - 24px) / 2)' 0;
+      margin: calc(#{($layout-header-height - 24px) / 2}) 0;
       margin-right: 8px;
-      color: @primary-color;
+      color: $primary-color;
       background: rgba(255, 255, 255, 0.85);
       vertical-align: top;
     }
@@ -157,19 +157,19 @@ export default {
 }
 
 .dark {
-  height: @layout-header-height;
+  height: $layout-header-height;
   .action {
     color: rgba(255, 255, 255, 0.85);
     > :global(i) {
       color: rgba(255, 255, 255, 0.85);
     }
     &:hover {
-      background: @primary-color;
+      background: $primary-color;
     }
   }
 }
 
-@media only screen and (max-width: @screen-md) {
+@media only screen and (max-width: $screen-md) {
   .header {
     :global(.ant-divider-vertical) {
       vertical-align: unset;

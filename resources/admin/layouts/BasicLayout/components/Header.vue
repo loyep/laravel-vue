@@ -24,17 +24,20 @@ export default {
   },
   props: {
     collapsed: {
-      type: Boolean
+      type: Boolean,
+      required: true
     },
     menus: {
-      type: Array
+      type: Array,
+      required: true
     }
   },
   computed: {
     ...mapGetters('theme', {
       fixedHeader: 'fixedHeader',
       isMobile: 'isMobile',
-      autoHideHeader: 'autoHideHeader'
+      autoHideHeader: 'autoHideHeader',
+      isTopMenu: 'isTopMenu'
     }),
     getHeadWidth () {
       if (this.isMobile || !this.fixedHeader || this.isTopMenu) {
@@ -87,7 +90,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .fixedHeader {
   position: fixed;
   top: 0;

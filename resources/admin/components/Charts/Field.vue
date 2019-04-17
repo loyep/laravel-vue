@@ -20,8 +20,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~@/styles/variables.less';
+<style lang="scss" scoped>
+@import '~@/styles/variables';
 
 .field {
   margin: 0;
@@ -30,12 +30,12 @@ export default {
   text-overflow: ellipsis;
   .label,
   .number {
-    font-size: @font-size-base;
+    font-size: $font-size-base;
     line-height: 22px;
   }
   .number {
     margin-left: 8px;
-    color: @heading-color;
+    color: $heading-color;
   }
 }
 

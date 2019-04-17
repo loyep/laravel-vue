@@ -62,8 +62,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import "~@/styles/variables.less";
+<style lang="scss" scoped>
+@import "~@/styles/variables";
 
 .menu {
   :global(.anticon) {
@@ -75,7 +75,7 @@ export default {
 }
 
 .dropDown {
-  line-height: @layout-header-height;
+  line-height: $layout-header-height;
   vertical-align: top;
   cursor: pointer;
   > i {

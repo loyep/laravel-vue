@@ -4,8 +4,6 @@ import path from "path";
 import { isUrl } from "@/utils/utils";
 import IconFont from "@/components/IconFont";
 
-const themeModule = namespace("theme");
-
 export default {
   name: "BaseMenu",
   components: {
@@ -13,11 +11,11 @@ export default {
   },
   props: {
     mode: {
-      type,
+      type: String,
       default: "inline"
     },
     theme: {
-      type,
+      type: String,
       required: true
     },
     collapsed: {
@@ -192,7 +190,7 @@ export default {
           selectedKeys: this.selectedKeys
         },
         class: [
-          BaseMenu,
+          // BaseMenu,
           {
             "top-nav-menu": this.$props.mode === "horizontal"
           }
@@ -211,9 +209,9 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-// .icon {
-//   width: 14px;
-//   vertical-align: baseline;
-// }
+<style lang="scss" scoped>
+.icon {
+  width: 14px;
+  vertical-align: baseline;
+}
 </style>

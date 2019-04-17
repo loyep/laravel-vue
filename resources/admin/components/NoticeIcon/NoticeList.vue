@@ -29,8 +29,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import "~@/styles/variables.less";
+<style lang="scss" scoped>
+@import "~@/styles/variables";
 
 .list {
   max-height: 400px;
@@ -64,7 +64,7 @@ export default {
       border-bottom: 0;
     }
     &:hover {
-      background: @primary-1;
+      background: $primary-1;
     }
     .title {
       margin-bottom: 8px;
@@ -72,24 +72,24 @@ export default {
     }
     .description {
       font-size: 12px;
-      line-height: @line-height-base;
+      line-height: $line-height-base;
     }
     .datetime {
       margin-top: 4px;
       font-size: 12px;
-      line-height: @line-height-base;
+      line-height: $line-height-base;
     }
     .extra {
       float: right;
       margin-top: -1.5px;
       margin-right: 0;
-      color: @text-color-secondary;
+      color: $text-color-secondary;
       font-weight: normal;
     }
   }
   .loadMore {
     padding: 8px 0;
-    color: @primary-6;
+    color: $primary-6;
     text-align: center;
     cursor: pointer;
     &.loadedAll {
@@ -101,7 +101,7 @@ export default {
 
 .notFound {
   padding: 73px 0 88px 0;
-  color: @text-color-secondary;
+  color: $text-color-secondary;
   text-align: center;
   img {
     display: inline-block;
@@ -112,11 +112,11 @@ export default {
 
 .bottomBar {
   height: 46px;
-  color: @text-color;
+  color: $text-color;
   line-height: 46px;
   text-align: center;
-  border-top: 1px solid @border-color-split;
-  border-radius: 0 0 @border-radius-base @border-radius-base;
+  border-top: 1px solid $border-color-split;
+  border-radius: 0 0 $border-radius-base $border-radius-base;
   transition: all 0.3s;
   div {
     display: inline-block;
@@ -125,13 +125,13 @@ export default {
     transition: all 0.3s;
     user-select: none;
     &:hover {
-      color: @heading-color;
+      color: $heading-color;
     }
     &:only-child {
       width: 100%;
     }
     &:not(:only-child):last-child {
-      border-left: 1px solid @border-color-split;
+      border-left: 1px solid $border-color-split;
     }
   }
 }

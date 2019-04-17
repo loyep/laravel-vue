@@ -89,11 +89,11 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~@/styles/variables.less';
+<style lang="scss" scoped>
+@import '~@/styles/variables';
 
 .basic-content {
   margin: 24px;
-  padding-top: @layout-header-height;
+  padding-top: $layout-header-height;
 }
 </style>

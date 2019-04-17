@@ -104,8 +104,8 @@ export default {
       default: ''
     },
     total: {
-      type: String,
-      default: ''
+      type: [String, Number],
+      default: 0
     },
     contentHeight: {
       type: Number,
@@ -121,8 +121,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~@/styles/variables.less';
+<style lang="scss" scoped>
+@import '~@/styles/variables';
 
 .chartCard {
   position: relative;
@@ -151,8 +151,8 @@ export default {
   }
   .meta {
     height: 22px;
-    color: @text-color-secondary;
-    font-size: @font-size-base;
+    color: $text-color-secondary;
+    font-size: $font-size-base;
     line-height: 22px;
   }
   .action {
@@ -167,7 +167,7 @@ export default {
     margin-top: 4px;
     margin-bottom: 0;
     overflow: hidden;
-    color: @heading-color;
+    color: $heading-color;
     font-size: 30px;
     line-height: 38px;
     white-space: nowrap;
@@ -188,7 +188,7 @@ export default {
   .footer {
     margin-top: 8px;
     padding-top: 9px;
-    border-top: 1px solid @border-color-split;
+    border-top: 1px solid $border-color-split;
     & > * {
       position: relative;
     }

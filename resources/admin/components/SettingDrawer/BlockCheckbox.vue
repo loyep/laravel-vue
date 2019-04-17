@@ -43,8 +43,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import "~@/styles/variables.less";
+<style lang="scss" scoped>
+@import "~@/styles/variables";
 
 .blockChecbox {
   display: flex;
@@ -52,7 +52,7 @@ export default {
     position: relative;
     margin-right: 16px;
     // box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-    border-radius: @border-radius-base;
+    border-radius: $border-radius-base;
     cursor: pointer;
     img {
       width: 48px;
@@ -66,7 +66,7 @@ export default {
     height: 100%;
     padding-top: 15px;
     padding-left: 24px;
-    color: @primary-color;
+    color: $primary-color;
     font-weight: bold;
     font-size: 14px;
   }

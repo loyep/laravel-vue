@@ -113,11 +113,8 @@ export default {
   data () {
     return {
       submitting: false,
-      form: undefined
+      form: this.$form.createForm(this)
     }
-  },
-  beforeCreate () {
-    this.form = this.$form.createForm(this)
   },
   methods: {
     handleSubmit (e) {
@@ -142,8 +139,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~@/styles/variables.less';
+<style lang="scss" scoped>
+@import '~@/styles/variables';
 
 .main {
   width: 368px;
@@ -165,7 +162,7 @@ export default {
 
   .login {
     float: right;
-    line-height: @btn-height-lg;
+    line-height: $btn-height-lg;
   }
 }
 
@@ -176,21 +173,21 @@ export default {
 }
 
 .success {
-  color: @success-color;
+  color: $success-color;
 }
 
 .warning {
-  color: @warning-color;
+  color: $warning-color;
 }
 
 .error {
-  color: @error-color;
+  color: $error-color;
 }
 
 .progress-pass > .progress {
   :global {
     .ant-progress-bg {
-      background-color: @warning-color;
+      background-color: $warning-color;
     }
   }
 }

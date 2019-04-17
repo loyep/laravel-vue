@@ -14,7 +14,6 @@
 </template>
 
 <script>
-// import { upload } from '@/api/media'
 import 'mavon-editor/dist/css/index.css'
 const mavonEditor = require('mavon-editor')
 export default {
@@ -94,7 +93,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .v-note-wrapper {
   z-index: 1 !important;
   &.fullscreen {

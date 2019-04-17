@@ -32,12 +32,12 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import "~@/styles/variables.less";
+<style lang="scss" scoped>
+@import "~@/styles/variables";
 
 .trendItem {
   display: inline-block;
-  font-size: @font-size-base;
+  font-size: $font-size-base;
   line-height: 22px;
 
   .up,
@@ -51,23 +51,23 @@ export default {
     }
   }
   .up {
-    color: @red-6;
+    color: $red-6;
   }
   .down {
     top: -1px;
-    color: @green-6;
+    color: $green-6;
   }
 
   &.trendItemGrey .up,
   &.trendItemGrey .down {
-    color: @text-color;
+    color: $text-color;
   }
 
   &.reverseColor .up {
-    color: @green-6;
+    color: $green-6;
   }
   &.reverseColor .down {
-    color: @red-6;
+    color: $red-6;
   }
 }
 </style>

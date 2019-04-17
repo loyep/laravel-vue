@@ -14,7 +14,7 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run clean && npm run production",
-        "prod:admin": "npm run production -- --env.admin.js && npm run production -- --env.admin.css",
+        "prod:admin": "npm run production -- --env.admin",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "dependencies": {
@@ -27,6 +27,7 @@
         "js-cookie": "^2.2.0",
         "mavon-editor": "^2.7.3",
         "nprogress": "^0.2.0",
+        "vue-i18n": "^8.10.0",
         "vue-ls": "^3.2.1",
         "vue-meta": "^1.6.0",
         "vue-router": "^3.0.4",

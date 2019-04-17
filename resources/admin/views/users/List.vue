@@ -264,9 +264,9 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import "~@/styles/variables.less";
-@import "~@/styles/components/utils.less";
+<style lang="scss" scoped>
+@import "~@/styles/variables";
+@import "~@/styles/components/utils";
 
 .tableList {
   .tableListOperator {
@@ -304,13 +304,13 @@ export default {
   }
 }
 
-@media screen and (max-width: @screen-lg) {
+@media screen and (max-width: $screen-lg) {
   .tableListForm :global(.ant-form-item) {
     margin-right: 24px;
   }
 }
 
-@media screen and (max-width: @screen-md) {
+@media screen and (max-width: $screen-md) {
   .tableListForm :global(.ant-form-item) {
     margin-right: 8px;
   }

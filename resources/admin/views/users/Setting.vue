@@ -37,8 +37,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import "~@/styles/variables.less";
+<style lang="scss" scoped>
+@import "~@/styles/variables";
 
 .main {
   display: flex;
@@ -47,10 +47,10 @@ export default {
   padding-top: 16px;
   padding-bottom: 16px;
   overflow: auto;
-  background-color: @body-background;
+  background-color: $body-background;
   .leftmenu {
     width: 224px;
-    border-right: @border-width-base @border-style-base @border-color-split;
+    border-right: $border-width-base $border-style-base $border-color-split;
     :global {
       .ant-menu-inline {
         border: none;
@@ -68,7 +68,7 @@ export default {
     padding-left: 40px;
     .title {
       margin-bottom: 12px;
-      color: @heading-color;
+      color: $heading-color;
       font-weight: 500;
       font-size: 20px;
       line-height: 28px;
@@ -92,7 +92,7 @@ export default {
       color: #ff4000;
       font-size: 48px;
       line-height: 48px;
-      border-radius: @border-radius-base;
+      border-radius: $border-radius-base;
     }
     .dingding {
       margin: 2px;
@@ -101,29 +101,29 @@ export default {
       font-size: 32px;
       line-height: 32px;
       background-color: #2eabff;
-      border-radius: @border-radius-base;
+      border-radius: $border-radius-base;
     }
     .alipay {
       color: #2eabff;
       font-size: 48px;
       line-height: 48px;
-      border-radius: @border-radius-base;
+      border-radius: $border-radius-base;
     }
   }
 
   // 密码强度
   font.strong {
-    color: @success-color;
+    color: $success-color;
   }
   font.medium {
-    color: @warning-color;
+    color: $warning-color;
   }
   font.weak {
-    color: @error-color;
+    color: $error-color;
   }
 }
 
-@media screen and (max-width: @screen-md) {
+@media screen and (max-width: $screen-md) {
   .main {
     flex-direction: column;
     .leftmenu {

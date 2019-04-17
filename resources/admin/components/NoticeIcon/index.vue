@@ -64,8 +64,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import "~@/styles/variables.less";
+<style lang="scss" scoped>
+@import "~@/styles/variables";
 
 .noticeButton {
   display: inline-block;
@@ -97,10 +97,10 @@ export default {
     width: 336px;
     background-color: #fff;
     border-radius: 4px;
-    box-shadow: @shadow-1-down;
+    box-shadow: $shadow-1-down;
   }
 
-  @media screen and (max-width: @screen-xs) {
+  @media screen and (max-width: $screen-xs) {
     .container {
       width: 100% !important;
     }

@@ -230,8 +230,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import "~@/styles/variables.less";
+<style lang="scss" scoped>
+@import "~@/styles/variables";
 
 .content {
   position: relative;
@@ -252,7 +252,7 @@ export default {
 
 .title {
   margin-bottom: 12px;
-  color: @heading-color;
+  color: $heading-color;
   font-size: 14px;
   line-height: 22px;
 }
@@ -269,7 +269,7 @@ export default {
   height: 48px;
   font-size: 16px;
   text-align: center;
-  background: @primary-color;
+  background: $primary-color;
   border-radius: 4px 0 0 4px;
   cursor: pointer;
   pointer-events: auto;

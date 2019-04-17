@@ -37,14 +37,17 @@ export default {
           link.path.substr(0, 7).toLowerCase() !== 'http://' &&
           link.path.substr(0, 8).toLowerCase() !== 'https://'
         ) {
-          link.path = this.$router.base + '/' +
-          (this.$router.mode === 'hash' ? '#/' : '') + link.path
+          link.path =
+            this.$router.base +
+            '/' +
+            (this.$router.mode === 'hash' ? '#/' : '') +
+            link.path
         }
 
         if (link.blankTarget) {
-          link.target = '_blank'
+          link.target = '_blank';
         } else {
-          link.target = '_self'
+          link.target = '_self';
         }
         return link
       })
@@ -53,8 +56,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import "~@/styles/variables.less";
+<style lang="scss" scoped>
+@import "~@/styles/variables";
 
 .globalFooter {
   padding: 0 16px;
@@ -65,7 +68,7 @@ export default {
     margin-bottom: 8px;
 
     a {
-      color: @text-color-secondary;
+      color: $text-color-secondary;
       transition: all 0.3s;
 
       &:not(:last-child) {
@@ -73,14 +76,14 @@ export default {
       }
 
       &:hover {
-        color: @text-color;
+        color: $text-color;
       }
     }
   }
 
   .copyright {
-    color: @text-color-secondary;
-    font-size: @font-size-base;
+    color: $text-color-secondary;
+    font-size: $font-size-base;
   }
 }
 </style>

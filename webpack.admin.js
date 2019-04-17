@@ -16,18 +16,15 @@ const { admin } = require('yargs').argv.env
  */
 
 
-mix.setResourceRoot('/static/admin');
-
-if (admin.css) {
-    mix
-        .setPublicPath('public/static/admin/styles')
-        .sass('resources/admin/styles/style.scss', 'public/static/admin/styles/admin.css')
-        .copyDirectory('resources/admin/themes', 'public/static/admin/themes');
-} else {
-    mix
-        .setPublicPath('public/static/admin')
-        .js('resources/admin/main.js', 'public/static/admin/js/admin.js');
-}
+// mix.setResourceRoot('/static/admin');
+mix
+    // .options({
+    //     extractVueStyles: false,
+    // })
+    // .setPublicPath('public/static/admin')
+    .sass('resources/styles/index.scss', 'public/static/admin/admin.css')
+    .setPublicPath('public/static/admin')
+    .js('resources/admin/main.js', 'public/static/admin/js/admin.js');
 
 mix.version();
 
@@ -42,30 +39,11 @@ const config = {
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
     resolve: {
-        extensions: ['.ts', '.tsx'],
         alias: {
             '@': path.resolve(__dirname, 'resources/admin')
         },
         modules: [
             'node_modules'
-        ]
-    },
-    module: {
-        rules: [{
-                test: /\.tsx?$/,
-                loader: 'ts-loader',
-                options: {
-                    appendTsSuffixTo: [/\.vue$/],
-                },
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.less$/,
-                loader: 'less-loader', // compiles Less to CSS
-                options: {
-                    javascriptEnabled: true
-                },
-            },
         ]
     },
     output: {

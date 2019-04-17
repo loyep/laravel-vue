@@ -48,14 +48,14 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import "~@/styles/variables.less";
+<style lang="scss" scoped>
+@import "~@/styles/variables";
 
 .content {
   margin: 24px 24px 0;
 }
 
-@media screen and (max-width: @screen-sm) {
+@media screen and (max-width: $screen-sm) {
   .content {
     margin: 24px 0 0;
   }

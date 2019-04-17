@@ -95,11 +95,8 @@ export default {
   data () {
     return {
       submitting: false,
-      form: undefined
+      form: this.$form.createForm(this)
     }
-  },
-  beforeCreate () {
-    this.form = this.$form.createForm(this)
   },
   methods: {
     handleSubmit (e) {
@@ -137,8 +134,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~@/styles/variables.less';
+<style lang="scss" scoped>
+@import '~@/styles/variables.scss';
 
 .login {
   .icon {
@@ -150,7 +147,7 @@ export default {
     transition: color 0.3s;
 
     &:hover {
-      color: @primary-color;
+      color: $primary-color;
     }
   }
 
@@ -165,8 +162,8 @@ export default {
   }
 
   .prefixIcon {
-    font-size: @font-size-base;
-    color: @disabled-color;
+    font-size: $font-size-base;
+    color: $disabled-color;
   }
 
   .submit {
@@ -179,7 +176,7 @@ export default {
   width: 368px;
   margin: 0 auto;
 
-  @media screen and (max-width: @screen-sm) {
+  @media screen and (max-width: $screen-sm) {
     width: 95%;
   }
 
@@ -197,7 +194,7 @@ export default {
     transition: color 0.3s;
 
     &:hover {
-      color: @primary-color;
+      color: $primary-color;
     }
   }
 

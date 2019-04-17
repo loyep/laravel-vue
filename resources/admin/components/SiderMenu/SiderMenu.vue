@@ -62,17 +62,17 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import "~@/styles/variables.less";
+<style lang="scss" scoped>
+@import "~@/styles/variables";
 
-@nav-header-height: @layout-header-height;
+$nav-header-height: $layout-header-height;
 
 .logo {
   position: relative;
-  height: @nav-header-height;
-  padding-left: (@menu-collapsed-width - 32px) / 2;
+  height: $nav-header-height;
+  padding-left: ($menu-collapsed-width - 32px) / 2;
   overflow: hidden;
-  line-height: @nav-header-height;
+  line-height: $nav-header-height;
   background: #002140;
   transition: all 0.3s;
   img {
@@ -104,7 +104,7 @@ export default {
     box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
     :global {
       .ant-menu-root {
-        height: ~"calc(100vh - @{nav-header-height})";
+        height: calc(100vh - #{$nav-header-height});
         overflow-y: auto;
       }
       .ant-menu-inline {
@@ -122,9 +122,9 @@ export default {
     box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
     .logo {
       background: white;
-      box-shadow: 1px 1px 0 0 @border-color-split;
+      box-shadow: 1px 1px 0 0 $border-color-split;
       h1 {
-        color: @primary-color;
+        color: $primary-color;
       }
     }
     :global(.ant-menu-light) {
@@ -135,8 +135,8 @@ export default {
 
 :global {
   .top-nav-menu li.ant-menu-item {
-    height: @nav-header-height;
-    line-height: @nav-header-height;
+    height: $nav-header-height;
+    line-height: $nav-header-height;
   }
   .ant-menu-inline-collapsed {
     & > .ant-menu-item .sider-menu-item-img + span,
@@ -159,7 +159,7 @@ export default {
   .ant-menu-item .sider-menu-item-img + span,
   .ant-menu-submenu-title .sider-menu-item-img + span {
     opacity: 1;
-    transition: opacity 0.3s @ease-in-out, width 0.3s @ease-in-out;
+    transition: opacity 0.3s $ease-in-out, width 0.3s $ease-in-out;
   }
 }
 </style>
