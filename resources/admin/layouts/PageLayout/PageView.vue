@@ -1,6 +1,6 @@
 <template>
   <div style="margin: -24px -24px 0;">
-    <slot name="top"/>
+    <slot name="top" />
     <page-header
       v-if="!hiddenHeader"
       :hideBread="hideBread"
@@ -11,27 +11,27 @@
       :wide="wide"
     >
       <template #pageLogo>
-        <slot name="pageLogo"/>
+        <slot name="pageLogo" />
       </template>
       <template #pageContent>
-        <slot name="pageContent"/>
+        <slot name="pageContent" />
       </template>
     </page-header>
     <div class="content">
       <grid-content>
-        <slot/>
+        <slot />
       </grid-content>
     </div>
   </div>
 </template>
 
 <script>
-import PageHeader from "@/components/PageHeader";
-import GridContent from "./GridContent";
-import { mapGetters } from 'vuex';
+import PageHeader from '@/components/PageHeader'
+import GridContent from './GridContent'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: "PageView",
+  name: 'PageView',
   components: {
     PageHeader,
     GridContent
@@ -39,52 +39,52 @@ export default {
   props: {
     hideBread: {
       type: Boolean,
-      default: false,
+      default: false
     },
     extraContent: {
       type: String,
-      default: ""
+      default: ''
     },
     title: {
       type: String,
-      default: ""
+      default: ''
     },
     content: {
       type: String,
-      default: ""
+      default: ''
     },
     logo: {
       type: String,
-      default: ""
+      default: ''
     }
   },
-  data() {
+  data () {
     return {
-      hiddenHeader: false,
+      hiddenHeader: false
     }
   },
   computed: {
     ...mapGetters('theme', {
       contentWidth: 'contentWidth'
     }),
-    wide() {
-      return this.contentWidth === "Fixed"
+    wide () {
+      return this.contentWidth === 'Fixed'
     }
   },
   watch: {
     '$route' (val, oldVal) {
-       if (this.$route.meta && this.$route.meta.hiddenHeader) {
-      this.hiddenHeader = true;
-    } else {
-      this.hiddenHeader = false;
-    }
+      if (this.$route.meta && this.$route.meta.hiddenHeader) {
+        this.hiddenHeader = true
+      } else {
+        this.hiddenHeader = false
+      }
     }
   },
-  mounted() {
+  mounted () {
     if (this.$route.meta && this.$route.meta.hiddenHeader) {
-      this.hiddenHeader = true;
+      this.hiddenHeader = true
     } else {
-      this.hiddenHeader = false;
+      this.hiddenHeader = false
     }
   }
 }

@@ -10,10 +10,14 @@
     </div>
     <div class="content">
       <h1>{{ config[type].title }}</h1>
-      <div class="desc">{{ config[type].desc }}</div>
+      <div class="desc">
+        {{ config[type].desc }}
+      </div>
       <div class="actions">
         <slot>
-          <a-button type="primary" @click="handleToHome">{{ config[type].backText }}</a-button>
+          <a-button type="primary" @click="handleToHome">
+            {{ config[type].backText }}
+          </a-button>
         </slot>
       </div>
     </div>
@@ -21,7 +25,7 @@
 </template>
 
 <script>
-import { Button } from "ant-design-vue";
+import { Button } from 'ant-design-vue'
 
 const types = {
   403: {
@@ -50,11 +54,11 @@ export default {
   },
   props: {
     type: {
-      type: string,
+      type: String,
       default: '404'
     }
   },
-  data() {
+  data () {
     return {
       types: types
     }

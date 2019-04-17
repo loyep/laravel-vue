@@ -25,15 +25,12 @@
 </template>
 
 <script>
-import { Component, Vue, Prop, Provide } from "vue-property-decorator";
-import { State, Mutation, namespace } from "vuex-class";
-import { Layout } from "ant-design-vue";
-import BaseMenu from "./BaseMenu.vue";
-import { mapGetters } from "vuex";
+import { Layout } from 'ant-design-vue'
+import BaseMenu from './BaseMenu.vue'
+import { mapGetters } from 'vuex'
 
-const themeModule = namespace("theme");
 export default {
-  name: "SiderMenu",
+  name: 'SiderMenu',
   components: {
     BaseMenu,
     ALayoutSider: Layout.Sider
@@ -49,20 +46,20 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("theme", {
-      fixSidebar: "fixSidebar",
-      theme: "theme"
+    ...mapGetters('theme', {
+      fixSidebar: 'fixSidebar',
+      theme: 'theme'
     }),
-    title() {
-      return window.config.name;
+    title () {
+      return window.config.name
     }
   },
   methods: {
-    onSelect(obj) {
-      this.$emit("onSelect", obj);
+    onSelect (obj) {
+      this.$emit('onSelect', obj)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

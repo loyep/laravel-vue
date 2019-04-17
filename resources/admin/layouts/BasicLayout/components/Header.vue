@@ -4,20 +4,19 @@
     :style="{ 'padding': 0, 'width': getHeadWidth }"
     :class="{ 'fixedHeader': fixedHeader }"
   >
-    <top-nav-header v-if="isTopMenu && !isMobile" :menus="menus" :collapsed="collapsed"/>
-    <global-header v-else :collapsed="collapsed" @collapse="collapse"/>
+    <top-nav-header v-if="isTopMenu && !isMobile" :menus="menus" :collapsed="collapsed" />
+    <global-header v-else :collapsed="collapsed" @collapse="collapse" />
   </a-layout-header>
 </template>
 
 <script>
-import { Layout } from "ant-design-vue";
-const TopNavHeader = () => import("@/components/TopNavHeader");
-const GlobalHeader = () => import("@/components/GlobalHeader");
-import { namespace } from "vuex-class";
-import { mapGetters } from "vuex";
+import { Layout } from 'ant-design-vue'
+import { mapGetters } from 'vuex'
+const TopNavHeader = () => import('@/components/TopNavHeader')
+const GlobalHeader = () => import('@/components/GlobalHeader')
 
 export default {
-  name: "Header",
+  name: 'Header',
   components: {
     TopNavHeader,
     GlobalHeader,
@@ -32,60 +31,60 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("theme", {
-      fixedHeader: "fixedHeader",
-      isMobile: "isMobile",
-      autoHideHeader: "autoHideHeader"
+    ...mapGetters('theme', {
+      fixedHeader: 'fixedHeader',
+      isMobile: 'isMobile',
+      autoHideHeader: 'autoHideHeader'
     }),
-    getHeadWidth() {
+    getHeadWidth () {
       if (this.isMobile || !this.fixedHeader || this.isTopMenu) {
-        return "100%";
+        return '100%'
       }
-      return this.collapsed ? "calc(100% - 80px)" : "calc(100% - 256px)";
+      return this.collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)'
     }
   },
-  data() {
+  data () {
     return {
       oldScrollTop: 0,
       ticking: false,
       visible: true
-    };
+    }
   },
-  beforeDestroy() {
-    document.removeEventListener("scroll", this.handScroll);
+  beforeDestroy () {
+    document.removeEventListener('scroll', this.handScroll)
   },
-  mounted() {
-    document.addEventListener("scroll", this.handScroll, { passive: true });
+  mounted () {
+    document.addEventListener('scroll', this.handScroll, { passive: true })
   },
   methods: {
-    handScroll() {
+    handScroll () {
       if (this.autoHideHeader) {
-        var that = this;
+        var that = this
         const scrollTop =
-          document.body.scrollTop + document.documentElement.scrollTop;
-        const visible = this.visible;
+          document.body.scrollTop + document.documentElement.scrollTop
+        const visible = this.visible
         const numSlideFun = () => {
           if (that.oldScrollTop > scrollTop) {
-            that.visible = true;
+            that.visible = true
           } else if (scrollTop > 300 && visible) {
-            that.visible = false;
+            that.visible = false
           } else if (scrollTop < 300 && !visible) {
-            that.visible = true;
+            that.visible = true
           }
-          that.oldScrollTop = scrollTop;
-          requestAnimationFrame(numSlideFun);
-        };
-        numSlideFun();
+          that.oldScrollTop = scrollTop
+          requestAnimationFrame(numSlideFun)
+        }
+        numSlideFun()
       }
     },
-    toggle() {
-      this.collapse(!this.collapsed);
+    toggle () {
+      this.collapse(!this.collapsed)
     },
-    collapse(collapsed) {
-      this.$emit("collapse", collapsed);
+    collapse (collapsed) {
+      this.$emit('collapse', collapsed)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

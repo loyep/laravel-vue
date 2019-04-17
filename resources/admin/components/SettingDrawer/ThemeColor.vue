@@ -1,6 +1,8 @@
 <template>
   <div class="themeColor">
-    <h3 class="title">{{ title }}</h3>
+    <h3 class="title">
+      {{ title }}
+    </h3>
     <div class="content">
       <a-tooltip v-for="color in colors" :key="color.color" :title="color.key">
         <div
@@ -10,7 +12,7 @@
           }"
           @click="onChange(color.color)"
         >
-          <a-icon v-if="value === color.color" type="check"/>
+          <a-icon v-if="value === color.color" type="check" />
         </div>
       </a-tooltip>
     </div>
@@ -18,43 +20,44 @@
 </template>
 
 <script>
+
 const colorList = [
   {
-    key: "dust",
-    color: "#F5222D"
+    key: 'dust',
+    color: '#F5222D'
   },
   {
-    key: "volcano",
-    color: "#FA541C"
+    key: 'volcano',
+    color: '#FA541C'
   },
   {
-    key: "sunset",
-    color: "#FAAD14"
+    key: 'sunset',
+    color: '#FAAD14'
   },
   {
-    key: "cyan",
-    color: "#13C2C2"
+    key: 'cyan',
+    color: '#13C2C2'
   },
   {
-    key: "green",
-    color: "#52C41A"
+    key: 'green',
+    color: '#52C41A'
   },
   {
-    key: "daybreak",
-    color: "#1890FF"
+    key: 'daybreak',
+    color: '#1890FF'
   },
   {
-    key: "geekblue",
-    color: "#2F54EB"
+    key: 'geekblue',
+    color: '#2F54EB'
   },
   {
-    key: "purple",
-    color: "#722ED1"
+    key: 'purple',
+    color: '#722ED1'
   }
-];
+]
 
 export default {
-  name: "ThemeColor",
+  name: 'ThemeColor',
   props: {
     title: {
       type: String,
@@ -62,8 +65,8 @@ export default {
     },
     colors: {
       type: Array,
-      default: function() {
-        return colorList;
+      default: function () {
+        return colorList
       }
     },
     value: {
@@ -72,11 +75,11 @@ export default {
     }
   },
   methods: {
-    onChange(color) {
-      this.$emit("change", color);
+    onChange (color) {
+      this.$emit('change', color)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

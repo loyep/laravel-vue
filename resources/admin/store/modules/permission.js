@@ -1,5 +1,5 @@
-import { routes as constantRouterMap, asyncRouterMap } from '@/router/routes';
-import { filterAsyncRouter } from '@/utils/permission';
+import { routes as constantRouterMap, asyncRouterMap } from '@/router/routes'
+import { filterAsyncRouter } from '@/utils/permission'
 
 export const state = {
   routers: [],
@@ -24,7 +24,7 @@ export const actions = {
       } else {
         accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
       }
-      
+
       commit('SET_ROUTERS', accessedRouters)
       resolve()
     })
@@ -44,4 +44,4 @@ const permission = {
   getters: getters
 }
 
-export default permission;
+export default permission

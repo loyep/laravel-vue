@@ -16,34 +16,34 @@ Vue.use(VueStorage, {
 export function setStore (name, value, expire = 604800) {
   const stringifyValue = JSON.stringify({
     value,
-    expire: expire !== null ? new Date().getTime() + expire * 1000 : null,
-  });
+    expire: expire !== null ? new Date().getTime() + expire * 1000 : null
+  })
 
-  localStorage.setItem(name, stringifyValue);
+  localStorage.setItem(name, stringifyValue)
 }
 
-export function getStore (name, def = null)  {
-  const item = localStorage.getItem(name);
+export function getStore (name, def = null) {
+  const item = localStorage.getItem(name)
 
   if (item !== null) {
     try {
-      const data = JSON.parse(item);
+      const data = JSON.parse(item)
 
       if (data.expire === null) {
-        return data.value;
+        return data.value
       }
 
       if (data.expire >= new Date().getTime()) {
-        return data.value;
+        return data.value
       }
 
-      localStorage.remove(name);
+      localStorage.remove(name)
     } catch (err) {
-      return def;
+      return def
     }
   }
 
-  return def;
+  return def
 }
 
 export function removeStore (name) {

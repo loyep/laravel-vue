@@ -9,8 +9,8 @@
                 <a-form-item label="用户名">
                   <a-input
                     v-decorator="[
-                    'name',
-                  ]"
+                      'name',
+                    ]"
                     placeholder="请输入"
                   />
                 </a-form-item>
@@ -19,20 +19,22 @@
               <a-col :md="6" :sm="24">
                 <a-form-item label="状态">
                   <a-select
-                    v-decorator="[ 
-                    'role',
-                   ]"
+                    v-decorator="[
+                      'role',
+                    ]"
                     allowClear
                     placeholder="请选择"
                     style="width: 100%;"
                   >
-                    <a-select-option value="admin">管理员</a-select-option>
+                    <a-select-option value="admin">
+                      管理员
+                    </a-select-option>
                   </a-select>
                 </a-form-item>
               </a-col>
 
               <a-col :md="6" :sm="24">
-                <a-form-item></a-form-item>
+                <a-form-item />
               </a-col>
 
               <a-col :md="6" :sm="24">
@@ -53,12 +55,12 @@
                     <a-dropdown>
                       <a-button>
                         批量操作
-                        <a-icon type="down"/>
+                        <a-icon type="down" />
                       </a-button>
                       <template #overlay>
                         <a-menu @click="handleMoreAction">
                           <a-menu-item key="1">
-                            <a-icon type="delete"/>删除
+                            <a-icon type="delete" />删除
                           </a-menu-item>
                         </a-menu>
                       </template>
@@ -81,11 +83,13 @@
         @change="handleTableChange"
       >
         <template v-slot:avatar="avatar">
-          <a-avatar :src="avatar"/>
+          <a-avatar :src="avatar" />
         </template>
 
         <template #user_name="name, record">
-          <router-link :to="{ name: 'user.edit', params: { id: record.id } }">{{ name }}</router-link>
+          <router-link :to="{ name: 'user.edit', params: { id: record.id } }">
+            {{ name }}
+          </router-link>
         </template>
 
         <template #url="url">
@@ -105,63 +109,56 @@ import {
   Card,
   Col,
   Row,
-  Tag,
   Avatar,
-  Divider,
   Dropdown,
   Menu
-} from "ant-design-vue";
-import { getList, destroy } from "@/api/user";
-import { mapGetters } from "vuex";
-
-const authModule = namespace("auth");
+} from 'ant-design-vue'
+import { getList, destroy } from '@/api/user'
+import { mapGetters } from 'vuex'
 
 const columns = [
   {
-    title: "头像",
-    dataIndex: "avatar",
-    scopedSlots: { customRender: "avatar" }
+    title: '头像',
+    dataIndex: 'avatar',
+    scopedSlots: { customRender: 'avatar' }
   },
   {
-    title: "用户名",
-    dataIndex: "name",
-    scopedSlots: { customRender: "user_name" }
+    title: '用户名',
+    dataIndex: 'name',
+    scopedSlots: { customRender: 'user_name' }
   },
   {
-    title: "昵称",
-    dataIndex: "display_name"
+    title: '昵称',
+    dataIndex: 'display_name'
   },
   {
-    title: "邮箱",
-    dataIndex: "email",
-    scopedSlots: { customRender: "email" }
+    title: '邮箱',
+    dataIndex: 'email',
+    scopedSlots: { customRender: 'email' }
   },
   {
-    title: "网站",
-    dataIndex: "url",
-    scopedSlots: { customRender: "url" }
+    title: '网站',
+    dataIndex: 'url',
+    scopedSlots: { customRender: 'url' }
   },
   {
-    title: "创建时间",
-    dataIndex: "created_at"
+    title: '创建时间',
+    dataIndex: 'created_at'
   }
-];
+]
 
 export default {
-  name: "UserList",
+  name: 'UserList',
   components: {
     AAvatar: Avatar,
     ACard: Card,
     ACol: Col,
     ARow: Row,
-    ATag: Tag,
-    ADivider: Divider,
     ADropdown: Dropdown,
-    ADropdownButton: Dropdown.Button,
     AMenu: Menu,
     AMenuItem: Menu.Item
   },
-  data() {
+  data () {
     return {
       selectedRowKeys: [],
       columns: columns,
@@ -170,110 +167,101 @@ export default {
       loading: false,
       pagination: {},
       query: {}
-    };
+    }
   },
   computed: {
-    ...mapGetters("auth", {
-      user: "user"
+    ...mapGetters('auth', {
+      user: 'user'
     }),
-    showActions() {
-      return this.selectedRowKeys.length > 0;
+    showActions () {
+      return this.selectedRowKeys.length > 0
     }
   },
   watch: {
-    data(val) {
-      this.selectedRowKeys = [];
+    data (val) {
+      this.selectedRowKeys = []
     }
   },
-  beforeCreate() {
-    this.form = this.$form.createForm(this);
+  beforeCreate () {
+    this.form = this.$form.createForm(this)
   },
-  created() {
-    this.handleSearch();
+  created () {
+    this.handleSearch()
   },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit (e) {
+      e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.handleSearch(values);
+          this.handleSearch(values)
         }
-      });
+      })
     },
-
-    handleCreate(e) {
-      e.preventDefault();
+    handleCreate (e) {
+      e.preventDefault()
       this.$router.push({
-        name: "user.create"
-      });
+        name: 'user.create'
+      })
     },
-
-    handleSearch(query = {}) {
-      this.query = query;
-      this.loading = true;
+    handleSearch (query = {}) {
+      this.query = query
+      this.loading = true
       getList(query).then(res => {
-        const data = res.data;
-        this.data = data.data;
+        const data = res.data
+        this.data = data.data
         const paginationProps = {
           showSizeChanger: true,
           total: parseInt(data.total),
           pageSize: parseInt(data.per_page),
           current: data.current_page
-        };
-        this.pagination = paginationProps;
-        this.loading = false;
-      });
+        }
+        this.pagination = paginationProps
+        this.loading = false
+      })
     },
-
-    toggleForm() {},
-
-    onSelectChange(selectedRowKeys, selectedRows) {
-      this.selectedRowKeys = selectedRowKeys;
+    toggleForm () {},
+    onSelectChange (selectedRowKeys, selectedRows) {
+      this.selectedRowKeys = selectedRowKeys
     },
-
-    handleMoreAction() {},
-
-    handleDelete() {
-      const that = this;
+    handleMoreAction () {},
+    handleDelete () {
+      const that = this
       this.$confirm({
-        title: "提示",
-        content: "确认要删除吗 ?",
-        onOk() {
+        title: '提示',
+        content: '确认要删除吗 ?',
+        onOk () {
           destroy(that.selectedRowKeys).then(res => {
-            console.log(res);
+            console.log(res)
             if (res.data.message) {
               that.$notification.success({
-                message: "删除提示",
+                message: '删除提示',
                 description: res.data.message
-              });
+              })
               that.$nextTick(() => {
-                that.handleSearch();
-              });
+                that.handleSearch()
+              })
             }
-          });
+          })
         },
-        onCancel() {}
-      });
+        onCancel () {}
+      })
     },
-
-    getCheckboxProps(row) {
+    getCheckboxProps (row) {
       return {
         props: {
           disabled: row.id === this.user.id
         }
-      };
+      }
     },
-
-    handleTableChange(pagination, filters, sorter) {
+    handleTableChange (pagination, filters, sorter) {
       const query = Object.assign(this.query, {
         per_page: pagination.pageSize,
         page: pagination.current
-      });
-
-      this.handleSearch(query);
+      })
+      this.handleSearch(query)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

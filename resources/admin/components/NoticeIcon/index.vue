@@ -7,7 +7,7 @@
   >
     <span>
       <a-badge :count="count" :style="{ boxShadow: 'none' }" class="badge">
-        <a-icon type="bell" class="icon"/>
+        <a-icon type="bell" class="icon" />
       </a-badge>
     </span>
     <template v-slot:overlay>
@@ -38,12 +38,11 @@
 </template>
 
 <script>
-import { Badge, Dropdown, Spin, Tabs } from "ant-design-vue";
-import { Component, Vue, Prop } from "vue-property-decorator";
-import NoticeList from "./NoticeList.vue";
+import { Badge, Dropdown, Spin, Tabs } from 'ant-design-vue'
+import NoticeList from './NoticeList'
 
 export default {
-  name: "NoticeIcon",
+  name: 'NoticeIcon',
   components: {
     NoticeList,
     ABadge: Badge,
@@ -52,17 +51,17 @@ export default {
     ATabs: Tabs,
     ATabPane: Tabs.TabPane
   },
-  data() {
+  data () {
     return {
       visible: false,
       loading: false,
       count: 0
-    };
+    }
   },
   methods: {
-    onTabChange() {}
+    onTabChange () {}
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

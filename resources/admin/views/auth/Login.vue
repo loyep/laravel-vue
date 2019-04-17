@@ -19,7 +19,7 @@
               size="large"
             >
               <template v-slot:prefix>
-                <a-icon type="mail" style="color:rgba(0,0,0,.25)"/>
+                <a-icon type="mail" style="color:rgba(0,0,0,.25)" />
               </template>
             </a-input>
           </a-form-item>
@@ -39,7 +39,7 @@
               type="password"
             >
               <template v-slot:prefix>
-                <a-icon type="lock" style="color:rgba(0,0,0,.25)"/>
+                <a-icon type="lock" style="color:rgba(0,0,0,.25)" />
               </template>
             </a-input>
           </a-form-item>
@@ -47,8 +47,13 @@
             <a-form-item style="margin-bottom: 0px; margin-top: -12px">
               <a-checkbox v-decorator="[
                 'remember_me'
-              ]">记住我</a-checkbox>
-              <router-link :style="{ float: 'right' }" :to="{ name: 'forgot.password' }">忘记密码</router-link>
+              ]"
+              >
+                记住我
+              </a-checkbox>
+              <router-link :style="{ float: 'right' }" :to="{ name: 'forgot.password' }">
+                忘记密码
+              </router-link>
             </a-form-item>
             <a-form-item>
               <a-button
@@ -57,13 +62,17 @@
                 type="primary"
                 htmlType="submit"
                 class="submit"
-              >登录</a-button>
+              >
+                登录
+              </a-button>
             </a-form-item>
             <div class="other">
               <span>其他登录方式</span>
-              <a-icon type="wechat" class="icon" theme="outlined"/>
-              <a-icon type="github" class="icon" theme="outlined"/>
-              <router-link class="register" :to="{ name: 'register' }">注册账号</router-link>
+              <a-icon type="wechat" class="icon" theme="outlined" />
+              <a-icon type="github" class="icon" theme="outlined" />
+              <router-link class="register" :to="{ name: 'register' }">
+                注册账号
+              </router-link>
             </div>
           </div>
         </a-form>
@@ -73,59 +82,59 @@
 </template>
 
 <script>
-import AuthLayout from "@/layouts/AuthLayout";
-import { Button } from "ant-design-vue";
-import { setFiledsWithErrors } from "@/utils/form";
+import AuthLayout from '@/layouts/AuthLayout'
+import { Button } from 'ant-design-vue'
+import { setFiledsWithErrors } from '@/utils/form'
 
 export default {
-  name: "Login",
+  name: 'Login',
   components: {
     AuthLayout,
     AButton: Button
   },
-  data() {
+  data () {
     return {
       submitting: false,
       form: undefined
-    };
+    }
   },
-  beforeCreate() {
-    this.form = this.$form.createForm(this);
+  beforeCreate () {
+    this.form = this.$form.createForm(this)
   },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit (e) {
+      e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.submitting = true;
+          this.submitting = true
           this.$store
-            .dispatch("auth/Login", values)
+            .dispatch('auth/Login', values)
             .then(res => {
-              this.submitting = false;
+              this.submitting = false
               this.$router.push({
-                path: this.$route.query.redirect || "/"
-              });
+                path: this.$route.query.redirect || '/'
+              })
 
-              const data = res.data;
+              const data = res.data
 
               if (data.welcome) {
                 setTimeout(() => {
                   this.$notification.success({
-                    message: "欢迎",
+                    message: '欢迎',
                     description: data.welcome
-                  });
-                }, 1000);
+                  })
+                }, 1000)
               }
             })
             .catch(err => {
-              this.submitting = false;
-              setFiledsWithErrors(this.form, err);
-            });
+              this.submitting = false
+              setFiledsWithErrors(this.form, err)
+            })
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

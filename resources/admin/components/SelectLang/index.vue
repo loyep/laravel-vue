@@ -1,7 +1,7 @@
 <template>
   <a-dropdown placement="bottomRight">
     <span class="dropDown">
-      <a-icon type="global"/>
+      <a-icon type="global" />
     </span>
     <template v-slot:overlay>
       <a-menu class="menu" :selectedKeys="[locale]" @click="changeLang">
@@ -19,46 +19,47 @@
 </template>
 
 <script>
-import { Dropdown, Menu } from "ant-design-vue";
+import { Dropdown, Menu } from 'ant-design-vue'
+
 const languageLabels = {
-  zh_CN: "简体中文"
-};
+  zh_CN: '简体中文'
+}
 
 const languageIcons = {
-  zh_CN: "🇨🇳"
-};
+  zh_CN: '🇨🇳'
+}
 
-const locales = ["zh_CN"];
+const locales = ['zh_CN']
 
 export default {
-  name: "SelectLang",
+  name: 'SelectLang',
   components: {
     ADropdown: Dropdown,
     AMenu: Menu,
     AMenuItem: Menu.Item
   },
-  data() {
+  data () {
     return {
       locales: locales,
       languageIcons: languageIcons,
       languageLabels: languageLabels
-    };
+    }
   },
   computed: {
-    locale() {
-      return this.$i18n.locale;
+    locale () {
+      return this.$i18n.locale
     }
   },
   methods: {
-    changeLang({ key }) {
-      const locale = key;
-      this.$store.dispatch("app/SetLocale", locale);
-      this.$i18n.locale = locale;
+    changeLang ({ key }) {
+      const locale = key
+      this.$store.dispatch('app/SetLocale', locale)
+      this.$i18n.locale = locale
       // this.$message.success(this.$t("navBar.lang.switch"));
       // this.reload();
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

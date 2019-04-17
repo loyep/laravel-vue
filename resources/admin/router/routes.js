@@ -1,10 +1,10 @@
-const BlankLayout = () => import('@/layouts/BlankLayout/index.vue')
-const PageLayout = () => import('@/layouts/PageLayout/index.vue')
-
 import tagRoutes from './modules/tag'
 import postRoutes from './modules/post'
 import categoryRoutes from './modules/category'
 import commentRoutes from './modules/comment'
+
+const BlankLayout = () => import('@/layouts/BlankLayout/index.vue')
+const PageLayout = () => import('@/layouts/PageLayout/index.vue')
 
 export const routes = [
   {
@@ -79,7 +79,7 @@ export const asyncRouterMap = [
           ...postRoutes,
           ...categoryRoutes,
           ...tagRoutes,
-          ...commentRoutes,
+          ...commentRoutes
         ]
       },
       {
@@ -200,7 +200,7 @@ export const asyncRouterMap = [
             meta: {
               title: '媒体列表'
             }
-          },
+          }
         ]
       },
       {
@@ -353,7 +353,7 @@ export const asyncRouterMap = [
       {
         path: '*',
         component: () => import('@/views/errorPage/404.vue'),
-        hidden: true,
+        hidden: true
       }
     ]
   }

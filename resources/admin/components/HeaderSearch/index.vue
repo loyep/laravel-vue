@@ -1,6 +1,6 @@
 <template>
   <span class="headerSearch" @click="enterSearchMode">
-    <a-icon type="search"/>
+    <a-icon type="search" />
     <a-auto-complete
       key="AutoComplete"
       ref="input"
@@ -23,91 +23,99 @@
 </template>
 
 <script>
-import { AutoComplete } from "ant-design-vue";
+import { AutoComplete } from 'ant-design-vue'
 
 export default {
-  name: "HeaderSearch",
+  name: 'HeaderSearch',
   components: {
     AAutoComplete: AutoComplete
   },
   props: {
     placeholder: {
       type: String,
-      default: "站内搜索"
+      default: '站内搜索'
     },
     onChange: {
       type: Function,
-      default: function() {
+      default: function () {
         return value => {
-          console.log(value);
-        };
+          console.log(value)
+        }
       }
     }
   },
-  data() {
+  data () {
     return {
       searchMode: false,
       dataSource: [],
-      value: ""
-    };
+      value: ''
+    }
   },
   methods: {
-    onSearch() {
-      this.$emit("search", this.value);
+    onSearch () {
+      this.$emit('search', this.value)
     },
-
-    onKeyDown(e) {},
-    onSearchChange(value) {
-      this.value = value;
+    onKeyDown (e) {},
+    onSearchChange (value) {
+      this.value = value
       if (this.onChange) {
-        this.onChange(value);
+        this.onChange(value)
       }
     },
-    enterSearchMode() {
-      this.searchMode = true;
+    enterSearchMode () {
+      this.searchMode = true
       setTimeout(() => {
-        this.$refs.input.focus();
-      }, 300);
+        this.$refs.input.focus()
+      }, 300)
     },
-    leaveSearchMode() {
-      this.value = "";
-      this.searchMode = false;
+    leaveSearchMode () {
+      this.value = ''
+      this.searchMode = false
     }
   }
-};
+}
 </script>
 
 <style lang="less" scope>
-@import "~@/styles/variables.less";
+// @import "~@/styles/variables.less";
 
+// .headerSearch {
+//   :global(.anticon-search) {
+//     font-size: 16px;
+//     cursor: pointer;
+//   }
+//   .input {
+//     width: 0;
+//     background: transparent;
+//     border-radius: 0;
+//     transition: width 0.3s, margin-left 0.3s;
+//     :global(.ant-select-selection) {
+//       background: transparent;
+//     }
+//     input {
+//       padding-right: 0;
+//       padding-left: 0;
+//       border: 0;
+//       box-shadow: none !important;
+//     }
+//     &,
+//     &:hover,
+//     &:focus {
+//       border-bottom: 1px solid @border-color-base;
+//     }
+//     &.show {
+//       width: 210px;
+//       margin-left: 8px;
+//     }
+//   }
+// }
+</style>
+
+<style lang="scss" scoped>
 .headerSearch {
-  :global(.anticon-search) {
+  .anticon-search {
     font-size: 16px;
     cursor: pointer;
-  }
-  .input {
-    width: 0;
-    background: transparent;
-    border-radius: 0;
-    transition: width 0.3s, margin-left 0.3s;
-    :global(.ant-select-selection) {
-      background: transparent;
-    }
-    input {
-      padding-right: 0;
-      padding-left: 0;
-      border: 0;
-      box-shadow: none !important;
-    }
-    &,
-    &:hover,
-    &:focus {
-      border-bottom: 1px solid @border-color-base;
-    }
-    &.show {
-      width: 210px;
-      margin-left: 8px;
-    }
   }
 }
 </style>

@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "SettingUpdate"
+  name: 'SettingUpdate'
 }
 </script>
 

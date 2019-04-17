@@ -2,33 +2,39 @@
   <div class="main">
     <div class="leftmenu">
       <a-menu :mode="mode" :selectedKeys="[selectedKey]" @click="selectKey">
-        <a-menu-item key="1">基本设置</a-menu-item>
-        <a-menu-item key="2">基本设置</a-menu-item>
-        <a-menu-item key="3">基本设置</a-menu-item>
+        <a-menu-item key="1">
+          基本设置
+        </a-menu-item>
+        <a-menu-item key="2">
+          基本设置
+        </a-menu-item>
+        <a-menu-item key="3">
+          基本设置
+        </a-menu-item>
       </a-menu>
     </div>
   </div>
 </template>
 
 <script>
-import { Menu } from "ant-design-vue"
+import { Menu } from 'ant-design-vue'
 
 export default {
-  name: "UserSetting",
+  name: 'UserSetting',
   components: {
     AMenu: Menu,
     AMenuItem: Menu.Item
   },
-  data() {
+  data () {
     return {
-      mode: "inline",
-      selectedKey: "1"
-    };
+      mode: 'inline',
+      selectedKey: '1'
+    }
   },
   methods: {
-    selectKey(val) {}
+    selectKey (val) {}
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

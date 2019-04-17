@@ -16,19 +16,18 @@ export function store (data = {}) {
   })
 }
 
-export function update (data = { id: undefined}) {
-  const id = data.id
+export function update (id, data = {}) {
+  delete data['id']
   return request({
-    url: `/role/${id}`,
+    url: '/role/' + id,
     method: 'post',
-    data
+    data: data
   })
 }
 
-export function destroy (data) {
-  const id = data.id
+export function destroy (id) {
   return request({
-    url: `/role/${id}`,
+    url: '/role/' + id,
     method: 'delete'
   })
 }

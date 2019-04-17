@@ -22,13 +22,13 @@
 import { Layout } from 'ant-design-vue'
 const GlobalFooter = () => import('@/components/GlobalFooter')
 
-export default  {
-  name: "Footer",
+export default {
+  name: 'Footer',
   components: {
-     GlobalFooter,
+    GlobalFooter,
     ALayoutFooter: Layout.Footer
   },
-  data() {
+  data () {
     return {
       year: new Date().getFullYear()
     }

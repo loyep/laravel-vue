@@ -9,24 +9,24 @@
 
 <script>
 export default {
-  name: "NoticeList",
+  name: 'NoticeList',
   props: {
     data: {
       type: Array,
-      default: function() {
-        return [];
+      default: function () {
+        return []
       }
     },
     emptyImage: {
       type: String,
-      default: ""
+      default: ''
     },
     emptyText: {
       type: String,
-      default: ""
+      default: ''
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

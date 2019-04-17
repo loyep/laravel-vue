@@ -1,5 +1,5 @@
 import { getInfo, login, register, logout } from '@/api/auth'
-import { getToken, removeToken, setToken } from '@/utils/auth';
+import { getToken, removeToken, setToken } from '@/utils/auth'
 
 // state
 export const state = {
@@ -26,17 +26,17 @@ export const mutations = {
     state.roles = roles
   },
   UPDATE_USER: (state, user) => {
-    state.user = user;
+    state.user = user
   }
 }
 
 export const actions = {
   // 将刷新的 token 保存至本地
-  RefreshToken({ commit }, token) {
+  RefreshToken ({ commit }, token) {
     commit('SET_TOKEN', token)
   },
   // 注册
-  Register({ commit }, userInfo) {
+  Register ({ commit }, userInfo) {
     return new Promise((resolve, reject) => {
       register(userInfo).then(res => {
         const { data } = res.data
@@ -53,7 +53,7 @@ export const actions = {
     })
   },
   // 登录
-  Login({ commit }, userInfo) {
+  Login ({ commit }, userInfo) {
     return new Promise((resolve, reject) => {
       login(userInfo).then(res => {
         const { data, errors } = res.data
@@ -64,14 +64,13 @@ export const actions = {
         } else {
           reject(errors)
         }
-
       }).catch(error => {
         reject(error)
       })
     })
   },
   // 获取用户信息
-  GetInfo({ commit }) {
+  GetInfo ({ commit }) {
     return new Promise((resolve, reject) => {
       getInfo().then(res => {
         const { data } = res.data
@@ -92,7 +91,7 @@ export const actions = {
     })
   },
   // 登出
-  Logout({ commit }) {
+  Logout ({ commit }) {
     return new Promise((resolve, reject) => {
       logout().then(() => {
         commit('LOGOUT')
@@ -120,4 +119,4 @@ const auth = {
   getters: getters
 }
 
-export default auth;
+export default auth

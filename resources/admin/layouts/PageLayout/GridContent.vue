@@ -5,18 +5,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
-export default  {
-  name: "GridContent",
+export default {
+  name: 'GridContent',
   computed: {
     ...mapGetters('theme', {
       contentWidth: 'contentWidth'
     }),
-    wide() {
+    wide () {
       return this.contentWidth === 'Fixed'
     }
-  },
+  }
 
 }
 </script>

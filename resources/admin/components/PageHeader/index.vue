@@ -2,7 +2,7 @@
   <div class="pageHeader">
     <div :class="{ wide: wide }">
       <!-- <a-skeleton :loading="loading" active :paragraph="{rows: 4}" :avatar="{ size: 'large', shape: 'circle' }"> -->
-      <breadcrumb v-if="!hideBread"/>
+      <breadcrumb v-if="!hideBread" />
       <!-- <div class="detail">
         <img v-if="logo" :src="logo" class="logo" />
         <slot name="pageLogo" />
@@ -29,13 +29,11 @@
 </template>
 
 <script>
-import { Skeleton } from "ant-design-vue";
-import Breadcrumb from "./Breadcrumb.vue";
+import Breadcrumb from './Breadcrumb'
 
 export default {
-  name: "PageHeader",
+  name: 'PageHeader',
   components: {
-    ASkeleton: Skeleton,
     Breadcrumb
   },
   props: {
@@ -49,27 +47,27 @@ export default {
     },
     logo: {
       type: String,
-      default: ""
+      default: ''
     },
     title: {
       type: String,
-      default: ""
+      default: ''
     },
     content: {
       type: String,
-      default: ""
+      default: ''
     },
     extraContent: {
       type: String,
-      default: ""
+      default: ''
     }
   },
-  data() {
+  data () {
     return {
       loading: false
-    };
+    }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

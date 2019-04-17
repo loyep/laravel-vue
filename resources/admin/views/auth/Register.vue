@@ -18,7 +18,7 @@
             placeholder="用户名"
           >
             <template #prefix>
-              <a-icon type="user" style="color:rgba(0,0,0,.25)"/>
+              <a-icon type="user" style="color:rgba(0,0,0,.25)" />
             </template>
           </a-input>
         </a-form-item>
@@ -38,7 +38,7 @@
             placeholder="邮箱"
           >
             <template #prefix>
-              <a-icon type="mail" style="color:rgba(0,0,0,.25)"/>
+              <a-icon type="mail" style="color:rgba(0,0,0,.25)" />
             </template>
           </a-input>
         </a-form-item>
@@ -58,7 +58,7 @@
             type="password"
           >
             <template #prefix>
-              <a-icon type="lock" style="color:rgba(0,0,0,.25)"/>
+              <a-icon type="lock" style="color:rgba(0,0,0,.25)" />
             </template>
           </a-input>
         </a-form-item>
@@ -78,7 +78,7 @@
             type="password"
           >
             <template #prefix>
-              <a-icon type="lock" style="color:rgba(0,0,0,.25)"/>
+              <a-icon type="lock" style="color:rgba(0,0,0,.25)" />
             </template>
           </a-input>
         </a-form-item>
@@ -89,8 +89,12 @@
             type="primary"
             class="submit"
             htmlType="submit"
-          >注册</a-button>
-          <router-link class="login" :to="{ name: 'login' }">使用已有账户登录</router-link>
+          >
+            注册
+          </a-button>
+          <router-link class="login" :to="{ name: 'login' }">
+            使用已有账户登录
+          </router-link>
         </a-form-item>
       </a-form>
     </div>
@@ -98,44 +102,44 @@
 </template>
 
 <script>
-import AuthLayout from "@/layouts/AuthLayout/index.vue";
-import { setFiledsWithErrors } from "@/utils/form";
+import AuthLayout from '@/layouts/AuthLayout/index.vue'
+import { setFiledsWithErrors } from '@/utils/form'
 
 export default {
-  name: "Register",
+  name: 'Register',
   components: {
     AuthLayout
   },
-  data() {
+  data () {
     return {
       submitting: false,
       form: undefined
-    };
+    }
   },
-  beforeCreate() {
-    this.form = this.$form.createForm(this);
+  beforeCreate () {
+    this.form = this.$form.createForm(this)
   },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit (e) {
+      e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.submitting = true;
+          this.submitting = true
           this.$store
-            .dispatch("auth/Register", values)
+            .dispatch('auth/Register', values)
             .then(res => {
-              this.submitting = false;
-              this.$router.push({ path: this.$route.query.redirect || "/" });
+              this.submitting = false
+              this.$router.push({ path: this.$route.query.redirect || '/' })
             })
             .catch(err => {
-              this.submitting = false;
-              setFiledsWithErrors(this.form, err);
-            });
+              this.submitting = false
+              setFiledsWithErrors(this.form, err)
+            })
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

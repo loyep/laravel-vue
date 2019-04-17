@@ -1,24 +1,24 @@
 <template>
   <div
     :class="{
-         trendItem: true,
-         trendItemGrey: !colorful,
-         reverseColor: false
-       }"
+      trendItem: true,
+      trendItemGrey: !colorful,
+      reverseColor: false
+    }"
     style="margin-right: 16px;"
   >
     <span>
-      <slot/>
+      <slot />
     </span>
     <span v-if="flag" :class="flag">
-      <a-icon :type="`caret-${flag}`"/>
+      <a-icon :type="`caret-${flag}`" />
     </span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Trend",
+  name: 'Trend',
   props: {
     colorful: {
       type: Boolean,
@@ -26,10 +26,10 @@ export default {
     },
     flag: {
       type: String,
-      default: ""
+      default: ''
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

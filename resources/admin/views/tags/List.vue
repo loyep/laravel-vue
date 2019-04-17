@@ -7,23 +7,29 @@
             <template v-if="!showActions">
               <a-col :md="6" :sm="24">
                 <a-form-item label="关键词">
-                  <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词"/>
+                  <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词" />
                 </a-form-item>
               </a-col>
 
               <a-col :md="6" :sm="24">
                 <a-form-item label="状态">
                   <a-select
-                    v-decorator="[ 
-                    'status',
-                   ]"
+                    v-decorator="[
+                      'status',
+                    ]"
                     allowClear
                     placeholder="请选择"
                     style="width: 100%;"
                   >
-                    <a-select-option value="published">已发布</a-select-option>
-                    <a-select-option value="draft">草稿</a-select-option>
-                    <a-select-option value="private">私密</a-select-option>
+                    <a-select-option value="published">
+                      已发布
+                    </a-select-option>
+                    <a-select-option value="draft">
+                      草稿
+                    </a-select-option>
+                    <a-select-option value="private">
+                      私密
+                    </a-select-option>
                   </a-select>
                 </a-form-item>
               </a-col>
@@ -47,12 +53,12 @@
                     <a-dropdown>
                       <a-button>
                         批量操作
-                        <a-icon type="down"/>
+                        <a-icon type="down" />
                       </a-button>
                       <template #overlay>
                         <a-menu @click="handleMoreAction">
                           <a-menu-item key="1">
-                            <a-icon type="delete"/>删除
+                            <a-icon type="delete" />删除
                           </a-menu-item>
                         </a-menu>
                       </template>
@@ -75,7 +81,9 @@
         @change="handleTableChange"
       >
         <template #tag_name="name, record">
-          <router-link :to="{ name: 'tag.edit', params: { id: record.id } }">{{ name }}</router-link>
+          <router-link :to="{ name: 'tag.edit', params: { id: record.id } }">
+            {{ name }}
+          </router-link>
         </template>
       </a-table>
     </div>
@@ -87,56 +95,51 @@ import {
   Card,
   Col,
   Row,
-  Tag,
   Menu,
   Dropdown,
-  Button,
-  Badge
-} from "ant-design-vue";
-import { getList, destroy } from "@/api/tag";
+  Button
+} from 'ant-design-vue'
+import { getList, destroy } from '@/api/tag'
 
 const columns = [
   {
-    title: "名称",
-    dataIndex: "name",
+    title: '名称',
+    dataIndex: 'name',
     width: 240,
-    scopedSlots: { customRender: "tag_name" }
+    scopedSlots: { customRender: 'tag_name' }
   },
   {
-    title: "Slug",
-    dataIndex: "slug",
+    title: 'Slug',
+    dataIndex: 'slug',
     width: 300
   },
   {
-    title: "描述",
-    dataIndex: "description"
+    title: '描述',
+    dataIndex: 'description'
   },
   {
-    title: "总数",
-    dataIndex: "posts_count",
+    title: '总数',
+    dataIndex: 'posts_count',
     width: 100
   },
   {
-    title: "更新时间",
-    dataIndex: "updated_at",
+    title: '更新时间',
+    dataIndex: 'updated_at',
     width: 240
   }
-];
+]
 export default {
-  name: "TagList",
+  name: 'TagList',
   components: {
-    ABadge: Badge,
     ACard: Card,
     ACol: Col,
     ARow: Row,
-    ATag: Tag,
     ADropdown: Dropdown,
-    ADropdownButton: Dropdown.Button,
     AMenu: Menu,
     AMenuItem: Menu.Item,
     AButton: Button
   },
-  data() {
+  data () {
     return {
       selectedRowKeys: [],
       columns: columns,
@@ -145,126 +148,126 @@ export default {
       loading: false,
       pagination: {},
       query: {}
-    };
+    }
   },
   computed: {
-    showActions() {
-      return this.selectedRowKeys.length > 0;
+    showActions () {
+      return this.selectedRowKeys.length > 0
     }
   },
   watch: {
-    data(val) {
-      this.selectedRowKeys = [];
+    data (val) {
+      this.selectedRowKeys = []
     }
   },
 
-  beforeCreate() {
-    this.form = this.$form.createForm(this);
+  beforeCreate () {
+    this.form = this.$form.createForm(this)
   },
 
-  created() {
-    this.handleSearch();
+  created () {
+    this.handleSearch()
   },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit (e) {
+      e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.handleSearch(values);
+          this.handleSearch(values)
         }
-      });
+      })
     },
 
-    handleCreate(e) {
-      e.preventDefault();
+    handleCreate (e) {
+      e.preventDefault()
       this.$router.push({
-        name: "tag.create"
-      });
+        name: 'tag.create'
+      })
     },
 
-    handleSearch(query = {}) {
-      this.query = query;
-      this.loading = true;
+    handleSearch (query = {}) {
+      this.query = query
+      this.loading = true
       getList(query).then(res => {
-        const data = res.data;
-        this.data = data.data;
+        const data = res.data
+        this.data = data.data
 
         const paginationProps = {
           total: parseInt(data.total),
           pageSize: parseInt(data.per_page),
           current: data.current_page
-        };
-        this.pagination = paginationProps;
-        this.loading = false;
-      });
+        }
+        this.pagination = paginationProps
+        this.loading = false
+      })
     },
 
-    handleReset(e) {
-      e.preventDefault();
-      this.form.resetFields();
+    handleReset (e) {
+      e.preventDefault()
+      this.form.resetFields()
       this.$router.replace({
-        name: "tag.index"
-      });
+        name: 'tag.index'
+      })
     },
 
-    toggleForm() {},
+    toggleForm () {},
 
-    onSelectChange(selectedRowKeys, selectedRows) {
-      this.selectedRowKeys = selectedRowKeys;
+    onSelectChange (selectedRowKeys, selectedRows) {
+      this.selectedRowKeys = selectedRowKeys
     },
 
-    statusMap(status) {
+    statusMap (status) {
       const colorMap = {
         published: {
-          color: "blue",
-          label: "已发布"
+          color: 'blue',
+          label: '已发布'
         },
         draft: {
-          color: "cyan",
-          label: "草稿"
+          color: 'cyan',
+          label: '草稿'
         },
         private: {
-          color: "green",
-          label: "私密"
+          color: 'green',
+          label: '私密'
         }
-      };
-      return colorMap[status];
+      }
+      return colorMap[status]
     },
 
-    handleMoreAction() {},
+    handleMoreAction () {},
 
-    handleDelete() {
-      const that = this;
+    handleDelete () {
+      const that = this
       this.$confirm({
-        title: "提示",
-        content: "确认要删除吗 ?",
-        onOk() {
+        title: '提示',
+        content: '确认要删除吗 ?',
+        onOk () {
           destroy(that.selectedRowKeys).then(res => {
-            console.log(res);
+            console.log(res)
             if (res.data.message) {
               that.$notification.success({
-                message: "删除提示",
+                message: '删除提示',
                 description: res.data.message
-              });
+              })
               that.$nextTick(() => {
-                that.handleSearch();
-              });
+                that.handleSearch()
+              })
             }
-          });
+          })
         },
-        onCancel() {}
-      });
+        onCancel () {}
+      })
     },
-    handleTableChange(pagination, filters, sorter) {
+    handleTableChange (pagination, filters, sorter) {
       const query = Object.assign(this.query, {
         per_page: pagination.pageSize,
         page: pagination.current
-      });
+      })
 
-      this.handleSearch(query);
+      this.handleSearch(query)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

@@ -11,8 +11,11 @@
       <div class="content">
         <div :style="{
           marginBottom: 24,
-        }">
-          <h3 class="title">整体风格设置</h3>
+        }"
+        >
+          <h3 class="title">
+            整体风格设置
+          </h3>
           <block-checkbox
             :list="[
               {
@@ -37,10 +40,12 @@
           @change="color => changeSetting('primaryColor', color)"
         />
 
-        <a-divider/>
+        <a-divider />
 
         <div style="margin-bottom: 24px;">
-          <h3 class="title">导航模式</h3>
+          <h3 class="title">
+            导航模式
+          </h3>
           <block-checkbox
             :list="[
               {
@@ -70,8 +75,12 @@
                 style="width: 80px;"
                 @select="value => changeSetting('contentWidth', value)"
               >
-                <a-select-option key="Fluid" value="Fluid">流式</a-select-option>
-                <a-select-option v-if="layoutMode === 'topmenu'" key="Fixed" value="Fixed">定宽</a-select-option>
+                <a-select-option key="Fluid" value="Fluid">
+                  流式
+                </a-select-option>
+                <a-select-option v-if="layoutMode === 'topmenu'" key="Fixed" value="Fixed">
+                  定宽
+                </a-select-option>
               </a-select>
             </template>
           </a-list-item>
@@ -114,10 +123,12 @@
           </a-tooltip>
         </a-list>
 
-        <a-divider/>
+        <a-divider />
 
         <div style="margin-bottom: 24px;">
-          <h3 class="title">其他设置</h3>
+          <h3 class="title">
+            其他设置
+          </h3>
           <a-list-item>
             <span :style="{ opacity: '' }">色弱模式</span>
             <template v-slot:actions>
@@ -130,9 +141,11 @@
           </a-list-item>
         </div>
 
-        <a-divider/>
+        <a-divider />
 
-        <a-button block icon="copy">拷贝设置</a-button>
+        <a-button block icon="copy">
+          拷贝设置
+        </a-button>
       </div>
       <a-alert type="warning" class="productionHint">
         <template v-slot:message>
@@ -147,24 +160,34 @@
         </template>
       </a-alert>
       <div class="handle" @click="togglerContent">
-        <a-icon :type="collapse ? 'close' : 'setting'" style="color: #fff; font-size: 20px;"/>
+        <a-icon :type="collapse ? 'close' : 'setting'" style="color: #fff; font-size: 20px;" />
       </div>
     </a-drawer>
   </div>
 </template>
 
 <script>
-import { Drawer, Divider, List, Alert, Button } from "ant-design-vue";
-import BlockCheckbox from "./BlockCheckbox";
-import ThemeColor from "./ThemeColor"
+import { Drawer, Divider, List, Alert, Button } from 'ant-design-vue'
+import BlockCheckbox from './BlockCheckbox'
+import ThemeColor from './ThemeColor'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: "SettingDrawer",
-  data() {
+  name: 'SettingDrawer',
+  components: {
+    AButton: Button,
+    ADrawer: Drawer,
+    ADivider: Divider,
+    AList: List,
+    AListItem: List.Item,
+    AAlert: Alert,
+    BlockCheckbox,
+    ThemeColor
+  },
+  data () {
     return {
       collapse: false
-    };
+    }
   },
   computed: {
     ...mapGetters('theme', {
@@ -178,32 +201,32 @@ export default {
       fixedHeader: 'fixedHeader'
     })
   },
-  mounted() {
-    this.collapse = true;
+  mounted () {
+    this.collapse = true
     setTimeout(() => {
-      this.collapse = false;
-    }, 20);
+      this.collapse = false
+    }, 20)
   },
   methods: {
-    togglerContent() {
-      this.collapse = !this.collapse;
+    togglerContent () {
+      this.collapse = !this.collapse
     },
-    changeSetting(setting, value) {
+    changeSetting (setting, value) {
       const config = {
-        layoutMode: "ToggleLayoutMode",
-        fixedHeader: "ToggleFixedHeader",
-        theme: "ToggleTheme",
-        primaryColor: "ToggleColor",
-        contentWidth: "ToggleContentWidth",
-        autoHideHeader: "ToggleFixedHeaderHidden",
-        fixSidebar: "ToggleFixSidebar",
-        colorWeak: "ToggleWeak"
-      };
+        layoutMode: 'ToggleLayoutMode',
+        fixedHeader: 'ToggleFixedHeader',
+        theme: 'ToggleTheme',
+        primaryColor: 'ToggleColor',
+        contentWidth: 'ToggleContentWidth',
+        autoHideHeader: 'ToggleFixedHeaderHidden',
+        fixSidebar: 'ToggleFixSidebar',
+        colorWeak: 'ToggleWeak'
+      }
       if (config[setting]) {
-        this.$store.dispatch(`theme/${config[setting]}`, value);
+        this.$store.dispatch('theme/' + config[setting], value)
       }
     }
-  },
+  }
 }
 </script>
 

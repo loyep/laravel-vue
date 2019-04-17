@@ -19,7 +19,7 @@
           />
         </div>
       </div>
-      <right-content/>
+      <right-content />
     </div>
   </div>
 </template>
@@ -27,48 +27,48 @@
 <script>
 import BaseMenu from '@/components/SiderMenu/BaseMenu'
 import RightContent from '@/components/GlobalHeader/RightContent'
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
-const themeModule = namespace('theme');
+const themeModule = namespace('theme')
 
 export default {
   name: 'TopNavHeader',
-   components: {
+  components: {
     BaseMenu,
     RightContent
   },
   props: {
-     collapsed: {
+    collapsed: {
       type: Boolean,
       default: true
     },
-     menus: {
+    menus: {
       type: Array,
-      default: function() {
+      default: function () {
         return []
       }
-    },
+    }
   },
-  computed:{ 
+  computed: {
     ...mapGetters('theme', {
       theme: 'theme'
     }),
     title () {
-       return window.config.name
+      return window.config.name
     },
     wide () {
       return this.contentWidth === 'Fixed'
     },
     maxWidth () {
-     const width = (this.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 120 - 40
-    return `${width}px`
+      const width = (this.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 120 - 40
+      return width + 'px'
     }
   },
   methods: {
 
-  onSelect () {
-    console.log(222)
-  }
+    onSelect () {
+      console.log(222)
+    }
   }
 
 }

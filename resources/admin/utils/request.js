@@ -1,19 +1,19 @@
 import store from '@/store'
-import { getToken, removeToken } from './auth'
+import { getToken } from './auth'
 import { notification } from 'ant-design-vue'
-import axios, { AxiosError, AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosPromise } from 'axios'
+import axios from 'axios'
 
 const axiosRequestConfig = {
   baseURL: 'api', // api 的 base_url
   timeout: 5000, // 请求超时时间
-  withCredentials: true,  // 携带cookie信息
-};
+  withCredentials: true // 携带cookie信息
+}
 
-const axiosInstance = axios.create(axiosRequestConfig);
+const axiosInstance = axios.create(axiosRequestConfig)
 
 // request拦截器
 axiosInstance.interceptors.request
-.use((request) => {
+  .use((request) => {
     const token = getToken()
     if (token) {
       request.headers.common['Authorization'] = token
@@ -52,6 +52,6 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error)
   })
 
-export default function request(config) {
-  return axiosInstance(config);
+export default function request (config) {
+  return axiosInstance(config)
 }

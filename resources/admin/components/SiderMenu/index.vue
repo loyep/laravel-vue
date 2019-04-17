@@ -17,17 +17,16 @@
       @select="onSelect"
     />
   </a-drawer>
-  <sider-menu v-else :menus="menus" :mode="mode" :collapsed="collapsed" @select="onSelect"/>
+  <sider-menu v-else :menus="menus" :mode="mode" :collapsed="collapsed" @select="onSelect" />
 </template>
 
 <script>
-import { Drawer } from "ant-design-vue";
-import SiderMenu from "./SiderMenu";
-import { mapGetters } from "vuex";
+import { Drawer } from 'ant-design-vue'
+import SiderMenu from './SiderMenu'
+import { mapGetters } from 'vuex'
 
-const themeModule = namespace("theme");
 export default {
-  name: "SiderMenuWrapper",
+  name: 'SiderMenuWrapper',
   components: {
     SiderMenu,
     ADrawer: Drawer
@@ -35,14 +34,14 @@ export default {
   props: {
     mode: {
       type: String,
-      default: "inline"
+      default: 'inline'
     },
     collapsible: {
       type: Boolean,
       default: false
     },
     collapsed: {
-      type: Booleanl,
+      type: Boolean,
       default: false
     },
     menus: {
@@ -51,20 +50,20 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("theme", {
-      isMobile: "isMobile"
+    ...mapGetters('theme', {
+      isMobile: 'isMobile'
     })
   },
   methods: {
-    onSelect(obj) {
-      this.$emit("menuSelect", obj);
+    onSelect (obj) {
+      this.$emit('menuSelect', obj)
     },
 
-    collapse(collapsed) {
-      this.$emit("collapse", collapsed);
+    collapse (collapsed) {
+      this.$emit('collapse', collapsed)
     }
   }
-};
+}
 </script>
 
 <style lang="less">

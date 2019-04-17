@@ -14,16 +14,16 @@
 import RightContent from './RightContent'
 import { mapGetters } from 'vuex'
 
-export default{ 
+export default {
   name: 'GlobalHeader',
   components: {
     RightContent
   },
-  props:{
+  props: {
     collapsed: {
       type: Boolean,
       default: false
-    },
+    }
   },
   computed: {
     ...mapGetters('theme', {
@@ -31,10 +31,9 @@ export default{
     })
   },
   methods: {
-
-  toggle () {
-    this.$emit('collapse', !this.collapsed)
-  }
+    toggle () {
+      this.$emit('collapse', !this.collapsed)
+    }
   }
 }
 </script>

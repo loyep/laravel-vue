@@ -9,7 +9,7 @@
             display: value === item.key ? 'block' : 'none',
           }"
         >
-          <a-icon type="check"/>
+          <a-icon type="check" />
         </div>
       </div>
     </a-tooltip>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: "BlockCheckbox",
+  name: 'BlockCheckbox',
   props: {
     title: {
       type: String,
@@ -30,17 +30,17 @@ export default {
     },
     list: {
       type: Array,
-      default: function() {
-        return [];
+      default: function () {
+        return []
       }
     }
   },
   methods: {
-    onChange(key) {
-      this.$emit("change", key);
+    onChange (key) {
+      this.$emit('change', key)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

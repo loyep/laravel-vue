@@ -7,23 +7,29 @@
             <template v-if="!showActions">
               <a-col :md="6" :sm="24">
                 <a-form-item label="关键词">
-                  <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词"/>
+                  <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词" />
                 </a-form-item>
               </a-col>
 
               <a-col :md="6" :sm="24">
                 <a-form-item label="状态">
                   <a-select
-                    v-decorator="[ 
-                    'status',
-                   ]"
+                    v-decorator="[
+                      'status',
+                    ]"
                     allowClear
                     placeholder="请选择"
                     style="width: 100%;"
                   >
-                    <a-select-option value="published">已发布</a-select-option>
-                    <a-select-option value="draft">草稿</a-select-option>
-                    <a-select-option value="private">私密</a-select-option>
+                    <a-select-option value="published">
+                      已发布
+                    </a-select-option>
+                    <a-select-option value="draft">
+                      草稿
+                    </a-select-option>
+                    <a-select-option value="private">
+                      私密
+                    </a-select-option>
                   </a-select>
                 </a-form-item>
               </a-col>
@@ -31,16 +37,22 @@
               <a-col :md="6" :sm="24">
                 <a-form-item label="分类">
                   <a-select
-                    v-decorator="[ 
-                    'category_id',
-                   ]"
+                    v-decorator="[
+                      'category_id',
+                    ]"
                     allowClear
                     placeholder="请选择"
                     style="width: 100%;"
                   >
-                    <a-select-option value="published">已发布</a-select-option>
-                    <a-select-option value="draft">草稿</a-select-option>
-                    <a-select-option value="private">私密</a-select-option>
+                    <a-select-option value="published">
+                      已发布
+                    </a-select-option>
+                    <a-select-option value="draft">
+                      草稿
+                    </a-select-option>
+                    <a-select-option value="private">
+                      私密
+                    </a-select-option>
                   </a-select>
                 </a-form-item>
               </a-col>
@@ -48,7 +60,7 @@
               <a-col :md="6" :sm="24">
                 <a-form-item>
                   <span class="submitButtons">
-                    <a-button icon="search" type="primary" html-type="submit">查询</a-button>
+                    <a-button icon="search" type="primary" htmlType="submit">查询</a-button>
                     <a-button icon="undo" @click="handleReset">重置</a-button>
                     <a-button icon="plus" type="primary" @click="handleCreate">新建</a-button>
                   </span>
@@ -64,12 +76,12 @@
                     <a-dropdown>
                       <a-button>
                         批量操作
-                        <a-icon type="down"/>
+                        <a-icon type="down" />
                       </a-button>
                       <template #overlay>
                         <a-menu @click="handleMoreAction">
                           <a-menu-item key="1">
-                            <a-icon type="delete"/>删除
+                            <a-icon type="delete" />删除
                           </a-menu-item>
                         </a-menu>
                       </template>
@@ -92,17 +104,23 @@
         @change="handleTableChange"
       >
         <template #post_title="title, post">
-          <router-link :to="{ name: 'post.edit', params: {id: post.id}}">{{ title }}</router-link>
+          <router-link :to="{ name: 'post.edit', params: {id: post.id}}">
+            {{ title }}
+          </router-link>
         </template>
 
         <template #post_user="user, post">
-          <router-link :to="{ name: 'post.index', query: {user: user.id}}">{{ user.name }}</router-link>
+          <router-link :to="{ name: 'post.index', query: {user: user.id}}">
+            {{ user.name }}
+          </router-link>
         </template>
 
         <template #post_category="category">
           <router-link
             :to="{ name: 'post.index', query: {category: category.id}}"
-          >{{ category.name }}</router-link>
+          >
+            {{ category.name }}
+          </router-link>
         </template>
 
         <template #post_status="status">
@@ -116,7 +134,9 @@
         <template #post_tags="tags">
           <template v-for="tag in tags">
             <a-tag :key="tag.id" color="blue">
-              <router-link :to="{ name: 'post.index', query: {tag: tag.id}}">{{ tag.name }}</router-link>
+              <router-link :to="{ name: 'post.index', query: {tag: tag.id}}">
+                {{ tag.name }}
+              </router-link>
             </a-tag>
           </template>
         </template>
@@ -126,49 +146,48 @@
 </template>
 
 <script >
-import { Card, Col, Row, Tag, Menu, Dropdown, Badge } from "ant-design-vue";
-import { getList, destroy } from "@/api/post";
-import { RouteRecord } from "vue-router";
+import { Card, Col, Row, Tag, Menu, Dropdown, Badge } from 'ant-design-vue'
+import { getList, destroy } from '@/api/post'
 
 const columns = [
   {
-    title: "名称",
-    dataIndex: "title",
+    title: '名称',
+    dataIndex: 'title',
     width: 300,
-    scopedSlots: { customRender: "post_title" }
+    scopedSlots: { customRender: 'post_title' }
   },
   {
-    title: "作者",
-    dataIndex: "user",
+    title: '作者',
+    dataIndex: 'user',
     width: 100,
-    scopedSlots: { customRender: "post_user" }
+    scopedSlots: { customRender: 'post_user' }
   },
   {
-    title: "分类",
-    dataIndex: "category",
+    title: '分类',
+    dataIndex: 'category',
     width: 120,
-    scopedSlots: { customRender: "post_category" }
+    scopedSlots: { customRender: 'post_category' }
   },
   {
-    title: "标签",
-    dataIndex: "tags",
+    title: '标签',
+    dataIndex: 'tags',
     width: 300,
-    scopedSlots: { customRender: "post_tags" }
+    scopedSlots: { customRender: 'post_tags' }
   },
   {
-    title: "状态",
-    dataIndex: "status",
-    scopedSlots: { customRender: "post_status" }
+    title: '状态',
+    dataIndex: 'status',
+    scopedSlots: { customRender: 'post_status' }
   },
   {
-    title: "总数",
-    dataIndex: "comments_count"
+    title: '总数',
+    dataIndex: 'comments_count'
   },
   {
-    title: "发布时间",
-    dataIndex: "published_at"
+    title: '发布时间',
+    dataIndex: 'published_at'
   }
-];
+]
 
 export default {
   components: {
@@ -178,11 +197,10 @@ export default {
     ARow: Row,
     ATag: Tag,
     ADropdown: Dropdown,
-    ADropdownButton: Dropdown.Button,
     AMenu: Menu,
     AMenuItem: Menu.Item
   },
-  data() {
+  data () {
     return {
       selectedRowKeys: [],
       columns: columns,
@@ -191,138 +209,127 @@ export default {
       loading: false,
       pagination: {},
       query: {}
-    };
-  },
-  watch: {
-    data(val, oldVal) {
-      this.selectedRowKeys = [];
-    },
-
-    $route(val, oldVal) {
-      this.initForm();
     }
   },
   computed: {
-    showActions() {
-      return this.selectedRowKeys.length > 0;
+    showActions () {
+      return this.selectedRowKeys.length > 0
     }
   },
-  created() {
-    this.initForm();
+  watch: {
+    data (val, oldVal) {
+      this.selectedRowKeys = []
+    },
+
+    $route (val, oldVal) {
+      this.initForm()
+    }
+  },
+  created () {
+    this.initForm()
+  },
+  beforeCreate () {
+    this.form = this.$form.createForm(this)
   },
   methods: {
-
-    initForm() {
-      this.handleSearch();
+    initForm () {
+      this.handleSearch()
     },
-
-    beforeCreate() {
-      this.form = this.$form.createForm(this);
-    },
-
-    searchByStatus(status) {
-      this.form.setFieldsValue({ status });
+    searchByStatus (status) {
+      this.form.setFieldsValue({ status })
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.handleSearch(values);
+          this.handleSearch(values)
         }
-      });
+      })
     },
-
-    initForm() {
-      this.handleSearch();
-    },
-
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit (e) {
+      e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.handleSearch(values);
+          this.handleSearch(values)
         }
-      });
+      })
     },
-
-    handleCreate(e) {
-      e.preventDefault();
+    handleCreate (e) {
+      e.preventDefault()
       this.$router.push({
-        name: "post.create"
-      });
+        name: 'post.create'
+      })
     },
-
-    handleReset(e) {
-      e.preventDefault();
-      this.form.resetFields();
+    handleReset (e) {
+      e.preventDefault()
+      this.form.resetFields()
       this.$router.replace({
-        name: "post.index"
-      });
+        name: 'post.index'
+      })
     },
-
-    handleSearch(query = {}) {
-      this.query = query;
-      this.loading = true;
-      query = Object.assign(query, this.$route.query);
+    handleSearch (query = {}) {
+      this.query = query
+      this.loading = true
+      query = Object.assign(query, this.$route.query)
       getList(query).then(res => {
-        const { data, total, per_page, current_page } = res.data;
-        this.data = data;
+        const { data, total } = res.data
+        this.data = data
 
         const paginationProps = {
           showSizeChanger: true,
           total: parseInt(total),
-          pageSize: parseInt(per_page),
-          current: current_page
-        };
-        this.pagination = paginationProps;
-        this.loading = false;
-      });
+          pageSize: parseInt(res.data.per_page),
+          current: res.data.current_page
+        }
+        this.pagination = paginationProps
+        this.loading = false
+      })
     },
-    handleMoreAction() {},
-    handleDelete() {
+    handleMoreAction () {},
+    handleDelete () {
       destroy(this.selectedRowKeys).then(res => {
         if (res.data.message) {
           this.$notification.success({
-            message: "删除提示",
+            message: '删除提示',
             description: res.data.message
-          });
+          })
           this.$nextTick(() => {
-            this.handleSearch();
-          });
+            this.handleSearch()
+          })
         }
-      });
+      })
     },
-    onSelectChange(selectedRowKeys, selectedRows) {
-      this.selectedRowKeys = selectedRowKeys;
+    onSelectChange (selectedRowKeys, selectedRows) {
+      this.selectedRowKeys = selectedRowKeys
     },
-    statusMap(status) {
+    statusMap (status) {
       const colorMap = {
         published: {
           // color: "blue",
-          type: "success",
-          label: "已发布"
+          type: 'success',
+          label: '已发布'
         },
         draft: {
           // color: "cyan",
-          type: "processing",
-          label: "草稿"
+          type: 'processing',
+          label: '草稿'
         },
         private: {
           // color: "green",
-          type: "warning",
-          label: "私密"
+          type: 'warning',
+          label: '私密'
         }
-      };
-      return colorMap[status];
+      }
+      return colorMap[status]
     },
 
-    handleTableChange(pagination, filters, sorter) {
+    handleTableChange (pagination, filters, sorter) {
       const query = Object.assign(this.query, {
         per_page: pagination.pageSize,
         page: pagination.current
-      });
+      })
 
-      this.handleSearch(query);
+      this.handleSearch(query)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

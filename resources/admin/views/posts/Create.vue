@@ -4,7 +4,9 @@
       <a-col :md="24" :sm="24">
         <a-card :style="{ marginBottom: '16px' }" :title="title">
           <template slot="extra">
-            <a-button type="primary" @click="handleSubmit">提交</a-button>
+            <a-button type="primary" @click="handleSubmit">
+              提交
+            </a-button>
           </template>
         </a-card>
       </a-col>
@@ -12,17 +14,17 @@
       <a-col :md="18" :sm="24">
         <a-card>
           <a-form :form="form" @submit="handleSubmit">
-            <a-form-item :wrapper-col="{ span: 12 }">
+            <a-form-item :wrapperCol="{ span: 12 }">
               <a-input
-                placeholder="请输入标题"
                 v-decorator="[
                   'title',
                   {rules: [{ required: true, message: '请输入标题' }]}
                 ]"
+                placeholder="请输入标题"
               />
             </a-form-item>
 
-            <a-form-item :wrapper-col="{ span: 24 }">
+            <a-form-item :wrapperCol="{ span: 24 }">
               <editor
                 v-decorator="[
                   'content',
@@ -75,66 +77,63 @@
 </template>
 
 <script>
-import { Card, Col, Row, Tag } from "ant-design-vue";
-import { store } from "@/api/post";
-import { setFiledsWithErrors } from "@/utils/form";
-import Editor from "@/components/Editor";
+import { Card, Col, Row } from 'ant-design-vue'
+import { store } from '@/api/post'
+import { setFiledsWithErrors } from '@/utils/form'
+import Editor from '@/components/Editor'
 
 export default {
-  name: "PostCreate",
+  name: 'PostCreate',
   components: {
     ACard: Card,
     ACol: Col,
     ARow: Row,
-    ATag: Tag,
     Editor: Editor
   },
-  data() {
+  data () {
     return {
       form: undefined,
-      title: "",
-      content: "ffff"
-    };
+      title: '',
+      content: 'ffff'
+    }
   },
 
-  beforeCreate() {
-    this.form = this.$form.createForm(this);
+  beforeCreate () {
+    this.form = this.$form.createForm(this)
   },
 
-  created() {
+  created () {
     const fields = {
-      content: "222222"
-    };
-    this.form.setFieldsValue(fields);
+      content: '222222'
+    }
+    this.form.setFieldsValue(fields)
   },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit (e) {
+      e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log(values);
-          return;
           store(values).then(res => {
-            const data = res.data;
+            const data = res.data
 
             if (data.errors) {
-              setFiledsWithErrors(this.form, data.errors);
+              setFiledsWithErrors(this.form, data.errors)
             } else {
               this.$confirm({
                 title: data.message,
-                okText: "确认",
-                cancelText: "取消",
+                okText: '确认',
+                cancelText: '取消',
                 onOk: () => {
                   this.$router.push({
-                    name: "post.index"
-                  });
+                    name: 'post.index'
+                  })
                 }
-              });
+              })
             }
-          });
+          })
         }
-      });
+      })
     }
   }
-};
+}
 </script>

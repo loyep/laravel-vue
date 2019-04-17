@@ -16,15 +16,18 @@ const { admin } = require('yargs').argv.env
  */
 
 
-// mix.setResourceRoot('/static/admin');
+mix.setResourceRoot('/static/admin');
 
+if (admin.css) {
     mix
-        // .setPublicPath('public/static/styles')
-        .less('resources/admin/styles/index.less', 'public/static/admin.css')
-        .copyDirectory('resources/admin/themes', 'public/static/themes');
+        .setPublicPath('public/static/admin/styles')
+        .sass('resources/admin/styles/style.scss', 'public/static/admin/styles/admin.css')
+        .copyDirectory('resources/admin/themes', 'public/static/admin/themes');
+} else {
     mix
-        // .setPublicPath('public/static/admin')
-        .js('resources/admin/main.js', 'public/static/admin.js');
+        .setPublicPath('public/static/admin')
+        .js('resources/admin/main.js', 'public/static/admin/js/admin.js');
+}
 
 mix.version();
 
@@ -36,13 +39,16 @@ if (mix.inProduction()) {
 
 const config = {
     plugins: [
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
     resolve: {
         extensions: ['.ts', '.tsx'],
         alias: {
             '@': path.resolve(__dirname, 'resources/admin')
         },
+        modules: [
+            'node_modules'
+        ]
     },
     module: {
         rules: [{
@@ -51,7 +57,7 @@ const config = {
                 options: {
                     appendTsSuffixTo: [/\.vue$/],
                 },
-                exclude: '/resources/admin/styles',
+                exclude: /node_modules/,
             },
             {
                 test: /\.less$/,
@@ -64,7 +70,7 @@ const config = {
     },
     output: {
         chunkFilename: `chunk/[name].${ mix.inProduction() ? '[chunkhash].' : '' }js`,
-        // publicPath: '/static/admin/'
+        publicPath: '/static/admin/'
     }
 }
 

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import i18n from './locales'
+// import i18n from './locales'
 
 import importDirective from '@/directives'
 
@@ -19,9 +19,9 @@ importDirective()
 
 const app = new Vue({
   router,
-  i18n,
+  // i18n,
   store,
-  created() {
+  created () {
     bootstrap()
   },
   render: h => h(App)

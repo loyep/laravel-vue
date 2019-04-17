@@ -19,7 +19,7 @@
             placeholder="邮箱"
           >
             <template #prefix>
-              <a-icon type="mail" style="color:rgba(0,0,0,.25)"/>
+              <a-icon type="mail" style="color:rgba(0,0,0,.25)" />
             </template>
           </a-input>
         </a-form-item>
@@ -30,8 +30,12 @@
             type="primary"
             class="submit"
             htmlType="submit"
-          >发送密码重置链接</a-button>
-          <router-link class="login" :to="{ name: 'login' }">使用已有账户登录</router-link>
+          >
+            发送密码重置链接
+          </a-button>
+          <router-link class="login" :to="{ name: 'login' }">
+            使用已有账户登录
+          </router-link>
         </a-form-item>
       </a-form>
     </div>
@@ -39,47 +43,50 @@
 </template>
 
 <script>
-import AuthLayout from "@/layouts/AuthLayout";
-import { Button } from "ant-design-vue";
-import { setFiledsWithErrors } from "@/utils/form";
-import { passwordEmail } from "@/api/auth";
+import AuthLayout from '@/layouts/AuthLayout'
+import { Button } from 'ant-design-vue'
+import { setFiledsWithErrors } from '@/utils/form'
+import { passwordEmail } from '@/api/auth'
 
 export default {
-  name: "ForgotPassword",
+  name: 'ForgotPassword',
   components: {
     AuthLayout,
     AButton: Button
   },
-  data() {
+  data () {
     return {
       submitting: false,
       form: undefined
-    };
+    }
   },
-  beforeCreate() {
-    this.form = this.$form.createForm(this);
+  beforeCreate () {
+    this.form = this.$form.createForm(this)
   },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit (e) {
+      e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.submitting = true;
+          this.submitting = true
           passwordEmail(values).then(res => {
-            this.submitting = false;
-            const data = res.data;
+            this.submitting = false
+            const data = res.data
             if (data) {
               this.$notification.success({
-                message: "提示",
-                description: "发送邮件成功"
-              });
+                message: '提示',
+                description: '发送邮件成功'
+              })
             }
-          });
+          }).catch(err => {
+            this.submitting = false
+            setFiledsWithErrors(this.form, err)
+          })
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

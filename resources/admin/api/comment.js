@@ -16,17 +16,17 @@ export function store (data) {
   })
 }
 
-export function update(id, data) {
+export function update (id, data) {
   return request({
-    url: `/comment/${id}`,
+    url: '/comment/' + id,
     method: 'put',
     data
   })
 }
 
-export function destroy(id) {
+export function destroy (id) {
   return request({
-    url: `/comment/${id}`,
+    url: '/comment/' + id,
     method: 'delete'
   })
 }

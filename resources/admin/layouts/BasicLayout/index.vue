@@ -10,27 +10,28 @@
         @collapse="handleMenuCollapse"
       />
       <a-layout :style="[{ minHeight: '100vh' }, layoutStyle]">
-        <basic-header :menus="menus" :collapsed="collapsed" @collapse="handleMenuCollapse"/>
+        <basic-header :menus="menus" :collapsed="collapsed" @collapse="handleMenuCollapse" />
         <a-layout-content class="basic-content" :style="contentStyle">
-          <router-view/>
+          <router-view />
         </a-layout-content>
-        <basic-footer/>
+        <basic-footer />
       </a-layout>
     </a-layout>
-    <setting-drawer v-if="showSettingDrawer"/>
+    <setting-drawer v-if="showSettingDrawer" />
   </div>
 </template>
 
 <script>
-import { Layout } from "ant-design-vue";
-import SiderMenu from "@/components/SiderMenu";
-const SettingDrawer = () => import("@/components/SettingDrawer");
-import Footer from "./components/Footer"
-import Header from "./components/Header"
-import { mapGetters } from "vuex";
+import { Layout } from 'ant-design-vue'
+import SiderMenu from '@/components/SiderMenu'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import { mapGetters } from 'vuex'
+
+const SettingDrawer = () => import('@/components/SettingDrawer')
 
 export default {
-  name: "BasicLayout",
+  name: 'BasicLayout',
   components: {
     BasicFooter: Footer,
     BasicHeader: Header,
@@ -39,53 +40,53 @@ export default {
     ALayout: Layout,
     ALayoutContent: Layout.Content
   },
-  data() {
+  data () {
     return {
       collapsed: false,
       showSettingDrawer: false,
       menus: []
-    };
+    }
   },
   computed: {
-    ...mapGetters("theme", {
-      screen: "screen",
-      fixedHeader: "fixedHeader",
-      fixSidebar: "fixSidebar",
-      isTopMenu: "isTopMenu",
-      isMobile: "isMobile"
+    ...mapGetters('theme', {
+      screen: 'screen',
+      fixedHeader: 'fixedHeader',
+      fixSidebar: 'fixSidebar',
+      isTopMenu: 'isTopMenu',
+      isMobile: 'isMobile'
     }),
-    ...mapGetters("permission", {
-      mainMenu: "addRouters"
+    ...mapGetters('permission', {
+      mainMenu: 'addRouters'
     }),
-    contentStyle() {
+    contentStyle () {
       if (this.fixedHeader) {
-        return {};
+        return {}
       }
-      return { paddingTop: 0 };
+      return { paddingTop: 0 }
     },
-    layoutStyle() {
+    layoutStyle () {
       if (this.fixSidebar && !this.isTopMenu && !this.isMobile) {
         return {
-          paddingLeft: this.collapsed ? "80px" : "256px"
-        };
+          paddingLeft: this.collapsed ? '80px' : '256px'
+        }
       }
-      return {};
+      return {}
     }
   },
-  created() {
-    this.menus = this.mainMenu.find(item => item.path === "/").children;
-    this.showSettingDrawer = process.env.NODE_ENV === "development";
+  created () {
+    this.menus = this.mainMenu.find(item => item.path === '/').children
+    this.showSettingDrawer = process.env.NODE_ENV === 'development'
   },
   methods: {
-    setSidebar(value) {
-      this.$store.dispatch("theme/SetSidebar", value);
+    setSidebar (value) {
+      this.$store.dispatch('theme/SetSidebar', value)
     },
-    handleMenuCollapse(collapsed) {
-      this.collapsed = !this.collapsed;
-      this.setSidebar(this.collapsed);
+    handleMenuCollapse (collapsed) {
+      this.collapsed = !this.collapsed
+      this.setSidebar(this.collapsed)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

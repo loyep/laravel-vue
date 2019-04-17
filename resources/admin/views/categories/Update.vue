@@ -5,8 +5,8 @@
         <a-card>
           <a-form :form="form" @submit="handleSubmit">
             <a-form-item
-              :label-col="{ span: 4 }"
-              :wrapper-col="{ span: 12 }"
+              :labelCol="{ span: 4 }"
+              :wrapperCol="{ span: 12 }"
               label="分类名"
               extra="这将是它在站点上显示的名字。"
             >
@@ -19,19 +19,20 @@
             </a-form-item>
 
             <a-form-item
-              :label-col="{ span: 4 }"
-              :wrapper-col="{ span: 12 }"
+              :labelCol="{ span: 4 }"
+              :wrapperCol="{ span: 12 }"
               label="别名"
               extra="“别名”是在URL中使用的别称，它可以令URL更美观。通常使用小写，只能包含字母，数字和连字符（-）。"
             >
               <a-input v-decorator="[
-                  'slug',
-                ]"/>
+                'slug',
+              ]"
+              />
             </a-form-item>
 
             <a-form-item
-              :label-col="{ span: 4 }"
-              :wrapper-col="{ span: 12 }"
+              :labelCol="{ span: 4 }"
+              :wrapperCol="{ span: 12 }"
               label="描述"
               extra="标签描述"
             >
@@ -50,7 +51,9 @@
                 sm: { span: 12, offset: 4 },
               }"
             >
-              <a-button type="primary" html-type="submit">{{ this.id ? '编辑' : '创建' }}</a-button>
+              <a-button type="primary" htmlType="submit">
+                {{ this.id ? '编辑' : '创建' }}
+              </a-button>
             </a-form-item>
           </a-form>
         </a-card>
@@ -84,17 +87,16 @@
 </template>
 
 <script>
-import { Card, Col, Row, Tag } from "ant-design-vue";
-import { update, show, store } from "@/api/category";
-import { setFiledsWithErrors } from "@/utils/form";
+import { Card, Col, Row } from 'ant-design-vue'
+import { update, show, store } from '@/api/category'
+import { setFiledsWithErrors } from '@/utils/form'
 
 export default {
-  name: "CategoryUpdate",
+  name: 'CategoryUpdate',
   components: {
     ACard: Card,
     ACol: Col,
-    ARow: Row,
-    ATag: Tag
+    ARow: Row
   },
   props: {
     id: {
@@ -102,68 +104,66 @@ export default {
       required: true
     }
   },
-  data() {
+  data () {
     return {
       form: undefined,
       data: {}
-    };
+    }
   },
-
-  beforeCreate() {
-    this.form = this.$form.createForm(this);
+  beforeCreate () {
+    this.form = this.$form.createForm(this)
   },
-
-  created() {
-    this.loadInfo();
+  created () {
+    this.loadInfo()
   },
   methods: {
-    loadInfo() {
+    loadInfo () {
       if (this.id) {
         this.$nextTick(() => {
           show(this.id).then(res => {
-            const { data } = res.data;
-            this.data = data;
-            const fields = this.form.getFieldsValue();
+            const { data } = res.data
+            this.data = data
+            const fields = this.form.getFieldsValue()
             for (let field in fields) {
               if (data.hasOwnProperty(field)) {
-                fields[field] = data[field];
+                fields[field] = data[field]
               }
             }
-            this.form.setFieldsValue(fields);
-          });
-        });
+            this.form.setFieldsValue(fields)
+          })
+        })
       }
     },
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit (e) {
+      e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          let updateOrCreate;
+          let updateOrCreate
 
           if (this.id) {
-            updateOrCreate = update(this.id, values);
+            updateOrCreate = update(this.id, values)
           } else {
-            updateOrCreate = store(values);
+            updateOrCreate = store(values)
           }
 
           updateOrCreate.then(res => {
-            const data = res.data;
+            const data = res.data
 
             if (data.errors) {
-              setFiledsWithErrors(this.form, data.errors);
+              setFiledsWithErrors(this.form, data.errors)
             } else {
               this.$notification.success({
-                message: "提示",
+                message: '提示',
                 description: res.data.message
-              });
+              })
               this.$router.push({
-                name: "category.index"
-              });
+                name: 'category.index'
+              })
             }
-          });
+          })
         }
-      });
+      })
     }
   }
-};
+}
 </script>

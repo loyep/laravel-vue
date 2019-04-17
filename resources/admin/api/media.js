@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function upload(data = {}) {
+export function upload (data = {}) {
   return request({
     url: '/upload',
     method: 'post',
@@ -9,9 +9,9 @@ export function upload(data = {}) {
   })
 }
 
-export function destroy(id) {
+export function destroy (id) {
   return request({
-    url: `/user/${id}`,
+    url: '/files/' + id,
     method: 'delete'
   })
 }

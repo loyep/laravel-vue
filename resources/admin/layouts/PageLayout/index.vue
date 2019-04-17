@@ -1,51 +1,51 @@
 <template>
   <page-view :title="title" :extraContent="extraContent" :content="content" :logo="logo">
-    <router-view ref="content"/>
+    <router-view ref="content" />
   </page-view>
 </template>
 
 <script>
-import PageView from "./PageView";
+import PageView from './PageView'
 
 export default {
-  name: "PageLayout",
+  name: 'PageLayout',
   components: {
     PageView
   },
-  data() {
+  data () {
     return {
-      extraContent: "",
-      title: "",
-      content: "",
-      logo: ""
-    };
+      extraContent: '',
+      title: '',
+      content: '',
+      logo: ''
+    }
   },
-  mounted() {
-    this.getPageHeaderInfo();
+  mounted () {
+    this.getPageHeaderInfo()
   },
-  updated() {
-    this.getPageHeaderInfo();
+  updated () {
+    this.getPageHeaderInfo()
   },
   methods: {
-    getPageHeaderInfo() {
-      this.title = this.$route.meta.title;
-      let content = this.$refs.content;
+    getPageHeaderInfo () {
+      this.title = this.$route.meta.title
+      let content = this.$refs.content
       if (content) {
         if (content.$children[0]) {
-          content = content.$children[0];
+          content = content.$children[0]
         }
       }
       if (content && content.headerInfo) {
-        this.extraContent = content.headerInfo.extraContent;
+        this.extraContent = content.headerInfo.extraContent
         if (content.headerInfo.title) {
-          this.title = content.headerInfo.title;
+          this.title = content.headerInfo.title
         }
-        this.content = content.headerInfo.content;
-        this.logo = content.headerInfo.logo;
+        this.content = content.headerInfo.content
+        this.logo = content.headerInfo.logo
       }
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

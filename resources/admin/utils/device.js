@@ -16,24 +16,6 @@ export const SCREEN_TYPE = {
 }
 
 export const deviceEnquire = (callback) => {
-  const matchDesktop = {
-    match: () => {
-      callback && callback(DEVICE_TYPE.DESKTOP)
-    }
-  }
-
-  const matchLablet = {
-    match: () => {
-      callback && callback(DEVICE_TYPE.TABLET)
-    }
-  }
-
-  const matchMobile = {
-    match: () => {
-      callback && callback(DEVICE_TYPE.MOBILE)
-    }
-  }
-
   const matchScreenXS = {
     match: () => {
       callback && callback(SCREEN_TYPE.SCREEN_XS)

@@ -11,7 +11,7 @@
           >
             <template v-slot:action>
               <a-tooltip :title="dimmer.title">
-                <a-icon type="info-circle-o"/>
+                <a-icon type="info-circle-o" />
               </a-tooltip>
             </template>
 
@@ -21,7 +21,7 @@
             </trend>
 
             <template v-slot:footer>
-              <field label="新增" :value="dimmer.remark"/>
+              <field label="新增" :value="dimmer.remark" />
             </template>
           </chart-card>
         </a-col>
@@ -139,15 +139,15 @@
 </template>
 
 <script>
-import { Row, Col, Tooltip } from "ant-design-vue";
-import GridContent from "@/layouts/PageLayout/GridContent";
-import ChartCard from "@/components/Charts/ChartCard";
-import Trend from "@/components/Trend";
-import Field from "@/components/Charts/Field";
-import { statistics } from "@/api/app";
+import { Row, Col, Tooltip } from 'ant-design-vue'
+import GridContent from '@/layouts/PageLayout/GridContent'
+import ChartCard from '@/components/Charts/ChartCard'
+import Trend from '@/components/Trend'
+import Field from '@/components/Charts/Field'
+import { statistics } from '@/api/app'
 
 export default {
-  name: "Analysis",
+  name: 'Analysis',
   components: {
     ARow: Row,
     ACol: Col,
@@ -157,53 +157,53 @@ export default {
     Trend,
     Field
   },
-  data() {
+  data () {
     return {
       user: {
         total: 0,
-        trend: " ",
-        increased: "0"
+        trend: ' ',
+        increased: '0'
       },
       post: {
         total: 0,
-        trend: " ",
-        increased: "0"
+        trend: ' ',
+        increased: '0'
       },
       dimmers: []
-    };
+    }
   },
 
-  mounted() {
-    this.getStatistics();
+  mounted () {
+    this.getStatistics()
   },
   methods: {
-    getStatistics() {
+    getStatistics () {
       statistics().then(res => {
-        const data = res.data;
-        this.updateTotal(data.user.total);
-        this.post.total = data.post.total;
-        this.dimmers = data;
-      });
+        const data = res.data
+        this.updateTotal(data.user.total)
+        this.post.total = data.post.total
+        this.dimmers = data
+      })
     },
-    updateTotal(total) {
-      var that = this;
-      let numText = this.user.total;
-      const step = Math.ceil(total / 60);
-      let golb;
-      function numSlideFun() {
-        numText += step;
+    updateTotal (total) {
+      var that = this
+      let numText = this.user.total
+      const step = Math.ceil(total / 60)
+      let golb
+      function numSlideFun () {
+        numText += step
         if (numText >= total) {
-          numText = total;
-          cancelAnimationFrame(golb);
+          numText = total
+          cancelAnimationFrame(golb)
         } else {
-          golb = requestAnimationFrame(numSlideFun);
+          golb = requestAnimationFrame(numSlideFun)
         }
-        that.user.total = numText;
+        that.user.total = numText
       }
-      numSlideFun(); // 调用数字动画
+      numSlideFun() // 调用数字动画
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

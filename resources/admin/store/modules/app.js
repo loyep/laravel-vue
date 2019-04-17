@@ -1,7 +1,7 @@
 import config from '@/config'
 import Storage from '@/utils/storage'
 
-import {  DEFAULT_LOCALE } from '@/store/mutation-types'
+import { DEFAULT_LOCALE } from '@/store/mutation-types'
 
 export const state = {
   locale: Storage.get(DEFAULT_LOCALE, config.locale),
@@ -40,4 +40,4 @@ const app = {
   getters: getters
 }
 
-export default app;
+export default app

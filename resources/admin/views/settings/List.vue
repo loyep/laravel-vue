@@ -6,23 +6,29 @@
           <a-row :gutter="{ md: 6, lg: 24, xl: 48 }">
             <a-col :md="6" :sm="24">
               <a-form-item label="关键词">
-                <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词"/>
+                <a-input v-decorator="[ 'keywords', ]" placeholder="请输入关键词" />
               </a-form-item>
             </a-col>
 
             <a-col :md="6" :sm="24">
               <a-form-item label="状态">
                 <a-select
-                  v-decorator="[ 
+                  v-decorator="[
                     'status',
-                   ]"
+                  ]"
                   allowClear
                   placeholder="请选择"
                   style="width: 100%;"
                 >
-                  <a-select-option value="published">已发布</a-select-option>
-                  <a-select-option value="draft">草稿</a-select-option>
-                  <a-select-option value="private">私密</a-select-option>
+                  <a-select-option value="published">
+                    已发布
+                  </a-select-option>
+                  <a-select-option value="draft">
+                    草稿
+                  </a-select-option>
+                  <a-select-option value="private">
+                    私密
+                  </a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
@@ -42,12 +48,12 @@
         <a-dropdown>
           <a-button :disabled="selectedRowKeys.length === 0">
             批量操作
-            <a-icon type="down"/>
+            <a-icon type="down" />
           </a-button>
           <template #overlay>
             <a-menu>
               <a-menu-item key="1">
-                <a-icon type="delete"/>删除
+                <a-icon type="delete" />删除
               </a-menu-item>
             </a-menu>
           </template>
@@ -61,53 +67,51 @@
         :pagination="pagination"
         :rowSelection="{ selectedRowKeys, onChange: onSelectChange }"
         @change="handleTableChange"
-      ></a-table>
+      />
     </div>
   </a-card>
 </template>
 
 <script>
-import { Card, Col, Row, Tag, Menu, Dropdown, Button } from "ant-design-vue";
-import { getList } from "@/api/setting";
+import { Card, Col, Row, Menu, Dropdown, Button } from 'ant-design-vue'
+import { getList } from '@/api/setting'
 
 const columns = [
   {
-    title: "名称",
-    dataIndex: "key",
-    scopedSlots: { customRender: "setting_key" }
+    title: '名称',
+    dataIndex: 'key',
+    scopedSlots: { customRender: 'setting_key' }
   },
   {
-    title: "Group",
-    dataIndex: "group"
+    title: 'Group',
+    dataIndex: 'group'
   },
   {
-    title: "名称",
-    dataIndex: "display_name"
+    title: '名称',
+    dataIndex: 'display_name'
   },
   {
-    title: "值",
-    dataIndex: "value"
+    title: '值',
+    dataIndex: 'value'
   },
   {
-    title: "更新时间",
-    dataIndex: "updated_at"
+    title: '更新时间',
+    dataIndex: 'updated_at'
   }
-];
+]
 
 export default {
-  name: "SettingList",
+  name: 'SettingList',
   components: {
     ACard: Card,
     ACol: Col,
     ARow: Row,
-    ATag: Tag,
     ADropdown: Dropdown,
-    ADropdownButton: Dropdown.Button,
     AMenu: Menu,
     AMenuItem: Menu.Item,
     AButton: Button
   },
-  data() {
+  data () {
     return {
       selectedRowKeys: [],
       columns: columns,
@@ -116,80 +120,80 @@ export default {
       loading: false,
       pagination: {},
       query: {}
-    };
+    }
   },
   watch: {
-    data(val, oldVal) {
-      this.selectedRowKeys = [];
+    data (val, oldVal) {
+      this.selectedRowKeys = []
     }
   },
 
-  beforeCreate() {
-    this.form = this.$form.createForm(this);
+  beforeCreate () {
+    this.form = this.$form.createForm(this)
   },
 
-  created() {
-    this.handleSearch();
+  created () {
+    this.handleSearch()
   },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit (e) {
+      e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.handleSearch(values);
+          this.handleSearch(values)
         }
-      });
+      })
     },
 
-    handleSearch(query = {}) {
-      this.query = query;
-      this.loading = true;
+    handleSearch (query = {}) {
+      this.query = query
+      this.loading = true
       getList(query).then(res => {
-        const data = res.data;
-        this.data = data.data;
+        const data = res.data
+        this.data = data.data
 
         const paginationProps = {
           total: parseInt(data.total),
           pageSize: parseInt(data.per_page),
           current: data.current_page
-        };
-        this.pagination = paginationProps;
-        this.loading = false;
-      });
+        }
+        this.pagination = paginationProps
+        this.loading = false
+      })
     },
 
-    toggleForm() {},
-    onSelectChange(selectedRowKeys, selectedRows) {
-      this.selectedRowKeys = selectedRowKeys;
+    toggleForm () {},
+    onSelectChange (selectedRowKeys, selectedRows) {
+      this.selectedRowKeys = selectedRowKeys
     },
-    statusMap(status) {
+    statusMap (status) {
       const colorMap = {
         published: {
-          color: "blue",
-          label: "已发布"
+          color: 'blue',
+          label: '已发布'
         },
         draft: {
-          color: "cyan",
-          label: "草稿"
+          color: 'cyan',
+          label: '草稿'
         },
         private: {
-          color: "green",
-          label: "私密"
+          color: 'green',
+          label: '私密'
         }
-      };
-      return colorMap[status];
+      }
+      return colorMap[status]
     },
 
-    handleTableChange(pagination, filters, sorter) {
+    handleTableChange (pagination, filters, sorter) {
       const query = Object.assign(this.query, {
         per_page: pagination.pageSize,
         page: pagination.current
-      });
+      })
 
-      this.handleSearch(query);
+      this.handleSearch(query)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

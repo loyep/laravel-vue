@@ -9,14 +9,14 @@
       :placeholder="placeholder"
       @imgAdd="imgAdd"
       @change="handleValueChange"
-    ></mavon-editor>
+    />
   </div>
 </template>
 
 <script>
-const mavonEditor = require("mavon-editor");
-import { upload } from "@/api/media";
-import "mavon-editor/dist/css/index.css";
+// import { upload } from '@/api/media'
+import 'mavon-editor/dist/css/index.css'
+const mavonEditor = require('mavon-editor')
 export default {
   components: {
     mavonEditor: mavonEditor.mavonEditor
@@ -28,11 +28,11 @@ export default {
     // },
     placeholder: {
       type: String,
-      default: ""
+      default: ''
     }
   },
-  data() {
-    const data = this.data || "";
+  data () {
+    const data = this.data || ''
     return {
       content: data,
       boxShadow: false,
@@ -67,33 +67,32 @@ export default {
         subfield: true, // 单双栏模式
         preview: true // 预览
       }
-    };
+    }
   },
   watch: {
-    value(val = "") {
-      this.content = val;
+    value (val = '') {
+      this.content = val
     }
   },
   methods: {
-    handleValueChange(val) {
-      this.triggerChange(val);
+    handleValueChange (val) {
+      this.triggerChange(val)
     },
-    triggerChange(val) {
-      console.log(this.$data);
-      this.$emit("change", val);
+    triggerChange (val) {
+      console.log(this.$data)
+      this.$emit('change', val)
     },
-    imgAdd(pos, $file) {
-      var formdata = new FormData();
-      formdata.append("file", $file);
+    imgAdd (pos, $file) {
+      var formdata = new FormData()
+      formdata.append('file', $file)
       // upload(formdata).then(res => {
       //   const url = res.data.path;
       //   this.$refs.editor.$img2Url(pos, url);
       // });
     }
   }
-};
+}
 </script>
-
 
 <style lang="less">
 .v-note-wrapper {
