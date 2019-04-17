@@ -1,8 +1,6 @@
 const webpack = require('webpack');
 const mix = require('laravel-mix');
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const { admin } = require('yargs').argv.env
 
 /*
  |--------------------------------------------------------------------------
@@ -15,41 +13,36 @@ const { admin } = require('yargs').argv.env
  |
  */
 
-
-// mix.setResourceRoot('/static/admin');
-mix
-    // .options({
-    //     extractVueStyles: false,
-    // })
-    // .setPublicPath('public/static/admin')
-    .sass('resources/styles/index.scss', 'public/static/admin/admin.css')
-    .setPublicPath('public/static/admin')
-    .js('resources/admin/main.js', 'public/static/admin/js/admin.js');
-
-mix.version();
-
-if (mix.inProduction()) {
-    mix.disableNotifications();
-} else {
-    mix.sourceMaps();
-}
-
 const config = {
     plugins: [
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'resources/admin')
+            '@': path.resolve(__dirname, 'resources/js/admin')
         },
         modules: [
-            'node_modules'
+            'node_modules',
+            path.resolve(__dirname, "resources")
         ]
     },
     output: {
-        chunkFilename: `chunk/[name].${ mix.inProduction() ? '[chunkhash].' : '' }js`,
+        chunkFilename: `chunk/[name].${mix.inProduction() ? '[chunkhash].' : ''}js`,
         publicPath: '/static/admin/'
     }
 }
 
-mix.webpackConfig(config);
+mix.webpackConfig(config)
+    .options({
+        extractVueStyles: false,
+    })
+    .setResourceRoot('/static/admin')
+    .setPublicPath('public/static/admin')
+    .js('resources/js/admin/main.js', 'public/static/admin/js/admin.js')
+    .version();
+
+if (mix.inProduction()) {
+    mix.disableNotifications();
+} else {
+    mix.sourceMaps();
+}

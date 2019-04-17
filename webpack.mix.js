@@ -20,7 +20,8 @@ if (env && env.admin) {
 mix
   .setResourceRoot('/static')
   .setPublicPath('public/static')
-  .less('resources/less/app.less', 'public/static')
+  .scss('resources/less/app.less', 'public/static')
+  .scss('resources/sass/')
 
 mix.scripts([
   'resources/js/vendor/jquery.min.js',
@@ -30,5 +31,5 @@ mix.scripts([
   'resources/js/vendor/owl.carousel.min.js',
   'resources/js/vendor/plugins.min.js',
   'resources/js/vendor/theia-sticky-sidebar.min.js',
-  'resources/js/app.js',
+  'resources/js/app.js'
 ], 'public/static/app.js')
