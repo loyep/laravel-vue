@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         $posts = Post::with('category')->withCount('comments')->paginate();
 
-        return view('home', compact('posts'));
+        return view('test', compact('posts'));
     }
 
     /**
