@@ -1006,7 +1006,7 @@ a.text-primary:hover {
 .btn-primary {
   background-color: #FF5D4A;
   border-color: #FF5D4A;
-  box-shadow: 0px 5px 20px -3px #ff5d4a75 !important;
+  box-shadow: 0px 5px 20px -3px rgba(#ff5d4a, 0.458) !important;
 }
 
 .btn-primary:hover {
@@ -1853,7 +1853,7 @@ a.text-primary:hover {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  background: linear-gradient(to right, rgba(255, 93, 74, .95), rgba(255, 147, 106, .8));
+  background: linear-gradient(to right, rgba($primary, .95), rgba($primary-2, .8));
   -webkit-transition: all .3s ease;
   -moz-transition: all .3s ease;
   -ms-transition: all .3s ease;
@@ -3398,7 +3398,7 @@ a:hover .overlay {
       }
       &.current-menu-item {
         a {
-          color: #ff5d4a;
+          color: $primary;
           &:before {
             display: none;
           }
@@ -3729,7 +3729,7 @@ a:hover .overlay {
           font-weight: bold;
         }
         &::after {
-          background: #ff5d4a;
+          background: $primary;
           bottom: -2px;
           content: "";
           width: 4px;
@@ -3802,7 +3802,7 @@ content-style
       word-wrap: break-word;
       text-align: justify;
       a {
-        color: #ff5d4a;
+        color: $primary;
         text-decoration: underline;
       }
     }
@@ -3840,7 +3840,7 @@ content-style
         left: 0;
         width: 30px;
         height: 3px;
-        background: #ff5d4a;
+        background: $primary;
         background: linear-gradient(to right, #ff5d4a, #ff8d80);
       }
     }
@@ -3963,7 +3963,7 @@ status post list style
 --------------------------------------------------------------*/
 .status-item {
   .rounded {
-    background: #ff5d4a;
+    background: $primary;
     background: linear-gradient(to right, #fd6f6f 0%, #ff5d4a 100%);
     background: linear-gradient(to right, #fd6f6f 0%, #ff5d4a 100%);
   }
@@ -3993,7 +3993,7 @@ data-style
 .post-meta {
   .post-like {
     &.current {
-      color: #ff5d4a;
+      color: $primary;
     }
   }
 }
@@ -4295,7 +4295,7 @@ data-style
     left: 0;
     width: 30px;
     height: 3px;
-    background: #ff5d4a;
+    background: $primary;
     background: linear-gradient(to right, #ff5d4a, #ff8d80);
   }
 }
@@ -4468,11 +4468,11 @@ data-style
     border-radius: 0;
     padding: 0 20px;
     color: #fff;
-    background-color: #ff5d4a;
+    background-color: $primary;
     transition: all .3s ease;
   }
   input[type="submit"]:hover {
-    background-color: #ff5d4a;
+    background-color: $primary;
   }
   input[type="text"] {
     font-size: .75rem;
@@ -4501,7 +4501,7 @@ data-style
       span {
         text-transform: uppercase;
         margin-right: 5px;
-        color: #ff5d4a;
+        color: $primary;
         font-weight: bold;
       }
     }
@@ -4550,7 +4550,7 @@ data-style
           position: absolute;
           width: 6px;
           height: 6px;
-          background: #ff5d4a;
+          background: $primary;
           border-radius: 10px;
           bottom: -6px;
           left: 50%;
@@ -4679,7 +4679,7 @@ data-style
 .nav-links>.current {
   z-index: 2;
   color: #fff !important;
-  background-color: #ff5d4a;
+  background-color: $primary;
   box-shadow: 0px 5px 20px -3px rgba(255, 122, 138, .66);
 }
 .nav-links .prev,
@@ -4715,7 +4715,11 @@ data-style
 .footer.bg-dark,
 .footer.bg-dark p,
 .footer.bg-dark a {
-  color: #cbcfd8;
+	color: #cbcfd8;
+}
+
+.footer.bg-dark a:hover {
+	color: #fff
 }
 /*--------------------------------------------------------------
     footer widget style
@@ -5157,7 +5161,7 @@ to top
     transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
     border-radius: 2px;
     &:hover {
-      background-color: #ff5d4a;
+      background-color: $primary;
       i {
         opacity: 0;
         transform: translateX(-50%) translateY(-10px);

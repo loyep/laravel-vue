@@ -37,6 +37,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     </script>
 </head>
 <body class="home blog  nice-style-shadow ">
+    <div id="app">
 	<header class="header">
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <nav class="fixed-top ">
@@ -95,7 +96,8 @@ if (intval(\request()->get('page', '1')) > 1) {
 		            </ul>
 </div>
 	        </div>
-		</nav></header><section class="list-magazine list-fixed "><div class="bg-effect bg-dark bg-image-color"></div>
+		</nav></header><section class="list-magazine list-fixed ">
+            <div class="bg-effect bg-dark bg-image-color"></div>
             <div class="bg-effect bg-cover bg-magazine" data-img="https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802292128.jpg&amp;h=600&amp;w=600&amp;zc=1&amp;a=c&amp;q=100&amp;s=1"></div>
                 <div class="container">
             <div class="row-sm">
@@ -283,14 +285,8 @@ if (intval(\request()->get('page', '1')) > 1) {
                 </div>
             </div>
                     </div>
-    </section><div class="list-ajax-nav text-md-center mb-3">
-            <ul class="d-flex flex-nowrap flex-md-wrap justify-content-md-center">
-<li class="flex-shrink-0"><button class="btn btn-link btn-sm active" data-cid="-2.1">最新</button></li>
-                <li class="flex-shrink-0"><button class="btn btn-link btn-sm" data-cid="-1.0">热门</button></li>
-<li class="flex-shrink-0"><button class="btn btn-link btn-sm" data-cid="5">旅行记</button></li>
-<li class="flex-shrink-0"><button class="btn btn-link btn-sm" data-cid="3">异国说</button></li>
-<li class="flex-shrink-0"><button class="btn btn-link btn-sm" data-cid="4">中国行</button></li>            </ul>
-</div>
+    </section>
+    
     							<section class="list-home row-md list-grouped list-tb-padding"><div class="col-6 col-md-3 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
@@ -653,18 +649,18 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         </div>
     </div>
-</div>									</section><nav class="posts-ajax-load pagination-ajax justify-content-md-center row-sm mt-4 mt-md-5  mb-2 mb-md-0 "><div class="col-12 col-md-6">
-            <div class="ajax-loading">
-<span class="dot1"></span><span class="dot2"></span>
-</div>
-            <button data-page="home" data-query="" data-action="ajax_load_posts" data-paged="2" data-append="list-home" class="dposts-ajax-load btn btn-light btn-block">加载更多</button>
-        </div>
-    </nav><!--下面是web端显示的--><section class="list-sales mt-4 mt-md-5 d-none d-lg-block"><a href="https://www.nicetheme.cn/" target="_blank"><img src=""></a>
-            </section><!--下面是手机端显示的，代码需要修改下--><section class="list-sales mt-4 mt-md-5 d-lg-none"><a href="https://www.nicetheme.cn/" target="_blank"><img src=""></a>
+</div>									</section><!--下面是手机端显示的，代码需要修改下--><section class="list-sales mt-4 mt-md-5 d-lg-none"><a href="https://www.nicetheme.cn/" target="_blank"><img src=""></a>
             </section>
+            <nav class="navigation pagination" role="navigation">
+                    <h2 class="screen-reader-text">Posts Navigation</h2>
+                    <div class="nav-links"><span aria-current='page' class='page-numbers current'>1</span>
+            <a class='page-numbers' href='http://wp.loyep.com/page/2/'>2</a>
+            <a class='page-numbers' href='http://wp.loyep.com/page/3/'>3</a>
+            <a class="next page-numbers" href="http://wp.loyep.com/page/2/"><i class="text-md iconfont icon-arrowright"></i></a></div>
+                </nav>
 </div>
 	</main><section class="list-style-1 py-3 py-md-5 bg-light"><div class="container">
-        <div class="list-header h4 mb-3">模块标题 <small class="d-block d-md-inline-block text-md text-muted px-md-2">显示于标题右侧，可填写标题的英文翻译</small>
+        <div class="list-header h4 mb-3">随笔 <small class="d-block d-md-inline-block text-md text-muted px-md-2">Essay</small>
 </div>
         <div class="row-sm">
             <div class="col-12 col-md-3 d-flex mb-3 mb-md-0">
@@ -1010,7 +1006,8 @@ if (intval(\request()->get('page', '1')) > 1) {
                     <div class="list-content p-2">
                         <div class="list-body ">
                             <a href="#" class="list-title h-2x">
-                                离人犹记江南事，烟水桃花过谢桥                            </a>
+                                离人犹记江南事，烟水桃花过谢桥                            
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1066,7 +1063,7 @@ if (intval(\request()->get('page', '1')) > 1) {
         <div class="row my-n3">
         	            <div class="col py-3">
                 <div class="footer-widget pr-lg-5">
-                    <div class="footer-widget-header">我们</div>
+                    <div class="footer-widget-header">关于我</div>
                     <div class="footer-widget-content">
                         <p>NICETHEME 坚持原创和保持创新的用户体验设计，提供专业与创新的网站解决方案，6年网站设计开发经验，专注界面设计、WordPress主题开发、网站设计开发、小程序开发，并提供有保障的维护及售后。</p>
                     </div>
@@ -1076,7 +1073,7 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         	            <div class="col-lg-3 py-3">
                 <div class="footer-widget">
-                    <div class="footer-widget-header">目录</div>
+                    <div class="footer-widget-header">标签</div>
                     <div class="footer-widget-content">
                         <div class="footer-widget-links">
                                                         <a class="nav-link" href="#" aria-current="page">首页</a>
@@ -1097,7 +1094,7 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
             <div class="col-lg-3 py-3">
                                                 <div class="footer-widget">
-                    <div class="footer-widget-header">目录</div>
+                    <div class="footer-widget-header">友链</div>
                     <div class="footer-widget-content">
                         <div class="footer-widget-links">
                                                     <a class="nav-link" href="#" aria-current="page">首页</a>
@@ -1110,9 +1107,10 @@ if (intval(\request()->get('page', '1')) > 1) {
 	<a class="nav-link" href="#">小伙伴</a>
 
 
-<a class="nav-link" href="https://www.nicetheme.cn/store/cosy">主题购买</a>
-<a class="nav-link" href="https://demo.nicetheme.xyz/cosy-style1/">旧版本预览</a>
-                                                                                </div>
+<a class="nav-link" href="#">主题购买</a>
+<a class="nav-link" href="#">旧版本预览</a>
+                            
+</div>
                     </div>
                 </div>
                             </div>
@@ -1204,6 +1202,7 @@ if (intval(\request()->get('page', '1')) > 1) {
         <span class="back-to-top-text">Top</span>
     </span>
 </a>
+    </div>
 <script src="{{ mix('app/js/app.js') }}" type="text/javascript"></script>
 </body>
 </html>
