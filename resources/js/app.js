@@ -31,3 +31,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app'
 });
+
+
+$(function(){
+  	$(".main-menu li:has(>ul)").addClass("has-children");
+    if ($(".main-menu li").hasClass("has-children")){
+        $(".main-menu li.has-children>a").prepend('<span class="sub-menu-icon text-xs iconfont icon-sub-menu"></span>')
+	};
+})
