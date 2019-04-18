@@ -45,11 +45,15 @@ class PrismAdminServiceProvider extends ServiceProvider
 
         Route::group([
             'namespace' => $namespace,
-            'prefix' => $prefix,
         ], function () use ($prefix) {
-            Route::get('/', 'PrismController@index')->name('dashboard');
-            Route::get('/{any}', 'PrismController@index')->where('any', '.*');
-            Route::middleware('api')
+            Route::group([
+                'prefix' => $prefix,
+            ], function () use ($prefix) {
+                Route::get('/', 'PrismController@index')->name('dashboard');
+                Route::get('/{any}', 'PrismController@index')->where('any', '.*');
+            });
+            Route::prefix('api')
+                ->middleware('api')
                 ->group(base_path('routes/admin.php'));
         });
     }

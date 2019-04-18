@@ -28,7 +28,7 @@ class PrismController extends Controller
             'setting_drawer' => true,
         ];
 
-        return view('admin.index', compact('config'));
+        return view('prism', compact('config'));
     }
 
     /**

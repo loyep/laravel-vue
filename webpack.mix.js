@@ -1,6 +1,5 @@
 const mix = require('laravel-mix')
 const path = require('path')
-const { env } = require('yargs').argv
 
 /*
  |--------------------------------------------------------------------------
@@ -13,15 +12,10 @@ const { env } = require('yargs').argv
  |
  */
 
-if (env && env.admin) {
-  return require(path.resolve(__dirname, 'webpack.admin.js'))
-}
-
 mix
   .setResourceRoot('/static')
   .setPublicPath('public/static')
   .scss('resources/less/app.less', 'public/static')
-  .scss('resources/sass/')
 
 mix.scripts([
   'resources/js/vendor/jquery.min.js',

@@ -1,9 +1,0 @@
-{
-    "/static/admin/js/admin.js": "/static/admin/js/admin.js?id=d98c68410070e38aa881",
-    "/chunk/layout.js": "/chunk/layout.js?id=56840ffd30a31de2ac6d",
-    "/chunk/login.js": "/chunk/login.js?id=e559b10c1f93039fe5a0",
-    "/chunk/login~password.reset~register.js": "/chunk/login~password.reset~register.js?id=93a8b5e6f2707ef1b542",
-    "/chunk/password.reset.js": "/chunk/password.reset.js?id=eb8962be7a3fddf11d80",
-    "/chunk/register.js": "/chunk/register.js?id=9c66133e7e8087988e3d",
-    "/chunk/vendors~layout.js": "/chunk/vendors~layout.js?id=bd6e2726b4230d107d00"
-}

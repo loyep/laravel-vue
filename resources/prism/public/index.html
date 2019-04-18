@@ -1,4 +1,16 @@
-<!DOCTYPE html><html lang="{{ str_replace('_', '-', app()->getLocale()) }}"><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>{{ $config['name'] }}</title><link rel=icon href=/static/admin/favicon.ico><script>window.config = @json($config)</script><style>#prism-loader {
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <title>{{ $config['name'] }}</title>
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <script>
+      window.config = @json($config)
+    </script>
+    <style>
+        #prism-loader {
             background: #F9F9F9;
             position: fixed;
             width: 100%;
@@ -93,4 +105,16 @@
                 -webkit-transform: rotate(405deg);
                 transform: rotate(405deg);
             }
-        }</style><link href=/static/admin/css/chunk-vendors.9eb21a83.css rel=stylesheet><link href=/static/admin/css/app.0e433876.css rel=stylesheet></head><body><noscript><strong>We're sorry but Prism doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=prism-loader><span class="ant-spin-dot2 ant-spin-dot-spin2"><i></i><i></i><i></i><i></i></span></div><div id=app></div><script src=/static/admin/js/chunk-vendors.b1f9358f.js></script><script src=/static/admin/js/app.a60c7ac3.js></script></body></html>
+        }      </style>
+</head>
+<body>
+<noscript>
+    <strong>We're sorry but Prism doesn't work properly without JavaScript enabled. Please enable it to
+        continue.</strong>
+</noscript>
+<div id="prism-loader"><span class="ant-spin-dot2 ant-spin-dot-spin2"><i></i><i></i><i></i><i></i></span>
+</div>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
+</html>
