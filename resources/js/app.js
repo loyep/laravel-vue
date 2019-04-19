@@ -34,10 +34,10 @@ const app = new Vue({
 });
 
 $(window).ready(function($){
-  	$(".main-menu li:has(>ul)").addClass("has-children");
-    if ($(".main-menu li").hasClass("has-children")){
-        $(".main-menu li.has-children>a").prepend('<span class="sub-menu-icon text-xs iconfont icon-sub-menu"></span>')
-    };
+  	// $(".main-menu li:has(>ul)").addClass("has-children");
+    // if ($(".main-menu li").hasClass("has-children")){
+    //     $(".main-menu li.has-children>a").prepend('<span class="sub-menu-icon text-xs iconfont icon-sub-menu"></span>')
+    // };
     // $(window).on('scroll', function() {
 	// 	var b = $(window).scrollTop();
 	// 	if( b > 72 ){
