@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\Http\Controllers\Admin\Controller;
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Support\Helper;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Tymon\JWTAuth\JWTAuth;
 
-class RegisterController extends Controller
+class RegisterController extends AuthController
 {
     /*
     |--------------------------------------------------------------------------
@@ -25,22 +21,6 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
-    /**
-     * @var \Tymon\JWTAuth\Contracts\Providers\Auth
-     */
-    protected $auth;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->auth = Auth::guard('api');
-        $this->middleware('guest:api');
-    }
 
     /**
      * Handle a registration request for the application.
@@ -55,7 +35,7 @@ class RegisterController extends Controller
 
         $user = $this->create($request->all());
 
-        $this->guard()->login($user);
+        $this->auth->login($user);
 
         return $this->registered($request, $user);
     }
@@ -80,8 +60,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param array $data
-     *
-     * @return UserResource
+     * @return mixed
      */
     protected function create(array $data)
     {
@@ -93,17 +72,7 @@ class RegisterController extends Controller
             'password'     => Hash::make($data['password']),
         ]);
 
-        return new UserResource($user);
-    }
-
-    /**
-     * Get the guard to be used during registration.
-     *
-     * @return JWTAuth
-     */
-    protected function guard()
-    {
-        return $this->auth;
+        return $user;
     }
 
     /**
@@ -116,14 +85,12 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        $token = $this->guard()->getToken()->get();
-        $expiration = $this->guard()->getPayload()->get('exp') - time();
+        $token = $this->auth->getToken();
 
         return response()
             ->json([
                 'user'       => $user,
                 'token'      => $token,
-                'expires_in' => $expiration,
             ])
             ->header('authorization', $token);
     }

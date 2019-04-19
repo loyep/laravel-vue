@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\Http\Controllers\Admin\Controller;
 use App\Models\User;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Tymon\JWTAuth\JWTAuth;
 
-class LoginController extends Controller
+/**
+ * Class LoginController
+ * @package App\Http\Controllers\Admin\Auth
+ */
+class LoginController extends AuthController
 {
     /*
     |--------------------------------------------------------------------------
@@ -27,24 +27,6 @@ class LoginController extends Controller
     |
     */
 
-    use ThrottlesLogins;
-
-    /**
-     * @var JWTAuth
-     */
-    protected $auth;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->auth = Auth::guard('api');
-        $this->middleware('guest:api')->except('logout');
-    }
-
     /**
      * Log the user out of the application.
      *
@@ -54,22 +36,12 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
+        $this->auth->logout($request);
 
         return response()->json([
             'result'  => true,
             'message' => '',
         ]);
-    }
-
-    /**
-     * Get the guard to be used during authentication.
-     *
-     * @return \Tymon\JWTAuth\Contracts\Providers\Auth
-     */
-    protected function guard()
-    {
-        return $this->auth;
     }
 
     /**
@@ -134,17 +106,9 @@ class LoginController extends Controller
      */
     protected function attemptLogin(Request $request)
     {
-        $token = $this->guard()->attempt(
-            $this->credentials($request)
+        return $this->auth->attempt(
+            $this->credentials($request), $request->filled('remember')
         );
-
-        if ($token) {
-            $this->guard()->setToken($token);
-
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -175,18 +139,14 @@ class LoginController extends Controller
     protected function sendLoginResponse(Request $request)
     {
         $this->clearLoginAttempts($request);
-
-        $token = $this->guard()->getToken()->get();
-        $expiration = $this->guard()->getPayload()->get('exp') - time();
-
-        $user = $this->guard()->user();
+        $token = $this->auth->getToken();
+        $user = $this->auth->user();
         $welcome = $this->generateWelcome($user);
 
         return response()
             ->json([
                 'data' => [
                     'token'      => 'Bearer '.$token,
-                    'expires_in' => $expiration,
                     'welcome'    => $welcome,
                 ],
             ])
@@ -205,6 +165,10 @@ class LoginController extends Controller
         return $welcome;
     }
 
+    /**
+     * @param null $hour
+     * @return string
+     */
     public static function getPeriodOfTime($hour = null)
     {
         $hour = $hour ? $hour : (int) date('G', time());

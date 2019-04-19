@@ -38,66 +38,8 @@ if (intval(\request()->get('page', '1')) > 1) {
 </head>
 <body class="nice-style-shadow">
     <div id="app">
-	<header class="immersed header">
-        <nav class="fixed-top ">
-            <div class="navbar navbar-expand-lg">
-            <div class="container">
-					<a href="#" rel="home" class="navbar-brand m-0 order-1 order-lg-1">
-{{--						<img src="/app/images/bg.jpg" class="" alt="nicetheme" data-src="wp-content/uploads/2019/03/2019032917225523.png" data-nclazyload="true">--}}
-                        <span class="text-white"> PRISM </span>
-                    </a>
-					<!-- / brand -->
-					<div class="collapse navbar-collapse order-lg-2">
-						<ul class="navbar-nav main-menu mx-auto px-4">
-<li class="menu-item current-menu-item "><a class="nav-link" href="#" aria-current="page">首页</a></li>
-<li class="menu-item"><a class="nav-link" href="category/yhty.html">简旅记</a></li>
-<li class="menu-item"><a class="nav-link" href="category/ghjh.html">十七楼</a></li>
-<li class="menu-item"><a class="nav-link" href="category/syst.html">深夜食堂</a></li>
-<li class="menu-item menu-item-has-children ">
-<a class="nav-link" href="sample-page.html">
-    示例页面</a>
-<ul class="sub-menu">
-<li class="menu-item"><a class="nav-link" href="#">专题</a></li>
-	<li class="menu-item"><a class="nav-link" href="#">小伙伴</a></li>
-</ul>
-</li>
-<li class="menu-item"><a class="nav-link" href="https://www.nicetheme.cn/store/cosy">主题购买</a></li>
-<li class="menu-item"><a class="nav-link" href="https://demo.nicetheme.xyz/cosy-style1/">旧版本预览</a></li>
-						</ul>
-</div>
-					<ul class="nav nav-pills nav-submenu align-items-center order-2 order-lg-3">
-<li class="nav-item">
-							<a href="#" class="nav-link search-popup"><i class="text-lg iconfont icon-sousuo"></i></a>
-						</li>
-									<li class="nav-item d-none d-lg-inline-block">
-				<a href="#" class="nav-link" target="_blank"><i class="text-lg iconfont icon-time"></i></a>
-			</li>
-		 						<li class="nav-item d-lg-none">
-							<a class="nav-link" href="#" id="sidebar-mobile-trigger"><i class="text-lg iconfont icon-menu-outline"></i></a>
-						</li>
-											</ul>
-<form role="search" method="get" class="navbar-search-wrap" action="index.html" style="display: none;">
-<input type="search" class="form-control navbar-search-input" placeholder="请输入搜索关键词…" name="s"><i class="iconfont icon-quxiao" id="navbar-search-close"></i>
-</form>
-					<!-- brand -->
-				</div>
-			</div>
-			<div class="navbar-collapse navbar-scroll d-lg-none">
-				<div class="container">
-		            <ul class="navbar-nav flex-row">
-<li class="menu-item   current-menu-item"><a class="nav-link" href="#" aria-current="page">首页</a></li>
-<li class="menu-item "><a class="nav-link" href="category/yhty.html">简旅记</a></li>
-<li class="menu-item "><a class="nav-link" href="category/ghjh.html">十七楼</a></li>
-<li class="menu-item "><a class="nav-link" href="category/syst.html">深夜食堂</a></li>
-<li class="menu-item"><a class="nav-link" href="#">专题列表</a></li>
-<li class="menu-item"><a class="nav-link" href="#">小伙伴</a></li>
-<li class="menu-item"><a class="nav-link" href="sample-page.html">示例页面</a></li>
-<li class="menu-item"><a class="nav-link" href="https://demo.nicetheme.xyz/cosy-style1/">旧版本预览</a></li>
-<li class="menu-item"><a class="nav-link" href="https://www.nicetheme.cn/store/cosy">主题购买</a></li>
-		            </ul>
-</div>
-	        </div>
-		</nav></header><section class="list-magazine list-fixed ">
+        @include('includes.header')
+        <section class="list-magazine list-fixed ">
             <div class="bg-effect bg-dark bg-image-color"></div>
             <div class="bg-effect bg-cover bg-magazine" data-img="https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802292128.jpg&amp;h=600&amp;w=600&amp;zc=1&amp;a=c&amp;q=100&amp;s=1"></div>
                 <div class="container">
