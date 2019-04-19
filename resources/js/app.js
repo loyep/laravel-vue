@@ -20,7 +20,8 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('main-menu', require('./components/MainMenu.vue').default);
+Vue.component('back-to-top', require('./components/BackToTop.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,10 +33,17 @@ const app = new Vue({
     el: '#app'
 });
 
-
-$(function(){
+$(window).ready(function($){
   	$(".main-menu li:has(>ul)").addClass("has-children");
     if ($(".main-menu li").hasClass("has-children")){
         $(".main-menu li.has-children>a").prepend('<span class="sub-menu-icon text-xs iconfont icon-sub-menu"></span>')
-	};
-})
+    };
+    // $(window).on('scroll', function() {
+	// 	var b = $(window).scrollTop();
+	// 	if( b > 72 ){
+	// 		$(".fixed-top").addClass("scroll");
+	// 	} else {
+	// 		$(".fixed-top").removeClass("scroll");
+	// 	}
+	// });
+});

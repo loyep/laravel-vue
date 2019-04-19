@@ -17141,7 +17141,7 @@ to popup
 to top
 */
 
-#nice-back-to-top {
+.back-to-top {
   position: fixed;
   width: 48px;
   height: 48px;
@@ -17152,12 +17152,12 @@ to top
   visibility: hidden;
 }
 
-#nice-back-to-top.active {
+.back-to-top.active {
   opacity: 1;
   visibility: visible;
 }
 
-#nice-back-to-top .icon-stack {
+.back-to-top .icon-stack {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17179,11 +17179,11 @@ to top
   border-radius: 2px;
 }
 
-#nice-back-to-top .icon-stack:hover {
+.back-to-top .icon-stack:hover {
   background-color: #ff5d4a;
 }
 
-#nice-back-to-top .icon-stack:hover i {
+.back-to-top .icon-stack:hover i {
   opacity: 0;
   -webkit-transform: translateX(-50%) translateY(-10px);
           transform: translateX(-50%) translateY(-10px);
@@ -17191,7 +17191,7 @@ to top
   transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-#nice-back-to-top .icon-stack:hover .back-to-top-text {
+.back-to-top .icon-stack:hover .back-to-top-text {
   -webkit-transform: translateY(0);
           transform: translateY(0);
   -webkit-transition: -webkit-transform 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) 50ms;
@@ -17200,7 +17200,7 @@ to top
   transition: transform 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) 50ms, -webkit-transform 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) 50ms;
 }
 
-#nice-back-to-top .icon-stack i {
+.back-to-top .icon-stack i {
   position: absolute;
   top: 9px;
   left: 50%;
@@ -17210,7 +17210,7 @@ to top
   transition: 0.15s ease 50ms;
 }
 
-#nice-back-to-top .icon-stack .back-to-top-text {
+.back-to-top .icon-stack .back-to-top-text {
   display: inline-block;
   -webkit-transform: translateY(5px);
           transform: translateY(5px);

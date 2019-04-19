@@ -1141,12 +1141,13 @@ if (intval(\request()->get('page', '1')) > 1) {
                   </div>
     </div>
 </div>
-<a id="nice-back-to-top" href="#">
+{{-- <a id="nice-back-to-top" href="#">
 	<span class="icon-stack">
         <i class="text-xs iconfont icon-up"></i>
         <span class="back-to-top-text">Top</span>
     </span>
-</a>
+</a> --}}
+<back-to-top />
     </div>
 <script src="{{ mix('app/js/app.js') }}" type="text/javascript"></script>
 </body>
