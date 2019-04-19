@@ -38,12 +38,14 @@ $(window).ready(function($){
     // if ($(".main-menu li").hasClass("has-children")){
     //     $(".main-menu li.has-children>a").prepend('<span class="sub-menu-icon text-xs iconfont icon-sub-menu"></span>')
     // };
-    // $(window).on('scroll', function() {
-	// 	var b = $(window).scrollTop();
-	// 	if( b > 72 ){
-	// 		$(".fixed-top").addClass("scroll");
-	// 	} else {
-	// 		$(".fixed-top").removeClass("scroll");
-	// 	}
-	// });
+    const handleScroll = function () {
+        var b = $(window).scrollTop();
+		if( b > 72 ){
+			$(".fixed-top").addClass("scroll");
+		} else {
+			$(".fixed-top").removeClass("scroll");
+		}
+    }
+    $(window).on('scroll', handleScroll);
+    handleScroll();
 });

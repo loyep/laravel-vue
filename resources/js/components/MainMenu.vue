@@ -1,20 +1,18 @@
 <template>
-  <header class="header">
-    <nav :class="{
+  <nav :class="{
         'fixed-top': fixed,
         'scroll': scroll,
     }">
-      <slot/>
-    </nav>
-  </header>
+    <slot/>
+  </nav>
 </template>
 
 <script>
 export default {
   created() {
-    // this.$nextTick(() => {
-    window.addEventListener("scroll", this.handleScroll, true);
-    // });
+    this.$nextTick(() => {
+      window.addEventListener("scroll", this.handleScroll, true);
+    });
     console.log("Component mounted.");
     // $(".main-menu li:has(>ul)").addClass("has-children");
     // if ($(".main-menu li").hasClass("has-children")){
@@ -29,6 +27,9 @@ export default {
     // 	}
     // });
   },
+  mounted() {
+      this.handleScroll();
+  },
   data() {
     return {
       fixed: true,
@@ -38,7 +39,6 @@ export default {
   methods: {
     handleScroll() {
       const scroll = $(window).scrollTop();
-
       if (scroll > 72) {
         this.scroll = true;
       } else {

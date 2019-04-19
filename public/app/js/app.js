@@ -1856,13 +1856,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
-    // this.$nextTick(() => {
-    window.addEventListener("scroll", this.handleScroll, true); // });
+    var _this = this;
 
+    this.$nextTick(function () {
+      window.addEventListener("scroll", _this.handleScroll, true);
+    });
     console.log("Component mounted."); // $(".main-menu li:has(>ul)").addClass("has-children");
     // if ($(".main-menu li").hasClass("has-children")){
     //     $(".main-menu li.has-children>a").prepend('<span class="sub-menu-icon text-xs iconfont icon-sub-menu"></span>')
@@ -1875,6 +1875,9 @@ __webpack_require__.r(__webpack_exports__);
     // 		$(".fixed-top").removeClass("scroll");
     // 	}
     // });
+  },
+  mounted: function mounted() {
+    this.handleScroll();
   },
   data: function data() {
     return {
@@ -37234,19 +37237,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("header", { staticClass: "header" }, [
-    _c(
-      "nav",
-      {
-        class: {
-          "fixed-top": _vm.fixed,
-          scroll: _vm.scroll
-        }
-      },
-      [_vm._t("default")],
-      2
-    )
-  ])
+  return _c(
+    "nav",
+    {
+      class: {
+        "fixed-top": _vm.fixed,
+        scroll: _vm.scroll
+      }
+    },
+    [_vm._t("default")],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -49427,18 +49428,23 @@ Vue.component('back-to-top', __webpack_require__(/*! ./components/BackToTop.vue 
 var app = new Vue({
   el: '#app'
 });
-$(window).ready(function ($) {// $(".main-menu li:has(>ul)").addClass("has-children");
+$(window).ready(function ($) {
+  // $(".main-menu li:has(>ul)").addClass("has-children");
   // if ($(".main-menu li").hasClass("has-children")){
   //     $(".main-menu li.has-children>a").prepend('<span class="sub-menu-icon text-xs iconfont icon-sub-menu"></span>')
   // };
-  // $(window).on('scroll', function() {
-  // 	var b = $(window).scrollTop();
-  // 	if( b > 72 ){
-  // 		$(".fixed-top").addClass("scroll");
-  // 	} else {
-  // 		$(".fixed-top").removeClass("scroll");
-  // 	}
-  // });
+  var handleScroll = function handleScroll() {
+    var b = $(window).scrollTop();
+
+    if (b > 72) {
+      $(".fixed-top").addClass("scroll");
+    } else {
+      $(".fixed-top").removeClass("scroll");
+    }
+  };
+
+  $(window).on('scroll', handleScroll);
+  handleScroll();
 });
 
 /***/ }),
