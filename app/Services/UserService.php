@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Services;
 
 use App\Http\Requests\UserRequest;
@@ -11,21 +10,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 /**
- * Class UserService
- * @package App\Services
+ * Class UserService.
  */
 class UserService extends BaseService
 {
-
     /**
      * @param UserRequest $request
+     *
      * @return UserResource
      */
     public function paginate(UserRequest $request)
     {
         $users = User::withCount('posts')
             ->when($name = $request->get('name'), function ($query) use ($name) {
-                $query->where('name', 'like', '%' . $name . '%');
+                $query->where('name', 'like', '%'.$name.'%');
             })
             ->paginate($request->get('per_page', 10));
 
@@ -36,17 +34,20 @@ class UserService extends BaseService
      * Display the specified resource.
      *
      * @param UserRequest $request
-     * @param int $id
+     * @param int         $id
+     *
      * @return UserResource
      */
     public function show(UserRequest $request, $id)
     {
         $user = User::findOrFail($id);
+
         return new UserResource($user);
     }
 
     /**
      * @param UserRequest $request
+     *
      * @return JsonResponse
      */
     public function store(UserRequest $request)
@@ -59,7 +60,7 @@ class UserService extends BaseService
 
         $response = [
             'message' => 'User created.',
-            'data' => new UserResource($user),
+            'data'    => new UserResource($user),
         ];
 
         return response()->json($response);
@@ -68,6 +69,7 @@ class UserService extends BaseService
     /**
      * @param UserRequest $request
      * @param $id
+     *
      * @return JsonResponse
      */
     public function update(UserRequest $request, $id)
@@ -80,7 +82,7 @@ class UserService extends BaseService
         $user->save();
         $response = [
             'message' => 'User updated.',
-            'data' => $user->toArray(),
+            'data'    => $user->toArray(),
         ];
 
         return response()->json($response);

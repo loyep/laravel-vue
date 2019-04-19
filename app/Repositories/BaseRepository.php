@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 /**
- * Class BaseRepository
- * @package App\Repositories
+ * Class BaseRepository.
  */
 abstract class BaseRepository implements RepositoryInterface
 {
@@ -31,6 +30,7 @@ abstract class BaseRepository implements RepositoryInterface
 
     /**
      * @param $id
+     *
      * @return Model|null
      */
     public function getOneById($id): ?Model
@@ -40,6 +40,7 @@ abstract class BaseRepository implements RepositoryInterface
 
     /**
      * @param array $ids
+     *
      * @return Collection
      */
     public function getByIds(array $ids): Collection

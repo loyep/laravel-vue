@@ -70,8 +70,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name'     => ['required', 'string', 'max:255'],
+            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -86,12 +86,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'name' => $data['name'],
+            'name'         => $data['name'],
             'display_name' => $data['name'],
-            'email' => $data['email'],
-            'avatar' => Helper::getAvatar($data['email']),
-            'password' => Hash::make($data['password']),
+            'email'        => $data['email'],
+            'avatar'       => Helper::getAvatar($data['email']),
+            'password'     => Hash::make($data['password']),
         ]);
+
         return new UserResource($user);
     }
 
@@ -109,7 +110,7 @@ class RegisterController extends Controller
      * The user has been registered.
      *
      * @param Request $request
-     * @param mixed $user
+     * @param mixed   $user
      *
      * @return JsonResponse
      */
@@ -120,8 +121,8 @@ class RegisterController extends Controller
 
         return response()
             ->json([
-                'user' => $user,
-                'token' => $token,
+                'user'       => $user,
+                'token'      => $token,
                 'expires_in' => $expiration,
             ])
             ->header('authorization', $token);

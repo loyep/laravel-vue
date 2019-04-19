@@ -6,8 +6,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 /**
- * Class Police
- * @package App\Polices
+ * Class Police.
  */
 class Police
 {
@@ -15,6 +14,7 @@ class Police
 
     /**
      * @param User $user
+     *
      * @return bool
      */
     public function before(User $user)

@@ -4,5 +4,4 @@ namespace App\Notifications;
 
 class EventHandler
 {
-
 }

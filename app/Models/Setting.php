@@ -5,8 +5,7 @@ namespace App\Models;
 use App\Traits\Cachable;
 
 /**
- * Class Setting
- * @package App\Models
+ * Class Setting.
  */
 class Setting extends BaseModel
 {

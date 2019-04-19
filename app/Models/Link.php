@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
- * Class Link
- * @package App\Models
+ * Class Link.
  */
 class Link extends BaseModel
 {

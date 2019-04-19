@@ -6,8 +6,7 @@ use App\Models\Post;
 use App\Services\ShareService;
 
 /**
- * Class PrismApp
- * @package App\Prism
+ * Class PrismApp.
  */
 class PrismApp
 {
@@ -24,9 +23,6 @@ class PrismApp
         $this->bootParser();
     }
 
-    /**
-     *
-     */
     public function bootParser()
     {
         try {
@@ -67,7 +63,7 @@ class PrismApp
     }
 
     /**
-     * @param string $url
+     * @param string      $url
      * @param string|null $title
      * @param string|null $des
      * @param string|null $pic
@@ -87,6 +83,7 @@ class PrismApp
 
     /**
      * @param $text
+     *
      * @return string
      */
     public function markdown($text)
@@ -111,6 +108,7 @@ class PrismApp
 
     /**
      * @param $post
+     *
      * @return mixed
      */
     public function relatedPosts($post)
@@ -120,6 +118,7 @@ class PrismApp
 
     /**
      * @param int $count
+     *
      * @return mixed
      */
     public function stickyPosts($count = 4)

@@ -5,8 +5,7 @@ namespace App\Traits;
 use Illuminate\Support\Facades\Cookie;
 
 /**
- * Trait CanLike
- * @package App\Traits
+ * Trait CanLike.
  */
 trait CanLike
 {
