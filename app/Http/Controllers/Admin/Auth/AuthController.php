@@ -7,20 +7,20 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
- * Class AuthController
- * @package App\Http\Controllers\Admin\Auth
+ * Class AuthController.
  */
 class AuthController extends BaseController
 {
     use ThrottlesLogins;
 
     /**
-     * @var AuthService $auth
+     * @var AuthService
      */
     protected $auth;
 
     /**
      * AuthController constructor.
+     *
      * @param AuthService $auth
      */
     public function __construct(AuthService $auth)

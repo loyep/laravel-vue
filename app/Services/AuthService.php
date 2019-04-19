@@ -10,8 +10,7 @@ use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\JWTAuth;
 
 /**
- * Class AuthService
- * @package App\Services
+ * Class AuthService.
  */
 class AuthService extends BaseService
 {
@@ -21,14 +20,14 @@ class AuthService extends BaseService
     protected $jwtAuth;
 
     /**
-     * @var AuthManager $auth
+     * @var AuthManager
      */
     protected $auth;
 
     /**
      * AuthController constructor.
      *
-     * @param JWTAuth $jwtAuth
+     * @param JWTAuth     $jwtAuth
      * @param AuthManager $auth
      */
     public function __construct(JWTAuth $jwtAuth, AuthManager $auth)
@@ -61,8 +60,9 @@ class AuthService extends BaseService
     }
 
     /**
-     * @return string
      * @throws TokenInvalidException
+     *
+     * @return string
      */
     public function tokenRefresh()
     {
@@ -89,6 +89,7 @@ class AuthService extends BaseService
      * Log the given user ID into the application without sessions or cookies.
      *
      * @param mixed $id
+     *
      * @return bool
      */
     public function onceUsingId($id)
@@ -98,7 +99,8 @@ class AuthService extends BaseService
 
     /**
      * @param array $credentials
-     * @param bool $remember
+     * @param bool  $remember
+     *
      * @return bool
      */
     public function attempt(array $credentials, $remember = false)
@@ -114,6 +116,7 @@ class AuthService extends BaseService
         if (!empty($token) || !empty($user)) {
             session()->regenerate();
             $this->jwtAuth->setToken($token);
+
             return true;
         }
 

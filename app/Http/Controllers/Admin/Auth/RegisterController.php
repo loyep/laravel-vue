@@ -60,6 +60,7 @@ class RegisterController extends AuthController
      * Create a new user instance after a valid registration.
      *
      * @param array $data
+     *
      * @return mixed
      */
     protected function create(array $data)

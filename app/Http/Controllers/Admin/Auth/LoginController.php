@@ -11,8 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 /**
- * Class LoginController
- * @package App\Http\Controllers\Admin\Auth
+ * Class LoginController.
  */
 class LoginController extends AuthController
 {
@@ -167,6 +166,7 @@ class LoginController extends AuthController
 
     /**
      * @param null $hour
+     *
      * @return string
      */
     public static function getPeriodOfTime($hour = null)
