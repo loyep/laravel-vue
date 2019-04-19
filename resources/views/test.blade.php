@@ -44,7 +44,7 @@ if (intval(\request()->get('page', '1')) > 1) {
             <div class="navbar navbar-expand-lg">
             <div class="container">
 					<a href="#" rel="home" class="navbar-brand m-0 order-1 order-lg-1">
-						<img src="" class="" alt="nicetheme" data-src="wp-content/uploads/2019/03/2019032917225523.png" data-nclazyload="true"></a>
+						<img src="/app/images/bg.jpg" class="" alt="nicetheme" data-src="wp-content/uploads/2019/03/2019032917225523.png" data-nclazyload="true"></a>
 					<!-- / brand -->
 					<div class="collapse navbar-collapse order-lg-2">
 						<ul class="navbar-nav main-menu mx-auto px-4">
@@ -104,7 +104,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                 <div class="col-12 col-md-6 d-flex">
                     <div class="list-item list-nice-overlay custom-hover flex-fill">
                         <div class="media d-flex flex-fill">
-                            <a href="#" class="media-content" style='background-image:url("")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802292128.jpg&amp;h=450&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
+                            <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802292128.jpg&amp;h=450&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
                                 <span class="overlay"></span>
                             </a>
                         </div>
@@ -122,7 +122,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                                                                                             <div class="col-6 py-1 py-md-2">
                                     <div class="list-item list-nice-overlay custom-hover">
                                         <div class="media">
-                                            <a href="#" class="media-content" style='background-image:url("")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804425582.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
+                                            <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804425582.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
                                                 <span class="overlay"></span>
                                             </a>
                                         </div>
@@ -139,7 +139,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                                                                                             <div class="col-6 py-1 py-md-2">
                                     <div class="list-item list-nice-overlay custom-hover">
                                         <div class="media">
-                                            <a href="#" class="media-content" style='background-image:url("")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802292433.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
+                                            <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802292433.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
                                                 <span class="overlay"></span>
                                             </a>
                                         </div>
@@ -156,7 +156,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                                                                                             <div class="col-6 py-1 py-md-2">
                                     <div class="list-item list-nice-overlay custom-hover">
                                         <div class="media">
-                                            <a href="#" class="media-content" style='background-image:url("")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802283626.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
+                                            <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802283626.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
                                                 <span class="overlay"></span>
                                             </a>
                                         </div>
@@ -173,7 +173,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                                                                                             <div class="col-6 py-1 py-md-2">
                                     <div class="list-item list-nice-overlay custom-hover">
                                         <div class="media">
-                                            <a href="#" class="media-content" style='background-image:url("")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804424427.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
+                                            <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804424427.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
                                                 <span class="overlay"></span>
                                             </a>
                                         </div>
@@ -197,7 +197,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="col-4 col-md-2 py-md-2 ">
                 <div class="list-item list-overlay custom-hover">
                     <div class="media media-3x2">
-                        <a class="media-content custom-hover-img" style='background-image:url("")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804425174.jpeg)" data-nclazyload="true">
+                        <a class="media-content custom-hover-img" style='background-image:url("/app/images/bg.jpg")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804425174.jpeg)" data-nclazyload="true">
                             <span class="overlay"></span>
                         </a>
                     </div>
@@ -212,7 +212,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="col-4 col-md-2 py-md-2 ">
                 <div class="list-item list-overlay custom-hover">
                     <div class="media media-3x2">
-                        <a class="media-content custom-hover-img" style='background-image:url("")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804425184.jpeg)" data-nclazyload="true">
+                        <a class="media-content custom-hover-img" style='background-image:url("/app/images/bg.jpg")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804425184.jpeg)" data-nclazyload="true">
                             <span class="overlay"></span>
                         </a>
                     </div>
@@ -227,7 +227,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="col-4 col-md-2 py-md-2 ">
                 <div class="list-item list-overlay custom-hover">
                     <div class="media media-3x2">
-                        <a class="media-content custom-hover-img" style='background-image:url("")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804425014.jpeg)" data-nclazyload="true">
+                        <a class="media-content custom-hover-img" style='background-image:url("/app/images/bg.jpg")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804425014.jpeg)" data-nclazyload="true">
                             <span class="overlay"></span>
                         </a>
                     </div>
@@ -242,7 +242,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="col-4 col-md-2 py-md-2 ">
                 <div class="list-item list-overlay custom-hover">
                     <div class="media media-3x2">
-                        <a class="media-content custom-hover-img" style='background-image:url("")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804424914.jpeg)" data-nclazyload="true">
+                        <a class="media-content custom-hover-img" style='background-image:url("/app/images/bg.jpg")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804424914.jpeg)" data-nclazyload="true">
                             <span class="overlay"></span>
                         </a>
                     </div>
@@ -257,7 +257,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="col-4 col-md-2 py-md-2 ">
                 <div class="list-item list-overlay custom-hover">
                     <div class="media media-3x2">
-                        <a class="media-content custom-hover-img" style='background-image:url("")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804424981.jpeg)" data-nclazyload="true">
+                        <a class="media-content custom-hover-img" style='background-image:url("/app/images/bg.jpg")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804424981.jpeg)" data-nclazyload="true">
                             <span class="overlay"></span>
                         </a>
                     </div>
@@ -272,7 +272,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="col-4 col-md-2 py-md-2 ">
                 <div class="list-item list-overlay custom-hover">
                     <div class="media media-3x2">
-                        <a class="media-content custom-hover-img" style='background-image:url("")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804424836.jpeg)" data-nclazyload="true">
+                        <a class="media-content custom-hover-img" style='background-image:url("/app/images/bg.jpg")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804424836.jpeg)" data-nclazyload="true">
                             <span class="overlay"></span>
                         </a>
                     </div>
@@ -291,7 +291,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
             <a class="media-content" href="#" target="_blank">
-                <img src="" alt="Gallerie degli Uffizi 乌菲兹美术馆" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424379.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                <img src="/app/images/bg.jpg" alt="Gallerie degli Uffizi 乌菲兹美术馆" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424379.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
             </a>
                         <div class="media-action">
                 <i class="iconfont icon-pic-s"></i>
@@ -325,7 +325,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
             <a class="media-content" href="#" target="_blank">
-                <img src="" alt="苏格兰印象之十日谈第五天：世界最美A82公路自驾记" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424914.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                <img src="/app/images/bg.jpg" alt="苏格兰印象之十日谈第五天：世界最美A82公路自驾记" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424914.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
             </a>
                                             </div>
         <div class="list-content">
@@ -354,7 +354,7 @@ if (intval(\request()->get('page', '1')) > 1) {
 													    <div class="col-6 col-md-3 d-flex">
         <div class="list-item list-overlay block flex-fill">
             <div class="media d-flex flex-fill">
-                <a class="media-content" href="special/%E4%B8%80%E5%BA%A7%E5%B0%8F%E5%9F%8E.html" style='background-image:url("")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802301636.jpg)" data-nclazyload="true"><span class="overlay"></span></a>
+                <a class="media-content" href="special/%E4%B8%80%E5%BA%A7%E5%B0%8F%E5%9F%8E.html" style='background-image:url("/app/images/bg.jpg")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802301636.jpg)" data-nclazyload="true"><span class="overlay"></span></a>
             </div>
             <div class="list-content">
                 <div class="list-body">
@@ -382,7 +382,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="col-6 col-md-3 d-none d-lg-flex">
         <div class="list-item block flex-fill">
             <div class="media flex-fill">
-                                    <a href="https://www.nicetheme.cn/" class="media-content flex-fill" style='background-image:url("")' target="_blank" data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019031316134141.png)" data-nclazyload="true"></a>
+                                    <a href="https://www.nicetheme.cn/" class="media-content flex-fill" style='background-image:url("/app/images/bg.jpg")' target="_blank" data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019031316134141.png)" data-nclazyload="true"></a>
                             </div>
         </div>
     </div>
@@ -390,7 +390,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="col-6 col-md-3 d-flex d-lg-none">
         <div class="list-item block flex-fill">
             <div class="media flex-fill">
-                                    <a href="https://www.nicetheme.cn/" class="media-content flex-fill" style='background-image:url("")' target="_blank" data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019031316134141.png)" data-nclazyload="true"></a>
+                                    <a href="https://www.nicetheme.cn/" class="media-content flex-fill" style='background-image:url("/app/images/bg.jpg")' target="_blank" data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019031316134141.png)" data-nclazyload="true"></a>
                             </div>
         </div>
     </div>
@@ -398,7 +398,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
             <a class="media-content" href="#" target="_blank">
-                <img src="" alt="旅行四川绵阳，这座绵州第一山不能错过！空气好景美能玩一整天！" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424836.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                <img src="/app/images/bg.jpg" alt="旅行四川绵阳，这座绵州第一山不能错过！空气好景美能玩一整天！" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424836.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
             </a>
                                     <div class="media-action">
                 <i class="iconfont icon-bofang"></i>
@@ -432,7 +432,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
             <a class="media-content" href="#" target="_blank">
-                <img src="" alt="今天去汉口德国领事馆和江汉关博物馆" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804425695.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                <img src="/app/images/bg.jpg" alt="今天去汉口德国领事馆和江汉关博物馆" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804425695.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
             </a>
                                                 <div class="media-action">
                 <i class="iconfont icon-yinle"></i>
@@ -466,7 +466,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
             <a class="media-content" href="#" target="_blank">
-                <img src="" alt="取一瓢深蓝色甜甜的湖水，甜到我的心底解忧愁！" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424427.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                <img src="/app/images/bg.jpg" alt="取一瓢深蓝色甜甜的湖水，甜到我的心底解忧愁！" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424427.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
             </a>
                                             </div>
         <div class="list-content">
@@ -497,7 +497,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
             <a class="media-content" href="#" target="_blank">
-                <img src="" alt="苏格兰印象之十日谈第七天：此景只应天上有，威廉堡-格林芬南大桥-天空岛" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804423838.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                <img src="/app/images/bg.jpg" alt="苏格兰印象之十日谈第七天：此景只应天上有，威廉堡-格林芬南大桥-天空岛" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804423838.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
             </a>
                                             </div>
         <div class="list-content">
@@ -528,7 +528,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
             <a class="media-content" href="#" target="_blank">
-                <img src="" alt="在彩云之南吹！我的骄傲放纵，一份迟到3年的游记" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804425582.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                <img src="/app/images/bg.jpg" alt="在彩云之南吹！我的骄傲放纵，一份迟到3年的游记" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804425582.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
             </a>
                                             </div>
         <div class="list-content">
@@ -559,7 +559,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
             <a class="media-content" href="#" target="_blank">
-                <img src="" alt="离人犹记江南事，烟水桃花过谢桥" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424524.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                <img src="/app/images/bg.jpg" alt="离人犹记江南事，烟水桃花过谢桥" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424524.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
             </a>
                                             </div>
         <div class="list-content">
@@ -590,7 +590,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
             <a class="media-content" href="#" target="_blank">
-                <img src="" alt="一天徒步36000步！迪士尼，你究竟让姑娘受了什么刺激？" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804425174.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                <img src="/app/images/bg.jpg" alt="一天徒步36000步！迪士尼，你究竟让姑娘受了什么刺激？" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804425174.jpeg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
             </a>
                                             </div>
         <div class="list-content">
@@ -621,7 +621,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
             <a class="media-content" href="#" target="_blank">
-                <img src="" alt="苏格兰印象之十日谈第八天：此景应属魔法界，天空岛老人峰-爱莲朵娜城堡" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802292769.jpg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                <img src="/app/images/bg.jpg" alt="苏格兰印象之十日谈第八天：此景应属魔法界，天空岛老人峰-爱莲朵娜城堡" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802292769.jpg&amp;h=300&amp;w=450&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
             </a>
                                     <div class="media-action">
                 <i class="iconfont icon-bofang"></i>
@@ -649,7 +649,7 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         </div>
     </div>
-</div>									</section><!--下面是手机端显示的，代码需要修改下--><section class="list-sales mt-4 mt-md-5 d-lg-none"><a href="https://www.nicetheme.cn/" target="_blank"><img src=""></a>
+</div>									</section><!--下面是手机端显示的，代码需要修改下--><section class="list-sales mt-4 mt-md-5 d-lg-none"><a href="https://www.nicetheme.cn/" target="_blank"><img src="/app/images/bg.jpg"></a>
             </section>
             <nav class="navigation pagination" role="navigation">
                     <h2 class="screen-reader-text">Posts Navigation</h2>
@@ -666,7 +666,7 @@ if (intval(\request()->get('page', '1')) > 1) {
             <div class="col-12 col-md-3 d-flex mb-3 mb-md-0">
                 <div class="list-item list-overlay custom-hover flex-fill">
                     <div class="media media-3x2 d-flex flex-fill">
-                        <a class="media-content" href="category/syst.html" style='background-image:url("")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804425014.jpeg)" data-nclazyload="true"><span class="overlay"></span></a>
+                        <a class="media-content" href="category/syst.html" style='background-image:url("/app/images/bg.jpg")' data-bg=" url(/images/bg.jpg)" data-nclazyload="true"><span class="overlay"></span></a>
                     </div>
                     <div class="list-content p-3">
                         <div class="list-body">
@@ -690,7 +690,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802292998.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802292998.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -705,7 +705,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802285136.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802285136.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -720,7 +720,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802301636.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802301636.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -735,7 +735,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802292626.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802292626.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -750,7 +750,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802294784.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802294784.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -765,7 +765,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802283991.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802283991.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -780,7 +780,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802292433.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802292433.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -795,7 +795,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802284875.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802284875.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -820,7 +820,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804423838.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804423838.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -835,7 +835,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804425582.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804425582.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -850,7 +850,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802292769.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802292769.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -865,7 +865,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802275822.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802275822.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -880,7 +880,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802282598.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802282598.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -895,7 +895,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802281146.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802281146.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -911,7 +911,7 @@ if (intval(\request()->get('page', '1')) > 1) {
             <div class="col-12 col-md-3 d-flex order-1 order-md-2 mb-3 mb-md-0">
                 <div class="list-item list-overlay custom-hover flex-fill">
                     <div class="media media-3x2 d-flex flex-fill">
-                        <a href="category/ghjh.html" class="media-content" style='background-image:url("")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802270178.jpg)" data-nclazyload="true"><span class="overlay"></span></a>
+                        <a href="category/ghjh.html" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url(https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802270178.jpg)" data-nclazyload="true"><span class="overlay"></span></a>
                     </div>
                     <div class="list-content p-3">
                         <div class="list-body ">
@@ -940,7 +940,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                 <div class="list-item list-nice-overlay custom-hover">
                     <div class="media media-3x2">
                         <a class="media-content" href="#">
-                            <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424379.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                            <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424379.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                         </a>
                     </div>
                     <div class="list-content p-2">
@@ -955,7 +955,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                 <div class="list-item list-nice-overlay custom-hover">
                     <div class="media media-3x2">
                         <a class="media-content" href="#">
-                            <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424914.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                            <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424914.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                         </a>
                     </div>
                     <div class="list-content p-2">
@@ -970,7 +970,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                 <div class="list-item list-nice-overlay custom-hover">
                     <div class="media media-3x2">
                         <a class="media-content" href="#">
-                            <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424836.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                            <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424836.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                         </a>
                     </div>
                     <div class="list-content p-2">
@@ -985,7 +985,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                 <div class="list-item list-nice-overlay custom-hover">
                     <div class="media media-3x2">
                         <a class="media-content" href="#">
-                            <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424427.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                            <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424427.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                         </a>
                     </div>
                     <div class="list-content p-2">
@@ -1000,7 +1000,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                 <div class="list-item list-nice-overlay custom-hover">
                     <div class="media media-3x2">
                         <a class="media-content" href="#">
-                            <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424524.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                            <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804424524.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                         </a>
                     </div>
                     <div class="list-content p-2">
@@ -1016,7 +1016,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                 <div class="list-item list-nice-overlay custom-hover">
                     <div class="media media-3x2">
                         <a class="media-content" href="#">
-                            <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804425174.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                            <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030804425174.jpeg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                         </a>
                     </div>
                     <div class="list-content p-2">
@@ -1031,7 +1031,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                 <div class="list-item list-nice-overlay custom-hover">
                     <div class="media media-3x2">
                         <a class="media-content" href="#">
-                            <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802291463.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                            <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802291463.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                         </a>
                     </div>
                     <div class="list-content p-2">
@@ -1046,7 +1046,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                 <div class="list-item list-nice-overlay custom-hover">
                     <div class="media media-3x2">
                         <a class="media-content" href="#">
-                            <img src="" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802293625.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                            <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802293625.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
                         </a>
                     </div>
                     <div class="list-content p-2">
