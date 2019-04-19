@@ -12,7 +12,6 @@ $index_menu_style = 'dark';
 
 @endphp
 <header class="header">
-<main-menu>
     <nav class="{{ $navClass }}">
         <div class="navbar navbar-expand-lg">
             <div class="container">
