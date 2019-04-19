@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       fixed: true,
-      scroll: true
+      scroll: false
     };
   },
   methods: {
