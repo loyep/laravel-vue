@@ -47,6 +47,7 @@ export default {
     this.$nextTick(() => {
       window.addEventListener("scroll", this.handleScroll, true);
     });
+    this.handleScroll();
   },
   methods: {
     scrollTop() {
@@ -69,6 +70,12 @@ export default {
         this.active = true;
       } else {
         this.active = false;
+      }
+
+      if (scroll > 72) {
+        $(".fixed-top").addClass("scroll");
+      } else {
+        $(".fixed-top").removeClass("scroll");
       }
     }
   }

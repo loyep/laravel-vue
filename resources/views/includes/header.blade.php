@@ -12,7 +12,8 @@ $index_menu_style = 'dark';
 
 @endphp
 <header class="header">
-    <main-menu>
+<main-menu>
+    <nav class="{{ $navClass }}">
         <div class="navbar navbar-expand-lg">
             <div class="container">
                 <a href="{{ url('/') }}" rel="home" class="navbar-brand m-0 order-1 order-lg-1">
@@ -78,6 +79,6 @@ $index_menu_style = 'dark';
                 </ul>
             </div>
         </div>
-    </main-menu>
+    </nav>
 </header>
 
