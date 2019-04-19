@@ -1002,7 +1002,8 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
                     </div>
     </div>
-</section><footer class="footer bg-dark pt-4 pt-md-5"><div class="container">
+</section>
+        <footer class="footer bg-dark pt-4 pt-md-5"><div class="container">
         <div class="row my-n3">
         	            <div class="col py-3">
                 <div class="footer-widget pr-lg-5">
@@ -1085,7 +1086,8 @@ if (intval(\request()->get('page', '1')) > 1) {
 	        </ul>
 </div>
 	</div>
-</aside><div id="search-popup-wrap">
+        </aside>
+        <div id="search-popup-wrap">
     <div class="search-popup-cover bg-light px-3 px-lg-5 py-5">
         <div class="bg-effect bg-cover nc-no-lazy" style="background-image: url('wp-content/uploads/2019/03/2019030802285925.jpg')">
             <span class="overlay"></span>

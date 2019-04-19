@@ -10,15 +10,6 @@ $index_menu_style = 'dark';
     $logo = asset('images/logo.png');
 }
 
-//$logo = '';
-//	$index_menu_style = get_field('index_menu_style', 'option');
-//	if (is_home() && ($index_menu_style == 'immersed' || $index_menu_style == 'dark' || $index_menu_style == 'image')) {
-//		$logo = get_field('logo_dark', 'option');
-//		return empty($logo) ? get_template_directory_uri().'/images/logo-dark.png' : esc_url($logo);
-//	}
-//	$logo = get_field('logo', 'option');
-//	return empty($logo) ? get_template_directory_uri().'/images/logo.png' : esc_url($logo);
-
 @endphp
 
 <header class="header">
@@ -26,8 +17,11 @@ $index_menu_style = 'dark';
         <div class="navbar navbar-expand-lg">
             <div class="container">
                 <a href="{{ url('/') }}" rel="home" class="navbar-brand m-0 order-1 order-lg-1">
-                    <img src="{{ $logo }}" class="" alt="{{ 'Prism' }}">
-                    <span class="text-white">PRISM</span>
+                    @if (!empty($logo))
+                        <img src="{{ $logo }}" class="" alt="{{ 'Prism' }}">
+                    @else
+                        <span class="text-white">PRISM</span>
+                    @endif
                 </a>
                 <!-- / brand -->
                 <div class="collapse navbar-collapse order-lg-2">
@@ -51,9 +45,6 @@ $index_menu_style = 'dark';
                     <li class="nav-item d-lg-none">
                         <a class="nav-link" href="#" id="sidebar-mobile-trigger"><i class="text-lg iconfont icon-menu-outline"></i></a>
                     </li>
-                    <li class="nav-item d-none d-lg-inline-block">
-                        <a href="#" class="nav-link"><i class="text-lg iconfont icon-bianji"></i></a>
-                    </li>
                     @auth
                     <li class="nav-item">
                         <a href="#" class="nav-link pr-lg-0">
@@ -68,10 +59,11 @@ $index_menu_style = 'dark';
                     </li>
                     @endauth
                 </ul>
-                <form role="search" method="get" class="navbar-search-wrap" action="{{ url('/') }}"
-                      style="display: none;"><input type="search" class="form-control navbar-search-input"
-                                                    placeholder="Type Something..." name="s"> <i
-                            class="iconfont icon-quxiao" id="navbar-search-close"></i></form>
+                <form role="search" method="get" class="navbar-search-wrap" action="{{ route('search') }}"
+                      style="display: none;">
+                    <input type="search" class="form-control navbar-search-input" placeholder="Type Something..." name="s">
+                    <i class="iconfont icon-quxiao" id="navbar-search-close"></i>
+                </form>
             </div>
         </div>
         <div class="navbar-collapse navbar-scroll d-lg-none">
