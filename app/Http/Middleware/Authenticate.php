@@ -7,19 +7,18 @@ use App\Services\AuthService;
 use Closure;
 
 /**
- * Class Authenticate
- * @package App\Http\Middleware
+ * Class Authenticate.
  */
 class Authenticate
 {
-
     /**
-     * @var AuthService $auth
+     * @var AuthService
      */
     protected $auth;
 
     /**
      * Authenticate constructor.
+     *
      * @param AuthService $auth
      */
     public function __construct(AuthService $auth)
@@ -33,9 +32,9 @@ class Authenticate
      * @param $request
      * @param Closure $next
      *
-     * @return mixed
      * @throws AuthenticationException
      *
+     * @return mixed
      */
     public function handle($request, Closure $next)
     {
@@ -74,13 +73,15 @@ class Authenticate
      *
      * @param $response
      * @param null $token
-     * @return mixed
+     *
      * @throws mixed
+     *
+     * @return mixed
      */
     protected function setAuthenticationHeader($response, $token = null)
     {
         $token = $token ?: $this->auth->tokenRefresh();
-        $response->headers->set('Authorization', 'Bearer ' . $token);
+        $response->headers->set('Authorization', 'Bearer '.$token);
 
         return $response;
     }
