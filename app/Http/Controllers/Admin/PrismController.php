@@ -28,7 +28,7 @@ class PrismController extends Controller
             'setting_drawer' => true,
         ];
 
-        return view('prism', compact('config'));
+        return view('dashboard.index', compact('config'));
     }
 
     /**

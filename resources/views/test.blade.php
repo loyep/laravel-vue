@@ -36,15 +36,16 @@ if (intval(\request()->get('page', '1')) > 1) {
         /* ]]> */
     </script>
 </head>
-<body class="home blog  nice-style-shadow ">
+<body class="nice-style-shadow">
     <div id="app">
-	<header class="header">
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<header class="immersed header">
         <nav class="fixed-top ">
             <div class="navbar navbar-expand-lg">
             <div class="container">
 					<a href="#" rel="home" class="navbar-brand m-0 order-1 order-lg-1">
-						<img src="/app/images/bg.jpg" class="" alt="nicetheme" data-src="wp-content/uploads/2019/03/2019032917225523.png" data-nclazyload="true"></a>
+{{--						<img src="/app/images/bg.jpg" class="" alt="nicetheme" data-src="wp-content/uploads/2019/03/2019032917225523.png" data-nclazyload="true">--}}
+                        <span class="text-white"> PRISM </span>
+                    </a>
 					<!-- / brand -->
 					<div class="collapse navbar-collapse order-lg-2">
 						<ul class="navbar-nav main-menu mx-auto px-4">
@@ -286,7 +287,7 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
                     </div>
     </section>
-    
+
     							<section class="list-home row-md list-grouped list-tb-padding"><div class="col-6 col-md-3 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
@@ -319,8 +320,8 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         </div>
     </div>
-</div>											
-						
+</div>
+
 												<div class="col-6 col-md-3 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
@@ -350,7 +351,7 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         </div>
     </div>
-</div>											
+</div>
 													    <div class="col-6 col-md-3 d-flex">
         <div class="list-item list-overlay block flex-fill">
             <div class="media d-flex flex-fill">
@@ -370,14 +371,14 @@ if (intval(\request()->get('page', '1')) > 1) {
                     <div class="flex-fill"></div>
                     <div class="text-nowrap">
                         <span class="d-inline-block px-2">
-                            11 篇文章 
+                            11 篇文章
                         </span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-						
+
 													    <!--下面是web端显示的-->
     <div class="col-6 col-md-3 d-none d-lg-flex">
         <div class="list-item block flex-fill">
@@ -426,8 +427,8 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         </div>
     </div>
-</div>											
-						
+</div>
+
 												<div class="col-6 col-md-3 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
@@ -460,8 +461,8 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         </div>
     </div>
-</div>											
-						
+</div>
+
 												<div class="col-6 col-md-3 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
@@ -491,8 +492,8 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         </div>
     </div>
-</div>											
-						
+</div>
+
 												<div class="col-6 col-md-3 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
@@ -522,8 +523,8 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         </div>
     </div>
-</div>											
-						
+</div>
+
 												<div class="col-6 col-md-3 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
@@ -553,8 +554,8 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         </div>
     </div>
-</div>											
-						
+</div>
+
 												<div class="col-6 col-md-3 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
@@ -584,8 +585,8 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         </div>
     </div>
-</div>											
-						
+</div>
+
 												<div class="col-6 col-md-3 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
@@ -615,8 +616,8 @@ if (intval(\request()->get('page', '1')) > 1) {
             </div>
         </div>
     </div>
-</div>											
-						
+</div>
+
 												<div class="col-6 col-md-3 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
@@ -923,7 +924,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                             <div class="flex-fill"></div>
                             <div class="text-nowrap">
                                 <span class="d-inline-block pl-2">
-                                    6 篇文章 
+                                    6 篇文章
                                 </span>
                             </div>
                         </div>
@@ -1006,7 +1007,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                     <div class="list-content p-2">
                         <div class="list-body ">
                             <a href="#" class="list-title h-2x">
-                                离人犹记江南事，烟水桃花过谢桥                            
+                                离人犹记江南事，烟水桃花过谢桥
                             </a>
                         </div>
                     </div>
@@ -1109,7 +1110,7 @@ if (intval(\request()->get('page', '1')) > 1) {
 
 <a class="nav-link" href="#">主题购买</a>
 <a class="nav-link" href="#">旧版本预览</a>
-                            
+
 </div>
                     </div>
                 </div>

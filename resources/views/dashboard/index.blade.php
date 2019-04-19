@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
     <title>{{ $config['name'] }}</title>
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="icon" href="{{ asset('static/img/logo.png') }}" type="image/x-icon">
+    <link href="{{ asset('static/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('static/css/chunk-vendors.css') }}" rel="stylesheet">
     <script>
       window.config = @json($config)
     </script>
@@ -105,16 +107,15 @@
                 -webkit-transform: rotate(405deg);
                 transform: rotate(405deg);
             }
-        }      </style>
+        }
+    </style>
 </head>
 <body>
-<noscript>
-    <strong>We're sorry but Prism doesn't work properly without JavaScript enabled. Please enable it to
-        continue.</strong>
-</noscript>
+<noscript><strong>We're sorry but Prism doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript>
 <div id="prism-loader"><span class="ant-spin-dot2 ant-spin-dot-spin2"><i></i><i></i><i></i><i></i></span>
 </div>
 <div id="app"></div>
-<!-- built files will be auto injected -->
+<script src="{{ asset('static/js/app.js')}}" type="text/javascript"></script>
+<script src="{{ asset('static/js/chunk-vendors.js')}}" type="text/javascript"></script>
 </body>
 </html>
