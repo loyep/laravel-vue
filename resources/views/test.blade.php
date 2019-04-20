@@ -19,7 +19,7 @@ if (intval(\request()->get('page', '1')) > 1) {
     <link rel="icon" href="{{ asset('favicon.png') }}" sizes="192x192"/>
     <link rel="apple-touch-icon-precomposed" href="{{ asset('favicon.png') }}"/>
     <title>@yield('page_title', Prism::title())</title>
-    <link href="{{ mix('app/css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('/css/app.css', 'app') }}" rel="stylesheet">
     <script>
         /* <![CDATA[ */
         var globals = {
@@ -1087,33 +1087,33 @@ if (intval(\request()->get('page', '1')) > 1) {
 </div>
 	</div>
         </aside>
-        <div id="search-popup-wrap">
-    <div class="search-popup-cover bg-light px-3 px-lg-5 py-5">
-        <div class="bg-effect bg-cover nc-no-lazy" style="background-image: url('wp-content/uploads/2019/03/2019030802285925.jpg')">
-            <span class="overlay"></span>
+    <div id="search-popup-wrap">
+        <div class="search-popup-cover bg-light px-3 px-lg-5 py-5">
+            <div class="bg-effect bg-cover nc-no-lazy" style="background-image: url('')">
+                <span class="overlay"></span>
+            </div>
+            <form role="search" id="searchform" class="search-popup-form py-lg-5" method="get" action="index.html">
+               <input class="form-control form-control-lg form-transparent" type="text" placeholder="请输入搜索关键词…" name="s" id="s" required>
+            </form>
         </div>
-        <form role="search" id="searchform" class="search-popup-form py-lg-5" method="get" action="index.html">
-           <input class="form-control form-control-lg form-transparent" type="text" placeholder="请输入搜索关键词…" name="s" id="s" required>
-</form>
-    </div>
         <div class="search-key-push px-3 px-lg-5 py-3 py-lg-4">
-        <div class="h6 mb-3">热门搜索</div>
-        <ul class="nav nav-pills m-n1">
-<li class="nav-item p-1"><a href="search/%E5%88%9D%E6%AC%A1%E6%BC%AB%E6%AD%A5.html" target="_blank" class="btn btn-light btn-sm">初次漫步</a></li>
-                            <li class="nav-item p-1"><a href="search/%E6%8A%9A%E4%BB%99%E6%B9%96.html" target="_blank" class="btn btn-light btn-sm">抚仙湖</a></li>
-                            <li class="nav-item p-1"><a href="search/%E6%9C%80%E5%8C%97%E6%9E%81%E5%AF%BB%E5%8C%97.html" target="_blank" class="btn btn-light btn-sm">最北极寻北</a></li>
-                            <li class="nav-item p-1"><a href="search/%E8%BF%B7%E5%A4%B1%E6%96%B9%E5%90%91.html" target="_blank" class="btn btn-light btn-sm">迷失方向</a></li>
-                            <li class="nav-item p-1"><a href="search/%E4%B8%80%E8%B7%AF%E5%90%91%E5%8C%97.html" target="_blank" class="btn btn-light btn-sm">一路向北</a></li>
-                    </ul>
-</div>
-    </div>
-<div id="author-popup-wrap">
-    <div class="author-popup-cover">
-        <div class="media media-16x9 bg-dark-gradient">
-            <div class="bg-effect bg-dark-gradient bg-author"></div>
-            <div class="bg-effect bg-cover" data-img="https://secure.gravatar.com/avatar/afa39accf8700cbbe7b13e1d01aa5b17?s=96&amp;d=mm&amp;r=g"></div>
+            <div class="h6 mb-3">热门搜索</div>
+            <ul class="nav nav-pills m-n1">
+                <li class="nav-item p-1"><a href="search/%E5%88%9D%E6%AC%A1%E6%BC%AB%E6%AD%A5.html" target="_blank" class="btn btn-light btn-sm">初次漫步</a></li>
+                <li class="nav-item p-1"><a href="search/%E6%8A%9A%E4%BB%99%E6%B9%96.html" target="_blank" class="btn btn-light btn-sm">抚仙湖</a></li>
+                <li class="nav-item p-1"><a href="search/%E6%9C%80%E5%8C%97%E6%9E%81%E5%AF%BB%E5%8C%97.html" target="_blank" class="btn btn-light btn-sm">最北极寻北</a></li>
+                <li class="nav-item p-1"><a href="search/%E8%BF%B7%E5%A4%B1%E6%96%B9%E5%90%91.html" target="_blank" class="btn btn-light btn-sm">迷失方向</a></li>
+                <li class="nav-item p-1"><a href="search/%E4%B8%80%E8%B7%AF%E5%90%91%E5%8C%97.html" target="_blank" class="btn btn-light btn-sm">一路向北</a></li>
+            </ul>
         </div>
-        <div class="mt-n5">
+    </div>
+    <div id="author-popup-wrap">
+        <div class="author-popup-cover">
+            <div class="media media-16x9 bg-dark-gradient">
+                <div class="bg-effect bg-dark-gradient bg-author"></div>
+                    <div class="bg-effect bg-cover" data-img="https://secure.gravatar.com/avatar/afa39accf8700cbbe7b13e1d01aa5b17?s=96&amp;d=mm&amp;r=g"></div>
+                </div>
+            <div class="mt-n5">
             <div class="px-4">
                 <div class="d-flex align-items-center justify-content-center">
                     <a href="author/suxing.html" class="avatar mx-2 w-96" taget="_blank">
@@ -1124,7 +1124,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                     <div class="d-block text-sm text-muted mt-2"><span class="h-2x">NICETHEME 坚持原创和保持创新的用户体验设计，提供专业与创新的网站解决方案，6年网站设计开发经验，专注界面设计、WordPress主题开发、网站设计开发、小程序开发，并提供有保障的维护及售后。</span></div>
                 </div>
             </div>
-                        <div class="row no-gutters text-center">
+            <div class="row no-gutters text-center">
                 <a href="author/suxing.html" class="col py-3" target="_blank">
                     <span class="font-theme text-lg d-block">32</span>
                     <small class="text-xs text-muted">文章</small>
@@ -1138,17 +1138,18 @@ if (intval(\request()->get('page', '1')) > 1) {
                     <small class="text-xs text-muted">喜欢</small>
                 </div>
             </div>
-                  </div>
+        </div>
     </div>
 </div>
-{{-- <a id="nice-back-to-top" href="#">
-	<span class="icon-stack">
+<back-to-top>
+    <span class="icon-stack">
         <i class="text-xs iconfont icon-up"></i>
-        <span class="back-to-top-text">Top</span>
+    <span class="back-to-top-text">Top</span>
     </span>
-</a> --}}
-<back-to-top />
-    </div>
-<script src="{{ mix('app/js/app.js') }}" type="text/javascript"></script>
+</back-to-top>
+</div>
+<script src="{{ mix('/js/manifest.js', 'app') }}" type="text/javascript"></script>
+<script src="{{ mix('/js/app.js', 'app') }}" type="text/javascript"></script>
+<script src="{{ mix('/js/vendor.js', 'app') }}" type="text/javascript"></script>
 </body>
 </html>

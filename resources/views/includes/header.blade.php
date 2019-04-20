@@ -22,7 +22,6 @@ $index_menu_style = 'dark';
                         <span class="text-white">PRISM</span>
                     @endif
                 </a>
-                <!-- / brand -->
                 <div class="collapse navbar-collapse order-lg-2">
                     <ul class="navbar-nav main-menu mx-auto px-4">
                         <?php

@@ -5144,6 +5144,7 @@ to top
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
+  cursor:pointer;
   &.active {
     opacity: 1;
     visibility: visible;

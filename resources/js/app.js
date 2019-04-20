@@ -20,7 +20,8 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('back-to-top', require('./components/BackToTop.vue').default);
+Vue.component('back-to-top', require('./components/BackToTop').default);
+// Vue.component('search-popup', require('./components/SearchPopup').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,9 +33,39 @@ const app = new Vue({
     el: '#app'
 });
 
-$(window).ready(function($){
-  	$(".main-menu li:has(>ul)").addClass("has-children");
-    if ($(".main-menu li").hasClass("has-children")){
+import { prPopup } from './popup'
+
+function scrollTop() {
+    var $window = $(window),
+        $window_width = $window.width(),
+        $window_height = $window.height(),
+        scroll = $window.scrollTop(),
+        startPoint = $window_height / 2,
+        scrTopBtn = $("#nice-back-to-top");
+    if (scroll >= startPoint && $window_width >= 1024) {
+        scrTopBtn.addClass('active');
+    } else {
+        scrTopBtn.removeClass('active');
+    }
+    scrTopBtn.on("click", function () {
+        $("html, body").stop().animate({
+            scrollTop: 0
+        }, 600);
+    });
+};
+
+$(document).scroll(function ($) {
+    scrollTop()
+});
+
+$(window).ready(function ($) {
+    $(".main-menu li:has(>ul)").addClass("has-children");
+    if ($(".main-menu li").hasClass("has-children")) {
         $(".main-menu li.has-children>a").prepend('<span class="sub-menu-icon text-xs iconfont icon-sub-menu"></span>')
     };
+
+    $(".search-popup").bind('click', function () {
+        var $search = $('#search-popup-wrap')
+        prPopup('full', $search.html())
+    });
 });

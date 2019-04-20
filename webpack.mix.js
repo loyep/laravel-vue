@@ -12,7 +12,17 @@ const mix = require('laravel-mix')
  */
 
 mix
+.options({
+  extractVueStyle: true,
+})
   .setResourceRoot('/app/')
   .setPublicPath('public/app/')
   .js('resources/js/app.js', 'public/app/js')
   .sass('resources/sass/app.scss', 'public/app/css')
+  .extract([
+    'bootstrap',
+    'vue',
+    'axios',
+    'jquery',
+  ])
+  .version();
