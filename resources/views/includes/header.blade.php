@@ -35,7 +35,7 @@ $index_menu_style = 'dark';
                 </div>
                 <ul class="nav nav-pills nav-submenu align-items-center order-2 order-lg-3">
                     <li class="nav-item">
-                        <a href="#" class="nav-link search-popup"><i class="text-lg iconfont icon-sousuo"></i></a>
+                        <a href="javascript:;" class="nav-link search-popup"><i class="text-lg iconfont icon-sousuo"></i></a>
                     </li>
                     <li class="nav-item d-none d-lg-inline-block">
                         <a href="#" class="nav-link" target="_blank"><i class="text-lg iconfont icon-time"></i></a>
