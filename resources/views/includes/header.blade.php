@@ -53,7 +53,7 @@ $index_menu_style = 'dark';
                     </li>
                     @else
                     <li class="nav-item">
-                        <a class="nav-link sign-link active" href="#">登录</a>
+                        <a class="nav-link sign-link active" href="{{ route('dashboard') }}">登录</a>
                     </li>
                     @endauth
                 </ul>

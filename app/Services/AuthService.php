@@ -46,7 +46,10 @@ class AuthService extends BaseService
         $request->session()->invalidate();
 
         // Api
-        $this->jwtAuth->logout();
+        if ($this->jwtAuth->setRequest($request)->getToken()) {
+            $this->jwtAuth->invalidate(false);
+            $this->jwtAuth->unsetToken();
+        }
     }
 
     /**

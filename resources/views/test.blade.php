@@ -54,7 +54,8 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-content">
                             <div class="list-body">
                                 <a href="#" class="list-title text-lg h-2x" target="_blank">
-                                    大美广西—桂林行之古东瀑布&amp;刘三姐大观园                                </a>
+                                    大美广西—桂林行之古东瀑布&amp;刘三姐大观园
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -62,75 +63,79 @@ if (intval(\request()->get('page', '1')) > 1) {
                 <div class="col-12 col-md-6 mt-2 mt-md-0">
                     <div class="list-scroll-2x">
                         <div class="row-sm row-scroll my-n1 my-md-n2">
-                                                                                            <div class="col-6 py-1 py-md-2">
-                                    <div class="list-item list-nice-overlay custom-hover">
-                                        <div class="media">
-                                            <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804425582.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
-                                                <span class="overlay"></span>
-                                            </a>
-                                        </div>
-                                        <div class="list-content">
-                                            <div class="list-body">
-                                                <div class="mt-auto">
-                                                    <a href="#" class="list-title text-md h-2x ">
-                                                        在彩云之南吹！我的骄傲放纵，一份迟到3年的游记                                                    </a>
-                                                </div>
+                            <div class="col-6 py-1 py-md-2">
+                                <div class="list-item list-nice-overlay custom-hover">
+                                    <div class="media">
+                                        <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804425582.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
+                                            <span class="overlay"></span>
+                                        </a>
+                                    </div>
+                                    <div class="list-content">
+                                        <div class="list-body">
+                                            <div class="mt-auto">
+                                                <a href="#" class="list-title text-md h-2x ">
+                                                    在彩云之南吹！我的骄傲放纵，一份迟到3年的游记
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                                                                            <div class="col-6 py-1 py-md-2">
-                                    <div class="list-item list-nice-overlay custom-hover">
-                                        <div class="media">
-                                            <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802292433.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
-                                                <span class="overlay"></span>
-                                            </a>
-                                        </div>
-                                        <div class="list-content">
-                                            <div class="list-body">
-                                                <div class="mt-auto">
-                                                    <a href="#" class="list-title text-md h-2x ">
-                                                        一个人到中国最北极寻北：如果你迷失了方向，那就一路向北吧！                                                    </a>
-                                                </div>
+                            </div>
+                            <div class="col-6 py-1 py-md-2">
+                                <div class="list-item list-nice-overlay custom-hover">
+                                    <div class="media">
+                                        <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802292433.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
+                                            <span class="overlay"></span>
+                                        </a>
+                                    </div>
+                                    <div class="list-content">
+                                        <div class="list-body">
+                                            <div class="mt-auto">
+                                                <a href="#" class="list-title text-md h-2x ">
+                                                    一个人到中国最北极寻北：如果你迷失了方向，那就一路向北吧！
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                                                                            <div class="col-6 py-1 py-md-2">
-                                    <div class="list-item list-nice-overlay custom-hover">
-                                        <div class="media">
-                                            <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802283626.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
-                                                <span class="overlay"></span>
-                                            </a>
-                                        </div>
-                                        <div class="list-content">
-                                            <div class="list-body">
-                                                <div class="mt-auto">
-                                                    <a href="#" class="list-title text-md h-2x ">
-                                                        原来世界文化遗产“平遥古城”不是只有平遥古城：游双林寺和镇国寺有感                                                    </a>
-                                                </div>
+                            </div>
+                                                                                        <div class="col-6 py-1 py-md-2">
+                                <div class="list-item list-nice-overlay custom-hover">
+                                    <div class="media">
+                                        <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030802283626.jpg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
+                                            <span class="overlay"></span>
+                                        </a>
+                                    </div>
+                                    <div class="list-content">
+                                        <div class="list-body">
+                                            <div class="mt-auto">
+                                                <a href="#" class="list-title text-md h-2x ">
+                                                    原来世界文化遗产“平遥古城”不是只有平遥古城：游双林寺和镇国寺有感
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                                                                            <div class="col-6 py-1 py-md-2">
-                                    <div class="list-item list-nice-overlay custom-hover">
-                                        <div class="media">
-                                            <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804424427.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
-                                                <span class="overlay"></span>
-                                            </a>
-                                        </div>
-                                        <div class="list-content">
-                                            <div class="list-body">
-                                                <div class="mt-auto">
-                                                    <a href="#" class="list-title text-md h-2x ">
-                                                        取一瓢深蓝色甜甜的湖水，甜到我的心底解忧愁！                                                    </a>
-                                                </div>
+                            </div>
+                            <div class="col-6 py-1 py-md-2">
+                                <div class="list-item list-nice-overlay custom-hover">
+                                    <div class="media">
+                                        <a href="#" class="media-content" style='background-image:url("/app/images/bg.jpg")' data-bg=" url('https://beta.nicetheme.xyz/wp-content/themes/Cosy199/timthumb.php?src=https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019030804424427.jpeg&amp;h=300&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1')" data-nclazyload="true">
+                                            <span class="overlay"></span>
+                                        </a>
+                                    </div>
+                                    <div class="list-content">
+                                        <div class="list-body">
+                                            <div class="mt-auto">
+                                                <a href="#" class="list-title text-md h-2x ">
+                                                    取一瓢深蓝色甜甜的湖水，甜到我的心底解忧愁！
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                                    </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -614,14 +619,16 @@ if (intval(\request()->get('page', '1')) > 1) {
                     <div class="list-content p-3">
                         <div class="list-body">
                             <a href="category/syst.html" class="list-title h4 text-left m-0">
-                                深夜食堂                            </a>
+                                深夜食堂
+                            </a>
                         </div>
                         <div class="list-footer d-flex align-items-center text-muted text-xs m-0">
                             <div>分类</div>
                             <div class="flex-fill"></div>
                             <div class="text-nowrap">
                                 <span class="d-inline-block pl-2">
-                                    9 篇文章                                </span>
+                                    9 篇文章
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -633,7 +640,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802292998.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="/app/images/bg.jpg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -644,11 +651,11 @@ if (intval(\request()->get('page', '1')) > 1) {
                             </div>
                         </div>
                     </div>
-                                    <div class="col-6 col-md-3 py-2">
+                    <div class="col-6 col-md-3 py-2">
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802285136.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="/app/images/bg.jpg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -659,11 +666,11 @@ if (intval(\request()->get('page', '1')) > 1) {
                             </div>
                         </div>
                     </div>
-                                    <div class="col-6 col-md-3 py-2">
+                    <div class="col-6 col-md-3 py-2">
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
-                                    <img src="/app/images/bg.jpg" data-src="wp-content/themes/Cosy199/timthumb.php-src=https---beta.nicetheme.xyz-wp-content-uploads-2019-03-2019030802301636.jpg&amp;h=200&amp;w=300&amp;zc=1&amp;a=c&amp;q=100&amp;s=1.jpeg" data-nclazyload="true"><span class="overlay"></span>
+                                    <img src="/app/images/bg.jpg" data-src="/app/images/bg.jpg" data-nclazyload="true"><span class="overlay"></span>
                                 </a>
                             </div>
                             <div class="list-content p-2">
@@ -674,7 +681,7 @@ if (intval(\request()->get('page', '1')) > 1) {
                             </div>
                         </div>
                     </div>
-                                    <div class="col-6 col-md-3 py-2">
+                    <div class="col-6 col-md-3 py-2">
                         <div class="list-item list-nice-overlay custom-hover">
                             <div class="media media-3x2">
                                 <a class="media-content" href="#">
@@ -1120,8 +1127,8 @@ if (intval(\request()->get('page', '1')) > 1) {
                         <img alt="" src="https://cdn.v2ex.com/gravatar/afa39accf8700cbbe7b13e1d01aa5b17?s=96&amp;d=mm&amp;r=g" srcset="https://cdn.v2ex.com/gravatar/afa39accf8700cbbe7b13e1d01aa5b17?s=192&amp;d=mm&amp;r=g 2x" class="avatar avatar-96 photo nc-no-lazy" height="96" width="96"></a>
                 </div>
                 <div class="text-center mt-3">
-                    <a href="author/suxing.html" class="h5" target="_blank">nicetheme</a>
-                    <div class="d-block text-sm text-muted mt-2"><span class="h-2x">NICETHEME 坚持原创和保持创新的用户体验设计，提供专业与创新的网站解决方案，6年网站设计开发经验，专注界面设计、WordPress主题开发、网站设计开发、小程序开发，并提供有保障的维护及售后。</span></div>
+                    <a href="author/suxing.html" class="h5" target="_blank">Prism</a>
+                    <div class="d-block text-sm text-muted mt-2"><span class="h-2x">美好源于热爱。</span></div>
                 </div>
             </div>
             <div class="row no-gutters text-center">

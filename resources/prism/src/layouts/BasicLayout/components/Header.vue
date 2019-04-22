@@ -97,6 +97,5 @@ export default {
   right: 0;
   z-index: 9;
   width: 100%;
-  // transition: width 0.1s;
 }
 </style>

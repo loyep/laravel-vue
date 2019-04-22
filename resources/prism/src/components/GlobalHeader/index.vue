@@ -44,7 +44,7 @@ export default {
 .header {
   position: relative;
   height: $layout-header-height;
-  padding: 0;
+  padding: 0 12px 0 0;
   font-size: 0;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);

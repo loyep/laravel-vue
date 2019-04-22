@@ -23,10 +23,6 @@ export default {
     }
   },
   mounted () {
-    setTimeout(() => {
-      document.getElementById('prism-loader').style.display = 'none'
-    }, 500)
-
     deviceEnquire(screenType => {
       this.$store.dispatch('theme/SetScreen', screenType)
     })
