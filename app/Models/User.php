@@ -86,7 +86,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
-     * @param $value
+     * @param string $value
      */
     public function setEmailAttribute($value)
     {

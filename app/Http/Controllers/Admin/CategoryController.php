@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    /**
+     * @var Category
+     */
     protected $model;
 
     /**

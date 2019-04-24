@@ -1,14 +1,6 @@
 @php
 
-use Illuminate\Support\Facades\Route;
 
-$bodyClass = ['black-top', 'grid-hover grid-radius grid-border'];
-if (Route::current()->named('home')) {
-    $bodyClass[] = 'home';
-}
-if (intval(\request()->get('page', '1')) > 1) {
-    $bodyClass[] = 'paged-2';
-}
 @endphp<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -471,8 +463,7 @@ if (intval(\request()->get('page', '1')) > 1) {
         </div>
     </div>
 </div>
-
-												<div class="col-6 col-md-3 d-flex">
+<div class="col-6 col-md-3 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
             <a class="media-content" href="#" target="_blank">
@@ -1010,66 +1001,9 @@ if (intval(\request()->get('page', '1')) > 1) {
                     </div>
     </div>
 </section>
-        <footer class="footer bg-dark pt-4 pt-md-5"><div class="container">
-        <div class="row my-n3">
-        	            <div class="col py-3">
-                <div class="footer-widget pr-lg-5">
-                    <div class="footer-widget-header">关于我</div>
-                    <div class="footer-widget-content">
-                        <p>NICETHEME 坚持原创和保持创新的用户体验设计，提供专业与创新的网站解决方案，6年网站设计开发经验，专注界面设计、WordPress主题开发、网站设计开发、小程序开发，并提供有保障的维护及售后。</p>
-                    </div>
-                    <div class="footer-widget-social mx-n2 mt-2">
-                        <a href="https://weibo.com" target="_blank" class="weibo px-2"><i class="iconfont icon-weibo"></i></a>                        <a href="javascript:" class="single-popup weixin px-2" data-img="https://beta.nicetheme.xyz/wp-content/uploads/2019/03/2019032309582664.jpg" data-title="扫一扫添加站长微信" data-desc="@nicetheme"><i class="iconfont icon-weixin"></i></a>                                                <a href="https://www.facebook.com" target="_blank" class="facebook px-2"><i class="iconfont icon-facebook"></i></a>                        <a href="https://twitter.com" target="_blank" class="twitter px-2"><i class="iconfont icon-twitter"></i></a>                        <a href="https://www.linkedin.com" target="_blank" class="linkedin px-2"><i class="iconfont icon-linkedin"></i></a>                    </div>
-                </div>
-            </div>
-        	            <div class="col-lg-3 py-3">
-                <div class="footer-widget">
-                    <div class="footer-widget-header">标签</div>
-                    <div class="footer-widget-content">
-                        <div class="footer-widget-links">
-                                                        <a class="nav-link" href="#" aria-current="page">首页</a>
-<a class="nav-link" href="category/yhty.html">简旅记</a>
-<a class="nav-link" href="category/ghjh.html">十七楼</a>
-<a class="nav-link" href="category/syst.html">深夜食堂</a>
-<a class="nav-link" href="sample-page.html">示例页面</a>
 
-	<a class="nav-link" href="#">专题</a>
-	<a class="nav-link" href="#">小伙伴</a>
-
-
-<a class="nav-link" href="https://www.nicetheme.cn/store/cosy">主题购买</a>
-<a class="nav-link" href="https://demo.nicetheme.xyz/cosy-style1/">旧版本预览</a>
-                                                                                </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 py-3">
-                                                <div class="footer-widget">
-                    <div class="footer-widget-header">友链</div>
-                    <div class="footer-widget-content">
-                        <div class="footer-widget-links">
-                                                    <a class="nav-link" href="#" aria-current="page">首页</a>
-<a class="nav-link" href="category/yhty.html">简旅记</a>
-<a class="nav-link" href="category/ghjh.html">十七楼</a>
-<a class="nav-link" href="category/syst.html">深夜食堂</a>
-<a class="nav-link" href="sample-page.html">示例页面</a>
-
-	<a class="nav-link" href="#">专题</a>
-	<a class="nav-link" href="#">小伙伴</a>
-
-
-<a class="nav-link" href="#">主题购买</a>
-<a class="nav-link" href="#">旧版本预览</a>
-
-</div>
-                    </div>
-                </div>
-                            </div>
-        </div>
-        <div class="footer-copyright border-top py-4 mt-4">
-            Copyright © 2019 <a href="#" title="nicetheme" rel="home">nicetheme</a>. Designed by <a href="https://www.nicetheme.cn" title="NICETHEME-坚持有品位且光芒四射的用户体验设计" target="_blank">nicetheme</a>.  <a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow" class="d-none d-lg-inline-block">ICP备案号23123123123</a> <a href="http://nicetheme.cn" target="_blank" rel="nofollow" class="d-none d-lg-inline-block"><i class="icon icon-beian"></i>公安备案号123123123123</a>         </div>
-    </div>
-</footer><aside class="sidebar-collapse"><div class="sidebar-mobile bg-light">
+        @include('includes.footer')
+        <aside class="sidebar-collapse"><div class="sidebar-mobile bg-light">
 					<div class="sidebar-mobile-action bg-white">
 				<button type="button" class="link-action text-muted" id="sidebar-mobile-close"><i class="iconfont icon-iconfontradiobox"></i></button>
 			</div>
@@ -1088,32 +1022,13 @@ if (intval(\request()->get('page', '1')) > 1) {
 <ul class="sub-menu">
 <li class="menu-item"><a class="nav-link" href="#"><i class="iconfont icon-biaoqian-"></i>专题</a></li>
 	<li class="menu-item"><a class="nav-link" href="#"><i class="iconfont icon-duanxin"></i>小伙伴</a></li>
-</ul>
-</li>
-	        </ul>
-</div>
-	</div>
-        </aside>
-    <div id="search-popup-wrap">
-        <div class="search-popup-cover bg-light px-3 px-lg-5 py-5">
-            <div class="bg-effect bg-cover nc-no-lazy" style="background-image: url('')">
-                <span class="overlay"></span>
+                </ul>
+                </li>
+	            </ul>
             </div>
-            <form role="search" id="searchform" class="search-popup-form py-lg-5" method="get" action="index.html">
-               <input class="form-control form-control-lg form-transparent" type="text" placeholder="请输入搜索关键词…" name="s" id="s" required>
-            </form>
-        </div>
-        <div class="search-key-push px-3 px-lg-5 py-3 py-lg-4">
-            <div class="h6 mb-3">热门搜索</div>
-            <ul class="nav nav-pills m-n1">
-                <li class="nav-item p-1"><a href="search/%E5%88%9D%E6%AC%A1%E6%BC%AB%E6%AD%A5.html" target="_blank" class="btn btn-light btn-sm">初次漫步</a></li>
-                <li class="nav-item p-1"><a href="search/%E6%8A%9A%E4%BB%99%E6%B9%96.html" target="_blank" class="btn btn-light btn-sm">抚仙湖</a></li>
-                <li class="nav-item p-1"><a href="search/%E6%9C%80%E5%8C%97%E6%9E%81%E5%AF%BB%E5%8C%97.html" target="_blank" class="btn btn-light btn-sm">最北极寻北</a></li>
-                <li class="nav-item p-1"><a href="search/%E8%BF%B7%E5%A4%B1%E6%96%B9%E5%90%91.html" target="_blank" class="btn btn-light btn-sm">迷失方向</a></li>
-                <li class="nav-item p-1"><a href="search/%E4%B8%80%E8%B7%AF%E5%90%91%E5%8C%97.html" target="_blank" class="btn btn-light btn-sm">一路向北</a></li>
-            </ul>
-        </div>
-    </div>
+	    </div>
+    </aside>
+    @include('components.popup.search')
     <div id="author-popup-wrap">
         <div class="author-popup-cover">
             <div class="media media-16x9 bg-dark-gradient">

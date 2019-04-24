@@ -51,4 +51,8 @@ return [
         ],
     ],
 
+    'footer' => [
+        'layout' => 'footer3'
+    ]
+
 ];

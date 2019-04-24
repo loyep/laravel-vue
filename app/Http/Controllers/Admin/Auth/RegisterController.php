@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Support\Helper;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends AuthController
 {
@@ -25,35 +25,17 @@ class RegisterController extends AuthController
     /**
      * Handle a registration request for the application.
      *
-     * @param Request $request
+     * @param RegisterRequest $request
      *
      * @return JsonResponse
      */
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $this->validator($request->all())->validate();
-
         $user = $this->create($request->all());
 
         $this->auth->login($user);
 
         return $this->registered($request, $user);
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param array $data
-     *
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name'     => ['required', 'string', 'max:255'],
-            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
     }
 
     /**

@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\TagRequest;
 use App\Http\Resources\TagResource;
 use App\Models\Tag;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\Http\Request;
 
+/**
+ * Class TagController
+ * @package App\Http\Controllers\Admin
+ */
 class TagController extends Controller
 {
+    /**
+     * @var \Illuminate\Contracts\Foundation\Application|mixed
+     */
     protected $model;
 
     /**
@@ -32,11 +40,11 @@ class TagController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
+     * @param TagRequest $request
      *
      * @return TagResource
      */
-    public function index(Request $request)
+    public function index(TagRequest $request)
     {
         $tags = $this->model
             ->withCount('posts')
@@ -51,11 +59,11 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param TagRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(TagRequest $request)
     {
         $tag = $this->model->create($request->all());
 
@@ -84,12 +92,12 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param TagRequest $request
      * @param int                      $id
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(TagRequest $request, $id)
     {
         $tag = $this->model->findOrFail($id);
         $tag->fill($request->all());

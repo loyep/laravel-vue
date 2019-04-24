@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -29,11 +29,11 @@ class LoginController extends AuthController
     /**
      * Log the user out of the application.
      *
-     * @param Request $request
+     * @param LoginRequest $request
      *
      * @return JsonResponse
      */
-    public function logout(Request $request)
+    public function logout(LoginRequest $request)
     {
         $this->auth->logout($request);
 
@@ -54,7 +54,6 @@ class LoginController extends AuthController
      */
     public function login(Request $request)
     {
-        $this->validator($request->all())->validate();
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
             $this->sendLockoutResponse($request);
@@ -67,33 +66,8 @@ class LoginController extends AuthController
         $this->incrementLoginAttempts($request);
 
         throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
+            'username' => [trans('auth.failed')],
         ]);
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param array $data
-     *
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            $this->username() => 'required|string',
-            'password'        => 'required|string',
-        ]);
-    }
-
-    /**
-     * Get the login username to be used by the controller.
-     *
-     * @return string
-     */
-    public function username()
-    {
-        return 'username';
     }
 
     /**
@@ -119,7 +93,7 @@ class LoginController extends AuthController
      */
     protected function credentials(Request $request)
     {
-        $username = $request->input($this->username());
+        $username = $request->only('username');
         $type = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
         return [
@@ -133,7 +107,7 @@ class LoginController extends AuthController
      *
      * @param Request $request
      *
-     * @return Response
+     * @return JsonResponse
      */
     protected function sendLoginResponse(Request $request)
     {
@@ -165,11 +139,11 @@ class LoginController extends AuthController
     }
 
     /**
-     * @param null $hour
+     * @param string|int $hour
      *
      * @return string
      */
-    public static function getPeriodOfTime($hour = null)
+    public static function getPeriodOfTime($hour)
     {
         $hour = $hour ? $hour : (int) date('G', time());
         $period = '';
@@ -194,15 +168,5 @@ class LoginController extends AuthController
         }
 
         return $period;
-    }
-
-    /**
-     * Validate the user login request.
-     *
-     * @param Request $request
-     */
-    protected function validateLogin(Request $request)
-    {
-        $this->validator($request->all())->validate();
     }
 }

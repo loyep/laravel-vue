@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use App\Exceptions\AuthenticationException;
 use App\Services\AuthService;
 use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 /**
  * Class Authenticate.
@@ -29,14 +31,14 @@ class Authenticate
     /**
      * Handle an incoming request.
      *
-     * @param $request
+     * @param Request $request
      * @param Closure $next
      *
-     * @throws AuthenticationException
-     *
      * @return mixed
+     *@throws AuthenticationException
+     *
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         // 检查此次请求中是否带有 token，如果没有则抛出异常。
         $this->auth->checkForToken($request);
@@ -71,16 +73,16 @@ class Authenticate
     /**
      * Set the authentication header.
      *
-     * @param $response
-     * @param null $token
-     *
-     * @throws mixed
+     * @param Response $response
+     * @param string $token
      *
      * @return mixed
+     *@throws mixed
+     *
      */
-    protected function setAuthenticationHeader($response, $token = null)
+    protected function setAuthenticationHeader($response, $token)
     {
-        $token = $token ?: $this->auth->tokenRefresh();
+        $token = $token ? '' : $this->auth->tokenRefresh();
         $response->headers->set('Authorization', 'Bearer '.$token);
 
         return $response;

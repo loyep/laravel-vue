@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Scopes\SlugScope;
 use App\Traits\Cachable;
-use App\Traits\CanLike;
+use App\Traits\Likable;
 use App\Traits\MetaFields;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\URL;
  */
 class Post extends BaseModel
 {
-    use Cachable, CanLike, SlugScope, MetaFields;
+    use Cachable, Likable, SlugScope, MetaFields;
 
     /**
      * @var array
@@ -94,7 +94,7 @@ class Post extends BaseModel
     }
 
     /**
-     * @param $value
+     * @param string $value
      *
      * @return string
      */

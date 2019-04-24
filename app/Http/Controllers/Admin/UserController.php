@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\BaseModel;
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
     /**
-     * @var BaseModel
+     * @var User
      */
     protected $model;
 
@@ -71,7 +72,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param UserRequest $request
-     * @param $id
+     * @param int|string $id
      *
      * @return JsonResponse
      */

@@ -1853,7 +1853,8 @@ a.text-primary:hover {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  background: linear-gradient(to right, rgba($primary, .95), rgba($primary-2, .8));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.18));
+  border: 1px solid rgba(255, 255, 255, 0.55);
   -webkit-transition: all .3s ease;
   -moz-transition: all .3s ease;
   -ms-transition: all .3s ease;
@@ -5192,4 +5193,3 @@ to top
   }
 }
 
-  

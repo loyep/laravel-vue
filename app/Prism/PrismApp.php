@@ -33,7 +33,7 @@ class PrismApp
     }
 
     /**
-     * @var
+     * @var ShareService
      */
     protected $socialShare;
 
@@ -50,16 +50,6 @@ class PrismApp
     public function setTitle(string $title)
     {
         self::$metaTitle = $title;
-    }
-
-    /**
-     * The PrismApp version.
-     *
-     * @return string
-     */
-    public function version()
-    {
-        return self::VERSION;
     }
 
     /**
@@ -82,11 +72,11 @@ class PrismApp
     }
 
     /**
-     * @param $text
+     * @param string|null $text
      *
      * @return string
      */
-    public function markdown($text)
+    public function markdown( $text)
     {
         return $this->parser->text($text);
     }
@@ -107,11 +97,11 @@ class PrismApp
     }
 
     /**
-     * @param $post
+     * @param Post $post
      *
      * @return mixed
      */
-    public function relatedPosts($post)
+    public function relatedPosts(Post $post)
     {
         return Post::where('category_id', $post->category_id)->take(4)->get();
     }

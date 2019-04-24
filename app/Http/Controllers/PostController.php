@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Facades\Prism;
 use App\Models\Post;
-use App\Traits\CanLike;
+use App\Traits\Likable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    use CanLike;
+    use Likable;
 
     /**
      * Create a new controller instance.
@@ -42,9 +43,9 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param $slug
+     * @param string $slug
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function show($slug)
     {
