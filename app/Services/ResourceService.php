@@ -31,11 +31,11 @@ class ResourceService extends BaseService
 
     public function paginate()
     {
-
     }
 
     /**
      * @param $id
+     *
      * @return Model
      */
     public function show($id): Model
@@ -55,6 +55,7 @@ class ResourceService extends BaseService
         if (is_string($ids)) {
             $ids = explode(',', $ids);
         }
+
         return $this->model->destroy($ids);
     }
 }

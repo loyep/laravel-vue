@@ -34,9 +34,9 @@ class Authenticate
      * @param Request $request
      * @param Closure $next
      *
-     * @return mixed
      *@throws AuthenticationException
      *
+     * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
@@ -74,11 +74,11 @@ class Authenticate
      * Set the authentication header.
      *
      * @param Response $response
-     * @param string $token
+     * @param string   $token
      *
-     * @return mixed
      *@throws mixed
      *
+     * @return mixed
      */
     protected function setAuthenticationHeader($response, $token)
     {

@@ -3,8 +3,7 @@
 namespace App\Http\Requests;
 
 /**
- * Class CategoryRequest
- * @package App\Http\Requests
+ * Class CategoryRequest.
  */
 class CategoryRequest extends Request
 {

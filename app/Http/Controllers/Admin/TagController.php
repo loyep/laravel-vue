@@ -6,11 +6,9 @@ use App\Http\Requests\TagRequest;
 use App\Http\Resources\TagResource;
 use App\Models\Tag;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
-use Illuminate\Http\Request;
 
 /**
- * Class TagController
- * @package App\Http\Controllers\Admin
+ * Class TagController.
  */
 class TagController extends Controller
 {
@@ -93,7 +91,7 @@ class TagController extends Controller
      * Update the specified resource in storage.
      *
      * @param TagRequest $request
-     * @param int                      $id
+     * @param int        $id
      *
      * @return \Illuminate\Http\JsonResponse
      */

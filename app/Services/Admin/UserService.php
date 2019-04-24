@@ -24,7 +24,7 @@ class UserService extends BaseService
     {
         $users = User::withCount('posts')
             ->when($name = $request->get('name'), function ($query) use ($name) {
-                $query->where('name', 'like', '%' . $name . '%');
+                $query->where('name', 'like', '%'.$name.'%');
             })
             ->paginate($request->get('per_page', 10));
 
@@ -35,7 +35,7 @@ class UserService extends BaseService
      * Display the specified resource.
      *
      * @param UserRequest $request
-     * @param int $id
+     * @param int         $id
      *
      * @return UserResource
      */
@@ -61,7 +61,7 @@ class UserService extends BaseService
 
         $response = [
             'message' => 'User created.',
-            'data' => new UserResource($user),
+            'data'    => new UserResource($user),
         ];
 
         return response()->json($response);
@@ -69,7 +69,7 @@ class UserService extends BaseService
 
     /**
      * @param UserRequest $request
-     * @param int $id
+     * @param int         $id
      *
      * @return JsonResponse
      */
@@ -83,7 +83,7 @@ class UserService extends BaseService
         $user->save();
         $response = [
             'message' => 'User updated.',
-            'data' => $user->toArray(),
+            'data'    => $user->toArray(),
         ];
 
         return response()->json($response);
