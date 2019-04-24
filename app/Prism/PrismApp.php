@@ -76,7 +76,7 @@ class PrismApp
      *
      * @return string
      */
-    public function markdown( $text)
+    public function markdown($text)
     {
         return $this->parser->text($text);
     }

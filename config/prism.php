@@ -52,7 +52,7 @@ return [
     ],
 
     'footer' => [
-        'layout' => 'footer3'
-    ]
+        'layout' => 'footer3',
+    ],
 
 ];
