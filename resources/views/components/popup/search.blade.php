@@ -1,5 +1,5 @@
 @php
-$tags = \App\Models\Tag::all();
+$tags = \App\Models\Tag::take(3)->get();
 @endphp
 <div id="search-popup-wrap">
     <div class="search-popup-cover bg-light px-3 px-lg-5 py-5">

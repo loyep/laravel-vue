@@ -15,7 +15,7 @@
 </head>
 <body class="nice-style-shadow">
     <div id="app">
-        @component('layouts.partials.header', ['name' => 'Prism'])@endComponent
+        @include('layouts.partials.header', ['name' => 'Prism', 'fixed' => true])
         @include('layouts.partials.magazine')
         <main class="py-3 py-md-5">
             <div class="container">
@@ -23,8 +23,7 @@
                 @include('layouts.partials.pushes')
                 <section class="list-home row-md list-grouped list-tb-padding">
                     @foreach($posts as $post)
-                        @component('layouts.partials.post-card', compact('post'))
-                        @endComponent
+                        @include('components.card.post', compact('post'))
                     @endForeach
                 </section>
 
@@ -441,9 +440,7 @@
                     </div>
     </div>
 </section>
-        @component('layouts.partials.footer', ['name' => 'Prism'])
-
-        @endcomponent
+        @include('layouts.partials.footer', ['name' => 'Prism'])
         <aside class="sidebar-collapse"><div class="sidebar-mobile bg-light">
 					<div class="sidebar-mobile-action bg-white">
 				<button type="button" class="link-action text-muted" id="sidebar-mobile-close"><i class="iconfont icon-iconfontradiobox"></i></button>
@@ -469,7 +466,6 @@
             </div>
 	    </div>
     </aside>
-    @include('components.popup.search')
     <div id="author-popup-wrap">
         <div class="author-popup-cover">
             <div class="media media-16x9 bg-dark-gradient">

@@ -15,7 +15,6 @@ class PrismAppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        AbstractPaginator::defaultView('vendor.pagination');
 
         $this->app->singleton('prism.admin', function () {
             return $this->app->make(PrismAdmin::class);
@@ -30,5 +29,6 @@ class PrismAppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        AbstractPaginator::defaultView('vendor.pagination');
     }
 }

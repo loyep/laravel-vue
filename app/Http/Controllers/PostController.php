@@ -58,7 +58,7 @@ class PostController extends Controller
             $is_like = $post->isLiked();
             $content = $post->content->content();
             $post->excerpt = $this->getExcerptFromContent($content, 120);
-            Prism::setShare($post->perm_link, $post->title, $post->excerpt, $post->image);
+//            PrismApp::setShare($post->perm_link, $post->title, $post->excerpt, $post->image);
             Prism::setTitle($post->title.' - '.config('prism.name'));
         } catch (ModelNotFoundException $e) {
             abort(404);

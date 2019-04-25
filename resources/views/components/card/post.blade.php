@@ -26,9 +26,7 @@
         </div>
         <div class="list-content">
             <div class="list-body">
-                @component('components.card-cat', ['style' => 'small', 'cat' => $post->category])
-
-                @endcomponent
+                @include('components.card.category', ['style' => 'small', 'cat' => $post->category])
                 <a href="{{ $post->perm_link }}" class="list-title text-md h-2x"
                    target="_blank">{{ $post->title }}</a>
             </div>

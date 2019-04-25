@@ -2,6 +2,9 @@
 
 namespace App\Listeners;
 
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+
 class NotificationListener
 {
     /**
@@ -17,8 +20,7 @@ class NotificationListener
     /**
      * Handle the event.
      *
-     * @param object $event
-     *
+     * @param  object  $event
      * @return void
      */
     public function handle($event)

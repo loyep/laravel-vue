@@ -2,7 +2,8 @@
     $navClass = '';
     $logo = '';
     $index_menu_style = 'dark';
-     if (isset($index_menu_style) && ($index_menu_style == 'immersed' || $index_menu_style == 'dark' || $index_menu_style == 'image')) {
+    $fixed = $fixed ?? false;
+     if ($fixed && isset($index_menu_style) && ($index_menu_style == 'immersed' || $index_menu_style == 'dark' || $index_menu_style == 'image')) {
         $navClass = 'fixed-top';
         $logo = asset('images/logo-dark.png');
     } else {
@@ -67,6 +68,7 @@
                            placeholder="Type Something...">
                     <i class="iconfont icon-quxiao" id="navbar-search-close"></i>
                 </form>
+                @include('components.popup.search')
             </div>
         </div>
         <div class="navbar-collapse navbar-scroll d-lg-none">

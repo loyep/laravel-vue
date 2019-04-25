@@ -4,8 +4,8 @@
         <div class="nav-links">
         {{-- Previous Page Link --}}
         @if (!$paginator->onFirstPage())
-            <a class="next page-numbers" href="{{ $paginator->previousPageUrl() }}">
-                <i class="fal fa-arrow-circle-left"></i>
+            <a class="prev page-numbers" href="{{ $paginator->previousPageUrl() }}">
+                <i class="text-md iconfont icon-arrowleft"></i>
             </a>
         @endif
 

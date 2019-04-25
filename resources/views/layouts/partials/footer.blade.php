@@ -97,7 +97,7 @@
                             <div class="footer-widget-content">
                                 <div class="footer-widget-links m-n1">
                                     @php
-                                        $tags = \App\Models\Category::take(12)->get();
+                                        $categories = \App\Models\Category::take(12)->get();
                                     @endphp
                                     @foreach($categories as $category)
                                         <a href="{{ $category->perm_link }}" target="_self">
