@@ -29,6 +29,11 @@ class HomeController extends Controller
         return view('test', compact('posts'));
     }
 
+    public function history()
+    {
+
+    }
+
     /**
      * Search.
      *

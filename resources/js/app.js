@@ -21,6 +21,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('back-to-top', require('./components/BackToTop').default);
+Vue.component('home-notice', require('./components/HomeNotice').default);
 // Vue.component('search-popup', require('./components/SearchPopup').default);
 
 /**

@@ -31,7 +31,7 @@
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
             <a class="next page-numbers" href="{{ $paginator->nextPageUrl() }}">
-                <i class="fal fa-arrow-circle-right"></i>
+                <i class="text-md iconfont icon-arrowright"></i>
             </a>
         @endif
         </div>
