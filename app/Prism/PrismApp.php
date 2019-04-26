@@ -33,6 +33,14 @@ class PrismApp
     }
 
     /**
+     * @return string
+     */
+    public function name()
+    {
+        return config('app.name');
+    }
+
+    /**
      * @var ShareService
      */
     protected $socialShare;
@@ -40,16 +48,16 @@ class PrismApp
     /**
      * @var string
      */
-    protected static $metaTitle;
+    protected static $title;
 
     /**
-     * Set PrismApp title.
+     * Set Prism title.
      *
      * @param string $title
      */
     public function setTitle(string $title)
     {
-        self::$metaTitle = $title;
+        self::$title = $title;
     }
 
     /**
@@ -88,12 +96,7 @@ class PrismApp
      */
     public function title()
     {
-        $title = self::$metaTitle;
-        if (!empty($title)) {
-            return $title;
-        }
-
-        return config('app.name');
+        return !empty(self::$title) ? self::$title : $this->name();
     }
 
     /**

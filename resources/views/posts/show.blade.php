@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.partials.header', ['name' => 'Prism', 'fixed' => false])
+    @include('partials.header', ['name' => Prism::name(), 'fixed' => false])
+    @component('components.content.default', compact('post', 'content'))
 
-    @include('layouts.partials.footer', ['name' => 'Prism'])
+    @endcomponent
+    @include('partials.footer', ['name' => Prism::name()])
 @endsection

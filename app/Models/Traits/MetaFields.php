@@ -2,14 +2,12 @@
 
 namespace App\Models\Traits;
 
-use App\Models\Collection\MetaCollection;
 use App\Models\Meta;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * Trait MetaFields.
- *
- * @property MetaCollection meta
  */
 trait MetaFields
 {
@@ -23,14 +21,6 @@ trait MetaFields
         if ($meta = $this->meta->{$attribute}) {
             return $meta;
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function fields()
-    {
-        return $this->meta();
     }
 
     /**
@@ -168,9 +158,9 @@ trait MetaFields
     /**
      * @return mixed
      */
-    public function meta()
+    public function meta(): MorphMany
     {
-        return $this->morphOne(Meta::class, 'metaable');
+        return $this->morphMany(Meta::class, 'metaable');
     }
 
     /**
@@ -180,6 +170,6 @@ trait MetaFields
      */
     public function getMetaValue(string $key)
     {
-        return $this->meta->$key;
+        return $this->meta->{$key};
     }
 }

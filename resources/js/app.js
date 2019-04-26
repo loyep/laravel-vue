@@ -22,6 +22,7 @@ window.Vue = require('vue');
 
 Vue.component('back-to-top', require('./components/BackToTop').default);
 Vue.component('home-notice', require('./components/HomeNotice').default);
+Vue.component('post-like', require('./components/PostLike').default);
 // Vue.component('search-popup', require('./components/SearchPopup').default);
 
 /**
@@ -31,7 +32,12 @@ Vue.component('home-notice', require('./components/HomeNotice').default);
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data() {
+        return {
+            Like: new Vue()
+        }
+    },
 });
 
 import { prPopup } from './popup'

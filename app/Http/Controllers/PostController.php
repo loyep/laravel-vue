@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\Prism;
 use App\Models\Post;
+use App\Models\Setting;
 use App\Traits\Likable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -50,6 +51,20 @@ class PostController extends Controller
     public function show($slug)
     {
         try {
+
+//            $setting = new Setting();
+//            $setting->key = 'post_ad';
+//            $setting->group = 'ad';
+//            $setting->display_name = '文章广告';
+//            $setting->value = json_encode([
+//                'image' => '/app/images/bg.jpg',
+//                'code' => '',
+//                'link' => 'https://loyep.com',
+//                'type' => 'image'
+//            ]);
+//            $setting->type = 'text';
+//            $setting->save();
+
             $post = Post::with('content', 'category', 'tags', 'user')->where('slug', $slug)->firstOrFail();
             $post->increment('views');
             $post->post_layout = 'two';

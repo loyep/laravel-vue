@@ -170,7 +170,7 @@ trait MetaFields
      */
     public function meta()
     {
-        return $this->morphOne(Meta::class, 'metaable');
+        return $this->morphMany(Meta::class, 'metaable');
     }
 
     /**
@@ -180,7 +180,7 @@ trait MetaFields
      */
     public function getMetaValue(string $key)
     {
-        if (isset($this->meta)) {
+        if (!empty($this->meta)) {
             return $this->meta->$key;
         }
     }

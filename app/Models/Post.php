@@ -61,6 +61,15 @@ class Post extends BaseModel
         return $this->belongsTo(Category::class);
     }
 
+    public function getPublishedAtAttribute($date)
+    {
+        if (Carbon::now() > Carbon::parse($date)->addDays(7)) {
+            return Carbon::parse($date);
+        }
+
+        return Carbon::parse($date)->diffForHumans();
+    }
+
     /**
      * @return MorphToMany
      */
@@ -119,10 +128,9 @@ class Post extends BaseModel
     public function __get($key)
     {
         $value = parent::__get($key);
-        if ($value === null && !property_exists($this, $key)) {
-            return $this->getMetaValue($key);
+        if (is_null($value) && !property_exists($this, $key)) {
+            $value = $this->getMetaValue($key);
         }
-
         return $value;
     }
 }

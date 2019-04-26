@@ -14,12 +14,20 @@ class MetaCollection extends Collection
      */
     public function __get($key)
     {
-        if (isset($this->items) && count($this->items)) {
+        if (isset($this->items) && !empty($this->items)) {
+
             $meta = $this->first(function (Meta $meta) use ($key) {
                 return $meta->key === $key;
             });
 
-            return $meta ? $meta->value : null;
+            if ($meta) {
+                $res = json_decode($meta->value);
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    return $res;
+                }
+                return $meta->value;
+            }
+            return null;
         }
     }
 
