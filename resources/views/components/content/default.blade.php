@@ -7,8 +7,7 @@
                     @if (!empty($post->image))
                         <div class="post-cover mb-4">
                             <div class="media media-3x1">
-                                <div class="media-content"
-                                     style="background-image:url('{{ $post->image }}')"></div>
+                                <div class="media-content" style="background-image:url('{{ $post->image }}')"></div>
                             </div>
                         </div>
                     @endif

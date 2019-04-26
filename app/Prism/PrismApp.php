@@ -61,7 +61,7 @@ class PrismApp
     }
 
     /**
-     * @param string      $url
+     * @param string $url
      * @param string|null $title
      * @param string|null $des
      * @param string|null $pic
@@ -96,7 +96,11 @@ class PrismApp
      */
     public function title()
     {
-        return !empty(self::$title) ? self::$title : $this->name();
+        $title = $this->name();
+        if (!empty(self::$title)) {
+            $title = self::$title . ' - ' . $title;
+        }
+        return $title;
     }
 
     /**
@@ -127,9 +131,9 @@ class PrismApp
     public function menus(string $group)
     {
         return [[
-            'url'    => '/',
+            'url' => '/',
             'target' => '__selft',
-            'title'  => '首页',
+            'title' => '首页',
         ]];
     }
 }

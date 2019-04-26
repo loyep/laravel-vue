@@ -64,7 +64,7 @@ class Post extends BaseModel
     public function getPublishedAtAttribute($date)
     {
         if (Carbon::now() > Carbon::parse($date)->addDays(7)) {
-            return Carbon::parse($date);
+            return Carbon::parse($date)->toDateString();
         }
 
         return Carbon::parse($date)->diffForHumans();

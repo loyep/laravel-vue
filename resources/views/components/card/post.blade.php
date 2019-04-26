@@ -34,7 +34,7 @@
                 <div>{{ $post->published_at }}</div>
                 <div class="flex-fill"></div>
                 <div class="text-nowrap">
-                     <span class="d-none d-lg-none ">
+                     <span class="d-none d-lg-inline-block">
                         <i class="text-sm iconfont icon-view"></i>
                         <small>{{ $post->views }}</small>
                     </span>

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Prism;
+use App\Models\Category;
+use App\Models\Post;
 use App\Models\Tag;
 
 class TagController extends Controller
@@ -29,12 +32,17 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Tag $tag
+     * @param string $slug
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show($slug)
     {
-        //
+        $tag = Tag::withCount('posts')->where('slug', $slug)->first();
+//        $posts = Post::where('category_id', $category->id)->paginate(16);
+
+        $posts = collect([]);
+        Prism::setTitle($tag->name);
+        return view('categories.show', compact('posts', 'tag'));
     }
 }

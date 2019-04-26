@@ -12,7 +12,11 @@
             </a>
         </div>
         <div class="author-name d-flex flex-wrap flex-column mx-2 mx-md-3">
-            <div class="text-md"><a href="#" class="author-popup">{{ $post->user->display_name }}</a></div>
+            <div class="text-md">
+                <a href="{{ $post->user->perm_link }}" class="author-popup">
+                    {{ $post->user->display_name }}
+                </a>
+            </div>
             <div class="text-xs text-muted">
                 <time class="date mr-1">{{ $post->published_at }}</time>
                 <i class="d-none d-md-inline-block">{{ __('Posted on') }}</i>
