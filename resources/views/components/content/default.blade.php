@@ -23,10 +23,8 @@
                         @endforeach
                     </div>
                     @include('components.post.copyright', compact('post'))
-                    <?php //get_template_part('template-parts/post-copyright') ?>
-                    <?php //get_template_part('template-parts/post-footer') ?>
                     @include('components.post.footer', compact('post'))
-                    <?php //get_template_part('template-parts/post-nav-link') ?>
+                    @include('components.post.nav-link', compact('post'))
                 </div>
             </div>
             <div class="sidebar col-lg-3 d-none d-lg-block">

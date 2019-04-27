@@ -52,30 +52,11 @@ class PostController extends Controller
     public function show(Request $request, $slug)
     {
         try {
-
-//            $setting = new Setting();
-//            $setting->key = 'post_ad';
-//            $setting->group = 'ad';
-//            $setting->display_name = '文章广告';
-//            $setting->value = json_encode([
-//                'image' => '/app/images/bg.jpg',
-//                'code' => '',
-//                'link' => 'https://loyep.com',
-//                'type' => 'image'
-//            ]);
-//            $setting->type = 'text';
-//            $setting->save();
-
             $post = Post::with('content', 'category', 'tags', 'user')->where('slug', $slug)->firstOrFail();
             $post->increment('views');
-            $post->post_layout = 'two';
-            $author = $post->user;
-            $category = $post->category;
-            $is_like = $post->isLiked();
             $content = $post->content->content();
             $this->updateViewHistory($request, $post->id);
             $post->excerpt = $this->getExcerptFromContent($content, 120);
-//            PrismApp::setShare($post->perm_link, $post->title, $post->excerpt, $post->image);
             Prism::setTitle($post->title);
         } catch (ModelNotFoundException $e) {
             abort(404);

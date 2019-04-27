@@ -1,5 +1,5 @@
 <template>
-  <a href="javascript:;" ref="likeBtn" :class="likeClass" @click="handleLike">
+  <a href="javascript:" ref="likeBtn" :class="likeClass" @click="handleLike">
     <slot />
     <small class="like-count">{{ likesCount }}</small>
   </a>

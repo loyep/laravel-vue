@@ -23,7 +23,7 @@ window.Vue = require('vue');
 Vue.component('back-to-top', require('./components/BackToTop').default);
 Vue.component('home-notice', require('./components/HomeNotice').default);
 Vue.component('post-like', require('./components/PostLike').default);
-// Vue.component('search-popup', require('./components/SearchPopup').default);
+Vue.component('bigger-cover', require('./components/BiggerCover').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

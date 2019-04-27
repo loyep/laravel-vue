@@ -5,8 +5,10 @@
         <div class="bg-effect bg-cover nc-no-lazy" style="background-image: url('{!! 11 // $search['background'] !!}')">
             <span class="overlay"></span>
         </div>
-        <form role="search" id="searchform" class="search-popup-form py-lg-5" method="get" action="{{ route('search') }}">
-            <input class="form-control form-control-lg form-transparent" type="text" placeholder="{{ __('Type Something...') }}" name="q" id="q" required />
+        <form role="search" id="searchform" class="search-popup-form py-lg-5" method="get"
+              action="{{ route('search') }}">
+            <input class="form-control form-control-lg form-transparent" type="text"
+                   placeholder="{{ __('Type Something...') }}" name="q" id="q" required/>
         </form>
     </div>
     @php
@@ -17,7 +19,10 @@
             <div class="h6 mb-3">{{ __('Top Keywords') }}</div>
             <ul class="nav nav-pills m-n1">
                 @foreach($tags as $tag)
-                    <li class="nav-item p-1"><a href="{{ $tag->perm_link }}" target="_blank" class="btn btn-light btn-sm">{{ $tag->name }}</a></li>
+                    <li class="nav-item p-1">
+                        <a href="{{ route('search.show', ['q' => $tag->slug]) }}" target="_blank"
+                           class="btn btn-light btn-sm">{{ $tag->name }}</a>
+                    </li>
                 @endforeach
             </ul>
         </div>

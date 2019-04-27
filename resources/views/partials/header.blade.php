@@ -34,7 +34,7 @@
                 </div>
                 <ul class="nav nav-pills nav-submenu align-items-center order-2 order-lg-3">
                     <li class="nav-item">
-                        <a href="javascript:;" class="nav-link search-popup">
+                        <a href="javascript:" class="nav-link search-popup">
                             <i class="text-lg iconfont icon-sousuo"></i>
                         </a>
                     </li>

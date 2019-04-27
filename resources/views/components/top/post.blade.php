@@ -1,13 +1,13 @@
 @if(!empty($topPosts))
     <div class="bg-light py-4 py-md-5">
         <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-lg-9">
+            <div class="row">
+                <div class="col-lg-12">
                     <div class="list-header h4 mb-3 mb-md-4">{{ __('Top Posts') }}</div>
                     <div class="list-grouped list-scroll-x">
-                        <div class=" ">
+                        <div class="row-md">
                             @foreach($topPosts as $topPost)
-                                <div class="">
+                                <div class="col-6 col-md-4">
                                     <div class="list-item list-nice-overlay custom-hover">
                                         <div class="media media-3x2">
                                             <a href="{{ $topPost->perm_link }}" class="media-content custom-hover-img"

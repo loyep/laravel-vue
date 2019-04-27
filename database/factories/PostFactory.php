@@ -9,6 +9,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'title'       => $faker->name,
         'slug'        => $faker->slug,
         'category_id' => 1,
+        'image' => '/app/images/bg.jpg'
 //        $table->bigIncrements('id');
 //    $table->unsignedBigInteger('user_id')->index();
 //    $table->string('title');

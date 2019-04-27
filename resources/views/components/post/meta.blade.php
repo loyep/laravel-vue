@@ -35,12 +35,12 @@
             <span class="d-none d-md-inline-block">
             <a href="#comments">
                 <i class="text-lg iconfont icon-duanxin"></i>
-                <small>{{ $post->comments_count }}</small>
+                <small>{{ $post->comments_count ?? 0 }}</small>
             </a>
         </span>
         @endif
         <span class="d-inline-block">
-            <post-like likes="11" liked="true">
+            <post-like likes="{{ $post->likes }}" liked="{{ $post->isLiked() }}">
                 <i class="text-lg iconfont icon-shoucang"></i>
             </post-like>
         </span>

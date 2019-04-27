@@ -5,8 +5,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Content::class, function (Faker $faker) {
     return [
-        'html'     => $faker->randomHtml(3, 4),
-        'is_html'  => true,
+        'html'     => null,
+        'is_html'  => false,
         'markdown' => '## 环境版本
 
 ```shell

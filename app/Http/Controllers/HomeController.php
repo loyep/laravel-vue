@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->withCount('comments')->paginate();
+        $posts = Post::with('category')->withCount('comments')->orderByDesc('published_at')->paginate();
 
         return view('home', compact('posts'));
     }
