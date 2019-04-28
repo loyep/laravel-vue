@@ -18,7 +18,7 @@
                 </a>
             </div>
             <div class="text-xs text-muted">
-                <time class="date mr-1">{{ $post->published_at }}</time><i class="d-none d-md-inline-block">{{ __('Posted on') }}</i>
+                <time class="date mr-1">{{ $post->published_at }}</time><i class="d-none d-md-inline-block">{{ __('prism.post.on') }}</i>
                 <a class="text-secondary" href="{{ $post->category->perm_link }}" rel="category tag" target="_blank">
                     {{ $post->category->name }}
                 </a>
