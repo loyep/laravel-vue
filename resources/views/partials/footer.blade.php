@@ -2,6 +2,7 @@
 
 @php
     $socials = $prism->socials();
+    $name = Prism::name();
 @endphp
 
 @if (config('prism.footer.layout', 'footer3') === 'footer1')
@@ -42,7 +43,7 @@
                 </div>
                 <div class="col-lg-3 py-3">
                     <div class="footer-widget">
-                        <div class="footer-widget-header">标签</div>
+                        <div class="footer-widget-header">{{ __('prism.footer.tags') }}</div>
                         <div class="footer-widget-content">
                             <div class="footer-widget-links">
                                 @foreach($prism->footerTags() as $tag)
@@ -57,7 +58,7 @@
                 <div class="col-lg-3 py-3">
                     @if ($prism->isHome())
                         <div class="footer-widget">
-                            <div class="footer-widget-header">友链</div>
+                            <div class="footer-widget-header">{{ __('prism.footer.links') }}</div>
                             <div class="footer-widget-content">
                                 <div class="footer-widget-links">
                                     @foreach($prism->links() as $link)
@@ -70,7 +71,7 @@
                         </div>
                     @else
                         <div class="footer-widget">
-                            <div class="footer-widget-header">分类</div>
+                            <div class="footer-widget-header">{{ __('prism.footer.categories') }}</div>
                             <div class="footer-widget-content">
                                 <div class="footer-widget-links m-n1">
                                     @foreach($prism->footerCategories() as $category)
@@ -92,9 +93,9 @@
     </footer>
 @endif
 
-<back-to-top>
+<back-top>
     <span class="icon-stack">
         <i class="text-xs iconfont icon-up"></i>
         <span class="back-to-top-text">{{ __('Top') }}</span>
     </span>
-</back-to-top>
+</back-top>

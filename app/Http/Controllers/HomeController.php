@@ -6,6 +6,10 @@ use App\Facades\Prism;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+/**
+ * Class HomeController
+ * @package App\Http\Controllers
+ */
 class HomeController extends Controller
 {
     /**
@@ -30,6 +34,10 @@ class HomeController extends Controller
         return view('home', compact('posts'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function history(Request $request)
     {
         Prism::setTitle('最近浏览');
@@ -37,7 +45,7 @@ class HomeController extends Controller
         $posts = collect([]);
         if (!empty($viewHistory)) {
             $viewHistory = json_decode($viewHistory);
-            $posts = Post::with('category')->withCount('comments')->whereIn('id', $viewHistory)->get();
+            $posts = Post::with('category')->withCount('comments')->orderByDesc('published_at')->whereIn('id', $viewHistory)->paginate();
         }
         return view('history', compact('posts'));
     }
@@ -51,7 +59,7 @@ class HomeController extends Controller
      */
     public function search(Request $request)
     {
-        $q = trim($request->get('q'));
+        $q = $request->q;
         $posts = Post::where('title', 'like', '%' . $q . '%')->paginate();
 
         return view('search', compact('q', 'posts'));

@@ -1,8 +1,8 @@
 <div class="post-action pt-5">
     <div class="post-like text-center">
-        <post-like likes="{{ $post->likes }}" liked="{{ $post->isLiked() }}" class="btn btn-lg btn-primary">
-            <i class="iconfont icon-yishoucang"></i> 喜欢
-        </post-like>
+        <like-button id="{{ $post->id }}" likes="{{ $post->likes }}" liked="{{ $post->isLiked() }}" class="btn btn-lg btn-primary">
+            <i class="iconfont icon-yishoucang"></i> {{ __('prism.post.like') }}
+        </like-button>
     </div>
     <div class="post-share justify-content-between mt-4">
         <div class="post-play">

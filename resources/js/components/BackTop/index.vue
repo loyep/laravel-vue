@@ -2,12 +2,13 @@
   <span class="back-to-top" @click="scrollTop" :class="{
         'active': active
     }">
-    <slot />
+    <slot/>
   </span>
 </template>
 
 <script>
 export default {
+  name: "BackTop",
   data() {
     return {
       active: true
@@ -22,13 +23,13 @@ export default {
   methods: {
     scrollTop() {
       $("html, body")
-        .stop()
-        .animate(
-          {
-            scrollTop: 0
-          },
-          600
-        );
+      .stop()
+      .animate(
+        {
+          scrollTop: 0
+        },
+        600
+      );
     },
     handleScroll() {
       const window_width = $(window).width(),

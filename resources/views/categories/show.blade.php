@@ -41,5 +41,5 @@
             @endif
         </div>
     </main>
-    @include('partials.footer', ['name' => Prism::name()])
+    @include('partials.footer')
 @endsection

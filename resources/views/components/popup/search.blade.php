@@ -8,7 +8,7 @@
         <form role="search" id="searchform" class="search-popup-form py-lg-5" method="get"
               action="{{ route('search') }}">
             <input class="form-control form-control-lg form-transparent" type="text"
-                   placeholder="{{ __('Type Something...') }}" name="q" id="q" required/>
+                   placeholder="{{ __('prism.search.placeholder') }}" name="q" id="q" required/>
         </form>
     </div>
     @php
@@ -16,7 +16,7 @@
     @endphp
     @if (!empty($tags))
         <div class="search-key-push px-3 px-lg-5 py-3 py-lg-4">
-            <div class="h6 mb-3">{{ __('Top Keywords') }}</div>
+            <div class="h6 mb-3">{{ __('prism.search.top_keywords') }}</div>
             <ul class="nav nav-pills m-n1">
                 @foreach($tags as $tag)
                     <li class="nav-item p-1">

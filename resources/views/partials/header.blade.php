@@ -30,6 +30,7 @@
                         //                            _e('<li><a href="/wp-admin/nav-menus.php">Please set up your first menu at [Admin -> Appearance -> Menus]</a></li>', 'cosy19');
                         //                        }
                         ?>
+                        <li><a href="/wp-admin/nav-menus.php">Please set up your first menu at [Admin -> Appearance -> Menus]</a></li>
                     </ul>
                 </div>
                 <ul class="nav nav-pills nav-submenu align-items-center order-2 order-lg-3">
@@ -58,16 +59,10 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link sign-link active" href="{{ route('dashboard') }}">登录</a>
+                            <a class="nav-link sign-link active" href="{{ route('dashboard') }}">{{ __('Login') }}</a>
                         </li>
                     @endauth
                 </ul>
-                <form role="search" method="get" class="navbar-search-wrap" action="{{ route('search') }}"
-                      style="display: none;">
-                    <input type="search" class="form-control navbar-search-input" name="q"
-                           placeholder="Type Something...">
-                    <i class="iconfont icon-quxiao" id="navbar-search-close"></i>
-                </form>
                 @include('components.popup.search')
             </div>
         </div>

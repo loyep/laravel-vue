@@ -20,10 +20,12 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('back-to-top', require('./components/BackToTop').default);
-Vue.component('home-notice', require('./components/HomeNotice').default);
-Vue.component('post-like', require('./components/PostLike').default);
+Vue.component('back-top', require('./components/BackTop').default);
+Vue.component('notice-bar', require('./components/NoticeBar').default);
+Vue.component('like-button', require('./components/LikeButton').default);
 Vue.component('bigger-cover', require('./components/BiggerCover').default);
+
+import './directives/highlight'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

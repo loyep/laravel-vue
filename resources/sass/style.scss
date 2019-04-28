@@ -365,7 +365,7 @@ figure {
 
 pre {
   overflow-y: auto;
-  background-color: #fdfdfd;
+  background-color: #f1f1f1;
   border: 0;
   border-radius: .22rem;
   padding: 1.25rem;
@@ -4002,12 +4002,28 @@ data-style
     }
   }
 }
+
 .post-action {
   .post-like {
-    &.current {
+    a {
+      color: #fff;
       background-color: #062743;
       border-color: #062743;
       box-shadow: 0px 5px 20px -3px rgba(37, 44, 65, .33) !important;
+
+      &:active,
+      &:focus,
+      &:not(:disabled):not(.disabled):active:focus,
+      &:hover {
+        background-color: #ff5d4a;
+        border-color: #ff5d4a;
+        box-shadow: 0 5px 20px -3px rgba(255,93,74,.458)!important;
+      }
+    }
+    &.current {
+      background-color: #ff5d4a;
+      border-color: #ff5d4a;
+      box-shadow: 0 5px 20px -3px rgba(255,93,74,.458)!important;
     }
   }
 }
@@ -5197,3 +5213,7 @@ to top
   }
 }
 
+
+.btn-like {
+
+}
