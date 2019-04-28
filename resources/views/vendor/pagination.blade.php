@@ -1,4 +1,7 @@
 @if ($paginator->hasPages())
+    @php
+        $newElements = \App\Prism\PaginatorHandler::make($paginator);
+    @endphp
     <nav class="navigation pagination" role="navigation">
         <h2 class="screen-reader-text">文章导航</h2>
         <div class="nav-links">
@@ -10,7 +13,7 @@
         @endif
 
         {{-- Pagination Elements --}}
-        @foreach ($elements as $element)
+        @foreach ($newElements as $element)
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
                 <span class="page-numbers dots">…</span>
@@ -19,7 +22,7 @@
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
-                    @if ($page == $paginator->currentPage())
+                        @if ($page == $paginator->currentPage())
                         <span aria-current="page" class="page-numbers current">{{ $page }}</span>
                     @else
                         <a class="page-numbers" href="{{ $url }}">{{ $page }}</a>
