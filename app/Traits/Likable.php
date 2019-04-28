@@ -2,7 +2,9 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Trait CanLike.
@@ -10,11 +12,16 @@ use Illuminate\Support\Facades\Cookie;
 trait Likable
 {
     /**
+     * @var null|Collection
+     */
+    private static $_liked;
+
+    /**
      * @return string
      */
-    protected function getLikeKey()
+    public function getLikeKey()
     {
-        return md5('prism_like_'.__CLASS__.$this->getKey());
+        return md5('prism_like_' . self::class);
     }
 
     /**
@@ -22,6 +29,29 @@ trait Likable
      */
     public function isLiked()
     {
-        return Cookie::get($this->getLikeKey());
+        if (is_null(self::$_liked)) {
+            self::$_liked = collect(explode(',', Cookie::get($this->getLikeKey())))->filter(function ($item) {
+                return !empty($item);
+            })->map(function ($item) {
+                return (int)$item;
+            });
+        }
+        return self::$_liked->some($this->id);
+    }
+
+    public function like()
+    {
+        if ($this->isLiked()) {
+            self::$_liked = self::$_liked->filter(function ($value) {
+                return $this->id !== $value;
+            });
+            $this->decrement('likes');
+        } else {
+            self::$_liked->push($this->id);
+            $this->increment('likes');
+        }
+        $this->save();
+        Cookie::queue($this->getLikeKey(), self::$_liked->implode(','));
+        return $this->likes;
     }
 }

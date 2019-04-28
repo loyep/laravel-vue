@@ -31,7 +31,7 @@ Route::get('author/{name}', 'UserController@show')->name('user.show');
 
 // 文章页
 Route::get('post/{slug}', 'PostController@show')->name('post.show');
-Route::post('post/{slug}/like', 'PostController@like')->name('post.like');
+Route::post('post/{id}/like', 'PostController@like')->name('post.like');
 
 // 分类页
 Route::get('category/{slug}', 'CategoryController@show')->name('category.show');

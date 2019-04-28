@@ -15,11 +15,11 @@
                         @endif
                         <div class="list-header p-0 mb-3">
                             <div class="h4">
-                                {{ __('Search: ') }}<span>{{ request()->get('q') }}</span>
+                                {{ __('prism.search.title') }}<span>{{ request()->q }}</span>
                             </div>
                         </div>
                         @if(!empty($posts))
-                            <div class="search-list {{  $grid_class }}">
+                            <div class="search-list {{ $grid_class }}">
                                 @foreach($posts as $post)
                                     @include('components.card.post', compact('post'))
                                 @endforeach
@@ -40,5 +40,5 @@
             @endif
         </div>
     </main>
-    @include('partials.footer', ['name' => Prism::name()])
+    @include('partials.footer')
 @endsection

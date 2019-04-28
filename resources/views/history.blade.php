@@ -6,8 +6,8 @@
     <main class="py-4 py-md-5">
         <div class="container">
             <div class="list-header p-0 mb-3 mb-lg-4">
-                <div class="h4 mb-2">{{ '最近浏览' }}</div>
-                <p class="text-muted">{{ __('Recent browsing history is only stored on your drive and keeps up to 20 records at maximum.') }}</p>
+                <div class="h4 mb-2">{{ __('prism.history.title') }}</div>
+                <p class="text-muted">{{ __('prism.history.description') }}</p>
             </div>
             @if(empty($posts))
                 <div class="content-error h-v-66">
@@ -22,8 +22,9 @@
                         @include('components.card.post', compact('post'))
                     @endforeach
                 </div>
+                {!! $posts->links() !!}
             @endif
         </div>
     </main>
-    @include('partials.footer', ['name' => Prism::name()])
+    @include('partials.footer')
 @endsection

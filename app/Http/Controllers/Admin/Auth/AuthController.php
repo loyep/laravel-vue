@@ -11,7 +11,6 @@ use Illuminate\Routing\Controller as BaseController;
  */
 class AuthController extends BaseController
 {
-    use ThrottlesLogins;
 
     /**
      * @var AuthService

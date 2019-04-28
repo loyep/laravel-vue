@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Facades\Prism;
 use App\Models\Post;
-use App\Models\Setting;
 use App\Traits\Likable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -68,12 +67,15 @@ class PostController extends Controller
     protected function updateViewHistory(Request $request, $id)
     {
         $history = $request->cookie('view_history');
-        if (is_null($history)) {
+        if (empty($history)) {
             $history = [$id];
         } else {
             $history = json_decode($history);
             $history[] = $id;
             $history = array_unique($history);
+            if (count($history) > 20) {
+                $history = array_slice($history, -20, 20, false);
+            }
         }
         Cookie::queue('view_history', json_encode($history), 102400);
     }
@@ -91,16 +93,19 @@ class PostController extends Controller
         return $res;
     }
 
-    public function like($slug)
+    public function like($id)
     {
         try {
-            $post = Post::with('content')->where('slug', $slug)->firstOrFail();
-            $post->increment('likes');
+            $post = Post::findOrFail($id);
+            $post->like();
 
             return response([
                 'result' => true,
-                'data' => $post->likes,
-            ])->cookie($post->getLikeKey(), true, 9999999);
+                'data' => [
+                    'likesCount' => $post->likes,
+                    'isLike' => $post->isLiked()
+                ],
+            ]);
         } catch (ModelNotFoundException $e) {
             abort(404);
         }

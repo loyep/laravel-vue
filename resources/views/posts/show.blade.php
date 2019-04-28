@@ -5,5 +5,5 @@
     @component('components.content.default', compact('post', 'content'))
 
     @endcomponent
-    @include('partials.footer', ['name' => Prism::name()])
+    @include('partials.footer')
 @endsection

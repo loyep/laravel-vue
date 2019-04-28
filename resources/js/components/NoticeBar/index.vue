@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  name: "HomeNotice",
+  name: "NoticeBar",
   props: {
     bgImage: {
       type: String,

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -15,6 +16,8 @@ use Illuminate\Validation\ValidationException;
  */
 class LoginController extends AuthController
 {
+    use ThrottlesLogins;
+
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -133,19 +136,17 @@ class LoginController extends AuthController
      */
     protected function generateWelcome(User $user)
     {
-        $welcome = Str::ucfirst($user->display_name).', '.self::getPeriodOfTime().'好!';
+        $welcome = Str::ucfirst($user->display_name) . ', ' . self::getPeriodOfTime() . '好!';
 
         return $welcome;
     }
 
     /**
-     * @param string|int $hour
-     *
      * @return string
      */
-    public static function getPeriodOfTime($hour)
+    public static function getPeriodOfTime()
     {
-        $hour = $hour ? $hour : (int) date('G', time());
+        $hour = date('G', time());
         $period = '';
         if (0 <= $hour && 6 > $hour) {
             $period = '凌晨';
@@ -168,5 +169,16 @@ class LoginController extends AuthController
         }
 
         return $period;
+    }
+
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
     }
 }

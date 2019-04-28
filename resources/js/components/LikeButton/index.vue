@@ -1,14 +1,19 @@
 <template>
   <a href="javascript:" ref="likeBtn" :class="likeClass" @click="handleLike">
-    <slot />
+    <slot/>
     <small class="like-count">{{ likesCount }}</small>
   </a>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  name: "PostHeaderLike",
+  name: "LikeButton",
   props: {
+    id: {
+      type: [Number, String],
+      default: ''
+    },
     likes: {
       type: [Number, String],
       default: 0
@@ -39,11 +44,18 @@ export default {
   },
   methods: {
     handleLike() {
-      this.$refs.likeBtn.blur()
-      this.$root.Like.$emit("like", {
-        isLike: !this.isLike,
-        likesCount: this.isLike ? this.likesCount - 1 : this.likesCount + 1
-      });
+      this.$refs.likeBtn.blur();
+      axios
+        .post(`/post/${this.id}/like`)
+        .then(res => {
+          const { data } = res.data
+          if (data !== undefined) {
+            this.$root.Like.$emit("like", data);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };
