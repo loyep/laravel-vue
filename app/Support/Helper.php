@@ -8,7 +8,9 @@ use App\Models\Widget;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class Helper
 {
@@ -58,6 +60,11 @@ class Helper
         Log::info($name);
 
         return [];
+    }
+
+    public static function thumbnail($path, $size = ['w' => 450, 'h' => 300], $set = 'small')
+    {
+        return $path;
     }
 
     /**

@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -230,6 +231,7 @@ return [
         /*
          * PrismApp Aliases...
          */
+        'Image'     => Intervention\Image\Facades\Image::class,
         'Helper'    => App\Support\Helper::class,
         'Prism'     => App\Prism\Facades\Prism::class,
         'Admin'     => App\Prism\Facades\PrismAdmin::class,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Facades\Prism;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 /**
  * Class HomeController.
@@ -41,11 +42,14 @@ class HomeController extends Controller
     public function history(Request $request)
     {
         Prism::setTitle('最近浏览');
-        $viewHistory = $request->cookie('view_history');
-        $posts = collect([]);
+        $history = collect(explode(',', Cookie::get('view_history')))->filter(function ($item) {
+            return !empty($item);
+        })->map(function ($item) {
+            return (int)$item;
+        });
+
         if (!empty($viewHistory)) {
-            $viewHistory = json_decode($viewHistory);
-            $posts = Post::with('category')->withCount('comments')->orderByDesc('published_at')->whereIn('id', $viewHistory)->paginate();
+            $posts = Post::with('category')->withCount('comments')->orderByDesc('published_at')->whereIn('id', $history)->paginate();
         }
 
         return view('history', compact('posts'));
@@ -61,7 +65,7 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $q = $request->q;
-        $posts = Post::where('title', 'like', '%'.$q.'%')->paginate();
+        $posts = Post::where('title', 'like', '%' . $q . '%')->paginate();
 
         return view('search', compact('q', 'posts'));
     }

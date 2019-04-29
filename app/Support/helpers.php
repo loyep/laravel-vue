@@ -31,6 +31,21 @@ if (!function_exists('get_option')) {
     }
 }
 
+if (!function_exists('thumbnail')) {
+    /**
+     * Thumbnail.
+     *
+     * @param $path
+     * @param array $size
+     * @param string $et
+     * @return mixed|string|null
+     */
+    function thumbnail($path, $size = ['w' => 450, 'h' => 300], $set = 'small')
+    {
+        return Helper::thumbnail($path, $size, $set);
+    }
+}
+
 if (!function_exists('current_user')) {
     /**
      * get current user.
