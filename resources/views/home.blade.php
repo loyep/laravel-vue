@@ -2,11 +2,11 @@
 
 @section('content')
     @include('partials.header', ['name' => 'Prism', 'fixed' => true])
-    @include('layouts.partials.magazine')
+    @include('partials.magazine')
     <main class="py-3 py-md-5">
         <div class="container">
-            @include('layouts.partials.notice')
-            @include('layouts.partials.pushes')
+            @include('partials.notice')
+            @include('partials.pushes')
             <section class="list-home row-md list-grouped list-tb-padding">
                 @foreach($posts as $post)
                     @include('components.card.post', compact('post'))

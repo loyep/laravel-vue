@@ -1,34 +1,23 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 $factory->define(Post::class, function (Faker $faker) {
+
+    $title = $faker->sentence(mt_rand(3, 10));
+    $user_id = User::pluck('id')->random();
+    $category_id = Category::pluck('id')->random();
+
     return [
-        'user_id'     => 1,
-        'title'       => $faker->name,
-        'slug'        => $faker->slug,
-        'category_id' => 1,
-        'image' => '/app/images/bg.jpg'
-//        $table->bigIncrements('id');
-//    $table->unsignedBigInteger('user_id')->index();
-//    $table->string('title');
-//    $table->string('slug')->unique();
-//    $table->unsignedBigInteger('category_id')->index();
-//    $table->string('meta_title')->nullable();
-//    $table->text('meta_keywords')->nullable();
-//    $table->text('meta_description')->nullable();
-//    $table->text('excerpt')->nullable();
-//    $table->unsignedSmallInteger('order')->default(1);
-//    $table->unsignedBigInteger('views')->default(0);
-//    $table->string('image')->nullable();
-//    $table->string('type')->default('post');
-//    $table->boolean('is_top')->default(false);
-//    $table->enum('status', ['published', 'draft', 'private'])->default('published');
-//    $table->boolean('allow_comment')->default(true);
-//    $table->softDeletes();
-//    $table->timestamp('published_at')->nullable()->useCurrent();
-//    $table->timestamp('viewed_at')->nullable();
-//    $table->timestamps();
+        'user_id'      => $user_id,
+        'title'        => $title,
+        'slug'         => Str::slug($title),
+        'category_id'  => $category_id,
+        'image'        => $faker->imageUrl(),
+        'published_at' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now')
     ];
 });

@@ -30,9 +30,6 @@ class PrismAppServiceProvider extends ServiceProvider
     {
         AbstractPaginator::defaultView('vendor.pagination');
 
-        Blade::include('layouts.partials.footer', 'footer');
-        Blade::include('layouts.partials.header', 'header');
-
         // @routeis
         Blade::directive('routeis', function ($expression) {
             return "<?php if (fnmatch({$expression}, Route::currentRouteName())) : ?>";

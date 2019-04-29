@@ -44,9 +44,9 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Request $request
      * @param string $slug
-     *
-     * @return JsonResponse
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Request $request, $slug)
     {
@@ -66,18 +66,17 @@ class PostController extends Controller
 
     protected function updateViewHistory(Request $request, $id)
     {
-        $history = $request->cookie('view_history');
-        if (empty($history)) {
-            $history = [$id];
-        } else {
-            $history = json_decode($history);
-            $history[] = $id;
-            $history = array_unique($history);
-            if (count($history) > 20) {
-                $history = array_slice($history, -20, 20, false);
-            }
+        $history = collect(explode(',', Cookie::get('view_history')))->filter(function ($item) {
+            return !empty($item);
+        })->map(function ($item) {
+            return (int)$item;
+        });
+
+        if (!$history->some($id)) {
+            $history->push($id);
         }
-        Cookie::queue('view_history', json_encode($history), 102400);
+
+        Cookie::queue('view_history', $history->implode(','), 99999);
     }
 
     public function getExcerptFromContent($content, $count)

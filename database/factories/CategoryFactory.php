@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,11 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(Category::class, function (Faker $faker) {
+    $title = $faker->sentence(mt_rand(3, 10));
     return [
-        'name'        => $faker->word,
-        'slug'        => $faker->unique()->slug,
-        'image'       => '',
+        'name'        => $title,
+        'slug'        => Str::slug($title),
+        'image'       => $faker->imageUrl(),
         'description' => $faker->sentence,
     ];
 });

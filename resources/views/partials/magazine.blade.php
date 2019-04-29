@@ -32,7 +32,7 @@
                     @endphp
                     <div class="media d-flex flex-fill">
                         <a href="{{ $firstPost->perm_link }}" class="media-content"
-                           style="background-image: url('{{ asset('/app/images/bg.jpg') }}')">
+                           style="background-image: url('{{ $firstPost->image }}')">
                             <span class="overlay"></span>
                         </a>
                     </div>
@@ -53,7 +53,7 @@
                                 <div class="list-item list-nice-overlay custom-hover">
                                     <div class="media">
                                         <a href="{{ $post->perm_link }}" class="media-content"
-                                           style="background-image: url('{{ asset('/app/images/bg.jpg') }}')">
+                                           style="background-image: url('{{ $post->image }}')">
                                             <span class="overlay"></span>
                                         </a>
                                     </div>

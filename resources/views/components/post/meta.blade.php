@@ -39,7 +39,7 @@
         </span>
         @endif
         <span class="d-inline-block">
-            <like-button id="{{ $post->id }}" likes="{{ $post->likes }}" liked="{{ $post->isLiked() }}">
+            <like-button id="{{ $post->id }}" count="{{ $post->likes }}" value="{{ $post->isLiked() }}">
                 <i class="text-lg iconfont icon-shoucang"></i>
             </like-button>
         </span>

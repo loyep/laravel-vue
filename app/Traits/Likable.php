@@ -25,7 +25,7 @@ trait Likable
     }
 
     /**
-     * @return array|string|null
+     * @return int
      */
     public function isLiked()
     {
@@ -36,7 +36,7 @@ trait Likable
                 return (int)$item;
             });
         }
-        return self::$_liked->some($this->id);
+        return self::$_liked->contains($this->id);
     }
 
     public function like()
@@ -50,8 +50,8 @@ trait Likable
             self::$_liked->push($this->id);
             $this->increment('likes');
         }
-        $this->save();
-        Cookie::queue($this->getLikeKey(), self::$_liked->implode(','));
+//        $this->save();
+        Cookie::queue($this->getLikeKey(), self::$_liked->implode(','), 99999);
         return $this->likes;
     }
 }

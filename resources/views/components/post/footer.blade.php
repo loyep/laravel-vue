@@ -1,6 +1,6 @@
 <div class="post-action pt-5">
     <div class="post-like text-center">
-        <like-button id="{{ $post->id }}" likes="{{ $post->likes }}" liked="{{ $post->isLiked() }}" class="btn btn-lg btn-primary">
+        <like-button id="{{ $post->id }}" count="{{ $post->likes }}" value="{{ $post->isLiked() }}" class="btn btn-lg btn-primary">
             <i class="iconfont icon-yishoucang"></i> {{ __('prism.post.like') }}
         </like-button>
     </div>

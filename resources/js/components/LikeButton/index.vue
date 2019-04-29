@@ -14,18 +14,18 @@ export default {
       type: [Number, String],
       default: ''
     },
-    likes: {
-      type: [Number, String],
-      default: 0
+    count: {
+      type: String,
+      default: ''
     },
-    liked: {
-      type: [Boolean, String],
+    value: {
+      type: String,
       default: false
     }
   },
   data() {
-    const likesCount = isNaN(parseInt(this.likes)) ? 0 : parseInt(this.likes);
-    const isLike = this.isLike || false;
+    const likesCount = Number(this.count);
+    const isLike = Boolean(this.value || false);
     return {
       likesCount: likesCount,
       isLike: isLike
@@ -43,7 +43,8 @@ export default {
     });
   },
   methods: {
-    handleLike() {
+    handleLike(e) {
+      e.preventDefault();
       this.$refs.likeBtn.blur();
       axios
         .post(`/post/${this.id}/like`)
