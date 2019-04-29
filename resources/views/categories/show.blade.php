@@ -3,7 +3,7 @@
     $grid_class = 'row-md list-archive list-grouped list-tb-padding';
 @endphp
 
-@extends('layouts.app')
+@extends('master')
 
 @section('content')
     @include('partials.header', ['name' => Prism::name(), 'fixed' => false])

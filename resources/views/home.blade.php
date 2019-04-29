@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('master')
 
 @section('content')
     @include('partials.header', ['name' => 'Prism', 'fixed' => true])
