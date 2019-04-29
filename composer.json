@@ -16,6 +16,7 @@
         "laravel/tinker": "^1.0",
         "predis/predis": "^1.1",
         "prettus/l5-repository": "^2.6",
+        "qiniu/php-sdk": "^7.2",
         "simplesoftwareio/simple-qrcode": "^2.0",
         "tymon/jwt-auth": "dev-develop"
     },
