@@ -33,14 +33,14 @@
                                      style="background-image: url('{{ $stkPost->image }}');"></div>
                                 <div class="content p-3 p-md-4">
                                     <div class="title"><h2
-                                                class="font-18 <?php //echo get_title_font_weight() ?> text-l2 color-white">{{ $stkPost->title }}</h2>
+                                                class="font-18 <?php //echo get_title_font_weight()?> text-l2 color-white">{{ $stkPost->title }}</h2>
                                     </div>
                                     <div class="data nodots d-flex align-items-center flex-row font-12 text-light mt-3">
                                         <div class="flex-fill">
                                             <span class="u-cat">{{ $stkPost->category->name }}</span>
                                         </div>
                                         <div class="text-nowrap">
-                                            <span class="u-time">{{ $stkPost->published_date }}<?php //echo timeago(get_gmt_from_date(get_the_time('Y-m-d', get_the_ID()))); ?></span>
+                                            <span class="u-time">{{ $stkPost->published_date }}<?php //echo timeago(get_gmt_from_date(get_the_time('Y-m-d', get_the_ID())));?></span>
                                         </div>
                                     </div>
                                 </div>

@@ -38,11 +38,11 @@ class TagController extends Controller
     public function show($slug)
     {
         $tag = Tag::withCount('posts')->where('slug', $slug)->first();
-//        $posts = Post::where('category_id', $category->id)->paginate(16);
-
-        $posts = collect([]);
+        $posts = Post::whereHas('tags', function ($query) use ($tag) {
+            $query->where('id', $tag->id);
+        })->paginate();
         Prism::setTitle($tag->name);
 
-        return view('categories.show', compact('posts', 'tag'));
+        return view('tags.show', compact('posts', 'tag'));
     }
 }

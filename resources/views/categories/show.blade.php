@@ -34,7 +34,7 @@
                                 </p>
                             </div>
                         @endif
-                        <?php //get_template_part('template-parts/ad/tax-ad'); ?>
+                        <?php //get_template_part('template-parts/ad/tax-ad');?>
                         @if($style === 'plain')
                     </div>
                 </div>

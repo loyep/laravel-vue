@@ -40,10 +40,12 @@
             )
             ?>
         <?php else: ?>
-            <?php get_template_part_with_vars('template-parts/recommended/authors-section',
-            array(
+            <?php get_template_part_with_vars(
+                'template-parts/recommended/authors-section',
+                array(
                 'item' => $item
-            )); ?>
+            )
+            ); ?>
         <?php endif; ?>
     @endforeach
 @endif
@@ -85,10 +87,12 @@
     )
     ?>
         <?php else: ?>
-            <?php get_template_part_with_vars('template-parts/recommended/authors-section',
-    array(
+            <?php get_template_part_with_vars(
+        'template-parts/recommended/authors-section',
+        array(
         'item' => $item
-    )); ?>
+    )
+    ); ?>
         <?php endif; ?>
     <?php endforeach; ?>
 <?php endif; ?>

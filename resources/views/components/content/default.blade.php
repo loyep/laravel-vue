@@ -28,8 +28,8 @@
                 </div>
             </div>
             <div class="sidebar col-lg-3 d-none d-lg-block">
-                <?php //get_template_part('template-parts/toc') ?>
-                <?php //get_sidebar() ?>
+                <?php //get_template_part('template-parts/toc')?>
+                <?php //get_sidebar()?>
             </div>
         </div>
     </div>

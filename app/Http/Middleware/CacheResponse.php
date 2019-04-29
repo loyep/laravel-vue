@@ -122,14 +122,17 @@ class CacheResponse
      */
     protected function responseCache()
     {
-        $this->responseCache = Cache::remember($this->cacheKey, $this->minutes, function () {
-            $this->cacheMissed();
-            $response = ($this->next)($this->request);
+        $this->responseCache = Cache::remember(
+            $this->cacheKey,
+            $this->minutes,
+            function () {
+                $this->cacheMissed();
+                $response = ($this->next)($this->request);
 
-            return $this->resolveResponseCache($response) + [
+                return $this->resolveResponseCache($response) + [
                     'cacheExpireAt' => Carbon::now()->addMinutes($this->minutes)->format('Y-m-d H:i:s T'),
                 ];
-        }
+            }
         );
 
         return $this->responseCache;

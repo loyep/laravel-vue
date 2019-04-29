@@ -113,7 +113,8 @@ class AuthService extends BaseService
         );
 
         $user = $this->auth->attempt(
-            $credentials, $remember
+            $credentials,
+            $remember
         );
 
         if (!empty($token) || !empty($user)) {
