@@ -61,7 +61,7 @@ class PostController extends Controller
             abort(404);
         }
 
-        return view('posts.show', compact('post', 'author', 'category', 'is_like', 'content'));
+        return view('posts.show', compact('post', 'content'));
     }
 
     protected function updateViewHistory(Request $request, $id)
