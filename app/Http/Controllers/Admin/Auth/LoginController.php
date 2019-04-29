@@ -136,7 +136,7 @@ class LoginController extends AuthController
      */
     protected function generateWelcome(User $user)
     {
-        $welcome = Str::ucfirst($user->display_name) . ', ' . self::getPeriodOfTime() . '好!';
+        $welcome = Str::ucfirst($user->display_name).', '.self::getPeriodOfTime().'好!';
 
         return $welcome;
     }
@@ -170,7 +170,6 @@ class LoginController extends AuthController
 
         return $period;
     }
-
 
     /**
      * Get the login username to be used by the controller.

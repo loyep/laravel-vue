@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 
 $factory->define(Category::class, function (Faker $faker) {
     $title = $faker->sentence(mt_rand(3, 10));
+
     return [
         'name'        => $title,
         'slug'        => Str::slug($title),

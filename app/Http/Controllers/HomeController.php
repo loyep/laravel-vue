@@ -7,8 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 
 /**
- * Class HomeController
- * @package App\Http\Controllers
+ * Class HomeController.
  */
 class HomeController extends Controller
 {
@@ -36,6 +35,7 @@ class HomeController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function history(Request $request)
@@ -47,6 +47,7 @@ class HomeController extends Controller
             $viewHistory = json_decode($viewHistory);
             $posts = Post::with('category')->withCount('comments')->orderByDesc('published_at')->whereIn('id', $viewHistory)->paginate();
         }
+
         return view('history', compact('posts'));
     }
 
@@ -60,7 +61,7 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $q = $request->q;
-        $posts = Post::where('title', 'like', '%' . $q . '%')->paginate();
+        $posts = Post::where('title', 'like', '%'.$q.'%')->paginate();
 
         return view('search', compact('q', 'posts'));
     }

@@ -43,7 +43,6 @@ class PrismAppServiceProvider extends ServiceProvider
         Blade::directive('endrouteisnot', function ($expression) {
             return '<?php endif; ?>';
         });
-
     }
 
     public function registerBladeDirectives()

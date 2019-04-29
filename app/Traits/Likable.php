@@ -4,7 +4,6 @@ namespace App\Traits;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Log;
 
 /**
  * Trait CanLike.
@@ -21,7 +20,7 @@ trait Likable
      */
     public function getLikeKey()
     {
-        return md5('prism_like_' . self::class);
+        return md5('prism_like_'.self::class);
     }
 
     /**
@@ -33,9 +32,10 @@ trait Likable
             self::$_liked = collect(explode(',', Cookie::get($this->getLikeKey())))->filter(function ($item) {
                 return !empty($item);
             })->map(function ($item) {
-                return (int)$item;
+                return (int) $item;
             });
         }
+
         return self::$_liked->contains($this->id);
     }
 
@@ -52,6 +52,7 @@ trait Likable
         }
 //        $this->save();
         Cookie::queue($this->getLikeKey(), self::$_liked->implode(','), 99999);
+
         return $this->likes;
     }
 }

@@ -15,7 +15,6 @@ class MetaCollection extends Collection
     public function __get($key)
     {
         if (isset($this->items) && !empty($this->items)) {
-
             $meta = $this->first(function (Meta $meta) use ($key) {
                 return $meta->key === $key;
             });
@@ -25,9 +24,11 @@ class MetaCollection extends Collection
                 if (json_last_error() === JSON_ERROR_NONE) {
                     return $res;
                 }
+
                 return $meta->value;
             }
-            return null;
+
+            return;
         }
     }
 

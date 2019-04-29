@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Services\AuthService;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
@@ -11,7 +10,6 @@ use Illuminate\Routing\Controller as BaseController;
  */
 class AuthController extends BaseController
 {
-
     /**
      * @var AuthService
      */
