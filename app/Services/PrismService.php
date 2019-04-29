@@ -17,13 +17,14 @@ class PrismService
     {
         $links = [
             [
-                'url' => 'https://loyep.com',
-                'name' => 'Loyep',
-                'target' => '_blank'
-            ]
+                'url'    => 'https://loyep.com',
+                'name'   => 'Loyep',
+                'target' => '_blank',
+            ],
         ];
 
         $links = json_decode(json_encode($links));
+
         return $links;
     }
 
@@ -32,14 +33,15 @@ class PrismService
         $socials = [
             [
                 'name' => 'weibo',
-                'link' => '#'
+                'link' => '#',
             ],
             [
                 'name' => 'github',
-                'link' => 'https://github.com/loyep'
-            ]
+                'link' => 'https://github.com/loyep',
+            ],
         ];
         $socials = json_decode(json_encode($socials));
+
         return $socials;
     }
 

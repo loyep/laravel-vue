@@ -131,6 +131,7 @@ class Post extends BaseModel
         if (is_null($value) && !property_exists($this, $key)) {
             $value = $this->getMetaValue($key);
         }
+
         return $value;
     }
 }

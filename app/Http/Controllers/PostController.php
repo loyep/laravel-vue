@@ -6,7 +6,6 @@ use App\Facades\Prism;
 use App\Models\Post;
 use App\Traits\Likable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
@@ -45,7 +44,8 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param Request $request
-     * @param string $slug
+     * @param string  $slug
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Request $request, $slug)
@@ -69,7 +69,7 @@ class PostController extends Controller
         $history = collect(explode(',', Cookie::get('view_history')))->filter(function ($item) {
             return !empty($item);
         })->map(function ($item) {
-            return (int)$item;
+            return (int) $item;
         });
 
         if (!$history->some($id)) {
@@ -86,7 +86,7 @@ class PostController extends Controller
         $content = preg_replace('# #', '', $content);
         $res = mb_substr($content, 0, $count, 'UTF-8');
         if (mb_strlen($content, 'UTF-8') > $count) {
-            $res = $res . '...';
+            $res = $res.'...';
         }
 
         return $res;
@@ -100,9 +100,9 @@ class PostController extends Controller
 
             return response([
                 'result' => true,
-                'data' => [
+                'data'   => [
                     'likesCount' => $post->likes,
-                    'isLike' => $post->isLiked()
+                    'isLike'     => $post->isLiked(),
                 ],
             ]);
         } catch (ModelNotFoundException $e) {

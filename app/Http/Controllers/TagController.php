@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Facades\Prism;
-use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 
@@ -43,6 +42,7 @@ class TagController extends Controller
 
         $posts = collect([]);
         Prism::setTitle($tag->name);
+
         return view('categories.show', compact('posts', 'tag'));
     }
 }
