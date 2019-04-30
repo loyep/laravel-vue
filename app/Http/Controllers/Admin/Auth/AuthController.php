@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\Services\AuthService;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
@@ -10,18 +9,5 @@ use Illuminate\Routing\Controller as BaseController;
  */
 class AuthController extends BaseController
 {
-    /**
-     * @var AuthService
-     */
-    protected $auth;
 
-    /**
-     * AuthController constructor.
-     *
-     * @param AuthService $auth
-     */
-    public function __construct(AuthService $auth)
-    {
-        $this->auth = $auth;
-    }
 }

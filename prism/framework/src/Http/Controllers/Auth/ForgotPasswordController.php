@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace Loyep\Prism\Http\Controllers\Auth;
 
-use App\Http\Controllers\Admin\Controller;
 use App\Services\AuthService;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Loyep\Prism\Http\Controllers\Controller;
 
 class ForgotPasswordController extends Controller
 {
@@ -43,7 +43,7 @@ class ForgotPasswordController extends Controller
      *
      * @param Request $request
      *
-     * @return RedirectResponse|JsonResponse
+     * @return JsonResponse
      */
     public function sendResetLinkEmail(Request $request)
     {

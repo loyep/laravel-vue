@@ -176,7 +176,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\PrismAppServiceProvider::class,
-        App\Providers\PrismAdminServiceProvider::class,
     ],
 
     /*

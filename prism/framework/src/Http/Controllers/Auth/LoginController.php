@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace Loyep\Prism\Http\Controllers\Auth;
 
-use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use App\Services\AuthService;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -11,11 +10,13 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Loyep\Prism\Http\Controllers\Controller;
+use Loyep\Prism\Http\Requests\Auth\LoginRequest;
 
 /**
  * Class LoginController.
  */
-class LoginController extends AuthController
+class LoginController extends Controller
 {
     use ThrottlesLogins;
 
@@ -57,7 +58,7 @@ class LoginController extends AuthController
         $this->auth->logout($request);
 
         return response()->json([
-            'result'  => true,
+            'result' => true,
             'message' => '',
         ]);
     }
@@ -67,9 +68,9 @@ class LoginController extends AuthController
      *
      * @param Request $request
      *
+     * @return Response|void
      * @throws ValidationException
      *
-     * @return Response|void
      */
     public function login(Request $request)
     {
@@ -117,7 +118,7 @@ class LoginController extends AuthController
         $type = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
         return [
-            $type      => $username,
+            $type => $username,
             'password' => $request->input('password'),
         ];
     }
@@ -139,11 +140,11 @@ class LoginController extends AuthController
         return response()
             ->json([
                 'data' => [
-                    'token'      => 'Bearer '.$token,
-                    'welcome'    => $welcome,
+                    'token' => 'Bearer ' . $token,
+                    'welcome' => $welcome,
                 ],
             ])
-            ->header('authorization', 'Bearer '.$token);
+            ->header('authorization', 'Bearer ' . $token);
     }
 
     /**
@@ -153,7 +154,7 @@ class LoginController extends AuthController
      */
     protected function generateWelcome(User $user)
     {
-        $welcome = Str::ucfirst($user->display_name).', '.self::getPeriodOfTime().'好!';
+        $welcome = Str::ucfirst($user->display_name) . ', ' . self::getPeriodOfTime() . '好!';
 
         return $welcome;
     }
