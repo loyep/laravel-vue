@@ -10,7 +10,7 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "loyep/prism": "dev-master",
-        "loyep/prism-framework": "dev-master",
+        "loyep/prism-core": "dev-master",
         "predis/predis": "^1.1",
         "prettus/l5-repository": "^2.6",
         "simplesoftwareio/simple-qrcode": "^2.0"
@@ -25,6 +25,12 @@
         "nunomaduro/larastan": "^0.3.16",
         "phpunit/phpunit": "^7.5"
     },
+    "repositories": {
+        "prism": {
+            "type": "path",
+            "url": "./prism/core"
+        }
+    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
@@ -33,6 +39,13 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "merge-plugin": {
+            "include": [
+                "prism/*/*/composer.json"
+            ],
+            "recurse": true,
+            "replace": false
         }
     },
     "autoload": {
@@ -65,11 +78,5 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    },
-    "repositories": {
-        "prism": {
-            "type": "path",
-            "url": "./prism/framework"
-        }
     }
 }

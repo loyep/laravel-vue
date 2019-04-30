@@ -1,10 +1,13 @@
 {
-  "name": "loyep/prism-framework",
+  "name": "loyep/prism-core",
   "description": "A wonderful administration panel.",
-  "keywords": [
-    "laravel",
-    "admin"
-  ],
+  "homepage": "https://github.com/loyep/prism",
+  "type": "laravel-bundle",
+  "keywords": [ "laravel", "admin", "prism" ],
+  "support": {
+    "source": "https://github.com/loyep/prism-core",
+    "issues": "https://github.com/loyep/prism-core/issues"
+  },
   "license": "MIT",
   "authors": [
     {
