@@ -3,9 +3,12 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Response;
 
 abstract class Request extends FormRequest
 {
+    protected $rules = [];
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -65,4 +68,11 @@ abstract class Request extends FormRequest
     {
         return [];
     }
+
+//    public function response(array $errors)
+//    {
+//        if ($this->ajax() || $this->wantsJson())
+//        {
+//        }
+//    }
 }

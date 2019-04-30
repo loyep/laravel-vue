@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Menu extends BaseModel
+class Menu extends Model
 {
     //
 }

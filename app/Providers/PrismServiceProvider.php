@@ -1,9 +1,10 @@
 <?php
 
-namespace Loyep\Prism\Providers;
+namespace App\Providers;
 
-use Loyep\Prism\Facades\PrismAdmin;
-use Loyep\Prism\Support\PrismApp;
+use App\Prism\Prism;
+use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,13 +17,11 @@ class PrismServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('prism.app', function () {
-            return $this->app->make(PrismApp::class);
+        $this->app->singleton('prism', function () {
+            return $this->app->make(Prism::class);
         });
 
-        $this->app->singleton('prism.admin', function () {
-            return $this->app->make(PrismAdmin::class);
-        });
+        $this->loadRoutes();
     }
 
     /**
@@ -32,8 +31,28 @@ class PrismServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutes();
+        AbstractPaginator::defaultView('vendor.pagination');
+
+        // @routeis
+        Blade::directive('routeis', function ($expression) {
+            return "<?php if (fnmatch({$expression}, Route::currentRouteName())) : ?>";
+        });
+        Blade::directive('endrouteis', function ($expression) {
+            return '<?php endif; ?>';
+        });
+        Blade::directive('routeisnot', function ($expression) {
+            return "<?php if (! fnmatch({$expression}, Route::currentRouteName())) : ?>";
+        });
+        Blade::directive('endrouteisnot', function ($expression) {
+            return '<?php endif; ?>';
+        });
     }
+
+    public function registerBladeDirectives()
+    {
+        $directives = require __DIR__ . '/directives.php';
+    }
+
 
     /**
      * Define the "admin" routes for the application.
@@ -44,7 +63,7 @@ class PrismServiceProvider extends ServiceProvider
      */
     protected function loadRoutes()
     {
-        $prefix = PrismAdmin::path();
+        $prefix = config('prism.admin.path');
         $namespace = '\App\Http\Controllers\Admin';
 
         Route::group([

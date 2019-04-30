@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Permission extends BaseModel
+class Permission extends Model
 {
     //
 }

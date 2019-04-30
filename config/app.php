@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'PrismApp'),
+    'name' => env('APP_NAME', 'Prism'),
 
     /*
     |--------------------------------------------------------------------------
@@ -175,7 +175,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\PrismAppServiceProvider::class,
+        App\Providers\PrismServiceProvider::class,
     ],
 
     /*
@@ -232,8 +232,7 @@ return [
          */
         'Image'     => Intervention\Image\Facades\Image::class,
         'Helper'    => App\Support\Helper::class,
-        'Prism'     => App\Prism\Facades\Prism::class,
-        'Admin'     => App\Prism\Facades\PrismAdmin::class,
+        'Prism'     => App\Facades\Prism::class,
 
     ],
 

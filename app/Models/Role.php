@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Role extends BaseModel
+class Role extends Model
 {
     //
 }

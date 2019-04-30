@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static void setShare(string $url, string $title = null, string $des = null, string $pic = null);
  * @method static void setTitle(string $title);
  *
- * @see \App\Prism\PrismApp
+ * @see \App\Prism\Prism
  */
 class Prism extends Facade
 {
@@ -22,6 +22,16 @@ class Prism extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'prism.app';
+        return 'prism';
+    }
+
+    /**
+     * Admin path.
+     *
+     * @return string
+     */
+    public static function path()
+    {
+        return config('prism.admin.path', '/prism');
     }
 }

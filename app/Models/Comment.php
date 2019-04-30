@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $ip
  * @property string $agent
  */
-class Comment extends BaseModel
+class Comment extends Model
 {
     /**
      * @var array

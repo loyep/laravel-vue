@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 /**
  * Class Link.
  */
-class Link extends BaseModel
+class Link extends Model
 {
     /**
      * @return MorphOne

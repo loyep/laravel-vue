@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Collection\MetaCollection;
+use App\Models\Collections\MetaCollection;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $key
  * @property string $value
  */
-class Meta extends BaseModel
+class Meta extends Model
 {
     /**
      * The attributes that are mass assignable.

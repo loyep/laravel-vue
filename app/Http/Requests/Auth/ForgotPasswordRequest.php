@@ -1,8 +1,13 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
-class ThemeRequest extends Request
+use App\Http\Requests\Request;
+
+/**
+ * Class ForgotPasswordRequest
+ */
+class ForgotPasswordRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -11,7 +16,7 @@ class ThemeRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +27,7 @@ class ThemeRequest extends Request
     public function rules()
     {
         return [
-            //
+            'email' => 'required|email',
         ];
     }
 }

@@ -1,10 +1,11 @@
 <?php
 
-namespace Loyep\Prism\Helpers;
+namespace App\Helpers;
 
 use App\Models\Setting;
 use App\Models\User;
 use App\Models\Widget;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -55,8 +56,6 @@ class Helper
      */
     public static function getMenus($name = 'home')
     {
-        Log::info($name);
-
         return [];
     }
 
@@ -66,7 +65,7 @@ class Helper
     }
 
     /**
-     * @return User|\Illuminate\Contracts\Auth\Authenticatable|null
+     * @return User|Authenticatable|null
      */
     public static function currentUser()
     {

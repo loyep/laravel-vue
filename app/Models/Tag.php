@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\URL;
  *
  * @property string slug
  */
-class Tag extends BaseModel
+class Tag extends Model
 {
     use SlugScope, MetaFields;
 

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Requests\RegisterRequest;
+use App\Models\User;
+use App\Services\AuthService;
+use App\Support\Helper;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Loyep\Prism\Http\Controllers\Controller;
 
 class RegisterController extends Controller
 {
@@ -21,39 +24,35 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    /**
+     * @var AuthService
+     */
+    protected $auth;
 
     /**
-     * Where to redirect users after registration.
+     * AuthController constructor.
      *
-     * @var string
+     * @param AuthService $auth
      */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct(AuthService $auth)
     {
-        $this->middleware('guest');
+        $this->auth = $auth;
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Handle a registration request for the application.
      *
-     * @param array $data
+     * @param RegisterRequest $request
      *
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return JsonResponse
      */
-    protected function validator(array $data)
+    public function register(RegisterRequest $request)
     {
-        return Validator::make($data, [
-            'name'     => ['required', 'string', 'max:255'],
-            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        $user = $this->create($request->all());
+
+        $this->auth->login($user);
+
+        return $this->registered($request, $user);
     }
 
     /**
@@ -61,14 +60,38 @@ class RegisterController extends Controller
      *
      * @param array $data
      *
-     * @return \App\User
+     * @return mixed
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
+        $user = User::create([
+            'name' => $data['name'],
+            'display_name' => $data['name'],
+            'email' => $data['email'],
+            'avatar' => Helper::getAvatar($data['email']),
             'password' => Hash::make($data['password']),
         ]);
+
+        return $user;
+    }
+
+    /**
+     * The user has been registered.
+     *
+     * @param Request $request
+     * @param mixed $user
+     *
+     * @return JsonResponse
+     */
+    protected function registered(Request $request, $user)
+    {
+        $token = $this->auth->getToken();
+
+        return response()
+            ->json([
+                'user' => $user,
+                'token' => $token,
+            ])
+            ->header('authorization', $token);
     }
 }

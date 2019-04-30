@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Facades\Prism;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
-use App\Prism\Facades\PrismAdmin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,8 +22,8 @@ class PrismController extends Controller
     public function index(Request $request)
     {
         $config = [
-            'base'           => PrismAdmin::path(),
-            'name'           => PrismAdmin::title(),
+            'base'           => Prism::path(),
+            'name'           => Prism::getTitle(),
             'description'    => '美好源于热爱',
             'setting_drawer' => true,
         ];

@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+/**
+ * Class TagRequest
+ */
 class TagRequest extends Request
 {
     /**

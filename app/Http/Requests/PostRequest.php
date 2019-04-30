@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+/**
+ * Class PostRequest
+ */
 class PostRequest extends Request
 {
     /**
@@ -14,6 +17,9 @@ class PostRequest extends Request
         return true;
     }
 
+    /**
+     * @return array
+     */
     public function createRules()
     {
         return [];

@@ -12,7 +12,7 @@ use App\Traits\Cachable;
  * @property string markdown
  * @property bool is_html
  */
-class Content extends BaseModel
+class Content extends Model
 {
     use Cachable;
 

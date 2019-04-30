@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\URL;
  * @property string slug
  * @property meta
  */
-class Post extends BaseModel
+class Post extends Model
 {
     use Cachable, Likable, SlugScope, MetaFields;
 

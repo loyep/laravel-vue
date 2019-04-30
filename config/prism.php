@@ -28,6 +28,15 @@ return [
 
     'url' => env('APP_URL', '/'),
 
+    'admin' => [
+
+        'name' => 'Prism',
+
+        'url' => '/',
+
+        'path' => '/admin'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Admin Path
@@ -45,9 +54,9 @@ return [
 
         'footer' => [
             'description' => '美好源于热爱',
-            'miitbeian'   => '',
-            'style'       => 2,
-            'black'       => true,
+            'miitbeian' => '',
+            'style' => 2,
+            'black' => true,
         ],
     ],
 

@@ -7,7 +7,7 @@ use App\Traits\Cachable;
 /**
  * Class Setting.
  */
-class Setting extends BaseModel
+class Setting extends Model
 {
     use Cachable;
 

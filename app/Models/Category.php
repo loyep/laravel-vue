@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\URL;
  *
  * @property string slug
  */
-class Category extends BaseModel
+class Category extends Model
 {
     use SlugScope, MetaFields;
 

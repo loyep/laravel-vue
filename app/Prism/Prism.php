@@ -4,14 +4,15 @@ namespace App\Prism;
 
 use App\Models\Post;
 use App\Services\ShareService;
+use Parsedown;
 
 /**
- * Class PrismApp.
+ * Class PrismA.
  */
-class PrismApp
+class Prism
 {
     /**
-     * @var \Parsedown
+     * @var Parsedown
      */
     protected $parser;
 
@@ -37,7 +38,7 @@ class PrismApp
      */
     public function name()
     {
-        return config('app.name');
+        return config('app.name', 'Prism');
     }
 
     /**
@@ -48,20 +49,31 @@ class PrismApp
     /**
      * @var string
      */
-    protected static $title;
+    protected $title;
 
     /**
-     * Set Prism title.
-     *
-     * @param string $title
+     * @return string
      */
-    public function setTitle(string $title)
+    public function getTitle(): string
     {
-        self::$title = $title;
+        $title = $this->name();
+        if (!empty($this->title)) {
+            $title = $this->title . ' - ' . $title;
+        }
+
+        return $title;
     }
 
     /**
-     * @param string      $url
+     * @param string $title
+     */
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @param string $url
      * @param string|null $title
      * @param string|null $des
      * @param string|null $pic
@@ -97,8 +109,8 @@ class PrismApp
     public function title()
     {
         $title = $this->name();
-        if (!empty(self::$title)) {
-            $title = self::$title.' - '.$title;
+        if (!empty($this->title)) {
+            $title = $this->title . ' - ' . $title;
         }
 
         return $title;
@@ -132,9 +144,9 @@ class PrismApp
     public function menus(string $group)
     {
         return [[
-            'url'    => '/',
+            'url' => '/',
             'target' => '__selft',
-            'title'  => '首页',
+            'title' => '首页',
         ]];
     }
 }
