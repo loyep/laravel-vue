@@ -1,6 +1,6 @@
 <?php
 
-use App\Support\Helper;
+use App\Helpers\Helper;
 
 if (!function_exists('get_menus')) {
     /**
@@ -21,7 +21,7 @@ if (!function_exists('get_option')) {
      * get option.
      *
      * @param string $name
-     * @param mixed  $default
+     * @param mixed $default
      *
      * @return string|null
      */
@@ -63,7 +63,7 @@ if (!function_exists('get_footer_year')) {
     {
         $current_year = intval(date('Y'));
         if (!empty($year)) {
-            return $year == $current_year ? $current_year : $year.'-'.$current_year;
+            return $year == $current_year ? $current_year : $year . '-' . $current_year;
         }
 
         return $current_year;

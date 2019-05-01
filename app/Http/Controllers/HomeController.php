@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Facades\Prism;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 
 /**
@@ -25,11 +26,11 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Response
      */
     public function index()
     {
-        $posts = Post::with('category')->withCount('comments')->orderByDesc('published_at')->paginate();
+        $posts = Post::with('category')->withCount('comments')->orderByDesc('published_at')->paginate(12);
 
         return view('home', compact('posts'));
     }
@@ -37,21 +38,27 @@ class HomeController extends Controller
     /**
      * @param Request $request
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Response
      */
     public function history(Request $request)
     {
-        Prism::setTitle('最近浏览');
-        $history = collect(explode(',', Cookie::get('view_history')))->filter(function ($item) {
+        $history = collect(explode(',', Cookie::get('history')))->filter(function ($item) {
             return !empty($item);
         })->map(function ($item) {
             return (int)$item;
         });
 
-        if (!empty($viewHistory)) {
-            $posts = Post::with('category')->withCount('comments')->orderByDesc('published_at')->whereIn('id', $history)->paginate();
-        }
+        Prism::setTitle('最近浏览');
+        if (!empty($history)) {
 
+            $posts = Post::with('category')
+                ->withCount('comments')
+                ->orderByDesc('published_at')
+                ->whereIn('id', $history)
+                ->paginate(12);
+
+            return view('history', compact('posts'));
+        }
         return view('history', compact('posts'));
     }
 
@@ -60,7 +67,7 @@ class HomeController extends Controller
      *
      * @param Request $request
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Response
      */
     public function search(Request $request)
     {

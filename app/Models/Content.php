@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Prism\Facades\Prism;
+use App\Facades\Prism;
 use App\Traits\Cachable;
 
 /**

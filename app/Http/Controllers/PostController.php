@@ -67,7 +67,7 @@ class PostController extends Controller
 
     protected function updateViewHistory(Request $request, $id)
     {
-        $history = collect(explode(',', Cookie::get('view_history')))->filter(function ($item) {
+        $history = collect(explode(',', Cookie::get('history')))->filter(function ($item) {
             return !empty($item);
         })->map(function ($item) {
             return (int) $item;
@@ -77,7 +77,7 @@ class PostController extends Controller
             $history->push($id);
         }
 
-        Cookie::queue('view_history', $history->implode(','), 99999);
+        Cookie::queue('history', $history->implode(','), 99999);
     }
 
     public function getExcerptFromContent($content, $count)

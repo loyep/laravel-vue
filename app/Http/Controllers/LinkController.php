@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Link;
+use Illuminate\Http\Response;
 
 class LinkController extends Controller
 {
@@ -19,7 +20,7 @@ class LinkController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -31,7 +32,7 @@ class LinkController extends Controller
      *
      * @param \App\Models\Link $link
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(Link $link)
     {
