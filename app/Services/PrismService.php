@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Category;
+use App\Models\Search\Search;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 
@@ -57,7 +58,7 @@ class PrismService
 
     public function searchTop()
     {
-        return Tag::take(3)->get();
+        return Search::orderByDesc('search_num')->take(5)->get();
     }
 
     public function footerCategories()

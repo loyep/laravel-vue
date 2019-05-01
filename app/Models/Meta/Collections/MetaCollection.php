@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Collections;
+namespace App\Models\Meta\Collections;
 
-use App\Models\Meta;
+use App\Models\Meta\Meta;
 use Illuminate\Database\Eloquent\Collection;
 
 class MetaCollection extends Collection

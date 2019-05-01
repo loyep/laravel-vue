@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Scopes\SlugScope;
 use App\Traits\Cachable;
 use App\Traits\Likable;
-use App\Traits\MetaFields;
+use App\Models\Meta\MetaFields;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\URL;
  * @property Content content
  * @property string published_at
  * @property string slug
- * @property meta
+ * @property object meta
  */
 class Post extends Model
 {

@@ -9,7 +9,7 @@
                 <div class="h4 mb-2">{{ __('prism.history.title') }}</div>
                 <p class="text-muted">{{ __('prism.history.description') }}</p>
             </div>
-            @if(!empty($posts) && $posts->total())
+            @if($posts->count() > 0)
                 <div class="row-md list-history list-grouped list-tb-padding">
                     @foreach($posts as $post)
                         @include('components.card.post', compact('post'))

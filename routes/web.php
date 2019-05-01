@@ -18,7 +18,6 @@ Route::get('/', 'HomeController@index')->name('home');
 
 // 搜索页
 Route::get('search', 'HomeController@search')->name('search');
-Route::get('search/{q}', 'HomeController@search')->name('search.show');
 
 // 短链接
 Route::get('t/{slug}', 'LinkController@short')->name('short');

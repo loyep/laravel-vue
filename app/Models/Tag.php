@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Meta\MetaFields;
 use App\Models\Scopes\SlugScope;
-use App\Traits\MetaFields;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\URL;

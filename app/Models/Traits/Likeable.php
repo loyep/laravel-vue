@@ -4,7 +4,7 @@ namespace App\Models\Traits;
 
 use Illuminate\Support\Facades\Cookie;
 
-trait CanLike
+trait Likeable
 {
     public function getLikeKey()
     {

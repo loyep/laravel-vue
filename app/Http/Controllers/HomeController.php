@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\Prism;
 use App\Models\Post;
+use App\Models\Search\Search;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
@@ -66,13 +67,22 @@ class HomeController extends Controller
      * Search.
      *
      * @param Request $request
-     *
      * @return Response
      */
     public function search(Request $request)
     {
         $q = $request->q;
         $posts = Post::where('title', 'like', '%' . $q . '%')->paginate();
+        $search = Search::where('query', $q)->first();
+        if (!$search) {
+            $search = new Search;
+            $search->query = $q;
+            $search->save();
+        }
+
+        if ($posts->count() > 0) {
+            $search->increment('search_num');
+        }
 
         return view('search', compact('q', 'posts'));
     }

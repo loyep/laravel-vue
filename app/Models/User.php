@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Meta\MetaFields;
 use App\Models\Scopes\SlugScope;
 use App\Support\Helper;
-use App\Traits\MetaFields;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;

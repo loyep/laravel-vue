@@ -18,7 +18,7 @@
                                 {{ __('prism.search.title') }}<span>{{ request()->q }}</span>
                             </div>
                         </div>
-                        @if(!empty($posts))
+                        @if($posts->count() > 0)
                             <div class="search-list {{ $grid_class }}">
                                 @foreach($posts as $post)
                                     @include('components.card.post', compact('post'))

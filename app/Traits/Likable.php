@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cookie;
 
 /**
- * Trait CanLike.
+ * Trait Likeable.
  */
 trait Likable
 {

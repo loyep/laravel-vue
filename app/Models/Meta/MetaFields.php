@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Traits;
+namespace App\Models\Meta;
 
-use App\Models\Meta;
+use App\Models\Meta\Models\Meta;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -24,10 +24,10 @@ trait MetaFields
     }
 
     /**
-     * @param Builder        $query
+     * @param Builder $query
      * @param array | string $meta
-     * @param null           $value
-     * @param string         $operator
+     * @param null $value
+     * @param string $operator
      *
      * @return Builder
      */
@@ -52,9 +52,9 @@ trait MetaFields
     }
 
     /**
-     * @param Builder      $query
+     * @param Builder $query
      * @param string|array $meta
-     * @param null         $value
+     * @param null $value
      *
      * @return Builder
      */
@@ -65,7 +65,7 @@ trait MetaFields
 
     /**
      * @param string $key
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -76,7 +76,7 @@ trait MetaFields
 
     /**
      * @param string|array $key
-     * @param mixed        $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -96,7 +96,7 @@ trait MetaFields
 
     /**
      * @param string $key
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -147,7 +147,7 @@ trait MetaFields
     private function createOneMeta($key, $value)
     {
         $meta = $this->meta()->create([
-            'key'   => $key,
+            'key' => $key,
             'value' => $value,
         ]);
         $this->load('meta');

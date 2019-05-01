@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Meta\Models;
 
-use App\Models\Collections\MetaCollection;
+use App\Models\Meta\Collections\MetaCollection;
+use App\Models\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
