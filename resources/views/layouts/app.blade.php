@@ -8,11 +8,11 @@
     <link rel="icon" href="{{ asset('favicon.png') }}" sizes="32x32"/>
     <link rel="icon" href="{{ asset('favicon.png') }}" sizes="192x192"/>
     <link rel="apple-touch-icon-precomposed" href="{{ asset('favicon.png') }}"/>
-    <title>@yield('page_title', Prism::title())</title>
+    <title>@yield('page_title', Prism::getTitle())</title>
     <link href="{{ mix('/css/app.css', 'app') }}" rel="stylesheet">
     @stack('styles')
 </head>
-<body>
+<body class="nice-style-shadow">
 <div id="app">
     @yield('content')
 </div>

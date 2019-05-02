@@ -6,7 +6,6 @@ use App\Models\Meta\MetaFields;
 use App\Models\Scopes\SlugScope;
 use App\Support\Helper;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\URL;
@@ -94,14 +93,6 @@ class User extends Authenticatable implements JWTSubject
             $this->attributes['avatar'] = Helper::getAvatar($value);
         }
         $this->attributes['email'] = $value;
-    }
-
-    /**
-     * @return MorphMany
-     */
-    public function meta(): MorphMany
-    {
-        return $this->morphMany(Meta::class, 'metaable');
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Meta\Models;
+namespace App\Models\Meta;
 
 use App\Models\Meta\Collections\MetaCollection;
 use App\Models\Model;

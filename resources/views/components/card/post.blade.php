@@ -34,20 +34,21 @@
                 <div>{{ $post->published_at }}</div>
                 <div class="flex-fill"></div>
                 <div class="text-nowrap">
-                     <span class="d-none d-lg-inline-block">
+                    <span class="d-none d-lg-inline-block pr-2">
                         <i class="text-sm iconfont icon-view"></i>
-                        <small>{{ $post->views }}</small>
+                        {{ $post->views }}
                     </span>
 
-                    @if (!$post->allow_comment)
-                        <span class="d-none d-lg-inline-block px-2">
+                    @if ($post->allow_comment)
+                        <span class="d-none d-lg-inline-block pr-2">
                             <i class="text-sm iconfont icon-duanxin"></i>
                             {{ $post->comments_count }}
                         </span>
                     @endif
 
-                    <span class="d-none d-lg-inline-block ">
-                        <i class="iconfont icon-shoucang"></i> {{ $post->likes }}
+                    <span class="d-none d-lg-inline-block">
+                        <i class="iconfont icon-shoucang"></i>
+                        {{ $post->likes }}
                     </span>
                 </div>
             </div>

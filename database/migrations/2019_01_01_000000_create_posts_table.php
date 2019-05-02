@@ -22,11 +22,14 @@ class CreatePostsTable extends Migration
             $table->text('keywords')->nullable();
             $table->text('description')->nullable();
             $table->text('excerpt')->nullable();
+            $table->string('source', 64)->nullable();
             $table->unsignedSmallInteger('order')->default(1);
             $table->unsignedBigInteger('views')->default(0);
             $table->unsignedBigInteger('likes')->default(0);
+            $table->unsignedBigInteger('comments_count')->default(0);
             $table->string('image')->nullable();
             $table->string('type')->default('post');
+            $table->string('template')->default('text');
             $table->boolean('is_top')->default(false);
             $table->enum('status', ['published', 'draft', 'private'])->default('published');
             $table->boolean('allow_comment')->default(true);

@@ -31,7 +31,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->withCount('comments')->orderByDesc('published_at')->paginate(12);
+        $posts = Post::with('category')->orderByDesc('published_at')->paginate(12);
 
         return view('home', compact('posts'));
     }
@@ -53,7 +53,6 @@ class HomeController extends Controller
         if (!empty($history)) {
 
             $posts = Post::with('category')
-                ->withCount('comments')
                 ->orderByDesc('published_at')
                 ->whereIn('id', $history)
                 ->paginate(12);

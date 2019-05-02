@@ -6,9 +6,7 @@
     <div class="flex-fill d-flex align-items-center">
         <div class="author-avatar">
             <a href="{{ $post->user->perm_link }}" class="author-popup">
-                <img alt='{{ $post->user->display_name }}' src='{{ $post->user->avatar }}' class='avatar w-40'
-                     height='40'
-                     width='40'/>
+                <img alt='{{ $post->user->display_name }}' src='{{ $post->user->avatar }}' class='avatar w-40' height='40' width='40'/>
             </a>
         </div>
         <div class="author-name d-flex flex-wrap flex-column mx-2 mx-md-3">

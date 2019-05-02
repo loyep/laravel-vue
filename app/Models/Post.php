@@ -118,13 +118,12 @@ class Post extends Model
      *
      * @return mixed
      */
-    public function __get($key)
-    {
-        $value = parent::__get($key);
-        if (is_null($value) && !property_exists($this, $key)) {
-            $value = $this->getMetaValue($key);
-        }
-
-        return $value;
-    }
+//    public function __get($key)
+//    {
+//        $value = parent::__get($key);
+//        if (is_null($value) && !property_exists($this, $key)) {
+//            $value = $this->getMetaValue($key);
+//        }
+//        return $value;
+//    }
 }

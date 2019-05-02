@@ -17,6 +17,7 @@ class CreateSearchesTable extends Migration
             $table->bigIncrements('id');
             $table->string('query');
             $table->unsignedBigInteger('search_num')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

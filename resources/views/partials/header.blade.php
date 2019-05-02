@@ -52,9 +52,9 @@
                     @auth
                         <li class="nav-item">
                             <a href="#" class="nav-link pr-lg-0">
-                            <span class="avatar w-32">
-                                <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"/>
-                            </span>
+                                <span class="avatar w-32">
+                                    <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" height="32" width="32"/>
+                                </span>
                             </a>
                         </li>
                     @else

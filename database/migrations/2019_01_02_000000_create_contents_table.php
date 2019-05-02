@@ -19,6 +19,7 @@ class CreateContentsTable extends Migration
             $table->boolean('is_html')->default(true);
             $table->mediumText('html')->nullable();
             $table->mediumText('markdown')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -2,7 +2,6 @@
 
 namespace App\Models\Meta;
 
-use App\Models\Meta\Models\Meta;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 

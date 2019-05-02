@@ -41,7 +41,7 @@ class CategoryController extends Controller
         $category = Category::withCount('posts')->where('slug', $slug)->first();
         $posts = Post::where('category_id', $category->id)->orderByDesc('published_at')->paginate(16);
 
-        $topPosts = Post::withCount('comments')->with('user')->orderByDesc('published_at')->take(3)->get();
+        $topPosts = Post::with('user')->orderByDesc('published_at')->take(3)->get();
 
         return view('categories.show', compact('posts', 'category', 'topPosts'));
     }

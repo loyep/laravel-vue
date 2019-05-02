@@ -40,7 +40,6 @@ class PostController extends Controller
     {
         $posts = $this->model
             ->with('tags:id,name', 'user:id,name', 'category:id,name')
-            ->withCount('comments')
             ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
                 $query->where('title', 'like', `%{$keywords}%`);
             })

@@ -22,6 +22,7 @@ class CreateSettingsTable extends Migration
             $table->string('type');
             $table->text('details')->nullable()->default(null);
             $table->integer('order')->default(1);
+            $table->softDeletes();
             $table->timestamps();
             $table->unique(['key', 'group']);
         });
