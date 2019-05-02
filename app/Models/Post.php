@@ -34,13 +34,6 @@ class Post extends Model
 {
     use Cachable, Likable, SlugScope, MetaFields;
 
-    /**
-     * @var array
-     */
-    protected $dates = [
-        'published_at',
-    ];
-
     protected $with = [
         'meta',
     ];

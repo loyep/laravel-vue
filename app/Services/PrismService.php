@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Category;
+use App\Models\Link;
 use App\Models\Search\Search;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
@@ -16,16 +17,7 @@ class PrismService
 
     public function links()
     {
-        $links = [
-            [
-                'url'    => 'https://loyep.com',
-                'name'   => 'Loyep',
-                'target' => '_blank',
-            ],
-        ];
-
-        $links = json_decode(json_encode($links));
-
+        $links = Link::take(6)->get();
         return $links;
     }
 

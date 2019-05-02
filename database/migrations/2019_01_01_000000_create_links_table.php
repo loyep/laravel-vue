@@ -15,6 +15,14 @@ class CreateLinksTable extends Migration
     {
         Schema::create('links', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name')->index();
+            $table->string('description')->nullable();
+            $table->string('url')->index();
+            $table->string('target')->default('_blank');
+            $table->unsignedBigInteger('link_num')->default(0);
+            $table->text('image')->nullable();
+            $table->boolean('status')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -145,7 +145,7 @@ class Prism
     {
         return [[
             'url' => '/',
-            'target' => '__selft',
+            'target' => '_self',
             'title' => '首页',
         ]];
     }
