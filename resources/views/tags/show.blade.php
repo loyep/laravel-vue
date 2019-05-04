@@ -1,13 +1,13 @@
 @php
-    $style = 'small';
+    $style = $tag->style;
     $grid_class = 'row-md list-archive list-grouped list-tb-padding';
 @endphp
 
 @extends('layouts.app')
 
 @section('content')
-    @include('partials.header', ['name' => Prism::name(), 'fixed' => false])
-    @include('components.top.post', compact('topPosts'))
+    @include('partials.header')
+    @include('components.top.post', compact('topPosts', 'style'))
     <main class="py-4 py-md-5">
         <div class="container">
             @if($style === 'plain')

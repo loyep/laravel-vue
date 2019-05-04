@@ -41,8 +41,13 @@ class TagController extends Controller
         $posts = Post::whereHas('tags', function ($query) use ($tag) {
             $query->where('id', $tag->id);
         })->paginate();
+
+        $topPosts = Post::whereHas('tags', function ($query) use ($tag) {
+            $query->where('id', $tag->id);
+        })->orderByDesc('published_at')->take(4)->get();
+
         Prism::setTitle($tag->name);
 
-        return view('tags.show', compact('posts', 'tag'));
+        return view('tags.show', compact('posts', 'tag', 'topPosts'));
     }
 }

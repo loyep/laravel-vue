@@ -1,12 +1,11 @@
 <main class="py-4 py-md-5">
     <div class="container">
-        @include('components.breadcrumbs', compact('post'))
-        <div class="row no-gutters">
-            <div class="col-12 col-lg-9 pr-lg-5">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-lg-10 p-lg-5">
                 <div class="post">
                     @if (!empty($post->image))
-                        <div class="post-cover mb-4">
-                            <div class="media media-3x1">
+                        <div class="post-cover mb-3 mb-md-5">
+                            <div class="media media-2x1">
                                 <div class="media-content" style="background-image:url('{{ $post->image }}')"></div>
                             </div>
                         </div>

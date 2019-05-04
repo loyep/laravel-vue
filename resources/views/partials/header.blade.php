@@ -9,6 +9,7 @@
     } else {
        $logo = asset('images/logo.png');
     }
+    $name = $name ?? Prism::name();
 @endphp
 <header class="header">
     <nav class="{{ $navClass }}">

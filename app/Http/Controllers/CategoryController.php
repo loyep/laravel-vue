@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Prism;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Response;
@@ -41,7 +42,9 @@ class CategoryController extends Controller
         $category = Category::withCount('posts')->where('slug', $slug)->first();
         $posts = Post::where('category_id', $category->id)->orderByDesc('published_at')->paginate(16);
 
-        $topPosts = Post::with('user')->orderByDesc('published_at')->take(3)->get();
+        $topPosts = Post::with('user')->orderByDesc('published_at')->take(4)->get();
+
+        Prism::setTitle($category->name);
 
         return view('categories.show', compact('posts', 'category', 'topPosts'));
     }

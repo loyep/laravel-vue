@@ -18,8 +18,8 @@ class CreateTagsTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
+            $table->string('style')->default('small');
             $table->string('description')->nullable();
-            $table->string('template')->nullable();
             $table->json('parameters')->nullable();
             $table->softDeletes();
             $table->timestamps();

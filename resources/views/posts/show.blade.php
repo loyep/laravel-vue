@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials.header', ['name' => Prism::name(), 'fixed' => false])
-    @component('components.content.default', compact('post', 'content'))
-
-    @endcomponent
+    @include('partials.header')
+    @include('components.content.' . $post->format, compact('post', 'content'))
+    @include('components.post.related', compact('post'))
     @include('partials.footer')
 @endsection

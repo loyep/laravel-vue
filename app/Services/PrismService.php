@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Category;
 use App\Models\Link;
 use App\Models\Search\Search;
+use App\Models\Setting;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
@@ -37,27 +38,11 @@ class PrismService
      */
     public function socials()
     {
-        $socials = [
-            [
-                'name' => 'weibo',
-                'link' => '#',
-            ],
-            [
-                'name' => 'github',
-                'link' => 'https://github.com/loyep',
-            ],
-        ];
-        $socials = json_decode(json_encode($socials));
-
-        return $socials;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isHome()
-    {
-        return Route::currentRouteName() === 'home';
+        $socials = Setting::where('group', 'system')->where('key', 'social')->first();
+        if (!empty($socials)) {
+            return $socials->value;
+        }
+        return [];
     }
 
     /**
@@ -74,8 +59,22 @@ class PrismService
     public function searchTop()
     {
         return Cache::remember('search_top', 60, function () {
-            return Search::orderByDesc('search_num')->take(5)->get();
+            return Search::orderByDesc('search_num')->take(8)->get();
         });
+    }
+
+    /**
+     * @param string $group
+     * @return mixed
+     */
+    public function notice($group = 'system')
+    {
+        $notice = Setting::where('group', $group)->where('key', 'notice')->first();
+        if (!empty($notice)) {
+//            dd($notice->value);
+            return $notice->value;
+        }
+        return null;
     }
 
     /**

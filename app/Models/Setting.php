@@ -20,17 +20,24 @@ class Setting extends Model
         'key', 'display_name', 'value', 'details', 'type', 'group',
     ];
 
-    /**
-     * @return array
-     */
-    public function toArray()
+    public function setDetailsAttribute($value)
     {
-        if ($this instanceof self) {
-            return [
-                $this->key => $this->value,
-            ];
-        }
+        $this->attributes['details'] = json_encode($value);
+    }
 
-        return parent::toArray();
+    public function getDetailsAttribute($value)
+    {
+        return json_decode(!empty($value) ? $value : '{}');
+    }
+
+
+    public function setValueAttribute($value)
+    {
+        $this->attributes['value'] = json_encode($value);
+    }
+
+    public function getValueAttribute($value)
+    {
+        return json_decode(!empty($value) ? $value : '{}');
     }
 }

@@ -14,20 +14,21 @@ return [
 
     'footer' => [
         'categories' => 'Categories',
-        'tags'       => 'Tags',
-        'links'      => 'Links',
+        'tags' => 'Tags',
+        'links' => 'Links',
     ],
     'search' => [
-        'title'        => 'Search: ',
-        'placeholder'  => 'Type Something...',
+        'title' => 'Search: ',
+        'placeholder' => 'Type Something...',
         'top_keywords' => 'Top Keywords',
     ],
     'post' => [
         'like' => 'Like',
-        'on'   => 'Posted on',
+        'on' => 'Posted on',
+        'related' => 'Related Posts',
     ],
     'history' => [
-        'title'       => 'Browsing History',
+        'title' => 'Browsing History',
         'description' => 'Recent browsing history is only stored on your drive and keeps up to 20 records at maximum.',
     ],
 ];
