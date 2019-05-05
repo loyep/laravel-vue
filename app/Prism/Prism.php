@@ -58,7 +58,7 @@ class Prism
     {
         $title = $this->name();
         if (!empty($this->title)) {
-            $title = $this->title . ' - ' . $title;
+            $title = $this->title.' - '.$title;
         }
 
         return $title;
@@ -73,7 +73,7 @@ class Prism
     }
 
     /**
-     * @param string $url
+     * @param string      $url
      * @param string|null $title
      * @param string|null $des
      * @param string|null $pic
@@ -110,7 +110,7 @@ class Prism
     {
         $title = $this->name();
         if (!empty($this->title)) {
-            $title = $this->title . ' - ' . $title;
+            $title = $this->title.' - '.$title;
         }
 
         return $title;
@@ -144,9 +144,9 @@ class Prism
     public function menus(string $group)
     {
         return [[
-            'url' => '/',
+            'url'    => '/',
             'target' => '_self',
-            'title' => '首页',
+            'title'  => '首页',
         ]];
     }
 }

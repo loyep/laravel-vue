@@ -40,6 +40,7 @@ class UserController extends Controller
         $user = User::withCount('posts')->where('name', $name)->firstOrFail();
         $posts = Post::where('user_id', $user->id)->paginate();
         Prism::setTitle($user->display_name);
+
         return view('user.show', compact('user', 'posts'));
     }
 }

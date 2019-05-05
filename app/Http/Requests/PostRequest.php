@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 /**
- * Class PostRequest
+ * Class PostRequest.
  */
 class PostRequest extends Request
 {
