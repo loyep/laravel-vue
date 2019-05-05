@@ -8,11 +8,9 @@ use App\Models\Search\Search;
 use App\Models\Setting;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Route;
 
 /**
- * Class PrismService
- * @package App\Services
+ * Class PrismService.
  */
 class PrismService
 {
@@ -30,6 +28,7 @@ class PrismService
     public function links()
     {
         $links = Link::take(6)->get();
+
         return $links;
     }
 
@@ -42,6 +41,7 @@ class PrismService
         if (!empty($socials)) {
             return $socials->value;
         }
+
         return [];
     }
 
@@ -65,6 +65,7 @@ class PrismService
 
     /**
      * @param string $group
+     *
      * @return mixed
      */
     public function notice($group = 'system')
@@ -74,7 +75,6 @@ class PrismService
 //            dd($notice->value);
             return $notice->value;
         }
-        return null;
     }
 
     /**

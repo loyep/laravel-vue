@@ -47,12 +47,11 @@ class HomeController extends Controller
         $history = collect(explode(',', Cookie::get('history')))->filter(function ($item) {
             return !empty($item);
         })->map(function ($item) {
-            return (int)$item;
+            return (int) $item;
         });
 
         Prism::setTitle('最近浏览');
         if (!empty($history)) {
-
             $posts = Post::with('category')
                 ->orderByDesc('published_at')
                 ->whereIn('id', $history)
@@ -60,6 +59,7 @@ class HomeController extends Controller
 
             return view('history', compact('posts'));
         }
+
         return view('history', compact('posts'));
     }
 
@@ -67,15 +67,16 @@ class HomeController extends Controller
      * Search.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function search(Request $request)
     {
         $q = $request->q;
-        $posts = Post::where('title', 'like', '%' . $q . '%')->paginate();
+        $posts = Post::where('title', 'like', '%'.$q.'%')->paginate();
         $search = Search::where('query', $q)->first();
         if (!$search) {
-            $search = new Search;
+            $search = new Search();
             $search->query = $q;
             $search->save();
         }
@@ -94,8 +95,10 @@ class HomeController extends Controller
     {
         $view = Cache::remember('feed', -1, function () {
             $posts = Post::all();
+
             return view('feed', compact('posts'))->render();
         });
+
         return response($view)->header('Content-Type', 'text/xml');
     }
 
@@ -106,8 +109,10 @@ class HomeController extends Controller
     {
         $view = Cache::remember('sitemap', -1, function () {
             $posts = Post::all();
+
             return view('sitemap', compact('posts'))->render();
         });
+
         return response($view)->header('Content-Type', 'text/xml');
     }
 }

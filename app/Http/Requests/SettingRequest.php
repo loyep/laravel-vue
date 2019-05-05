@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 /**
- * Class SettingRequest
+ * Class SettingRequest.
  */
 class SettingRequest extends Request
 {

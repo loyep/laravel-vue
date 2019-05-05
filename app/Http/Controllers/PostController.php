@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Facades\Prism;
 use App\Models\Post;
-use App\Models\Search\Search;
 use App\Traits\Likable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;

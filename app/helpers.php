@@ -21,7 +21,7 @@ if (!function_exists('get_option')) {
      * get option.
      *
      * @param string $name
-     * @param mixed $default
+     * @param mixed  $default
      *
      * @return string|null
      */
@@ -36,8 +36,9 @@ if (!function_exists('thumbnail')) {
      * Thumbnail.
      *
      * @param $path
-     * @param array $size
+     * @param array  $size
      * @param string $et
+     *
      * @return mixed|string|null
      */
     function thumbnail($path, $size = ['w' => 450, 'h' => 300], $set = 'small')
@@ -63,7 +64,7 @@ if (!function_exists('get_footer_year')) {
     {
         $current_year = intval(date('Y'));
         if (!empty($year)) {
-            return $year == $current_year ? $current_year : $year . '-' . $current_year;
+            return $year == $current_year ? $current_year : $year.'-'.$current_year;
         }
 
         return $current_year;

@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ return array(
     |
     */
 
-    'route' => "img-cache",
+    'route' => 'img-cache',
 
     /*
     |--------------------------------------------------------------------------
@@ -30,9 +30,9 @@ return array(
     |
     */
 
-    'paths' => array(
-        public_path('img-cache')
-    ),
+    'paths' => [
+        public_path('img-cache'),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -50,11 +50,11 @@ return array(
     |
     */
 
-    'templates' => array(
-        'small' => 'Intervention\Image\Templates\Small',
+    'templates' => [
+        'small'  => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
-        'large' => 'Intervention\Image\Templates\Large',
-    ),
+        'large'  => 'Intervention\Image\Templates\Large',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -67,4 +67,4 @@ return array(
 
     'lifetime' => 43200,
 
-);
+];

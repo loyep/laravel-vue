@@ -8,7 +8,6 @@ use App\Models\Widget;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class Helper
@@ -28,7 +27,7 @@ class Helper
      *
      * @param string $name
      * @param string $default
-     * @param null $group
+     * @param null   $group
      *
      * @return mixed|string|null
      */
@@ -112,6 +111,6 @@ class Helper
         $url = Arr::pull($config, 'url', 'https://secure.gravatar.com/avatar');
         $query = http_build_query($config, '', '&', PHP_QUERY_RFC3986);
 
-        return $url . '/' . $hash . ($query ? '?' . $query : '');
+        return $url.'/'.$hash.($query ? '?'.$query : '');
     }
 }

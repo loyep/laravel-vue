@@ -5,7 +5,7 @@ namespace App\Http\Requests\Auth;
 use App\Http\Requests\Request;
 
 /**
- * Class ForgotPasswordRequest
+ * Class ForgotPasswordRequest.
  */
 class ForgotPasswordRequest extends Request
 {

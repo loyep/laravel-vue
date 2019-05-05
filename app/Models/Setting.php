@@ -30,7 +30,6 @@ class Setting extends Model
         return json_decode(!empty($value) ? $value : '{}');
     }
 
-
     public function setValueAttribute($value)
     {
         $this->attributes['value'] = json_encode($value);

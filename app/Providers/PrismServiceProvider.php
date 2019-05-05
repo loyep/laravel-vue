@@ -50,9 +50,8 @@ class PrismServiceProvider extends ServiceProvider
 
     public function registerBladeDirectives()
     {
-        $directives = require __DIR__ . '/directives.php';
+        $directives = require __DIR__.'/directives.php';
     }
-
 
     /**
      * Define the "admin" routes for the application.
