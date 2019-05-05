@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Class MenuItem
- * @package App\Models
+ * Class MenuItem.
  */
 class MenuItem extends Model
 {
