@@ -56,7 +56,7 @@ class LoginController extends Controller
         $this->auth->logout($request);
 
         return response()->json([
-            'result'  => true,
+            'result' => true,
             'message' => '',
         ]);
     }
@@ -66,9 +66,9 @@ class LoginController extends Controller
      *
      * @param Request $request
      *
+     * @return JsonResponse
      * @throws ValidationException
      *
-     * @return JsonResponse
      */
     public function login(Request $request)
     {
@@ -116,7 +116,7 @@ class LoginController extends Controller
         $type = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
         return [
-            $type      => $username,
+            $type => $username,
             'password' => $request->input('password'),
         ];
     }
@@ -138,11 +138,11 @@ class LoginController extends Controller
         return response()
             ->json([
                 'data' => [
-                    'token'   => 'Bearer '.$token,
+                    'token' => 'Bearer ' . $token,
                     'welcome' => $welcome,
                 ],
             ])
-            ->header('authorization', 'Bearer '.$token);
+            ->header('authorization', 'Bearer ' . $token);
     }
 
     /**
@@ -152,7 +152,7 @@ class LoginController extends Controller
      */
     protected function generateWelcome(User $user)
     {
-        $welcome = $user->display_name.', 欢迎回来!';
+        $welcome = $user->display_name . ', 欢迎回来!';
 
         return $welcome;
     }
@@ -160,7 +160,10 @@ class LoginController extends Controller
     /**
      * Get the login username to be used by the controller.
      *
-     * @var string
+     * @return string
      */
-    protected $username = 'username';
+    protected function username()
+    {
+        return 'username';
+    }
 }
