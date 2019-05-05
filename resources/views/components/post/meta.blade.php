@@ -1,7 +1,3 @@
-@php
-    $is_liked = true;
-@endphp
-
 <div class="post-meta d-flex align-items-center flex-row text-sm text-muted my-4">
     <div class="flex-fill d-flex align-items-center">
         <div class="author-avatar">
@@ -16,7 +12,7 @@
                 </a>
             </div>
             <div class="text-xs text-muted">
-                <time class="date mr-1">{{ $post->published_at }}</time><i class="d-none d-md-inline-block">{{ __('prism.post.on') }}</i>
+                <time class="date mr-1">{{ $post->getPublishedDate() }}</time><i class="d-none d-md-inline-block">{{ __('prism.post.on') }}</i>
                 <a class="text-secondary" href="{{ $post->category->perm_link }}" rel="category tag" target="_blank">
                     {{ $post->category->name }}
                 </a>

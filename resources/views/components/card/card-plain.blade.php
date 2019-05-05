@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="list-footer d-flex align-items-center text-muted text-xs m-0">
-            <div>{{ $post->published_at }}</div>
+            <div>{{ $post->getPublishedDate() }}</div>
             <div class="flex-fill"></div>
             <div class="text-nowrap">
                 <span class="d-none d-lg-inline-block pr-2">

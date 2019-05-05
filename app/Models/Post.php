@@ -7,6 +7,7 @@ use App\Models\Scopes\SlugScope;
 use App\Traits\Cachable;
 use App\Traits\Likable;
 use Carbon\Carbon;
+use Carbon\Traits\Date;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\URL;
  * @property string title
  * @property string excerpt
  * @property Content content
- * @property string published_at
+ * @property Date published_at
  * @property string slug
  * @property object meta
  */
@@ -36,6 +37,10 @@ class Post extends Model
 
     protected $with = [
         'meta',
+    ];
+
+    protected $dates = [
+        'published_at'
     ];
 
     /**
@@ -52,15 +57,6 @@ class Post extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function getPublishedAtAttribute($date)
-    {
-        if (Carbon::now() > Carbon::parse($date)->addDays(7)) {
-            return Carbon::parse($date)->toDateString();
-        }
-
-        return Carbon::parse($date)->diffForHumans();
     }
 
     /**
@@ -107,7 +103,12 @@ class Post extends Model
 
     public function getPublishedDate()
     {
-        return Carbon::parse($this->published_at)->toDateString();
+        $date = $this->published_at;
+        if (Carbon::now() > $this->published_at->addDays(7)) {
+            return $date->toDateString();
+        }
+
+        return $date->diffForHumans();
     }
 
     /**

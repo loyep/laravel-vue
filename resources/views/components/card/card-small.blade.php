@@ -31,7 +31,7 @@
                    target="_blank">{{ $post->title }}</a>
             </div>
             <div class="list-footer d-flex align-items-center text-muted text-xs mt-2">
-                <div>{{ $post->published_at }}</div>
+                <div>{{ $post->getPublishedDate() }}</div>
                 <div class="flex-fill"></div>
                 <div class="text-nowrap">
                     <span class="d-none d-lg-inline-block pr-2">
