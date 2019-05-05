@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 class PendingRouteRegistration
 {
-    protected $prefix = 'api';
+    protected $prefix = 'prism-api';
 
     /**
      * Indicates if the routes have been registered.
