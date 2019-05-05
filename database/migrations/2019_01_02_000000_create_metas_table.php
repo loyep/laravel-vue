@@ -17,7 +17,7 @@ class CreateMetasTable extends Migration
             $table->bigIncrements('id');
             $table->string('key');
             $table->morphs('metaable');
-            $table->json('value')->nullable();
+            $table->text('value')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
