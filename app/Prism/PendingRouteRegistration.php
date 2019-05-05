@@ -3,10 +3,10 @@
 namespace App\Prism;
 
 use Illuminate\Support\Facades\Route;
+use App\Facades\Prism;
 
 class PendingRouteRegistration
 {
-    protected $prefix = 'prism-api';
 
     /**
      * Indicates if the routes have been registered.
@@ -14,6 +14,11 @@ class PendingRouteRegistration
      * @var bool
      */
     protected $registered = false;
+
+    public function prefix()
+    {
+        return Prism::path() . '/api';
+    }
 
     /**
      * Register the Prism authentication routes.
@@ -24,7 +29,7 @@ class PendingRouteRegistration
     {
         Route::namespace('App\Http\Controllers\Auth')
             ->domain(config('prism.admin.domain', null))
-            ->prefix($this->prefix)
+            ->prefix($this->prefix())
             ->middleware(['guest:api'])
             ->group(function () {
                 Route::post('register', 'RegisterController@register')->name('register');
@@ -43,11 +48,11 @@ class PendingRouteRegistration
     {
         Route::namespace('App\Http\Controllers\Auth')
             ->domain(config('prism.admin.domain', null))
-            ->prefix($this->prefix)
+            ->prefix($this->prefix())
             ->middleware(['guest:api'])
-            ->group(function () {
-                Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
-            });
+        ->group(function () {
+            Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
+        });
 
         return $this;
     }
@@ -64,7 +69,7 @@ class PendingRouteRegistration
         Route::namespace('App\Http\Controllers\Auth')
             ->domain(config('prism.admin.domain', null))
             ->middleware(['auth:api'])
-            ->prefix($this->prefix)
+            ->prefix($this->prefix())
             ->group(function () {
                 Route::post('logout', 'LoginController@logout')->name('logout');
             });

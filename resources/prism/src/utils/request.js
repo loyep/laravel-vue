@@ -4,7 +4,7 @@ import { notification } from 'ant-design-vue'
 import axios from 'axios'
 
 const axiosRequestConfig = {
-  baseURL: 'prism-api', // api 的 base_url
+  baseURL: 'api', // api 的 base_url
   timeout: 5000, // 请求超时时间
   withCredentials: true // 携带cookie信息
 }
