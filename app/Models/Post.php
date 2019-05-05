@@ -105,10 +105,7 @@ class Post extends Model
         return $value ?: asset('static/images/default.png');
     }
 
-    /**
-     * @return string
-     */
-    public function getPublishedDateAttribute()
+    public function getPublishedDate()
     {
         return Carbon::parse($this->published_at)->toDateString();
     }
