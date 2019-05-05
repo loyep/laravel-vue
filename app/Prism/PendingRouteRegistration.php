@@ -17,7 +17,7 @@ class PendingRouteRegistration
 
     public function prefix()
     {
-        return Prism::path() . '/api';
+        return 'prism-api';
     }
 
     /**

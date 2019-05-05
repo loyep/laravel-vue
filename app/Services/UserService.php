@@ -6,24 +6,25 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 /**
  * Class UserService.
  */
-class UserService extends BaseService
+class UserService
 {
     /**
-     * @param UserRequest $request
+     * @param Request $request
      *
      * @return UserResource
      */
-    public function paginate(UserRequest $request)
+    public function paginate(Request $request)
     {
         $users = User::withCount('posts')
             ->when($name = $request->get('name'), function ($query) use ($name) {
-                $query->where('name', 'like', '%'.$name.'%');
+                $query->where('name', 'like', '%' . $name . '%');
             })
             ->paginate($request->get('per_page', 10));
 
@@ -33,12 +34,11 @@ class UserService extends BaseService
     /**
      * Display the specified resource.
      *
-     * @param UserRequest $request
-     * @param int         $id
+     * @param int $id
      *
      * @return UserResource
      */
-    public function show(UserRequest $request, $id)
+    public function show($id)
     {
         $user = User::findOrFail($id);
 
@@ -60,7 +60,7 @@ class UserService extends BaseService
 
         $response = [
             'message' => 'User created.',
-            'data'    => new UserResource($user),
+            'data' => new UserResource($user),
         ];
 
         return response()->json($response);
@@ -82,7 +82,7 @@ class UserService extends BaseService
         $user->save();
         $response = [
             'message' => 'User updated.',
-            'data'    => $user->toArray(),
+            'data' => $user->toArray(),
         ];
 
         return response()->json($response);
@@ -97,6 +97,10 @@ class UserService extends BaseService
      */
     public function destroy($id)
     {
+        if (is_string($id)) {
+            $id = explode(',', $id);
+        }
+
         User::destroy($id);
 
         return response()->json([
