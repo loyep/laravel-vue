@@ -102,13 +102,13 @@ if (Route::current()->named('home')) {
                                                 <span class="u-time">{{ $post->published_date }}</span>
                                             </div>
                                             <div class="text-nowrap">
-                                                <span class="u-view d-none d-lg-none"><i class="icon icon-eye"></i> {{ $post->views }}</span>
+                                                <span class="u-view d-none d-lg-none"><i class="icon icon-eye"></i> {{ $post->views_count }}</span>
 
                                                 <span class="u-comment d-none d-lg-inline-block"><i
                                                             class="fal fa-comment-alt-lines"></i>  {{ $post->comments_count }}</span>
 
                                                 <span class="u-like d-inline-block d-lg-none d-lg-inline-block"><i
-                                                            class="fal fa-heart"></i> {{ $post->likes }}</span>
+                                                            class="fal fa-heart"></i> {{ $post->likes_count }}</span>
                                             </div>
                                         </div>
 

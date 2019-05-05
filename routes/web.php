@@ -43,3 +43,10 @@ Route::get('tags', 'TagController@index')->name('tag.index');
 
 // 热门标签
 Route::get('history', 'HomeController@history')->name('history');
+
+// SiteMap
+Route::get('sitemap', 'HomeController@siteMap')->name('sitemap');
+Route::get('sitemap.xml', 'HomeController@siteMap');
+
+// RSS Feed
+Route::get('feed.xml', 'HomeController@feed')->name('feed');

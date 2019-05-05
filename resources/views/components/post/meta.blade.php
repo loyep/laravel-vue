@@ -26,7 +26,7 @@
     <div class="post-data text-nowrap align-items-center">
         <span class="d-none d-md-inline-block">
             <i class="text-lg iconfont icon-view"></i>
-            <small>{{ $post->views }}</small>
+            <small>{{ $post->views_count }}</small>
         </span>
         @if ($post->allow_comment)
             <span class="d-none d-md-inline-block">
@@ -37,7 +37,7 @@
         </span>
         @endif
         <span class="d-inline-block">
-            <like-button id="{{ $post->id }}" count="{{ $post->likes }}" value="{{ $post->isLiked() }}">
+            <like-button id="{{ $post->id }}" count="{{ $post->likes_count }}" value="{{ $post->isLiked() }}">
                 <i class="text-lg iconfont icon-shoucang"></i>
             </like-button>
         </span>

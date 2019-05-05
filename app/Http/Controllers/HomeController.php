@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Search\Search;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 
 /**
@@ -80,16 +81,33 @@ class HomeController extends Controller
         }
 
         if ($posts->count() > 0) {
-            $search->increment('search_num');
+            $search->increment('search_count');
         }
 
         return view('search', compact('q', 'posts'));
     }
 
     /**
-     * @param Request $request
+     * @return Response
      */
-    public function feed(Request $request)
+    public function feed()
     {
+        $view = Cache::remember('feed', -1, function () {
+            $posts = Post::all();
+            return view('feed', compact('posts'))->render();
+        });
+        return response($view)->header('Content-Type', 'text/xml');
+    }
+
+    /**
+     * @return Response
+     */
+    public function siteMap()
+    {
+        $view = Cache::remember('sitemap', -1, function () {
+            $posts = Post::all();
+            return view('sitemap', compact('posts'))->render();
+        });
+        return response($view)->header('Content-Type', 'text/xml');
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Meta\MetaFields;
 use App\Models\Scopes\SlugScope;
 use App\Traits\Cachable;
 use App\Traits\Likable;
-use App\Models\Meta\MetaFields;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\URL;
  *
  * @property User user
  * @property Category category
- * @property int likes
- * @property int views
+ * @property int likes_count
+ * @property int views_count
  * @property int id
  * @property-read  string perm_link
  * @property string image
@@ -126,4 +126,9 @@ class Post extends Model
 //        }
 //        return $value;
 //    }
+
+    public function getLink()
+    {
+        return URL::route('post.show', ['slug' => $this->slug]);
+    }
 }

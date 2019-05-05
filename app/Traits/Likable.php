@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cookie;
 
 /**
- * Trait Likeable.
+ * Trait Likable.
  */
 trait Likable
 {
@@ -45,14 +45,14 @@ trait Likable
             self::$_liked = self::$_liked->filter(function ($value) {
                 return $this->id !== $value;
             });
-            $this->decrement('likes');
+            $this->decrement('likes_count');
         } else {
             self::$_liked->push($this->id);
-            $this->increment('likes');
+            $this->increment('likes_count');
         }
 //        $this->save();
         Cookie::queue($this->getLikeKey(), self::$_liked->implode(','), 99999);
 
-        return $this->likes;
+        return $this->likes_count;
     }
 }

@@ -133,7 +133,7 @@ class Prism
      */
     public function stickyPosts($count = 4)
     {
-        return Post::withCount('comments')->with('category')->orderBy('comments_count', 'desc')->orderBy('views', 'desc')->take($count)->get();
+        return Post::withCount('comments')->with('category')->orderBy('comments_count', 'desc')->orderBy('views_count', 'desc')->take($count)->get();
     }
 
     /**

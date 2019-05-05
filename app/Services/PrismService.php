@@ -59,7 +59,7 @@ class PrismService
     public function searchTop()
     {
         return Cache::remember('search_top', 60, function () {
-            return Search::orderByDesc('search_num')->take(8)->get();
+            return Search::orderByDesc('search_count')->take(8)->get();
         });
     }
 

@@ -54,7 +54,7 @@ class PostController extends Controller
     {
         try {
             $post = Post::with('content', 'category', 'tags', 'user')->where('slug', $slug)->firstOrFail();
-            $post->increment('views');
+            $post->increment('views_count');
             $content = $post->content->content();
             $this->updateViewHistory($request, $post->id);
             $post->excerpt = $this->getExcerptFromContent($content, 120);
@@ -103,7 +103,7 @@ class PostController extends Controller
             return response([
                 'result' => true,
                 'data'   => [
-                    'likesCount' => $post->likes,
+                    'likesCount' => $post->likes_count,
                     'isLike'     => $post->isLiked(),
                 ],
             ]);

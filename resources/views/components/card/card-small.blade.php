@@ -36,7 +36,7 @@
                 <div class="text-nowrap">
                     <span class="d-none d-lg-inline-block pr-2">
                         <i class="text-sm iconfont icon-view"></i>
-                        {{ $post->views }}
+                        {{ $post->views_count }}
                     </span>
 
                     @if ($post->allow_comment)
@@ -48,7 +48,7 @@
 
                     <span class="d-none d-lg-inline-block">
                         <i class="iconfont icon-shoucang"></i>
-                        {{ $post->likes }}
+                        {{ $post->likes_count }}
                     </span>
                 </div>
             </div>
