@@ -51,7 +51,7 @@ class PrismServiceProvider extends ServiceProvider
 
     public function registerBladeDirectives()
     {
-        $directives = require __DIR__.'/directives.php';
+        $directives = require __DIR__ . '/directives.php';
     }
 
     /**
@@ -74,12 +74,13 @@ class PrismServiceProvider extends ServiceProvider
             Route::group([
                 'prefix' => $prefix,
             ], function () use ($prefix) {
+
+                Route::prefix('api')->middleware('api')->group(base_path('routes/admin.php'));
+
                 Route::get('/', 'PrismController@index')->name('dashboard');
+
                 Route::get('/{any}', 'PrismController@index')->where('any', '.*');
             });
-            Route::prefix('prism-api')
-                ->middleware('api')
-                ->group(base_path('routes/admin.php'));
         });
     }
 }
