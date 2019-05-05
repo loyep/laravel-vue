@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Cookie;
  */
 class HomeController extends Controller
 {
-
     /**
      * Show the application dashboard.
      *

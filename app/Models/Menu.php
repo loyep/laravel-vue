@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
 {
-
     protected $with = [
-        'items'
+        'items',
     ];
 
     /**

@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MenuItem extends Model
 {
-
     protected $with = [
-        'items'
+        'items',
     ];
 
     /**
@@ -20,10 +19,11 @@ class MenuItem extends Model
 
     public function items(): HasMany
     {
-        return $this->hasMany(MenuItem::class, 'parent', 'id');
+        return $this->hasMany(self::class, 'parent', 'id');
     }
 
-    public function getUrl() {
+    public function getUrl()
+    {
         return $this->url;
     }
 }

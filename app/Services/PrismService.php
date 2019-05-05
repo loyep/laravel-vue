@@ -91,6 +91,7 @@ class PrismService
         $menu = Menu::with(['items' => function ($query) {
             $query->where('parent', 0);
         }])->where('name', $name)->firstOrFail();
+
         return $menu;
     }
 }

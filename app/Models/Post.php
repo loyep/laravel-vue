@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Meta\MetaFields;
 use App\Models\Scopes\SlugScope;
-use App\Traits\Cachable;
 use App\Traits\Likable;
 use Carbon\Carbon;
 use Carbon\Traits\Date;
