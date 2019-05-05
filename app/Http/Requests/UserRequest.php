@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 /**
- * Class UserRequest
+ * Class UserRequest.
  */
 class UserRequest extends Request
 {

@@ -17,6 +17,7 @@ class VisitorLogMiddleware
      *
      * @param Request $request
      * @param Closure $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -25,18 +26,19 @@ class VisitorLogMiddleware
         $agent = new Agent();
         $agent->setUserAgent($request->userAgent());
         $visitor = Visitor::create([
-            'ip' => $request->getClientIp(),
+            'ip'         => $request->getClientIp(),
             'user_agent' => $request->userAgent(),
-            'path' => $request->path(),
-            'title' => Prism::getTitle(),
-            'location' => '无',
-            'browser' => $agent->browser($agent->getUserAgent()),
-            'is_robot' => $agent->isRobot($agent->getUserAgent()),
-            'device' => $agent->device($agent->getUserAgent()),
-            'languages' => implode(',', $agent->languages()),
-            'route' => Route::currentRouteName() ?? '',
+            'path'       => $request->path(),
+            'title'      => Prism::getTitle(),
+            'location'   => '无',
+            'browser'    => $agent->browser($agent->getUserAgent()),
+            'is_robot'   => $agent->isRobot($agent->getUserAgent()),
+            'device'     => $agent->device($agent->getUserAgent()),
+            'languages'  => implode(',', $agent->languages()),
+            'route'      => Route::currentRouteName() ?? '',
         ]);
         Log::info('visitor', $visitor->toArray());
+
         return $response;
     }
 }

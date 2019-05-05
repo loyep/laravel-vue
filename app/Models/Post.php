@@ -40,7 +40,7 @@ class Post extends Model
     ];
 
     protected $dates = [
-        'published_at'
+        'published_at',
     ];
 
     /**

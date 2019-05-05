@@ -65,11 +65,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'name' => $data['name'],
+            'name'         => $data['name'],
             'display_name' => $data['name'],
-            'email' => $data['email'],
-            'avatar' => Helper::getAvatar($data['email']),
-            'password' => Hash::make($data['password']),
+            'email'        => $data['email'],
+            'avatar'       => Helper::getAvatar($data['email']),
+            'password'     => Hash::make($data['password']),
         ]);
 
         return $user;
@@ -79,7 +79,7 @@ class RegisterController extends Controller
      * The user has been registered.
      *
      * @param Request $request
-     * @param mixed $user
+     * @param mixed   $user
      *
      * @return JsonResponse
      */
@@ -89,7 +89,7 @@ class RegisterController extends Controller
 
         return response()
             ->json([
-                'user' => $user,
+                'user'  => $user,
                 'token' => $token,
             ])
             ->header('authorization', $token);
