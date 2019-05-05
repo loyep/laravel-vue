@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Prism\PendingRouteRegistration;
 use App\Prism\Prism;
 use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Facades\Blade;
@@ -62,6 +63,8 @@ class PrismServiceProvider extends ServiceProvider
      */
     protected function loadRoutes()
     {
+        $register = new PendingRouteRegistration();
+        $register->withAuthenticationRoutes()->withPasswordResetRoutes();
         $prefix = config('prism.admin.path');
         $namespace = '\App\Http\Controllers\Admin';
 

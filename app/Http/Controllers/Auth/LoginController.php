@@ -7,10 +7,9 @@ use App\Services\AuthService;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
-use Loyep\Prism\Http\Controllers\Controller;
-use Loyep\Prism\Http\Requests\Auth\LoginRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 
 /**
  * Class LoginController.

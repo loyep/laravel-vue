@@ -32,6 +32,8 @@ return [
 
         'name' => 'Prism',
 
+        'domain' => null,
+
         'url' => '/',
 
         'path' => '/admin',
