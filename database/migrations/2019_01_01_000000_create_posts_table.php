@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->text('keywords')->nullable();
             $table->text('description')->nullable();
             $table->text('excerpt')->nullable();
-            $table->string('source', 64)->nullable();
+            $table->string('source')->nullable();
             $table->unsignedInteger('order')->default(1);
             $table->unsignedInteger('views_count')->default(0);
             $table->unsignedInteger('likes_count')->default(0);
