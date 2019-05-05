@@ -102,7 +102,7 @@ class PostController extends Controller
             return response([
                 'result' => true,
                 'data'   => [
-                    'likesCount' => $post->likes_count,
+                    'likesCount' => number_format($post->likes_count),
                     'isLike'     => $post->isLiked(),
                 ],
             ]);

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Menu extends Model
+class MenuItem extends Model
 {
 
     protected $with = [
@@ -18,11 +18,12 @@ class Menu extends Model
         'name', 'description',
     ];
 
-    /**
-     * @return HasMany
-     */
     public function items(): HasMany
     {
-        return $this->hasMany(MenuItem::class, 'menu_id');
+        return $this->hasMany(MenuItem::class, 'parent', 'id');
+    }
+
+    public function getUrl() {
+        return $this->url;
     }
 }

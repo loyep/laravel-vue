@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\URL;
  */
 class Category extends Model
 {
-    use SlugScope, MetaFields;
+    use SlugScope;
 
     /**
      * @var array

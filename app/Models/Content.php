@@ -14,8 +14,6 @@ use App\Traits\Cachable;
  */
 class Content extends Model
 {
-    use Cachable;
-
     /**
      * @return string
      */

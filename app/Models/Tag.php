@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\URL;
  */
 class Tag extends Model
 {
-    use SlugScope, MetaFields;
+    use SlugScope;
 
     /**
      * The attributes that are mass assignable.

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\Link;
+use App\Models\Menu;
 use App\Models\Search\Search;
 use App\Models\Setting;
 use App\Models\Tag;
@@ -83,5 +84,13 @@ class PrismService
     public function footerCategories()
     {
         return Category::take(12)->get();
+    }
+
+    public function menus($name)
+    {
+        $menu = Menu::with(['items' => function ($query) {
+            $query->where('parent', 0);
+        }])->where('name', $name)->firstOrFail();
+        return $menu;
     }
 }

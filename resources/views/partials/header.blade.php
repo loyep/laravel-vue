@@ -1,3 +1,5 @@
+@inject('prism', 'App\Services\PrismService')
+
 @php
     $navClass = '';
     $logo = '';
@@ -10,6 +12,7 @@
        $logo = asset('images/logo.png');
     }
     $name = $name ?? Prism::name();
+    $menu = $prism->menus('top');
 @endphp
 <header class="header">
     <nav class="{{ $navClass }}">
@@ -24,14 +27,11 @@
                 </a>
                 <div class="collapse navbar-collapse order-lg-2">
                     <ul class="navbar-nav main-menu mx-auto px-4">
-                        <?php
-                        //                        if ( function_exists( 'wp_nav_menu' ) && has_nav_menu('menu-1') ) {
-                        //                            wp_nav_menu( array( 'container' => false, 'items_wrap' => '%3$s', 'theme_location' => 'menu-1' ) );
-                        //                        } else {
-                        //                            _e('<li><a href="/wp-admin/nav-menus.php">Please set up your first menu at [Admin -> Appearance -> Menus]</a></li>', 'cosy19');
-                        //                        }
-                        ?>
-                        <li><a href="/wp-admin/nav-menus.php">Please set up your first menu at [Admin -> Appearance -> Menus]</a></li>
+                        @if (!empty($menu))
+                            @foreach($menu->items as $item)
+                                @include('components.menu-item', ['menu' => $item])
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
                 <ul class="nav nav-pills nav-submenu align-items-center order-2 order-lg-3">

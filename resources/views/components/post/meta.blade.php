@@ -22,18 +22,18 @@
     <div class="post-data text-nowrap align-items-center">
         <span class="d-none d-md-inline-block">
             <i class="text-lg iconfont icon-view"></i>
-            <small>{{ $post->views_count }}</small>
+            <small>{{ number_format($post->views_count) }}</small>
         </span>
         @if ($post->allow_comment)
             <span class="d-none d-md-inline-block">
             <a href="#comments">
                 <i class="text-lg iconfont icon-duanxin"></i>
-                <small>{{ $post->comments_count ?? 0 }}</small>
+                <small>{{ number_format($post->comments_count) }}</small>
             </a>
         </span>
         @endif
         <span class="d-inline-block">
-            <like-button id="{{ $post->id }}" count="{{ $post->likes_count }}" value="{{ $post->isLiked() }}">
+            <like-button id="{{ $post->id }}" count="{{ number_format($post->likes_count) }}" value="{{ $post->isLiked() }}">
                 <i class="text-lg iconfont icon-shoucang"></i>
             </like-button>
         </span>

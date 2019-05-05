@@ -16,7 +16,7 @@ export default {
     },
     count: {
       type: String,
-      default: ''
+      default: '0'
     },
     value: {
       type: String,
@@ -24,7 +24,7 @@ export default {
     }
   },
   data() {
-    const likesCount = Number(this.count);
+    const likesCount = this.count;
     const isLike = Boolean(this.value || false);
     return {
       likesCount: likesCount,

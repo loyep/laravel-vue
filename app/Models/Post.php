@@ -33,11 +33,7 @@ use Illuminate\Support\Facades\URL;
  */
 class Post extends Model
 {
-    use Cachable, Likable, SlugScope, MetaFields;
-
-    protected $with = [
-        'meta',
-    ];
+    use Likable, SlugScope;
 
     protected $dates = [
         'published_at',
