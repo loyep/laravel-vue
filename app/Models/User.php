@@ -101,19 +101,4 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Post::class);
     }
-
-    /**
-     * @param string $key
-     *
-     * @return mixed
-     */
-    public function __get($key)
-    {
-        $value = parent::__get($key);
-        if ($value === null && !property_exists($this, $key)) {
-            return $this->getMetaValue($key);
-        }
-
-        return $value;
-    }
 }

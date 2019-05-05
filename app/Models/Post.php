@@ -105,20 +105,6 @@ class Post extends Model
         return $date->diffForHumans();
     }
 
-    /**
-     * @param string $key
-     *
-     * @return mixed
-     */
-//    public function __get($key)
-//    {
-//        $value = parent::__get($key);
-//        if (is_null($value) && !property_exists($this, $key)) {
-//            $value = $this->getMetaValue($key);
-//        }
-//        return $value;
-//    }
-
     public function getLink()
     {
         return URL::route('post.show', ['slug' => $this->slug]);

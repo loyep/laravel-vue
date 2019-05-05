@@ -40,12 +40,4 @@ class Tag extends Model
     {
         return $this->morphedByMany(Post::class, 'taggable');
     }
-
-    /**
-     * @return MorphOne|null
-     */
-    public function meta(): ?MorphOne
-    {
-        return $this->morphOne(Meta::class, 'metaable');
-    }
 }
