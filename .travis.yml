@@ -29,14 +29,13 @@ install:
   - cp .env.travis .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
+  - php artisan jwt:secret
 
 script:
   - php artisan prism:install
   - php artisan vendor:publish --tag=storage
   - php artisan migrate
-  - npm install
-  - npm i -g npm
-  - npm run prod
+  - php artisan db:seed
 
 notifications:
   email:
