@@ -29,7 +29,6 @@ install:
   - cp .env.travis .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate
-  - php artisan jwt:secret
 
 script:
   - php artisan prism:install
