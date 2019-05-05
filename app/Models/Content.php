@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\Prism;
-use App\Traits\Cachable;
 
 /**
  * Class Content.

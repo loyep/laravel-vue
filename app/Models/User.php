@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Meta\MetaFields;
 use App\Models\Scopes\SlugScope;
 use App\Support\Helper;
 use Illuminate\Database\Eloquent\Relations\HasMany;
