@@ -26,7 +26,6 @@ class ShareService
      */
     protected $url;
 
-
     /**
      * @return string
      */
@@ -37,11 +36,13 @@ class ShareService
 
     /**
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle(string $title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -55,11 +56,13 @@ class ShareService
 
     /**
      * @param $description
+     *
      * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -73,11 +76,13 @@ class ShareService
 
     /**
      * @param $image
+     *
      * @return $this
      */
     public function setImage($image)
     {
         $this->image = $image;
+
         return $this;
     }
 
@@ -91,11 +96,13 @@ class ShareService
 
     /**
      * @param string $url
+     *
      * @return $this
      */
     public function setUrl(string $url)
     {
         $this->url = $url;
+
         return $this;
     }
 
@@ -104,7 +111,7 @@ class ShareService
      */
     public function weibo()
     {
-        $image = isset($this->image) ? '&pic=' . urlencode($this->image) : '';
+        $image = isset($this->image) ? '&pic='.urlencode($this->image) : '';
 
         if (isset($this->description)) {
             $text = urlencode(sprintf('【%s】%s', $this->title, $this->description));
@@ -122,8 +129,8 @@ class ShareService
      */
     public function qq()
     {
-        $image = isset($this->image) ? '&pics=' . urlencode($this->image) : '';
-        $description = isset($this->description) ? '&summary=' . urlencode($this->description) : '';
+        $image = isset($this->image) ? '&pics='.urlencode($this->image) : '';
+        $description = isset($this->description) ? '&summary='.urlencode($this->description) : '';
 
         $share_link = sprintf('https://connect.qq.com/widget/shareqq/index.html?url=%s&title=%s%s%s', urlencode($this->url), urlencode($this->title), $image, $description);
 
@@ -135,7 +142,7 @@ class ShareService
      */
     public function weixin()
     {
-        $share_link = 'data:image/png;base64,' . base64_encode(QrCode::format('png')->size(320)->generate($this->url));
+        $share_link = 'data:image/png;base64,'.base64_encode(QrCode::format('png')->size(320)->generate($this->url));
 
         return $share_link;
     }
@@ -161,11 +168,12 @@ class ShareService
     }
 
     /**
-     * linkedin
+     * linkedin.
      */
     public function linkedin()
     {
         $share_link = sprintf('https://www.linkedin.com/shareArticle?mini=true&url=%s&title=%s&summary=%s', urlencode($this->url), urlencode($this->title), urlencode($this->description));
+
         return $share_link;
     }
 }
