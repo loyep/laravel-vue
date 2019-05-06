@@ -11,7 +11,7 @@
 
 @section('content')
     @include('partials.header')
-    @include('components.top.article', compact('topPosts', 'style'))
+    @include('components.top.article', compact('topArticles', 'style'))
     <main class="py-4 py-md-5">
         <div class="container">
             @if($style === 'plain')

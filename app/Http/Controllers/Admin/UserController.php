@@ -57,14 +57,13 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param UserRequest $request
      * @param int         $id
      *
      * @return UserResource
      */
-    public function show(UserRequest $request, $id)
+    public function show($id)
     {
-        return $this->service->show($request, $id);
+        return $this->service->show($id);
     }
 
     /**

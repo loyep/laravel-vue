@@ -8,24 +8,12 @@ namespace App\Http\Requests;
 class SettingRequest extends Request
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
+     *  Get the validation rules that apply to create requests.
      *
      * @return array
      */
-    public function rules()
+    public function createRules()
     {
-        return [
-            //
-        ];
+        return [];
     }
 }

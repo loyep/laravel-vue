@@ -20,7 +20,7 @@ class CategoryService extends Service
      */
     public function paginate(Request $request)
     {
-        $categories = Category::withCount('posts')
+        $categories = Category::withCount('articles')
             ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
                 $query->where('name', 'like', '%'.$keywords.'%')->orWhere('description', 'like', '%'.$keywords.'%');
             })

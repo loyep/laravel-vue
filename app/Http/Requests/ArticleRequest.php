@@ -8,16 +8,8 @@ namespace App\Http\Requests;
 class ArticleRequest extends Request
 {
     /**
-     * Determine if the user is authorized to make this request.
+     *  Get the validation rules that apply to create requests.
      *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
      * @return array
      */
     public function createRules()

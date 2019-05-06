@@ -22,7 +22,7 @@ class UserService
      */
     public function paginate(Request $request)
     {
-        $users = User::withCount('posts')
+        $users = User::withCount('articles')
             ->when($name = $request->get('name'), function ($query) use ($name) {
                 $query->where('name', 'like', '%'.$name.'%');
             })
