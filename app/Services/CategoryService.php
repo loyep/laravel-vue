@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 /**
  * Class CategoryService.
  */
-class CategoryService extends BaseService
+class CategoryService extends Service
 {
     /**
      * @param Request $request

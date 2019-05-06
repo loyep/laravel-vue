@@ -5,7 +5,7 @@ namespace App\Services\Admin;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use App\Services\BaseService;
+use App\Services\Service;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 /**
  * Class UserService.
  */
-class UserService extends BaseService
+class UserService extends Service
 {
     /**
      * @param UserRequest $request
@@ -34,12 +34,11 @@ class UserService extends BaseService
     /**
      * Display the specified resource.
      *
-     * @param UserRequest $request
      * @param int         $id
      *
      * @return UserResource
      */
-    public function show(UserRequest $request, $id)
+    public function show($id)
     {
         $user = User::findOrFail($id);
 
@@ -98,6 +97,10 @@ class UserService extends BaseService
      */
     public function destroy($id)
     {
+        if (is_string($id)) {
+            $id = explode(',', $id);
+        }
+
         User::destroy($id);
 
         return response()->json([

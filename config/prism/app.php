@@ -15,4 +15,6 @@ return [
 
     'name' => 'Prism',
 
+    'description' => '美好缘于热爱',
+
 ];

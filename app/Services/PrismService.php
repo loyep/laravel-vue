@@ -15,13 +15,6 @@ use Illuminate\Support\Facades\Cache;
  */
 class PrismService
 {
-    /**
-     * @return array
-     */
-    public function footerSettings()
-    {
-        return [];
-    }
 
     /**
      * @return mixed
@@ -38,12 +31,7 @@ class PrismService
      */
     public function socials()
     {
-        $socials = Setting::where('group', 'system')->where('key', 'social')->first();
-        if (!empty($socials)) {
-            return $socials->value;
-        }
-
-        return [];
+        return config('prism.footer.socials', []);
     }
 
     /**
@@ -73,9 +61,27 @@ class PrismService
     {
         $notice = Setting::where('group', $group)->where('key', 'notice')->first();
         if (!empty($notice)) {
-//            dd($notice->value);
             return $notice->value;
         }
+        return null;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function year()
+    {
+        $year = (int)(config('prism.footer.year') ?? date('Y'));
+        if ($year < date('Y')) $year .= '-' . date('Y');
+        return $year;
+    }
+
+    /**
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    public function description()
+    {
+        return config('prism.app.description');
     }
 
     /**
@@ -86,11 +92,15 @@ class PrismService
         return Category::take(12)->get();
     }
 
+    /**
+     * @param $name
+     * @return Menu
+     */
     public function menus($name)
     {
         $menu = Menu::with(['items' => function ($query) {
             $query->where('parent', 0);
-        }])->where('name', $name)->firstOrFail();
+        }])->where('name', $name)->first();
 
         return $menu;
     }

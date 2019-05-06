@@ -2648,9 +2648,10 @@ a.text-primary:hover {
     padding-top: 1rem;
     padding-bottom: 1rem;
     position: relative;
-    &.list-fixed {
-      padding-top: 4.125rem;
-    }
+  }
+
+  .list-magazine.list-fixed {
+    padding-top: 4.125rem;
   }
 }
 
@@ -2659,67 +2660,70 @@ a.text-primary:hover {
   .list-scroll-2x,
   .list-scroll-4x,
   .list-scroll-5x {
-  width: 100%;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-.list-scroll-x .row,
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .list-scroll-x .row,
   .list-scroll-x .row-sm,
   .list-scroll-x .row-md,
   .list-scroll-x .row-lg,
   .list-scroll-2x .row,
   .list-scroll-2x .row-sm,
-  .list-scroll-2x .row-md {
-  flex-wrap: nowrap !important;
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
-}
-.list-scroll-5x {
-  .row-md {
+  .list-scroll-2x .row-md{
+    -ms-flex-wrap: nowrap !important;
+    flex-wrap: nowrap !important;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+  .list-scroll-5x .row-md {
+    -ms-flex-wrap: nowrap !important;
     flex-wrap: nowrap !important;
     margin-left: -0.875rem;
     margin-right: -0.875rem;
   }
-  .col-6 {
+  .list-scroll-5x .col-6{
     padding-left: 0.875rem;
     padding-right: 0;
     flex: 0 0 60%;
     max-width: 60%;
   }
-}
-.list-scroll-x {
-  .col-6 {
+  .list-scroll-x .col-6 {
     padding-left: 0.5rem;
     padding-right: 0;
     flex: 0 0 44%;
     max-width: 44%;
   }
-}
-.list-scroll-2x {
-  .col-6 {
+
+  .list-scroll-2x .col-6 {
     padding-left: 0.5rem;
     padding-right: 0;
     flex: 0 0 37%;
     max-width: 37%;
   }
-}
-.list-scroll-4x .row-sm,
+
+  .list-scroll-4x .row-sm,
   .list-scroll-4x .row-md {
-  flex-wrap: nowrap !important;
-  margin-left: -.5rem;
-  margin-right: 0;
-}
-.list-scroll-4x .row-sm .col-4,
+    -ms-flex-wrap: nowrap !important;
+    flex-wrap: nowrap !important;
+    margin-left: -.5rem;
+    margin-right: 0;
+  }
+
+  .list-scroll-4x .row-sm .col-4,
   .list-scroll-4x .row-md .col-4 {
-  padding-left: .5rem;
-  padding-right: 0;
-  flex: 0 0 24%;
-  max-width: 24%;
-}
-.list-scroll-4x .row-sm .col-4:last-child,
+    padding-left: .5rem;
+    padding-right: 0;
+    flex: 0 0 24%;
+    max-width: 24%;
+  }
+
+  .list-scroll-4x .row-sm .col-4:last-child,
   .list-scroll-4x .row-md .col-4:last-child {
-  padding-right: 0.25rem;
-}
+    padding-right: 0.25rem;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -2826,7 +2830,6 @@ a.text-primary:hover {
   .list-spy-nav:before {
     display: none;
   }
-
 }
 /*--------------------------------------------------------------
     list author pushes style
@@ -2944,7 +2947,6 @@ a.text-primary:hover {
     -ms-transform: none;
     transform: none;
   }
-
 }
 
 /*--------------------------------------------------------------
@@ -4770,6 +4772,9 @@ data-style
 /*--------------------------------------------------------------
     footer widget style
 --------------------------------------------------------------*/
+.footer-widget-social {
+  font-size: 1.1rem;
+}
 .footer-widget-header {
   position: relative;
   margin: 0 0 1rem;

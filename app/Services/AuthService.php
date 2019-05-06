@@ -12,7 +12,7 @@ use Tymon\JWTAuth\JWTAuth;
 /**
  * Class AuthService.
  */
-class AuthService extends BaseService
+class AuthService extends Service
 {
     /**
      * @var JWTAuth

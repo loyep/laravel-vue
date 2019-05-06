@@ -2,23 +2,27 @@
 
 @php
     $socials = $prism->socials();
+    $description = $prism->description();
     $name = Prism::name();
+    $year = $prism->year();
+
+    $style = config('prism.theme.footer', 'light');
 @endphp
 
-@if (config('prism.footer.layout', 'footer3') === 'footer1')
+@if($style === 'light')
     <footer class="footer bg-white border-top border-light text-center py-4 py-md-5">
         <div class="container">
-            <div class="footer-social text-md">
-                @foreach($socials as $social)
-                    <a href="{{ $social->link }}" target="_blank"
+            <div class="footer-widget-social text-md">
+                @foreach($socials as $social => $link)
+                    <a href="{{ $link }}" target="_blank" rel="nofollow"
                        class="btn btn-light btn-icon btn-md btn-rounded mx-md-1">
-                        <span><i class="fa fa-{{ $social->name }}"></i></span>
+                        <span><i class="fa fa-{{ $social }}"></i></span>
                     </a>
                 @endforeach
             </div>
             <div class="footer-copyright text-muted mt-4">
-                Copyright © {{ date('Y') }} <a href="{{ url('/') }}" title="{{ $name }}" rel="home">{{ $name }}</a>.
-                Designed by <a href="https://loyep.com" title="Prism" target="_blank">Prism</a>.
+                Copyright © {{ $year }} <a href="{{ url('/') }}" title="{{ $name }}" rel="home">{{ $name }}</a>.
+                Designed by <a href="https://loyep.com" title="Prism" target="_blank">Loyep</a>.
             </div>
         </div>
     </footer>
@@ -30,12 +34,12 @@
                     <div class="footer-widget pr-lg-5">
                         <div class="footer-widget-header">{{ $name }}</div>
                         <div class="footer-widget-content">
-                            <p>{{ $description ?? '美好源于热爱' }}</p>
+                            <p>{{ $description }}</p>
                         </div>
                         <div class="footer-widget-social mx-n2 mt-2">
-                            @foreach($socials as $social)
-                                <a href="{{ $social->link }}" target="_blank" class="{{ $social->name }} px-2">
-                                    <span><i class="fa fa-{{ $social->name }}"></i></span>
+                            @foreach($socials as $social => $link)
+                                <a href="{{ $link }}" target="_blank" class="px-2" rel="nofollow">
+                                    <span><i class="fa fa-{{ $social }}"></i></span>
                                 </a>
                             @endforeach
                         </div>
@@ -47,9 +51,7 @@
                         <div class="footer-widget-content">
                             <div class="footer-widget-links">
                                 @foreach($prism->footerTags() as $tag)
-                                    <a href="{{ $tag->perm_link }}" target="_self">
-                                        {{ $tag->name }}
-                                    </a>
+                                    <a href="{{ $tag->perm_link }}" target="_self">{{ $tag->name }}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -86,8 +88,8 @@
                 </div>
             </div>
             <div class="footer-copyright border-top py-4 mt-4">
-                Copyright © {{ date('Y') }} <a href="{{ url('/') }}" title="{{ $name }}" rel="home">{{ $name }}</a>.
-                Designed by <a href="https://loyep.com" title="Prism" target="_blank">Prism</a>.
+                Copyright © {{ $year }} <a href="{{ url('/') }}" title="{{ $name }}" rel="home">{{ $name }}</a>.
+                Designed by <a href="https://loyep.com" title="Prism" target="_blank">Loyep</a>.
             </div>
         </div>
     </footer>

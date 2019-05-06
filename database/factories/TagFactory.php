@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(Tag::class, function (Faker $faker) {
-    $title = $faker->words(3, true);
+    $title = $faker->words(1, true);
 
     return [
         'name'        => $title,

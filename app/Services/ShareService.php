@@ -4,106 +4,45 @@ namespace App\Services;
 
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
+/**
+ * Class ShareService
+ */
 class ShareService
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $title;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $description;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $image;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $url;
 
     /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param string $title
+     * ShareService constructor.
      *
-     * @return $this
-     */
-    public function setTitle(string $title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param $description
-     *
-     * @return $this
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param $image
-     *
-     * @return $this
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    /**
      * @param string $url
-     *
-     * @return $this
+     * @param string $title
+     * @param string $description
+     * @param string $image
      */
-    public function setUrl(string $url)
+    public function __construct(string $url, string $title, string $description, string $image)
     {
         $this->url = $url;
-
-        return $this;
+        $this->title = $title;
+        $this->description = $description;
+        $this->image = $image;
     }
 
     /**
@@ -111,9 +50,9 @@ class ShareService
      */
     public function weibo()
     {
-        $image = isset($this->image) ? '&pic='.urlencode($this->image) : '';
+        $image = !empty($this->image) ? '&pic=' . urlencode($this->image) : '';
 
-        if (isset($this->description)) {
+        if (!empty($this->description)) {
             $text = urlencode(sprintf('【%s】%s', $this->title, $this->description));
         } else {
             $text = $this->title;
@@ -129,8 +68,8 @@ class ShareService
      */
     public function qq()
     {
-        $image = isset($this->image) ? '&pics='.urlencode($this->image) : '';
-        $description = isset($this->description) ? '&summary='.urlencode($this->description) : '';
+        $image = !empty($this->image) ? '&pics=' . urlencode($this->image) : '';
+        $description = !empty($this->description) ? '&summary=' . urlencode($this->description) : '';
 
         $share_link = sprintf('https://connect.qq.com/widget/shareqq/index.html?url=%s&title=%s%s%s', urlencode($this->url), urlencode($this->title), $image, $description);
 

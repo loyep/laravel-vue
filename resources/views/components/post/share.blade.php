@@ -1,9 +1,5 @@
 @php
-    $share = (new \App\Services\ShareService())
-    ->setImage($post->image)
-    ->setDescription($post->description)
-    ->setUrl($post->getLink())
-    ->setTitle(Prism::getTitle());
+    $share = (new \App\Services\ShareService($post->getLink(), $post->title, $post->description, $post->image))
 @endphp
 
 <div class="post-social">
