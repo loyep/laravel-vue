@@ -77,7 +77,7 @@ class PrismServiceProvider extends ServiceProvider
                 Route::get('/', 'PrismController@index')->name('dashboard');
                 Route::get('/{any}', 'PrismController@index')->where('any', '.*');
             });
-            
+
             Route::prefix('prism-api')
                 ->middleware('api')
                 ->group(base_path('routes/admin.php'));

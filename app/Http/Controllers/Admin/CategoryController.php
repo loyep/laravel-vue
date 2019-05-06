@@ -17,6 +17,7 @@ class CategoryController extends Controller
 
     /**
      * CategoryController constructor.
+     *
      * @param CategoryService $service
      */
     public function __construct(CategoryService $service)
@@ -64,7 +65,7 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param CategoryRequest $request
-     * @param int|string $id
+     * @param int|string      $id
      *
      * @return JsonResponse
      */

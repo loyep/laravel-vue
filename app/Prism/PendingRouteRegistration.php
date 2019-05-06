@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 class PendingRouteRegistration
 {
-
     /**
      * Indicates if the routes have been registered.
      *
