@@ -25,15 +25,15 @@ class Category extends Model
     /**
      * @return HasMany|null
      */
-    public function posts(): ?HasMany
+    public function articles(): ?HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Article::class);
     }
 
     /**
      * @return string
      */
-    public function getPermLinkAttribute()
+    public function getLink()
     {
         return URL::route('category.show', ['slug' => $this->slug]);
     }

@@ -8,11 +8,11 @@
             @include('partials.notice')
             @include('partials.pushes')
             <section class="list-home row-md list-grouped list-tb-padding">
-                @foreach($posts as $post)
-                    @include('components.card.post', compact('post'))
+                @foreach($articles as $article)
+                    @include('components.card.article', compact('article'))
                 @endForeach
             </section>
-            {!! $posts->links() !!}
+            {!! $articles->links() !!}
         </div>
     </main>
     @include('partials.footer', ['name' => 'Prism'])

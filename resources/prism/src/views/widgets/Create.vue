@@ -1,6 +1,6 @@
 <template>
   <div>
-    Post Create
+    Article Create
   </div>
 </template>
 

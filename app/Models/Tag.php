@@ -27,7 +27,7 @@ class Tag extends Model
     /**
      * @return string
      */
-    public function getPermLinkAttribute()
+    public function getLink()
     {
         return URL::route('tag.show', ['slug' => $this->slug]);
     }
@@ -37,6 +37,6 @@ class Tag extends Model
      */
     public function posts(): ?MorphToMany
     {
-        return $this->morphedByMany(Post::class, 'taggable');
+        return $this->morphedByMany(Article::class, 'taggable');
     }
 }

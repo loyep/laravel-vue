@@ -1,11 +1,10 @@
 import './ant-design'
 import '@/utils/storage'
 
-
-import {preloaderFinished} from '@/utils/preloader';
+import { preloaderFinished } from '@/utils/preloader'
 
 const Initializer = () => {
-  preloaderFinished();
+  preloaderFinished()
 }
 
 export default Initializer

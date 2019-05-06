@@ -45,9 +45,9 @@ export default {
         }
 
         if (link.blankTarget) {
-          link.target = '_blank';
+          link.target = '_blank'
         } else {
-          link.target = '_self';
+          link.target = '_self'
         }
         return link
       })

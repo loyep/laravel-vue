@@ -29,8 +29,8 @@ Route::get('links', 'LinkController@index')->name('short');
 Route::get('author/{name}', 'UserController@show')->name('user.show');
 
 // 文章页
-Route::get('post/{slug}', 'PostController@show')->name('post.show');
-Route::post('post/{id}/like', 'PostController@like')->name('post.like');
+Route::get('article/{slug}', 'ArticleController@show')->name('article.show');
+Route::post('article/{id}/like', 'ArticleController@like')->name('article.like');
 
 // 分类页
 Route::get('category/{slug}', 'CategoryController@show')->name('category.show');

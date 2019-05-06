@@ -164,7 +164,7 @@ export default {
         trend: ' ',
         increased: '0'
       },
-      post: {
+      article: {
         total: 0,
         trend: ' ',
         increased: '0'
@@ -181,7 +181,7 @@ export default {
       statistics().then(res => {
         const data = res.data
         this.updateTotal(data.user.total)
-        this.post.total = data.post.total
+        this.article.total = data.article.total
         this.dimmers = data
       })
     },

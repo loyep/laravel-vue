@@ -37,7 +37,7 @@ class ShareService
      * @param string $description
      * @param string $image
      */
-    public function __construct(string $url, string $title, string $description, string $image)
+    public function __construct(string $url, $title = '', $description = '', $image = '')
     {
         $this->url = $url;
         $this->title = $title;

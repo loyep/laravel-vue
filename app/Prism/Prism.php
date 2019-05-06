@@ -2,7 +2,7 @@
 
 namespace App\Prism;
 
-use App\Models\Post;
+use App\Models\Article;
 use App\Services\ShareService;
 use Parsedown;
 
@@ -117,13 +117,13 @@ class Prism
     }
 
     /**
-     * @param Post $post
+     * @param Article $article
      *
      * @return mixed
      */
-    public function relatedPosts(Post $post)
+    public function relatedPosts(Article $article)
     {
-        return Post::where('category_id', $post->category_id)->take(4)->get();
+        return Article::where('category_id', $article->category_id)->take(4)->get();
     }
 
     /**
@@ -133,7 +133,7 @@ class Prism
      */
     public function stickyPosts($count = 4)
     {
-        return Post::withCount('comments')->with('category')->orderBy('comments_count', 'desc')->orderBy('views_count', 'desc')->take($count)->get();
+        return Article::withCount('comments')->with('category')->orderBy('comments_count', 'desc')->orderBy('views_count', 'desc')->take($count)->get();
     }
 
     /**

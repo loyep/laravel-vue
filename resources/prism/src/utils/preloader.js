@@ -1,24 +1,24 @@
-export function preloaderFinished() {
-  const body = document.querySelector('body');
-  const preloader = document.querySelector('.preloader');
+export function preloaderFinished () {
+  const body = document.querySelector('body')
+  const preloader = document.querySelector('.preloader')
   if (!body) {
-    return;
+    return
   }
-  body.style.overflow = 'hidden';
+  body.style.overflow = 'hidden'
 
-  function remove() {
+  function remove () {
     if (!preloader) {
-      return;
+      return
     }
     preloader.addEventListener('transitionend', () => {
-      preloader.className = 'preloader-hidden';
-    });
+      preloader.className = 'preloader-hidden'
+    })
 
-    preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
+    preloader.className += ' preloader-hidden-add preloader-hidden-add-active'
   }
 
   setTimeout(() => {
-    remove();
-    body.style.overflow = '';
-  }, 100);
+    remove()
+    body.style.overflow = ''
+  }, 100)
 }

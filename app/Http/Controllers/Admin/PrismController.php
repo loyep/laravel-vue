@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Facades\Prism;
 use App\Models\Category;
-use App\Models\Post;
+use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
 use Carbon\Carbon;
@@ -40,7 +40,7 @@ class PrismController extends Controller
     {
         $users_count = User::all()->count();
         $categories_count = Category::all()->count();
-        $posts_count = Post::all()->count();
+        $articles_count = Article::all()->count();
         $tags_count = Tag::all()->count();
 
         $range = Carbon::now()->subDays(7);
@@ -67,9 +67,9 @@ class PrismController extends Controller
                 'trend'     => 'up',
                 'remark'    => sprintf('%01.2f', $user_trend * 100).'%',
             ],
-            'post' => [
+            'article' => [
                 'title'  => '文章数',
-                'total'  => $posts_count,
+                'total'  => $articles_count,
                 'trend'  => '',
                 'remark' => '0%',
             ],

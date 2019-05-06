@@ -5,20 +5,20 @@
         <link>{{ url('/') }}</link>
         <atom:link href="{{ route('feed') }}" rel="self" type="application/rss+xml"/>
         <?php
-        $date = !empty($posts) ? $posts[0]->published_at->format('D, d M Y H:i:s O') : date("D, d M Y H:i:s O", time())
+        $date = !empty($articles) ? $articles[0]->published_at->format('D, d M Y H:i:s O') : date("D, d M Y H:i:s O", time())
         ?>
         <pubDate>{{ $date }}</pubDate>
         <lastBuildDate>{{ $date }}</lastBuildDate>
         <generator>{{ \App\Facades\Prism::name() }}</generator>
-        @foreach ($posts as $post)
+        @foreach ($articles as $article)
             <item>
-                <title>{{ $post->title }}</title>
-                <link>{{ route('post.show',$post->slug) }}</link>
-                <description>{{ $post->description }}</description>
-                <pubDate>{{ $post->published_at->format('D, d M Y H:i:s T') }}</pubDate>
-                <author>{{ $post->user->email }} ({{$post->user->display_name}})</author>
-                <guid>{{ route('post.show',$post->slug) }}</guid>
-                <category>{{ $post->category->name }}</category>
+                <title>{{ $article->title }}</title>
+                <link>{{ route('post.show',$article->slug) }}</link>
+                <description>{{ $article->description }}</description>
+                <pubDate>{{ $article->published_at->format('D, d M Y H:i:s T') }}</pubDate>
+                <author>{{ $article->user->email }} ({{$article->user->display_name}})</author>
+                <guid>{{ route('post.show',$article->slug) }}</guid>
+                <category>{{ $article->category->name }}</category>
             </item>
         @endforeach
     </channel>

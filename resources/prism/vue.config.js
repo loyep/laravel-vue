@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+const webpack = require('webpack')
 
 module.exports = {
   filenameHashing: false,
@@ -20,12 +20,12 @@ module.exports = {
   devServer: {
     port: 8080,
     proxy: {
-      '/api': {
-        target: "http://localhost:8000",
+      '/prism-api': {
+        target: 'http://localhost:8000',
         changeOrigin: true,
         ws: true,
         secure: false
       }
     }
-  },
+  }
 }

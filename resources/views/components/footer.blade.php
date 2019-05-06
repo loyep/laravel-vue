@@ -54,7 +54,7 @@
                                     $tags = \App\Models\Tag::all();
                                 @endphp
                                 @foreach($tags as $tag)
-                                    <a href="{{ $tag->perm_link }}" target="_self">
+                                    <a href="{{ $tag->getLink() }}" target="_self">
                                         {{ $tag->name }}
                                     </a>
                                 @endforeach
@@ -95,7 +95,7 @@
                                         $tags = \App\Models\Category::all();
                                     @endphp
                                     @foreach($categories as $category)
-                                        <a href="{{ $category->perm_link }}" target="_self">
+                                        <a href="{{ $category->getLink() }}" target="_self">
                                             {{ $category->name }}
                                         </a>
                                     @endforeach

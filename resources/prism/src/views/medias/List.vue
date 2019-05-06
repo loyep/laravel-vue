@@ -147,7 +147,7 @@
 
 <script >
 import { Card, Col, Row, Tag, Menu, Dropdown, Badge } from 'ant-design-vue'
-import { getList, destroy } from '@/api/post'
+import { getList, destroy } from '@/api/article'
 
 const columns = [
   {

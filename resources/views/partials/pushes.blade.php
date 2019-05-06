@@ -1,5 +1,5 @@
 @php
-    $pushes = \App\Models\Post::take(6)->get();
+    $pushes = \App\Models\Article::take(6)->get();
 @endphp
 <section class="list-pushes list-scroll-4x">
     <div class="row-sm my-md-n2 pb-3 pt-2 pt-md-0 pb-md-4">
@@ -11,7 +11,7 @@
                             <span class="overlay"></span>
                         </a>
                     </div>
-                    <a href="{{ $push->perm_link }}" class="list-content p-2" target="_blank">
+                    <a href="{{ $push->getLink() }}" class="list-content p-2" target="_blank">
                         <div class="list-body ">
                             <div class="list-title h-1x text-sm">
                                 {{ $push-> title }}

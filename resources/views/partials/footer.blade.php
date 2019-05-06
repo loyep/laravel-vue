@@ -51,7 +51,7 @@
                         <div class="footer-widget-content">
                             <div class="footer-widget-links">
                                 @foreach($prism->footerTags() as $tag)
-                                    <a href="{{ $tag->perm_link }}" target="_self">{{ $tag->name }}</a>
+                                    <a href="{{ $tag->getLink() }}" target="_self">{{ $tag->name }}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                             <div class="footer-widget-content">
                                 <div class="footer-widget-links m-n1">
                                     @foreach($prism->footerCategories() as $category)
-                                        <a href="{{ $category->perm_link }}" target="_self">
+                                        <a href="{{ $category->getLink() }}" target="_self">
                                             {{ $category->name }}
                                         </a>
                                     @endforeach

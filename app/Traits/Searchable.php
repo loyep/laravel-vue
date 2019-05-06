@@ -233,7 +233,7 @@ trait Searchable
         }
         $query->havingRaw("$comparator >= $relevance_count", $bindings);
         $query->orderBy('relevance', 'desc');
-        // add bindings to postgres
+        // add bindings to articlegres
     }
 
     /**
@@ -266,17 +266,17 @@ trait Searchable
      * @param string                                $compare
      * @param float                                 $relevance_multiplier
      * @param string                                $pre_word
-     * @param string                                $post_word
+     * @param string                                $article_word
      *
      * @return string
      */
-    protected function getSearchQuery(Builder $query, $column, $relevance, array $words, $relevance_multiplier, $pre_word = '', $post_word = '')
+    protected function getSearchQuery(Builder $query, $column, $relevance, array $words, $relevance_multiplier, $pre_word = '', $article_word = '')
     {
         $like_comparator = $this->getDatabaseDriver() == 'pgsql' ? 'ILIKE' : 'LIKE';
         $cases = [];
         foreach ($words as $word) {
             $cases[] = $this->getCaseCompare($column, $like_comparator, $relevance * $relevance_multiplier);
-            $this->search_bindings[] = $pre_word.$word.$post_word;
+            $this->search_bindings[] = $pre_word.$word.$article_word;
         }
 
         return implode(' + ', $cases);

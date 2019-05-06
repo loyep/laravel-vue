@@ -1,24 +1,24 @@
 <div class="col-md-4 d-flex">
     <div class="list-item block custom-hover">
         <div class="media media-3x2">
-            <a class="media-content" href="{{ $post->perm_link }}" target="_blank">
-                <img src="{{ $post->image }}" alt="{{ $post->title }}">
+            <a class="media-content" href="{{ $article->getLink() }}" target="_blank">
+                <img src="{{ $article->image }}" alt="{{ $article->title }}">
                 <span class="overlay"></span>
             </a>
 
-            @if ('image' === $post->format)
+            @if ('image' === $article->format)
                 <div class="media-action">
                     <i class="iconfont icon-pic-s"></i>
                 </div>
             @endif
 
-            @if ('video' === $post->format)
+            @if ('video' === $article->format)
                 <div class="media-action">
                     <i class="iconfont icon-bofang"></i>
                 </div>
             @endif
 
-            @if ('audio' === $post->format)
+            @if ('audio' === $article->format)
                 <div class="media-action">
                     <i class="iconfont icon-yinle"></i>
                 </div>
@@ -26,28 +26,28 @@
         </div>
         <div class="list-content">
             <div class="list-body">
-                <a href="{{ $post->perm_link }}" class="list-title text-md h-2x" target="_blank">{{ $post->title }}</a>
+                <a href="{{ $article->getLink() }}" class="list-title text-md h-2x" target="_blank">{{ $article->title }}</a>
             </div>
             <div class="list-footer d-flex align-items-center text-muted text-xs mt-2">
-                <div>{{ $post->getPublishedDate() }}</div>
+                <div>{{ $article->getPublishedDate() }}</div>
                 <div class="flex-fill"></div>
                 <div class="text-nowrap">
 
                     <span class="d-none d-lg-inline-block pr-2">
                         <i class="text-sm iconfont icon-view"></i>
-                        {{ $post->views_count }}
+                        {{ $article->views_count }}
                     </span>
 
-                    @if ($post->allow_comment)
+                    @if ($article->allow_comment)
                         <span class="d-none d-lg-inline-block pr-2">
                             <i class="text-sm iconfont icon-duanxin"></i>
-                            {{ $post->comments_count }}
+                            {{ $article->comments_count }}
                          </span>
                     @endif
 
                     <span class="d-none d-lg-inline-block">
                     <i class="iconfont icon-shoucang"></i>
-                        {{ $post->likes_count }}
+                        {{ $article->likes_count }}
                     </span>
                 </div>
             </div>

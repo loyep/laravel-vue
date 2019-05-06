@@ -1,6 +1,6 @@
 <template>
   <div>
-    Post Detail
+    Article Detail
   </div>
 </template>
 

@@ -22,7 +22,7 @@ return [
         'placeholder'  => 'Type Something...',
         'top_keywords' => 'Top Keywords',
     ],
-    'post' => [
+    'article' => [
         'like'    => 'Like',
         'on'      => 'Posted on',
         'related' => 'Related Posts',

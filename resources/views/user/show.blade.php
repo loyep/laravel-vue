@@ -7,7 +7,7 @@
 
 @section('content')
     @include('partials.header', ['name' => Prism::name(), 'fixed' => false])
-    @include('components.top.post', compact('topPosts'))
+    @include('components.top.article', compact('topPosts'))
     <main class="py-4 py-md-5">
         <div class="container">
             <div class="card bg-dark bg-cover rounded mb-4 mb-md-5">
@@ -48,13 +48,13 @@
                 <div class="row justify-content-md-center">
                     <div class="col-md-9">
                         @endif
-                        @if($posts->count() > 0)
+                        @if($articles->count() > 0)
                             <div class="search-list {{  $grid_class }}">
-                                @foreach($posts as $post)
-                                    @include('components.card.post', compact('post'))
+                                @foreach($articles as $article)
+                                    @include('components.card.article', compact('article'))
                                 @endforeach
                             </div>
-                            {!! $posts->links() !!}
+                            {!! $articles->links() !!}
                         @else
                             <div class="content-error h-v-66">
                                 @include('components.not-found-svg')

@@ -25,7 +25,7 @@ class TagController extends Controller
     protected $validation;
 
     /**
-     * PostController constructor.
+     * ArticleController constructor.
      *
      * @param ValidationFactory $validation
      */
@@ -45,7 +45,7 @@ class TagController extends Controller
     public function index(TagRequest $request)
     {
         $tags = $this->model
-            ->withCount('posts')
+            ->withCount('articles')
             ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
                 $query->where('name', 'like', '%'.$keywords.'%');
             })

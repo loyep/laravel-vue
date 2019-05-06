@@ -18,13 +18,13 @@
                                 {{ __('prism.search.title') }}<span>{{ request()->q }}</span>
                             </div>
                         </div>
-                        @if($posts->count() > 0)
+                        @if($articles->count() > 0)
                             <div class="search-list {{ $grid_class }}">
-                                @foreach($posts as $post)
-                                    @include('components.card.post', compact('post'))
+                                @foreach($articles as $article)
+                                    @include('components.card.article', compact('article'))
                                 @endforeach
                             </div>
-                            {!! $posts->links() !!}
+                            {!! $articles->links() !!}
                         @else
                             <div class="content-error h-v-66">
                                 @include('components.not-found-svg')

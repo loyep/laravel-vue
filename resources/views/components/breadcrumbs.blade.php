@@ -4,10 +4,10 @@
     </span>
     <span class="sep">›</span>
     <span itemprop="itemListElement">
-        <a href="{{ $post->category->perm_link }}" itemprop="item">
-            <span itemprop="name" class="text-muted">{{ $post->category->name }}</span>
+        <a href="{{ $article->category->getLink() }}" itemprop="item">
+            <span itemprop="name" class="text-muted">{{ $article->category->name }}</span>
         </a>
     </span>
     <span class="sep">›</span>
-    <span class="current">{{ $post->title }}</span>
+    <span class="current">{{ $article->title }}</span>
 </div>

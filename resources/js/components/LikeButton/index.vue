@@ -47,7 +47,7 @@ export default {
       e.preventDefault();
       this.$refs.likeBtn.blur();
       axios
-        .post(`/post/${this.id}/like`)
+        .post(`/article/${this.id}/like`)
         .then(res => {
           const { data } = res.data
           if (data !== undefined) {

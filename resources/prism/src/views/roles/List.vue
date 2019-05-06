@@ -92,7 +92,7 @@ const columns = [
   },
   {
     title: '总数',
-    dataIndex: 'posts_count'
+    dataIndex: 'articles_count'
   },
   {
     title: '更新时间',
@@ -128,8 +128,6 @@ export default {
       this.selectedRowKeys = []
     }
   },
-
-
 
   created () {
     this.handleSearch()

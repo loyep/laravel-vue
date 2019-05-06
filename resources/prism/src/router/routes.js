@@ -1,5 +1,5 @@
 import tagRoutes from './modules/tag'
-import postRoutes from './modules/post'
+import articleRoutes from './modules/article'
 import categoryRoutes from './modules/category'
 import commentRoutes from './modules/comment'
 
@@ -70,13 +70,13 @@ export const asyncRouterMap = [
       {
         path: 'content',
         component: BlankLayout,
-        redirect: { name: 'post.index' },
+        redirect: { name: 'article.index' },
         meta: {
           title: '内容',
           icon: 'edit'
         },
         children: [
-          ...postRoutes,
+          ...articleRoutes,
           ...categoryRoutes,
           ...tagRoutes,
           ...commentRoutes

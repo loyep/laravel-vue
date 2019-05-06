@@ -119,7 +119,7 @@ const columns = [
   },
   {
     title: '总数',
-    dataIndex: 'posts_count',
+    dataIndex: 'articles_count',
     width: 100
   },
   {
@@ -160,8 +160,6 @@ export default {
       this.selectedRowKeys = []
     }
   },
-
-
 
   created () {
     this.handleSearch()

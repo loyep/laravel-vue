@@ -22,7 +22,7 @@ class SettingController extends Controller
     protected $validation;
 
     /**
-     * PostController constructor.
+     * ArticleController constructor.
      *
      * @param ValidationFactory $validation
      */

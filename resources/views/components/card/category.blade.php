@@ -20,6 +20,6 @@
     @if (!empty($dot))
         <i class="cat-dot" style="{{ $color_style }}"></i>
     @endif
-    <a href="{{ $cat->perm_link }}" class="text-muted"
+    <a href="{{ $cat->getLink() }}" class="text-muted"
        target="_blank">{{ $cat->name }}</a>
 </div>

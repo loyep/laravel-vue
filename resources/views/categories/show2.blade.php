@@ -45,32 +45,32 @@ if (Route::current()->named('home')) {
         </div>
     </div>
 </section>
-@if ($posts->count() > 0)
+@if ($articles->count() > 0)
     <section class="nice-warp nice-warp-single mt-3 mt-md-5 mb-4 mb-md-5">
         <div class="container">
             <main class="nice-main">
                 <div class="posts-list">
                     <div class="list-inner home-list row  row-10 row-xs-15 ">
-                        @foreach($posts as $post)
+                        @foreach($articles as $article)
                             <div class="item-card d-flex col-12 col-sm-6 col-md-3 col-lg-3">
                                 <article class="card flex-fill mb-4 mb-sm-4-2 mb-md-4 mb-lg-4-2">
                                     <div class="image">
                                         <a class=""
-                                           href="{{ $post->permLink }}"
-                                           title="{{ $post->title }}">
+                                           href="{{ $article->permLink }}"
+                                           title="{{ $article->title }}">
                                             <div class="custom-hover d-block">
                                                 <img class="timthumb_php"
-                                                     src="{{ $post->image }}"
-                                                     title="{{ $post->title }}" alt="{{ $post->title }}">
+                                                     src="{{ $article->image }}"
+                                                     title="{{ $article->title }}" alt="{{ $article->title }}">
                                             </div>
-                                            {{--$post_extend = wp_parse_args( (array) $post_extend, array(--}}
+                                            {{--$article_extend = wp_parse_args( (array) $article_extend, array(--}}
                                             {{--'post_layout' => 'one',--}}
                                             {{--'head_img'    => '',--}}
                                             {{--)--}}
                                             {{--);--}}
-                                            {{--if( $post_extend['post_layout'] == 'six' || $post_extend['post_layout'] == 'seven' ){--}}
+                                            {{--if( $article_extend['post_layout'] == 'six' || $article_extend['post_layout'] == 'seven' ){--}}
                                             {{--echo '<div class="post-format-icon"><i class="fas fa-play"></i></div>';--}}
-                                            {{--}else if( $post_extend['post_layout'] == 'five' && $post_extend['post_layout_gallery'] ){--}}
+                                            {{--}else if( $article_extend['post_layout'] == 'five' && $article_extend['post_layout_gallery'] ){--}}
                                             {{--echo '<div class="post-format-icon"><i class="fas fa-camera"></i></div>';--}}
                                             {{--}--}}
                                             {{--<div class="post-format-icon"><i class="fas fa-play"></i></div>--}}
@@ -80,36 +80,36 @@ if (Route::current()->named('home')) {
 
                                         <div class="meta mt-2 light-12 ">
                                         <span class="u-cat-name font-12 d-block u-cat-dot u-color-red">
-                                            <a class="text-primary" href="{{ $post->category->permLink }}">
-                                                {{ $post->category->name }}
+                                            <a class="text-primary" href="{{ $article->category->permLink }}">
+                                                {{ $article->category->name }}
                                             </a>
                                         </span>
                                         </div>
                                         <div class="title flex-grow-1 mt-2">
                                             <h2 class="font-16 font-md-14 font-xs-16 text-l2 font-weight-bold light-14">
-                                                <a href="{{ $post->permLink }}" title="{{ $post->title }}">
-                                                    {{ $post->title }}
+                                                <a href="{{ $article->permLink }}" title="{{ $article->title }}">
+                                                    {{ $article->title }}
                                                 </a>
                                             </h2>
                                         </div>
                                         <div class="desc mt-2 d-none d-md-block">
                                             <p class="text-l2 font-md-12 text-secondary">
-                                                {{ $post->excerpt }}
+                                                {{ $article->excerpt }}
                                             </p>
                                         </div>
 
                                         <div class="data nodots d-flex align-items-center flex-row font-12 font-md-10 text-muted mt-2 mt-lg-3 light-12 d-flex d-lg-flex">
                                             <div class="flex-fill d-flex ">
-                                                <span class="u-time">{{ $post->published_date }}</span>
+                                                <span class="u-time">{{ $article->published_date }}</span>
                                             </div>
                                             <div class="text-nowrap">
-                                                <span class="u-view d-none d-lg-none"><i class="icon icon-eye"></i> {{ $post->views_count }}</span>
+                                                <span class="u-view d-none d-lg-none"><i class="icon icon-eye"></i> {{ $article->views_count }}</span>
 
                                                 <span class="u-comment d-none d-lg-inline-block"><i
-                                                            class="fal fa-comment-alt-lines"></i>  {{ $post->comments_count }}</span>
+                                                            class="fal fa-comment-alt-lines"></i>  {{ $article->comments_count }}</span>
 
                                                 <span class="u-like d-inline-block d-lg-none d-lg-inline-block"><i
-                                                            class="fal fa-heart"></i> {{ $post->likes_count }}</span>
+                                                            class="fal fa-heart"></i> {{ $article->likes_count }}</span>
                                             </div>
                                         </div>
 
@@ -119,7 +119,7 @@ if (Route::current()->named('home')) {
                         @endforeach
                     </div>
                     <div class="m-3 m-md-4">
-                        {{ $posts->links() }}
+                        {{ $articles->links() }}
                     </div>
                 </div>
             </main>

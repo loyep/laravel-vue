@@ -7,10 +7,10 @@
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
-    @foreach ($posts as $post)
+    @foreach ($articles as $article)
         <url>
-            <loc>{{ route('post.show', $post->slug) }}</loc>
-            <lastmod>{{ $post->updated_at->tz('UTC')->toAtomString() }}</lastmod>
+            <loc>{{ route('post.show', $article->slug) }}</loc>
+            <lastmod>{{ $article->updated_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>daily</changefreq>
             <priority>0.9</priority>
         </url>

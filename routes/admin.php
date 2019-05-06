@@ -21,7 +21,7 @@ Route::prefix('/')->middleware(['auth:api'])->as('admin.')->group(function () {
     // Api resource
     Route::apiResource('user', 'UserController');
     Route::apiResource('tag', 'TagController');
-    Route::apiResource('post', 'PostController');
+    Route::apiResource('article', 'ArticleController');
     Route::apiResource('comment', 'CommentController');
     Route::apiResource('category', 'CategoryController');
     Route::apiResource('setting', 'SettingController');

@@ -78,7 +78,7 @@ class User extends Authenticatable implements JWTSubject
     /**
      * @return string
      */
-    public function getPermLinkAttribute()
+    public function getLink()
     {
         return URL::route('user.show', ['name' => $this->name]);
     }
@@ -97,8 +97,8 @@ class User extends Authenticatable implements JWTSubject
     /**
      * @return HasMany
      */
-    public function posts(): HasMany
+    public function articles(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Article::class);
     }
 }

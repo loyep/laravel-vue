@@ -11,7 +11,7 @@
 
 @section('content')
     @include('partials.header')
-    @include('components.top.post', compact('topPosts', 'style'))
+    @include('components.top.article', compact('topPosts', 'style'))
     <main class="py-4 py-md-5">
         <div class="container">
             @if($style === 'plain')
@@ -23,13 +23,13 @@
                                 <span>{{ $category->name }}</span>
                             </div>
                         </div>
-                        @if($posts->count() > 0)
+                        @if($articles->count() > 0)
                             <div class="{{ $gridClass }}">
-                                @foreach($posts as $post)
-                                    @include('components.card.card-' . $category->style , compact('post'))
+                                @foreach($articles as $article)
+                                    @include('components.card.card-' . $category->style , compact('article'))
                                 @endforeach
                             </div>
-                            {!! $posts->links() !!}
+                            {!! $articles->links() !!}
                         @else
                             <div class="content-error h-v-66">
                                 @include('components.not-found-svg')

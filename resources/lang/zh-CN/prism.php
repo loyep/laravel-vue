@@ -22,7 +22,7 @@ return [
         'placeholder'  => '请输入搜索关键词...',
         'top_keywords' => '热门搜索',
     ],
-    'post' => [
+    'article' => [
         'like'    => '点赞',
         'on'      => '发布在',
         'related' => '相关文章',

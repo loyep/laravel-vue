@@ -1,6 +1,6 @@
 <template>
   <div>
-    Post Index
+    Article Index
   </div>
 </template>
 
