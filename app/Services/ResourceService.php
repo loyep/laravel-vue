@@ -32,6 +32,7 @@ abstract class ResourceService
 
     /**
      * @param Request $request
+     *
      * @return mixed
      */
     abstract public function paginate(Request $request);

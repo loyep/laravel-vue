@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\Menu;
+use Illuminate\Database\Seeder;
 
 class MenusTableSeeder extends Seeder
 {
@@ -13,7 +13,7 @@ class MenusTableSeeder extends Seeder
     public function run()
     {
         $menu = Menu::create([
-           'name' => 'top',
+           'name'        => 'top',
            'description' => '顶部菜单',
         ]);
     }
