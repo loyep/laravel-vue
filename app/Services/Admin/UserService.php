@@ -34,7 +34,7 @@ class UserService extends Service
     /**
      * Display the specified resource.
      *
-     * @param int         $id
+     * @param int $id
      *
      * @return UserResource
      */
