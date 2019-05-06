@@ -2,34 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\CategoryResource;
-use App\Models\Category;
-use Illuminate\Contracts\Validation\Factory as ValidationFactory;
+use App\Services\CategoryService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     /**
-     * @var Category
+     * @var CategoryService
      */
-    protected $model;
+    protected $service;
 
     /**
-     * The validation factory implementation.
-     *
-     * @var ValidationFactory
+     * CategoryController constructor.
+     * @param CategoryService $service
      */
-    protected $validation;
-
-    /**
-     * PostController constructor.
-     *
-     * @param ValidationFactory $validation
-     */
-    public function __construct(ValidationFactory $validation)
+    public function __construct(CategoryService $service)
     {
-        $this->model = app(Category::class);
-        $this->validation = $validation;
+        $this->service = $service;
     }
 
     /**
@@ -41,68 +33,44 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = $this->model
-            ->withCount('posts')
-            ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
-                $query->where('name', 'like', '%'.$keywords.'%')->orWhere('description', 'like', '%'.$keywords.'%');
-            })
-            ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
-
-        return new CategoryResource($categories);
+        return $this->service->paginate($request);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param CategoryRequest $request
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $category = $this->model->create($request->all());
-
-        $response = [
-            'message' => 'Category created.',
-            'data'    => new CategoryResource($category),
-        ];
-
-        return response()->json($response);
+        return $this->service->store($request);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param $id
+     * @param int|string $id
      *
      * @return CategoryResource
      */
     public function show($id)
     {
-        $category = $this->model->find($id);
-
-        return new CategoryResource($category);
+        return $this->service->show($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int|string               $id
+     * @param CategoryRequest $request
+     * @param int|string $id
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        $category = $this->model->findOrFail($id);
-        $category->fill($request->all());
-        $category->save();
-        $response = [
-            'message' => 'Category updated.',
-            'data'    => $category->toArray(),
-        ];
-
-        return response()->json($response);
+        return $this->service->update($request, $id);
     }
 
     /**
@@ -114,10 +82,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $this->model->destroy($id);
-
-        return response()->json([
-            'message' => 'Delete success',
-        ]);
+        return $this->service->destroy($id);
     }
 }

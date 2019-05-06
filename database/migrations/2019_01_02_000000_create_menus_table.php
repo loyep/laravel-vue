@@ -30,7 +30,7 @@ class CreateMenusTable extends Migration
             $table->string('target')->default('_self');
             $table->string('image')->nullable();
             $table->string('icon')->nullable();
-            $table->unsignedBigInteger('parent_id')->default(0);
+            $table->unsignedBigInteger('parent')->default(0);
             $table->unsignedTinyInteger('order')->default(0);
             $table->string('route')->nullable();
             $table->text('parameters')->nullable();

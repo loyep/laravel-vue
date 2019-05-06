@@ -4,10 +4,11 @@ namespace App\Services;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use PHPUnit\Framework\Exception;
 
-class ResourceService extends BaseService
+abstract class ResourceService
 {
     /**
      * @var Model
@@ -29,19 +30,18 @@ class ResourceService extends BaseService
         );
     }
 
-    public function paginate()
-    {
-    }
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    abstract public function paginate(Request $request);
 
     /**
      * @param $id
      *
-     * @return Model
+     * @return mixed
      */
-    public function show($id): Model
-    {
-        return $this->model->findOrFail($id);
-    }
+    abstract public function show($id);
 
     /**
      * Remove the specified resource from storage.

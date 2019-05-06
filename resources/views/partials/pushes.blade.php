@@ -7,7 +7,7 @@
             <div class="col-4 col-md-2 py-md-2 ">
                 <div class="list-item list-overlay custom-hover">
                     <div class="media media-3x2">
-                        <a class="media-content custom-hover-img" style="background-image: url({{ $push->image }})">
+                        <a class="media-content custom-hover-img" style="background-image: url({{ asset('images/push_thumb.jpg') }})">
                             <span class="overlay"></span>
                         </a>
                     </div>

@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Prism Admin Name
+    | Prism App Name
     |--------------------------------------------------------------------------
     |
     | This value is the name of your application. This value is used when the
@@ -12,12 +12,7 @@ return [
     | or in other locations. Of course, you're free to change the value.
     |
     */
+
     'name' => 'Prism',
-
-    'domain' => null,
-
-    'url' => '/',
-
-    'path' => '/admin',
 
 ];
