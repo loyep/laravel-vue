@@ -28,15 +28,6 @@ return [
 
     'url' => env('APP_URL', '/'),
 
-    'admin' => [
-
-        'name' => 'Prism',
-
-        'url' => '/',
-
-        'path' => '/admin',
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Admin Path
@@ -47,8 +38,6 @@ return [
     | affect Prism's internal API routes which aren't exposed to users.
     |
     */
-
-    'path' => '/admin',
 
     'site' => [
 

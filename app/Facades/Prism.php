@@ -32,6 +32,6 @@ class Prism extends Facade
      */
     public static function path()
     {
-        return config('prism.admin.path', '/prism');
+        return config('prism.admin.path', '/admin');
     }
 }
