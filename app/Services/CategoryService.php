@@ -22,7 +22,7 @@ class CategoryService extends Service
     {
         $categories = Category::withCount('posts')
             ->when($keywords = $request->get('keywords'), function ($query) use ($keywords) {
-                $query->where('name', 'like', '%' . $keywords . '%')->orWhere('description', 'like', '%' . $keywords . '%');
+                $query->where('name', 'like', '%'.$keywords.'%')->orWhere('description', 'like', '%'.$keywords.'%');
             })
             ->orderByDesc('updated_at')->paginate($request->get('per_page', 10));
 
@@ -54,7 +54,7 @@ class CategoryService extends Service
 
         $response = [
             'message' => 'Category created.',
-            'data' => new CategoryResource($category),
+            'data'    => new CategoryResource($category),
         ];
 
         return response()->json($response);
@@ -73,7 +73,7 @@ class CategoryService extends Service
         $category->save();
         $response = [
             'message' => 'Category updated.',
-            'data' => $category->toArray(),
+            'data'    => $category->toArray(),
         ];
 
         return response()->json($response);
