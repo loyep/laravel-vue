@@ -3,5 +3,5 @@
 
 return [
 
-    'footer' => 'dark'
+    'footer' => 'dark',
 ];

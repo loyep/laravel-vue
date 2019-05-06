@@ -5,7 +5,7 @@ namespace App\Services;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /**
- * Class ShareService
+ * Class ShareService.
  */
 class ShareService
 {
@@ -50,7 +50,7 @@ class ShareService
      */
     public function weibo()
     {
-        $image = !empty($this->image) ? '&pic=' . urlencode($this->image) : '';
+        $image = !empty($this->image) ? '&pic='.urlencode($this->image) : '';
 
         if (!empty($this->description)) {
             $text = urlencode(sprintf('【%s】%s', $this->title, $this->description));
@@ -68,8 +68,8 @@ class ShareService
      */
     public function qq()
     {
-        $image = !empty($this->image) ? '&pics=' . urlencode($this->image) : '';
-        $description = !empty($this->description) ? '&summary=' . urlencode($this->description) : '';
+        $image = !empty($this->image) ? '&pics='.urlencode($this->image) : '';
+        $description = !empty($this->description) ? '&summary='.urlencode($this->description) : '';
 
         $share_link = sprintf('https://connect.qq.com/widget/shareqq/index.html?url=%s&title=%s%s%s', urlencode($this->url), urlencode($this->title), $image, $description);
 

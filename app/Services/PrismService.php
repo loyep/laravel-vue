@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Cache;
  */
 class PrismService
 {
-
     /**
      * @return mixed
      */
@@ -63,7 +62,6 @@ class PrismService
         if (!empty($notice)) {
             return $notice->value;
         }
-        return null;
     }
 
     /**
@@ -71,8 +69,11 @@ class PrismService
      */
     public function year()
     {
-        $year = (int)(config('prism.footer.year') ?? date('Y'));
-        if ($year < date('Y')) $year .= '-' . date('Y');
+        $year = (int) (config('prism.footer.year') ?? date('Y'));
+        if ($year < date('Y')) {
+            $year .= '-'.date('Y');
+        }
+
         return $year;
     }
 
@@ -94,6 +95,7 @@ class PrismService
 
     /**
      * @param $name
+     *
      * @return Menu
      */
     public function menus($name)
