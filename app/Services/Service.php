@@ -7,8 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Validation\Validator;
 
 /**
- * Class Service
- * @package App\Services
+ * Class Service.
  */
 abstract class Service
 {
@@ -26,12 +25,14 @@ abstract class Service
      * Validate all datas to execute the service.
      *
      * @param array $data
+     *
      * @return bool
      */
     public function validate(array $data): bool
     {
         Validator::make($data, $this->rules())
             ->validate();
+
         return true;
     }
 
@@ -40,11 +41,13 @@ abstract class Service
      *
      * @param mixed $data
      * @param mixed $index
+     *
      * @return mixed
      */
     protected function nullOrValue($data, $index)
     {
         $value = Arr::get($data, $index, null);
+
         return is_null($value) || $value === '' ? null : $value;
     }
 
@@ -53,11 +56,13 @@ abstract class Service
      *
      * @param mixed $data
      * @param mixed $index
+     *
      * @return mixed
      */
     protected function nullOrDate($data, $index)
     {
         $value = Arr::get($data, $index, null);
+
         return is_null($value) || $value === '' ? null : Carbon::parse($value);
     }
 
@@ -68,11 +73,13 @@ abstract class Service
 
     /**
      * @param $request
+     *
      * @return $this
      */
     public function setRequest($request)
     {
         $this->request = $request;
+
         return $this;
     }
 
