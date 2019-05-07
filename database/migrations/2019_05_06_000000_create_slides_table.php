@@ -15,11 +15,11 @@ class CreateSlidesTable extends Migration
     {
         Schema::create('slides', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("title");
+            $table->string('title');
             $table->string('target')->default('_self');
-            $table->string("link");
-            $table->string("image");
-            $table->integer("order");
+            $table->string('link');
+            $table->string('image');
+            $table->integer('order');
             $table->softDeletes();
             $table->timestamps();
         });

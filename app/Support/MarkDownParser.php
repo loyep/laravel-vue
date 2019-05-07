@@ -7,7 +7,7 @@ use Parsedown;
 use ParsedownExtra;
 
 /**
- * Class MarkDownParser
+ * Class MarkDownParser.
  */
 class MarkDownParser
 {
@@ -32,6 +32,7 @@ class MarkDownParser
      * Convert Markdown To Html.
      *
      * @param $markdown
+     *
      * @return string
      */
     public function handleMarkdownToHtml($markdown)
@@ -40,5 +41,4 @@ class MarkDownParser
             ->setBreaksEnabled(true)
             ->text($markdown);
     }
-
 }
