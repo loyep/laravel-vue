@@ -24,8 +24,10 @@ Vue.component('back-top', require('./components/BackTop').default);
 Vue.component('notice-bar', require('./components/NoticeBar').default);
 Vue.component('like-button', require('./components/LikeButton').default);
 Vue.component('bigger-cover', require('./components/BiggerCover').default);
+Vue.component('load-more', require('./components/LoadMore').default);
 
 import './directives/highlight'
+import {prPopup} from './popup'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -41,8 +43,6 @@ const app = new Vue({
         }
     },
 });
-
-import { prPopup } from './popup'
 
 function scrollTop() {
     var $window = $(window),
@@ -77,4 +77,56 @@ $(window).ready(function ($) {
         var $search = $('#search-popup-wrap')
         prPopup('full', $search.html())
     });
+
+    // $('.posts-ajax-load button').on('click', function (event) {
+    //     event.preventDefault();
+    //     var t = $(this);
+    //     if (!t.hasClass('active')) {
+    //         $('.list-ajax-nav button').removeClass('active');
+    //         t.addClass('active');
+
+    //         var cid = t.data('cid');
+    //         if (cid) {
+    //             $('.dposts-ajax-load').data('tabcid', cid);
+    //         } else {
+    //             $('.dposts-ajax-load').removeData('tabcid');
+    //         }
+    //         $('.dposts-ajax-load').data('paged', 1);
+    //         $('.list-home').html('');
+    //         $('.dposts-ajax-load').addClass('loading').text(__.load_more);
+    //         ajax_load_posts($('.dposts-ajax-load').data());
+    //     }
+    // });
 });
+
+function ajax_load_posts(data) {
+    $('.ajax-loading').show();
+
+    var loadButton = $('.dposts-ajax-load');
+    loadButton.hide();
+
+    $.ajax({
+         url: document.ajax_url,
+         type: 'POST',
+         dataType: 'html',
+         data: data,
+     })
+     .done(function (response) {
+         loadButton.removeAttr('disabled');
+         if (response.trim()) {
+             loadButton.data('paged', data.paged * 1 + 1);
+             $('.' + data.append).append(response);
+             loadButton.removeClass('loading').show();
+         } else {
+             loadButton.attr('disabled', 'disabled');
+             loadButton.text(__.reached_the_end).show();
+         }
+     })
+     .fail(function () {
+         $('.ajax-loading').hide();
+     })
+     .always(function () {
+         $('.ajax-loading').hide();
+     });
+}
+

@@ -7,12 +7,16 @@
         <div class="container">
             @include('partials.notice')
             @include('partials.pushes')
-            <section class="list-home row-md list-grouped list-tb-padding">
+            <section class="list-home row-md list-grouped list-tb-padding" id="articles">
                 @foreach($articles as $article)
                     @include('components.card.article', compact('article'))
                 @endForeach
             </section>
-            {!! $articles->links() !!}
+            @if (config('prism.app.ajax.home', true))
+                @include('components.article.navigation')
+            @else
+                {!! $articles->links() !!}
+            @endif
         </div>
     </main>
     @include('partials.footer', ['name' => 'Prism'])

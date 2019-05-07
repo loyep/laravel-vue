@@ -17,4 +17,28 @@ return [
 
     'description' => '美好缘于热爱',
 
+    'ajax' => [
+
+        'home' => true,
+
+        'tag' => true,
+
+        'category' => true,
+
+        'history' => true,
+
+        'search' => true,
+
+        'user' => true,
+    ],
+
+    'year' => null,
+
+    'miitbeian' => '',
+
+    'socials' => [
+
+        'github'      => 'https://github.com/loyep',
+    ],
+
 ];

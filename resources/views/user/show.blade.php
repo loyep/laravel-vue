@@ -49,12 +49,18 @@
                     <div class="col-md-9">
                         @endif
                         @if($articles->count() > 0)
-                            <div class="search-list {{  $grid_class }}">
+                            <div class="{{ $grid_class }}" id="articles">
                                 @foreach($articles as $article)
                                     @include('components.card.article', compact('article'))
                                 @endforeach
                             </div>
-                            {!! $articles->links() !!}
+
+                            @if (config('prism.app.ajax.user', true))
+                                @include('components.article.navigation')
+                            @else
+                                {!! $articles->links() !!}
+                            @endif
+
                         @else
                             <div class="content-error h-v-66">
                                 @include('components.not-found-svg')

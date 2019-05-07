@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Facades\Prism;
 use App\Models\Article;
 use App\Models\Tag;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TagController extends Controller
 {
@@ -31,16 +33,20 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Request $request
      * @param string $slug
-     *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
         $tag = Tag::withCount('articles')->where('slug', $slug)->first();
         $articles = Article::whereHas('tags', function ($query) use ($tag) {
             $query->where('id', $tag->id);
         })->paginate();
+
+        if ($request->isMethod('post')) {
+            return view('components.card.article-list', compact('articles'));
+        }
 
         $topArticles = Article::whereHas('tags', function ($query) use ($tag) {
             $query->where('id', $tag->id);

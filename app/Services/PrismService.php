@@ -30,7 +30,7 @@ class PrismService
      */
     public function socials()
     {
-        return config('prism.footer.socials', []);
+        return config('prism.app.socials', []);
     }
 
     /**
@@ -69,7 +69,7 @@ class PrismService
      */
     public function year()
     {
-        $year = (int) (config('prism.footer.year') ?? date('Y'));
+        $year = (int) (config('prism.app.year') ?? date('Y'));
         if ($year < date('Y')) {
             $year .= '-'.date('Y');
         }

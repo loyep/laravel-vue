@@ -18,11 +18,16 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param Request $request
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $articles = Article::with('category')->orderByDesc('published_at')->paginate(12);
+
+        if ($request->isMethod('post')) {
+            return view('components.card.article-list', compact('articles'));
+        }
 
         return view('home', compact('articles'));
     }
@@ -40,16 +45,16 @@ class HomeController extends Controller
             return (int) $item;
         });
 
-        Prism::setTitle('最近浏览');
-        if (!empty($history)) {
-            $articles = Article::with('category')
-                ->orderByDesc('published_at')
-                ->whereIn('id', $history)
-                ->paginate(12);
+        $articles = Article::with('category')
+            ->orderByDesc('published_at')
+            ->whereIn('id', $history)
+            ->paginate();
 
-            return view('history', compact('articles'));
+        if ($request->isMethod('post')) {
+            return view('components.card.article-list', compact('articles'));
         }
 
+        Prism::setTitle('最近浏览');
         return view('history', compact('articles'));
     }
 
@@ -64,6 +69,11 @@ class HomeController extends Controller
     {
         $q = $request->q;
         $articles = Article::where('title', 'like', '%'.$q.'%')->paginate();
+
+        if ($request->isMethod('post')) {
+            return view('components.card.article-list', compact('articles'));
+        }
+
         $search = Search::where('query', $q)->first();
         if (!$search) {
             $search = new Search();
