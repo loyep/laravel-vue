@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Content;
 use App\Models\Article;
+use App\Models\Content;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
