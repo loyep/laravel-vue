@@ -5,7 +5,6 @@
     $description = $prism->description();
     $name = Prism::name();
     $year = $prism->year();
-
     $style = config('prism.theme.footer', 'light');
 @endphp
 
@@ -23,6 +22,11 @@
             <div class="footer-copyright text-muted mt-4">
                 Copyright © {{ $year }} <a href="{{ url('/') }}" title="{{ $name }}" rel="home">{{ $name }}</a>.
                 Designed by <a href="https://loyep.com" title="Prism" target="_blank">Loyep</a>.
+                @if(Route::currentRouteName() === 'home' && !empty(config('prism.app.miitbeian')))
+                    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow"
+                       class="d-none d-lg-inline-block">{{ config('prism.app.miitbeian') }}
+                    </a>
+                @endif
             </div>
         </div>
     </footer>
@@ -91,7 +95,7 @@
                 Copyright © {{ $year }} <a href="{{ url('/') }}" title="{{ $name }}" rel="home">{{ $name }}</a>.
                 Designed by <a href="https://loyep.com" title="Prism" target="_blank">Loyep</a>.
                 @if(Route::currentRouteName() === 'home' && !empty(config('prism.app.miitbeian')))
-                    <a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow"
+                    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow"
                        class="d-none d-lg-inline-block">{{ config('prism.app.miitbeian') }}
                     </a>
                 @endif
