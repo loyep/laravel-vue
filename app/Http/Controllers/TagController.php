@@ -34,7 +34,8 @@ class TagController extends Controller
      * Display the specified resource.
      *
      * @param Request $request
-     * @param string $slug
+     * @param string  $slug
+     *
      * @return Response
      */
     public function show(Request $request, $slug)

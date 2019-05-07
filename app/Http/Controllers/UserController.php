@@ -34,7 +34,8 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param Request $request
-     * @param string $name
+     * @param string  $name
+     *
      * @return Response
      */
     public function show(Request $request, $name)
@@ -47,6 +48,7 @@ class UserController extends Controller
         }
 
         Prism::setTitle($user->display_name);
+
         return view('user.show', compact('user', 'articles'));
     }
 }
