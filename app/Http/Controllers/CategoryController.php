@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Facades\Prism;
-use App\Models\Category;
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 

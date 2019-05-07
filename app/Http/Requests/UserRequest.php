@@ -7,7 +7,6 @@ namespace App\Http\Requests;
  */
 class UserRequest extends Request
 {
-
     /**
      * @return array
      */

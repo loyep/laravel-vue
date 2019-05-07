@@ -16,5 +16,4 @@ class TagRequest extends Request
     {
         return [];
     }
-
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Facades\Prism;
-use App\Models\Category;
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
 use Carbon\Carbon;
