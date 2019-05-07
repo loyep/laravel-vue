@@ -19,6 +19,7 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function index(Request $request)
@@ -55,6 +56,7 @@ class HomeController extends Controller
         }
 
         Prism::setTitle('最近浏览');
+
         return view('history', compact('articles'));
     }
 
