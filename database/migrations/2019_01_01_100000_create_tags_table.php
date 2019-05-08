@@ -15,6 +15,7 @@ class CreateTagsTable extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
@@ -23,11 +24,6 @@ class CreateTagsTable extends Migration
             $table->text('parameters')->nullable();
             $table->softDeletes();
             $table->timestamps();
-        });
-
-        Schema::create('taggables', function (Blueprint $table) {
-            $table->unsignedBigInteger('tag_id');
-            $table->morphs('taggable');
         });
     }
 

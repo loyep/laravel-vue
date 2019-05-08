@@ -33,20 +33,6 @@ class PrismServiceProvider extends ServiceProvider
     public function boot()
     {
         AbstractPaginator::defaultView('vendor.pagination');
-
-        // @routeis
-        Blade::directive('routeis', function ($expression) {
-            return "<?php if (fnmatch({$expression}, Route::currentRouteName())) : ?>";
-        });
-        Blade::directive('endrouteis', function ($expression) {
-            return '<?php endif; ?>';
-        });
-        Blade::directive('routeisnot', function ($expression) {
-            return "<?php if (! fnmatch({$expression}, Route::currentRouteName())) : ?>";
-        });
-        Blade::directive('endrouteisnot', function ($expression) {
-            return '<?php endif; ?>';
-        });
     }
 
     public function registerBladeDirectives()

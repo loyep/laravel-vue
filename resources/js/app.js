@@ -78,25 +78,10 @@ $(window).ready(function ($) {
         prPopup('full', $search.html())
     });
 
-    // $('.posts-ajax-load button').on('click', function (event) {
-    //     event.preventDefault();
-    //     var t = $(this);
-    //     if (!t.hasClass('active')) {
-    //         $('.list-ajax-nav button').removeClass('active');
-    //         t.addClass('active');
-
-    //         var cid = t.data('cid');
-    //         if (cid) {
-    //             $('.dposts-ajax-load').data('tabcid', cid);
-    //         } else {
-    //             $('.dposts-ajax-load').removeData('tabcid');
-    //         }
-    //         $('.dposts-ajax-load').data('paged', 1);
-    //         $('.list-home').html('');
-    //         $('.dposts-ajax-load').addClass('loading').text(__.load_more);
-    //         ajax_load_posts($('.dposts-ajax-load').data());
-    //     }
-    // });
+    $(".sidebar").length > 0 && $(".sidebar").theiaStickySidebar({
+        additionalMarginTop: 20,
+        additionalMarginBottom: 100
+    });
 });
 
 function ajax_load_posts(data) {

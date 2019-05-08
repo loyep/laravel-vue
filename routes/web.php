@@ -14,12 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // 首页
-Route::get('/', 'HomeController@index')->name('home');
-Route::post('/', 'HomeController@index');
+Route::any('/', 'HomeController@index')->name('home');
 
 // 搜索页
-Route::get('search', 'HomeController@search')->name('search');
-Route::post('search', 'HomeController@search');
+Route::any('search', 'SearchController@index')->name('search');
 
 // 短链接
 Route::get('t/{slug}', 'LinkController@short')->name('short');
@@ -28,27 +26,23 @@ Route::get('t/{slug}', 'LinkController@short')->name('short');
 Route::get('links', 'LinkController@index')->name('short');
 
 // 作者页
-Route::get('author/{name}', 'UserController@show')->name('user.show');
-Route::post('author/{name}', 'UserController@show');
+Route::any('author/{name}', 'UserController@show')->name('user.show');
 
 // 文章页
 Route::get('article/{slug}', 'ArticleController@show')->name('article.show');
 Route::post('article/{id}/like', 'ArticleController@like')->name('article.like');
 
 // 分类页
-Route::get('category/{slug}', 'CategoryController@show')->name('category.show');
-Route::post('category/{slug}', 'CategoryController@show');
+Route::any('category/{slug}', 'CategoryController@show')->name('category.show');
 
 // 标签页
-Route::get('tag/{slug}', 'TagController@show')->name('tag.show');
-Route::post('tag/{slug}', 'TagController@show');
+Route::any('tag/{slug}', 'TagController@show')->name('tag.show');
 
 // 热门标签
 Route::get('tags', 'TagController@index')->name('tag.index');
 
 // 热门标签
-Route::get('history', 'HomeController@history')->name('history');
-Route::post('history', 'HomeController@history');
+Route::any('history', 'HistoryController@index')->name('history');
 
 // SiteMap
 Route::get('sitemap', 'HomeController@siteMap')->name('sitemap');

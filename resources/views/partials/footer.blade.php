@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 py-3">
-                    @routeis('home')
+                    @if(route_is('home'))
                         <div class="footer-widget">
                             <div class="footer-widget-header">{{ __('prism.footer.links') }}</div>
                             <div class="footer-widget-content">
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endrouteis
+                    @endif
                 </div>
             </div>
             <div class="footer-copyright border-top py-4 mt-4">

@@ -14,7 +14,6 @@
         "jenssegers/agent": "^2.6",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "predis/predis": "^1.1",
         "prettus/l5-repository": "^2.6",
         "qiniu/php-sdk": "^7.2",
         "simplesoftwareio/simple-qrcode": "^2.0",
@@ -28,7 +27,8 @@
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
         "nunomaduro/larastan": "^0.3.16",
-        "phpunit/phpunit": "^7.5"
+        "phpunit/phpunit": "^7.5",
+        "predis/predis": "^1.1"
     },
     "config": {
         "optimize-autoloader": true,

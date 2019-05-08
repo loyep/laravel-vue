@@ -19,5 +19,6 @@
             @endif
         </div>
     </main>
+    @include('components.recommended.articles')
     @include('partials.footer', ['name' => 'Prism'])
 @endsection

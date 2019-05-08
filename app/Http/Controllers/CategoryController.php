@@ -42,7 +42,8 @@ class CategoryController extends Controller
     {
         $category = Category::withCount('articles')->where('slug', $slug)->first();
         $articles = Article::where('category_id', $category->id)->orderByDesc('published_at')->paginate();
-        if ($request->isMethod('post')) {
+
+        if ($request->ajax()) {
             return view('components.card.article-list', compact('articles'));
         }
 

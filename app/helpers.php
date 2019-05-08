@@ -1,33 +1,31 @@
 <?php
 
 use App\Helpers\Helper;
+use Illuminate\Support\Facades\Route;
 
-if (!function_exists('get_menus')) {
+if (!function_exists('route_is')) {
     /**
-     * get menus.
+     * route_is
      *
-     * @param string $name
-     *
-     * @return array
+     * @param string $expression
+     * @return bool
      */
-    function get_menus($name = 'home')
+    function route_is(string $expression)
     {
-        return Helper::getMenus($name);
+        return fnmatch($expression, Route::currentRouteName());
     }
 }
 
-if (!function_exists('get_option')) {
+if (!function_exists('route_is_not')) {
     /**
-     * get option.
+     * route_is_not
      *
-     * @param string $name
-     * @param mixed  $default
-     *
-     * @return string|null
+     * @param string $expression
+     * @return bool
      */
-    function get_option($name = '', $default = '')
+    function route_is_not(string $expression)
     {
-        return Helper::getOption($name, $default);
+        return !fnmatch($expression, Route::currentRouteName());
     }
 }
 
@@ -56,29 +54,5 @@ if (!function_exists('current_user')) {
     function current_user()
     {
         return Helper::currentUser();
-    }
-}
-
-if (!function_exists('get_footer_year')) {
-    function get_footer_year($year)
-    {
-        $current_year = intval(date('Y'));
-        if (!empty($year)) {
-            return $year == $current_year ? $current_year : $year.'-'.$current_year;
-        }
-
-        return $current_year;
-    }
-}
-
-if (!function_exists('get_widget')) {
-    /**
-     * @param $slug
-     *
-     * @return mixed|null
-     */
-    function get_widget($slug)
-    {
-        return Helper::getWidget($slug);
     }
 }

@@ -6,19 +6,19 @@
                 <span class="overlay"></span>
             </a>
 
-            @if ('image' === $article->format)
+            @if ('image' === $article->type)
                 <div class="media-action">
                     <i class="iconfont icon-pic-s"></i>
                 </div>
             @endif
 
-            @if ('video' === $article->format)
+            @if ('video' === $article->type)
                 <div class="media-action">
                     <i class="iconfont icon-bofang"></i>
                 </div>
             @endif
 
-            @if ('audio' === $article->format)
+            @if ('audio' === $article->type)
                 <div class="media-action">
                     <i class="iconfont icon-yinle"></i>
                 </div>

@@ -43,7 +43,7 @@ class UserController extends Controller
         $user = User::withCount('articles')->where('name', $name)->firstOrFail();
         $articles = Article::where('user_id', $user->id)->paginate();
 
-        if ($request->isMethod('post')) {
+        if ($request->ajax()) {
             return view('components.card.article-list', compact('articles'));
         }
 

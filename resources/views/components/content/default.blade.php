@@ -25,11 +25,13 @@
                     @include('components.article.copyright', compact('article'))
                     @include('components.article.footer', compact('article'))
                     @include('components.article.nav-link', compact('article'))
+                    @include('partials.comments', compact('article'))
                 </div>
             </div>
             <div class="sidebar col-lg-3 d-none d-lg-block">
                 <?php //get_template_part('template-parts/toc')?>
                 <?php //get_sidebar()?>
+                @include('partials.sidebar', compact('article'))
             </div>
         </div>
     </div>

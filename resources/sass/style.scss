@@ -1112,6 +1112,30 @@ a.text-primary:hover {
   border-color: #f4f5f9
 }
 
+.btn-link {
+  font-weight: 400;
+  color: #062743;
+  background-color: transparent;
+}
+
+.btn-link:hover {
+  color: #FF5D4A;
+  text-decoration: underline;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.btn-link:focus, .btn-link.focus {
+  text-decoration: underline;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.btn-link:disabled, .btn-link.disabled {
+  color: #9d9fa9;
+  pointer-events: none;
+}
+
 .btn-outline-light {
   color: #062743;
   background-color: #FFF;
@@ -1138,9 +1162,9 @@ a.text-primary:hover {
 
 .btn-outline-light:not(:disabled):not(.disabled):active,
 .btn-outline-light:not(:disabled):not(.disabled).active,.show > .btn-outline-light.dropdown-toggle {
-  color: #9d9fa9;
+  color: #ff5d4a;
   background-color: #fff;
-  border-color: #f4f5f9
+  border-color: #f4f5f9;
 }
 
 .btn-outline-light:not(:disabled):not(.disabled):active:focus,
@@ -1692,7 +1716,7 @@ a.text-primary:hover {
     nav link style
 --------------------------------------------------------------*/
 .nav-pills .nav-link {
-  padding: .375rem .75rem;
+  padding: .275rem .875rem;
   border-radius: 2px;
 }
 
@@ -1836,7 +1860,7 @@ a.text-primary:hover {
   -ms-flex-align: center;
   align-items: center;
   font-size: 1.5rem;
-  color: #fff;
+  color: #eaecf1;
 }
 
 .media-action::before {
@@ -1852,8 +1876,8 @@ a.text-primary:hover {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.18));
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+  border: 0 solid rgba(255, 255, 255, 0.55);
   -webkit-transition: all .3s ease;
   -moz-transition: all .3s ease;
   -ms-transition: all .3s ease;
@@ -2651,7 +2675,7 @@ a.text-primary:hover {
   }
 
   .list-magazine.list-fixed {
-    padding-top: 4.125rem;
+    padding-top: 4.6875rem;
   }
 }
 
@@ -3069,7 +3093,6 @@ a:hover .overlay {
     }
   }
   nav {
-    padding: 0;
     transition: all 400ms ease-in-out;
     box-shadow: 0px 5px 60px 0px rgba(17, 58, 93, 0.1);
   }
@@ -3082,39 +3105,31 @@ a:hover .overlay {
     }
     &.scroll {
       background-color: rgba(2, 10, 18, .8);
-      padding-top: 0;
-      padding-bottom: 0;
+      padding-top: .25rem;
+      padding-bottom: .25rem;
     }
   }
 }
 
 @media  (min-width:768px) and (max-width:991.98px) {
-  .header {
-    .navbar {
-      padding: 0;
-    }
-    .navbar-brand {
-      img {
-        max-height: 50px;
-      }
+  .header .navbar-brand {
+    img {
+      max-height: 50px;
     }
   }
 }
 
 @media (max-width:767.98px) {
   .header {
-    .navbar {
-      padding: 0;
-    }
     .navbar-brand {
-      padding: .5rem 1rem;
+      padding: .5rem 0;
       img {
         max-height: 40px;
       }
     }
     .fixed-top {
-      padding-top: .25rem;
-      padding-bottom: .25rem;
+      padding-top: .5rem;
+      padding-bottom: .5rem;
       &.scroll {
         padding-top: .05rem;
         padding-bottom: .05rem;
@@ -3478,16 +3493,17 @@ a:hover .overlay {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+  width: 100%;
   ul {
     li {
       .nav-link {
-        font-size: .875rem;
-        padding: .25rem 0 .5rem 0;
+        padding: .75rem 0 .25rem;
+        margin-right: 1rem;
         margin-left: 1rem;
       }
       &:last-child {
         .nav-link {
-          margin-right: 1rem;
+          margin-right: 0;
         }
       }
     }
@@ -3898,6 +3914,10 @@ content-style
 /*--------------------------------------------------------------
     gallery caption style
 --------------------------------------------------------------*/
+.content-style.content .wp-block-gallery{
+  margin: 0;
+}
+
 .wp-caption,
 .gallery-caption {
   margin-bottom: 20px;
@@ -5173,6 +5193,9 @@ to popup
   .media {
     border-radius: 6px 6px 0 0;
   }
+  .author-popup-meta{
+    position: relative;
+  }
   .bg-author {
     opacity: .75;
   }
@@ -5180,6 +5203,11 @@ to popup
     opacity: .15;
     filter: blur(10px);
   }
+}
+
+.author-popup-meta .w-96{
+  position: relative;
+  z-index: 2;
 }
 
 /*

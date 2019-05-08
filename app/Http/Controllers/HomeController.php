@@ -24,9 +24,14 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $articles = Article::with('category')->orderByDesc('published_at')->paginate(12);
+        $articles = Article::orderByDesc('published_at')->paginate();
 
-        if ($request->isMethod('post')) {
+        $articles->load([
+            'category',
+            'user',
+        ]);
+
+        if ($request->ajax()) {
             return view('components.card.article-list', compact('articles'));
         }
 

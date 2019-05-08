@@ -45,7 +45,7 @@ class TagController extends Controller
             $query->where('id', $tag->id);
         })->paginate();
 
-        if ($request->isMethod('post')) {
+        if ($request->ajax()) {
             return view('components.card.article-list', compact('articles'));
         }
 
