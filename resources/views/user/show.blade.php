@@ -7,7 +7,6 @@
 
 @section('content')
     @include('partials.header', ['name' => Prism::name(), 'fixed' => false])
-    @include('components.top.article', compact('topPosts'))
     <main class="py-4 py-md-5">
         <div class="container">
             <div class="card bg-dark bg-cover rounded mb-4 mb-md-5">
@@ -29,7 +28,7 @@
                         <span class="flex-fill"></span>
                         <div class="d-flex flex-nowrap align-items-center flex-shrink-0 p-5 mx-n2">
 				            <span class="text-white text-md-center p-2">
-				                <span class="font-theme text-xl">{{ $user->posts_count }}</span>
+				                <span class="font-theme text-xl">{{ $user->articles_count ?? 0 }}</span>
 				                <small class="d-md-block text-light">文章</small>
 				            </span>
                             <span class="text-white text-md-center p-2">
