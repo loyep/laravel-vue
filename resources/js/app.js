@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -27,7 +26,9 @@ Vue.component('bigger-cover', require('./components/BiggerCover').default);
 Vue.component('load-more', require('./components/LoadMore').default);
 
 import './directives/highlight'
-import {prPopup} from './popup'
+import {
+    prPopup
+} from './popup'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -91,27 +92,26 @@ function ajax_load_posts(data) {
     loadButton.hide();
 
     $.ajax({
-         url: document.ajax_url,
-         type: 'POST',
-         dataType: 'html',
-         data: data,
-     })
-     .done(function (response) {
-         loadButton.removeAttr('disabled');
-         if (response.trim()) {
-             loadButton.data('paged', data.paged * 1 + 1);
-             $('.' + data.append).append(response);
-             loadButton.removeClass('loading').show();
-         } else {
-             loadButton.attr('disabled', 'disabled');
-             loadButton.text(__.reached_the_end).show();
-         }
-     })
-     .fail(function () {
-         $('.ajax-loading').hide();
-     })
-     .always(function () {
-         $('.ajax-loading').hide();
-     });
+        url: document.ajax_url,
+        type: 'POST',
+        dataType: 'html',
+        data: data,
+    })
+        .done(function (response) {
+            loadButton.removeAttr('disabled');
+            if (response.trim()) {
+                loadButton.data('paged', data.paged * 1 + 1);
+                $('.' + data.append).append(response);
+                loadButton.removeClass('loading').show();
+            } else {
+                loadButton.attr('disabled', 'disabled');
+                loadButton.text(__.reached_the_end).show();
+            }
+        })
+        .fail(function () {
+            $('.ajax-loading').hide();
+        })
+        .always(function () {
+            $('.ajax-loading').hide();
+        });
 }
-

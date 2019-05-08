@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\Link;
 use App\Models\Menu;
@@ -39,6 +40,12 @@ class PrismService
     public function footerTags()
     {
         return Tag::take(16)->get();
+    }
+
+    public function convergence($article)
+    {
+        $articles = Article::where('category_id', $article->category_id)->take(4)->get();
+        return $articles;
     }
 
     /**

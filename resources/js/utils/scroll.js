@@ -35,4 +35,3 @@ export function addViewportEvent(el, fn) {
     attachEvent('resize', givenElementInViewport(el, fn));
   }
 }
-
