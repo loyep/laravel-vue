@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Prism\PendingRouteRegistration;
 use App\Prism\Prism;
 use Illuminate\Pagination\AbstractPaginator;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 

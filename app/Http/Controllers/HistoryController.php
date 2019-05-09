@@ -25,7 +25,7 @@ class HistoryController extends Controller
         $history = collect(explode(',', Cookie::get('history')))->filter(function ($item) {
             return !empty($item);
         })->map(function ($item) {
-            return (int)$item;
+            return (int) $item;
         });
 
         $articles = Article::with('category')
