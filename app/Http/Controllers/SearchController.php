@@ -22,7 +22,7 @@ class SearchController extends Controller
     public function index(Request $request)
     {
         $query = $request->q;
-        $articles = Article::where('title', 'like', '%' . $query . '%')->paginate();
+        $articles = Article::where('title', 'like', '%'.$query.'%')->paginate();
 
         $articles->load([
             'category',

@@ -45,6 +45,7 @@ class PrismService
     public function convergence($article)
     {
         $articles = Article::where('category_id', $article->category_id)->take(4)->get();
+
         return $articles;
     }
 
