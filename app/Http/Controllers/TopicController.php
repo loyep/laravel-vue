@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Prism;
+use App\Models\Article;
+use App\Models\Category;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 
@@ -18,73 +21,26 @@ class TopicController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param \App\Models\Topic $topic
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $slug
+     * @return Response
      */
-    public function show(Topic $topic)
+    public function show(Request $request, $slug)
     {
-        //
+        $category = Topic::withCount('articles')->where('slug', $slug)->first();
+        $articles = Article::where('category_id', $category->id)->orderByDesc('published_at')->paginate();
+
+        if ($request->ajax()) {
+            return view('components.card.article-list', compact('articles'));
+        }
+
+        $topArticles = Article::with('user')->orderByDesc('published_at')->take(4)->get();
+
+        Prism::setTitle($category->name);
+
+        return view('categories.show', compact('articles', 'category', 'topArticles'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Topic $topic
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Topic $topic)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Topic        $topic
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Topic $topic)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Topic $topic
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Topic $topic)
-    {
-        //
-    }
 }

@@ -14,6 +14,6 @@
                 <i class="text-lg iconfont icon-daochu"></i> 海报
             </a>
         </div>
-        @include('components.article.share', compact('article'))
+        @include('articles.partials.share', compact('article'))
     </div>
 </div>

@@ -5,24 +5,7 @@
                 <img src="{{ $article->image }}" alt="{{ $article->title }}">
                 <span class="overlay"></span>
             </a>
-
-            @if ('image' === $article->type)
-                <div class="media-action">
-                    <i class="iconfont icon-pic-s"></i>
-                </div>
-            @endif
-
-            @if ('video' === $article->type)
-                <div class="media-action">
-                    <i class="iconfont icon-bofang"></i>
-                </div>
-            @endif
-
-            @if ('audio' === $article->type)
-                <div class="media-action">
-                    <i class="iconfont icon-yinle"></i>
-                </div>
-            @endif
+            @include('components.card.media-icon', ['type' => $article->type])
         </div>
         <div class="list-content">
             <div class="list-body">
@@ -32,19 +15,16 @@
                 <div>{{ $article->getPublishedDate() }}</div>
                 <div class="flex-fill"></div>
                 <div class="text-nowrap">
-
                     <span class="d-none d-lg-inline-block pr-2">
                         <i class="text-sm iconfont icon-view"></i>
                         {{ $article->views_count }}
                     </span>
-
                     @if ($article->allow_comment)
                         <span class="d-none d-lg-inline-block pr-2">
                             <i class="text-sm iconfont icon-duanxin"></i>
                             {{ $article->comments_count }}
                          </span>
                     @endif
-
                     <span class="d-none d-lg-inline-block">
                     <i class="iconfont icon-shoucang"></i>
                         {{ $article->likes_count }}

@@ -51,18 +51,19 @@ class ArticleController extends Controller
      */
     public function show(Request $request, $slug)
     {
+        $template = 'default';
         try {
             $article = Article::with('content', 'category', 'tags', 'user')->where('slug', $slug)->firstOrFail();
             $article->increment('views_count');
             $content = $article->content->content();
             $this->updateViewHistory($request, $article->id);
             $article->excerpt = $this->getExcerptFromContent($content, 120);
+            $template = $article->template ?? $template;
             Prism::setTitle($article->title);
         } catch (ModelNotFoundException $e) {
             abort(404);
         }
-
-        return view('articles.show', compact('article', 'content'));
+        return view('articles.template.' . $template, compact('article', 'content', 'prevArticle', 'nextArticle'));
     }
 
     protected function updateViewHistory(Request $request, $id)

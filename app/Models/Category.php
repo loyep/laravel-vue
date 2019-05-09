@@ -37,19 +37,4 @@ class Category extends Model
     {
         return URL::route('category.show', ['slug' => $this->slug]);
     }
-
-    /**
-     * @param string $key
-     *
-     * @return mixed
-     */
-    public function __get($key)
-    {
-        $value = parent::__get($key);
-        if ($value === null && !property_exists($this, $key)) {
-            return $this->getMetaValue($key);
-        }
-
-        return $value;
-    }
 }

@@ -17,7 +17,7 @@ class CreateVisitorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('path');
-            $table->ipAddress('ip');
+            $table->ipAddress('ip')->nullable();
             $table->string('location');
             $table->text('user_agent');
             $table->string('browser');

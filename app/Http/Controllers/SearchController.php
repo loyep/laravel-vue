@@ -44,6 +44,6 @@ class SearchController extends Controller
             $search->increment('search_count');
         }
 
-        return view('search', compact('q', 'articles'));
+        return view('search.index', compact('query', 'articles'));
     }
 }

@@ -19,7 +19,8 @@ class CreateSlidesTable extends Migration
             $table->string('target')->default('_self');
             $table->string('link');
             $table->string('image');
-            $table->integer('order');
+            $table->unsignedInteger('order')->default(0);
+            $table->unsignedInteger('views_count')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

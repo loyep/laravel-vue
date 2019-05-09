@@ -13,7 +13,7 @@
                 @endForeach
             </section>
             @if (config('prism.app.ajax.home', true))
-                @include('components.article.navigation')
+                @include('partials.navigation')
             @else
                 {!! $articles->links() !!}
             @endif

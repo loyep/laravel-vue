@@ -1,6 +1,6 @@
 @php
-    $prevArticle = \App\Models\Article::where('id', '<', $article->id)->orderBy('id', 'desc')->first();
-    $nextArticle = \App\Models\Article::where('id', '>', $article->id)->orderBy('id', 'asc')->first();
+    $prevArticle = $article->prevArticle();
+    $nextArticle = $article->nextArticle();
 
     $prevClass = empty($nextArticle) ? 'col d-flex py-1' : 'col-12 col-md-6 d-flex py-1';
     $nextClass = empty($prevArticle) ? 'col d-flex py-1' : 'col-12 col-md-6 d-flex py-1';

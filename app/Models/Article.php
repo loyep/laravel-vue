@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Models\Scopes\SlugScope;
+use App\Services\ShareService;
 use App\Traits\Likable;
 use Carbon\Carbon;
 use Carbon\Traits\Date;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\URL;
 
 /**
@@ -28,14 +29,26 @@ use Illuminate\Support\Facades\URL;
  * @property Date published_at
  * @property string slug
  * @property object meta
+ * @property string type
+ * @property string description
  */
 class Article extends Model
 {
     use Likable, SlugScope;
 
+    /**
+     * @var
+     */
+    protected $share;
+
+    /**
+     * @var array
+     */
     protected $dates = [
         'published_at',
     ];
+
+    protected $link;
 
     /**
      * @return MorphOne
@@ -54,11 +67,11 @@ class Article extends Model
     }
 
     /**
-     * @return MorphToMany
+     * @return BelongsToMany
      */
-    public function tags(): MorphToMany
+    public function tags(): ?BelongsToMany
     {
-        return $this->morphToMany(Tag::class, 'taggable');
+        return $this->belongsToMany(Tag::class);
     }
 
     /**
@@ -86,6 +99,22 @@ class Article extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function nextArticle()
+    {
+        return self::where('published_at', '>', $this->published_at)->where('status', 'published')->orderBy('published_at', 'asc')->first();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function prevArticle()
+    {
+        return self::where('published_at', '<', $this->published_at)->where('status', 'published')->orderBy('published_at', 'desc')->first();
+    }
+
+    /**
      * @param string $value
      *
      * @return string
@@ -95,6 +124,9 @@ class Article extends Model
         return $value ?: asset('static/images/default.png');
     }
 
+    /**
+     * @return string
+     */
     public function getPublishedDate()
     {
         $date = $this->published_at;
@@ -105,8 +137,25 @@ class Article extends Model
         return $date->diffForHumans();
     }
 
+    /**
+     * @return ShareService
+     */
+    public function getShare()
+    {
+        if (empty($this->share)) {
+            $this->share = new ShareService($this->getLink(), $this->title, $this->description, $this->image);
+        }
+        return $this->share;
+    }
+
+    /**
+     * @return string
+     */
     public function getLink()
     {
-        return URL::route('article.show', ['slug' => $this->slug]);
+        if (empty($this->link)) {
+            $this->link = URL::route('article.show', ['slug' => $this->slug]);
+        }
+        return $this->link;
     }
 }

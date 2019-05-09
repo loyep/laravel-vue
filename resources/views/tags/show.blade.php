@@ -27,7 +27,7 @@
                             </div>
 
                             @if (config('prism.app.ajax.tag', true))
-                                @include('components.article.navigation')
+                                @include('partials.navigation')
                             @else
                                 {!! $articles->links() !!}
                             @endif

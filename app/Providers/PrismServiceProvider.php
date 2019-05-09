@@ -31,7 +31,7 @@ class PrismServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        AbstractPaginator::defaultView('vendor.pagination');
+        AbstractPaginator::defaultView(config('prism.app.pagination', 'vendor.pagination'));
     }
 
     public function registerBladeDirectives()

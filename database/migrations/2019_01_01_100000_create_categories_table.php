@@ -20,8 +20,8 @@ class CreateCategoriesTable extends Migration
             $table->unsignedBigInteger('parent')->default(0);
             $table->string('slug')->unique();
             $table->string('image')->nullable();
-            $table->string('style')->default('small');
             $table->string('description')->nullable();
+            $table->string('style')->default('small');
             $table->text('parameters')->nullable();
             $table->softDeletes();
             $table->timestamps();

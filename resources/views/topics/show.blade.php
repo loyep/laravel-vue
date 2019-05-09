@@ -1,32 +1,37 @@
 @php
-    $style = 'small';
-    $grid_class = 'row-md list-archive list-grouped list-tb-padding';
+    $style = $topic->style;
+    $gridClass = 'row-md list-archive list-grouped list-tb-padding';
+
+    if ($style === 'plain') $gridClass = 'list-archive list-grid list-grid-padding list-bordered list-tb-padding my-n4';
+    if ($style === 'medium') $gridClass = 'row-lg list-archive list-grouped list-tb-padding';
+    if ($style === 'small') $gridClass = 'row-md list-archive list-grouped list-tb-padding';
 @endphp
 
 @extends('layouts.app')
 
 @section('content')
-    @include('partials.header', ['name' => Prism::name(), 'fixed' => false])
+    @include('partials.header')
+    @include('components.top.article', compact('topArticles', 'style'))
     <main class="py-4 py-md-5">
         <div class="container">
             @if($style === 'plain')
                 <div class="row justify-content-md-center">
                     <div class="col-md-9">
                         @endif
-                        <div class="list-header p-0 mb-3">
+                        <div class="list-header mb-3 mb-md-4">
                             <div class="h4">
-                                {{ __('prism.search.title') }}<span>{{ request()->q }}</span>
+                                <span>{{ $topic->name }}</span>
                             </div>
                         </div>
                         @if($articles->count() > 0)
-                            <div class="{{ $grid_class }}" id="articles">
+                            <div class="{{ $gridClass }}" id="articles">
                                 @foreach($articles as $article)
-                                    @include('components.card.article', compact('article'))
+                                    @include('components.card.card-' . $category->style , compact('article'))
                                 @endforeach
                             </div>
 
-                            @if (config('prism.app.ajax.home', true))
-                                @include('components.article.navigation')
+                            @if (config('prism.app.ajax.category', true))
+                                @include('partials.navigation')
                             @else
                                 {!! $articles->links() !!}
                             @endif
@@ -38,7 +43,6 @@
                                 </p>
                             </div>
                         @endif
-                        <?php //get_template_part('template-parts/ad/tax-ad');?>
                         @if($style === 'plain')
                     </div>
                 </div>

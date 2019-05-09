@@ -5,24 +5,7 @@
                 <img src="{{ $article->image }}" alt="{{ $article->title }}">
                 <span class="overlay"></span>
             </a>
-
-            @if ('image' === $article->type)
-                <div class="media-action">
-                    <i class="iconfont icon-pic-s"></i>
-                </div>
-            @endif
-
-            @if ('video' === $article->type)
-                <div class="media-action">
-                    <i class="iconfont icon-bofang"></i>
-                </div>
-            @endif
-
-            @if ('audio' === $article->type)
-                <div class="media-action">
-                    <i class="iconfont icon-yinle"></i>
-                </div>
-            @endif
+            @include('components.card.media-icon', ['type' => $article->type])
         </div>
         <div class="list-content">
             <div class="list-body">

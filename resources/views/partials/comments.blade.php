@@ -42,7 +42,7 @@
                                 <a rel="nofollow" id="cancel-comment-reply-link" style="display: none"
                                    class="btn btn-light text-sm mr-2" href="javascript:;">{{ __( 'Back') }}</a>
                                 <input name="submit" type="submit" id="submit" class="btn btn-primary text-sm"
-                                       value="{{ __('Submit' ) }}">
+                                       value="提交评论">
                                 <?php //comment_id_fields(); ?>
                             </div>
                         </div>

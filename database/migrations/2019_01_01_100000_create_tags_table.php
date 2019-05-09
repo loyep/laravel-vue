@@ -25,6 +25,13 @@ class CreateTagsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Schema::create('article_tag', function (Blueprint $table) {
+            $table->unsignedBigInteger('article_id');
+            $table->unsignedBigInteger('tag_id');
+            $table->index(['article_id', 'tag_id']);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -34,7 +41,7 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taggables');
+        Schema::dropIfExists('article_tag');
         Schema::dropIfExists('tags');
     }
 }

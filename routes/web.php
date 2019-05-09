@@ -35,6 +35,9 @@ Route::post('article/{id}/like', 'ArticleController@like')->name('article.like')
 // 分类页
 Route::any('category/{slug}', 'CategoryController@show')->name('category.show');
 
+// 专题页
+Route::any('topic/{slug}', 'TopicController@show')->name('topic.show');
+
 // 标签页
 Route::any('tag/{slug}', 'TagController@show')->name('tag.show');
 
@@ -45,8 +48,8 @@ Route::get('tags', 'TagController@index')->name('tag.index');
 Route::any('history', 'HistoryController@index')->name('history');
 
 // SiteMap
-Route::get('sitemap', 'HomeController@siteMap')->name('sitemap');
-Route::get('sitemap.xml', 'HomeController@siteMap');
+Route::get('sitemap', 'FeedController@siteMap')->name('sitemap');
+Route::get('sitemap.xml', 'FeedController@siteMap');
 
 // RSS Feed
-Route::get('feed.xml', 'HomeController@feed')->name('feed');
+Route::get('feed.xml', 'FeedController@feed')->name('feed');

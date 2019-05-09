@@ -1,6 +1,6 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>{{ \App\Facades\Prism::name() ?? 'Prism' }}</title>
+        <title>{{ Prism::name() ?? 'Prism' }}</title>
         <description>{{ $description ?? 'Prism' }}</description>
         <link>{{ url('/') }}</link>
         <atom:link href="{{ route('feed') }}" rel="self" type="application/rss+xml"/>
@@ -9,7 +9,7 @@
         ?>
         <pubDate>{{ $date }}</pubDate>
         <lastBuildDate>{{ $date }}</lastBuildDate>
-        <generator>{{ \App\Facades\Prism::name() }}</generator>
+        <generator>{{ Prism::name() }}</generator>
         @foreach ($articles as $article)
             <item>
                 <title>{{ $article->title }}</title>

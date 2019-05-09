@@ -23,7 +23,7 @@ class CreateCommentsTable extends Migration
             $table->string('email')->nullable();
             $table->string('status', 100);
             $table->string('type', 100);
-            $table->ipAddress('ip')->default('0.0.0.0');
+            $table->ipAddress('ip')->nullable();
             $table->string('agent')->nullable();
             $table->softDeletes();
             $table->timestamps();

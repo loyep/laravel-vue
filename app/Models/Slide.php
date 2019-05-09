@@ -10,8 +10,6 @@ class Slide extends Model
      * @var array
      */
     protected $fillable = [
-        'ip', 'user_agent', 'path', 'title',
-        'location', 'browser', 'route',
-        'is_robot', 'device', 'languages',
+        'name', 'slug', 'image', 'description',
     ];
 }

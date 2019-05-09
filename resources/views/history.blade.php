@@ -16,7 +16,7 @@
                     @endforeach
                 </div>
                 @if (config('prism.app.ajax.history', true))
-                    @include('components.article.navigation')
+                    @include('partials.navigation')
                 @else
                     {!! $articles->links() !!}
                 @endif

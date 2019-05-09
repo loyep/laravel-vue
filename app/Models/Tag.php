@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\SlugScope;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\URL;
 
 /**
@@ -33,10 +33,10 @@ class Tag extends Model
     }
 
     /**
-     * @return MorphToMany|null
+     * @return BelongsToMany|null
      */
-    public function articles(): ?MorphToMany
+    public function articles(): ?BelongsToMany
     {
-        return $this->morphedByMany(Article::class, 'taggable');
+        return $this->belongsToMany(Article::class);
     }
 }

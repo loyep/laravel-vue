@@ -5,11 +5,11 @@
 @endphp
 <aside id="secondary" class="widget-area pt-5 pt-lg-0">
     <section id="search-2" class="widget widget_search">
-        <form role="search" method="get" id="searchform" class="searchform" action="https://beta.nicetheme.xyz/">
+        <form role="search" method="get" class="searchform" action="{{ route('search') }}">
             <div class="search-input form-group m-0">
                 <label class="screen-reader-text" for="s">Search for:</label>
-                <input type="text" placeholder="请输入搜索关键词" class="form-control" value="" name="s" id="s" required="">
-                <button class="btn" type="submit" id="searchsubmit"><i class="iconfont icon-sousuo"></i></button>
+                <input type="text" placeholder="{{ __('prism.search.placeholder') }}" class="form-control" name="q" required>
+                <button class="btn" type="submit"><i class="iconfont icon-sousuo"></i></button>
             </div>
         </form>
     </section>
@@ -21,13 +21,11 @@
                 <div class="media media-4x3 col-4">
                     <a href="{{ $convergenceArticle->getLink() }}" target="_blank" class="media-content"
                        style="background-image:url('{{ $convergenceArticle->image }}')"></a>
-                    <div class="media-action">
-                        <i class="iconfont icon-pic-s"></i>
-                    </div>
+                    @include('components.card.media-icon', ['type' => $convergenceArticle->type])
                 </div>
                 <div class="list-content pl-3">
                     <div class="list-body">
-                        <a href="https://beta.nicetheme.xyz/188.html" target="_blank" class="list-title text-sm h-2x">
+                        <a href="{{ $convergenceArticle->getLink() }}" target="_blank" class="list-title text-sm h-2x">
                             {{ $convergenceArticle->title }}
                         </a>
                     </div>
