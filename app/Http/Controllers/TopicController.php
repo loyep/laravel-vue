@@ -25,6 +25,7 @@ class TopicController extends Controller
      *
      * @param Request $request
      * @param $slug
+     *
      * @return Response
      */
     public function show(Request $request, $slug)
@@ -42,5 +43,4 @@ class TopicController extends Controller
 
         return view('categories.show', compact('articles', 'category', 'topArticles'));
     }
-
 }
