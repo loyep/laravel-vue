@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[31],{ROM3:function(t,a,e){"use strict";e.r(a);var n={data:function(){return{data:[]}},methods:{}},c=e("KHd+"),o=Object(c.a)(n,function(){var t=this.$createElement;return(this._self._c||t)("a-list",{attrs:{itemLayout:"horizontal",dataSource:this.data}})},[],!1,null,"0ec9cc85",null);a.default=o.exports}}]);

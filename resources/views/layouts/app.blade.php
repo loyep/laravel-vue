@@ -9,16 +9,16 @@
     <link rel="icon" href="{{ asset('favicon.png') }}" sizes="192x192"/>
     <link rel="apple-touch-icon-precomposed" href="{{ asset('favicon.png') }}"/>
     <title>@yield('page_title', Prism::getTitle())</title>
-    <link href="{{ mix('/css/app.css', 'app') }}" rel="stylesheet">
+    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
 <body class="nice-style-shadow">
 <div id="app">
     @yield('content')
 </div>
-<script src="{{ mix('/js/manifest.js', 'app') }}" type="text/javascript"></script>
-<script src="{{ mix('/js/app.js', 'app') }}" type="text/javascript"></script>
-<script src="{{ mix('/js/vendor.js', 'app') }}" type="text/javascript"></script>
+<script src="{{ mix('/js/manifest.js') }}" type="text/javascript"></script>
+<script src="{{ mix('/js/app.js') }}" type="text/javascript"></script>
+<script src="{{ mix('/js/vendor.js') }}" type="text/javascript"></script>
 @stack('scripts')
 </body>
 </html>
