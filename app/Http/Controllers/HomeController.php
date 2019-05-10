@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\Prism;
 use App\Models\Article;
-use App\Models\Search\Search;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Cookie;
 
 /**
  * Class HomeController.

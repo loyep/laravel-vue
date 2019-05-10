@@ -145,6 +145,7 @@ class Article extends Model
         if (empty($this->share)) {
             $this->share = new ShareService($this->getLink(), $this->title, $this->description, $this->image);
         }
+
         return $this->share;
     }
 
@@ -156,6 +157,7 @@ class Article extends Model
         if (empty($this->link)) {
             $this->link = URL::route('article.show', ['slug' => $this->slug]);
         }
+
         return $this->link;
     }
 }
