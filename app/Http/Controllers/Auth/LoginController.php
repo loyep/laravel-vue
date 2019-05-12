@@ -44,10 +44,10 @@ class LoginController extends Controller
         $this->auth = $auth;
     }
 
-    public function showLogin (Request $request) {
+    public function showLogin(Request $request)
+    {
         return view('prism::auth.login');
     }
-
 
     /**
      * Log the user out of the application.

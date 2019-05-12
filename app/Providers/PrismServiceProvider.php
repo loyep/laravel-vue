@@ -33,7 +33,7 @@ class PrismServiceProvider extends ServiceProvider
     public function boot()
     {
         AbstractPaginator::defaultView(config('prism.app.pagination', 'vendor.pagination'));
-        View::addNamespace('prism', $this->app->basePath() . '/prism/resources/views');
+        View::addNamespace('prism', $this->app->basePath().'/prism/resources/views');
     }
 
     /**
