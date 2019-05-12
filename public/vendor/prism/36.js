@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[36],{hebv:function(e,n,t){"use strict";t.r(n);var a={name:"Update"},s=t("KHd+"),d=Object(s.a)(a,function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n  Role Update\n")])},[],!1,null,"2582dd64",null);n.default=d.exports}}]);

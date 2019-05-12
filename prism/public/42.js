@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[42],{"+Adz":function(e,n,t){"use strict";t.r(n);var a={name:"Create"},r=t("KHd+"),s=Object(r.a)(a,function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n  Role Create\n")])},[],!1,null,"a177af5c",null);n.default=s.exports}}]);

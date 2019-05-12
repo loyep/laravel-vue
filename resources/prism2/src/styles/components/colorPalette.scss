@@ -1,7 +1,0 @@
-@function colorPalette ($color, $opacity) {
-  @return rgba($color, $opacity);
-}
-// colorPalette mixin
-@mixin colorPalette ($opacity: .65) {
-  opacity: $opacity;
-}

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[50],{GgsG:function(e,n,t){"use strict";t.r(n);var s={name:"Profile"},i=t("KHd+"),r=Object(i.a)(s,function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("User Profile")])},[],!1,null,"37b16f9f",null);n.default=r.exports}}]);

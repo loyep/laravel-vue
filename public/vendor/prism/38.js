@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[38],{uSab:function(e,n,t){"use strict";t.r(n);var a={name:"Create"},s=t("KHd+"),i=Object(s.a)(a,function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n  Permission Create\n")])},[],!1,null,"a7f85040",null);n.default=i.exports}}]);

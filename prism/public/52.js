@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[52],{P4yI:function(e,t,n){"use strict";n.r(t);var a={name:"Detail"},i=n("KHd+"),l=Object(i.a)(a,function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n  Article Detail\n")])},[],!1,null,"070a38aa",null);t.default=l.exports}}]);

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[47],{ctf8:function(t,e,n){"use strict";n.r(e);var i={name:"SettingUpdate"},a=n("KHd+"),s=Object(a.a)(i,function(){var t=this.$createElement;return(this._self._c||t)("div",[this._v("\n  Setting Update\n")])},[],!1,null,"545bb25b",null);e.default=s.exports}}]);
