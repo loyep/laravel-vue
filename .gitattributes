@@ -1,0 +1,7 @@
+* text=auto
+*.js linguist-vendored
+*.vue linguist-language=vue
+*.php linguist-language=php
+*.css linguist-vendored
+*.less linguist-vendored
+CHANGELOG.md export-ignore
