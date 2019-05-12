@@ -1,0 +1,37 @@
+<template>
+  <a-layout-footer :style="{ padding: 0 }">
+    <global-footer :links="[
+      {
+        key: 'github',
+        icon: 'github',
+        path: 'https://github.com/loyep/prism',
+        blankTarget: true
+      }
+    ]"
+    >
+      <template v-slot:copyright>
+        Copyright <a-icon type="copyright" /> {{ year }} Power By <a href="https://github.com/loyep/prism">
+          Prism
+        </a>
+      </template>
+    </global-footer>
+  </a-layout-footer>
+</template>
+
+<script>
+import { Layout } from 'ant-design-vue'
+const GlobalFooter = () => import('@/components/GlobalFooter')
+
+export default {
+  name: 'Footer',
+  components: {
+    GlobalFooter,
+    ALayoutFooter: Layout.Footer
+  },
+  data () {
+    return {
+      year: new Date().getFullYear()
+    }
+  }
+}
+</script>

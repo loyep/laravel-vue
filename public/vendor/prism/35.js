@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[35],{EZEU:function(e,n,t){"use strict";t.r(n);var a={name:"Detail"},i=t("KHd+"),l=Object(i.a)(a,function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("\n  Role Detail\n")])},[],!1,null,"a7e1c028",null);n.default=l.exports}}]);

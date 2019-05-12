@@ -1,0 +1,141 @@
+<template>
+  <auth-layout>
+    <div class="main">
+      <h3>重置密码</h3>
+      <a-form :form="form" @submit="handleSubmit">
+        <a-form-item>
+          <a-input
+            v-decorator="[
+              'email',
+              {
+                rules: [
+                  { required: true, message: '邮箱不能为空' },
+                  { type: 'email', message: '邮箱格式错误' }
+                ],
+                validateTrigger: ['change', 'blur']
+              }
+            ]"
+            size="large"
+            placeholder="邮箱"
+          >
+            <template #prefix>
+              <a-icon type="mail" style="color:rgba(0,0,0,.25)" />
+            </template>
+          </a-input>
+        </a-form-item>
+        <a-form-item>
+          <a-button
+            :loading="submitting"
+            size="large"
+            type="primary"
+            class="submit"
+            htmlType="submit"
+          >
+            发送密码重置链接
+          </a-button>
+          <router-link class="login" :to="{ name: 'login' }">
+            使用已有账户登录
+          </router-link>
+        </a-form-item>
+      </a-form>
+    </div>
+  </auth-layout>
+</template>
+
+<script>
+import AuthLayout from '@/layouts/AuthLayout'
+import { Button } from 'ant-design-vue'
+import { setFiledsWithErrors } from '@/utils/form'
+import { passwordEmail } from '@/api/auth'
+
+export default {
+  name: 'ForgotPassword',
+  components: {
+    AuthLayout,
+    AButton: Button
+  },
+  data () {
+    return {
+      submitting: false,
+      form: this.$form.createForm(this)
+    }
+  },
+  methods: {
+    handleSubmit (e) {
+      e.preventDefault()
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          this.submitting = true
+          passwordEmail(values).then(res => {
+            this.submitting = false
+            const data = res.data
+            if (data) {
+              this.$notification.success({
+                message: '提示',
+                description: '发送邮件成功'
+              })
+            }
+          }).catch(err => {
+            this.submitting = false
+            setFiledsWithErrors(this.form, err)
+          })
+        }
+      })
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import '~@/styles/variables';
+
+.main {
+  width: 368px;
+  margin: 0 auto;
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .getCaptcha {
+    display: block;
+    width: 100%;
+  }
+
+  .submit {
+    width: 50%;
+  }
+
+  .login {
+    float: right;
+    line-height: $btn-height-lg;
+  }
+}
+
+.success,
+.warning,
+.error {
+  transition: color 0.3s;
+}
+
+.success {
+  color: $success-color;
+}
+
+.warning {
+  color: $warning-color;
+}
+
+.error {
+  color: $error-color;
+}
+
+.progress-pass > .progress {
+  :global {
+    .ant-progress-bg {
+      background-color: $warning-color;
+    }
+  }
+}
+</style>

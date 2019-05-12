@@ -1,11 +1,11 @@
 {
-    "/static/js/manifest.js": "/static/js/manifest.js?id=62a30c6b98011d5aa727",
-    "/static/css/app.css": "/static/css/app.css?id=d41d8cd98f00b204e980",
-    "/chunk//static/js/vendor.js": "/chunk//static/js/vendor.js?id=e152cafef305ce91096f",
-    "/chunk//static/js/app.js": "/chunk//static/js/app.js?id=a6b28fb15f68cf046b73",
-    "/chunk//static/js/main.js": "/chunk//static/js/main.js?id=6658bd5d41ead3e8c4b4",
-    "/chunk/fail.js": "/chunk/fail.js?id=24dd03faab13b8ab3b5a",
-    "/chunk/result.js": "/chunk/result.js?id=3eda9684cab767d5f2cc",
-    "/chunk/static/Analysis.js": "/chunk/static/Analysis.js?id=c8a51d5eebcb8f13f674",
-    "/chunk/user.js": "/chunk/user.js?id=92613ba2219cada90ea3"
+    "/js/app.js": "/js/app.js?id=885b00ba5e64cd58e617",
+    "/css/prism.css": "/css/prism.css?id=d41d8cd98f00b204e980",
+    "/css/app.css": "/css/app.css?id=d41d8cd98f00b204e980",
+    "/js/main.js": "/js/main.js?id=6f41f2df13371adf5788",
+    "/js/manifest.js": "/js/manifest.js?id=e0fdab7cc191c2fd5770",
+    "/js/vendor.js": "/js/vendor.js?id=58643152e1889d8b0023",
+    "/fail.js": "/fail.js?id=c0656b61dcfd433353f5",
+    "/result.js": "/result.js?id=d96381508d21fb4009b6",
+    "/user.js": "/user.js?id=b458288c1b98ab39b504"
 }

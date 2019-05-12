@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[46],{DpAT:function(t,e,n){"use strict";n.r(e);var i={name:"SettingDetail"},a=n("KHd+"),s=Object(a.a)(i,function(){var t=this.$createElement;return(this._self._c||t)("div",[this._v("\n  Setting Detail\n")])},[],!1,null,"9e52c25a",null);e.default=s.exports}}]);

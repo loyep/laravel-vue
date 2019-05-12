@@ -6,6 +6,7 @@ use App\Prism\PendingRouteRegistration;
 use App\Prism\Prism;
 use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class PrismServiceProvider extends ServiceProvider
@@ -32,11 +33,7 @@ class PrismServiceProvider extends ServiceProvider
     public function boot()
     {
         AbstractPaginator::defaultView(config('prism.app.pagination', 'vendor.pagination'));
-    }
-
-    public function registerBladeDirectives()
-    {
-        $directives = require __DIR__.'/directives.php';
+        View::addNamespace('prism', $this->app->basePath() . '/prism/resources/views');
     }
 
     /**

@@ -1,0 +1,15 @@
+<template>
+  <div>
+    Article Update
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Update'
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>

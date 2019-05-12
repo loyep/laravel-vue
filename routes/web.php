@@ -53,3 +53,5 @@ Route::get('sitemap.xml', 'FeedController@siteMap');
 
 // RSS Feed
 Route::get('feed.xml', 'FeedController@feed')->name('feed');
+
+Route::get('login', 'Auth\LoginController@showLogin');

@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[53],{"3T7S":function(n,e,t){"use strict";t.r(e);var i={name:"Index"},s=t("KHd+"),a=Object(s.a)(i,function(){var n=this.$createElement;return(this._self._c||n)("div",[this._v("\n  Article Index\n")])},[],!1,null,"229dff1a",null);e.default=a.exports}}]);

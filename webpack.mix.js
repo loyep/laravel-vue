@@ -14,25 +14,16 @@ const path = require('path');
  |
  */
 
-let config = {
-  plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new cleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [
-        path.resolve(__dirname + '/public/{css,chunk,js}/*')
-      ],
-      verbose: true,
-      exclude: ['index.php', 'svg/', 'favicon.ico']
-    })
-  ],
+
+mix.webpackConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'resources/src'),
-      '@assets': path.resolve(__dirname, 'resources/src/assets'),
-      '@comp': path.resolve(__dirname, 'resources/src/components'),
-      '@views': path.resolve(__dirname, 'resources/src/views'),
-      '@layout': path.resolve(__dirname, 'resources/src/layout'),
-      '@static': path.resolve(__dirname, 'resources/src/static'),
+      '@': path.resolve(__dirname, 'resources/prism'),
+      '@assets': path.resolve(__dirname, 'resources/prism/assets'),
+      '@comp': path.resolve(__dirname, 'resources/prism/components'),
+      '@views': path.resolve(__dirname, 'resources/prism/views'),
+      '@layout': path.resolve(__dirname, 'resources/prism/layout'),
+      '@static': path.resolve(__dirname, 'resources/prism/static'),
     }
   },
   module: {
@@ -45,18 +36,8 @@ let config = {
         }
       }
     ],
-  }
-};
-
-if (!process.argv.includes('--hot')) {
-  config = Object.assign(config, {
-    output: {
-      chunkFilename: "chunk/[name].js"
-    }
-  })
-}
-
-mix.webpackConfig(config)
+  },
+});
 
 mix.babelConfig({
   presets: [
@@ -67,24 +48,19 @@ mix.babelConfig({
         'useBuiltIns': 'entry'
       }
     ]
-  ],
-  plugins: [
-    "syntax-dynamic-import"
   ]
 });
 
 mix
-  .options({
-    extractVueStyle: true,
-  })
-  .js('resources/js/app.js', 'public/static/js')
-  .sass('resources/sass/app.scss', 'public/static/css')
-  .js('resources/src/main.js', 'public/static/js')
-  // .sass('resources/src/styles/styles.scss', 'public/static/css')
   .extract([
     'bootstrap',
     'vue',
     'axios',
     'jquery',
   ])
+  .setPublicPath('public')
+  .js('resources/js/app.js', 'public/js')
+  .sass('resources/sass/app.scss', 'public/css')
+  .js('resources/prism/main.js', 'public/js')
+  .less('resources/less/dashboard/prism.less', 'public/css')
   .version();

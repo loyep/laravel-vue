@@ -1,0 +1,21 @@
+{
+    "root": true,
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "standard"
+    ],
+    "rules": {
+        "no-console": 0,
+        "vue/max-attributes-per-line": "off",
+        "vue/attribute-hyphenation": [ "error", "never" ]
+    },
+    "parserOptions": {
+        "parser": "babel-eslint",
+        "ecmaVersion": 2017,
+        "sourceType": "module"
+    }
+}
