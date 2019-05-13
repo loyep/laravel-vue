@@ -11,5 +11,31 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.webpackConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'resources/prism/js'),
+      '$': path.resolve(__dirname, 'resources/js')
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        loader: require.resolve('less-loader'), // compiles Less to CSS
+        options: {
+          javascriptEnabled: true
+        }
+      }
+    ],
+  }
+});
+
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+   .sass('resources/sass/app.scss', 'public/css')
+   .js('resources/prism/js/app.js', 'public/js/prism.js')
+   .less('resources/prism/less/app.less', 'public/css/prism.css')
+   .extract([
+     'jquery',
+     'vue'
+   ]).version();
