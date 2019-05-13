@@ -8,7 +8,7 @@ trait HasSlug
 {
     /**
      * @param Builder $query
-     * @param string $slug
+     * @param string  $slug
      *
      * @return Builder
      */
@@ -16,5 +16,4 @@ trait HasSlug
     {
         return $query->where('slug', '=', $slug);
     }
-
 }

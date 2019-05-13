@@ -30,7 +30,8 @@ class ContentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +42,8 @@ class ContentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Content  $content
+     * @param \App\Models\Content $content
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Content $content)
@@ -52,7 +54,8 @@ class ContentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Content  $content
+     * @param \App\Models\Content $content
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Content $content)
@@ -63,8 +66,9 @@ class ContentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Content  $content
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Content      $content
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Content $content)
@@ -75,7 +79,8 @@ class ContentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Content  $content
+     * @param \App\Models\Content $content
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Content $content)
