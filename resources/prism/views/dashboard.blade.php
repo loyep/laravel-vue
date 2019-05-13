@@ -1,1 +1,1 @@
-dashboard
+@extends('prism::layouts.app')

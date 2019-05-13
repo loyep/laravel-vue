@@ -11,11 +11,27 @@
     "rules": {
         "no-console": 0,
         "vue/max-attributes-per-line": "off",
-        "vue/attribute-hyphenation": [ "error", "never" ]
+        "vue/attribute-hyphenation": [ "error", "never" ],
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ]
     },
     "parserOptions": {
         "parser": "babel-eslint",
         "ecmaVersion": 2017,
         "sourceType": "module"
     }
-}
+};

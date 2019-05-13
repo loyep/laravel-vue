@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
-    <title>{{ Prism::name() }}</title>
+    <title>{{ $config['name'] }}</title>
     <link rel="icon" href="{{ asset('static/img/logo.png') }}" type="image/x-icon">
-    <link href="{{ mix('css/prism.css') }}" rel="stylesheet">
+    <link href="{{ asset('static/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('static/css/chunk-vendors.css') }}" rel="stylesheet">
     <script>
-      {{--window.config = @json($config);--}}
+      window.config = @json($config);
     </script>
     <style type="text/css">
         .preloader {
@@ -118,6 +119,7 @@
         </div>
     </div>
 </div>
-<script src="{{ mix('js/prism.js')}}" type="text/javascript"></script>
+<script src="{{ asset('static/js/app.js')}}" type="text/javascript"></script>
+<script src="{{ asset('static/js/chunk-vendors.js')}}" type="text/javascript"></script>
 </body>
 </html>

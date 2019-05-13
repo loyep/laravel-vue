@@ -29,3 +29,19 @@ if (!function_exists('route_is_not')) {
         return !fnmatch($expression, Route::currentRouteName());
     }
 }
+
+if (!function_exists('thumbnail')) {
+    /**
+     * Thumbnail.
+     *
+     * @param $path
+     * @param array  $size
+     * @param string $et
+     *
+     * @return mixed|string|null
+     */
+    function thumbnail($path, $size = ['w' => 450, 'h' => 300], $set = 'small')
+    {
+        return $path;
+    }
+}
