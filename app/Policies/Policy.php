@@ -15,5 +15,4 @@ class Policy
             return true;
         }
     }
-
 }
