@@ -15,6 +15,8 @@ return [
 
     'name' => 'Prism',
 
+    'description' => '美好缘于热爱',
+
     /*
     |--------------------------------------------------------------------------
     | Prism App URL
@@ -71,15 +73,32 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Prism Pagination Type
+    | Prism Info
     |--------------------------------------------------------------------------
-    |
-    | This option defines the pagination visual style used by Resources. You
-    | may choose between two types: "simple" and "links". Feel free to set
-    | this option to the visual style you like for your application.
-    |
     */
 
-    'pagination' => 'simple',
+    'year' => null,
+
+    'miitbeian' => '',
+
+    'socials' => [
+
+        'github'      => 'https://github.com/loyep',
+    ],
+
+    'ajax' => [
+
+        'home' => true,
+
+        'tag' => true,
+
+        'category' => true,
+
+        'history' => true,
+
+        'search' => true,
+
+        'user' => true,
+    ],
 
 ];
