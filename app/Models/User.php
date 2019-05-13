@@ -6,8 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * Class User
- * @package App\Models
+ * Class User.
  */
 class User extends Authenticatable
 {
