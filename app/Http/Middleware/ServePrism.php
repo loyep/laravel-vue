@@ -16,6 +16,7 @@ class ServePrism
      *
      * @param Request $request
      * @param Closure $next
+     *
      * @return Response
      */
     public function handle(Request $request, $next)
@@ -33,6 +34,7 @@ class ServePrism
      * Determine if the given request is intended for Nova.
      *
      * @param Request $request
+     *
      * @return bool
      */
     protected function isPrismRequest(Request $request)
@@ -40,7 +42,7 @@ class ServePrism
         $path = trim(Prism::path(), '/') ?: '/';
 
         return $request->is($path) ||
-            $request->is(trim($path . '/*', '/')) ||
+            $request->is(trim($path.'/*', '/')) ||
             $request->is('prism-api/*');
     }
 }

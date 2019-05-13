@@ -8,7 +8,6 @@ use App\Prism\Prism;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -28,9 +27,9 @@ class PrismServiceProvider extends ServiceProvider
     /**
      * Bootstrap services.
      *
-     * @return void
-     *
      * @throws BindingResolutionException
+     *
+     * @return void
      */
     public function boot()
     {

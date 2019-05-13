@@ -7,7 +7,6 @@ namespace App\Models;
  */
 class Setting extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *
@@ -27,6 +26,7 @@ class Setting extends Model
 
     /**
      * @param $value
+     *
      * @return mixed
      */
     public function getDetailsAttribute($value)
@@ -44,6 +44,7 @@ class Setting extends Model
 
     /**
      * @param $value
+     *
      * @return mixed
      */
     public function getValueAttribute($value)
