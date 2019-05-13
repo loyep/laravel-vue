@@ -32,6 +32,7 @@ class SlideController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,6 +44,7 @@ class SlideController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\Slide $slide
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Slide $slide)
@@ -54,6 +56,7 @@ class SlideController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\Slide $slide
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Slide $slide)
@@ -65,7 +68,8 @@ class SlideController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Slide $slide
+     * @param \App\Models\Slide        $slide
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Slide $slide)
@@ -77,6 +81,7 @@ class SlideController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\Slide $slide
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Slide $slide)

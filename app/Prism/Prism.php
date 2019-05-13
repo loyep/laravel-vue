@@ -4,7 +4,6 @@ namespace App\Prism;
 
 class Prism
 {
-
     /**
      * Title of Prism.
      *
@@ -78,7 +77,7 @@ class Prism
     public static function title()
     {
         $title = static::name();
-        return !empty(static::$title) ? (static::$title . ' - ' . $title) : $title;
-    }
 
+        return !empty(static::$title) ? (static::$title.' - '.$title) : $title;
+    }
 }
