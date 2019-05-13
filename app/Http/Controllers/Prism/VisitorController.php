@@ -32,6 +32,7 @@ class VisitorController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,6 +44,7 @@ class VisitorController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\Visitor $visitor
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Visitor $visitor)
@@ -54,6 +56,7 @@ class VisitorController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\Visitor $visitor
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Visitor $visitor)
@@ -65,7 +68,8 @@ class VisitorController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Visitor $visitor
+     * @param \App\Models\Visitor      $visitor
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Visitor $visitor)
@@ -77,6 +81,7 @@ class VisitorController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\Visitor $visitor
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Visitor $visitor)
