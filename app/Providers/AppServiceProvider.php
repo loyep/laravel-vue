@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if ($this->app->runningInConsole()) {
+            $this->app->register(\Overtrue\LaravelLang\TranslationServiceProvider::class);
+        }
     }
 }

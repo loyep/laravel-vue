@@ -25,7 +25,5 @@ Homestead.json
 
 
 # Laravel mix
-public/static/app/*
-public/static/admin/*
-public/static/user/*
+public/static/*
 
