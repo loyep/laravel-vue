@@ -1,0 +1,38 @@
+{
+    "root": true,
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:vue/recommended",
+        "@vue/standard",
+        "standard"
+    ],
+    "rules": {
+        "vue/max-attributes-per-line": "off",
+        "vue/attribute-hyphenation": [ "error", "never" ],
+        "semi": [0],
+        "indent": "off",
+        "vue/script-indent": [
+          "error",
+          4,
+          {
+            "baseIndent": 1
+          }
+        ],
+        "no-debugger":  "error" ,
+        "camelcase": "off",
+        "vue/no-parsing-error": [
+            2,
+          {
+            "x-invalid-end-tag": false
+          }
+        ]
+    },
+    "parserOptions": {
+        "parser": "babel-eslint",
+        "ecmaVersion": 2017,
+        "sourceType": "module"
+    }
+}
