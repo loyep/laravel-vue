@@ -93,24 +93,6 @@ class ViewCache
     }
 
     /**
-     * Render a view.
-     *
-     * @param string $view
-     * @param array  $data
-     * @param array  $mergeData
-     *
-     * @return string
-     */
-    protected function renderView($view, $data, $mergeData)
-    {
-        $data = $data ?: [];
-        $mergeData = $mergeData ?: [];
-        return function () use ($view, $data, $mergeData) {
-            return $this->view->make($view, $data, $mergeData)->render();
-        };
-    }
-
-    /**
      * Create a key name for the cached view.
      *
      * @param string $view
@@ -125,40 +107,6 @@ class ViewCache
             $parts[] = $key;
         }
         return implode('.', $parts);
-    }
-
-    /**
-     * Constructs tag array.
-     *
-     * @param null|string|array $tag
-     *
-     * @return array
-     */
-    protected function getTags($tag = null)
-    {
-        $tags = [$this->cacheKey];
-        if ($tag) {
-            if (!is_array($tag)) {
-                $tag = [$tag];
-            }
-            $tags = array_merge($tags, $tag);
-        }
-        return $tags;
-    }
-
-    /**
-     * Resolve cache duration, defaults to the config if seconds is null.
-     *
-     * @param int|null $seconds
-     *
-     * @return int|null
-     */
-    protected function resolveCacheDuration($seconds = null)
-    {
-        if (is_null($seconds)) {
-            return $this->seconds;
-        }
-        return $seconds;
     }
 
     /**
@@ -194,5 +142,57 @@ class ViewCache
         }
         $tag = $tag ?: $this->cacheKey;
         $this->cache->tags($tag)->flush();
+    }
+
+    /**
+     * Render a view.
+     *
+     * @param string $view
+     * @param array  $data
+     * @param array  $mergeData
+     *
+     * @return string
+     */
+    protected function renderView($view, $data, $mergeData)
+    {
+        $data = $data ?: [];
+        $mergeData = $mergeData ?: [];
+        return function () use ($view, $data, $mergeData) {
+            return $this->view->make($view, $data, $mergeData)->render();
+        };
+    }
+
+    /**
+     * Constructs tag array.
+     *
+     * @param null|string|array $tag
+     *
+     * @return array
+     */
+    protected function getTags($tag = null)
+    {
+        $tags = [$this->cacheKey];
+        if ($tag) {
+            if (!is_array($tag)) {
+                $tag = [$tag];
+            }
+            $tags = array_merge($tags, $tag);
+        }
+        return $tags;
+    }
+
+    /**
+     * Resolve cache duration, defaults to the config if seconds is null.
+     *
+     * @param int|null $seconds
+     *
+     * @return int|null
+     */
+    protected function resolveCacheDuration($seconds = null)
+    {
+        if (is_null($seconds)) {
+            return $this->seconds;
+        }
+        return $seconds;
     }
 }

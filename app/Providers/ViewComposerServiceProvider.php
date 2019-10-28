@@ -41,16 +41,6 @@ class ViewComposerServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return mixed
-     */
-    protected function searchTop()
-    {
-        return Cache::remember('search_top', 3600, function () {
-            return Tag::take(8)->get();
-        });
-    }
-
-    /**
      * Register any application services.
      *
      * @return void
@@ -58,6 +48,16 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('viewcache', ViewCache::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function searchTop()
+    {
+        return Cache::remember('search_top', 3600, function () {
+            return Tag::take(8)->get();
+        });
     }
 
     protected function currentUser()
