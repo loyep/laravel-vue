@@ -11,7 +11,7 @@ class User extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'dawn:user';
 
     /**
      * The console command description.

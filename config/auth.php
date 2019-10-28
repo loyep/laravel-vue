@@ -96,7 +96,7 @@ return [
         'users' => [
             'provider' => 'users',
             'table'    => 'password_resets',
-            'expire'   => 60,
+            'expire'   => 120,
             'throttle' => 60,
         ],
     ],
@@ -108,10 +108,10 @@ return [
     |
     | Here you may define the amount of seconds before a password confirmation
     | times out and the user is prompted to re-enter their password via the
-    | confirmation screen. By default, the timeout lasts for three hours.
+    | confirmation screen. By default, the timeout lasts for four hours.
     |
     */
 
-    'password_timeout' => 10800,
+    'password_timeout' => 14400,
 
 ];

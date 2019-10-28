@@ -11,7 +11,7 @@ class Admin extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'dawn:admin';
 
     /**
      * The console command description.

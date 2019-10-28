@@ -32,7 +32,7 @@ Route::get('categories', 'CategoryController@index')->name('category.index');
 Route::get('category/{slug}', 'CategoryController@show')->name('category.show');
 
 // 文章页
-Route::get('article/{slug}', 'ArticleController@show')->name('article.show');
+Route::get('{slug}.html', 'ArticleController@show')->name('article.show');
 Route::get('random-post', 'ArticleController@random')->name('article.random');
 
 Route::get('history', 'HomeController@history')->name('history');

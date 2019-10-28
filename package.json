@@ -42,8 +42,6 @@
         "@vue/eslint-config-standard": "^4.0.0",
         "babel-core": "7.0.0-bridge.0",
         "babel-plugin-import": "^1.12.0",
-        "browser-sync": "^2.26.7",
-        "browser-sync-webpack-plugin": "^2.2.2",
         "clean-webpack-plugin": "^2.0.2",
         "cross-env": "^5.2.0",
         "css-loader": "^3.2.0",
@@ -55,6 +53,7 @@
         "resolve-url-loader": "^2.3.2",
         "simple-progress-webpack-plugin": "^1.1.2",
         "vue-template-compiler": "^2.6.10",
+        "webpack": "^4.41.2",
         "webpack-livereload-plugin": "^2.2.0"
     }
 }
