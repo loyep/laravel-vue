@@ -38,7 +38,7 @@ const webpackConfig = {
     resolve: {
         extensions: ['.vue'],
         alias: {
-            '@sass': pathResolve('resources/sass'),
+            '@style': pathResolve('resources/less'),
             '@': pathResolve('resources/js'),
             '@assets': pathResolve('resources/assets'),
             '@js': pathResolve('resources/js'),
@@ -52,7 +52,13 @@ const webpackConfig = {
     },
     module: {
         rules: [
-           //
+            {
+                test: /\.less$/,
+                loader: 'less-loader',
+                options: {
+                    javascriptEnabled: true
+                }
+            }
         ]
     },
     output: {
@@ -63,11 +69,11 @@ const webpackConfig = {
 mix.webpackConfig(webpackConfig);
 
 if (isAdmin) {
-    mix.sass('resources/sass/admin.scss', 'css/admin.css')
+    mix.less('resources/less/admin.less', 'css/admin.css')
         .js('resources/js/admin/admin.js', 'js/admin.js');
 } else {
-    mix.sass('resources/sass/app.scss', 'css/app.css')
-       .js('resources/js/app/app.js', 'js/app.js');
+    mix.less('resources/less/app.less', 'css/app.css')
+        .js('resources/js/app/app.js', 'js/app.js');
 }
 
 mix

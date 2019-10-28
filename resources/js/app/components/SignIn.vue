@@ -117,7 +117,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="less">
     .vertical-center-modal {
         display: flex;
         align-items: center;

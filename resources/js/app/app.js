@@ -6,8 +6,8 @@
 
 import Vue from 'vue'
 
-// Element UI
-import Element from 'element-ui'
+// View Design
+import ViewUI from 'view-design'
 
 import request from './utils/request'
 
@@ -21,7 +21,7 @@ import SearchLink from '@app/components/SearchLink.vue'
 
 Vue.use(request);
 
-Vue.use(Element);
+Vue.use(ViewUI);
 
 window.$ = require('jquery');
 
