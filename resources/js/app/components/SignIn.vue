@@ -91,9 +91,9 @@
           </div>
         </div>
         <div class="insign-date-action mt-4 mb-1 mx-2">
-          <i-button long shape="circle" type="primary">
+          <el-button long shape="circle" type="primary">
             签到
-          </i-button>
+          </el-button>
           <!--                        <button class="btn btn-dark btn-block btn-rounded sign-in" data-nonce="addc2c3047">签到</button>-->
         </div>
       </div>

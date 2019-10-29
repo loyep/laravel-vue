@@ -1,12 +1,9 @@
 
+@import "variables";
+
 @import "~bootstrap/scss/bootstrap";
 
 @import "../assets/fonts/iconfont/iconfont.css";
-// @import "components/highlight";
 
-@import "variables";
+@import "element-ui";
 
-// Here are the variables to cover, such as:
-@import "element-ui-variables";
-
-$primary-color: #11999e;

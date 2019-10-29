@@ -1,15 +1,15 @@
 <template>
-  <i-form ref="form" :model="form" labelPosition="top" :rules="ruleValidate">
-    <form-item prop="username" :error="errors.username">
-      <i-input v-model="form.username" name="username" autofocus placeholder="邮箱 / 用户名" @enter="handleSubmit" />
-    </form-item>
-    <form-item prop="password" :error="errors.password">
-      <i-input v-model="form.password" name="password" type="password" placeholder="密码" @enter="handleSubmit" />
-    </form-item>
-    <i-button class="mt-2" type="primary" long :loading="loading" @click="handleSubmit">
+  <el-form ref="form" :hideRequiredAsterisk="false" :model="form" labelPosition="top" :rules="ruleValidate">
+    <el-form-item prop="username" :error="errors.username">
+      <el-input v-model="form.username" name="username" autofocus placeholder="邮箱 / 用户名" @enter="handleSubmit" />
+    </el-form-item>
+    <el-form-item prop="password" :error="errors.password">
+      <el-input v-model="form.password" name="password" type="password" placeholder="密码" @enter="handleSubmit" />
+    </el-form-item>
+    <el-button class="mt-2 btn btn-block" type="primary" :loading="loading" @click="handleSubmit">
       登录
-    </i-button>
-  </i-form>
+    </el-button>
+  </el-form>
 </template>
 
 <script>

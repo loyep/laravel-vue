@@ -6,8 +6,8 @@
 
 import Vue from 'vue'
 
-// View Design
-import ViewUI from 'view-design'
+// Element UI
+import ElementUI from 'element-ui'
 
 import request from './utils/request'
 
@@ -21,9 +21,11 @@ import SearchLink from '@app/components/SearchLink.vue'
 
 Vue.use(request);
 
-Vue.use(ViewUI);
+Vue.use(ElementUI);
 
 window.$ = require('jquery');
+
+// import "@style/element-ui.scss";
 
 Vue.config.productionTip = false
 

@@ -1,18 +1,18 @@
 <template>
-  <i-form ref="form" :model="form" labelPosition="top" :rules="ruleValidate">
-    <form-item prop="email" :error="errors.email">
-      <i-input v-model="form.email" name="email" type="email" placeholder="邮箱" />
-    </form-item>
-    <form-item prop="name" :error="errors.name">
-      <i-input v-model="form.name" name="name" placeholder="用户名" />
-    </form-item>
-    <form-item prop="password" :error="errors.password">
-      <i-input v-model="form.password" name="password" type="password" placeholder="密码" @enter="handleSubmit" />
-    </form-item>
-    <i-button class="mt-3" type="primary" long :loading="loading" @click="handleSubmit">
+  <el-form ref="form" :hideRequiredAsterisk="false" :model="form" labelPosition="top" :rules="ruleValidate">
+    <el-form-item prop="email" :error="errors.email">
+      <el-input v-model="form.email" name="email" type="email" placeholder="邮箱" />
+    </el-form-item>
+    <el-form-item prop="name" :error="errors.name">
+      <el-input v-model="form.name" name="name" placeholder="用户名" />
+    </el-form-item>
+    <el-form-item prop="password" :error="errors.password">
+      <el-input v-model="form.password" name="password" type="password" placeholder="密码" @enter="handleSubmit" />
+    </el-form-item>
+    <el-button class="mt-3" type="primary" long :loading="loading" @click="handleSubmit">
       立即注册
-    </i-button>
-  </i-form>
+    </el-button>
+  </el-form>
 </template>
 
 <script>

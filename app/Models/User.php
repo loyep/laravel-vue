@@ -57,7 +57,7 @@ class User extends Authenticatable
      */
     public function getLinkAttribute()
     {
-        return route('user.show', $this->name);
+        return route('author.show', $this->name);
     }
 
     /**
