@@ -6,11 +6,7 @@
 
 import Vue from 'vue'
 
-// Element UI
-import ElementUI from 'element-ui'
-
 import request from './utils/request'
-
 import router from './router'
 
 import SignIn from '@app/components/SignIn.vue'
@@ -19,17 +15,14 @@ import LikeLink from '@app/components/LikeLink.vue'
 import CommentForm from '@app/components/CommentForm.vue'
 import SearchLink from '@app/components/SearchLink.vue'
 
-Vue.use(request);
+// Element UI
+require('./element')
 
-Vue.use(ElementUI);
+Vue.use(request);
 
 window.$ = require('jquery');
 
-// import "@style/element-ui.scss";
-
 Vue.config.productionTip = false
-
-const event = new Vue();
 
 const app = new Vue({
   components: {
@@ -42,7 +35,6 @@ const app = new Vue({
   router,
   data () {
     return {
-      event: event
     }
   },
   mounted () {
