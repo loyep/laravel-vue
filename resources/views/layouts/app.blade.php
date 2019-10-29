@@ -14,7 +14,7 @@
 <div id="app">
     @include('commons.header')
     @yield('content')
-    @cache('commons.footer')
+    @include('commons.footer')
 </div>
 <script src="{{ mix('js/app.js', 'static/app') }}" ></script>
 @stack('scripts')

@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasPosts;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasPosts;
 
     /**
      * The attributes that are mass assignable.
@@ -35,6 +38,33 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+
+        'email_verified_at'  => 'datetime',
+        'mobile_verified_at' => 'datetime',
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'link',
+    ];
+
+    /**
+     * @return string
+     */
+    public function getLinkAttribute()
+    {
+        return route('user.show', $this->name);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

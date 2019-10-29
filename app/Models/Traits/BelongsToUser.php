@@ -3,7 +3,6 @@
 namespace App\Models\Traits;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
 trait BelongsToUser
@@ -21,9 +20,9 @@ trait BelongsToUser
     /**
      * Get the user for the model.
      *
-     * @return BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class)->withDefault();
     }

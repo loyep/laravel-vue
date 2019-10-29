@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Post;
 use App\Models\Slide;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class HomeController
      */
     public function home(Request $request)
     {
-        $posts = Article::with(['category'])
+        $posts = Post::with(['category'])
             ->published()
             ->recent()
             ->paginate(16);
@@ -32,13 +33,5 @@ class HomeController
 
         $slideBg = asset('images/bg.jpg');
         return view('home', compact('slides', 'posts', 'slideBg', 'list'));
-    }
-
-    /**
-     * @return \Illuminate\Http\Response
-     */
-    public function dashboard()
-    {
-        return view('admin.dashboard');
     }
 }

@@ -3,17 +3,16 @@
 namespace App\Models\Traits;
 
 use App\Models\Topic;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait HasTopics
 {
     /**
      * Get the tags for the model.
      *
-     * @return MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function topics(): MorphToMany
+    public function topics()
     {
-        return $this->morphToMany(Topic::class, 'topicable');
+        return $this->belongsToMany(Topic::class, 'post_topics');
     }
 }

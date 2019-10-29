@@ -142,13 +142,13 @@
     };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .search-link {
   cursor: pointer;
 }
 </style>
 
-<style lang="less">
+<style lang="scss">
 .vertical-center-modal {
   display: flex;
   align-items: center;

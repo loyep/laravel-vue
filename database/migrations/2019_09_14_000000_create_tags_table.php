@@ -26,13 +26,6 @@ class CreateTagsTable extends Migration
             $table->index(['order', 'name', 'slug']);
         });
 
-        Schema::create('taggables', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('tag_id');
-            $table->morphs('taggable');
-            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -42,7 +35,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taggables');
         Schema::dropIfExists('tags');
     }
 }

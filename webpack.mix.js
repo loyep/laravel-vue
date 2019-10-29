@@ -1,7 +1,8 @@
 const mix = require('laravel-mix');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { IgnorePlugin } = require('webpack');
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const pathResolve = dir => require('path').join(__dirname, dir);
 
@@ -31,14 +32,15 @@ const webpackConfig = {
             cleanOnceBeforeBuildPatterns: [
                 pathResolve(`public/static/${basePath}/*`)
             ],
-            verbose: true
+            dry: true
         }),
-        new SimpleProgressWebpackPlugin()
+        new SimpleProgressWebpackPlugin(),
+        new LiveReloadPlugin()
     ],
     resolve: {
         extensions: ['.vue'],
         alias: {
-            '@style': pathResolve('resources/less'),
+            '@style': pathResolve('resources/sass'),
             '@': pathResolve('resources/js'),
             '@assets': pathResolve('resources/assets'),
             '@js': pathResolve('resources/js'),
@@ -52,13 +54,7 @@ const webpackConfig = {
     },
     module: {
         rules: [
-            {
-                test: /\.less$/,
-                loader: 'less-loader',
-                options: {
-                    javascriptEnabled: true
-                }
-            }
+
         ]
     },
     output: {
@@ -69,11 +65,11 @@ const webpackConfig = {
 mix.webpackConfig(webpackConfig);
 
 if (isAdmin) {
-    mix.less('resources/less/admin.less', 'css/admin.css')
-        .js('resources/js/admin/admin.js', 'js/admin.js');
+    mix.sass('resources/sass/admin.scss', 'css')
+       .js('resources/js/admin/admin.js', 'js');
 } else {
-    mix.less('resources/less/app.less', 'css/app.css')
-        .js('resources/js/app/app.js', 'js/app.js');
+    mix.sass('resources/sass/app.scss', 'css')
+       .js('resources/js/app/app.js', 'js');
 }
 
 mix

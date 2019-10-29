@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Spatie\Permission\Models\Permission as PermissionModel;
+use Spatie\Permission\Models\Permission as BasePermission;
 
-class Permission extends PermissionModel
+class Permission extends BasePermission
 {
     //
 }

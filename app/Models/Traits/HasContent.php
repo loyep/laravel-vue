@@ -3,16 +3,15 @@
 namespace App\Models\Traits;
 
 use App\Models\Content;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasContent
 {
     /**
      * Get the content for the model.
      *
-     * @return MorphOne
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
-    public function content(): MorphOne
+    public function content()
     {
         return $this->morphOne(Content::class, 'contentable');
     }

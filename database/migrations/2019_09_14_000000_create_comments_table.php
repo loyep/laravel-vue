@@ -15,7 +15,7 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->morphs('commentable');
+            $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('parent_id')->default(0);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('name', 100)->nullable();
@@ -23,7 +23,6 @@ class CreateCommentsTable extends Migration
             $table->string('email')->nullable();
             $table->enum('status', ['pending', 'approved', 'spam'])->default('pending');
             $table->string('avatar')->nullable();
-            $table->text('content')->nullable();
             $table->string('type', 100);
             $table->ipAddress('ip')->default('::1');
             $table->string('user_agent', 512)->nullable();

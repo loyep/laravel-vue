@@ -11,12 +11,4 @@ class DashboardController extends Controller
     {
         return view('admin.index');
     }
-
-    /**
-     * @return \Illuminate\Http\Response
-     */
-    public function home()
-    {
-        return view('users.home');
-    }
 }

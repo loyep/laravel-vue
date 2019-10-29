@@ -7,15 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use ParsedownExtra;
 
-/**
- * Class Content
- *
- * @property string $markdown
- * @property string $body
- * @property string $contentable_type
- */
 class Content extends Model
 {
+
     /**
      * The attributes that are mass assignable.
      *
@@ -35,9 +29,6 @@ class Content extends Model
         'contentable_id' => 'int',
     ];
 
-    /**
-     * @return void
-     */
     protected static function boot()
     {
         parent::boot();

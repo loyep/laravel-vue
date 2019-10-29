@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 
-class Article extends Model
+class Post extends Model
 {
     use BelongsToCategory, BelongsToUser, HasTopics, HasTags, HasContent, HasComments;
     use HasSettingsProperty;
@@ -44,8 +44,8 @@ class Article extends Model
         'password', 'published_at', 'viewed_at', 'source', 'scripts', 'styles', 'settings',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
+        /**
+     * The attributes that should be hidden for arrays.
      *
      * @var array
      */
@@ -112,9 +112,12 @@ class Article extends Model
     /**
      * @return string
      */
+    /**
+     * @return string
+     */
     public function getLinkAttribute()
     {
-        return route('article.show', $this->slug);
+        return route('post.show', $this->slug);
     }
 
     /**

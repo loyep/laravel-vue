@@ -25,14 +25,6 @@ class CreateTopicsTable extends Migration
             $table->timestamps();
             $table->index(['order', 'name', 'slug']);
         });
-
-        Schema::create('topicables', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('topic_id');
-            $table->morphs('topicable');
-            $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
-            $table->timestamps();
-        });
     }
 
     /**
