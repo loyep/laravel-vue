@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Dawn\Support\ViewCache;
+use App\Models\Link;
 use App\Models\Tag;
+use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
@@ -27,6 +29,12 @@ class ViewComposerServiceProvider extends ServiceProvider
             $view->with('searchTop', $this->searchTop());
         });
 
+        ViewContainer::composer('partials.app-footer', function (View $view) {
+            $view->with('socials', $this->socials());
+            $view->with('links', $this->links());
+            $view->with('topics', $this->topics());
+        });
+
 //        ViewContainer::composer('layouts.user', function (View $view) {
 //            $view->with('user', $this->currentUser());
 //        });
@@ -38,6 +46,32 @@ class ViewComposerServiceProvider extends ServiceProvider
 
             return "<?php echo app()->make('viewcache')->cache(Arr::except(get_defined_vars(), ['__data', '__path']), {$expression}); ?>";
         });
+    }
+
+    /**
+     * @return array
+     */
+    protected function socials()
+    {
+        return [
+            'github' => 'https://github.com/loyep/dawn'
+        ];
+    }
+
+    /**
+     * @return Topic[]|\Illuminate\Database\Eloquent\Collection
+     */
+    protected function topics()
+    {
+        return Topic::all();
+    }
+
+    /**
+     * @return Link[]|\Illuminate\Database\Eloquent\Collection
+     */
+    protected function links()
+    {
+        return Link::all();
     }
 
     /**
@@ -62,7 +96,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 
     protected function currentUser()
     {
-        $key = Str::lower('current user|' . request()->ip());
+        $key = Str::lower('current user|'.request()->ip());
         return Cache::remember($key, 3600, function () {
             $authUser = Auth::user();
             $user = User::withCount(['articles', 'comments'])->find($authUser->id);

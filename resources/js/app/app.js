@@ -49,12 +49,14 @@ window.event = event
 export default app
 
 jQuery(document).ready(($) => {
-  $(window).on('scroll', () => {
-    var b = $(window).scrollTop();
+  function scrollTop () {
+    const b = $(window).scrollTop();
     if (b > 72) {
       $('.fixed-top').addClass('scroll');
     } else {
       $('.fixed-top').removeClass('scroll');
     }
-  });
+  }
+  $(window).on('scroll', scrollTop);
+  scrollTop()
 })

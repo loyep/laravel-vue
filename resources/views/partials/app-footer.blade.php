@@ -1,6 +1,6 @@
 @php
     $socials = [
-    'github' => 'https://github.com/loyep/dawn'
+        'github' => 'https://github.com/loyep/dawn'
     ]; //Blog::socials();
     $info = []; //Blog::info();
     $description = $info['description'] ?? '';
@@ -37,9 +37,9 @@
                     <div class="footer-widget-header">{{ __('专题推荐') }}</div>
                     <div class="footer-widget-content">
                         <div class="footer-widget-links">
-                            {{--                            @foreach(Blog::footerTags() as $tag)--}}
-                            {{--                                <a href="{{ $tag->link }}" target="_self">{{ $tag->name }}</a>--}}
-                            {{--                            @endforeach--}}
+                            @foreach($topics as $topic)
+                                <a href="{{ $topic->link }}" target="_self">{{ $topic->name }}</a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -49,11 +49,11 @@
                     <div class="footer-widget-header">{{ __('友情链接') }}</div>
                     <div class="footer-widget-content">
                         <div class="footer-widget-links">
-                            {{--                                @foreach(Blog::links() as $link)--}}
-                            {{--                                    <a href="{{ $link->url }}" target="{{ $link->target }}">--}}
-                            {{--                                        {{ $link->name }}--}}
-                            {{--                                    </a>--}}
-                            {{--                                @endforeach--}}
+                            @foreach($links as $link)
+                                <a href="{{ $link->url }}" target="{{ $link->target }}">
+                                    {{ $link->name }}
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
