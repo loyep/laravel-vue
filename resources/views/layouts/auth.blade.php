@@ -17,7 +17,7 @@
                     <div class="col-12 col-md-5 col-lg-6 col-xl-7">
                         <div class="sign-cover d-flex flex-column bg-secondary bg-img bg-cover w-100 h-100 p-4" style="background-image: url('{{ asset('images/bg-sign.jpg') }}');" >
                             <a href="{{ url('/') }}" title="{{ config('dawn.name') }}" class="auth-sign-logo m-md-2">
-                                <img src="{{ asset('images/logo.png') }}" >
+                                <img src="{{ asset('images/logo.png') }}" alt="">
                             </a>
                         </div>
                     </div>

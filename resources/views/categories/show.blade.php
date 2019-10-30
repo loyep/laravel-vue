@@ -2,26 +2,34 @@
     $style = $category->list_style ?? 'small';
     $gridClass = 'row-md list-archive list-grouped list-tb-padding';
 
-    if ($style === 'plain') $gridClass = 'list-archive list-grid list-grid-padding list-bordered list-tb-padding my-n4';
-    if ($style === 'medium') $gridClass = 'row-lg list-archive list-grouped list-tb-padding';
-    if ($style === 'small') $gridClass = 'row-md list-archive list-grouped list-tb-padding';
+    if ($style == 'plain') $grid_class = 'list-archive list-grid list-grid-padding list-bordered list-bordered-padding my-n3 my-md-n4';
+    if ($style == 'medium') $grid_class = 'row-lg list-archive list-grouped list-bordered-padding';
+    if ($style == 'small') $grid_class = 'row-md list-archive list-grouped list-bordered-padding';
 @endphp
 
 @extends('layouts.app')
 
 @section('content')
 {{--    @include('components.top.article')--}}
-    <main class="py-4 py-md-5">
+    <div class="category-cover">
+        <div class="media media-5x1">
+            <div class="media-content" style="background-image: url('{{ $category->image }}');">
+                <div class="overlay"></div>
+            </div>
+            <div class="media-overlay">
+                <div class="m-auto text-center">
+                    <div class="text-xl">{{ $category->name }}</div>
+                    <div class="text-md mt-lg-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="py-3 py-md-5">
         <div class="container">
             @if($style === 'plain')
                 <div class="row justify-content-md-center">
                     <div class="col-md-9">
                         @endif
-                        <div class="list-header mb-3 mb-md-4">
-                            <div class="h4">
-                                <span>{{ $category->name }}</span>
-                            </div>
-                        </div>
                         @if($posts->isNotEmpty())
                             <div class="{{ $gridClass }}" id="articles">
                                 @include('posts.lists.' . $style ?? 'small', ['showCat' => false])

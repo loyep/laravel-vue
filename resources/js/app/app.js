@@ -20,7 +20,7 @@ require('./element')
 
 Vue.use(request);
 
-const jQuery = window.$ = require('jquery');
+window.jQuery = window.$ = require('jquery');
 
 Vue.config.productionTip = false
 
@@ -38,25 +38,24 @@ const app = new Vue({
     }
   },
   mounted () {
-
+    document.addEventListener('scroll', this.handleScroll, { passive: true });
+  },
+  beforeDestroy () {
+    document.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    handleScroll () {
+      const scrollTop = document.body.scrollTop + document.documentElement.scrollTop;
+      const $ = window.$
+      if (scrollTop > 72) {
+        $('.fixed-top').addClass('scroll');
+      } else {
+        $('.fixed-top').removeClass('scroll');
+      }
+    }
   }
 }).$mount('#app')
 
 window.event = event
 
 export default app
-
-jQuery(document).ready(($) => {
-  function scrollTop () {
-    const b = $(window).scrollTop();
-    if (b > 72) {
-      $('.fixed-top').addClass('scroll');
-    } else {
-      $('.fixed-top').removeClass('scroll');
-    }
-  }
-  $(window).on('scroll', scrollTop);
-  scrollTop()
-})

@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-copyright text-xs border-top py-4 mt-4">
+        <div class="footer-copyright text-xs border-top border-secondary py-3 py-md-4 mt-3 mt-md-4">
             Copyright © {{ $year }} <a href="{{ url('/') }}" title="{{ $name }}" rel="home">{{ $name }}</a>.
             Designed by <a href="https://loyep.com" title="Dawn" target="_blank">Loyep</a>.
             @if(routeIs('home') && !empty(config('dawn.app.miitbeian')))

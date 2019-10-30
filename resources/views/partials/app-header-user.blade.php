@@ -1,7 +1,7 @@
 <div class="pl-2">
     @guest
         <a href="{{ route('login') }}">
-            <el-button type="primary">登录</el-button>
+            <el-button type="primary" size="middle">登录</el-button>
         </a>
     @else
         <el-dropdown>
