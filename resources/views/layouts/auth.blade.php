@@ -10,20 +10,19 @@
 </head>
 <body>
 <div id="app">
-    <div style="background-color: #f6f6f7">
-        <div class="d-flex flex-fill align-items-md-center h-v">
-            <main class="main-content d-flex flex-fill flex-column">
-                <div class="sign-inner row no-gutters d-flex flex-fill">
+    <div class="auth-container" style="background-color: #f6f6f7">
+        <div class="sign-container d-flex flex-fill align-items-md-center h-v">
+            <main class="main-container d-flex flex-fill flex-column">
+                <div class="auth-sign-inner row no-gutters d-flex flex-fill">
                     <div class="col-12 col-md-5 col-lg-6 col-xl-7">
-                        <div class="sign-cover d-flex flex-column bg-secondary bg-img bg-cover w-100 h-100 p-4"
-                             style="background-image:url('{{ asset('images/bg-sign.jpg') }}')">
-                            <a href="{{ url('/') }}" title="{{ config('dawn.name') }}"
-                               class="sign-logo m-md-2">
-                                <img src="{{ asset('images/logo.png') }}" alt="{{ config('dawn.name') }}"></a>
+                        <div class="sign-cover d-flex flex-column bg-secondary bg-img bg-cover w-100 h-100 p-4" style="background-image: url('{{ asset('images/bg-sign.jpg') }}');" >
+                            <a href="{{ url('/') }}" title="{{ config('dawn.name') }}" class="auth-sign-logo m-md-2">
+                                <img src="{{ asset('images/logo.png') }}" >
+                            </a>
                         </div>
                     </div>
                     <div class="col-12 col-md-7 col-lg-6 col-xl-5 px-3 px-md-4 px-lg-5 py-md-5">
-                        @yield('content')
+                       @yield('content')
                     </div>
                 </div>
             </main>

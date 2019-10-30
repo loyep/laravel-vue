@@ -10,11 +10,11 @@
     <link href="{{ mix('css/app.css', 'static/app') }}" rel="stylesheet" type="text/css" media="all">
     @stack('styles')
 </head>
-<body class="cosy-style-shadow">
+<body class="nice-style-radius nice-style-shadow nice-style-border">
 <div id="app">
-    @include('commons.header')
+    @include('partials.app-header')
     @yield('content')
-    @include('commons.footer')
+    @include('partials.app-footer')
 </div>
 <script src="{{ mix('js/app.js', 'static/app') }}" ></script>
 @stack('scripts')

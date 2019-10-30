@@ -1,7 +1,7 @@
 <template>
   <div class="search-link" @click.stop="handleSearch">
     <slot />
-    <el-dialog v-model="visible" :width="670" :footerHide="true" className="vertical-center-modal">
+    <el-dialog v-model="visible" width="670px" :footerHide="true" className="vertical-center-modal">
       <div class="search-popup-cover bg-dark px-3 px-lg-5 py-5">
         <div
           class="bg-effect bg-cover nc-no-lazy"

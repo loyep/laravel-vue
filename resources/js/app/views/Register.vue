@@ -1,15 +1,15 @@
 <template>
   <el-form ref="form" :hideRequiredAsterisk="false" :model="form" labelPosition="top" :rules="ruleValidate">
     <el-form-item prop="email" :error="errors.email">
-      <el-input v-model="form.email" name="email" type="email" placeholder="邮箱" />
+      <el-input v-model="form.email" type="email" placeholder="邮箱" />
     </el-form-item>
     <el-form-item prop="name" :error="errors.name">
-      <el-input v-model="form.name" name="name" placeholder="用户名" />
+      <el-input v-model="form.name" placeholder="用户名" @keyup.enter.native="handleSubmit" />
     </el-form-item>
     <el-form-item prop="password" :error="errors.password">
-      <el-input v-model="form.password" name="password" type="password" placeholder="密码" @enter="handleSubmit" />
+      <el-input v-model="form.password" type="password" placeholder="密码" @keyup.enter.native="handleSubmit" />
     </el-form-item>
-    <el-button class="mt-3" type="primary" long :loading="loading" @click="handleSubmit">
+    <el-button class="mt-3 btn btn-block" type="primary" :loading="loading" @click="handleSubmit">
       立即注册
     </el-button>
   </el-form>

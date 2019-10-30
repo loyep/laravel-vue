@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Article;
+use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
 use Faker\Generator as Faker;
@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 static $types = ['image', 'default', 'status', 'video', 'audio'];
 static $statuses = ['draft', 'published', 'private'];
 
-$factory->define(Article::class, function (Faker $faker) use ($types, $statuses) {
+$factory->define(Post::class, function (Faker $faker) use ($types, $statuses) {
     $title = $faker->sentence(mt_rand(3, 5));
     $user_id = User::pluck('id')->random();
     $category_id = Category::pluck('id')->random();

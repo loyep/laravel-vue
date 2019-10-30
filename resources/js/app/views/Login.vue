@@ -1,10 +1,10 @@
 <template>
   <el-form ref="form" :hideRequiredAsterisk="false" :model="form" labelPosition="top" :rules="ruleValidate">
     <el-form-item prop="username" :error="errors.username">
-      <el-input v-model="form.username" name="username" autofocus placeholder="邮箱 / 用户名" @enter="handleSubmit" />
+      <el-input v-model="form.username" placeholder="邮箱 / 用户名" autofocus @keyup.enter.native="handleSubmit" />
     </el-form-item>
     <el-form-item prop="password" :error="errors.password">
-      <el-input v-model="form.password" name="password" type="password" placeholder="密码" @enter="handleSubmit" />
+      <el-input v-model="form.password" type="password" placeholder="密码" @enter="handleSubmit" @keyup.enter.native="handleSubmit" />
     </el-form-item>
     <el-button class="mt-2 btn btn-block" type="primary" :loading="loading" @click="handleSubmit">
       登录

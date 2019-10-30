@@ -23,7 +23,7 @@ class HomeController
             ->recent()
             ->paginate(16);
 
-        $list = view('components.posts.small', compact('posts'));
+        $list = view('posts.lists.small', compact('posts'));
 
         if ($request->query('isAjax')) {
             return $list;

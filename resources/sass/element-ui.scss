@@ -1,2 +1,6 @@
 @import "element-ui-variables";
 @import "~element-ui/packages/theme-chalk/src/index";
+
+.el-form--label-top .el-form-item__label {
+    padding: 0;
+}

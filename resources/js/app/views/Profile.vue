@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <el-card class="p-2 mb-3">
-      <el-form ref="form" :hideRequiredAsterisk="false" :model="form" labelPosition="top" :rules="ruleValidate">
+      <el-form ref="form" :hideRequiredAsterisk="false" :model="form" labelPosition="top" :rules="rules">
         <el-form-item prop="display_name" label="昵称" :error="errors.display_name">
           <el-input v-model="form.display_name" />
         </el-form-item>
@@ -9,7 +9,7 @@
           <el-input v-model="form.email " />
         </el-form-item>
         <el-form-item prop="bio" label="简介" :error="errors.bio">
-          <el-input v-model="form.bio" type="textarea" />
+          <el-input v-model="form.bio" type="textarea" :rows="3" />
         </el-form-item>
         <el-button :loading="loading" type="primary" class="mb-2" @click="handleSubmit">
           确认修改
@@ -17,54 +17,90 @@
       </el-form>
     </el-card>
     <el-card class="p-2 mb-3">
-      <div class="text-sm pr-2">
-        <div>更换封面</div>
-        <small class="form-text text-muted">个人主页顶部自定义显示的封面</small>
-      </div>
-      <div class="flex-fill" />
-      <el-button>编辑</el-button>
-      <el-divider />
-      <div class="text-sm pr-2">
-        <div>登录密码</div>
-        <small class="form-text text-muted">互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</small>
-      </div>
-      <div class="flex-fill" />
-      <el-button>编辑</el-button>
-      <el-divider />
-      <div class="text-sm pr-2">
-        <div>绑定手机</div>
-        <small class="form-text text-muted">您绑定的手机： {{ user.mobile }}</small>
-      </div>
-      <div class="flex-fill" />
-      <el-button>编辑</el-button>
-      <el-divider />
-      <div class="text-sm pr-2">
-        <div>绑定邮箱</div>
-        <small class="form-text text-muted">您绑定的邮箱： {{ user.email }}</small>
-      </div>
-      <div class="flex-fill" />
-      <el-button>绑定</el-button>
-      <el-divider />
-      <div class="text-sm pr-2">
-        <div>绑定微博</div>
-        <small class="form-text text-muted">绑定您的微博账号，一键登录账号更方便：</small>
-      </div>
-      <div class="flex-fill" />
-      <el-button>绑定</el-button>
-      <el-divider />
-      <div class="text-sm pr-2">
-        <div>绑定 QQ</div>
-        <small class="form-text text-muted">绑定您的 QQ，一键登录账号更方便：</small>
-      </div>
-      <div class="flex-fill" />
-      <el-button>绑定</el-button>
-      <el-divider />
-      <div class="text-sm pr-2">
-        <div>绑定微信</div>
-        <small class="form-text text-muted">绑定您的微信，一键登录账号更方便：</small>
-      </div>
-      <div class="flex-fill" />
-      <el-button>绑定</el-button>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex align-items-center px-0">
+          <div class="text-sm pr-2">
+            <div>更换封面</div>
+            <small class="form-text text-muted">个人主页顶部自定义显示的封面</small>
+          </div>
+          <div class="flex-fill" />
+          <div class="flex-shrink-0">
+            <el-button size="small">
+              编辑
+            </el-button>
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center px-0">
+          <div class="text-sm pr-2">
+            <div>登录密码</div>
+            <small class="form-text text-muted">互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</small>
+          </div>
+          <div class="flex-fill" />
+          <div class="flex-shrink-0">
+            <el-button size="small">
+              编辑
+            </el-button>
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center px-0">
+          <div class="text-sm pr-2">
+            <div>
+              绑定手机
+            </div>
+            <small class="form-text text-muted">
+              您绑定的手机： 186****2634
+            </small>
+          </div>
+          <div class="flex-fill" />
+          <div class="flex-shrink-0">
+            <el-button size="small">
+              编辑
+            </el-button>
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center px-0">
+          <div class="text-sm pr-2">
+            <div>
+              绑定微博
+            </div>
+            <small class="form-text text-muted">绑定您的微博账号，一键登录账号更方便： </small>
+          </div>
+          <div class="flex-fill" />
+          <div class="flex-shrink-0">
+            <el-button size="small">
+              绑定
+            </el-button>
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center px-0">
+          <div class="text-sm pr-2">
+            <div>
+              绑定 QQ
+            </div>
+            <small class="form-text text-muted">绑定您的 QQ，一键登录账号更方便： </small>
+          </div>
+          <div class="flex-fill" />
+          <div class="flex-shrink-0">
+            <el-button size="small">
+              绑定
+            </el-button>
+          </div>
+        </li>
+        <li class="list-group-item d-flex align-items-center px-0">
+          <div class="text-sm pr-2">
+            <div>
+              绑定微信
+            </div>
+            <small class="form-text text-muted">绑定您的微信，一键登录账号更方便： </small>
+          </div>
+          <div class="flex-fill" />
+          <div class="flex-shrink-0">
+            <el-button size="small">
+              绑定
+            </el-button>
+          </div>
+        </li>
+      </ul>
     </el-card>
   </div>
 </template>
@@ -82,7 +118,7 @@
                 },
                 errors: {},
                 loading: false,
-                ruleValidate: {
+                rules: {
                     display_name: [
                         { required: true, trigger: 'blur', message: '昵称 不能为空' }
                     ],
@@ -94,7 +130,7 @@
             };
         },
         mounted () {
-            this.$http.get('profile').then(res => {
+            this.$http.get('api/me').then(res => {
                 const { user } = res;
                 this.user = user;
                 this.form = {
@@ -119,7 +155,7 @@
                 this.loading = true;
                 this.errors = {};
                 this.$http
-                    .post('profile', this.form)
+                    .post('api/profile', this.form)
                     .then(res => {
                         // window.location.replace(res.redirect || '/')
                         const { bio, email, display_name } = res.user;

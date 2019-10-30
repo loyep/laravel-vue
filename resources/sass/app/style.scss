@@ -1,13 +1,5 @@
-/*
-Theme Name: Cosy
-Theme URI: https://www.nicetheme.cn
-Author: nicetheme
-Author URI: https://www.nicetheme.cn
-Description: Cosy is a multi-functional WordPress theme with vivid layouts and awesome article styles. Words, videos, and pictures can be easily exhibited in a wonderful way. In 2019, the nicetheme team refactors Cosy (version 2.0) with Bootstrap 4 and clean, elegant code. Still, she is a simple yet powerful theme as always.
-Version: 3.1.3
-License URI: LICENSE
-Text Domain: cosy19
-*/
+@import "../variables";
+
 @font-face {
     font-family: nicetheme;
     src: url('fonts/RobotoCondensed-Regular.ttf') format("truetype");
@@ -5839,93 +5831,92 @@ to popup
 
 .author-popup-cover .bg-cover {
     opacity: .15;
-    -webkit-filter: blur(10px);
     filter: blur(10px);
 }
 
 /*
 to top
 */
-#nice-back-to-top {
-    position: fixed;
-    width: 48px;
-    height: 48px;
-    right: 25px;
-    bottom: 25px;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
+
+.el-backtop {
+    width: 48px !important;
+    height: 48px !important;
+
+    @media (max-width: 1200px) {
+        visibility: hidden !important;
+    }
+
+    .icon-stack {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color: #fff;
+        background-color: #393e46;
+        overflow: hidden;
+        transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+        border-radius: 4px;
+
+        .back-to-top-text {
+            display: inline-block;
+            transform: translateY(5px);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            line-height: 1em;
+            transition: transform .35s cubic-bezier(.165, .84, .44, 1);
+        }
+
+        i {
+            position: absolute;
+            top: 9px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: .15s ease 50ms;
+        }
+
+        &:hover {
+            background-color: $primary;
+            i {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px);
+                transition: all .45s cubic-bezier(.165, .84, .44, 1)
+            }
+
+            .back-to-top-text {
+                transform: translateY(0);
+                transition: transform .25s cubic-bezier(.165, .84, .44, 1) 50ms
+            }
+        }
+    }
+
+    //.icon-stack i {
+    //}
+    //
+    //.icon-stack .back-to-top-text {
+    //    display: inline-block;
+    //    transform: translateY(5px);
+    //    font-size: 11px;
+    //    text-transform: uppercase;
+    //    letter-spacing: .05em;
+    //    line-height: 1em;
+    //    transition: transform .35s cubic-bezier(.165, .84, .44, 1);
+    //}
+    //
+    //.icon-stack:hover i {
+    //    opacity: 0;
+    //    transform: translateX(-50%) translateY(-10px);
+    //    transition: all .45s cubic-bezier(.165, .84, .44, 1)
+    //}
+    //
+    //.icon-stack:hover .back-to-top-text {
+    //    transform: translateY(0);
+    //    transition: transform .25s cubic-bezier(.165, .84, .44, 1) 50ms
+    //}
 }
 
-#nice-back-to-top.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-#nice-back-to-top .icon-stack {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    color: #fff;
-    background-color: #393e46;
-    overflow: hidden;
-    -webkit-transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
-    -moz-transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
-    transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
-    border-radius: 2px;
-}
-
-#nice-back-to-top .icon-stack:hover {
-    background-color: #11999e;
-}
-
-#nice-back-to-top .icon-stack i {
-    position: absolute;
-    top: 9px;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    transform: translateX(-50%);
-    -webkit-transition: .15s ease 50ms;
-    -moz-transition: .15s ease 50ms;
-    transition: .15s ease 50ms;
-}
-
-#nice-back-to-top .icon-stack .back-to-top-text {
-    display: inline-block;
-    -webkit-transform: translateY(5px);
-    -moz-transform: translateY(5px);
-    transform: translateY(5px);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    line-height: 1em;
-    -webkit-transition: -webkit-transform .35s cubic-bezier(.165, .84, .44, 1);
-    -moz-transition: -moz-transform .35s cubic-bezier(.165, .84, .44, 1);
-    transition: transform .35s cubic-bezier(.165, .84, .44, 1);
-}
-
-#nice-back-to-top .icon-stack:hover i {
-    opacity: 0;
-    -webkit-transform: translateX(-50%) translateY(-10px);
-    -moz-transform: translateX(-50%) translateY(-10px);
-    transform: translateX(-50%) translateY(-10px);
-    -webkit-transition: all .45s cubic-bezier(.165, .84, .44, 1);
-    -moz-transition: all .45s cubic-bezier(.165, .84, .44, 1);
-    transition: all .45s cubic-bezier(.165, .84, .44, 1)
-}
-
-#nice-back-to-top .icon-stack:hover .back-to-top-text {
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-transition: -webkit-transform .25s cubic-bezier(.165, .84, .44, 1) 50ms;
-    -moz-transition: -moz-transform .25s cubic-bezier(.165, .84, .44, 1) 50ms;
-    transition: transform .25s cubic-bezier(.165, .84, .44, 1) 50ms
-}
 
 
 /*

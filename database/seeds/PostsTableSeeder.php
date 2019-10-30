@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Article;
+use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
-class ArticlesTableSeeder extends Seeder
+class PostsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Article::class, 100)->create()->each(function ($article) {
+        factory(Post::class, 100)->create()->each(function ($article) {
             $article->tags()->createMany(factory(Tag::class, 2)->make()->toArray());
             $article->content()->create([
                 'body'     => '',

@@ -34,12 +34,17 @@ class UserController extends Controller
      */
     public function showProfile(Request $request)
     {
-        if ($request->expectsJson()) {
-            return response()->json([
-                'user' => Auth::user()
-            ]);
-        }
         return view('user.profile');
+    }
+
+    /**
+     * @return \Illuminate\Http\Response
+     */
+    public function me()
+    {
+        return response()->json([
+            'user' => Auth::user()
+        ]);
     }
 
     /**

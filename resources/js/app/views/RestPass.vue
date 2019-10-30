@@ -1,9 +1,9 @@
 <template>
   <el-form ref="form" :hideRequiredAsterisk="false" :model="form" labelPosition="top" :rules="ruleValidate">
     <el-form-item prop="email" :error="errors.email">
-      <el-input v-model="form.email" name="email" type="email" placeholder="邮箱" />
+      <el-input v-model="form.email" type="email" placeholder="邮箱" />
     </el-form-item>
-    <el-button class="mt-3" type="primary" long :loading="loading" @click="handleSubmit">
+    <el-button class="mt-3 btn btn-block" type="primary" :loading="loading" @click="handleSubmit">
       下一步
     </el-button>
   </el-form>

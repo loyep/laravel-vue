@@ -7,7 +7,8 @@ Vue.use(Router)
 const router = new Router({
     base: '/',
     routes,
-    mode: 'history'
+    mode: 'history',
+    scrollBehavior: () => ({ y: 0 })
 })
 
 router.beforeEach((to, from, next) => {

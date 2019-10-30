@@ -321,27 +321,30 @@ template {
 /*--------------------------------------------------------------
  reset title Font Size style
 --------------------------------------------------------------*/
-.nice-apollo-two .text-xl {
-    font-size: 1.5rem !important;
+.auth-container {
+
+}
+.auth-container .text-xl {
+    //font-size: 1.5rem !important;
 }
 
 @media (max-width: 767.98px) {
-    .nice-apollo-two .text-xl {
-        font-size: 1.375rem !important
+    .auth-container .text-xl {
+        //font-size: 1.375rem !important
     }
 
-    .nice-apollo-two .text-lg.nice-icon {
-        font-size: 1.25rem !important
+    .auth-container .text-lg.nice-icon {
+        //font-size: 1.25rem !important
     }
 }
 
 @media (min-width: 768px) and (max-width:991.98px) {
-    .nice-apollo-two .text-xl {
-        font-size: 1.375rem !important
+    .auth-container .text-xl {
+        //font-size: 1.375rem !important
     }
 }
 
-.nice-apollo-two .text-light {
+.auth-container .text-light {
     color: #ebedf3 !important;
 }
 
@@ -410,7 +413,7 @@ template {
     z-index: 0;
     opacity: 0.5;
     display: inline-block;
-    top: 0px;
+    top: 0;
     left: 0;
 }
 
@@ -581,7 +584,7 @@ textarea.md-input {
 }
 
 .md-switch i {
-    width: 0px;
+    width: 0;
     height: 18px;
     line-height: 1;
     margin-left: -36px;
@@ -621,7 +624,7 @@ textarea.md-input {
     width: 20px;
     border-radius: 50%;
     background-color: #fff;
-    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     transition: all 0.2s;
 }
 
@@ -726,11 +729,11 @@ textarea.md-input {
 /*--------------------------------------------------------------
   apollo user style
 --------------------------------------------------------------*/
-.nice-apollo-two {
+.auth-container {
     background-color: #f6f6f7;
 }
 
-.nice-apollo-two .flex-avatar.rounded.w-36, .nice-apollo-two .flex-avatar.rounded.w-32 {
+.auth-container .flex-avatar.rounded.w-36, .auth-container .flex-avatar.rounded.w-32 {
     border-radius: 4px !important;
 }
 
@@ -808,9 +811,9 @@ textarea.md-input {
     min-width: 0;
     word-wrap: break-word;
     background-color: #FFFFFF;
-    -webkit-box-shadow: 0 0px 10px 5px rgba(2, 10, 18, 0.01);
-    -moz-box-shadow: 0 0px 10px 5px rgba(2, 10, 18, 0.01);
-    box-shadow: 0 0px 10px 5px rgba(2, 10, 18, 0.01);
+    -webkit-box-shadow: 0 0 10px 5px rgba(2, 10, 18, 0.01);
+    -moz-box-shadow: 0 0 10px 5px rgba(2, 10, 18, 0.01);
+    box-shadow: 0 0 10px 5px rgba(2, 10, 18, 0.01);
     border-radius: 4px;
 }
 
@@ -1038,17 +1041,17 @@ textarea.md-input {
 /*--------------------------------------------------------------
   apollo user sign style
 --------------------------------------------------------------*/
-.nice-apollo-main {
+.main-container {
     width: 100%;
     margin: 0 auto;
 }
 
-.apollo-sign-inner {
+.auth-sign-inner {
     position: relative;
     overflow: hidden;
     border-radius: 6px;
     background: #fff;
-    box-shadow: 0px 0px 20px 0px rgba(158, 158, 158, 0.1);
+    box-shadow: 0 0 20px 0 rgba(158, 158, 158, 0.1);
 }
 
 .apollo-sign-logo {
@@ -1056,57 +1059,57 @@ textarea.md-input {
 }
 
 @media (min-width: 1200px) {
-    .nice-apollo-main {
+    .main-container {
         max-width: 1140px;
     }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    .nice-apollo-main {
+    .main-container {
         max-width: 960px;
     }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-    .nice-apollo-main {
+    .main-container {
         max-width: 720px;
     }
 }
 
-.nice-apollo-sign .form-control-lg {
+.sign-container .form-control-lg {
     padding: .5rem 1.25rem;
     font-size: .875rem;
     height: calc(1.5em + 1.25rem + 2px);
 }
 
-.nice-apollo-sign .btn-primary {
+.sign-container .btn-primary {
 }
 
 @media (max-width: 767.98px) {
-    .nice-apollo-sign .sign-cover {
+    .sign-container .sign-cover {
         min-height: 25vh
     }
 
-    .nice-apollo-sign .sign-boby {
+    .sign-container .sign-boby {
         position: relative;
         border-radius: 8px;
         background-color: #fff;
-        box-shadow: 0px 0px 45px -5px rgba(158, 158, 158, 0.22);
+        box-shadow: 0 0 45px -5px rgba(158, 158, 158, 0.22);
     }
 
-    .apollo-sign-inner {
+    .auth-sign-inner {
         background-color: #fdfbfb;
         border-radius: 0;
         box-shadow: none;
     }
 }
 
-.nice-dark-mode .apollo-sign-inner {
+.nice-dark-mode .auth-sign-inner {
     background-color: #151618;
     box-shadow: none;
 }
 
-.nice-dark-mode .nice-apollo-sign .sign-boby {
+.nice-dark-mode .sign-container .sign-boby {
     background-color: #1D1F20;
     box-shadow: none;
 }

@@ -1,83 +1,84 @@
 import Vue from 'vue'
 import {
-    // Pagination,
-    Dialog,
-    // Autocomplete,
-    // Dropdown,
-    // DropdownMenu,
-    // DropdownItem,
-    Menu,
-    Submenu,
-    MenuItem,
-    // MenuItemGroup,
-    Input,
-    // InputNumber,
-    // Radio,
-    // RadioGroup,
-    // RadioButton,
-    // Checkbox,
-    // CheckboxButton,
-    // CheckboxGroup,
-    // Switch,
-    // Select,
-    Option,
-    // OptionGroup,
-    Button,
-    // ButtonGroup,
-    // Table,
-    // TableColumn,
-    // DatePicker,
-    // TimeSelect,
-    // TimePicker,
-    // Popover,
-    // Tooltip,
-    // Breadcrumb,
-    // BreadcrumbItem,
-    Form,
-    FormItem,
-    // Tabs,
-    // TabPane,
-    // Tag,
-    // Tree,
-    // Alert,
-    // Slider,
-    Icon,
-    // Row,
-    // Col,
-    // Upload,
-    // Progress,
-    // Spinner,
-    // Badge,
-    // Card,
-    // Rate,
-    // Steps,
-    // Step,
-    // Carousel,
-    // CarouselItem,
-    // Collapse,
-    // CollapseItem,
-    // Cascader,
-    // ColorPicker,
-    // Transfer,
-    // Container,
-    // Header,
-    // Aside,
-    // Main,
-    // Footer,
-    // Timeline,
-    // TimelineItem,
-    // Link,
-    // Divider,
-    // Image,
-    // Calendar,
-    // Backtop,
-    // PageHeader,
-    // CascaderPanel,
-    Loading,
-    MessageBox,
-    Message,
-    Notification
-  } from 'element-ui';
+  Avatar,
+  // Pagination,
+  Dialog,
+  // Autocomplete,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  Menu,
+  Submenu,
+  MenuItem,
+  // MenuItemGroup,
+  Input,
+  // InputNumber,
+  // Radio,
+  // RadioGroup,
+  // RadioButton,
+  // Checkbox,
+  // CheckboxButton,
+  // CheckboxGroup,
+  // Switch,
+  // Select,
+  Option,
+  // OptionGroup,
+  Button,
+  // ButtonGroup,
+  // Table,
+  // TableColumn,
+  // DatePicker,
+  // TimeSelect,
+  // TimePicker,
+  // Popover,
+  // Tooltip,
+  // Breadcrumb,
+  // BreadcrumbItem,
+  Form,
+  FormItem,
+  // Tabs,
+  // TabPane,
+  // Tag,
+  // Tree,
+  // Alert,
+  // Slider,
+  Icon,
+  // Row,
+  // Col,
+  // Upload,
+  // Progress,
+  // Spinner,
+  // Badge,
+  Card,
+  // Rate,
+  // Steps,
+  // Step,
+  // Carousel,
+  // CarouselItem,
+  // Collapse,
+  // CollapseItem,
+  // Cascader,
+  // ColorPicker,
+  // Transfer,
+  // Container,
+  // Header,
+  // Aside,
+  // Main,
+  // Footer,
+  // Timeline,
+  // TimelineItem,
+  // Link,
+  Divider,
+  // Image,
+  // Calendar,
+  Backtop,
+  // PageHeader,
+  // CascaderPanel,
+  Loading,
+  MessageBox,
+  Message,
+  Notification
+} from 'element-ui';
 
 // import Pagination from 'element-ui/packages/pagination'
 // import Dialog from 'element-ui/packages/dialog'
@@ -148,11 +149,12 @@ import {
 // import Notification from 'element-ui/packages/notification'
 // export function elementImport () {
 //   Vue.use(Pagination)
+Vue.use(Avatar)
 Vue.use(Dialog)
 // Vue.use(Autocomplete)
-// Vue.use(Dropdown)
-// Vue.use(DropdownMenu)
-// Vue.use(DropdownItem)
+Vue.use(Dropdown)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
 Vue.use(Menu)
 Vue.use(Submenu)
 Vue.use(MenuItem)
@@ -194,7 +196,7 @@ Vue.use(Icon)
 // Vue.use(Upload)
 // Vue.use(Progress)
 // Vue.use(Badge)
-//   Vue.use(Card)
+Vue.use(Card)
 // Vue.use(Rate)
 // Vue.use(Steps)
 // Vue.use(Step)
@@ -210,8 +212,11 @@ Vue.use(Icon)
 //   Vue.use(Aside)
 //   Vue.use(Main)
 //   Vue.use(Footer)
+Vue.use(Divider)
+Vue.use(Backtop)
 
 Vue.use(Loading.directive)
+Vue.prototype.$ELEMENT = { size: 'medium' };
 
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$msgbox = MessageBox

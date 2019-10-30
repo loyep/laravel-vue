@@ -51,14 +51,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('user/posts', 'UserController@articles')->name('user.posts');
     Route::get('user/favorites', 'UserController@favorites')->name('user.favorites');
     Route::get('user/comments', 'UserController@comments')->name('user.comments');
-    Route::get('profile', 'UserController@showProfile')->name('profile');
+    Route::get('profile', 'UserController@showProfile')->name('user.profile');
 
 });
 
 // User Center
 Route::group(['middleware' => ['auth'], 'prefix' => 'api', 'namespace' => 'Api'], function () {
 
-    Route::get('profile', 'UserController@showProfile');
+    Route::get('me', 'UserController@me');
     Route::post('profile', 'UserController@profile');
 });
 

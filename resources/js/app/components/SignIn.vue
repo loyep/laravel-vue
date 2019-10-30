@@ -1,11 +1,11 @@
 <template>
   <a href="javascript:;" @click="showModal">
     <slot />
-    <Modal
-      v-model="visible"
-      :width="340"
-      :footerHide="true"
-      className="vertical-center-modal"
+    <el-dialog
+      :visible.sync="visible"
+      :appendToBody="true"
+      :destroyOnClose="true"
+      width="340px"
     >
       <div class="text-white text-center bg-dark bg-img px-4 py-5" :style="{ borderRadius: '6px', backgroundImage: `url(${require('@assets/images/bg.jpg')})` }">
         <div class="h3 text-white mt-2">
@@ -91,13 +91,13 @@
           </div>
         </div>
         <div class="insign-date-action mt-4 mb-1 mx-2">
-          <el-button long shape="circle" type="primary">
+          <el-button shape="circle" class="btn btn-block" type="primary">
             签到
           </el-button>
           <!--                        <button class="btn btn-dark btn-block btn-rounded sign-in" data-nonce="addc2c3047">签到</button>-->
         </div>
       </div>
-    </Modal>
+    </el-dialog>
   </a>
 </template>
 

@@ -29,9 +29,9 @@ class UserController extends Controller
         // return view('users.home', compact('list'));
     }
 
-    public function info(Request $request)
+    public function me(Request $request)
     {
-        return \response()->json([
+        return response()->json([
             'user' => $request->user()
         ]);
     }
