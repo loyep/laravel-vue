@@ -39,7 +39,5 @@ class Cache extends Command
     {
         $this->call('optimize');
         $this->call('view:cache');
-        shell_exec('composer dumpautoload -o');
-        shell_exec('npm run prod');
     }
 }
