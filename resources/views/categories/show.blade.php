@@ -1,6 +1,6 @@
 @php
     $style = $category->list_style ?? 'small';
-    $gridClass = 'row-md list-archive list-grouped list-tb-padding';
+    $gridClass = 'row-md list-archive list-grouped list-bordered-padding';
 
     if ($style == 'plain') $grid_class = 'list-archive list-grid list-grid-padding list-bordered list-bordered-padding my-n3 my-md-n4';
     if ($style == 'medium') $grid_class = 'row-lg list-archive list-grouped list-bordered-padding';

@@ -33,9 +33,11 @@
             </div>
             <div class="list-content">
                 <div class="list-body">
-                    <div class="d-none d-lg-block text-xs mb-1 list-cat-style">
-                        <a href="{{ $post->category->link }}" class="text-muted" target="_blank">{{ $post->category->name }}</a>
-                    </div>
+                    @if($showCat)
+                        <div class="d-none d-lg-block text-xs mb-1 list-cat-style">
+                            <a href="{{ $post->category->link }}" class="text-muted" target="_blank">{{ $post->category->name }}</a>
+                        </div>
+                    @endif
                     <a href="{{ $post->link }}" class="list-title text-md h-2x" target="_blank">{{ $post->title }}</a>
                 </div>
                 <div class="list-footer d-flex align-items-center text-muted text-xs mt-2">
@@ -43,10 +45,10 @@
                     <div class="flex-fill"></div>
                     <div class="text-nowrap">
                         <span class="d-none d-lg-inline-block pr-2">
-                            <i class="text-md iconfont icon-comment"></i> {{ $post->comments_count ?? 0 }}
+                            <i class="text-md iconfont icon-comment"></i> <small>{{ $post->comments_count ?? 0 }}</small>
                         </span>
                         <span class="d-none d-lg-inline-block">
-                            <i class="text-md iconfont icon-eye"></i> {{ $post->views_count ?? 0 }}
+                            <i class="text-md iconfont icon-eye"></i> <small>{{ $post->views_count ?? 0 }}</small>
                         </span>
                     </div>
                 </div>

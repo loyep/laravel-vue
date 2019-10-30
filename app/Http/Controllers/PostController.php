@@ -46,7 +46,7 @@ class PostController extends Controller
 
             $title = $post->title;
             $adverts = collect([]);// Advert::all();
-            return view('posts.' . $post->getTemplate(), compact('post', 'isLiked', 'adverts', 'title'));
+            return view('posts.show', compact('post', 'isLiked', 'adverts', 'title'));
         } catch (ModelNotFoundException $e) {
             return abort(404);
         }

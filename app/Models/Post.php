@@ -121,19 +121,6 @@ class Post extends Model
     }
 
     /**
-     * @return string
-     */
-    public function getTemplate()
-    {
-        $template = $this->template;
-        if (!isset($template)) {
-            $template = 'template.' . $this->type;
-        }
-
-        return $template;
-    }
-
-    /**
      * Next Article.
      *
      * @return static
