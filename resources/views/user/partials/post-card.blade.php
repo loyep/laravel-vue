@@ -1,8 +1,8 @@
 <div class="row my-n2 my-md-n3">
     @foreach($posts as $post)
         <div class="col-12 col-md-4 col-xl-3 d-flex py-2 py-md-3">
-            <div class="apollo-card list-item block">
-                <div class="apollo-card-header">
+            <div class="post-card list-item block">
+                <div class="post-card-header">
                     <div class="d-flex flex-fill align-items-center p-3">
                         <a class="flex-avatar w-36 mr-2">
                             <img alt="" src="{{ $post->user->avatar }}" height="36" width="36">
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="apollo-card-body">
+                <div class="post-card-body">
                     <div class="media media-3x2 mb-3">
                         <a class="media-content" href="{{ $post->link }}" target="_blank" style="background-image: url('{{ thumbnail($post->image ?? 'images/bg.jpg') }}');">
                             <span class="overlay"></span>
@@ -47,11 +47,11 @@
                             </div>
                         @endif
                     </div>
-                    <div class="apollo-card-content px-3">
+                    <div class="post-card-content px-3">
                         <a href="{{ $post->link }}" class="text-md h-2x" target="_blank"></a>
                     </div>
                 </div>
-                <div class="apollo-card-footer">
+                <div class="post-card-footer">
                     <div class="font-theme text-muted text-xs p-3">
                         <span class="mr-3">
                             <i class="text-lg iconfont icon-comment"></i> <small>{{ $post->comments_count ?? 0 }}</small>

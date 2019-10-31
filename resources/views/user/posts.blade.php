@@ -7,6 +7,7 @@
                 <div class="row-md list-history list-grouped list-bordered-padding" id="articles">
                     @include('user.partials.post-card')
                 </div>
+                {!! $posts->links() !!}
             @else
                 <div class="content-error h-v-50">
                     <div class="text-center m-auto">

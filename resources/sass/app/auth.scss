@@ -804,7 +804,7 @@ textarea.md-input {
 /*--------------------------------------------------------------
   apollo user widget style
 --------------------------------------------------------------*/
-.apollo-card {
+.post-card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -817,12 +817,12 @@ textarea.md-input {
     border-radius: 4px;
 }
 
-.apollo-card, .apollo-card-body {
+.post-card, .post-card-body {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
 }
 
-.apollo-card-body .more-images .col-8 .media:before {
+.post-card-body .more-images .col-8 .media:before {
     content: '';
     position: absolute;
     right: -1px;
@@ -833,7 +833,7 @@ textarea.md-input {
     z-index: 2;
 }
 
-.apollo-card-body .more-images .col-4 .media:first-child:before {
+.post-card-body .more-images .col-4 .media:first-child:before {
     content: '';
     position: absolute;
     bottom: -1px;
