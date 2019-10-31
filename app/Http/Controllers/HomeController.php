@@ -30,7 +30,7 @@ class HomeController
         }
 
         $slides = Slide::take(5)->get();
-        $slideBg = thumbnail('images/bg.jpg');
+        $slideBg = 'images/bg.jpg';
         return view('home', compact('slides', 'posts', 'slideBg', 'list'));
     }
 }
