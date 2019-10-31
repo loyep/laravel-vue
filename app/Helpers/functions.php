@@ -43,7 +43,7 @@ if (!function_exists('routeIs')) {
 if (!function_exists('thumbnail')) {
     function thumbnail($url, $width = 450, $height = 300, $quality = 75, $format = 'jpg')
     {
-        return asset($url . `/imageView2/1/w/${width}/h/${height}/format/${format}/interlace/1/q/${quality}`);
+        return asset($url) . "?imageView2/1/w/{$width}/h/{$height}/format/{$format}/interlace/1/q/{$quality}";
     }
 }
 
