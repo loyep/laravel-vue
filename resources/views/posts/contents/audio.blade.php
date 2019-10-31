@@ -4,13 +4,6 @@
         <div class="row no-gutters">
             <div class="col-12 col-lg-9 pr-lg-5">
                 <div class="post">
-                    @if($post->cover)
-                        <div class="post-cover mb-4">
-                            <div class="media media-3x1">
-                                <div class="media-content" style="background-image:url('{{ $post->cover }}')"></div>
-                            </div>
-                        </div>
-                    @endif
                     <h1 class="post-title h3">{{ $post->title }}</h1>
                     @include('posts.partials.meta')
                     <div class="border-top py-2 py-md-3"></div>

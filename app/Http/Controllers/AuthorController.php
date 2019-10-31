@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 
 class AuthorController extends Controller
 {
@@ -21,13 +19,12 @@ class AuthorController extends Controller
      */
     public function show($slug, Request $request)
     {
-        $user = User::withCount('posts')->whereName($slug)->firstOrFail();
+        $author = User::withCount('posts')->whereName($slug)->firstOrFail();
 
-        $posts = Post::with('user')->where('user_id', $user->id)->paginate();
-        $style = $user->settings['style'] ?? 'small';
+        $posts = $author->posts()->with('category')->paginate();
 
-        $list = view('components.posts.small', compact('posts'));
-        return view('users.show', compact('user', 'posts', 'list', 'style'));
+//        $list = view('components.posts.small', compact('posts'));
+        return view('authors.show', compact('author', 'posts'));
 //        $user = User::withCount('articles')
 //            ->whereName($slug
 //            )->firstOrFail();

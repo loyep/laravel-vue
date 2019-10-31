@@ -46,10 +46,13 @@ const app = new Vue({
   methods: {
     handleScroll () {
       const scrollTop = document.body.scrollTop + document.documentElement.scrollTop;
-      if (scrollTop > 72) {
-        document.getElementsByClassName('fixed-top')[0].classList.add('scroll')
-      } else {
-        document.getElementsByClassName('fixed-top')[0].classList.remove('scroll')
+      const el = document.getElementsByClassName('fixed-top')[0]
+      if (el) {
+        if (scrollTop > 72) {
+          el.classList.add('scroll')
+        } else {
+          el.classList.remove('scroll')
+        }
       }
     }
   }

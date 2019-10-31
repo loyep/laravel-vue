@@ -31,4 +31,12 @@ class Topic extends Model
     {
         return route('topic.show', $this->slug);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'post_topics');
+    }
 }

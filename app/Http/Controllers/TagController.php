@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Tag;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -27,7 +29,10 @@ class TagController extends Controller
      */
     public function show(Request $request, string $slug)
     {
-        //
+        $tag = Tag::withCount('posts')->whereSlug($slug)->firstOrFail();
+        $posts = $tag->posts()->with('category')->paginate();
+
+        return view('tags.show', compact('posts', 'tag'));
     }
 
 }

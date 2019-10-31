@@ -36,7 +36,7 @@
         <div class="container">
             <div class="row-sm">
                 <div class="col-12 col-md-6 d-flex">
-                    <div class="list-item list-item-overlay custom-hover flex-fill">
+                    <div class="list-item list-nice-overlay block flex-fill">
                         @php
                             $firstSlide = $slides->first();
                         @endphp
@@ -61,10 +61,10 @@
                         <div class="row-sm row-scroll my-n1 my-md-n2">
                             @foreach($slides->slice(1,4)->all() as $slide)
                                 <div class="col-6 py-1 py-md-2">
-                                    <div class="list-item list-item-overlay custom-hover">
+                                    <div class="list-item list-nice-overlay block">
                                         <div class="media">
                                             <a href="{{ $slide->link }}" class="media-content"
-                                               style="background-image: url('{{ $slide->image ?? $slideBg }}')">
+                                               style="background-image: url('{{ thumbnail($slide->image ?? $slideBg) }}')">
                                                 <span class="overlay"></span>
                                             </a>
                                         </div>
@@ -72,7 +72,7 @@
                                             <div class="list-body">
                                                 <div class="mt-auto">
                                                     <a href="{{ $slide->link }}"
-                                                       class="list-title text-md h-2x ">
+                                                       class="list-title text-md h-2x">
                                                         {{ $slide->title }}
                                                     </a>
                                                 </div>

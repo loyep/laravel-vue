@@ -10,7 +10,7 @@
 <body >
 <div id="app">
     @include('partials.app-header')
-    <div class="bg-dark bg-cover" style="background-image: url('{{ Auth::user()->cover ?? asset('/images/bg/bg-1.jpg') }}');">
+    <div class="bg-dark bg-cover" style="background-image: url('{{ thumbnail(Auth::user()->cover ?? '/images/bg/bg-1.jpg') }}');">
         <div class="bg-dark-overlay pt-4 pt-md-5">
             <div class="container">
                 <div class="d-flex flex-fill flex-column flex-md-row align-items-md-center py-4 py-md-5">

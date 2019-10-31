@@ -1,15 +1,7 @@
-<?php
-//$cosy_option = get_option('cosy_option');
-?>
-<?php
-//$post_copyright = get_post_meta(get_the_ID(), 'post_copyright', true);
-//$category = get_the_category();
-//$meta_layout = $cosy_option['meta_layout'];
-?>
 <div class="post-meta d-flex align-items-center flex-row text-muted my-3 my-md-4">
     <div class="d-flex flex-fill align-items-center">
         <div class="author-popup  flex-avatar w-40">
-            <img alt="" src="{{ $post->user->avatar }}" class="avatar avatar-40 photo w-40 loaded" height="40" width="40">
+            <img alt="" src="{{ $post->user->avatar }}" class="avatar avatar-40 photo w-40" height="40" width="40">
             <span class="avatar-status avatar-bottom">
                 <span class="badge badge-pill badge-info font-theme text-xs mx-1">Lv.0</span>
             </span>
