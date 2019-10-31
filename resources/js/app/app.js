@@ -20,7 +20,7 @@ require('./element')
 
 Vue.use(request);
 
-window.jQuery = window.$ = require('jquery');
+// window.jQuery = window.$ = require('jquery');
 
 Vue.config.productionTip = false
 
@@ -46,11 +46,10 @@ const app = new Vue({
   methods: {
     handleScroll () {
       const scrollTop = document.body.scrollTop + document.documentElement.scrollTop;
-      const $ = window.$
       if (scrollTop > 72) {
-        $('.fixed-top').addClass('scroll');
+        document.getElementsByClassName('fixed-top')[0].classList.add('scroll')
       } else {
-        $('.fixed-top').removeClass('scroll');
+        document.getElementsByClassName('fixed-top')[0].classList.remove('scroll')
       }
     }
   }

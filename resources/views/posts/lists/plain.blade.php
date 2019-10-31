@@ -36,7 +36,7 @@
     <div class="list-item custom-hover">
         <div class="media media-3x2 col-5 col-md-4">
             <a class="media-content" href="{{ $post->link }}" title="{{ $post->title }}">
-                <img src="{{ $post->image }}" alt="{{ $post->title }}">
+                <img src="{{ url($post->image) }}" alt="{{ $post->title }}">
                 <span class="overlay"></span>
             </a>
             @if ('image' === $post->type)

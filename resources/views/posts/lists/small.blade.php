@@ -7,7 +7,7 @@
         <div class="list-item block">
             <div class="media media-3x2">
                 <a class="media-content" href="{{ $post->link }}" target="_blank"
-                   style="background-image: url('{{ $post->image }}');"
+                   style="background-image: url('{{ asset($post->image) }}');"
                    title="{{ $post->title }}">
                     <span class="overlay"></span>
                     @if ('image' === $post->type)

@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { IgnorePlugin } = require('webpack');
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
+require('laravel-mix-versionhash')
 
 const pathResolve = dir => require('path').join(__dirname, dir);
 
@@ -79,9 +80,8 @@ mix
     })
     .setPublicPath(`public/static/${basePath}`)
     .setResourceRoot(`/static/${basePath}/`)
-    .version()
     .disableSuccessNotifications();
 
 if (mix.inProduction()) {
-    mix.version();
+    mix.versionHash();
 }
