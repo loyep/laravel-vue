@@ -130,7 +130,7 @@ class Post extends Model
         if ($this->next === null) {
             $this->next = static::where('published_at', '>', $this->published_at)
                 ->where('status', 'published')
-                ->orderBy('published_at', 'desc')
+                ->orderBy('published_at', 'asc')
                 ->first();
         }
         return $this->next;
@@ -165,7 +165,7 @@ class Post extends Model
         if ($this->next === null) {
             $this->previous = static::where('published_at', '<', $this->published_at)
                 ->where('status', 'published')
-                ->orderBy('published_at', 'asc')
+                ->orderBy('published_at', 'desc')
                 ->first();
         }
         return $this->previous;
