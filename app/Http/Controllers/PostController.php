@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -31,18 +32,15 @@ class PostController extends Controller
     public function show(Request $request, string $slug)
     {
         try {
-            $post = Post::with('category', 'tags', 'user', 'content', 'comments')
+            $post = Post::with(['category', 'tags', 'user', 'content', 'comments'])
                 ->where('slug', $slug)
                 ->published()
                 ->recent()
                 ->firstOrFail();
-//            $likes = Cache::get($request->ip() . '(liked list)', []);
-//            $isLiked = in_array($post->id, $likes);
-            $isLiked = false;
 
+            $key = 'post|' . $post->id . '|' . $request->ip();
+            $isLiked = Cache::has($key);
             $post->increment('views_count');
-
-//            Blog::setTitle($post->title);
 
             $title = $post->title;
             $adverts = collect([]);// Advert::all();

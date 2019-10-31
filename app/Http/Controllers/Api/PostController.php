@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
-class ArticleController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,17 +22,17 @@ class ArticleController extends Controller
 
     public function like(Request $request)
     {
-        $article = Article::find($request->id);
-        $key = 'article|' . $request->id . '|' . $request->ip();
+        $post = Post::find($request->id);
+        $key = 'post|' . $request->id . '|' . $request->ip();
         $is_liked = Cache::has($key);
         if (!$is_liked) {
             Cache::add($key, true);
-            $article->increment('likes_count');
+            $post->increment('likes_count');
         } else {
             Cache::forget($key);
-            $article->decrement('likes_count');
+            $post->decrement('likes_count');
         }
-        $likes_count = $article->likes_count;
+        $likes_count = $post->likes_count;
         return response()->json([
             'is_liked'    => !$is_liked,
             'likes_count' => $likes_count,
@@ -73,14 +73,14 @@ class ArticleController extends Controller
     public function show(Request $request, $slug)
     {
         try {
-            $post = Article::with('category', 'tags', 'user', 'content', 'comments')
+            $post = Post::with('category', 'tags', 'user', 'content', 'comments')
                 ->where('slug', $slug)
                 ->published()
                 ->recent()
                 ->firstOrFail();
-//            $likes = Cache::get($request->ip() . '(liked list)', []);
-//            $isLiked = in_array($article->id, $likes);
-            $isLiked = false;
+
+            $key = 'post|' . $request->id . '|' . $request->ip();
+            $isLiked = Cache::has($key);
 
             $post->increment('views_count');
 

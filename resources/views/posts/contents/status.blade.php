@@ -7,10 +7,12 @@
                     @if($post->cover)
                     <div class="post-cover mb-3 mb-md-4">
                         <div class="media media-2x1">
-                            <div class="media-content" style="background-image:url('{{ thumbnail($post->cover) }}')"><div class="overlay"></div></div>
+                            <div class="media-content" style="background-image:url('{{ thumbnail($post->cover) }}')">
+                                <div class="overlay"></div>
+                            </div>
                             <div class="media-overlay overlay-top justify-content-end p-3 p-md-4">
                                 <like-link id="{{ $post->id }}" class="mx-1 mx-md-2">
-                                    <a class="{{ $isLiked ? 'current text-danger': 'text-white' }} post-like" href="javascript:;">
+                                    <a class="{{ $isLiked ? 'current' : '' }} post-like" href="javascript:;">
                                         <i class="text-xl iconfont icon-unlike"></i>
                                         <small class="like-count font-theme text-lg">{{ number_format($post->likes_count) }}</small>
                                     </a>

@@ -5,7 +5,6 @@
 </template>
 
 <script>
-    import $ from 'jquery'
     export default {
         name: 'LikeLink',
         props: {
@@ -25,15 +24,21 @@
                     return
                 }
                 this.loading = true
-                this.$http.post('article-like', {
+                this.$http.post('api/post-like', {
                     'id': this.id
                 }).then(res => {
-                    console.log(res)
-                    $('.like-count').html(res.likes_count)
-                    if (res.is_liked) {
-                        $('.post-like').addClass('current')
-                    } else {
-                        $('.post-like').removeClass('current')
+                    const elItems = document.getElementsByClassName('like-count');
+                    for (let i = 0; i < elItems.length; i++) {
+                        elItems[i].innerHTML = res.likes_count;
+                    }
+
+                    const hearts = document.getElementsByClassName('post-like');
+                    for (let i = 0; i < hearts.length; i++) {
+                        if (res.is_liked) {
+                            hearts[i].classList.add('current')
+                        } else {
+                            hearts[i].classList.remove('current')
+                        }
                     }
                 }).finally(() => {
                     setTimeout(() => {

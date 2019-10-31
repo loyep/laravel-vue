@@ -4770,18 +4770,27 @@ data-style
     -webkit-animation-timing-function: ease-in-out;
     animation-timing-function: ease-in-out;
     -webkit-transform: scale(1);
-    transform: scale(1)
+    transform: scale(1);
 }
 
 .page-tabbar .post-like.current,
 .post-meta .post-like.current {
-    color: #e23e57;
+    color: #e23e57 !important;
 }
 
 .post-action .post-like.current {
     background-color: #e23e57;
     border-color: #e23e57;
     color: #fff;
+}
+
+.post-cover {
+    .post-like {
+        color: #fff !important;
+        &.current {
+            color: #e23e57 !important
+        }
+    }
 }
 
 /*--------------------------------------------------------------

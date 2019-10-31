@@ -7,7 +7,7 @@
             {{--            @include('partials.notice')--}}
             {{--            @include('partials.pushes')--}}
             <section id="articles" class="row-md list-grouped list-bordered-padding">
-                {!! $list ?? '' !!}
+                @include('posts.lists.small')
             </section>
         </div>
     </main>
