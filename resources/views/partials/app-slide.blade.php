@@ -31,7 +31,7 @@
                  style="background: linear-gradient(rgb(178, 145, 90) 0%, rgb(28, 90, 119) 100%, rgb(100, 46, 46) 100%);"></div>
             <div class="bg-effect bg-cover bg-magazine" style="background-image: url('{{ $slideBg }}');"></div>
         @elseif($index_menu_style === 'image')
-            <div class="bg-effect bg-cover" style="background-image:url('{{ asset('/images/bg.jpg') }}')"></div>
+            <div class="bg-effect bg-cover" style="background-image:url('{{ thumbnail('/images/bg.jpg') }}')"></div>
         @endif
         <div class="container">
             <div class="row-sm">
