@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
@@ -38,13 +39,19 @@ class PostController extends Controller
                 ->recent()
                 ->firstOrFail();
 
-            $key = 'post|' . $post->id . '|' . $request->ip();
+            $key = 'post|'.$post->id.'|'.$request->ip();
             $isLiked = Cache::has($key);
             $post->increment('views_count');
 
+            $historyKey = 'post_history|'.$request->ip();
+            $history = Cache::get($historyKey, []);
+            if (!Arr::has($history, $post->id)) {
+                $history[] = $post->id;
+                Cache::forever($historyKey, $history);
+            }
+
             $title = $post->title;
-            $adverts = collect([]);// Advert::all();
-            return view('posts.show', compact('post', 'isLiked', 'adverts', 'title'));
+            return view('posts.show', compact('post', 'isLiked', 'title'));
         } catch (ModelNotFoundException $e) {
             return abort(404);
         }

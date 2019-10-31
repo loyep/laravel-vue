@@ -27,12 +27,12 @@
             <ul class="nav nav-submenu align-items-center flex-row flex-shrink-0 order-2 order-md-3">
                 <li class="nav-item">
                     <search-link class="nav-link px-2">
-                        <i class="text-lg" type="ios-search"></i>
+                        <i class="text-lg el-icon-search"></i>
                     </search-link>
                 </li>
                 <li class="nav-item d-none d-lg-inline-block">
                     <a href="{{ route('history') }}" class="nav-link px-2" target="_blank">
-                        <i class="text-lg md-timer"></i>
+                        <i class="text-lg el-icon-time"></i>
                     </a>
                 </li>
                 <li class="nav-item d-lg-none">

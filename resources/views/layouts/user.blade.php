@@ -7,7 +7,7 @@
     <title>{{ config('app.name', 'Dawn') }}</title>
     <link href="{{ mix('css/app.css', 'static/app') }}" rel="stylesheet">
 </head>
-<body >
+<body class="nice-style-radius nice-style-shadow nice-style-border">
 <div id="app">
     @include('partials.app-header')
     <div class="bg-dark bg-cover" style="background-image: url('{{ thumbnail(Auth::user()->cover ?? '/images/bg/bg-1.jpg') }}');">

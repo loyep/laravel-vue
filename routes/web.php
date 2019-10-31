@@ -36,7 +36,7 @@ Route::get('{slug}.html', 'PostController@show')->name('post.show');
 Route::get('random-post', 'PostController@random')->name('post.random');
 
 // 浏览历史
-Route::get('history', 'HomeController@history')->name('history');
+Route::get('history', 'UserController@history')->name('history');
 
 // 搜索
 Route::get('search', 'HomeController@search')->name('search');

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
@@ -60,18 +62,20 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function posts()
+    public function posts(Request $request)
     {
-//        $articles = Article::with(['category'])
-//            ->published()
-//            ->recent()
-//            ->where('user_id', Auth::user()->id)
-//            ->paginate(12);
-//        $list = view('components.posts.small', compact('posts'));
+        $posts = $request->user()
+            ->posts()
+            ->with(['category', 'user'])
+            ->published()
+            ->recent()
+            ->paginate();
 
-        return view('user.posts');
+        return view('user.posts', compact('posts'));
     }
 
     /**
@@ -85,11 +89,17 @@ class UserController extends Controller
     }
 
     /**
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function history()
+    public function history(Request $request)
     {
-        return view('user.history');
+
+        $historyKey = 'post_history|'.$request->ip();
+        $history = Cache::get($historyKey, []);
+        $posts = Post::with('category')->published()->recent()->whereIn('id', $history)->paginate();
+        return view('user.history', compact('posts'));
     }
 
     /**
