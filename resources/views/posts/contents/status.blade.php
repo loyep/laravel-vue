@@ -58,9 +58,9 @@
                             <a href="{{ $tag->link }}" rel="tag">{{ $tag->name }}</a>
                         @endforeach
                     </div>
-                        @include('posts.partials.copyright')
-                        @include('posts.partials.footer')
-                        @include('posts.partials.nav-link')
+                    @include('posts.partials.copyright')
+                    @include('posts.partials.footer')
+                    @include('posts.partials.nav-link')
                 </div>
             </div>
         </div>

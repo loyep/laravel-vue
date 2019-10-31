@@ -7,7 +7,7 @@
         <el-dropdown>
             <div>
                 <span class="flex-avatar w-32">
-                    <img alt="" src="{{ Auth::user()->avatar ?? getAvatar(Auth::user()->email) }}" class="avatar avatar-32 photo avatar-default" height="32" width="32" ><span class="avatar-status avatar-bottom"><span class="badge badge-pill badge-info font-theme text-xs mx-1">Lv.2</span></span>
+                    <img alt="" src="{{ Auth::user()->avatar ?? getAvatar(Auth::user()->email) }}" height="32" width="32" >
                 </span>
             </div>
             <el-dropdown-menu slot="dropdown">

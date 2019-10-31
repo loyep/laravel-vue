@@ -68,7 +68,7 @@ class Post extends Model
      * @var array
      */
     protected $appends = [
-        'link',
+        'link', 'published_date'
     ];
 
     /**

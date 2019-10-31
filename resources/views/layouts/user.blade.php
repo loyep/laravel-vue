@@ -16,7 +16,8 @@
                 <div class="d-flex flex-fill flex-column flex-md-row align-items-md-center py-4 py-md-5">
                     <div class="mb-3 mb-md-0">
 					<span class="flex-avatar w-96 rounded">
-						<img alt="" src="{{ Auth::user()->avatar }}" class="avatar avatar-96 photo avatar-default" height="96" width="96"><span class="avatar-status avatar-bottom"><span class="badge badge-pill badge-info font-theme text-xs mx-1">Lv.1</span></span>					</span>
+						<img alt="" src="{{ Auth::user()->avatar }}" height="96" width="96">
+                    </span>
                     </div>
                     <div class="text-white mx-md-4 flex-fill">
                         <div class="name text-lg">{{ Auth::user()->display_name }}<i class="cut"></i><span class="badge badge-rank badge-primary text-xs mx-1">投稿者</span></div>
@@ -47,7 +48,9 @@
                 </div>
                 <div class="apollo-header-action">
                     <a href="javascript:;" class="change-cover-image">
-                        <el-button type="primary" circle icon="el-icon-camera-solid"></el-button>
+                        <el-tooltip content="自定义封面图" placement="top">
+                            <el-button type="primary" circle icon="el-icon-camera-solid"></el-button>
+                        </el-tooltip>
                     </a>
                 </div>
             </div>
@@ -57,29 +60,39 @@
         <div class="navbar-apollo mt-3 mt-md-4">
             <div class="nav">
                 <a href="{{ route('user.home') }}" class="nav-link {{ routeIs('user.home') ? 'active' : '' }}">
-                    <span class="d-block" >
-                        <i class="text-xl iconfont icon-home"></i>
-                    </span>
+                    <el-tooltip content="我的主页">
+                        <span class="d-block" >
+                            <i class="text-xl iconfont icon-home"></i>
+                        </span>
+                    </el-tooltip>
                 </a>
                 <a href="{{ route('user.posts') }}" class="nav-link {{ routeIs('user.posts') ? 'active': '' }}">
-                    <span class="d-block" >
-                        <i class="text-xl iconfont icon-posts"></i>
-                    </span>
+                    <el-tooltip content="我的文章">
+                        <span class="d-block" >
+                            <i class="text-xl iconfont icon-posts"></i>
+                        </span>
+                    </el-tooltip>
                 </a>
                 <a href="{{ route('user.comments') }}" class="nav-link {{ routeIs('user.comments') ? 'active': '' }}">
-                    <span class="d-block" >
-                        <i class="text-xl iconfont icon-comment"></i>
-                    </span>
+                    <el-tooltip content="我的评论">
+                        <span class="d-block" >
+                            <i class="text-xl iconfont icon-comment"></i>
+                        </span>
+                    </el-tooltip>
                 </a>
                 <a href="{{ route('user.favorites') }}" class="nav-link {{ routeIs('user.favorites') ? 'active': '' }}">
-                    <span class="d-block" >
-                        <i class="text-xl iconfont icon-uncollect"></i>
-                    </span>
+                    <el-tooltip content="我的收藏">
+                        <span class="d-block" >
+                            <i class="text-xl iconfont icon-uncollect"></i>
+                        </span>
+                    </el-tooltip>
                 </a>
                 <a href="{{ route('user.profile') }}" class="nav-link {{ routeIs('user.profile') ? 'active': '' }}">
-                    <span class="d-block" >
-                        <i class="text-xl iconfont icon-setting"></i>
-                    </span>
+                    <el-tooltip content="账户设置">
+                        <span class="d-block" >
+                            <i class="text-xl iconfont icon-setting"></i>
+                        </span>
+                    </el-tooltip>
                 </a>
             </div>
         </div>

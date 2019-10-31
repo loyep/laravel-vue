@@ -13,9 +13,9 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Post::class, 100)->create()->each(function ($article) {
-            $article->tags()->createMany(factory(Tag::class, 2)->make()->toArray());
-            $article->content()->create([
+        factory(Post::class, 100)->create()->each(function ($post) {
+            // $post->tags()->createMany(factory(Tag::class, 2)->make()->toArray());
+            $post->content()->create([
                 'body'     => '',
                 'markdown' => 'markdown',
             ]);

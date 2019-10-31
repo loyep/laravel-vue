@@ -62,7 +62,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function articles()
+    public function posts()
     {
 //        $articles = Article::with(['category'])
 //            ->published()
@@ -71,7 +71,7 @@ class UserController extends Controller
 //            ->paginate(12);
 //        $list = view('components.posts.small', compact('posts'));
 
-        return view('user.articles');
+        return view('user.posts');
     }
 
     /**

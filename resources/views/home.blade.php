@@ -9,6 +9,7 @@
             <section id="articles" class="row-md list-grouped list-bordered-padding">
                 @include('posts.lists.small')
             </section>
+            {{ $posts->links() }}
         </div>
     </main>
     {{--    @include('components.recommended.articles')--}}

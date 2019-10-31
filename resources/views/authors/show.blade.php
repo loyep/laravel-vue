@@ -65,6 +65,9 @@
                                 </p>
                             </div>
                         @endif
+
+                        {{ $posts->links() }}
+
                         @if($style === 'plain')
                     </div>
                 </div>

@@ -26,6 +26,7 @@
                 </div>
             </div>
             <div class="sidebar col-lg-3 d-none d-lg-block">
+                @include('partials.app-siderbar')
             </div>
         </div>
     </div>

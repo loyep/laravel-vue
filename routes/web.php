@@ -44,11 +44,11 @@ Route::get('search', 'HomeController@search')->name('search');
 // 用户中心
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('admin', 'HomeController@dashboard')->name('dashboard');
-    Route::get('admin/{any}', 'HomeController@dashboard')->where('any', '.*');
+    Route::get('admin', 'AdminController@dashboard')->name('dashboard');
+    Route::get('admin/{any}', 'AdminController@dashboard')->where('any', '.*');
 
     Route::get('user', 'UserController@home')->name('user.home');
-    Route::get('user/posts', 'UserController@articles')->name('user.posts');
+    Route::get('user/posts', 'UserController@posts')->name('user.posts');
     Route::get('user/favorites', 'UserController@favorites')->name('user.favorites');
     Route::get('user/comments', 'UserController@comments')->name('user.comments');
     Route::get('profile', 'UserController@showProfile')->name('user.profile');
