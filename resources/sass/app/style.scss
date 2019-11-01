@@ -4773,6 +4773,10 @@ data-style
     transform: scale(1);
 }
 
+.post-collection.current {
+    color: #e23e57 !important;
+}
+
 .page-tabbar .post-like.current,
 .post-meta .post-like.current {
     color: #e23e57 !important;
@@ -6186,14 +6190,14 @@ to top
     }
 
     .page-tabbar .iconfont {
-        font-size: 1.5rem !important;
+        font-size: 1.25rem !important;
     }
 
     .page-tabbar .badge {
         position: absolute;
-        right: 0px;
-        top: 0px;
-        padding: .1em .3em;
+        right: 0;
+        top: 0;
+        padding: 0.1em 0.3em;
         -webkit-transform: translate(50%, 25%);
         -ms-transform: translate(50%, 25%);
         transform: translate(50%, 25%);

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
@@ -43,6 +44,19 @@ class PostController extends Controller
         ]);
     }
 
+    public function favorite(Request $request)
+    {
+        $post = Post::find($request->id);
+        $user = $request->user();
+        $is_favorited = $post->favorites()->where('user_id', $user->id)->exists();
+        $post->favorites()->toggle([$user->id]);
+
+        return [
+            'is_favorited'    => !$is_favorited,
+            'favorites_count' => $post->favorites()->count()
+        ];
+    }
+
     /**
      * Display the specified resource.
      *
@@ -56,11 +70,16 @@ class PostController extends Controller
     {
         try {
             $post = Post::with(['category', 'tags', 'user', 'content', 'comments'])
+                ->withCount(['comments', 'favorites'])
                 ->where('slug', $slug)
                 ->published()
                 ->recent()
                 ->firstOrFail();
 
+            $is_favorited = false;
+            if ($user = Auth::user()) {
+                $is_favorited = $post->favorites()->where('user_id', $user->id)->exists();
+            }
             $isLiked = array_search($post->id, Cache::get($post->likedKey(), [])) !== false;
             $post->increment('views_count');
 
@@ -72,7 +91,7 @@ class PostController extends Controller
             }
 
             $title = $post->title;
-            return view('posts.show', compact('post', 'isLiked', 'title'));
+            return view('posts.show', compact('post', 'isLiked', 'title', 'is_favorited'));
         } catch (ModelNotFoundException $e) {
             return abort(404);
         }

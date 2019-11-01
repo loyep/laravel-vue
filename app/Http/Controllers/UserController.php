@@ -81,11 +81,19 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function favorites()
+    public function favorites(Request $request)
     {
-        return view('user.favorites');
+        $user = $request->user();
+        $posts = $user->favorites()
+            ->with(['category', 'user'])
+            ->recent()
+            ->paginate(16);
+
+        return view('user.favorites', compact('posts'));
     }
 
     /**

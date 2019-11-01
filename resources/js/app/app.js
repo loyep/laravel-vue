@@ -12,6 +12,7 @@ import router from './router'
 import SignIn from '@app/components/SignIn.vue'
 import SignOut from '@app/components/SignOut.vue'
 import LikeLink from '@app/components/LikeLink.vue'
+import FavoriteLink from '@app/components/FavoriteLink.vue'
 import CommentForm from '@app/components/CommentForm.vue'
 import SearchLink from '@app/components/SearchLink.vue'
 import SocialShare from '@app/components/SocialShare.vue'
@@ -31,12 +32,14 @@ const app = new Vue({
     SignOut,
     LikeLink,
     CommentForm,
+    FavoriteLink,
     SearchLink,
     SocialShare
   },
   router,
   data () {
     return {
+
     }
   },
   mounted () {

@@ -5,6 +5,7 @@ import locale from 'element-ui/lib/locale'
 
 import {
   Avatar,
+  Badge,
   Dialog,
   Dropdown,
   DropdownMenu,
@@ -25,6 +26,7 @@ import {
 locale.use(lang)
 
 Vue.use(Avatar)
+Vue.use(Badge)
 Vue.use(Dialog)
 Vue.use(Dropdown)
 Vue.use(DropdownMenu)

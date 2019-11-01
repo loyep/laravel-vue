@@ -162,6 +162,22 @@ class Post extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites')->withTimeStamps();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes')->withTimeStamps();
+    }
+
+    /**
      * Previous Article.
      *
      * @return static

@@ -1,12 +1,10 @@
-@php
-    $collected = true;
-@endphp
 <div class="d-md-flex flex-md-fill align-items-md-center text-center mt-md-5">
     @auth
-        <a href="javascript:;" class="d-none d-md-inline-block mr-3 apollo-collection{{ $collected ? ' current' :'' }}">
+        <favorite-link id="{{ $post->id }}"
+                       class="d-none d-md-inline-block mr-3 post-collection {{ $is_favorited ? 'current' :'' }}">
             <i class="text-xl text-height-xs iconfont icon-uncollect"></i>
-            <span class="font-theme collection-count">{{ $collected ? '0' : '' }}</span>
-        </a>
+            <span class="font-theme collection-count">{{ $post->favorites_count ?? 0 }}</span>
+        </favorite-link>
     @endauth
     <a class="d-none d-md-inline-block " id="btn-bigger-cover" href="javascript:;" data-id="">
         <i class="text-xl text-height-xs iconfont icon-zhuanfa"></i>

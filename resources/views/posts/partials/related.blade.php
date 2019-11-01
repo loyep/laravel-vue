@@ -7,7 +7,7 @@
         <div class="container">
             <div class="list-header h5 mb-3 mb-md-4">
                 <i class="text-xl text-primary iconfont icon-listview mr-1"></i>
-                {{ __('Related Posts') }}
+                相关文章
             </div>
             <div class="list-grouped list-scroll-x">
                 <div class="row-md">

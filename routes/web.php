@@ -35,6 +35,7 @@ Route::get('category/{slug}', 'CategoryController@show')->name('category.show');
 Route::get('{slug}.html', 'PostController@show')->name('post.show');
 Route::get('random-post', 'PostController@random')->name('post.random');
 Route::post('post-like', 'PostController@like')->name('post.like');
+Route::post('post-favorite', 'PostController@favorite')->name('post.favorite');
 
 // 浏览历史
 Route::get('history', 'UserController@history')->name('history');
