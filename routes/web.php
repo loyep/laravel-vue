@@ -34,12 +34,15 @@ Route::get('category/{slug}', 'CategoryController@show')->name('category.show');
 // 文章页
 Route::get('{slug}.html', 'PostController@show')->name('post.show');
 Route::get('random-post', 'PostController@random')->name('post.random');
+Route::post('post-like', 'PostController@like')->name('post.like');
 
 // 浏览历史
 Route::get('history', 'UserController@history')->name('history');
 
 // 搜索
 Route::get('search', 'HomeController@search')->name('search');
+
+Route::get('qrcode', 'HomeController@qrCode')->name('qrcode');
 
 // 用户中心
 Route::group(['middleware' => ['auth']], function () {
@@ -63,5 +66,4 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'api', 'namespace' => 'Api']
 });
 
 Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
-    Route::post('post-like', 'PostController@like');
 });

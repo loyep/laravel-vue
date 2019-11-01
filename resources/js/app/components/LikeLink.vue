@@ -24,7 +24,7 @@
                     return
                 }
                 this.loading = true
-                this.$http.post('api/post-like', {
+                this.$http.post('post-like', {
                     'id': this.id
                 }).then(res => {
                     const elItems = document.getElementsByClassName('like-count');
@@ -39,6 +39,22 @@
                         } else {
                             hearts[i].classList.remove('current')
                         }
+                    }
+
+                    if (res.is_liked) {
+                        this.$notify({
+                            title: '点赞',
+                            message: '谢谢点赞',
+                            type: 'success',
+                            showClose: false
+                        });
+                    } else {
+                        this.$notify({
+                            title: '点赞',
+                            message: '取消点赞',
+                            type: 'warning',
+                            showClose: false
+                        });
                     }
                 }).finally(() => {
                     setTimeout(() => {

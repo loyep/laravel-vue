@@ -32,7 +32,7 @@ class TopicController extends Controller
     public function show(Request $request, string $slug)
     {
         $topic = Topic::withCount('posts')->whereSlug($slug)->firstOrFail();
-        $posts = $topic->posts()->with('category')->paginate();
+        $posts = $topic->posts()->with('category')->paginate(16);
 
         return view('topics.show', compact('posts', 'topic'));
     }

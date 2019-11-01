@@ -14,6 +14,7 @@ import SignOut from '@app/components/SignOut.vue'
 import LikeLink from '@app/components/LikeLink.vue'
 import CommentForm from '@app/components/CommentForm.vue'
 import SearchLink from '@app/components/SearchLink.vue'
+import SocialShare from '@app/components/SocialShare.vue'
 
 // Element UI
 require('./element')
@@ -30,7 +31,8 @@ const app = new Vue({
     SignOut,
     LikeLink,
     CommentForm,
-    SearchLink
+    SearchLink,
+    SocialShare
   },
   router,
   data () {

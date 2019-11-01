@@ -30,7 +30,7 @@ class TagController extends Controller
     public function show(Request $request, string $slug)
     {
         $tag = Tag::withCount('posts')->whereSlug($slug)->firstOrFail();
-        $posts = $tag->posts()->with('category')->paginate();
+        $posts = $tag->posts()->with('category')->paginate(16);
 
         return view('tags.show', compact('posts', 'tag'));
     }

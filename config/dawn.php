@@ -13,4 +13,15 @@ return [
         // The default cache duration in second, set null to remember forever
         'expire'  => 3600
     ],
+
+    'qrcode' => [
+
+        // The default cache duration in second, set null to remember forever
+        'expire' => 300,
+        'size'   => 200,
+
+        'margin' => 0,
+        'format' => 'png',
+
+    ],
 ];
