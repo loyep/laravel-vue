@@ -45,7 +45,7 @@
                     @endif
                 </div>
                 <div class="post-card-content px-3">
-                    <a href="{{ $post->link }}" class="text-md h-2x" target="_blank"></a>
+                    <a href="{{ $post->link }}" class="text-md h-2x" target="_blank">{{ $post->title }}</a>
                 </div>
             </div>
             <div class="post-card-footer">
