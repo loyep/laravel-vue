@@ -142,7 +142,7 @@ class Post extends Model
     public function related()
     {
         if ($this->relatedPosts === null) {
-            $this->relatedPosts = static::take(4)->get();
+            $this->relatedPosts = static::where('status', 'published')->take(4)->get();
         }
         return $this->relatedPosts;
     }
