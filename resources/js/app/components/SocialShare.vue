@@ -19,7 +19,7 @@
       <span><i class="iconfont icon-linkedin" /></span>
     </a>
 
-    <popup ref="popup">
+    <popup ref="popup" size="small">
       <div class="text-center">
         <h6 class="py-1">
           微信扫一扫 分享朋友圈
