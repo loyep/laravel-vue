@@ -52,11 +52,14 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function comments()
+    public function comments(Request $request)
     {
-        return view('user.comments');
+        $comments = $request->user()->comments()->paginate(16);
+        return view('user.comments', compact('comments'));
     }
 
     /**

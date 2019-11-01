@@ -4,7 +4,7 @@
     <main class="py-4">
         <div class="container">
             @if($posts->isNotEmpty())
-                <div class="row-md list-history list-grouped list-bordered-padding" id="articles">
+                <div class="row-md list-grouped list-bordered-padding" id="articles">
                     @include('user.partials.post-card')
                 </div>
                 {!! $posts->links() !!}
