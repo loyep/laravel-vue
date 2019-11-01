@@ -12,5 +12,5 @@
         <i class="text-xl text-height-xs iconfont icon-zhuanfa"></i>
     </a>
     <div class="flex-md-fill"></div>
-    <social-share qrcode="{{ route('qrcode', ['url' => request()->fullUrl(), 'size' => '120']) }}"></social-share>
+    <social-share qrcode="{{ route('qrcode', ['url' => request()->fullUrl(), 'size' => '160']) }}"></social-share>
 </div>

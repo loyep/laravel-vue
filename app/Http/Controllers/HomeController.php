@@ -6,7 +6,6 @@ use App\Models\Post;
 use App\Models\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Hash;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class HomeController
@@ -37,14 +36,20 @@ class HomeController
      */
     public function qrCode(Request $request)
     {
-        $content = Cache::remember('qrcode|' . md5($request->fullUrl()), 300, function () use ($request) {
-            $size = $request->size ?? '320';
-            $margin = $request->margin ?? 0;
-            $url = $request->url ?? $request->url();
-            return QrCode::format('png')->merge('/public/favicon.png', 0.2)->errorCorrection('H')->size($size)->margin($margin)->generate($url);
+        $second = config('dawn.qrcode.expire', -1);
+        $content = Cache::remember('qrcode|' . md5($request->fullUrl()), $second, function () use ($request) {
+            $size = $request->size ?? config('dawn.qrcode.size', 200);
+            $margin = $request->margin ?? config('dawn.qrcode.margin', 0);;
+            $url = $request->url ?? $request->fullUrl();
+            return QrCode::format(config('dawn.qrcode.format', 'png'))
+                ->merge('/public/favicon.png', 0.25)
+                ->size($size)
+                ->margin($margin)
+                ->generate($url);
         });
+
         return response($content, 200, [
-            'Content-Type' => 'image/png',
+            'Content-Type' => 'image/*',
         ]);
     }
 }
