@@ -1,7 +1,7 @@
 <template>
-  <div @click.stop="handleLike">
+  <a href="javascript:;" @click.stop="handleLike">
     <slot />
-  </div>
+  </a>
 </template>
 
 <script>

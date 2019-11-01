@@ -25,11 +25,9 @@
                 <small class="font-theme">{{ $post->comments_count ?? 0 }}</small>
             </a>
         </span>
-        <like-link id="{{ $post->id }}" class="mx-1 mx-md-2">
-            <a class="{{ $isLiked ? 'current': '' }} post-like" href="javascript:;">
-                <i class="text-lg iconfont icon-unlike"></i>
-                <small class="like-count font-theme">{{ number_format($post->likes_count) }}</small>
-            </a>
+        <like-link id="{{ $post->id }}" class="{{ $isLiked ? 'current': '' }} post-like mx-1 mx-md-2">
+            <i class="text-lg iconfont icon-unlike"></i>
+            <small class="like-count font-theme">{{ number_format($post->likes_count) }}</small>
         </like-link>
     </div>
 </div>
