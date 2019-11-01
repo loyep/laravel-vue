@@ -37,8 +37,9 @@ class HomeController
     public function qrCode(Request $request)
     {
         $url = $request->url ?? $request->url();
-        $content = Cache::remember('qrcode|' . $url, 300, function () use ($url) {
-            return QrCode::format('png')->size(320)->generate($url);
+        $size = $request->size ?? '320';
+        $content = Cache::remember('qrcode|' . $url, 300, function () use ($url, $size) {
+            return QrCode::format('png')->size($size)->generate($url);
         });
         return response($content, 200, [
             'Content-Type' => 'image/png',
