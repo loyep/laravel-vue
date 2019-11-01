@@ -21,7 +21,7 @@
                 @if (!empty($logo))
                     <img src="{{ $logo }}" alt="{{ $name }}">
                 @else
-                    <span class="text-white text-uppercase h2">{{ $name }}</span>
+                    <span class="{{ $fixed ? 'text-dark' : 'text-white' }} text-uppercase h2">{{ $name }}</span>
                 @endif
             </a>
             <ul class="nav nav-submenu align-items-center flex-row flex-shrink-0 order-2 order-md-3">

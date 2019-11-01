@@ -37,7 +37,7 @@ class HomeController
      */
     public function qrCode(Request $request)
     {
-        $content = Cache::remember('qrcode|' . md5($request->fullUrl()), -300, function () use ($request) {
+        $content = Cache::remember('qrcode|' . md5($request->fullUrl()), 300, function () use ($request) {
             $size = $request->size ?? '320';
             $margin = $request->margin ?? 0;
             $url = $request->url ?? $request->url();
