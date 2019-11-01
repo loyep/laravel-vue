@@ -24,7 +24,7 @@
                     return
                 }
                 this.loading = true
-                this.$http.post('api/post-like', {
+                this.$http.post('post-like', {
                     'id': this.id
                 }).then(res => {
                     const elItems = document.getElementsByClassName('like-count');

@@ -21,6 +21,28 @@ class PostController extends Controller
         //
     }
 
+    public function like(Request $request)
+    {
+        $post = Post::find($request->id);
+
+        $items = Cache::get($post->likedKey(), []);
+        $idx = array_search($post->id, $items);
+        if ($idx === false) {
+            $items[] = $post->id;
+        } else {
+            array_splice($items, $idx, 1);
+        }
+        Cache::forever($post->likedKey(), $items);
+
+        $isLiked = array_search($post->id, $items) !== false;
+        $post->increment('likes_count', $isLiked ? 1 : -1);
+        $likes_count = $post->likes_count;
+        return response()->json([
+            'is_liked'    => $isLiked,
+            'likes_count' => $likes_count,
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -39,8 +61,7 @@ class PostController extends Controller
                 ->recent()
                 ->firstOrFail();
 
-            $key = 'post|'.$post->id.'|'.$request->ip();
-            $isLiked = Cache::has($key);
+            $isLiked = array_search($post->id, Cache::get($post->likedKey(), [])) !== false;
             $post->increment('views_count');
 
             $historyKey = 'post_history|'.$request->ip();

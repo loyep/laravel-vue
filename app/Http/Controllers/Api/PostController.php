@@ -20,25 +20,6 @@ class PostController extends Controller
         //
     }
 
-    public function like(Request $request)
-    {
-        $post = Post::find($request->id);
-        $key = 'post|' . $request->id . '|' . $request->ip();
-        $is_liked = Cache::has($key);
-        if (!$is_liked) {
-            Cache::add($key, true);
-            $post->increment('likes_count');
-        } else {
-            Cache::forget($key);
-            $post->decrement('likes_count');
-        }
-        $likes_count = $post->likes_count;
-        return response()->json([
-            'is_liked'    => !$is_liked,
-            'likes_count' => $likes_count,
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *

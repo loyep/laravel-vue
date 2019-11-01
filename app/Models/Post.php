@@ -109,6 +109,12 @@ class Post extends Model
         return $query->orderBy('published_at', 'desc');
     }
 
+    public function likedKey($ip = null)
+    {
+        $ip = is_null($ip) ? request()->ip() : $ip;
+        return 'post_like|' . $this->id . '|' . $ip;
+    }
+
     /**
      * @return string
      */

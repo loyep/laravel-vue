@@ -26,13 +26,17 @@ class ViewComposerServiceProvider extends ServiceProvider
     {
 
         ViewContainer::composer('layouts.app', function (View $view) {
-            $view->with('searchTop', $this->searchTop());
+
         });
 
         ViewContainer::composer('partials.app-footer', function (View $view) {
             $view->with('socials', $this->socials());
             $view->with('links', $this->links());
             $view->with('topics', $this->topics());
+        });
+
+        ViewContainer::composer('partials.app-header', function (View $view) {
+            $view->with('searchTop', $this->searchTop());
         });
 
 //        ViewContainer::composer('layouts.user', function (View $view) {
