@@ -40,6 +40,22 @@
                             hearts[i].classList.remove('current')
                         }
                     }
+
+                    if (res.is_liked) {
+                        this.$notify({
+                            title: '点赞',
+                            message: '谢谢点赞',
+                            type: 'success',
+                            showClose: false
+                        });
+                    } else {
+                        this.$notify({
+                            title: '点赞',
+                            message: '取消点赞',
+                            type: 'warning',
+                            showClose: false
+                        });
+                    }
                 }).finally(() => {
                     setTimeout(() => {
                         this.loading = false
