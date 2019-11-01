@@ -73,7 +73,7 @@ class UserController extends Controller
             ->with(['category', 'user'])
             ->published()
             ->recent()
-            ->paginate();
+            ->paginate(16);
 
         return view('user.posts', compact('posts'));
     }
@@ -98,7 +98,7 @@ class UserController extends Controller
 
         $historyKey = 'post_history|'.$request->ip();
         $history = Cache::get($historyKey, []);
-        $posts = Post::with('category')->published()->recent()->whereIn('id', $history)->paginate();
+        $posts = Post::with('category')->published()->recent()->whereIn('id', $history)->paginate(16);
         return view('user.history', compact('posts'));
     }
 

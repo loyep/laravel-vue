@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -40,39 +37,6 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     *
-     * @param Request $request
-     * @param string  $slug
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, $slug)
-    {
-        try {
-            $post = Post::with('category', 'tags', 'user', 'content', 'comments')
-                ->where('slug', $slug)
-                ->published()
-                ->recent()
-                ->firstOrFail();
-
-            $key = 'post|' . $request->id . '|' . $request->ip();
-            $isLiked = Cache::has($key);
-
-            $post->increment('views_count');
-
-//            Blog::setTitle($article->title);
-
-            $title = $post->title;
-            $adverts = collect([]);// Advert::all();
-            return view('posts.' . $post->getTemplate(), compact('post', 'isLiked', 'adverts', 'title'));
-        } catch (ModelNotFoundException $e) {
-            return abort(404);
-        }
     }
 
     /**

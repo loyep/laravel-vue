@@ -29,7 +29,7 @@ class CategoryController extends Controller
     {
         $category = Category::withCount('posts')->whereSlug($slug)->firstOrFail();
 //        $topCount = in_array($category->list_style, ['plain', 'medium']) ? 3 : 4;
-        $posts = $category->posts()->with('category')->paginate();
+        $posts = $category->posts()->with('category')->paginate(16);
 
         return view('categories.show', compact('posts', 'category'));
     }

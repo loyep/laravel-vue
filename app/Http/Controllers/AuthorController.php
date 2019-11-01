@@ -21,20 +21,8 @@ class AuthorController extends Controller
     {
         $author = User::withCount('posts')->whereName($slug)->firstOrFail();
 
-        $posts = $author->posts()->with('category')->paginate();
+        $posts = $author->posts()->with('category')->paginate(16);
 
-//        $list = view('components.posts.small', compact('posts'));
         return view('authors.show', compact('author', 'posts'));
-//        $user = User::withCount('articles')
-//            ->whereName($slug
-//            )->firstOrFail();
-//
-//        $articles = Article::with('category')
-//            ->whereUserId($user->id)
-//            ->paginate();
-//
-//        Blog::setTitle($user->display_name);
-//
-//        return view('users.show', compact('articles', 'user'));
     }
 }
