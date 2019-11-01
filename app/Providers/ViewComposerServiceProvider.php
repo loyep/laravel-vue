@@ -63,14 +63,6 @@ class ViewComposerServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return Topic[]|\Illuminate\Database\Eloquent\Collection
-     */
-    protected function topics()
-    {
-        return Topic::all();
-    }
-
-    /**
      * @return Link[]|\Illuminate\Database\Eloquent\Collection
      */
     protected function links()
@@ -79,13 +71,11 @@ class ViewComposerServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register any application services.
-     *
-     * @return void
+     * @return Topic[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function register()
+    protected function topics()
     {
-        $this->app->singleton('viewcache', ViewCache::class);
+        return Topic::all();
     }
 
     /**
@@ -96,6 +86,16 @@ class ViewComposerServiceProvider extends ServiceProvider
         return Cache::remember('search_top', 3600, function () {
             return Tag::take(8)->get();
         });
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->singleton('viewcache', ViewCache::class);
     }
 
     protected function currentUser()

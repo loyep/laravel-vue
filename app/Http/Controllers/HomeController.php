@@ -37,7 +37,7 @@ class HomeController
     public function qrCode(Request $request)
     {
         $second = config('dawn.qrcode.expire', -1);
-        $content = Cache::remember('qrcode|' . md5($request->fullUrl()), $second, function () use ($request) {
+        $content = Cache::remember('qrcode|'.md5($request->fullUrl()), $second, function () use ($request) {
             $size = $request->size ?? config('dawn.qrcode.size', 200);
             $margin = $request->margin ?? config('dawn.qrcode.margin', 0);;
             $url = $request->url ?? $request->fullUrl();

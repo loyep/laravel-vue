@@ -22,9 +22,30 @@ if (!function_exists('getAvatar')) {
         ];
         $url = Arr::pull($config, 'url', 'https://secure.gravatar.com/avatar');
         $query = http_build_query($config, '', '&', PHP_QUERY_RFC3986);
-        return $url . '/' . $hash . ($query ? '?' . $query : '');
+        return $url.'/'.$hash.($query ? '?'.$query : '');
     }
 }
+
+
+if (!function_exists('getTitle')) {
+    /**
+     * route_is.
+     *
+     * @param string $title
+     *
+     * @return bool
+     */
+    function getTitle($title = null)
+    {
+        $name = config('blog.title');
+        $desc = config('blog.description');
+        if (!empty($title)) {
+            return "{$title} - {$name}";
+        }
+        return !empty($desc) ? "{$name} - {$desc}" : $name;
+    }
+}
+
 
 if (!function_exists('routeIs')) {
     /**
@@ -43,7 +64,7 @@ if (!function_exists('routeIs')) {
 if (!function_exists('thumbnail')) {
     function thumbnail($url, $width = 450, $height = 300, $quality = 75, $format = 'jpg')
     {
-        return asset($url) . "?imageView2/1/w/{$width}/h/{$height}/format/{$format}/interlace/1/q/{$quality}";
+        return asset($url)."?imageView2/1/w/{$width}/h/{$height}/format/{$format}/interlace/1/q/{$quality}";
     }
 }
 

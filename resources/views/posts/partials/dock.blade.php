@@ -1,4 +1,3 @@
-
 <div id="page-tabbar" class="page-tabbar">
     <div class="container d-flex flex-row justify-content-around align-items-center py-1 h-100">
         <a class="py-2 d-inline-block" href="#comments">

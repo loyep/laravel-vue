@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('page_title', getTitle('专题推荐'))
+
 @section('content')
     <div class="bg-light py-4 py-md-5">
         <div class="container">

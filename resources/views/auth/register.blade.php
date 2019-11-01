@@ -1,5 +1,7 @@
 @extends('layouts.auth')
 
+@section('page_title', getTitle('注册'))
+
 @section('content')
     <div class="sign-boby d-flex flex-fill flex-column px-4 py-5 px-3 px-lg-5 mt-n4 mt-md-0">
         <div class="sign-header font-theme text-xl text-center mb-4 mb-md-5">

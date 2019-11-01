@@ -44,7 +44,7 @@ class Post extends Model
         'password', 'published_at', 'viewed_at', 'source', 'scripts', 'styles', 'settings',
     ];
 
-        /**
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
@@ -112,7 +112,7 @@ class Post extends Model
     public function likedKey($ip = null)
     {
         $ip = is_null($ip) ? request()->ip() : $ip;
-        return 'post_like|' . $this->id . '|' . $ip;
+        return 'post_like|'.$this->id.'|'.$ip;
     }
 
     /**

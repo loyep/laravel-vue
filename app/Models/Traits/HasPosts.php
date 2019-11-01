@@ -2,7 +2,6 @@
 
 namespace App\Models\Traits;
 
-use App\Models\Content;
 use App\Models\Post;
 
 trait HasPosts

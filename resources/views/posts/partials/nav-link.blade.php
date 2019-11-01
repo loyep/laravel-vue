@@ -23,7 +23,9 @@
                         </a>
                     </div>
                     <div class="list-footer">
-                        <div class="text-xs text-muted">上一篇</div>
+                        <a href="{{ $previous->link }}">
+                            <div class="text-xs text-muted">上一篇</div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -47,7 +49,9 @@
                         </a>
                     </div>
                     <div class="list-footer">
-                        <div class="text-xs text-muted">下一篇</div>
+                        <a href="{{ $next->link }}">
+                            <div class="text-xs text-muted">下一篇</div>
+                        </a>
                     </div>
                 </div>
             </div>

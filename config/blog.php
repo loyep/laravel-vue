@@ -2,4 +2,7 @@
 
 return [
 
+    'title' => 'Dawn',
+
+    'description' => 'Blog',
 ];

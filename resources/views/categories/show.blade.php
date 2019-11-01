@@ -9,6 +9,8 @@
 
 @extends('layouts.app')
 
+@section('page_title', getTitle($category->name))
+
 @section('content')
 {{--    @include('components.top.article')--}}
     <div class="category-cover">

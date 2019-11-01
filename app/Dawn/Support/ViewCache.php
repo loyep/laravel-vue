@@ -93,58 +93,6 @@ class ViewCache
     }
 
     /**
-     * Create a key name for the cached view.
-     *
-     * @param string $view
-     * @param string $key
-     *
-     * @return string
-     */
-    public function getCacheKeyForView($view, $key = null)
-    {
-        $parts = [$this->cacheKey, $view];
-        if ($key !== null) {
-            $parts[] = $key;
-        }
-        return implode('.', $parts);
-    }
-
-    /**
-     * Forget a rendered view.
-     *
-     * @param string            $view
-     * @param string            $key
-     * @param null|string|array $tag
-     */
-    public function forget($view, $key = null, $tag = null)
-    {
-        $cacheKey = $this->getCacheKeyForView($view, $key);
-        if ($this->cacheIsTaggable) {
-            $tags = $this->getTags($tag);
-            $this->cache->tags($tags)->forget($cacheKey);
-        }
-        $this->cache->forget($cacheKey);
-    }
-
-    /**
-     * Empty all views linked to a tag or the complete partial cache.
-     * Note: Only supported by Taggable cache drivers.
-     *
-     * @param string $tag
-     *
-     * @throws \App\Dawn\Exceptions\MethodNotSupportedException
-     */
-    public function flush($tag = null)
-    {
-        if (!$this->cacheIsTaggable) {
-            throw new MethodNotSupportedException('The cache driver (' .
-                get_class($this->cacheManager->driver()) . ') doesn\'t support the flush method.');
-        }
-        $tag = $tag ?: $this->cacheKey;
-        $this->cache->tags($tag)->flush();
-    }
-
-    /**
      * Render a view.
      *
      * @param string $view
@@ -160,6 +108,23 @@ class ViewCache
         return function () use ($view, $data, $mergeData) {
             return $this->view->make($view, $data, $mergeData)->render();
         };
+    }
+
+    /**
+     * Create a key name for the cached view.
+     *
+     * @param string $view
+     * @param string $key
+     *
+     * @return string
+     */
+    public function getCacheKeyForView($view, $key = null)
+    {
+        $parts = [$this->cacheKey, $view];
+        if ($key !== null) {
+            $parts[] = $key;
+        }
+        return implode('.', $parts);
     }
 
     /**
@@ -194,5 +159,40 @@ class ViewCache
             return $this->seconds;
         }
         return $seconds;
+    }
+
+    /**
+     * Forget a rendered view.
+     *
+     * @param string            $view
+     * @param string            $key
+     * @param null|string|array $tag
+     */
+    public function forget($view, $key = null, $tag = null)
+    {
+        $cacheKey = $this->getCacheKeyForView($view, $key);
+        if ($this->cacheIsTaggable) {
+            $tags = $this->getTags($tag);
+            $this->cache->tags($tags)->forget($cacheKey);
+        }
+        $this->cache->forget($cacheKey);
+    }
+
+    /**
+     * Empty all views linked to a tag or the complete partial cache.
+     * Note: Only supported by Taggable cache drivers.
+     *
+     * @param string $tag
+     *
+     * @throws \App\Dawn\Exceptions\MethodNotSupportedException
+     */
+    public function flush($tag = null)
+    {
+        if (!$this->cacheIsTaggable) {
+            throw new MethodNotSupportedException('The cache driver ('.
+                get_class($this->cacheManager->driver()).') doesn\'t support the flush method.');
+        }
+        $tag = $tag ?: $this->cacheKey;
+        $this->cache->tags($tag)->flush();
     }
 }

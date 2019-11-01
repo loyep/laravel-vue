@@ -9,6 +9,8 @@
 
 @extends('layouts.app')
 
+@section('page_title', getTitle($topic->name))
+
 @section('content')
     <main class="py-3 py-md-5">
         <div class="container">

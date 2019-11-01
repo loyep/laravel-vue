@@ -13,6 +13,8 @@
 
 @extends('layouts.app')
 
+@section('page_title', getTitle($author->display_name))
+
 @section('content')
     <div class="bg-dark bg-cover" style="background-image: url('{{ thumbnail($author->cover ?? 'images/bg.jpg') }}')">
         <div class="bg-dark-overlay pt-4 pt-md-5">
