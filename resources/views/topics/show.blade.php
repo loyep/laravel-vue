@@ -46,10 +46,10 @@
                             </div>
                         @else
                             <div class="content-error h-v-66">
-                                @include('partials.not-found-svg')
-                                <p class="text-lg text-muted mt-5">
-                                    {{  __('It looks like nothing was found at this location. Maybe try one of the links below or a search?') }}
-                                </p>
+                                <div class="w-256 mx-auto mb-4">
+                                    @include('partials.not-found-svg')
+                                </div>
+                                <p class="text-lg text-muted mt-5">看起来这里没有任何东西…</p>
                             </div>
                         @endif
 
