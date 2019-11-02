@@ -11,7 +11,7 @@
             </div>
 
             @if($posts->isNotEmpty())
-                <div class="row-md list-history list-grouped list-bordered-padding" id="articles">
+                <div class="row-md list-grouped list-bordered-padding" id="posts">
                     @include('posts.lists.small')
                 </div>
             @else

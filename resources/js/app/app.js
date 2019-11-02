@@ -22,7 +22,7 @@ require('./element')
 
 Vue.use(request);
 
-// window.jQuery = window.$ = require('jquery');
+const $ = window.jQuery = window.$ = require('jquery');
 
 Vue.config.productionTip = false
 
@@ -44,6 +44,9 @@ const app = new Vue({
   },
   mounted () {
     document.addEventListener('scroll', this.handleScroll, { passive: true });
+    if ($('body').height() < $(window).height()) {
+      $('main').css('min-height', $(window).height() - $('footer').height() - $('header').height() - 48)
+    }
   },
   beforeDestroy () {
     document.removeEventListener('scroll', this.handleScroll);
