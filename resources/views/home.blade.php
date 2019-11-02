@@ -8,9 +8,9 @@
         <div class="container">
             {{--            @include('partials.notice')--}}
             {{--            @include('partials.pushes')--}}
-            <section id="articles" class="row-md list-grouped list-bordered-padding">
+            <div id="articles" class="row-md list-grouped list-bordered-padding">
                 @include('posts.lists.small')
-            </section>
+            </div>
             {{ $posts->links() }}
         </div>
     </main>

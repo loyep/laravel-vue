@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('page_title', getTitle('最近浏览记录'))
+
 @section('content')
     <main class="py-4 py-md-5">
         <div class="container">

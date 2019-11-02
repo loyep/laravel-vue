@@ -52,4 +52,24 @@ class HomeController
             'Content-Type' => 'image/*',
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $search = trim($request->get('q'));
+        $posts = Post::with(['category'])
+//            ->where('title', 'like', '%'.$search.'%')
+            ->orWhereHas('tags', function ($query) use ($search) {
+                $query->where('name', 'like', '%'.$search.'%');
+            })
+//            ->orWhereHas('category', function ($query) use ($search) {
+//                $query->where('name', 'like', '%'.$search.'%');
+//            })
+//            ->orWhereHas('topics', function ($query) use ($search) {
+//                $query->where('name', 'like', '%'.$search.'%');
+//            })
+            ->published()
+            ->recent()
+            ->paginate(16);
+        return view('search', compact('search', 'posts'));
+    }
 }

@@ -2,7 +2,22 @@
 
 return [
 
-    'title' => 'Dawn',
+    'title'       => 'Dawn',
 
+    /**
+     *
+     */
     'description' => 'Blog',
+
+    /**
+     *
+     */
+    'footer'      => [
+
+        /**
+         *
+         */
+        //white dark
+        'theme' => 'dark'
+    ]
 ];
