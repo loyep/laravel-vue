@@ -61,7 +61,7 @@
                             </div>
                         @else
                             <div class="content-error h-v-66">
-                                @include('components.not-found-svg')
+                                @include('partials.not-found-svg')
                                 <p class="text-lg text-muted mt-5">
                                     {{  __('It looks like nothing was found at this location. Maybe try one of the links below or a search?') }}
                                 </p>
