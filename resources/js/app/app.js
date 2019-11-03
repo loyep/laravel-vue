@@ -45,7 +45,10 @@ const app = new Vue({
   mounted () {
     document.addEventListener('scroll', this.handleScroll, { passive: true });
     if ($('body').height() < $(window).height()) {
-      $('main').css('min-height', $(window).height() - $('footer').height() - $('header').height() - 48)
+      const gap = $(window).height() - $('#app').height()
+      if (gap > 0) {
+        $('main').css('min-height', $('main').height() + gap + parseFloat($('main').css('padding-top')) + parseFloat($('main').css('padding-bottom')))
+      }
     }
   },
   beforeDestroy () {
