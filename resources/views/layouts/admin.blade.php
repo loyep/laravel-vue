@@ -19,7 +19,7 @@
     <link rel="apple-touch-icon" href="{{ asset('favicon.ico') }}">
     <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}">
     <meta name="msapplication-TileImage" content="{{ asset('favicon.ico') }}">
-    
+
     <link href="{{ mix('css/admin.css', 'static/admin') }}" rel="stylesheet" type="text/css" media="all">
     @stack('styles')
 </head>
