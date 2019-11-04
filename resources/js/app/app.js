@@ -17,12 +17,12 @@ import CommentForm from '@app/components/CommentForm.vue'
 import SearchLink from '@app/components/SearchLink.vue'
 import SocialShare from '@app/components/SocialShare.vue'
 
+import { on, off } from '@/utils/dom';
+
 // Element UI
 require('./element')
 
 Vue.use(request);
-
-const $ = window.jQuery = window.$ = require('jquery');
 
 Vue.config.productionTip = false
 
@@ -44,26 +44,25 @@ const app = new Vue({
   },
   mounted () {
     document.addEventListener('scroll', this.handleScroll, { passive: true });
-    if ($('body').height() < $(window).height()) {
-      const gap = $(window).height() - $('#app').height()
-      if (gap > 0) {
-        $('main').css('min-height', $('main').height() + gap + parseFloat($('main').css('padding-top')) + parseFloat($('main').css('padding-bottom')))
-      }
-    }
+    on(window, 'resize', this.handleResize);
+    this.handleResize()
   },
   beforeDestroy () {
     document.removeEventListener('scroll', this.handleScroll);
+    off(window, 'resize', this.handleResize);
   },
   methods: {
+    handleResize () {
+      const gap = window.innerHeight - document.body.scrollHeight
+      const main = document.getElementsByTagName('main')[0]
+      if (gap > 0 && main) main.style.minHeight = (gap + main.offsetHeight) + 'px'
+    },
     handleScroll () {
       const scrollTop = document.body.scrollTop + document.documentElement.scrollTop;
       const el = document.getElementsByClassName('fixed-top')[0]
       if (el) {
-        if (scrollTop > 72) {
-          el.classList.add('scroll')
-        } else {
-          el.classList.remove('scroll')
-        }
+        if (scrollTop > 72) el.classList.add('scroll')
+        else el.classList.remove('scroll')
       }
     }
   }

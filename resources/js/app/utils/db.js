@@ -1,6 +1,6 @@
 import low from 'lowdb';
 import LocalStorage from 'lowdb/adapters/LocalStorage';
-import cookies from './cookies'
+import cookies from '@/utils/cookies'
 import { cloneDeep } from 'lodash';
 
 const adapter = new LocalStorage('dawn');

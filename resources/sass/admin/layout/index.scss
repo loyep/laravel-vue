@@ -1,0 +1,16 @@
+.el-layout {
+  &-header {
+    width: 100%;
+    background: #fff;
+    padding: 0;
+    box-shadow: 0 1px 4px rgba(0,21,41,.08);
+    transition: all .3s ease-in-out;
+    z-index: 3;
+    display: block;
+  }
+
+  &-sider{
+    min-height: 100vh;
+  }
+
+}
