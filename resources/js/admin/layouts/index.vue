@@ -1,29 +1,28 @@
 <template>
-  <div id="app">
-    <el-container class="el-layout">
-      <el-aside v-if="!isMobile && !hideSider" class="el-layout-sider" :class="siderClasses" :width="menuSideWidth">
-        <menu-side :hideLogo="isHeaderStick && headerFix && showHeader" />
-      </el-aside>
-      <el-container class="el-layout-inside" :class="insideClasses">
-        <transition name="fade-quick">
-          <el-header class="el-layout-header" :class="headerClasses" :style="headerStyle">
-            <header-logo v-if="isMobile && showMobileLogo" />
-            <header-logo v-if="!isMobile && isHeaderStick && headerFix" />
-            <header-collapse v-if="(isMobile || showSiderCollapse) && !hideSider" @toggleDrawer="handleToggleDrawer" />
-            <header-reload v-if="!isMobile && showReload" @reload="handleReload" />
-            <header-search v-if="showSearch && !headerMenu && !isMobile && !showBreadcrumb" />
-            <div class="el-layout-header-right">
-              <header-search v-if="(showSearch && isMobile) || (showSearch && (headerMenu || showBreadcrumb))" />
-              <!-- <menu-head v-if="headerMenu && isMobile" /> -->
-              <!-- <header-log v-if="isDesktop && showLog" />-->
-              <header-fullscreen v-if="isDesktop && showFullscreen" />
-              <!-- <header-notice v-if="showNotice" />-->
-              <header-user />
+  <el-container class="el-layout">
+    <el-aside v-if="!isMobile && !hideSider" class="el-layout-sider" :class="siderClasses" :width="menuSideWidth">
+      <menu-side :hideLogo="isHeaderStick && headerFix && showHeader" />
+    </el-aside>
+    <el-container class="el-layout-inside" :class="insideClasses">
+      <transition name="fade-quick">
+        <el-header class="el-layout-header" :class="headerClasses" :style="headerStyle">
+          <header-logo v-if="isMobile && showMobileLogo" />
+          <header-logo v-if="!isMobile && isHeaderStick && headerFix" />
+          <header-collapse v-if="(isMobile || showSiderCollapse) && !hideSider" @toggleDrawer="handleToggleDrawer" />
+          <header-reload v-if="!isMobile && showReload" @reload="handleReload" />
+          <header-search v-if="showSearch && !headerMenu && !isMobile && !showBreadcrumb" />
+          <div class="el-layout-header-right">
+            <header-search v-if="(showSearch && isMobile) || (showSearch && (headerMenu || showBreadcrumb))" />
+            <!-- <menu-head v-if="headerMenu && isMobile" /> -->
+            <!-- <header-log v-if="isDesktop && showLog" />-->
+            <header-fullscreen v-if="isDesktop && showFullscreen" />
+            <!-- <header-notice v-if="showNotice" />-->
+            <header-user />
             <!-- <header-i18n v-if="showI18n" />
             <header-setting v-if="enableSetting && !isMobile" /> -->
-            </div>
-          </el-header>
-        </transition>
+          </div>
+        </el-header>
+      </transition>
       <!-- <div :class="classObj" class="app-wrapper">
         <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
         <div :class="{hasTagsView:needTagsView}" class="main-container">
@@ -37,35 +36,40 @@
           </right-panel>
         </div>
       </div> -->
-      </el-container>
     </el-container>
-  </div>
+  </el-container>
 </template>
 
 <script>
-    import Setting from '@/setting';
-    import { mapState, mapMutations } from 'vuex'
-    import { on, off } from '@/utils/dom';
-    import HeaderLogo from './layouts/header-logo';
-    import HeaderCollapse from './layouts/header-collapse';
-    import HeaderReload from './layouts/header-reload'
-    import MenuSide from './layouts/menu-side'
-    import HeaderSearch from './layouts/header-search'
-    import HeaderUser from './layouts/header-user'
-    import HeaderFullscreen from './layouts/header-fullscreen'
+    import { mapState } from 'vuex'
+    import Setting from '@/settings'
+
+    import HeaderLogo from './header-logo'
+    import HeaderCollapse from './header-collapse'
+    import HeaderReload from './header-reload'
+    import MenuSide from './menu-side'
+    import HeaderSearch from './header-search'
+    import HeaderUser from './header-user'
+    import HeaderFullscreen from './header-fullscreen'
 
     export default {
-        name: 'App',
+        name: 'Layout',
         components: {
+            // AppMain,
+            // Navbar,
+            // RightPanel,
+            // Settings,
+            // Sidebar,
             MenuSide,
+            // TagsView,
             HeaderLogo,
             HeaderReload,
             HeaderCollapse,
             HeaderSearch,
             HeaderUser,
             HeaderFullscreen
-        }, 
-data () {
+        },
+        data () {
             return {
                 hideSider: false,
                 showDrawer: false,
