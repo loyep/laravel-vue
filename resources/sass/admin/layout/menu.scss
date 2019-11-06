@@ -1,0 +1,303 @@
+$transition-time: .3s;
+$ease-in-out: ease-in-out;
+$menuSideWidth: 256px;
+$menuHeaderHeight: 64px;
+$menuSideWidthCollapse: 80px;
+$trigger-background: #f8f8f9;
+$headerTriggerMinPadding: 0 12px;
+$menu-dark-active-bg: #101117;
+$menu-dark-title: #191a23;
+$menu-dark-subsidiary-color: #101117;
+@import "~element-ui/packages/theme-chalk/src/common/var";
+
+.el-layout-menu{
+    
+    &-side{
+
+        &::-webkit-scrollbar{
+            width: 0;
+        }
+        &::-webkit-scrollbar-track{
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb{
+            background: #e8eaec;
+        }
+
+        position: static; // 菜单开启后，Dropdown 会被 overflow-y:hidden 隐藏掉，加此不受影响
+        &.el-menu, .el-menu--popup{
+            border-right: none;
+            &.el-menu--collapse {
+                width: 100%;
+                .el-menu-item ,.el-submenu{
+                    text-align: center;
+                }
+
+                .el-submenu .title {
+                    display: none;
+                }
+            }
+
+            .el-submenu__title, .el-menu-item-group__title, .el-menu-item{
+                height: 52px;
+                line-height: 52px;
+                color: #515a6e !important;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                &:hover {
+                    color: $--color-primary !important;
+                    background-color: #fff !important;
+                }
+            }
+
+            .is-opened .el-menu-item {
+                // background-color: # !important;
+                color: #515a6e;
+            }
+
+            .is-active {
+                .el-submenu__title {
+                    color: #515a6e;
+                }
+                &.el-menu-item {
+                    color: $--color-primary !important;
+                    background-color: mix($--color-white, $--color-primary, 90%) !important;
+                }
+            }
+        }
+
+        &-dark {
+            &.el-menu, .el-menu--popup {
+                background-color: #191a23;
+
+                &.el-menu--collapse {
+                    width: 100%;
+                    .el-menu-item ,.el-submenu{
+                        text-align: center;
+                    }
+    
+                    .el-submenu .title {
+                        display: none;
+                    }
+                }
+        
+                .is-active > .el-submenu__title i {
+                    color:#fff;
+                }
+
+                .el-submenu__title, .el-menu-item-group__title, .el-menu-item{
+                    color: hsla(0,0%,100%,.7) !important;
+                    background-color: #191a23 !important;
+                    &:hover {
+                        color: #fff !important;
+                        background-color: #191a23 !important;
+                    }
+                }
+
+                // .is-opened .el-menu-item {
+                //     color: hsla(0,0%,100%,.7);
+                //     background-color: #101117 !important;
+                // }
+
+                // .is-active.el-menu-item {
+                //     color: #fff !important;
+                //     background-color: #2d8cf0!important;
+                // }
+
+                .is-opened .el-menu-item {
+                    // background-color: # !important;
+                    color: hsla(0,0%,100%,.7) !important;
+                    background-color: #101117 !important;
+                }
+
+                .is-active {
+                    .el-submenu__title {
+                        color: #fff !important;
+                    }
+                    &.el-menu-item {
+                        color: #fff !important;
+                        background-color: $--color-primary !important;
+                    }
+                }
+
+                // .is-disabled {
+                //     .el-submenu__title {
+                //         color: #c5c8ce !important;
+                //     }
+                //     &.el-menu-item {
+                //         color: #c5c8ce !important;
+                //     }
+                // }
+            }
+        }
+
+        &:after{
+            display: none !important;
+        }
+
+        &-title{
+            display: inline-block;
+            &-icon{
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                line-height: 21px;
+                vertical-align: middle;
+                text-align: center;
+                margin-right: 8px;
+                &-single{
+                    margin-right: 0;
+                }
+                i{
+                    margin-right: 0 !important;
+                }
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            &-text{
+                &-selected{
+                    color: $--color-primary;
+                }
+            }
+        }
+
+        
+        .ivu-menu-submenu-title-icon{
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            float: none;
+        }
+
+        .ivu-dropdown-menu{
+            min-width: 160px;
+        }
+        .ivu-dropdown-item{
+            font-size: 18px !important;
+            padding-right: 32px;
+
+            &-divided:before{
+                margin: 0 -32px 0 -16px;
+            }
+        }
+        .ivu-select-dropdown{
+            margin: 5px 0 5px 3px;
+        }
+        .ivu-tooltip, .ivu-tooltip-rel{
+            display: block;
+            text-align: center;
+        }
+
+        &-arrow{
+            position: absolute;
+            top: 50%;
+            right: 16px;
+            transform: translate(0, -50%);
+        }
+
+        &-collapse{
+            &-top{
+                display: block;
+                &-item{
+                    text-align: center;
+                }
+            }
+            &-item{
+                &-selected, &-selected:hover{
+                    background-color: mix($--color-white, $--color-primary, 10%);
+                    color: $--color-primary;
+                }
+            }
+            &-title{
+                text-align: center;
+                padding: 6px 0;
+                border-bottom: 1px solid $--border-color-light;
+            }
+        }
+    }
+
+    &-head{
+        display: inline-block;
+        overflow: hidden;
+        flex: 1;
+
+        .ivu-menu-horizontal.ivu-menu-light:after{
+            display: none;
+        }
+        .ivu-menu-horizontal{
+            display: inline-block;
+            vertical-align: middle;
+            height: auto; // 这里不能设置为 @menuHeaderHeight - 2px，因为在平板模式下，header 宽度不够，拿不到真实高度
+            line-height: $menuHeaderHeight - 6px;
+        }
+
+        &-logo{
+            display: inline-block;
+            height: $menuHeaderHeight;
+            text-align: center;
+            vertical-align: middle;
+            img{
+                height: 80%;
+                vertical-align: middle;
+            }
+        }
+
+        &-title{
+            display: inline-block;
+            &-icon{
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                line-height: 21px;
+                vertical-align: middle;
+                text-align: center;
+                &-single{
+                    margin-right: 0;
+                }
+                i{
+                    margin-right: 0 !important;
+                    font-size: 16px;
+                }
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            &-text{
+                vertical-align: middle;
+                margin-left: 6px;
+            }
+        }
+
+        .ivu-dropdown-rel{
+            padding: $headerTriggerMinPadding;
+        }
+        .ivu-dropdown-item{
+            text-align: left;
+        }
+
+        &-mobile{
+            vertical-align: baseline;
+            overflow: visible;
+            .ivu-dropdown-item{
+                font-size: 14px !important;
+                text-align: left;
+                i,span{
+                    vertical-align: middle;
+                }
+                i{
+                    margin-right: 6px;
+                }
+            }
+            &-drop{
+                // .dropdownMobile();
+            }
+        }
+    }
+}

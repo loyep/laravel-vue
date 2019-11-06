@@ -6,7 +6,7 @@
       </el-aside>
       <el-container class="el-layout-inside" :class="insideClasses">
         <transition name="fade-quick">
-          <el-header class="el-layout-header" :class="headerClasses" :style="headerStyle">
+          <el-header class="el-layout-header" :class="headerClasses" :style="headerStyle" :height="headerHeight">
             <header-logo v-if="isMobile && showMobileLogo" />
             <header-logo v-if="!isMobile && isHeaderStick && headerFix" />
             <header-collapse v-if="(isMobile || showSiderCollapse) && !hideSider" @toggleDrawer="handleToggleDrawer" />
@@ -19,6 +19,7 @@
               <header-fullscreen v-if="isDesktop && showFullscreen" />
               <!-- <header-notice v-if="showNotice" />-->
               <header-user />
+              <header-setting v-if="!isMobile" />
             <!-- <header-i18n v-if="showI18n" />
             <header-setting v-if="enableSetting && !isMobile" /> -->
             </div>
@@ -38,6 +39,12 @@
         </div>
       </div> -->
       </el-container>
+
+      <div v-if="isMobile && !hideSider">
+        <el-drawer :visible.sync="showDrawer" direction="ltr" :size="menuSideWidth" :showClose="false" :customClass="drawerClasses">
+          <menu-side />
+        </el-drawer>
+      </div>
     </el-container>
   </div>
 </template>
@@ -46,13 +53,15 @@
     import Setting from '@/setting';
     import { mapState, mapMutations } from 'vuex'
     import { on, off } from '@/utils/dom';
-    import HeaderLogo from './layouts/header-logo';
-    import HeaderCollapse from './layouts/header-collapse';
-    import HeaderReload from './layouts/header-reload'
-    import MenuSide from './layouts/menu-side'
-    import HeaderSearch from './layouts/header-search'
-    import HeaderUser from './layouts/header-user'
-    import HeaderFullscreen from './layouts/header-fullscreen'
+    import HeaderLogo from './layout/header-logo';
+    import HeaderCollapse from './layout/header-collapse';
+    import HeaderReload from './layout/header-reload'
+    import HeaderSearch from './layout/header-search'
+    import HeaderUser from './layout/header-user'
+    import HeaderFullscreen from './layout/header-fullscreen'
+    import HeaderSetting from './layout/header-setting'
+
+    import MenuSide from './layout/menu-side'
 
     export default {
         name: 'App',
@@ -63,9 +72,10 @@
             HeaderCollapse,
             HeaderSearch,
             HeaderUser,
-            HeaderFullscreen
-        }, 
-data () {
+            HeaderFullscreen,
+            HeaderSetting
+        },
+        data () {
             return {
                 hideSider: false,
                 showDrawer: false,
@@ -90,6 +100,9 @@ data () {
                 let state = this.headerStick
                 if (this.hideSider) state = true
                 return state
+            },
+            headerHeight () {
+                return `${Setting.headerHeight}px`
             },
             ...mapState('layout', [
                 'siderTheme',
