@@ -61,8 +61,10 @@
     import HeaderFullscreen from './layout/header-fullscreen'
     import HeaderSetting from './layout/header-setting'
 
+    import { setMatchMedia } from '@/utils/assist'
     import MenuSide from './layout/menu-side'
 
+    setMatchMedia()
     export default {
         name: 'App',
         components: {
@@ -180,7 +182,31 @@
                 return `${this.menuCollapse ? 80 : Setting.menuSideWidth}px`
             }
         },
+        mounted () {
+            on(window, 'resize', this.handleWindowResize)
+            this.handleMatchMedia()
+        },
+        beforeDestroy () {
+            off(window, 'resize', this.handleWindowResize)
+        },
         methods: {
+            ...mapMutations('layout', [
+                'setDevice'
+            ]),
+            handleWindowResize () {
+                this.handleMatchMedia()
+            },
+            handleMatchMedia () {
+                const matchMedia = window.matchMedia
+
+                if (matchMedia('(max-width: 600px)').matches) {
+                    this.setDevice('Mobile')
+                } else if (matchMedia('(max-width: 992px)').matches) {
+                    this.setDevice('Tablet')
+                } else {
+                    this.setDevice('Desktop')
+                }
+            },
             handleClickOutside () {
                 this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
             },
