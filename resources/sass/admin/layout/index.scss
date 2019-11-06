@@ -245,6 +245,55 @@ body {
       z-index: 13;
       transition: all $transition-time $ease-in-out;
 
+      &-color{
+        &-dark{
+            background: $menu-dark-title;
+        }
+        &-primary{
+            background: #2173dc;
+            background: -webkit-linear-gradient(to right, #1d42ab, #2173dc, #1e93ff);
+            background: -moz-linear-gradient(to right, #1d42ab, #2173dc, #1e93ff);
+            background: -o-linear-gradient(to right, #1d42ab, #2173dc, #1e93ff);
+            background: linear-gradient(to right, #1d42ab, #2173dc, #1e93ff);
+
+            .i-layout-header-search{
+                // .placeholder(fade(#fff, 70%));
+            }
+        }
+
+        &-dark, &-primary{
+            color: #fff;
+            .i-layout-header-trigger:hover{
+                background: fade(#fff, 5%);
+            }
+            .ivu-menu{
+                background: transparent;
+            }
+            .ivu-menu-item{
+                border-width: 3px !important;
+            }
+            .ivu-menu-light.ivu-menu-horizontal .ivu-menu-item, .ivu-menu-light.ivu-menu-horizontal .ivu-menu-submenu{
+                color: fade(#fff, 70%);
+            }
+            .ivu-menu-light.ivu-menu-horizontal .ivu-menu-item-active, .ivu-menu-light.ivu-menu-horizontal .ivu-menu-submenu-active, .ivu-menu-light.ivu-menu-horizontal .ivu-menu-item:hover, .ivu-menu-light.ivu-menu-horizontal .ivu-menu-submenu:hover{
+                color: #fff;
+                border-bottom-color: #4fe3c1;
+            }
+
+            .i-layout-header-breadcrumb{
+                .ivu-breadcrumb-item-link{
+                    color: fade(#fff, 70%);
+                }
+                a.ivu-breadcrumb-item-link:hover{
+                    color: #fff;
+                }
+                & > span:last-child .ivu-breadcrumb-item-link{
+                    color: #fff;
+                }
+            }
+        }
+    }
+    
       &-fix{
           position: fixed;
           top: 0;
