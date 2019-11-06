@@ -251,7 +251,7 @@ body {
           left: 0;
 
           .el-layout-menu-side{
-              height: calc('100vh - 64px');
+              height: calc(100vh - 64px);
               overflow-y: auto;
           }
       }
@@ -326,7 +326,7 @@ body {
             overflow: visible;
         }
         .el-layout-menu-side{
-            height: calc('100vh - 64px');
+            height: calc(100vh - 64px);
             overflow-y: auto;
         }
         &-dark{
