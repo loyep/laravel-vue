@@ -178,6 +178,11 @@
                     'el-layout-inside-mobile': this.isMobile
                 }
             },
+            drawerClasses () {
+                let className = 'el-layout-drawer'
+                if (this.siderTheme === 'dark') className += ' el-layout-drawer-dark'
+                return className
+            },
             menuSideWidth () {
                 return `${this.menuCollapse ? 80 : Setting.menuSideWidth}px`
             }
