@@ -7,14 +7,7 @@
         <img v-else src="@assets/images/logo-dark.png">
       </a>
     </div>
-    <!-- <Menu
-                ref="menu"
-                class="i-layout-menu-side i-scrollbar-hide"
-                :theme="siderTheme"
-                :accordion="menuAccordion"
-                :active-name="activePath"
-                :open-names="openNames"
-                width="auto"> -->
+
     <el-menu
       ref="menu"
       defaultActive="1-3"

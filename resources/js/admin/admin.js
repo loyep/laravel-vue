@@ -3,7 +3,7 @@ import Vue from 'vue'
 import App from './App';
 
 // 配置
-import Setting from '@/setting';
+// import Setting from '@/setting';
 
 import request from './utils/request'
 import ElementUI from 'element-ui'
