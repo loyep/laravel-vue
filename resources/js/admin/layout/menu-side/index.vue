@@ -17,22 +17,31 @@
                 width="auto"> -->
     <el-menu
       ref="menu"
-      default-active="1-3"
+      defaultActive="1-3"
+      :collapseTransition="false"
       class="el-layout-menu-side"
       :class="menuClasses"
       :collapse="menuCollapse"
     >
-      <el-submenu index="1" popper-class="el-layout-menu-side">
+      <el-submenu index="1" popperClass="el-layout-menu-side">
         <template slot="title">
           <i class="el-icon-location" />
           <span class="title">导航一</span>
         </template>
-        <el-menu-item index="1-1">选项1</el-menu-item>
-        <el-menu-item index="1-2">选项2</el-menu-item>
-        <el-menu-item index="1-3">选项3</el-menu-item>
+        <el-menu-item index="1-1">
+          选项1
+        </el-menu-item>
+        <el-menu-item index="1-2">
+          选项2
+        </el-menu-item>
+        <el-menu-item index="1-3">
+          选项3
+        </el-menu-item>
         <el-submenu index="1-4">
           <span slot="title">选项4</span>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
+          <el-menu-item index="1-4-1">
+            选项1
+          </el-menu-item>
         </el-submenu>
       </el-submenu>
       <el-menu-item index="2">
@@ -52,36 +61,36 @@
 </template>
 
 <script>
-import {
-  mapState
-  // mapGetters
-} from 'vuex'
-export default {
-  name: 'MenuSide',
-  props: {
-    hideLogo: {
-      type: Boolean,
-      default: false
+    import {
+        mapState
+        // mapGetters
+    } from 'vuex'
+    export default {
+        name: 'MenuSide',
+        props: {
+            hideLogo: {
+                type: Boolean,
+                default: false
+            }
+        },
+        computed: {
+            ...mapState('layout', [
+                'siderTheme',
+                'menuAccordion',
+                'menuCollapse'
+            ]),
+            menuClasses () {
+                return {
+                    'el-layout-menu-side-dark': this.siderTheme === 'dark'
+                }
+            }
+            // ...mapState('menu', [
+            //   'activePath',
+            //   'openNames'
+            // ]),
+            // ...mapGetters('menu', [
+            //   'filterSider'
+            // ])
+        }
     }
-  },
-  computed: {
-    ...mapState('layout', [
-      'siderTheme',
-      'menuAccordion',
-      'menuCollapse'
-    ]),
-    menuClasses() {
-      return {
-        'el-layout-menu-side-dark': this.siderTheme === 'dark'
-      }
-    }
-    // ...mapState('menu', [
-    //   'activePath',
-    //   'openNames'
-    // ]),
-    // ...mapGetters('menu', [
-    //   'filterSider'
-    // ])
-  }
-}
 </script>
